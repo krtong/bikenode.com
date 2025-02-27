@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced 3D Wireframe Road Background</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            min-height: 100vh;
+            background-color: #1a1c1f;
+            color: #ffffff;
+            padding: 20px;
+        }
+        #backgroundCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.2; /* Keeps it subtle as a background */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="backgroundCanvas"></canvas>
+
+    <script>
+        (function() {
+            const canvas = document.getElementById('backgroundCanvas');
+            const ctx = canvas.getContext('2d');
+
+            // Resize canvas to fit window
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            // Configuration
+            const segmentLength = 100;     // Length of each road segment in world units
+            const roadWidth = 2000;        // Width of the road in world units
+            const segmentCount = 200;      // Total number of segments
+            const cameraHeight = 1000;     // Camera height above the road
+            const cameraDepth = 0.84;      // Perspective factor
+            const fov = 100;               // Field of view
+            let cameraZ = 0;               // Camera position along Z-axis
+            const segments = [];
+            const trees = [];
+            const stars = [];              // New array for starfield
+            const mountains = [];          // New array for background mountains
+
+            // Generate stars for the background
+            for (let i = 0; i < 200; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height * 0.5, // Only in upper half
+                    size: Math.random() * 1.5 + 0.5,
+                    brightness: Math.random() * 0.8 + 0.2
+                });
+            }
+            
+            // Generate mountain peaks for the background
+            const mountainPoints = 15;
+            const mountainBaseY = canvas.height * 0.4;
+            for (let i = 0; i < mountainPoints; i++) {
+                mountains.push({
+                    x: (i / (mountainPoints - 1)) * canvas.width,
+                    y: mountainBaseY - Math.abs(Math.sin(i * 0.5) * canvas.height * 0.15)
+                                     - Math.random() * canvas.height * 0.1
+                });
+            }
+
+            // Generate road segments with curves and hills
+            for (let i = 0; i < segmentCount; i++) {
+                segments.push({
+                    index: i,
+                    p1: { world: { x: 0, y: 0, z: i * segmentLength }, screen: {} },
+                    p2: { world: { x: 0, y: 0, z: (i + 1) * segmentLength }, screen: {} },
+                    curve: Math.sin(i / 20) * 1200, // Smooth horizontal curves
+                    hill: Math.cos(i / 30) * 600,   // Smooth vertical hills
+                    color: i % 10 === 0 ? '#7289DA' : '#5865F2' // Color variation for every 10th segment
+                });
+            }
+
+            // Generate trees and structures along the roadside
+            for (let z = 0; z < segmentCount * segmentLength; z += 500) {
+                // Trees on both sides
+                trees.push({ x: -roadWidth * 1.5, y: 0, z: z }); // Left side
+                trees.push({ x: roadWidth * 1.5, y: 0, z: z });  // Right side
+                
+                // Add occasional structures (like towers)
+                if (z % 2000 < 100) {
+                    trees.push({ 
+                        x: -roadWidth * 2.5, 
+                        y: 0, 
+                        z: z,
+                        isStructure: true,
+                        height: 1500 + Math.random() * 1000
+                    });
+                    
+                    trees.push({ 
+                        x: roadWidth * 2.5, 
+                        y: 0, 
+                        z: z,
+                        isStructure: true,
+                        height: 1500 + Math.random() * 1000
+                    });
+                }
+            }
+
+            // Project 3D point to 2D screen coordinates
+            function project(point, camX, camY, camZ) {
+                const dx = point.world.x - camX;
+                const dy = point.world.y - camY;
+                const dz = point.world.z - camZ;
+                const scale = fov / (dz > 0 ? dz : 0.001); // Avoid division by zero
+                point.screen.x = canvas.width / 2 + scale * dx;
+                point.screen.y = canvas.height / 2 - scale * dy;
+                point.screen.scale = scale;
+            }
+
+            // Draw a line with optional alpha for fading
+            function drawLine(x1, y1, x2, y2, alpha = 1) {
+                ctx.globalAlpha = alpha;
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
+            }
+
+            // Draw a star
+            function drawStar(star) {
+                ctx.globalAlpha = star.brightness;
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fill();
+            }
+            
+            // Last timestamp for frame timing
+            let lastTime = performance.now();
+            const targetFPS = 60;
+            const frameTime = 1000 / targetFPS;
+
+            // Render the scene
+            function render(timestamp) {
+                // Calculate delta time for consistent animation speed
+                const deltaTime = timestamp - lastTime;
+                if (deltaTime < frameTime - 1) {
+                    requestAnimationFrame(render);
+                    return; // Skip frame to maintain target FPS
+                }
+                lastTime = timestamp;
+                
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Draw horizon gradient for depth
+                const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                gradient.addColorStop(0, '#121417'); // Darker sky for contrast with stars
+                gradient.addColorStop(0.4, '#1e2228'); // Mid sky
+                gradient.addColorStop(0.5, '#1a1c1f'); // Horizon
+                gradient.addColorStop(1, '#161719'); // Ground
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Draw stars
+                for (const star of stars) {
+                    drawStar(star);
+                }
+                
+                // Draw mountain skyline
+                ctx.globalAlpha = 0.5;
+                ctx.strokeStyle = '#3b4152';
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.moveTo(0, mountainBaseY);
+                for (const peak of mountains) {
+                    ctx.lineTo(peak.x, peak.y);
+                }
+                ctx.lineTo(canvas.width, mountainBaseY);
+                ctx.stroke();
+
+                // Reset for road and elements
+                ctx.strokeStyle = '#5865F2'; // Retro wireframe color
+                ctx.lineWidth = 1;
+                ctx.globalAlpha = 1;
+
+                // Move camera forward
+                cameraZ += 150 * (deltaTime / frameTime); // Speed adjusted for frame timing
+                if (cameraZ >= segmentCount * segmentLength) {
+                    cameraZ -= segmentCount * segmentLength; // Loop back
+                }
+
+                const baseSegmentIdx = Math.floor(cameraZ / segmentLength) % segmentCount;
+                
+                // Calculate a slight bounce effect based on terrain
+                const currentSegmentIndex = Math.floor(cameraZ / segmentLength);
+                const currentSegment = segments[currentSegmentIndex % segmentCount];
+                const bounceOffset = currentSegment ? Math.sin(cameraZ / 200) * 50 : 0;
+
+                // Draw road segments from back to front
+                for (let i = segmentCount - 1; i >= 0; i--) {
+                    const segment = segments[(baseSegmentIdx + i) % segmentCount];
+                    const nextSegment = segments[(segment.index + 1) % segmentCount];
+
+                    // Apply curves and hills
+                    segment.p1.world.x = segment.curve;
+                    segment.p1.world.y = segment.hill;
+                    segment.p2.world.x = nextSegment.curve;
+                    segment.p2.world.y = nextSegment.hill;
+
+                    // Project points to screen
+                    project(segment.p1, 0, cameraHeight + bounceOffset, cameraZ);
+                    project(segment.p2, 0, cameraHeight + bounceOffset, cameraZ);
+
+                    // Skip segments behind camera
+                    if (segment.p1.screen.scale <= 0) continue;
+
+                    const p1 = segment.p1.screen;
+                    const p2 = segment.p2.screen;
+                    
+                    // Improved distance-based fading with fog effect
+                    const fogFactor = 1 - Math.min(1, i / (segmentCount * 0.8));
+                    const fade = Math.min(1, p1.scale * 2) * fogFactor;
+
+                    // Set color based on segment
+                    ctx.strokeStyle = segment.color;
+                    
+                    // Calculate road edges
+                    const width1 = (roadWidth / 2) * p1.scale;
+                    const width2 = (roadWidth / 2) * p2.scale;
+
+                    // Draw solid road edges
+                    drawLine(p1.x - width1, p1.y, p2.x - width2, p2.y, fade); // Left edge
+                    drawLine(p1.x + width1, p1.y, p2.x + width2, p2.y, fade); // Right edge
+
+                    // Draw dashed center line
+                    const midZ = (segment.p1.world.z + segment.p2.world.z) / 2;
+                    if (midZ % 200 < 100) {
+                        drawLine(p1.x, p1.y, p2.x, p2.y, fade);
+                    }
+                    
+                    // Draw cross grid lines every 5 segments
+                    if (segment.index % 5 === 0) {
+                        // Horizontal grid lines
+                        for (let j = -2; j <= 2; j++) {
+                            const laneDivision = j * (width1 / 3);
+                            const nextLaneDivision = j * (width2 / 3);
+                            drawLine(
+                                p1.x + laneDivision, 
+                                p1.y, 
+                                p2.x + nextLaneDivision, 
+                                p2.y, 
+                                fade * 0.7
+                            );
+                        }
+                        
+                        // Vertical grid lines
+                        for (let j = -4; j <= 4; j += 2) {
+                            const gridX = p1.x + (width1 / 4) * j;
+                            drawLine(
+                                gridX,
+                                p1.y,
+                                gridX,
+                                p1.y - 30 * p1.scale,
+                                fade * 0.5
+                            );
+                        }
+                    }
+                }
+
+                // Draw roadside trees and structures
+                for (let tree of trees) {
+                    const treePoint = { world: tree, screen: {} };
+                    project(treePoint, 0, cameraHeight + bounceOffset, cameraZ);
+                    
+                    if (treePoint.screen.scale > 0) {
+                        const x = treePoint.screen.x;
+                        const y = treePoint.screen.y;
+                        const distanceFade = Math.min(1, treePoint.screen.scale * 0.5);
+                        
+                        if (tree.isStructure) {
+                            // Draw tower/structure
+                            const height = tree.height * treePoint.screen.scale;
+                            drawLine(x, y, x, y - height, distanceFade * 0.8);
+                            
+                            // Draw cross beams
+                            const beamWidth = 300 * treePoint.screen.scale;
+                            const beamCount = 3;
+                            for (let i = 1; i <= beamCount; i++) {
+                                const beamY = y - (height * i / (beamCount + 1));
+                                drawLine(
+                                    x - beamWidth, 
+                                    beamY, 
+                                    x + beamWidth, 
+                                    beamY, 
+                                    distanceFade * 0.8
+                                );
+                            }
+                            
+                            // Draw antenna on top
+                            drawLine(
+                                x, 
+                                y - height, 
+                                x, 
+                                y - height - (200 * treePoint.screen.scale), 
+                                distanceFade * 0.7
+                            );
+                        } else {
+                            // Draw normal tree
+                            const height = 500 * treePoint.screen.scale;
+                            drawLine(x, y, x, y - height, distanceFade);
+                            
+                            // Add simple branches
+                            const branchSize = 150 * treePoint.screen.scale;
+                            const branchY = y - height * 0.7;
+                            drawLine(x, branchY, x - branchSize, branchY - branchSize * 0.5, distanceFade * 0.7);
+                            drawLine(x, branchY, x + branchSize, branchY - branchSize * 0.5, distanceFade * 0.7);
+                        }
+                    }
+                }
+
+                requestAnimationFrame(render);
+            }
+
+            requestAnimationFrame(render);
+        })();
+    </script>
+</body>
+</html>
