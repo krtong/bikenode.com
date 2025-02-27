@@ -142,14 +142,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function generateNaturalCurve(z) {
-            let baseNoise = naturalNoise(z, curveNoise, 10000, 3);
+            // Increase scale from 10000 to 20000 to stretch out curves
+            let baseNoise = naturalNoise(z, curveNoise, 20000, 3);
+            
+            // Reduce number of harmonics for smoother curves
             let harmonics = 0;
-            for(let i = 0; i < fibSequence.length - 1; i++) {
-                let freq = fibSequence[i] / 100;
+            // Only use first 5 Fibonacci values instead of all of them
+            for(let i = 0; i < 5; i++) {
+                // Lower frequency for longer curves
+                let freq = fibSequence[i] / 200; // Reduced from /100 to /200
                 let amp = fibSequence[fibSequence.length - i - 1] / 89;
                 harmonics += Math.sin(z * freq / 1000) * amp;
             }
-            return baseNoise * 3000 + harmonics * 800;
+            
+            // Add a persistence factor to maintain curve direction
+            const persistenceFactor = Math.sin(z / 20000) * 1500;
+            
+            // Reduce overall amplitude of harmonics (800 -> 500)
+            return baseNoise * 3000 + harmonics * 500 + persistenceFactor;
         }
 
         function generateNaturalHill(z) {
@@ -183,21 +193,77 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // **Modified: Lower threshold for denser trees**
+        // Update the shouldPlaceTree function to be more sparse
         function shouldPlaceTree(z) {
-            const noiseValue = treeNoise.get(z / 1000, 0.5) * 0.5 + 0.5;
-            const fibIndex = Math.floor(z / 500) % fibSequence.length;
-            const threshold = 0.5 - fibSequence[fibIndex] / 200; // Lowered from 0.7 to 0.5
-            return noiseValue > threshold;
+            // Use a more sophisticated hash function for better distribution
+            const hashValue = Math.sin(z * 12.9898 + 4.1414) * 43758.5453;
+            // Higher threshold (0.95) for much sparser trees
+            return (hashValue % 1) > 0.95;
         }
 
+        // Enhance tree height function to create more variety
         function getTreeHeight(z) {
-            const baseHeight = 400;
-            const noiseValue = treeNoise.get(z / 500 + 100, 0.7);
-            const variation = noiseValue * 300;
-            const fibIndex = Math.floor(z / 300) % fibSequence.length;
-            const fibInfluence = fibSequence[fibIndex] / 89 * 100;
-            return baseHeight + variation + fibInfluence;
+            // Base height plus more variation
+            return 300 + Math.abs(naturalNoise(z, treeNoise, 5000, 2) * 500);
+        }
+
+        // Add tree variety function
+        function getTreeType(z) {
+            const type = Math.floor((Math.sin(z * 0.3) * 0.5 + 0.5) * 3);
+            return type; // 0, 1, or 2 for different tree types
+        }
+
+        // Update the drawTree function to support multiple tree types
+        function drawTree(base, top, scale, alpha, treeType = 0) {
+            // Draw trunk - brighter color
+            ctx.strokeStyle = '#5D6378'; // Brighter than #3b4152
+            ctx.lineWidth = 2 * scale;
+            drawLine(base.screen.x, base.screen.y, top.screen.x, top.screen.y, alpha);
+            
+            // Different tree types with brighter colors
+            const branchLength = 60 * scale;
+            
+            switch(treeType) {
+                case 0: // Pine tree - brighter
+                    ctx.strokeStyle = '#4C5268'; // Brighter than #2a3042
+                    ctx.lineWidth = 1 * scale;
+                    // Draw triangular canopy
+                    const levels = 3;
+                    for (let i = 0; i < levels; i++) {
+                        const heightRatio = 0.5 + (i * 0.2);
+                        const width = branchLength * (1 - i/levels);
+                        const y = base.screen.y - (top.screen.y - base.screen.y) * heightRatio;
+                        drawLine(top.screen.x - width, y, top.screen.x + width, y, alpha * 0.8);
+                        drawLine(top.screen.x, y - width * 0.5, top.screen.x - width, y, alpha * 0.8);
+                        drawLine(top.screen.x, y - width * 0.5, top.screen.x + width, y, alpha * 0.8);
+                    }
+                    break;
+                    
+                case 1: // Rounded tree - brighter
+                    ctx.strokeStyle = '#546078'; // Brighter than #323c4e
+                    ctx.lineWidth = 1 * scale;
+                    // Add branches in a more rounded pattern
+                    for (let i = 0; i < 5; i++) {
+                        const angle = (i / 5) * Math.PI;
+                        const branchX = top.screen.x + branchLength * Math.cos(angle);
+                        const branchY = top.screen.y - branchLength * Math.sin(angle);
+                        drawLine(top.screen.x, top.screen.y, branchX, branchY, alpha * 0.7);
+                    }
+                    break;
+                    
+                case 2: // Simple tree - brighter
+                    ctx.strokeStyle = '#505D75'; // Brighter than #2f3a4d
+                    ctx.lineWidth = 1 * scale;
+                    // Simple Y-shaped branches
+                    const branchAngle = Math.PI / 5;
+                    const branchX1 = top.screen.x + branchLength * Math.cos(branchAngle);
+                    const branchY1 = top.screen.y - branchLength * Math.sin(branchAngle);
+                    const branchX2 = top.screen.x + branchLength * Math.cos(-branchAngle);
+                    const branchY2 = top.screen.y - branchLength * Math.sin(-branchAngle);
+                    drawLine(top.screen.x, top.screen.y, branchX1, branchY1, alpha * 0.7);
+                    drawLine(top.screen.x, top.screen.y, branchX2, branchY2, alpha * 0.7);
+                    break;
+            }
         }
 
         function project(point, camX, camY, camZ) {
@@ -214,28 +280,52 @@ document.addEventListener('DOMContentLoaded', function() {
             return true;
         }
 
-        function drawLine(x1, y1, x2, y2, alpha = 1) {
-            ctx.globalAlpha = alpha;
-            ctx.beginPath();
-            ctx.moveTo(x1, y1);
-            ctx.lineTo(x2, y2);
-            ctx.stroke();
+        // Add this function to calculate brightness based on distance
+        function calculateBrightness(z) {
+            // Calculate normalized distance (0 = close, 1 = far)
+            const normalizedDist = Math.min(z / visibleDistance, 1);
+            
+            // Inverse the value and add more dramatic falloff
+            // Objects close to camera (small z) will have brightness near 1
+            // Objects far away will have brightness approaching 0.3
+            return 1 - (normalizedDist * 0.7);
         }
 
-        // **New: Draw trees with branches for realism**
-        function drawTree(base, top, scale, alpha) {
-            // Draw trunk
-            drawLine(base.screen.x, base.screen.y, top.screen.x, top.screen.y, alpha);
+        // Modify the drawLine function to use brightness factor
+        function drawLine(p1x, p1y, p2x, p2y, alpha = 1) {
+            // Preserve original alpha for distance-based calculation
+            ctx.globalAlpha = alpha;
+            ctx.beginPath();
+            ctx.moveTo(p1x, p1y);
+            ctx.lineTo(p2x, p2y);
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+        }
 
-            // Add branches (simple canopy)
-            const branchLength = 50 * scale; // Scale branches with distance
-            const branchAngle = Math.PI / 6; // 30 degrees
-            const branchX1 = top.screen.x + branchLength * Math.cos(branchAngle);
-            const branchY1 = top.screen.y - branchLength * Math.sin(branchAngle);
-            const branchX2 = top.screen.x + branchLength * Math.cos(-branchAngle);
-            const branchY2 = top.screen.y - branchLength * Math.sin(-branchAngle);
-            drawLine(top.screen.x, top.screen.y, branchX1, branchY1, alpha * 0.7);
-            drawLine(top.screen.x, top.screen.y, branchX2, branchY2, alpha * 0.7);
+        // In your render/drawing loop, update how you draw segments
+        function renderSegment(segment) {
+            // ... existing code ...
+            
+            // Calculate brightness based on segment distance
+            const brightness = calculateBrightness(segment.z);
+            
+            // Use brightness to adjust stroke colors
+            const r = Math.round(91 * brightness); // For road: 5B65D2 (91, 101, 210)
+            const g = Math.round(101 * brightness);
+            const b = Math.round(210 * brightness);
+            
+            ctx.strokeStyle = `rgb(${r},${g},${b})`;
+            
+            // Apply brightness to alpha value for line drawing
+            const adjustedAlpha = fade * brightness * 1.3; // Multiply by 1.3 to make close objects extra bright
+            
+            // Draw with adjusted brightness
+            drawLine(p1.x, p1.y, p2.x, p2.y, adjustedAlpha);
+            
+            // For tree rendering, also use brightness factor
+            // ... in tree drawing code ...
+            const treeBrightness = calculateBrightness(treeSegment.z);
+            ctx.strokeStyle = `rgb(${Math.round(108 * treeBrightness)},${Math.round(114 * treeBrightness)},${Math.round(136 * treeBrightness)})`;
         }
 
         // Render loop
@@ -294,8 +384,8 @@ document.addEventListener('DOMContentLoaded', function() {
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            ctx.strokeStyle = '#5865F2';
-            ctx.lineWidth = 1;
+            ctx.strokeStyle = '#7B86FF'; // Brighter blue for road lines
+            ctx.lineWidth = 1.5; // Increased from 1 to 1.5 for more visibility
 
             const minZ = cameraZ;
             const maxVisibleZ = cameraZ + visibleDistance;
@@ -325,7 +415,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const midZ = segment.p1.world.z;
                 const fibMod = Math.floor(midZ / 100) % fibSequence.length;
                 if (fibMod < 3 || fibMod > 8) {
-                    drawLine(p1.x, p1.y, p2.x, p2.y, fade * 0.8);
+                    ctx.strokeStyle = '#A3ADFF'; // Brighter center line
+                    drawLine(p1.x, p1.y, p2.x, p2.y, fade * 0.9); // Increased from 0.8 to 0.9
+                    // Remember to reset stroke style after
+                    ctx.strokeStyle = '#7B86FF';
                 }
             }
 
@@ -354,8 +447,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Tree on the left
                 if (shouldPlaceTree(z)) {
-                    const offset = 1.5 + (treeNoise.get(z / 800, 0.2) * 0.5);
-                    const treeBase = { world: { x: curve - roadWidth * offset, y: 0, z: z }, screen: {} };
+                    const treeBase = { world: { x: curve - roadWidth * 1.5, y: 0, z: z }, screen: {} };
                     const treeTop = { world: { x: treeBase.world.x, y: getTreeHeight(z), z: z }, screen: {} };
                     const projectedBase = project(treeBase, currentCameraX, currentCameraY, cameraZ);
                     const projectedTop = project(treeTop, currentCameraX, currentCameraY, cameraZ);
@@ -363,14 +455,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         const distanceRatio = (z - cameraZ) / visibleDistance;
                         const opacity = Math.max(0, 1 - distanceRatio * 1.2);
                         const scale = projectedBase.scale;
-                        drawTree(treeBase, treeTop, scale, opacity);
+                        drawTree(treeBase, treeTop, scale, opacity, getTreeType(z));
                     }
                 }
 
                 // Tree on the right
                 if (shouldPlaceTree(z + 500)) {
-                    const offset = 1.5 + (treeNoise.get((z + 500) / 800, 0.8) * 0.5);
-                    const treeBase = { world: { x: curve + roadWidth * offset, y: 0, z: z }, screen: {} };
+                    // Add an additional random offset for more natural placement
+                    const lateralOffset = (Math.sin(z * 0.03) * 0.5 + 0.5) * 500;
+                    const treeBase = { world: { x: curve + roadWidth * 1.5 + lateralOffset, y: 0, z: z }, screen: {} };
                     const treeTop = { world: { x: treeBase.world.x, y: getTreeHeight(z + 500), z: z }, screen: {} };
                     const projectedBase = project(treeBase, currentCameraX, currentCameraY, cameraZ);
                     const projectedTop = project(treeTop, currentCameraX, currentCameraY, cameraZ);
@@ -378,7 +471,24 @@ document.addEventListener('DOMContentLoaded', function() {
                         const distanceRatio = (z - cameraZ) / visibleDistance;
                         const opacity = Math.max(0, 1 - distanceRatio * 1.2);
                         const scale = projectedBase.scale;
-                        drawTree(treeBase, treeTop, scale, opacity);
+                        drawTree(treeBase, treeTop, scale, opacity, getTreeType(z + 300));
+                    }
+                }
+
+                // Add occasional forest clusters for more visual interest
+                if (shouldPlaceTree(z * 1.7)) {
+                    for (let i = 0; i < 3; i++) {
+                        const offset = (i - 1) * 150;
+                        const treeBase = { world: { x: curve - roadWidth * 3 + offset, y: 0, z: z + offset }, screen: {} };
+                        const treeTop = { world: { x: treeBase.world.x, y: getTreeHeight(z + i * 200) * 0.8, z: z + offset }, screen: {} };
+                        const projectedBase = project(treeBase, currentCameraX, currentCameraY, cameraZ);
+                        const projectedTop = project(treeTop, currentCameraX, currentCameraY, cameraZ);
+                        if (projectedBase && projectedTop) {
+                            const distanceRatio = (z - cameraZ) / visibleDistance;
+                            const opacity = Math.max(0, 1 - distanceRatio * 1.2) * 0.7;
+                            const scale = projectedBase.scale * 0.8;
+                            drawTree(treeBase, treeTop, scale, opacity, getTreeType(z + i * 100));
+                        }
                     }
                 }
             }
