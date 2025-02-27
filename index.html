@@ -1,310 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Enhanced SEO Meta Tags -->
-  <title>BikeNode – Ultimate Bike Classifieds Parser Coming Soon</title>
-  <meta name="description" content="BikeNode is launching a revolutionary Chrome extension that parses bike classifieds—from bicycles and motorcycles to components—allowing enthusiasts to easily compare listings. Join us for early access and updates.">
-  <meta name="keywords" content="BikeNode, bike classifieds, Chrome extension, bike parser, cycling, motorcycle, bicycle, bike comparison">
-  
-  <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:title" content="BikeNode – Ultimate Bike Classifieds Parser">
-  <meta property="og:description" content="Discover BikeNode, a groundbreaking Chrome extension that lets you parse and compare bike classifieds from sites like eBay, Craigslist, and more. Sign up for early access!">
-  <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
-  <meta property="og:url" content="https://yourdomain.com">
-  <meta property="og:type" content="website">
-  
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="BikeNode – Ultimate Bike Classifieds Parser">
-  <meta name="twitter:description" content="BikeNode is coming soon—a Chrome extension that makes comparing bike classifieds simple. Get early access and updates!">
-  <meta name="twitter:image" content="https://yourdomain.com/twitter-card-image.jpg">
-  
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://yourdomain.com">
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  
-  <!-- Discord Font (gg sans) -->
-  <style>
-    @font-face {
-      font-family: 'gg sans';
-      src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-regular.woff2') format('woff2');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    @font-face {
-      font-family: 'gg sans';
-      src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-medium.woff2') format('woff2');
-      font-weight: 500;
-      font-style: normal;
-      font-display: swap;
-    }
+    <!-- Enhanced SEO Meta Tags -->
+    <title>BikeNode - Your Portal for Bike Classifieds & Deals</title>
+    <meta name="description" content="BikeNode aggregates and compares bike listings from multiple sources (eBay, Craigslist, more). Sign up for updates on our upcoming Chrome extension and platform!">
+    <meta name="keywords" content="BikeNode, cycling, bike deals, bike classifieds, Craigslist bikes, eBay bikes, Chrome extension, aggregator">
     
-    @font-face {
-      font-family: 'gg sans';
-      src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-semibold.woff2') format('woff2');
-      font-weight: 600;
-      font-style: normal;
-      font-display: swap;
-    }
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="BikeNode - Your Portal for Bike Classifieds & Deals">
+    <meta property="og:description" content="We’re building the ultimate hub for comparing and tracking bike listings across multiple marketplaces. Stay tuned for our Chrome extension and future updates.">
+    <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
+    <meta property="og:url" content="https://yourdomain.com">
+    <meta property="og:type" content="website">
     
-    @font-face {
-      font-family: 'gg sans';
-      src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-bold.woff2') format('woff2');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-  </style>
-  
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BikeNode - Your Portal for Bike Classifieds & Deals">
+    <meta name="twitter:description" content="Get the best bike deals from eBay, Craigslist, and more—aggregated in one place. Sign up for early access!">
+    <meta name="twitter:image" content="https://yourdomain.com/twitter-card-image.jpg">
     
-    body {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background-color: #36393f;
-      font-family: 'gg sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      color: #ffffff;
-      line-height: 1.5;
-      padding: 20px;
-    }
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourdomain.com">
     
-    .container {
-      text-align: center;
-      max-width: 600px;
-      animation: fadeIn 1s ease-in;
-    }
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     
-    .logo {
-      width: 180px;
-      height: 180px;
-      margin: 0 auto 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    <!-- Discord Font (gg sans) -->
+    <style>
+        @font-face {
+            font-family: 'gg sans';
+            src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'gg sans';
+            src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'gg sans';
+            src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-semibold.woff2') format('woff2');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'gg sans';
+            src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
     
-    .logo img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #36393f; /* Discord dark theme background color */
+            font-family: 'gg sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: #ffffff;
+            line-height: 1.5;
+            padding: 20px;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 600px;
+            animation: fadeIn 1s ease-in;
+        }
+        
+        .logo {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+        
+        .tagline {
+            font-size: 16px;
+            margin-bottom: 40px;
+            color: #b9bbbe; /* Discord text color */
+            font-weight: 400;
+        }
+        
+        .cta {
+            display: inline-block;
+            background-color: #5865F2; /* Discord blurple */
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            margin-top: 15px;
+        }
+        
+        .cta:hover {
+            background-color: #4752c4;
+            box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
+        }
+        
+        .email-signup {
+            margin-top: 40px;
+            width: 100%;
+        }
+        
+        .email-form {
+            display: flex;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .email-input {
+            flex-grow: 1;
+            padding: 10px 16px;
+            border-radius: 4px 0 0 4px;
+            border: 1px solid #202225; /* Discord dark theme input border */
+            font-size: 14px;
+            outline: none;
+            background-color: #202225; /* Discord input background */
+            color: #dcddde; /* Discord input text color */
+            font-family: 'gg sans', sans-serif;
+        }
+        
+        .submit-btn {
+            background-color: #5865F2; /* Discord blurple */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 0 4px 4px 0;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            font-family: 'gg sans', sans-serif;
+        }
+        
+        .submit-btn:hover {
+            background-color: #4752c4;
+        }
+        
+        .social-links {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .social-links a {
+            color: #b9bbbe;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-size: 14px;
+        }
+        
+        .social-links a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+            
+            .tagline {
+                font-size: 14px;
+            }
+            
+            .logo {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .email-form {
+                flex-direction: column;
+            }
+            
+            .email-input {
+                border-radius: 4px;
+                margin-bottom: 10px;
+            }
+            
+            .submit-btn {
+                border-radius: 4px;
+            }
+        }
+        
+        /* Accessibility */
+        .screen-reader-text {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
     
-    h1 {
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: #ffffff;
-    }
-    
-    .tagline {
-      font-size: 16px;
-      margin-bottom: 40px;
-      color: #b9bbbe;
-      font-weight: 400;
-    }
-    
-    .cta {
-      display: inline-block;
-      background-color: #5865F2;
-      color: #ffffff;
-      text-decoration: none;
-      padding: 12px 28px;
-      border-radius: 4px;
-      font-size: 16px;
-      font-weight: 500;
-      transition: all 0.2s ease;
-      margin-top: 15px;
-    }
-    
-    .cta:hover {
-      background-color: #4752c4;
-      box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
-    }
-    
-    .email-signup {
-      margin-top: 40px;
-      width: 100%;
-    }
-    
-    .email-form {
-      display: flex;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-    
-    .email-input {
-      flex-grow: 1;
-      padding: 10px 16px;
-      border-radius: 4px 0 0 4px;
-      border: 1px solid #202225;
-      font-size: 14px;
-      outline: none;
-      background-color: #202225;
-      color: #dcddde;
-      font-family: 'gg sans', sans-serif;
-    }
-    
-    .submit-btn {
-      background-color: #5865F2;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 0 4px 4px 0;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-      font-family: 'gg sans', sans-serif;
-    }
-    
-    .submit-btn:hover {
-      background-color: #4752c4;
-    }
-    
-    .social-links {
-      margin-top: 30px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-    
-    .social-links a {
-      color: #b9bbbe;
-      text-decoration: none;
-      transition: color 0.2s ease;
-      font-size: 14px;
-    }
-    
-    .social-links a:hover {
-      color: #ffffff;
-      text-decoration: underline;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 28px;
-      }
-      
-      .tagline {
-        font-size: 14px;
-      }
-      
-      .logo {
-        width: 140px;
-        height: 140px;
-      }
-      
-      .email-form {
-        flex-direction: column;
-      }
-      
-      .email-input {
-        border-radius: 4px;
-        margin-bottom: 10px;
-      }
-      
-      .submit-btn {
-        border-radius: 4px;
-      }
-    }
-    
-    /* Accessibility */
-    .screen-reader-text {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-  </style>
-  
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
 </head>
 <body>
-  <div class="container">
-    <div class="logo">
-      <img src="image.png" alt="BikeNode Logo – Bike Classifieds Parser">
+    <div class="container">
+        <div class="logo">
+            <!-- Replace with your own image URL or local path -->
+            <img src="image.png" alt="BikeNode Logo - Aggregator for Bike Classifieds">
+        </div>
+        
+        <h1>BikeNode is Coming Soon</h1>
+        <p class="tagline">
+            We’re building the ultimate platform to aggregate, compare, and track bike listings from multiple marketplaces.
+            Join our early community to stay updated on our Chrome extension launch and other exciting features.
+        </p>
+        
+        <div class="email-signup">
+            <form class="email-form" action="#" method="POST" id="signup-form">
+                <label for="email" class="screen-reader-text">Email Address</label>
+                <input type="email" id="email" class="email-input" placeholder="Enter your email for updates" required>
+                <button type="submit" class="submit-btn">Notify Me</button>
+            </form>
+        </div>
+        
+        <a class="cta" href="https://discord.gg/JMCPCcnth4" id="discord-btn">
+            Join our Discord
+        </a>
+        
+        <div class="social-links">
+            <a href="https://twitter.com/bikenode" aria-label="Follow us on Twitter">Twitter</a>
+            <a href="https://instagram.com/bikenode" aria-label="Follow us on Instagram">Instagram</a>
+            <a href="https://linkedin.com/company/bikenode" aria-label="Connect with us on LinkedIn">LinkedIn</a>
+        </div>
     </div>
-    <h1>BikeNode is Coming Soon</h1>
-    <p class="tagline">Easily parse and compare bike classifieds from eBay, Craigslist, and more with our innovative Chrome extension.</p>
-    
-    <div class="email-signup">
-      <form class="email-form" action="#" method="POST" id="signup-form">
-        <label for="email" class="screen-reader-text">Email Address</label>
-        <input type="email" id="email" class="email-input" placeholder="Enter your email for updates" required>
-        <button type="submit" class="submit-btn">Notify Me</button>
-      </form>
-    </div>
-    
-    <a class="cta" href="https://discord.gg/JMCPCcnth4" id="discord-btn">Join our Discord</a>
-    
-    <div class="social-links">
-      <a href="https://twitter.com/bikenode" aria-label="Follow us on Twitter">Twitter</a>
-      <a href="https://instagram.com/bikenode" aria-label="Follow us on Instagram">Instagram</a>
-      <a href="https://linkedin.com/company/bikenode" aria-label="Connect with us on LinkedIn">LinkedIn</a>
-    </div>
-  </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Form submission tracking
-      const form = document.getElementById('signup-form');
-      if (form) {
-        form.addEventListener('submit', function(e) {
-          e.preventDefault();
-          gtag('event', 'signup', {
-            'event_category': 'engagement',
-            'event_label': 'email_signup'
-          });
-          console.log('Form submitted');
-          alert('Thank you for subscribing! We\'ll notify you when we launch.');
-          form.reset();
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form submission tracking
+            const form = document.getElementById('signup-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Track form submission in Google Analytics
+                    gtag('event', 'signup', {
+                        'event_category': 'engagement',
+                        'event_label': 'email_signup'
+                    });
+                    
+                    // You would normally send this data to your backend
+                    console.log('Form submitted');
+                    alert('Thanks for subscribing! We’ll keep you posted on our launch and new features.');
+                    form.reset();
+                });
+            }
+            
+            // Track Discord clicks
+            const discordBtn = document.getElementById('discord-btn');
+            if (discordBtn) {
+                discordBtn.addEventListener('click', function() {
+                    gtag('event', 'click', {
+                        'event_category': 'engagement',
+                        'event_label': 'discord_join'
+                    });
+                });
+            }
         });
-      }
-      
-      // Track Discord clicks
-      const discordBtn = document.getElementById('discord-btn');
-      if (discordBtn) {
-        discordBtn.addEventListener('click', function() {
-          gtag('event', 'click', {
-            'event_category': 'engagement',
-            'event_label': 'discord_join'
-          });
-        });
-      }
-    });
-  </script>
+    </script>
 </body>
 </html>
