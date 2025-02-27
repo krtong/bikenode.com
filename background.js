@@ -1,4 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const isDarkMode = () => {
+        // Check if Dark Reader is active
+        const isDarkReader = document.documentElement.classList.contains('darkreader') || 
+                             document.querySelector('.darkreader') !== null;
+        
+        // Check if system prefers dark mode
+        const isPrefersColorScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        return isDarkReader || isPrefersColorScheme;
+    };
+
+    // Create color sets for both modes
+    const colors = {
+        light: {
+            sky: ['#121417', '#1e2228', '#1a1c1f', '#161719'],
+            ground: '#080809',
+            road: '#5865F2',
+            mountain: '#3b4152'
+        },
+        dark: {
+            sky: ['#121417', '#1e2228', '#1a1c1f', '#161719'], // Keep dark theme colors the same
+            ground: '#080809',
+            road: '#5865F2',
+            mountain: '#3b4152'
+        }
+    };
+
     (function() {
         // **Setup Canvas and Context**
         const canvas = document.getElementById('backgroundCanvas');
@@ -79,8 +106,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 return a + this.smootherstep(x) * (b-a);
             }
             get(x, y) {
-                if (this.memory.hasOwnProperty([x,y])) 
-                    return this.memory[[x,y]];
+                const key = JSON.stringify([x, y]);
+                if (this.memory.hasOwnProperty(key)) 
+                    return this.memory[key];
                 let xf = Math.floor(x);
                 let yf = Math.floor(y);
                 let tl = this.dot_prod_grid(x, y, xf, yf);
@@ -240,6 +268,23 @@ document.addEventListener('DOMContentLoaded', function() {
             currentDistance += (targetDistance - currentDistance) * distanceSmoothness;
             const currentCameraY = baseCameraHeight * (1 - (currentDistance - 1.0) * 0.3);
 
+            // Calculate average position of upcoming road segments to center camera
+            const lookAheadDistance = 5000; // How far ahead to look for centering
+            const visibleCurveSegments = segments.filter(seg => 
+                seg.p1.world.z >= cameraZ && 
+                seg.p1.world.z < cameraZ + lookAheadDistance
+            );
+            
+            // Default to 0 if no segments found
+            let averageCurve = 0;
+            if (visibleCurveSegments.length > 0) {
+                averageCurve = visibleCurveSegments.reduce((sum, seg) => sum + seg.curve, 0) / 
+                               visibleCurveSegments.length;
+            }
+            
+            // Use this average curve as camera X position
+            const currentCameraX = averageCurve;
+
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
             gradient.addColorStop(0, '#242a36');
@@ -266,8 +311,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 segment.p1.world.y = segment.hill;
                 segment.p2.world.x = nextSegment.curve;
                 segment.p2.world.y = nextSegment.hill;
-                const projected1 = project(segment.p1, 0, currentCameraY, cameraZ);
-                const projected2 = project(segment.p2, 0, currentCameraY, cameraZ);
+                const projected1 = project(segment.p1, currentCameraX, currentCameraY, cameraZ);
+                const projected2 = project(segment.p2, currentCameraX, currentCameraY, cameraZ);
                 if (!projected1 || !projected2) continue;
                 const p1 = segment.p1.screen;
                 const p2 = segment.p2.screen;
@@ -312,8 +357,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     const offset = 1.5 + (treeNoise.get(z / 800, 0.2) * 0.5);
                     const treeBase = { world: { x: curve - roadWidth * offset, y: 0, z: z }, screen: {} };
                     const treeTop = { world: { x: treeBase.world.x, y: getTreeHeight(z), z: z }, screen: {} };
-                    const projectedBase = project(treeBase, 0, currentCameraY, cameraZ);
-                    const projectedTop = project(treeTop, 0, currentCameraY, cameraZ);
+                    const projectedBase = project(treeBase, currentCameraX, currentCameraY, cameraZ);
+                    const projectedTop = project(treeTop, currentCameraX, currentCameraY, cameraZ);
                     if (projectedBase && projectedTop) {
                         const distanceRatio = (z - cameraZ) / visibleDistance;
                         const opacity = Math.max(0, 1 - distanceRatio * 1.2);
@@ -327,8 +372,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     const offset = 1.5 + (treeNoise.get((z + 500) / 800, 0.8) * 0.5);
                     const treeBase = { world: { x: curve + roadWidth * offset, y: 0, z: z }, screen: {} };
                     const treeTop = { world: { x: treeBase.world.x, y: getTreeHeight(z + 500), z: z }, screen: {} };
-                    const projectedBase = project(treeBase, 0, currentCameraY, cameraZ);
-                    const projectedTop = project(treeTop, 0, currentCameraY, cameraZ);
+                    const projectedBase = project(treeBase, currentCameraX, currentCameraY, cameraZ);
+                    const projectedTop = project(treeTop, currentCameraX, currentCameraY, cameraZ);
                     if (projectedBase && projectedTop) {
                         const distanceRatio = (z - cameraZ) / visibleDistance;
                         const opacity = Math.max(0, 1 - distanceRatio * 1.2);
