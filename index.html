@@ -11,7 +11,7 @@
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="bikenode - your portal for bike classifieds & Deals">
-    <meta property="og:description" content="We’re building the ultimate hub for comparing and tracking bike listings across multiple marketplaces. stay tuned for our chrome extension and future updates.">
+    <meta property="og:description" content="We're building the ultimate hub for comparing and tracking bike listings across multiple marketplaces. stay tuned for our chrome extension and future updates.">
     <meta property="og:image" content="https://bikenode.com/image.png">
     <meta property="og:url" content="https://bikenode.com">
     <meta property="og:type" content="website">
@@ -78,36 +78,66 @@
             font-family: 'gg sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             color: #ffffff;
             line-height: 1.5;
-            padding: 20px;
+            padding: 0;
         }
         
         /* Layout & Components */
         .container {
-            text-align: center;
-            max-width: 600px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            max-width: 1100px;
+            width: 100%;
+            min-height: 100vh;
+            padding: 20px;
+            margin: 0 auto;
+            gap: 40px;
             animation: fadeIn 1s ease-in;
         }
         
-        .logo {
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 30px;
+        .left-section {
             display: flex;
+            justify-content: flex-end;
             align-items: center;
-            justify-content: center;
+            max-width: 45%;
+            transition: transform 0.3s ease;
+        }
+        
+        .left-section:hover {
+            transform: scale(1.02);
+        }
+        
+        .logo {
+            width: 280px;
+            margin: 0;
         }
         
         .logo img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
+            /* box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25); */
         }
         
-        h1 {
-            font-size: 24px;
+        .vertical-divider {
+            width: 3px;
+            height: 240px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+            border-radius: 3px;
+        }
+        
+        .right-section {
+            flex: 1;
+            max-width: 500px;
+        }
+        
+        h1, h2 {
+            font-size: 28px;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             color: #ffffff;
+            letter-spacing: -0.3px;
         }
         
         .tagline {
@@ -115,6 +145,9 @@
             margin-bottom: 40px;
             color: #b9bbbe;
             font-weight: 400;
+            text-align: left;
+            max-width: 500px;
+            line-height: 1.6;
         }
         
         /* Buttons & Interactive Elements */
@@ -129,11 +162,13 @@
             font-weight: 500;
             transition: all 0.2s ease;
             margin-top: 15px;
+            box-shadow: 0 2px 8px rgba(88, 101, 242, 0.3);
         }
         
         .cta:hover {
             background-color: #4752c4;
             box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
+            transform: translateY(-2px);
         }
         
         /* Form Styles */
@@ -144,7 +179,7 @@
         
         .email-form {
             display: flex;
-            max-width: 400px;
+            max-width: 100%;
             margin: 0 auto;
         }
         
@@ -158,6 +193,12 @@
             background-color: #202225;
             color: #dcddde;
             font-family: 'gg sans', sans-serif;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+        
+        .email-input:focus {
+            background-color: #2a2d31;
+            border-color: #5865F2;
         }
         
         .submit-btn {
@@ -170,30 +211,34 @@
             cursor: pointer;
             transition: background-color 0.2s ease;
             font-family: 'gg sans', sans-serif;
+            box-shadow: 0 2px 8px rgba(88, 101, 242, 0.3);
         }
         
         .submit-btn:hover {
             background-color: #4752c4;
+            box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
         }
         
         /* Footer & Social Links */
         .social-links {
             margin-top: 30px;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 20px;
         }
         
         .social-links a {
             color: #b9bbbe;
             text-decoration: none;
-            transition: color 0.2s ease;
+            transition: all 0.2s ease;
             font-size: 14px;
+            padding: 4px 8px;
+            border-radius: 4px;
         }
         
         .social-links a:hover {
             color: #ffffff;
-            text-decoration: underline;
+            background-color: rgba(255, 255, 255, 0.05);
         }
         
         /* Animations */
@@ -227,30 +272,50 @@
         }
         
         /* Responsive Design */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 22px;
+        @media (max-width: 980px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            
+            .left-section {
+                max-width: 280px;
+                padding-right: 0;
+                justify-content: center;
+            }
+            
+            .vertical-divider {
+                width: 80px;
+                height: 3px;
+                margin: 10px 0;
+                background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+            }
+            
+            .right-section {
+                padding-left: 0;
+                max-width: 90%;
             }
             
             .tagline {
-                font-size: 14px;
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
             }
             
-            .logo {
-                width: 140px;
-                height: 140px;
+            .social-links {
+                justify-content: center;
             }
-            
+        }
+        
+        @media (max-width: 480px) {
             .email-form {
                 flex-direction: column;
+                gap: 10px;
             }
             
-            .email-input {
-                border-radius: 4px;
-                margin-bottom: 10px;
-            }
-            
-            .submit-btn {
+            .email-input, .submit-btn {
+                width: 100%;
                 border-radius: 4px;
             }
         }
@@ -269,54 +334,106 @@
     <!-- Background Animation Canvas -->
     <canvas id="backgroundCanvas"></canvas>
     
-    <!-- Main Content -->
+    <!-- Main Content with new layout -->
     <div class="container">
-        <div class="logo">
-            <img src="./images/image.png" alt="bikenode Logo - Aggregator for bike classifieds">
+        <!-- Left section with logo -->
+        <div class="left-section">
+            <div class="logo">
+                <img src="./image.png" alt="bikenode Logo - Aggregator for bike classifieds">
+            </div>
         </div>
         
-        <h2>bikenode is coming soon</h2>
-        <p class="tagline">
-            We’re building the ultimate platform to aggregate, compare, and track bike listings from multiple marketplaces.
-            Join our early community to stay updated on our chrome extension launch and other exciting features.
-        </p>
+        <!-- Vertical divider -->
+        <div class="vertical-divider"></div>
         
-        <div class="email-signup">
-            <form class="email-form" action="#" method="POST" id="signup-form">
-                <label for="email" class="screen-reader-text">Email Address</label>
-                <input type="email" id="email" class="email-input" placeholder="Enter your email for updates" required>
-                <button type="submit" class="submit-btn">Notify Me</button>
-            </form>
-        </div>
-        
-        <a class="cta" href="https://discord.gg/JMCPCcnth4" id="discord-btn">
-            Join our Discord
-        </a>
-        
-        <div class="social-links">
-            <a href="https://twitter.com/bikenode" aria-label="Follow us on Twitter">Twitter</a>
-            <a href="https://instagram.com/bikenode" aria-label="Follow us on Instagram">Instagram</a>
-            <a href="https://linkedin.com/company/bikenode" aria-label="Connect with us on LinkedIn">LinkedIn</a>
+        <!-- Right section with content -->
+        <div class="right-section">
+            <h2>bike node is coming soon.</h2>
+            <p class="tagline">
+                we're building the ultimate platform to aggregate, compare, and track bike listings from multiple marketplaces.
+                Join our early community to stay updated on our chrome extension launch and other exciting features.
+            </p>
+            
+            <div class="email-signup">
+                <form class="email-form" action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST" id="signup-form">
+                    <input type="hidden" name="_subject" value="New bikenode subscription!">
+                    <input type="hidden" name="_next" value="https://bikenode.com/thanks.html">
+                    <input type="hidden" name="_captcha" value="false">
+                    <label for="email" class="screen-reader-text">Email Address</label>
+                    <input type="email" id="email" name="email" class="email-input" placeholder="Enter your email for updates" required>
+                    <button type="submit" class="submit-btn">Notify Me</button>
+                </form>
+            </div>
+            
+            <a class="cta" href="https://discord.gg/JMCPCcnth4" id="discord-btn">
+                Join our Discord
+            </a>
+            
+            <div class="social-links">
+                <a href="https://twitter.com/bikenode" aria-label="Follow us on Twitter">Twitter</a>
+                <a href="https://instagram.com/bikenode" aria-label="Follow us on Instagram">Instagram</a>
+                <a href="https://linkedin.com/company/bikenode" aria-label="Connect with us on LinkedIn">LinkedIn</a>
+            </div>
         </div>
     </div>
 
     <!-- JavaScript for Interactivity -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Email Signup Form Submission
+            // Email Signup Form Submission with AJAX
             const form = document.getElementById('signup-form');
             if (form) {
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
+                    
+                    // Track event in Google Analytics
                     if (typeof gtag === 'function') {
                         gtag('event', 'signup', {
                             'event_category': 'engagement',
                             'event_label': 'email_signup'
                         });
                     }
-                    console.log('Form submitted');
-                    alert("Thanks for subscribing! We'll keep you posted on our launch and new features.");
-                    form.reset();
+                    
+                    // Get the form data
+                    const email = document.getElementById('email').value;
+                    const formData = new FormData();
+                    formData.append('email', email);
+                    
+                    // Show submitting state
+                    const submitBtn = form.querySelector('.submit-btn');
+                    const originalBtnText = submitBtn.textContent;
+                    submitBtn.textContent = "Submitting...";
+                    submitBtn.disabled = true;
+                    
+                    // Send the form data using fetch
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        }
+                        throw new Error('Network response was not ok');
+                    })
+                    .then(data => {
+                        // Show success message
+                        alert("Thanks for subscribing! We'll keep you posted on our launch and new features.");
+                        form.reset();
+                    })
+                    .catch(error => {
+                        // Show error message
+                        console.error('Error:', error);
+                        alert("Oops! Something went wrong. Please try again or contact us directly.");
+                    })
+                    .finally(() => {
+                        // Reset button state
+                        submitBtn.textContent = originalBtnText;
+                        submitBtn.disabled = false;
+                    });
                 });
             }
             
