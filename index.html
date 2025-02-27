@@ -26,11 +26,12 @@
     <link rel="canonical" href="https://bikenode.com">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="./images/assets/favicons/favicon-96x96.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     
-    <!-- Discord Font (gg sans) -->
+ss    <!-- Combined Styles -->
     <style>
+        /* Discord Font (gg sans) */
         @font-face {
             font-family: 'gg sans';
             src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-regular.woff2') format('woff2');
@@ -59,10 +60,8 @@
             font-style: normal;
             font-display: swap;
         }
-    </style>
-    
-    <!-- Internal Styles -->
-    <style>
+        
+        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -82,6 +81,7 @@
             padding: 20px;
         }
         
+        /* Layout & Components */
         .container {
             text-align: center;
             max-width: 600px;
@@ -117,6 +117,7 @@
             font-weight: 400;
         }
         
+        /* Buttons & Interactive Elements */
         .cta {
             display: inline-block;
             background-color: #5865F2;
@@ -135,6 +136,7 @@
             box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
         }
         
+        /* Form Styles */
         .email-signup {
             margin-top: 40px;
             width: 100%;
@@ -174,6 +176,7 @@
             background-color: #4752c4;
         }
         
+        /* Footer & Social Links */
         .social-links {
             margin-top: 30px;
             display: flex;
@@ -193,9 +196,34 @@
             text-decoration: underline;
         }
         
+        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Background Animation */
+        #backgroundCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        /* Accessibility */
+        .screen-reader-text {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
         
         /* Responsive Design */
@@ -226,30 +254,6 @@
                 border-radius: 4px;
             }
         }
-        
-        /* Accessibility */
-        .screen-reader-text {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        /* Canvas Styling for Background Animation */
-        #backgroundCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.5;
-        }
     </style>
     
     <!-- Google tag (gtag.js) -->
@@ -268,7 +272,7 @@
     <!-- Main Content -->
     <div class="container">
         <div class="logo">
-            <img src="image.png" alt="bikenode Logo - Aggregator for bike classifieds">
+            <img src="./images/assets/logo.png" alt="bikenode Logo - Aggregator for bike classifieds">
         </div>
         
         <h1>bikenode is coming soon</h1>
