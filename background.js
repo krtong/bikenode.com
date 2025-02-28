@@ -1,28 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
     const isDarkMode = () => {
-        // Check if Dark Reader is active
         const isDarkReader = document.documentElement.classList.contains('darkreader') || 
                              document.querySelector('.darkreader') !== null;
-        
-        // Check if system prefers dark mode
         const isPrefersColorScheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
         return isDarkReader || isPrefersColorScheme;
     };
 
-    // Create color sets for both modes
     const colors = {
         light: {
             sky: ['#121417', '#1e2228', '#1a1c1f', '#161719'],
             ground: '#080809',
-            road: '#5865F2',
-            mountain: '#3b4152'
+            road: '#4f59c9',
+            mountain: '#3b4152',
+            tree: {
+                trunk: '#5D6378',
+                foliage: ['#4C5268', '#546078', '#505D75']
+            }
         },
         dark: {
-            sky: ['#121417', '#1e2228', '#1a1c1f', '#161719'], // Keep dark theme colors the same
+            sky: ['#121417', '#1e2228', '#1a1c1f', '#161719'],
             ground: '#080809',
-            road: '#5865F2',
-            mountain: '#3b4152'
+            road: '#3b407b',
+            mountain: '#4e5a79',
+            tree: {
+                trunk: '#4D5368',
+                foliage: ['#3C4258', '#445068', '#404D65']
+            }
         }
     };
 
@@ -216,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update the drawTree function to support multiple tree types
         function drawTree(base, top, scale, alpha, treeType = 0) {
             // Draw trunk - brighter color
-            ctx.strokeStyle = '#5D6378'; // Brighter than #3b4152
+            ctx.strokeStyle = colors[isDarkMode() ? 'dark' : 'light'].tree.trunk;
             ctx.lineWidth = 2 * scale;
             drawLine(base.screen.x, base.screen.y, top.screen.x, top.screen.y, alpha);
             
@@ -225,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             switch(treeType) {
                 case 0: // Pine tree - brighter
-                    ctx.strokeStyle = '#4C5268'; // Brighter than #2a3042
+                    ctx.strokeStyle = colors[isDarkMode() ? 'dark' : 'light'].tree.foliage[0];
                     ctx.lineWidth = 1 * scale;
                     // Draw triangular canopy
                     const levels = 3;
@@ -240,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     break;
                     
                 case 1: // Rounded tree - brighter
-                    ctx.strokeStyle = '#546078'; // Brighter than #323c4e
+                    ctx.strokeStyle = colors[isDarkMode() ? 'dark' : 'light'].tree.foliage[1];
                     ctx.lineWidth = 1 * scale;
                     // Add branches in a more rounded pattern
                     for (let i = 0; i < 5; i++) {
@@ -252,7 +255,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     break;
                     
                 case 2: // Simple tree - brighter
-                    ctx.strokeStyle = '#505D75'; // Brighter than #2f3a4d
+                    ctx.strokeStyle = colors[isDarkMode() ? 'dark' : 'light'].tree.foliage[2];
                     ctx.lineWidth = 1 * scale;
                     // Simple Y-shaped branches
                     const branchAngle = Math.PI / 5;

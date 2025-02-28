@@ -1,3 +1,8 @@
+export function someFunction() {
+  // your implementation here
+  return 'expected value';
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   const convertButton = document.getElementById('convert-button');
   const jsonOutput = document.getElementById('json-output');
