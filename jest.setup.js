@@ -1,4 +1,4 @@
-// Mock Chrome API
+// Mock Chrome API for all tests
 global.chrome = {
   tabs: {
     query: jest.fn(),
@@ -13,3 +13,8 @@ global.chrome = {
 
 // Mock document methods not in jsdom
 document.execCommand = jest.fn();
+
+// Reset mocks between tests
+beforeEach(() => {
+  jest.clearAllMocks();
+});

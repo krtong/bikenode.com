@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 
-describe('Popup Page', () => {
+describe('Popup Page Integration Tests', () => {
   let browser;
   let page;
 
@@ -21,15 +21,14 @@ describe('Popup Page', () => {
 
   it('should have disabled convert button when not on Craigslist', async () => {
     // Mock chrome API
-    global.chrome = {
-      tabs: {
-        query: (params, callback) => {
-          callback([{ url: 'https://example.com' }]);
-        }
-      }
-    };
-    
     await page.evaluate(() => {
+      window.chrome = {
+        tabs: {
+          query: (params, callback) => {
+            callback([{ url: 'https://example.com' }]);
+          }
+        }
+      };
       document.dispatchEvent(new Event('DOMContentLoaded'));
     });
     
@@ -44,15 +43,17 @@ describe('Popup Page', () => {
       jsonContainer.style.display = 'none';
       
       // Mock successful response
-      chrome.tabs = {
-        query: (params, callback) => {
-          callback([{ id: 1, url: 'https://craigslist.org/post' }]);
-        },
-        sendMessage: (tabId, message, callback) => {
-          callback({
-            success: true,
-            data: { title: 'Test Bike', price: '$100' }
-          });
+      window.chrome = {
+        tabs: {
+          query: (params, callback) => {
+            callback([{ id: 1, url: 'https://craigslist.org/post' }]);
+          },
+          sendMessage: (tabId, message, callback) => {
+            callback({
+              success: true,
+              data: { title: 'Test Bike', price: '$100' }
+            });
+          }
         }
       };
       

@@ -4,9 +4,10 @@
   "description": "Chrome extension to convert Craigslist posts to JSON format",
   "main": "index.js",
   "scripts": {
+    "test": "jest --testPathPattern=.*\\.unit\\.test\\.js$",
     "test:unit": "jest --testPathPattern=.*\\.unit\\.test\\.js$",
     "test:e2e": "jest --testPathPattern=.*\\.e2e\\.test\\.js$",
-    "test": "jest",
+    "test:all": "jest",
     "build": "mkdir -p dist && cp -r web_extension/chrome/* dist/ && zip -r dist/craigslist-to-json.zip dist/"
   },
   "keywords": [
@@ -16,16 +17,11 @@
   ],
   "author": "",
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.21.0",
     "@babel/preset-env": "^7.20.2",
     "babel-jest": "^29.5.0",
-    "jest": "^29.5.0",
-    "jest-environment-jsdom": "^29.5.0",
-    "puppeteer": "^19.7.3"
-  },
-  "jest": {
-    "testEnvironment": "jsdom"
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.5.0"
   }
 }
