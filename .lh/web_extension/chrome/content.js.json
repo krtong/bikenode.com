@@ -1,0 +1,22 @@
+{
+    "sourceFile": "web_extension/chrome/content.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1740741138461,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1740741222940,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,40 @@\n+// content.js - This script runs on Craigslist pages to extract data\n+// It listens for messages from popup.js and converts page data to JSON\n+\n+// Listen for messages from popup.js\n+chrome.runtime.onMessage.addListener(\n+  function(request, sender, sendResponse) {\n+    if (request.action === \"convertToJson\") {\n+      try {\n+        // Extract data from Craigslist page\n+        const postData = extractCraigslistData();\n+        sendResponse({success: true, data: postData});\n+      } catch (error) {\n+        sendResponse({success: false, error: error.message});\n+      }\n+      return true; // Required for asynchronous sendResponse\n+    }\n+  }\n+);\n+\n+/**\n+ * Extracts relevant data from a Craigslist post\n+ * @returns {Object} Structured data from the Craigslist post\n+ */\n+function extractCraigslistData() {\n+  // Basic extraction - customize based on your needs\n+  const title = document.querySelector(\"#titletextonly\")?.textContent.trim() || \"\";\n+  const price = document.querySelector(\".price\")?.textContent.trim() || \"\";\n+  const postingBody = document.querySelector(\"#postingbody\")?.textContent.trim() || \"\";\n+  const images = Array.from(document.querySelectorAll(\".gallery img\"))\n+    .map(img => img.src);\n+  \n+  return {\n+    title,\n+    price,\n+    description: postingBody,\n+    images,\n+    url: window.location.href,\n+    timestamp: new Date().toISOString()\n+  };\n+}\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1740741138461,
+            "name": "Commit-0",
+            "content": "// content.js - This script runs on Craigslist pages to extract data\n// It listens for messages from popup.js and converts page data to JSON\n\n// Listen for messages from popup.js\nchrome.runtime.onMessage.addListener(\n  function(request, sender, sendResponse) {\n    if (request.action === \"convertToJson\") {\n      try {\n        // Extract data from Craigslist page\n        const postData = extractCraigslistData();\n        sendResponse({success: true, data: postData});\n      } catch (error) {\n        sendResponse({success: false, error: error.message});\n      }\n      return true; // Required for asynchronous sendResponse\n    }\n  }\n);\n\n/**\n * Extracts relevant data from a Craigslist post\n * @returns {Object} Structured data from the Craigslist post\n */\nfunction extractCraigslistData() {\n  // Basic extraction - customize based on your needs\n  const title = document.querySelector(\"#titletextonly\")?.textContent.trim() || \"\";\n  const price = document.querySelector(\".price\")?.textContent.trim() || \"\";\n  const postingBody = document.querySelector(\"#postingbody\")?.textContent.trim() || \"\";\n  const images = Array.from(document.querySelectorAll(\".gallery img\"))\n    .map(img => img.src);\n  \n  return {\n    title,\n    price,\n    description: postingBody,\n    images,\n    url: window.location.href,\n    timestamp: new Date().toISOString()\n  };\n}"
+        }
+    ]
+}

@@ -7,15 +7,18 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "images/icon16.png",
-      "48": "images/icon48.png",
-      "128": "images/icon128.png"
+      "16": "images/favicon-16x16.png",
+      "48": "images/favicon-48x48.png",
+      "128": "images/favicon-96x96.png"
     }
   },
   "icons": {
-    "16": "images/icon16.png",
-    "48": "images/icon48.png",
-    "128": "images/icon128.png"
+    "16": "images/favicon-16x16.png",
+    "32": "images/favicon-32x32.png",
+    "48": "images/favicon-48x48.png",
+    "64": "images/favicon-64x64.png",
+    "96": "images/favicon-96x96.png",
+    "150": "images/mstile-150x150.png"
   },
   "content_scripts": [
     {
