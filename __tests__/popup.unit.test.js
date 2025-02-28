@@ -1,5 +1,6 @@
-import '../web_extension/chrome/popup.js';
-import { someFunction } from '../web_extension/chrome/popup.js';
+// Replace ES module imports with CommonJS require
+const popupModule = require('../web_extension/chrome/popup.js');
+const { someFunction } = popupModule;
 
 // Setup chrome API mock for all tests
 global.chrome = {

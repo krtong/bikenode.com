@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1740774329108,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1740784064472,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n-// Import the function - modify content.js to properly export it\n-import { extractCraigslistData } from '../web_extension/chrome/content.js';\n+// Replace ES module imports with CommonJS require\n+const { extractCraigslistData } = require('../web_extension/chrome/content.js');\n \n describe('Content Script Unit Tests', () => {\n   beforeEach(() => {\n     // Mock DOM elements for testing\n"
                 }
             ],
             "date": 1740774329108,
