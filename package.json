@@ -1,13 +1,31 @@
 {
-  "name": "project-name",
+  "name": "craigslist-to-json",
   "version": "1.0.0",
-  "description": "Chrome extension project",
-  "main": "web_extension/chrome/popup.js",
+  "description": "Chrome extension to convert Craigslist posts to JSON format",
+  "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test:unit": "jest --testPathPattern=.*\\.unit\\.test\\.js$",
+    "test:e2e": "jest --testPathPattern=.*\\.e2e\\.test\\.js$",
+    "test": "jest",
+    "build": "mkdir -p dist && cp -r web_extension/chrome/* dist/ && zip -r dist/craigslist-to-json.zip dist/"
   },
+  "keywords": [
+    "chrome-extension",
+    "craigslist",
+    "json"
+  ],
+  "author": "",
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "jest": "^27.0.0"
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "babel-jest": "^29.5.0",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
+    "puppeteer": "^19.7.3"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
   }
 }
