@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1740772011083,
@@ -12,6 +12,14 @@
                 {
                     "date": 1740774179795,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,10 @@\n   \"version\": \"1.0.0\",\n   \"description\": \"Chrome extension to convert Craigslist posts to JSON format\",\n   \"main\": \"index.js\",\n   \"scripts\": {\n+    \"test:unit\": \"jest --testPathPattern=.*\\\\.unit\\\\.test\\\\.js$\",\n+    \"test:e2e\": \"jest --testPathPattern=.*\\\\.e2e\\\\.test\\\\.js$\",\n     \"test\": \"jest\",\n     \"build\": \"mkdir -p dist && cp -r web_extension/chrome/* dist/ && zip -r dist/craigslist-to-json.zip dist/\"\n   },\n   \"keywords\": [\n@@ -21,6 +23,9 @@\n     \"babel-jest\": \"^29.5.0\",\n     \"jest\": \"^29.5.0\",\n     \"jest-environment-jsdom\": \"^29.5.0\",\n     \"puppeteer\": \"^19.7.3\"\n+  },\n+  \"jest\": {\n+    \"testEnvironment\": \"jsdom\"\n   }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1740776297538,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,17 +15,13 @@\n     \"json\"\n   ],\n   \"author\": \"\",\n   \"license\": \"MIT\",\n-  \"dependencies\": {},\n   \"devDependencies\": {\n     \"@babel/core\": \"^7.21.0\",\n     \"@babel/preset-env\": \"^7.20.2\",\n     \"babel-jest\": \"^29.5.0\",\n-    \"jest\": \"^29.5.0\",\n+    \"jest\": \"^29.7.0\",\n     \"jest-environment-jsdom\": \"^29.5.0\",\n     \"puppeteer\": \"^19.7.3\"\n-  },\n-  \"jest\": {\n-    \"testEnvironment\": \"jsdom\"\n   }\n\\ No newline at end of file\n-}\n+}\n"
+                },
+                {
+                    "date": 1740779001733,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,12 @@\n   \"version\": \"1.0.0\",\n   \"description\": \"Chrome extension to convert Craigslist posts to JSON format\",\n   \"main\": \"index.js\",\n   \"scripts\": {\n+    \"test\": \"jest --testPathPattern=.*\\\\.unit\\\\.test\\\\.js$\",\n     \"test:unit\": \"jest --testPathPattern=.*\\\\.unit\\\\.test\\\\.js$\",\n     \"test:e2e\": \"jest --testPathPattern=.*\\\\.e2e\\\\.test\\\\.js$\",\n-    \"test\": \"jest\",\n-    \"build\": \"mkdir -p dist && cp -r web_extension/chrome/* dist/ && zip -r dist/craigslist-to-json.zip dist/\"\n+    \"test:all\": \"jest\",\n   },\n   \"keywords\": [\n     \"chrome-extension\",\n     \"craigslist\",\n@@ -20,8 +20,7 @@\n     \"@babel/core\": \"^7.21.0\",\n     \"@babel/preset-env\": \"^7.20.2\",\n     \"babel-jest\": \"^29.5.0\",\n     \"jest\": \"^29.7.0\",\n-    \"jest-environment-jsdom\": \"^29.5.0\",\n-    \"puppeteer\": \"^19.7.3\"\n+    \"jest-environment-jsdom\": \"^29.5.0\"\n   }\n\\ No newline at end of file\n-}\n+}\n"
                 }
             ],
             "date": 1740772011083,

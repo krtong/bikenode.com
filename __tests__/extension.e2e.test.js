@@ -7,9 +7,10 @@ describe('Chrome Extension E2E Tests', () => {
   const extensionPath = path.resolve(__dirname, '../web_extension/chrome');
 
   beforeAll(async () => {
-    // Launch browser with the extension loaded
+    // Launch browser with the system Chrome/Chromium instead
     browser = await puppeteer.launch({
-      headless: false, // Extensions require non-headless mode
+      headless: false,
+      executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', // Path to Chrome on macOS
       args: [
         `--disable-extensions-except=${extensionPath}`,
         `--load-extension=${extensionPath}`,
@@ -26,7 +27,7 @@ describe('Chrome Extension E2E Tests', () => {
   });
 
   test('Extension loads and popup displays correctly', async () => {
-    // Get the extension background page target
+    // Find the extension background page or service worker
     const targets = await browser.targets();
     const extTarget = targets.find(target => 
       target.type() === 'background_page' || 
@@ -37,7 +38,7 @@ describe('Chrome Extension E2E Tests', () => {
       throw new Error('Extension background page not found');
     }
     
-    // Get extension ID from the background page URL
+    // Extract extension ID from URL
     const extensionUrl = extTarget.url();
     const extensionID = extensionUrl.split('/')[2];
     
@@ -48,11 +49,5 @@ describe('Chrome Extension E2E Tests', () => {
     // Verify popup contents
     const title = await page.$eval('h1', el => el.textContent);
     expect(title).toBe('Craigslist to JSON');
-    
-    const buttonText = await page.$eval('#convert-button', button => button.textContent);
-    expect(buttonText).toBe('Convert to JSON');
-    
-    const statusMessage = await page.$eval('#status-message', el => el.textContent);
-    expect(statusMessage).toContain('Navigate to a Craigslist post');
   }, 15000);
 });

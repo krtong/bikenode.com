@@ -47,7 +47,7 @@ function extractCraigslistData() {
       }
     });
     
-    // Attributes/details (may vary based on category)
+    // Attributes/details
     const attributes = {};
     const attrGroups = document.querySelectorAll('.attrgroup');
     attrGroups.forEach(group => {
@@ -58,7 +58,6 @@ function extractCraigslistData() {
           const [key, value] = text.split(':').map(item => item.trim());
           attributes[key] = value;
         } else if (text.length > 0) {
-          // For attributes without key:value format
           attributes[text] = true;
         }
       });
@@ -85,7 +84,10 @@ function extractCraigslistData() {
   }
 }
 
-// Export for testing
-if (typeof module !== 'undefined' && module.exports) {
+// Make the function available for testing
+if (typeof module !== 'undefined') {
   module.exports = { extractCraigslistData };
 }
+
+// For ES modules
+export { extractCraigslistData };

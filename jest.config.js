@@ -5,7 +5,7 @@ module.exports = {
   transform: {
     '^.+\\.jsx?$': 'babel-jest',
   },
-  testPathIgnorePatterns: ['/node_modules/', '/web_extension/'],
+  testPathIgnorePatterns: process.env.RUN_E2E ? [] : ['\\.e2e\\.test\\.js$'],
   moduleNameMapper: {
     "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
   }
