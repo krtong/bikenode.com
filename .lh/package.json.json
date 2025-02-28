@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1740772011083,
@@ -20,6 +20,10 @@
                 {
                     "date": 1740779001733,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,12 +3,12 @@\n   \"version\": \"1.0.0\",\n   \"description\": \"Chrome extension to convert Craigslist posts to JSON format\",\n   \"main\": \"index.js\",\n   \"scripts\": {\n+    \"test\": \"jest --testPathPattern=.*\\\\.unit\\\\.test\\\\.js$\",\n     \"test:unit\": \"jest --testPathPattern=.*\\\\.unit\\\\.test\\\\.js$\",\n     \"test:e2e\": \"jest --testPathPattern=.*\\\\.e2e\\\\.test\\\\.js$\",\n-    \"test\": \"jest\",\n-    \"build\": \"mkdir -p dist && cp -r web_extension/chrome/* dist/ && zip -r dist/craigslist-to-json.zip dist/\"\n+    \"test:all\": \"jest\",\n   },\n   \"keywords\": [\n     \"chrome-extension\",\n     \"craigslist\",\n@@ -20,8 +20,7 @@\n     \"@babel/core\": \"^7.21.0\",\n     \"@babel/preset-env\": \"^7.20.2\",\n     \"babel-jest\": \"^29.5.0\",\n     \"jest\": \"^29.7.0\",\n-    \"jest-environment-jsdom\": \"^29.5.0\",\n-    \"puppeteer\": \"^19.7.3\"\n+    \"jest-environment-jsdom\": \"^29.5.0\"\n   }\n\\ No newline at end of file\n-}\n+}\n"
+                },
+                {
+                    "date": 1740784070132,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n     \"test\": \"jest --testPathPattern=.*\\\\.unit\\\\.test\\\\.js$\",\n     \"test:unit\": \"jest --testPathPattern=.*\\\\.unit\\\\.test\\\\.js$\",\n     \"test:e2e\": \"jest --testPathPattern=.*\\\\.e2e\\\\.test\\\\.js$\",\n     \"test:all\": \"jest\",\n+    \"build\": \"mkdir -p dist && cp -r web_extension/chrome/* dist/ && zip -r dist/craigslist-to-json.zip dist/\"\n   },\n   \"keywords\": [\n     \"chrome-extension\",\n     \"craigslist\",\n@@ -22,5 +23,5 @@\n     \"babel-jest\": \"^29.5.0\",\n     \"jest\": \"^29.7.0\",\n     \"jest-environment-jsdom\": \"^29.5.0\"\n   }\n-}\n\\ No newline at end of file\n+}\n"
                 }
             ],
             "date": 1740772011083,

@@ -1,5 +1,5 @@
-// Import the function - modify content.js to properly export it
-import { extractCraigslistData } from '../web_extension/chrome/content.js';
+// Replace ES module imports with CommonJS require
+const { extractCraigslistData } = require('../web_extension/chrome/content.js');
 
 describe('Content Script Unit Tests', () => {
   beforeEach(() => {
