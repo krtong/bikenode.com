@@ -29,285 +29,8 @@
     <link rel="icon" type="image/png" href="./images/assets/favicons/favicon-96x96.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     
-    <!-- Combined Styles -->
-    <style>
-        /* Discord Font (gg sans) */
-        @font-face {
-            font-family: 'gg sans';
-            src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-regular.woff2') format('woff2');
-            font-weight: 300;
-            font-style: normal;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'gg sans';
-            src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-medium.woff2') format('woff2');
-            font-weight: 500;
-            font-style: normal;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'gg sans';
-            src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-semibold.woff2') format('woff2');
-            font-weight: 600;
-            font-style: normal;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'gg sans';
-            src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-bold.woff2') format('woff2');
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
-        }
-        
-        /* Reset & Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #1a1c1f;
-            font-family: 'gg sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            color: #ffffff;
-            line-height: 1.5;
-            padding: 0;
-        }
-        
-        /* Layout & Components */
-        .container {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            max-width: 1100px;
-            width: 100%;
-            padding: 20px;
-            margin: 0 auto;
-            gap: 40px;
-            animation: fadeIn 1s ease-in;
-        }
-        
-        .left-section {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            max-width: 45%;
-        }
-        
-        .logo {
-            width: 280px;
-        }
-        
-        .logo img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-        
-        .vertical-divider {
-            width: 3px;
-            height: 240px;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
-            border-radius: 3px;
-        }
-        
-        .right-section {
-            flex: 1;
-            max-width: 500px;
-        }
-        
-        h1, h2 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: #ffffff;
-            letter-spacing: -0.3px;
-        }
-        
-        .tagline {
-            font-size: 14px;
-            margin-bottom: 40px;
-            color: #b9bbbe;
-            font-weight: 400;
-            text-align: left;
-            max-width: 500px;
-            line-height: 1.6;
-        }
-        
-        /* Buttons & Interactive Elements */
-        .cta {
-            display: inline-block;
-            background-color: #5865F2;
-            color: #ffffff;
-            text-decoration: none;
-            padding: 12px 28px;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            margin-top: 15px;
-            box-shadow: 0 2px 8px rgba(88, 101, 242, 0.3);
-        }
-        
-        .cta:hover {
-            background-color: #4752c4;
-            box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
-            transform: translateY(-2px);
-        }
-        
-        /* Form Styles */
-        .email-signup {
-            margin-top: 40px;
-            width: 100%;
-        }
-        
-        .email-form {
-            display: flex;
-            max-width: 100%;
-        }
-        
-        .email-input {
-            flex-grow: 1;
-            padding: 10px 16px;
-            border-radius: 4px 0 0 4px;
-            border: 1px solid #202225;
-            font-size: 14px;
-            outline: none;
-            background-color: #202225;
-            color: #dcddde;
-            transition: background-color 0.2s ease, border-color 0.2s ease;
-        }
-        
-        .email-input:focus {
-            background-color: #2a2d31;
-            border-color: #5865F2;
-        }
-        
-        .submit-btn {
-            background-color: #5865F2;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 0 4px 4px 0;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            box-shadow: 0 2px 8px rgba(88, 101, 242, 0.3);
-        }
-        
-        .submit-btn:hover {
-            background-color: #4752c4;
-            box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
-        }
-        
-        /* Footer & Social Links */
-        .social-links {
-            margin-top: 30px;
-            display: flex;
-            gap: 20px;
-        }
-        
-        .social-links a {
-            color: #b9bbbe;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            font-size: 14px;
-            padding: 4px 8px;
-            border-radius: 4px;
-        }
-        
-        .social-links a:hover {
-            color: #ffffff;
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Background Animation */
-        #backgroundCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.5;
-        }
-        
-        /* Accessibility */
-        .screen-reader-text {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 980px) {
-            .container {
-                flex-direction: column;
-                text-align: center;
-                gap: 30px;
-            }
-            
-            .left-section {
-                max-width: 280px;
-                padding-right: 0;
-                justify-content: center;
-            }
-            
-            .vertical-divider {
-                width: 80px;
-                height: 3px;
-                margin: 10px 0;
-                background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
-            }
-            
-            .right-section {
-                padding-left: 0;
-                max-width: 90%;
-            }
-            
-            .tagline {
-                text-align: center;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .social-links {
-                justify-content: center;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .email-form {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .email-input, .submit-btn {
-                width: 100%;
-                border-radius: 4px;
-            }
-        }
-    </style>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="index.css">
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-8E771KQFK0"></script>
@@ -343,7 +66,7 @@
             </p>
             
             <div class="email-signup">
-                <form class="email-form" action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST" id="signup-form">
+                <form class="email-form" action="https://formsubmit.co/your.actual.email@example.com" method="POST" id="signup-form">
                     <input type="hidden" name="_subject" value="New bikenode subscription!">
                     <input type="hidden" name="_next" value="https://bikenode.com/thanks.html">
                     <input type="hidden" name="_captcha" value="false">
@@ -367,11 +90,11 @@
     <!-- JavaScript for Interactivity -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Email Signup Form Submission with AJAX
+            // Email Signup Form Submission
             const form = document.getElementById('signup-form');
             if (form) {
                 form.addEventListener('submit', function(e) {
-                    e.preventDefault();
+                    // Don't preventDefault - let the native form submission work with FormSubmit
                     
                     // Track event in Google Analytics
                     if (typeof gtag === 'function') {
@@ -381,46 +104,14 @@
                         });
                     }
                     
-                    // Get the form data
-                    const email = document.getElementById('email').value;
-                    const formData = new FormData();
-                    formData.append('email', email);
-                    
                     // Show submitting state
                     const submitBtn = form.querySelector('.submit-btn');
                     const originalBtnText = submitBtn.textContent;
                     submitBtn.textContent = "Submitting...";
                     submitBtn.disabled = true;
                     
-                    // Send the form data using fetch
-                    fetch(form.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    })
-                    .then(response => {
-                        if (response.ok) {
-                            return response.json();
-                        }
-                        throw new Error('Network response was not ok');
-                    })
-                    .then(data => {
-                        // Show success message
-                        alert("Thanks for subscribing! We'll keep you posted on our launch and new features.");
-                        form.reset();
-                    })
-                    .catch(error => {
-                        // Show error message
-                        console.error('Error:', error);
-                        alert("Oops! Something went wrong. Please try again or contact us directly.");
-                    })
-                    .finally(() => {
-                        // Reset button state
-                        submitBtn.textContent = originalBtnText;
-                        submitBtn.disabled = false;
-                    });
+                    // Let the form submit normally
+                    // The form will be redirected to the _next URL by FormSubmit
                 });
             }
             

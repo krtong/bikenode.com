@@ -6,12 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
         return isDarkReader || isPrefersColorScheme;
     };
 
-    const colors = { // these do nothing
+    const colors = {
         light: {
             sky: ['#121417', '#1e2228', '#1a1c1f', '#161719'],
             ground: '#080809',
             road: '#4f59c9',
-            mountain: '#b2c7ff',
+            mountain: '#3b4152',
             tree: {
                 trunk: '#5D6378',
                 foliage: ['#4C5268', '#546078', '#505D75']
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
             sky: ['#121417', '#1e2228', '#1a1c1f', '#161719'],
             ground: '#080809',
             road: '#3b407b',
-            mountain: '#0033b5',
+            mountain: '#4e5a79',
             tree: {
                 trunk: '#4D5368',
                 foliage: ['#3C4258', '#445068', '#404D65']
@@ -379,7 +379,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const currentCameraX = averageCurve;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            // Background gradient colors
             const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
             gradient.addColorStop(0, '#242a36');
             gradient.addColorStop(0.4, '#131519');
@@ -388,7 +387,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            ctx.strokeStyle = '#90b40f'; // this does nothing.
+            ctx.strokeStyle = '#7B86FF'; // Brighter blue for road lines
             ctx.lineWidth = 1.5; // Increased from 1 to 1.5 for more visibility
 
             const minZ = cameraZ;
@@ -419,10 +418,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const midZ = segment.p1.world.z;
                 const fibMod = Math.floor(midZ / 100) % fibSequence.length;
                 if (fibMod < 3 || fibMod > 8) {
-                    ctx.strokeStyle = '#4651a8'; // Brighter center line
+                    ctx.strokeStyle = '#A3ADFF'; // Brighter center line
                     drawLine(p1.x, p1.y, p2.x, p2.y, fade * 0.9); // Increased from 0.8 to 0.9
                     // Remember to reset stroke style after
-                    ctx.strokeStyle = '#171a3c';
+                    ctx.strokeStyle = '#7B86FF';
                 }
             }
 
