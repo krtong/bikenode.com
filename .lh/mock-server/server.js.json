@@ -1,0 +1,22 @@
+{
+    "sourceFile": "mock-server/server.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1740793250760,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1740793269086,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +0,0 @@\n-const express = require('express');\n-const path = require('path');\n-const app = express();\n-const port = 8080;\n-\n-// Serve static mock HTML files\n-app.use(express.static(path.join(__dirname, 'public')));\n-\n-// Start server\n-app.listen(port, () => {\n-  console.log(`Mock server running at http://localhost:${port}`);\n-});\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1740793250760,
+            "name": "Commit-0",
+            "content": "const express = require('express');\nconst path = require('path');\nconst app = express();\nconst port = 8080;\n\n// Serve static mock HTML files\napp.use(express.static(path.join(__dirname, 'public')));\n\n// Start server\napp.listen(port, () => {\n  console.log(`Mock server running at http://localhost:${port}`);\n});"
+        }
+    ]
+}
