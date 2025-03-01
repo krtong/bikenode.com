@@ -1,33 +1,26 @@
 // Mock chrome API
-global.chrome = {
+const chrome = {
   runtime: {
     onMessage: {
-      addListener: jest.fn()
+      addListener: jest.fn(callback => {
+        // Store the callback immediately when it's registered
+        chrome.runtime.onMessage.handler = callback;
+      })
     }
   }
 };
 
-const contentScript = require('../web_extension/chrome/content.js');
+// Set up global chrome object
+global.chrome = chrome;
+
+// Import content script AFTER mock is set up
+require('../web_extension/chrome/content.js');
 
 describe('Chrome Extension Message Handling', () => {
   let mockSendResponse;
-  let messageListener;
   
   beforeEach(() => {
-    // Set up the Chrome mock
-    global.chrome = {
-      runtime: {
-        onMessage: {
-          addListener: jest.fn()
-        }
-      }
-    };
-    
-    // Import content script to register the listener
-    require('../web_extension/chrome/content.js');
-    
-    // Now the listener should be registered
-    messageListener = chrome.runtime.onMessage.addListener.mock.calls[0][0];
+    // Use the stored handler instead of accessing mock.calls
     mockSendResponse = jest.fn();
     
     // Set up DOM
@@ -35,7 +28,8 @@ describe('Chrome Extension Message Handling', () => {
   });
   
   test('responds with data on convertToJson message', () => {
-    messageListener({action: 'convertToJson'}, {}, mockSendResponse);
+    chrome.runtime.onMessage.handler({action: 'convertToJson'}, {}, mockSendResponse);
+    
     expect(mockSendResponse).toHaveBeenCalledWith(expect.objectContaining({
       success: true,
       data: expect.objectContaining({title: 'Test Bike'})
@@ -44,10 +38,11 @@ describe('Chrome Extension Message Handling', () => {
   
   test('returns error when data extraction fails', () => {
     document.body.innerHTML = ''; // Empty DOM will cause extraction to fail
-    messageListener({action: 'convertToJson'}, {}, mockSendResponse);
+    chrome.runtime.onMessage.handler({action: 'convertToJson'}, {}, mockSendResponse);
+    
     expect(mockSendResponse).toHaveBeenCalledWith(expect.objectContaining({
       success: false,
-      error: expect.any(String)
+      error: expect.stringContaining('Could not find post title')
     }));
   });
 });
