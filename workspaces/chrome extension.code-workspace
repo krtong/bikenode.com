@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"name": "bikenode.com",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"idf.pythonInstallPath": "/Users/kevintong/miniconda3/bin/python",
+		"workbench.colorTheme": "Best Themes - Outrun Space"
+	}
+}
