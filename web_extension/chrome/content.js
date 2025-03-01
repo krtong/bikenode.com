@@ -42,7 +42,9 @@ function extractCraigslistData() {
     thumbs.forEach(img => {
       // Convert thumbnail URL to full image URL
       if (img.src) {
-        const fullImageUrl = img.src.replace('50x50c', '600x450');
+        const fullImageUrl = img.src.includes('50x50c') 
+          ? img.src.replace('50x50c', '600x450') 
+          : img.src;
         imageUrls.push(fullImageUrl);
       }
     });
@@ -62,6 +64,13 @@ function extractCraigslistData() {
         }
       });
     });
+    
+    // Example attributes object:
+    // {
+    //   "make / manufacturer": "Trek",
+    //   "bicycle type": "hybrid",
+    //   "electric assist": true  // Boolean for attributes without values
+    // }
     
     // Post ID from URL
     const postId = window.location.pathname.split('/').pop().split('.')[0];
@@ -85,7 +94,7 @@ function extractCraigslistData() {
 }
 
 // Make the function available for testing
-if (typeof module !== 'undefined') {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = { extractCraigslistData };
 }
 

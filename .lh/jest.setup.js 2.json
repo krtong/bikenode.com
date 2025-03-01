@@ -1,0 +1,22 @@
+{
+    "sourceFile": "jest.setup.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1740774052792,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1740774372312,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-// Mock Chrome API\n+// Mock Chrome API for all tests\n global.chrome = {\n   tabs: {\n     query: jest.fn(),\n     sendMessage: jest.fn()\n@@ -11,5 +11,10 @@\n   }\n };\n \n // Mock document methods not in jsdom\n-document.execCommand = jest.fn();\n\\ No newline at end of file\n+document.execCommand = jest.fn();\n+\n+// Reset mocks between tests\n+beforeEach(() => {\n+  jest.clearAllMocks();\n+});\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1740774052792,
+            "name": "Commit-0",
+            "content": "// Mock Chrome API\nglobal.chrome = {\n  tabs: {\n    query: jest.fn(),\n    sendMessage: jest.fn()\n  },\n  runtime: {\n    onMessage: {\n      addListener: jest.fn()\n    }\n  }\n};\n\n// Mock document methods not in jsdom\ndocument.execCommand = jest.fn();"
+        }
+    ]
+}

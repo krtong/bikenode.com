@@ -1,0 +1,18 @@
+{
+    "sourceFile": "__tests__/messaging.test.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1740792315032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1740792315032,
+            "name": "Commit-0",
+            "content": "// Mock chrome API\nglobal.chrome = {\n  runtime: {\n    onMessage: {\n      addListener: jest.fn()\n    }\n  }\n};\n\nconst contentScript = require('../web_extension/chrome/content.js');\n\ndescribe('Chrome Extension Message Handling', () => {\n  let mockSendResponse;\n  let messageListener;\n  \n  beforeEach(() => {\n    // Capture the message listener function\n    messageListener = chrome.runtime.onMessage.addListener.mock.calls[0][0];\n    mockSendResponse = jest.fn();\n    \n    // Set up DOM\n    document.body.innerHTML = `<div id=\"titletextonly\">Test Bike</div>`;\n  });\n  \n  test('responds with data on convertToJson message', () => {\n    messageListener({action: 'convertToJson'}, {}, mockSendResponse);\n    expect(mockSendResponse).toHaveBeenCalledWith(expect.objectContaining({\n      success: true,\n      data: expect.objectContaining({title: 'Test Bike'})\n    }));\n  });\n  \n  test('returns error when data extraction fails', () => {\n    document.body.innerHTML = ''; // Empty DOM will cause extraction to fail\n    messageListener({action: 'convertToJson'}, {}, mockSendResponse);\n    expect(mockSendResponse).toHaveBeenCalledWith(expect.objectContaining({\n      success: false,\n      error: expect.any(String)\n    }));\n  });\n});"
+        }
+    ]
+}
