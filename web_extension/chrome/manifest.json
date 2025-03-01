@@ -4,6 +4,7 @@
   "version": "1.0",
   "description": "Converts Craigslist ads to JSON format with a button click",
   "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["*://*.craigslist.org/*"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -12,18 +13,17 @@
       "128": "images/favicon-96x96.png"
     }
   },
-  "icons": {
-    "16": "images/favicon-16x16.png",
-    "32": "images/favicon-32x32.png",
-    "48": "images/favicon-48x48.png",
-    "64": "images/favicon-64x64.png",
-    "96": "images/favicon-96x96.png",
-    "150": "images/mstile-150x150.png"
-  },
   "content_scripts": [
     {
       "matches": ["*://*.craigslist.org/*"],
-      "js": ["content.js"]
+      "js": ["bikeParser.js", "content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["bikeParser.js", "content.js"],
+      "matches": ["*://*.craigslist.org/*"]
     }
   ]
 }

@@ -25,6 +25,7 @@
     "jest-environment-jsdom": "^29.5.0"
   },
   "dependencies": {
-    "puppeteer": "^24.3.0"
+    "puppeteer": "^24.3.0",
+    "selenium": "^2.20.0"
   }
 }

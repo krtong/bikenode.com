@@ -1,102 +1,139 @@
-// content.js - This script runs on Craigslist pages to extract data
-// It listens for messages from popup.js and converts page data to JSON
+console.log('Content script initializing...');
 
-// Listen for messages from the popup
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-  if (request.action === 'convertToJson') {
-    try {
-      const data = extractCraigslistData();
-      sendResponse({success: true, data: data});
-    } catch (error) {
-      sendResponse({success: false, error: error.message});
-    }
-  }
-  return true; // Keeps the message channel open for async responses
-});
-
-// Extract data from Craigslist page
+// Remove ES6 module syntax which doesn't work in content scripts
 function extractCraigslistData() {
+  // If bikeParser is available, use it for bike listings
+  if (typeof extractBikeData === 'function') {
+    return extractBikeData(document);
+  }
+  
+  // Fallback to basic data extraction
+  const data = {
+    title: document.title,
+    url: window.location.href,
+    timestamp: new Date().toISOString()
+  };
+  
+  // Add more specific extraction logic for Craigslist posts
+  if (document.querySelector('.postingtitletext')) {
+    data.postTitle = document.querySelector('.postingtitletext').textContent.trim();
+    data.price = document.querySelector('.price')?.textContent?.trim();
+    data.description = document.querySelector('#postingbody')?.textContent?.trim();
+    
+    // Get images if available
+    const images = Array.from(document.querySelectorAll('.gallery img'));
+    data.images = images.map(img => img.src);
+  }
+  
+  return data;
+}
+
+// Ensure we're running in the page context
+function injectReadyFlag() {
   try {
-    // Post title
-    const title = document.querySelector('#titletextonly')?.textContent.trim() || '';
-    
-    if (!title) {
-      throw new Error('Could not find post title - may not be a valid Craigslist post');
-    }
-    
-    // Price
-    const price = document.querySelector('.price')?.textContent.trim() || '';
-    
-    // Post time
-    const postingTime = document.querySelector('.date.timeago')?.textContent.trim() || '';
-    
-    // Location
-    const location = document.querySelector('.mapaddress')?.textContent.trim() || '';
-    
-    // Description
-    const description = document.querySelector('#postingbody')?.textContent.trim() || '';
-    
-    // Images
-    const imageUrls = [];
-    const thumbs = document.querySelectorAll('.thumb img');
-    thumbs.forEach(img => {
-      // Convert thumbnail URL to full image URL
-      if (img.src) {
-        const fullImageUrl = img.src.includes('50x50c') 
-          ? img.src.replace('50x50c', '600x450') 
-          : img.src;
-        imageUrls.push(fullImageUrl);
-      }
-    });
-    
-    // Attributes/details
-    const attributes = {};
-    const attrGroups = document.querySelectorAll('.attrgroup');
-    attrGroups.forEach(group => {
-      const spans = group.querySelectorAll('span');
-      spans.forEach(span => {
-        const text = span.textContent.trim();
-        if (text.includes(':')) {
-          const [key, value] = text.split(':').map(item => item.trim());
-          attributes[key] = value;
-        } else if (text.length > 0) {
-          attributes[text] = true;
+    // Create and inject a script element to set the flag in the page's window context
+    const script = document.createElement('script');
+    script.textContent = `
+      window.__contentScriptReady = true;
+      console.log('Content script ready flag set in page context');
+      
+      // Add message handler in the page context to ensure proper communication
+      window.addEventListener('message', function(event) {
+        if (event.source !== window) return;
+        
+        console.log('Page received message:', JSON.stringify(event.data));
+        
+        if (event.data && event.data.action === 'getDom') {
+          console.log('Page handling getDom request');
+          
+          // Get the DOM content directly in page context
+          const domContent = document.documentElement.outerHTML;
+          
+          // Send the DOM back
+          window.postMessage({
+            type: 'fromContentScript',
+            success: true,
+            data: domContent
+          }, '*');
+          
+          console.log('Page sent DOM content');
         }
       });
-    });
+    `;
+    (document.head || document.documentElement).appendChild(script);
     
-    // Example attributes object:
-    // {
-    //   "make / manufacturer": "Trek",
-    //   "bicycle type": "hybrid",
-    //   "electric assist": true  // Boolean for attributes without values
-    // }
+    // Clean up the injected script element
+    if (script.parentNode) {
+      script.parentNode.removeChild(script);
+    }
     
-    // Post ID from URL
-    const postId = window.location.pathname.split('/').pop().split('.')[0];
-    
-    return {
-      title,
-      price,
-      postingTime,
-      location,
-      description,
-      images: imageUrls,
-      attributes,
-      postId,
-      url: window.location.href,
-      extractedAt: new Date().toISOString()
-    };
-  } catch (error) {
-    console.error('Error extracting Craigslist data:', error);
-    throw new Error(`Failed to extract data: ${error.message}`);
+    console.log('Ready flag and message handler injected');
+  } catch (e) {
+    console.error('Error injecting script:', e);
   }
 }
 
-// Make the function available for testing
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { extractCraigslistData };
+// Also listen for messages in the content script context
+window.addEventListener('message', function(event) {
+  if (event.source !== window) return;
+  
+  console.log('Content script received message:', JSON.stringify(event.data));
+  
+  if (event.data && event.data.action === 'getDom') {
+    console.log('Content script handling getDom request');
+    
+    try {
+      // Get the DOM content
+      const domContent = document.documentElement.outerHTML;
+      
+      // Send the DOM back to the page
+      window.postMessage({
+        type: 'fromContentScript',
+        success: true,
+        data: domContent
+      }, '*');
+      
+      console.log('Content script sent DOM content');
+    } catch (e) {
+      console.error('Error processing getDom request:', e);
+      window.postMessage({
+        type: 'fromContentScript',
+        success: false,
+        error: e.message
+      }, '*');
+    }
+  } else if (event.data && event.data.action === 'extractData') {
+    try {
+      // Extract data using our specialized parser
+      const extractedData = extractCraigslistData();
+      
+      // Send the extracted data back
+      window.postMessage({
+        type: 'fromContentScript',
+        action: 'dataExtracted',
+        success: true,
+        data: extractedData
+      }, '*');
+      
+      console.log('Content script sent extracted data');
+    } catch (e) {
+      console.error('Error extracting data:', e);
+      window.postMessage({
+        type: 'fromContentScript',
+        action: 'dataExtracted',
+        success: false,
+        error: e.message
+      }, '*');
+    }
+  }
+});
+
+// Execute immediately and also on DOM content loaded
+injectReadyFlag();
+
+// Also run when the DOM is fully loaded to ensure it works
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', injectReadyFlag);
 }
 
-// For ES modules
-export { extractCraigslistData };
+console.log('Content script setup complete');
