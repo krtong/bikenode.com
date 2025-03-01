@@ -2,9 +2,9 @@ import os
 import pandas as pd
 import glob
 
-def combine_motorcycle_data(data_dir='./data', output_file='motorcycle_database.xlsx'):
+def combine_motorcycle_data(data_dir='./data', output_file='motorcycle_database.csv'):
     """
-    Combine all motorcycle data files into a single Excel spreadsheet with columns:
+    Combine all motorcycle data files into a single CSV file with columns:
     year | make | model | category | engine
     """
     # Get all files matching the pattern YYYY_motorcycles
@@ -59,8 +59,8 @@ def combine_motorcycle_data(data_dir='./data', output_file='motorcycle_database.
     
     print(f"Combined data: {len(combined_df)} total motorcycle models")
     
-    # Save to Excel
-    combined_df.to_excel(output_file, index=False)
+    # Save to CSV instead of Excel
+    combined_df.to_csv(output_file, index=False)
     print(f"Data saved to {output_file}")
 
 if __name__ == "__main__":
