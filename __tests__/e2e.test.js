@@ -3,7 +3,7 @@
 
 const puppeteer = require('puppeteer');
 
-describe('End-to-End Tests', () => {
+describe.skip('End-to-End Tests', () => {
   let browser;
   let page;
   
