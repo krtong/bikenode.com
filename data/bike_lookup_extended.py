@@ -1,3 +1,4 @@
+# DEPRECATED: Duplicate of the bike_lookup module created in cleanup.py.
 import os
 import csv
 import json
