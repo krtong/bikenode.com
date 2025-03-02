@@ -6,6 +6,26 @@ function someFunction() {
 // Make the timer duration configurable to help with testing
 const COPY_BUTTON_RESET_DELAY = 1500;
 
+// Logging utility for debugging
+function log(message, type = 'info') {
+  const timestamp = new Date().toISOString();
+  const logPrefix = `[BikeParser ${timestamp}]`;
+  
+  switch(type) {
+    case 'error':
+      console.error(`${logPrefix} ERROR:`, message);
+      break;
+    case 'warn':
+      console.warn(`${logPrefix} WARNING:`, message);
+      break;
+    case 'debug': 
+      console.debug(`${logPrefix} DEBUG:`, message);
+      break;
+    default:
+      console.log(`${logPrefix} INFO:`, message);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   const convertButton = document.getElementById('convert-button');
   const jsonOutput = document.getElementById('json-output');
@@ -13,6 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const statusMessage = document.getElementById('status-message');
   const jsonContainer = document.querySelector('.json-container');
   const bikeInfoContainer = document.getElementById('bike-info-container');
+  
+  log('Popup initialized');
   
   // Check if we're on a Craigslist page
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -22,43 +44,82 @@ document.addEventListener('DOMContentLoaded', function() {
     if (isCraigslist) {
       statusMessage.textContent = "Ready to convert this Craigslist page";
       convertButton.disabled = false;
+      log(`On Craigslist page: ${currentUrl}`);
     } else {
       statusMessage.textContent = "Please navigate to a Craigslist page";
       convertButton.disabled = true;
+      log(`Not on Craigslist: ${currentUrl}`, 'warn');
     }
   });
   
   // Convert button click handler
   convertButton.addEventListener('click', function() {
     statusMessage.textContent = "Processing...";
+    log('Convert button clicked');
     
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       const activeTab = tabs[0];
+      log(`Active tab ID: ${activeTab.id}`);
       
+      // First, inject the bike parser
       chrome.scripting.executeScript({
         target: {tabId: activeTab.id},
-        files: ['bikeParser.js', 'content.js']
-      }, function() {
+        files: ['bikeParser.js']
+      }, function(injectionResults) {
+        if (chrome.runtime.lastError) {
+          log(`Error injecting bikeParser.js: ${chrome.runtime.lastError.message}`, 'error');
+          statusMessage.textContent = "Error: " + chrome.runtime.lastError.message;
+          return;
+        }
+        
+        log('Bike parser injected successfully');
+        
+        // Then inject the content script if needed
         chrome.scripting.executeScript({
           target: {tabId: activeTab.id},
-          function: extractData
-        }, function(results) {
+          files: ['content.js']
+        }, function() {
           if (chrome.runtime.lastError) {
+            log(`Error injecting content.js: ${chrome.runtime.lastError.message}`, 'error');
             statusMessage.textContent = "Error: " + chrome.runtime.lastError.message;
             return;
           }
           
-          const data = results[0].result;
-          jsonOutput.value = JSON.stringify(data, null, 2);
+          log('Content script injected successfully');
           
-          // Update status message based on whether it's a bike listing
-          if (data.isBikeListing) {
-            statusMessage.textContent = "Bike listing detected! Conversion complete.";
-            displayBikeInfo(data);
-          } else {
-            statusMessage.textContent = "Conversion complete!";
-            hideBikeInfo();
-          }
+          // Finally, execute the data extraction
+          chrome.scripting.executeScript({
+            target: {tabId: activeTab.id},
+            function: extractData
+          }, function(results) {
+            if (chrome.runtime.lastError) {
+              log(`Error executing extraction: ${chrome.runtime.lastError.message}`, 'error');
+              statusMessage.textContent = "Error: " + chrome.runtime.lastError.message;
+              return;
+            }
+            
+            if (!results || results.length === 0) {
+              log('No results returned from extraction', 'error');
+              statusMessage.textContent = "Error: No data returned";
+              return;
+            }
+            
+            const data = results[0].result;
+            log(`Extracted data: ${JSON.stringify(data).slice(0, 100)}...`);
+            
+            jsonOutput.value = JSON.stringify(data, null, 2);
+            
+            // Update status message based on whether it's a bike listing
+            if (data.isBikeListing) {
+              statusMessage.textContent = "Bike listing detected! Conversion complete.";
+              log('Bike listing detected');
+              displayBikeInfo(data);
+            } else {
+              statusMessage.textContent = "Conversion complete!";
+              log('Non-bike listing processed');
+              hideBikeInfo();
+            }
+          });
         });
       });
     });
@@ -69,6 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
     jsonOutput.select();
     document.execCommand('copy');
     statusMessage.textContent = "Copied to clipboard!";
+    log('JSON copied to clipboard');
     
     // Reset the button text after a delay
     setTimeout(() => {
@@ -78,8 +140,18 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Function that executes in the context of the webpage
   function extractData() {
+    console.log('Running extractData in page context');
     // We'll use the extractCraigslistData function from the injected content script
-    return extractCraigslistData();
+    if (typeof extractCraigslistData === 'function') {
+      console.log('extractCraigslistData function is available');
+      return extractCraigslistData();
+    } else {
+      console.error('extractCraigslistData function is not available');
+      return {
+        error: 'Content script functions not available',
+        timestamp: new Date().toISOString()
+      };
+    }
   }
   
   // Function to display bike-specific information

@@ -1,31 +1,24 @@
 {
-  "name": "craigslist-to-json",
+  "name": "bikenode",
   "version": "1.0.0",
-  "description": "Chrome extension to convert Craigslist posts to JSON format",
+  "description": "Chrome extension for parsing bike listings",
   "main": "index.js",
   "scripts": {
-    "test": "jest --testPathPattern=.*\\.unit\\.test\\.js$",
-    "test:unit": "jest --testPathPattern=.*\\.unit\\.test\\.js$",
-    "test:e2e": "jest --testPathPattern=.*\\.e2e\\.test\\.js$",
-    "test:all": "jest",
-    "build": "mkdir -p dist && cp -r web_extension/chrome/* dist/ && zip -r dist/craigslist-to-json.zip dist/"
+    "test": "jest",
+    "test:browser": "BROWSER_ENV=true jest",
+    "test:with-selenium": "RUNNING_WITH_SELENIUM=true jest",
+    "test:browser-with-selenium": "RUNNING_WITH_SELENIUM=true BROWSER_ENV=true jest",
+    "archive-dom": "node utils/domArchiver.js",
+    "refresh-fixtures": "node scripts/refresh-test-fixtures.js",
+    "test:real-dom": "jest realDOMParser.test.js",
+    "test:live": "jest liveWebsiteParser.test.js"
   },
-  "keywords": [
-    "chrome-extension",
-    "craigslist",
-    "json"
-  ],
+  "keywords": ["bike", "chrome-extension"],
   "author": "",
-  "license": "MIT",
+  "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.21.0",
-    "@babel/preset-env": "^7.20.2",
-    "babel-jest": "^29.5.0",
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.5.0"
-  },
-  "dependencies": {
-    "puppeteer": "^24.3.0",
-    "selenium": "^2.20.0"
+    "jest": "^29.5.0",
+    "jsdom": "^22.0.0",
+    "puppeteer": "^20.5.0"
   }
 }
