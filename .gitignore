@@ -47,3 +47,14 @@ hierarchical_progress.json
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# IDE settings
+.vscode/
+.idea/
+*.swp
+
+# Local environment files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
