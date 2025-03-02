@@ -1,6 +1,7 @@
 import csv
 import os
 
+# DEPRECATED: Functionality is duplicated in cleanup.py.
 def create_mock_bicycle_data():
     """Create mock bicycle data CSV for development and testing."""
     # Define the file path
