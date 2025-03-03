@@ -1,24 +1,50 @@
-# BikeNode.com
+# Bikenode.com Project Repository
 
-## Repository Structure
+This repository contains multiple projects related to the Bikenode ecosystem:
 
-### Core Components
-- `core/` - Essential components and main execution scripts
-- `scrapers/` - Main scraper implementations
-  - `specialized/` - Specialized scrapers for specific use cases
-- `analysis/` - Data analysis and visualization tools
-- `utils/` - Utility functions and helper scripts
+## Project Structure
 
-### Web Extension
-- `web_extension/` - Chrome extension code
-  - `chrome/` - Chrome-specific implementation
-  - `common/` - Shared utilities and styles
+- **website/**
+  - Bikenode.com splash page and website files
+  - Frontend UI elements and assets
+  
+- **discord_bot/**
+  - Bikerole Discord bot that allows users to select motorcycles and bicycles they own
+  - Discord role attribution and commands
+  
+- **chrome_extension/**
+  - Bikenode Chrome extension
+  - Aggregates listings for bikes (motorcycles and bicycles) and component sales
+  - Monitors both new and used markets
+  
+- **shared_data/**
+  - Shared datasets used by multiple projects
+  - Includes comprehensive databases of bicycles and motorcycles
+  - Utility scripts for data scraping, processing and analysis
+    - Tools to scrape 99spokes, BikeExchange, and other websites for bicycle specs
+    - Tools to scrape CycleTrader, Craigslist, and other websites
 
-### Tests
-- `__tests__/` - Jest test files for the web extension
 
-### Data
-- `data/` - Data files and processing scripts
+## Getting Started
 
+Each project has its own setup and running instructions in their respective directories.
 
-*This README was automatically generated during repository cleanup.*
+## Data Files
+
+The shared_data directory contains:
+
+- Motorcycle datasets (historical and current models)
+- Bicycle datasets
+- Scraping utilities for data collection
+- Data transformation and normalization tools
+
+## Development
+
+When working on a specific project, stick to its directory to maintain clear separation between components.
+
+## Deployment
+
+Each project has independent deployment processes:
+- Website: Standard web deployment
+- Discord Bot: Hosted bot service
+- Chrome Extension: Published through Chrome Web Store
