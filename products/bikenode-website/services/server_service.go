@@ -2,8 +2,10 @@ package services
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/google/uuid"
@@ -16,18 +18,15 @@ import (
 type ServerService struct {
 	serverRepo *repositories.ServerRepository
 	userRepo   *repositories.UserRepository
-	botAPIURL  string
-	botToken   string
+	client     *http.Client
 }
 
 // NewServerService creates a new server service
 func NewServerService(serverRepo *repositories.ServerRepository, userRepo *repositories.UserRepository) *ServerService {
-	// Bot API URL and token would typically come from environment variables
 	return &ServerService{
 		serverRepo: serverRepo,
 		userRepo:   userRepo,
-		botAPIURL:  "https://api.bikenode.com/bot", // This would be configurable
-		botToken:   "YOUR_BOT_TOKEN",               // This would be from environment
+		client:     &http.Client{Timeout: 10 * time.Second},
 	}
 }
 
@@ -118,6 +117,12 @@ func (s *ServerService) GetServerChannels(serverID uuid.UUID) ([]models.Channel,
 		return nil, fmt.Errorf("server not found: %w", err)
 	}
 
+	// Get bot token from environment variable instead of hardcoding
+	botToken := os.Getenv("DISCORD_BOT_TOKEN")
+	if botToken == "" {
+		return nil, errors.New("DISCORD_BOT_TOKEN environment variable not set")
+	}
+
 	// Call bot API to get channels
 	url := fmt.Sprintf("%s/servers/%s/channels", s.botAPIURL, server.DiscordID)
 	req, err := http.NewRequest("GET", url, nil)
@@ -125,11 +130,10 @@ func (s *ServerService) GetServerChannels(serverID uuid.UUID) ([]models.Channel,
 		return nil, err
 	}
 
-	req.Header.Set("Authorization", "Bearer "+s.botToken)
+	req.Header.Set("Authorization", "Bearer "+botToken)
 	req.Header.Set("Content-Type", "application/json")
 
-	client := &http.Client{Timeout: 10 * time.Second}
-	resp, err := client.Do(req)
+	resp, err := s.client.Do(req)
 	if err != nil {
 		return nil, err
 	}
