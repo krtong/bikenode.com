@@ -105,6 +105,8 @@ func main() {
 	// Public routes
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{
+			"title": "BikeNode - Connect Your Motorcycle Journey",
+		})
 	})
 	r.GET("/login", authHandler.Login)
 	r.GET("/callback", authHandler.Callback)
