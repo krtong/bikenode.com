@@ -20,12 +20,22 @@ func NewAuthHandler(authService *services.AuthService) *AuthHandler {
 }
 
 // Login initiates the Discord OAuth2 flow
+// This redirects the user to Discord's authorization page where they will
+// grant permissions to our application
 func (h *AuthHandler) Login(c *gin.Context) {
+	// Generate and redirect to Discord OAuth URL
 	redirectURL := h.authService.GetDiscordAuthURL()
 	c.Redirect(http.StatusTemporaryRedirect, redirectURL)
 }
 
 // Callback handles the Discord OAuth2 callback
+// This is where Discord redirects back to our application after user authorization
+// The flow:
+// 1. Get authorization code from query parameters
+// 2. Exchange code for access token and user info
+// 3. Create/update user in our database
+// 4. Create a session to maintain user login state
+// 5. Redirect to profile page
 func (h *AuthHandler) Callback(c *gin.Context) {
 	code := c.Query("code")
 	if code == "" {
@@ -67,6 +77,7 @@ func (h *AuthHandler) Callback(c *gin.Context) {
 }
 
 // Logout clears the auth cookie
+// This removes the user's session data and redirects to the home page
 func (h *AuthHandler) Logout(c *gin.Context) {
 	session := sessions.Default(c)
 	session.Clear()
