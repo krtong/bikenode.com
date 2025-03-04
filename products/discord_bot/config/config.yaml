@@ -1,0 +1,15 @@
+# Configuration settings for the BikeRole bot.
+# Update this file to change the bot's prefix, activity message, or other settings.
+# Do not create new config files; modify this one.
+
+bot:
+  name: BikeRole
+  description: A Discord bot for bike communities
+  version: 1.0.0
+  activity_message: "for !role commands"
+commands:
+  prefix: "!"
+  cooldown: 3  # seconds
+logging:
+  level: INFO
+  file: bot.log
