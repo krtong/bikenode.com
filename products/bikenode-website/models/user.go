@@ -6,7 +6,7 @@ import (
 	"github.com/google/uuid"
 )
 
-// User represents a user in the system
+// User holds Discord user data
 type User struct {
 	ID            uuid.UUID `db:"id" json:"id"`
 	DiscordID     string    `db:"discord_id" json:"discord_id"`
@@ -14,12 +14,12 @@ type User struct {
 	Discriminator string    `db:"discriminator" json:"discriminator"`
 	Avatar        string    `db:"avatar" json:"avatar"`
 	Email         string    `db:"email" json:"email"`
-	AccessToken   string    `db:"access_token" json:"-"`
-	RefreshToken  string    `db:"refresh_token" json:"-"`
-	TokenExpiry   time.Time `db:"token_expiry" json:"-"`
-	YouTubeURL    string    `db:"youtube_url" json:"youtube_url"`
 	CreatedAt     time.Time `db:"created_at" json:"created_at"`
 	UpdatedAt     time.Time `db:"updated_at" json:"updated_at"`
+
+	// Joined fields
+	Ownerships []Ownership   `db:"-" json:"ownerships,omitempty"`
+	UserRoles  []UserRole    `db:"-" json:"user_roles,omitempty"`
 }
 
 // UserWithServers represents a user with their Discord servers
@@ -44,7 +44,7 @@ type UserServer struct {
 	IsModerator bool      `db:"is_moderator" json:"is_moderator"`
 }
 
-// UserRole represents a Discord role that a user has
+// UserRole represents a role a user has on a Discord server
 type UserRole struct {
 	ID        uuid.UUID `db:"id" json:"id"`
 	UserID    uuid.UUID `db:"user_id" json:"user_id"`
@@ -52,4 +52,27 @@ type UserRole struct {
 	RoleID    string    `db:"role_id" json:"role_id"`
 	RoleName  string    `db:"role_name" json:"role_name"`
 	RoleColor string    `db:"role_color" json:"role_color"`
+	CreatedAt time.Time `db:"created_at" json:"created_at"`
+	UpdatedAt time.Time `db:"updated_at" json:"updated_at"`
+}
+
+// UserProfile represents a user's profile with additional information
+type UserProfile struct {
+	User             *User        `json:"user"`
+	ActiveOwnerships []*Ownership `json:"active_ownerships"`
+	PastOwnerships   []*Ownership `json:"past_ownerships"`
+	Servers          []*Server    `json:"servers"`
+}
+
+// FormatUsername returns the formatted Discord username
+func (u *User) FormatUsername() string {
+	return u.Username + "#" + u.Discriminator
+}
+
+// GetAvatarURL returns the Discord avatar URL
+func (u *User) GetAvatarURL() string {
+	if u.Avatar == "" {
+		return "https://cdn.discordapp.com/embed/avatars/0.png"
+	}
+	return "https://cdn.discordapp.com/avatars/" + u.DiscordID + "/" + u.Avatar + ".png"
 }

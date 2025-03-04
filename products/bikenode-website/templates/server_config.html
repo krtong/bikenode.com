@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Server Configuration - BikeNode</title>
+	<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+	<header>
+		<h1>Server Configuration</h1>
+	</header>
+	<main class="container">
+		<form action="/servers/{{.server.ID}}/config" method="POST">
+			<div>
+				<label>
+					<input type="checkbox" name="create_brand_roles" value="true" {{if .server.CreateBrandRoles}}checked{{end}}>
+					Create Brand Roles
+				</label>
+			</div>
+			<div>
+				<label>
+					<input type="checkbox" name="create_type_roles" value="true" {{if .server.CreateTypeRoles}}checked{{end}}>
+					Create Type Roles
+				</label>
+			</div>
+			<div>
+				<label>
+					<input type="checkbox" name="create_model_roles" value="true" {{if .server.CreateModelRoles}}checked{{end}}>
+					Create Model Roles
+				</label>
+			</div>
+			<div>
+				<label for="story_feed_channel_id">Story Feed Channel</label>
+				<select name="story_feed_channel_id" id="story_feed_channel_id">
+					<option value="">Select a channel</option>
+					{{range .channels}}
+						<option value="{{.ID}}" {{if eq .ID $.server.StoryFeedChannelID}}selected{{end}}>{{.Name}}</option>
+					{{end}}
+				</select>
+			</div>
+			<button type="submit">Save Configuration</button>
+		</form>
+	</main>
+	<footer>
+		<p>&copy; 2023 BikeNode</p>
+	</footer>
+</body>
+</html>

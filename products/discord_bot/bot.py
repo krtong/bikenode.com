@@ -4,8 +4,12 @@ import os
 import yaml
 import logging
 from commands.bike import BikeCommands
-from commands.admin import BikeServerCommands
+from commands.server_management import ServerManagementCommands
+from commands.story import StoryCommands
 from events.message import MessageEvents
+from utils.role_manager import RoleManager
+from api.bikenode_client import BikeNodeAPI
+from api.webhook_handler import WebhookHandler
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, filename='bot.log', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -25,11 +29,30 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(config['bot']['activity_message']))
 
 async def setup_bot():
+    # Initialize API client
+    bot.bikenode_api = BikeNodeAPI(
+        config['api']['base_url'],
+        config['api']['api_key']
+    )
+    
+    # Initialize role manager
+    bot.role_manager = RoleManager(bot, bot.bikenode_api)
+    
     # Load command and event cogs
-    # If adding new commands or events, create new files in 'commands/' or 'events/' and add them here.
     await bot.add_cog(BikeCommands(bot))
-    await bot.add_cog(BikeServerCommands(bot))
+    await bot.add_cog(ServerManagementCommands(bot))
+    await bot.add_cog(StoryCommands(bot))
     await bot.add_cog(MessageEvents(bot))
+    
+    # Start webhook handler if enabled
+    if config['webhooks']['enabled']:
+        bot.webhook_handler = WebhookHandler(
+            bot, 
+            bot.bikenode_api,
+            config['webhooks']['port']
+        )
+        await bot.webhook_handler.start()
+    
     logger.info("All cogs loaded successfully")
 
 # Run the bot setup and start it

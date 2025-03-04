@@ -1,180 +1,147 @@
 package database
 
 import (
-	"encoding/csv"
 	"fmt"
+	"log"
 	"os"
-	"strconv"
-	"strings"
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 )
 
-// Connect establishes a connection to the database
-func Connect(dbURL string) (*sqlx.DB, error) {
+// GetConnection establishes a connection to the PostgreSQL database
+func GetConnection() (*sqlx.DB, error) {
+	dbURL := os.Getenv("DATABASE_URL")
+	if dbURL == "" {
+		dbURL = "postgres://postgres:postgres@localhost:5432/bikenode?sslmode=disable"
+	}
+
 	db, err := sqlx.Connect("postgres", dbURL)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to connect to database: %w", err)
 	}
 
-	// Test the connection
+	// Test connection
 	if err := db.Ping(); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to ping database: %w", err)
 	}
 
+	log.Println("Database connection established")
 	return db, nil
 }
 
-// RunMigrations applies database migrations
-func RunMigrations(db *sqlx.DB) error {
-	// Create the tables if they don't exist
+// InitSchema runs the schema migrations
+func InitSchema(db *sqlx.DB) error {
 	schema := `
+	-- Users table
 	CREATE TABLE IF NOT EXISTS users (
-		id SERIAL PRIMARY KEY,
+		id UUID PRIMARY KEY,
 		discord_id TEXT UNIQUE NOT NULL,
 		username TEXT NOT NULL,
+		discriminator TEXT NOT NULL,
 		avatar TEXT,
-		created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-		updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+		email TEXT,
+		created_at TIMESTAMP WITH TIME ZONE NOT NULL,
+		updated_at TIMESTAMP WITH TIME ZONE NOT NULL
 	);
 
+	-- Motorcycles table
 	CREATE TABLE IF NOT EXISTS motorcycles (
-		id SERIAL PRIMARY KEY,
+		id UUID PRIMARY KEY,
 		year INTEGER NOT NULL,
 		make TEXT NOT NULL,
 		model TEXT NOT NULL,
 		package TEXT,
 		category TEXT,
 		engine TEXT,
-		created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-		updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-		UNIQUE(year, make, model, package)
+		created_at TIMESTAMP WITH TIME ZONE NOT NULL,
+		updated_at TIMESTAMP WITH TIME ZONE NOT NULL
 	);
 
+	-- Ownerships table
 	CREATE TABLE IF NOT EXISTS ownerships (
-		id SERIAL PRIMARY KEY,
-		user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-		motorcycle_id INTEGER REFERENCES motorcycles(id) ON DELETE CASCADE,
-		purchase_date DATE NOT NULL,
-		end_date DATE,
-		end_reason TEXT CHECK (end_reason IN ('sold', 'stolen', 'totaled', NULL)),
+		id UUID PRIMARY KEY,
+		user_id UUID NOT NULL REFERENCES users(id),
+		motorcycle_id UUID NOT NULL REFERENCES motorcycles(id),
+		purchase_date TIMESTAMP WITH TIME ZONE NOT NULL,
+		end_date TIMESTAMP WITH TIME ZONE,
+		end_reason TEXT,
 		notes TEXT,
-		created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-		updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+		created_at TIMESTAMP WITH TIME ZONE NOT NULL,
+		updated_at TIMESTAMP WITH TIME ZONE NOT NULL
 	);
 
+	-- Timeline events table
 	CREATE TABLE IF NOT EXISTS timeline_events (
-		id SERIAL PRIMARY KEY,
-		ownership_id INTEGER REFERENCES ownerships(id) ON DELETE CASCADE,
-		event_date DATE NOT NULL,
-		event_type TEXT NOT NULL CHECK (event_type IN ('purchase', 'sale', 'photo', 'story', 'video', 'maintenance', 'other')),
+		id UUID PRIMARY KEY,
+		ownership_id UUID NOT NULL REFERENCES ownerships(id),
+		type TEXT NOT NULL,
+		date TIMESTAMP WITH TIME ZONE NOT NULL,
 		title TEXT NOT NULL,
 		description TEXT,
 		media_url TEXT,
-		created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-		updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+		is_public BOOLEAN NOT NULL DEFAULT false,
+		created_at TIMESTAMP WITH TIME ZONE NOT NULL,
+		updated_at TIMESTAMP WITH TIME ZONE NOT NULL
 	);
 
+	-- Servers table
 	CREATE TABLE IF NOT EXISTS servers (
-		id SERIAL PRIMARY KEY,
-		discord_server_id TEXT UNIQUE NOT NULL,
+		id UUID PRIMARY KEY,
+		discord_id TEXT UNIQUE NOT NULL,
 		name TEXT NOT NULL,
 		icon TEXT,
-		create_brand_roles BOOLEAN DEFAULT false,
-		create_category_roles BOOLEAN DEFAULT false,
-		create_model_roles BOOLEAN DEFAULT false,
+		owner_id TEXT NOT NULL,
+		joined_at TIMESTAMP WITH TIME ZONE NOT NULL,
+		member_count INTEGER NOT NULL DEFAULT 0,
+		created_at TIMESTAMP WITH TIME ZONE NOT NULL,
+		updated_at TIMESTAMP WITH TIME ZONE NOT NULL
+	);
+
+	-- Server configurations table
+	CREATE TABLE IF NOT EXISTS server_configs (
+		id UUID PRIMARY KEY,
+		server_id UUID NOT NULL REFERENCES servers(id),
+		create_brand_roles BOOLEAN NOT NULL DEFAULT false,
+		create_type_roles BOOLEAN NOT NULL DEFAULT false,
+		create_model_roles BOOLEAN NOT NULL DEFAULT false,
 		story_feed_channel_id TEXT,
-		created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-		updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+		created_at TIMESTAMP WITH TIME ZONE NOT NULL,
+		updated_at TIMESTAMP WITH TIME ZONE NOT NULL
 	);
 
-	CREATE TABLE IF NOT EXISTS user_servers (
-		id SERIAL PRIMARY KEY,
-		user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-		server_id INTEGER REFERENCES servers(id) ON DELETE CASCADE,
-		is_admin BOOLEAN DEFAULT false,
-		shared_profile BOOLEAN DEFAULT true,
-		created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-		updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-		UNIQUE(user_id, server_id)
-	);
-
+	-- User roles table
 	CREATE TABLE IF NOT EXISTS user_roles (
-		id SERIAL PRIMARY KEY,
-		user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-		server_id INTEGER REFERENCES servers(id) ON DELETE CASCADE,
+		id UUID PRIMARY KEY,
+		user_id UUID NOT NULL REFERENCES users(id),
+		server_id UUID NOT NULL REFERENCES servers(id),
 		role_id TEXT NOT NULL,
 		role_name TEXT NOT NULL,
-		created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+		role_color TEXT,
 		UNIQUE(user_id, server_id, role_id)
+	);
+
+	-- Event server sharing table
+	CREATE TABLE IF NOT EXISTS event_server_shares (
+		event_id UUID NOT NULL REFERENCES timeline_events(id),
+		server_id UUID NOT NULL REFERENCES servers(id),
+		PRIMARY KEY (event_id, server_id)
+	);
+
+	-- Server visibility settings
+	CREATE TABLE IF NOT EXISTS user_server_visibility (
+		user_id UUID NOT NULL REFERENCES users(id),
+		server_id UUID NOT NULL REFERENCES servers(id),
+		is_visible BOOLEAN NOT NULL DEFAULT true,
+		PRIMARY KEY (user_id, server_id)
 	);
 	`
 
 	_, err := db.Exec(schema)
-	return err
-}
-
-// SeedMotorcycles imports motorcycle data from CSV
-func SeedMotorcycles(db *sqlx.DB, filePath string) error {
-	// Open the CSV file
-	file, err := os.Open(filePath)
 	if err != nil {
-		return fmt.Errorf("error opening CSV file: %w", err)
-	}
-	defer file.Close()
-
-	// Parse the CSV file
-	reader := csv.NewReader(file)
-	records, err := reader.ReadAll()
-	if err != nil {
-		return fmt.Errorf("error reading CSV: %w", err)
+		return fmt.Errorf("failed to initialize schema: %w", err)
 	}
 
-	// Skip the header row
-	tx, err := db.Beginx()
-	if err != nil {
-		return fmt.Errorf("error starting transaction: %w", err)
-	}
-
-	// Insert each record
-	stmt, err := tx.Prepare("INSERT INTO motorcycles (year, make, model, package, category, engine) VALUES ($1, $2, $3, $4, $5, $6) ON CONFLICT (year, make, model, package) DO NOTHING")
-	if err != nil {
-		tx.Rollback()
-		return fmt.Errorf("error preparing statement: %w", err)
-	}
-
-	for i, record := range records {
-		// Skip header
-		if i == 0 {
-			continue
-		}
-
-		if len(record) < 6 {
-			continue // Skip incomplete records
-		}
-
-		year, err := strconv.Atoi(record[0])
-		if err != nil {
-			continue // Skip records with invalid year
-		}
-
-		make := strings.TrimSpace(record[1])
-		model := strings.TrimSpace(record[2])
-		packageName := strings.TrimSpace(record[3])
-		category := strings.TrimSpace(record[4])
-		engine := strings.TrimSpace(record[5])
-
-		_, err = stmt.Exec(year, make, model, packageName, category, engine)
-		if err != nil {
-			tx.Rollback()
-			return fmt.Errorf("error inserting record: %w", err)
-		}
-	}
-
-	if err := tx.Commit(); err != nil {
-		return fmt.Errorf("error committing transaction: %w", err)
-	}
-
+	log.Println("Database schema initialized")
 	return nil
 }

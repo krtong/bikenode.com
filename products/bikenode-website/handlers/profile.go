@@ -5,19 +5,22 @@ import (
 	"strconv"
 	"time"
 
-	"bikenode.com/bikenode-website/models"
-	"bikenode.com/bikenode-website/services"
+	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
+
+	"bikenode-website/models"
+	"bikenode-website/services"
 )
 
+// ProfileHandler handles profile-related routes
 type ProfileHandler struct {
 	profileService *services.ProfileService
 }
 
+// NewProfileHandler creates a new profile handler
 func NewProfileHandler(profileService *services.ProfileService) *ProfileHandler {
-	return &ProfileHandler{
-		profileService: profileService,
-	}
+	return &ProfileHandler{profileService: profileService}
 }
 
 func (h *ProfileHandler) RegisterRoutes(r *gin.Engine) {
@@ -27,121 +30,152 @@ func (h *ProfileHandler) RegisterRoutes(r *gin.Engine) {
 		authorized.GET("/profile", h.GetProfile)
 		authorized.POST("/profile/bikes/add", h.AddBike)
 		authorized.POST("/profile/bikes/:id/remove", h.RemoveBike)
-		authorized.POST("/profile/bikes/:id/timeline", h.AddTimelineEvent)
+		authorized.POST("/profile/timeline/add", h.AddTimelineEvent)
 		authorized.DELETE("/profile/timeline/:id", h.RemoveTimelineEvent)
 		authorized.PUT("/profile/servers/:id/visibility", h.ToggleServerVisibility)
 	}
 }
 
-// GetProfile renders the user's profile page
+// GetProfile displays the user's profile
 func (h *ProfileHandler) GetProfile(c *gin.Context) {
-	userID := getUserIDFromContext(c)
+	// Get user ID from session
+	session := sessions.Default(c)
+	userID := session.Get("user_id").(uuid.UUID)
 
+	// Get user profile
 	profile, err := h.profileService.GetUserProfile(userID)
 	if err != nil {
 		c.HTML(http.StatusInternalServerError, "error.html", gin.H{
-			"error": "Failed to load profile",
+			"error": "Failed to load profile: " + err.Error(),
+		})
+		return
+	}
+
+	// Get user's motorcycles with ownership details
+	ownerships, err := h.profileService.GetUserOwnerships(userID)
+	if err != nil {
+		c.HTML(http.StatusInternalServerError, "error.html", gin.H{
+			"error": "Failed to load motorcycles: " + err.Error(),
 		})
 		return
 	}
 
 	c.HTML(http.StatusOK, "profile.html", gin.H{
-		"profile": profile,
-		"title":   "My Profile",
+		"profile":    profile,
+		"ownerships": ownerships,
 	})
 }
 
 // AddBike adds a new motorcycle to the user's profile
 func (h *ProfileHandler) AddBike(c *gin.Context) {
-	userID := getUserIDFromContext(c)
+	// Get user ID from session
+	session := sessions.Default(c)
+	userID := session.Get("user_id").(uuid.UUID)
 
-	var input struct {
-		MotorcycleID int       `form:"motorcycle_id" binding:"required"`
-		PurchaseDate time.Time `form:"purchase_date" binding:"required" time_format:"2006-01-02"`
-	}
-
-	if err := c.ShouldBind(&input); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	// Parse form data
+	motorcycleID, err := uuid.Parse(c.PostForm("motorcycle_id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid motorcycle ID"})
 		return
 	}
 
-	ownership := models.Ownership{
-		UserID:       userID,
-		MotorcycleID: input.MotorcycleID,
-		PurchaseDate: input.PurchaseDate,
-		Active:       true,
+	purchaseDateStr := c.PostForm("purchase_date")
+	purchaseDate, err := time.Parse("2006-01-02", purchaseDateStr)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid purchase date format"})
+		return
 	}
 
-	if err := h.profileService.AddMotorcycle(ownership); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to add motorcycle"})
+	notes := c.PostForm("notes")
+
+	// Add motorcycle
+	ownership, err := h.profileService.AddMotorcycle(userID, motorcycleID, purchaseDate, notes)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to add motorcycle: " + err.Error()})
 		return
 	}
 
 	c.Redirect(http.StatusFound, "/profile")
 }
 
-// RemoveBike marks a motorcycle as no longer owned
+// RemoveBike removes a motorcycle from the user's profile
 func (h *ProfileHandler) RemoveBike(c *gin.Context) {
-	userID := getUserIDFromContext(c)
+	// Get user ID from session
+	session := sessions.Default(c)
+	userID := session.Get("user_id").(uuid.UUID)
 
-	bikeID, err := strconv.Atoi(c.Param("id"))
+	// Parse ownership ID
+	ownershipID, err := uuid.Parse(c.Param("id"))
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid bike ID"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ownership ID"})
 		return
 	}
 
-	var input struct {
-		EndDate   time.Time `form:"end_date" binding:"required" time_format:"2006-01-02"`
-		EndReason string    `form:"end_reason" binding:"required"`
-	}
-
-	if err := c.ShouldBind(&input); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
-	if err := h.profileService.RemoveMotorcycle(userID, bikeID, input.EndDate, input.EndReason); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to remove motorcycle"})
+	// Remove motorcycle
+	err = h.profileService.RemoveMotorcycle(ownershipID, userID)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to remove motorcycle: " + err.Error()})
 		return
 	}
 
 	c.Redirect(http.StatusFound, "/profile")
 }
 
-// AddTimelineEvent adds a new event to a motorcycle's timeline
+// AddTimelineEvent adds a new timeline event
 func (h *ProfileHandler) AddTimelineEvent(c *gin.Context) {
-	userID := getUserIDFromContext(c)
+	// Get user ID from session
+	session := sessions.Default(c)
+	userID := session.Get("user_id").(uuid.UUID)
 
-	bikeID, err := strconv.Atoi(c.Param("id"))
+	// Parse form data
+	ownershipID, err := uuid.Parse(c.PostForm("ownership_id"))
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid bike ID"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ownership ID"})
 		return
 	}
 
-	var input struct {
-		Date        time.Time `form:"date" binding:"required" time_format:"2006-01-02"`
-		Type        string    `form:"type" binding:"required"`
-		Title       string    `form:"title" binding:"required"`
-		Description string    `form:"description"`
-		MediaURL    string    `form:"media_url"`
-	}
-
-	if err := c.ShouldBind(&input); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	eventDate, err := time.Parse("2006-01-02", c.PostForm("date"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid event date format"})
 		return
 	}
 
-	event := models.TimelineEvent{
-		OwnershipID: bikeID,
-		Date:        input.Date,
-		Type:        input.Type,
-		Title:       input.Title,
-		Description: input.Description,
-		MediaURL:    input.MediaURL,
+	// Process uploaded image if any
+	var mediaURL string
+	file, err := c.FormFile("media")
+	if err == nil && file != nil {
+		// Generate unique filename
+		filename := uuid.New().String() + "_" + file.Filename
+		if err := c.SaveUploadedFile(file, "static/uploads/"+filename); err == nil {
+			mediaURL = "/static/uploads/" + filename
+		}
 	}
 
-	if err := h.profileService.AddTimelineEvent(userID, event); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to add event"})
+	// Create timeline event
+	event := &models.TimelineEvent{
+		OwnershipID: ownershipID,
+		Type:        c.PostForm("type"),
+		Date:        eventDate,
+		Title:       c.PostForm("title"),
+		Description: c.PostForm("description"),
+		MediaURL:    mediaURL,
+		IsPublic:    c.PostForm("is_public") == "true",
+	}
+
+	// Parse selected servers to share with
+	var serverIDs []uuid.UUID
+	for _, idStr := range c.PostFormArray("share_servers") {
+		id, err := uuid.Parse(idStr)
+		if err == nil {
+			serverIDs = append(serverIDs, id)
+		}
+	}
+	event.SharedToServers = serverIDs
+
+	// Add event
+	err = h.profileService.AddTimelineEvent(event, userID)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to add timeline event: " + err.Error()})
 		return
 	}
 

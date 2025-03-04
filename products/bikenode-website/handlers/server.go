@@ -3,18 +3,22 @@ package handlers
 import (
 	"net/http"
 
-	"bikenode.com/bikenode-website/services"
+	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
+
+	"bikenode-website/models"
+	"bikenode-website/services"
 )
 
+// ServerHandler handles server configuration routes
 type ServerHandler struct {
 	serverService *services.ServerService
 }
 
+// NewServerHandler creates a new server handler
 func NewServerHandler(serverService *services.ServerService) *ServerHandler {
-	return &ServerHandler{
-		serverService: serverService,
-	}
+	return &ServerHandler{serverService: serverService}
 }
 
 func (h *ServerHandler) RegisterRoutes(r *gin.Engine) {
@@ -26,41 +30,43 @@ func (h *ServerHandler) RegisterRoutes(r *gin.Engine) {
 	}
 }
 
-// GetServerConfig renders the server configuration page if the user is an admin
+// GetServerConfig displays server configuration
 func (h *ServerHandler) GetServerConfig(c *gin.Context) {
-	userID := c.GetString("userID")
-	serverID := c.Param("id")
+	// Get user ID from session
+	session := sessions.Default(c)
+	userID := session.Get("user_id").(uuid.UUID)
 
-	// Check if user is admin of the server
-	isAdmin, err := h.serverService.IsServerAdmin(userID, serverID)
+	// Parse server ID
+	serverID, err := uuid.Parse(c.Param("id"))
 	if err != nil {
-		c.HTML(http.StatusInternalServerError, "error.html", gin.H{
-			"error": "Failed to verify permissions",
+		c.HTML(http.StatusBadRequest, "error.html", gin.H{
+			"error": "Invalid server ID",
 		})
 		return
 	}
 
-	if !isAdmin {
+	// Check if user is server admin
+	if !h.serverService.IsUserServerAdmin(serverID, userID) {
 		c.HTML(http.StatusForbidden, "error.html", gin.H{
-			"error": "You don't have permission to manage this server",
+			"error": "You are not authorized to manage this server.",
 		})
 		return
 	}
 
-	// Get server config
-	config, err := h.serverService.GetServerConfig(serverID)
+	// Get server configuration
+	config, err := h.serverService.GetServerConfig(serverID, userID)
 	if err != nil {
 		c.HTML(http.StatusInternalServerError, "error.html", gin.H{
-			"error": "Failed to load server configuration",
+			"error": "Failed to load server configuration: " + err.Error(),
 		})
 		return
 	}
 
-	// Get available channels for story feed
+	// Get list of channels for selection
 	channels, err := h.serverService.GetServerChannels(serverID)
 	if err != nil {
 		c.HTML(http.StatusInternalServerError, "error.html", gin.H{
-			"error": "Failed to load server channels",
+			"error": "Failed to load channels: " + err.Error(),
 		})
 		return
 	}
@@ -71,50 +77,46 @@ func (h *ServerHandler) GetServerConfig(c *gin.Context) {
 	})
 }
 
-// UpdateServerConfig updates the bot configuration for a server
+// UpdateServerConfig updates server configuration
 func (h *ServerHandler) UpdateServerConfig(c *gin.Context) {
-	userID := c.GetString("userID")
-	serverID := c.Param("id")
+	// Get user ID from session
+	session := sessions.Default(c)
+	userID := session.Get("user_id").(uuid.UUID)
 
-	// Check if user is admin of the server
-	isAdmin, err := h.serverService.IsServerAdmin(userID, serverID)
+	// Parse server ID
+	serverID, err := uuid.Parse(c.Param("id"))
 	if err != nil {
-		c.HTML(http.StatusInternalServerError, "error.html", gin.H{
-			"error": "Failed to verify permissions",
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Invalid server ID",
 		})
 		return
 	}
 
-	if !isAdmin {
-		c.HTML(http.StatusForbidden, "error.html", gin.H{
-			"error": "You don't have permission to manage this server",
+	// Check if user is server admin
+	if !h.serverService.IsUserServerAdmin(serverID, userID) {
+		c.JSON(http.StatusForbidden, gin.H{
+			"error": "You are not authorized to update this server configuration.",
 		})
 		return
 	}
 
 	// Parse form data
-	var config struct {
-		CreateBrandRoles    bool   `form:"create_brand_roles"`
-		CreateCategoryRoles bool   `form:"create_category_roles"`
-		CreateModelRoles    bool   `form:"create_model_roles"`
-		StoryFeedChannelID  string `form:"story_feed_channel_id"`
+	config := &models.ServerConfig{
+		ServerID:           serverID,
+		CreateBrandRoles:   c.PostForm("create_brand_roles") == "true",
+		CreateTypeRoles:    c.PostForm("create_type_roles") == "true",
+		CreateModelRoles:   c.PostForm("create_model_roles") == "true",
+		StoryFeedChannelID: c.PostForm("story_feed_channel_id"),
 	}
 
-	if err := c.ShouldBind(&config); err != nil {
-		c.HTML(http.StatusBadRequest, "error.html", gin.H{
-			"error": "Invalid form data",
+	// Update configuration
+	err = h.serverService.UpdateServerConfig(config, userID)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "Failed to update server configuration: " + err.Error(),
 		})
 		return
 	}
 
-	// Update server config
-	if err := h.serverService.UpdateServerConfig(serverID, config.CreateBrandRoles,
-		config.CreateCategoryRoles, config.CreateModelRoles, config.StoryFeedChannelID); err != nil {
-		c.HTML(http.StatusInternalServerError, "error.html", gin.H{
-			"error": "Failed to update server configuration",
-		})
-		return
-	}
-
-	c.Redirect(http.StatusFound, "/servers/"+serverID+"/config")
+	c.Redirect(http.StatusFound, "/servers/"+serverID.String()+"/config")
 }

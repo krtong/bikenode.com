@@ -1,31 +1,39 @@
-import time
-import json
 import os
+import time
+import csv
 import logging
+import pandas as pd
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
-from selenium.webdriver.chrome.service import Service
+from selenium.common.exceptions import TimeoutException, NoSuchElementException, StaleElementReferenceException
 from webdriver_manager.chrome import ChromeDriverManager
+from urllib.parse import urlparse, parse_qs
 
-logging.basicConfig(filename='scraper.log', level=logging.INFO)
+# Setup logging
+logging.basicConfig(
+    filename='bike_scraper.log',
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
-class BikeListingAnalyzer:
-    def __init__(self, output_dir="analysis_results"):
-        """Initialize the bike listing analyzer with anti-detection measures"""
+class BikeDataScraper:
+    def __init__(self, output_dir="scraped_data"):
+        """Initialize the bike data scraper"""
         self.output_dir = output_dir
         self.timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        self.results = {}
         
-        # Create output directory if it doesn't exist
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
             
-        # Setup browser with anti-detection
+        self.bikes = []
+        self.specs = []
+        self.geometry = []
+        
         self.setup_browser()
         
     def setup_browser(self):
@@ -36,268 +44,348 @@ class BikeListingAnalyzer:
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option("useAutomationExtension", False)
         
-        # Create service using webdriver-manager
         service = Service(ChromeDriverManager().install())
-        
-        # Create driver with service and options
         self.driver = webdriver.Chrome(service=service, options=options)
-        
-        # Mask automation
         self.driver.execute_script(
             "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
         )
-        
-        # Add random user agent (optional)
         self.driver.execute_cdp_cmd("Network.setUserAgentOverride", {
             "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
         })
     
     def navigate_to_page(self, url):
-        """Navigate to the specified URL and wait for page to load"""
-        print(f"Navigating to {url}")
-        self.driver.get(url)
-        time.sleep(3)  # Allow time for JavaScript to execute
-        
-        # Take screenshot of full page
-        screenshot_path = f"{self.output_dir}/page_{self.timestamp}.png"
-        self.driver.save_screenshot(screenshot_path)
-        print(f"Screenshot saved to {screenshot_path}")
-        
-        return True
-    
-    def test_selectors(self, selectors_dict, wait_time=10):
-        """
-        Test multiple selectors and record results
-        
-        Args:
-            selectors_dict: Dictionary of {selector_name: {type: "css|xpath", value: "selector"}}
-            wait_time: Maximum time to wait for elements
-        
-        Returns:
-            Dictionary of results
-        """
-        results = {}
-        
-        for name, selector_info in selectors_dict.items():
-            selector_type = selector_info["type"]
-            selector_value = selector_info["value"]
-            
-            print(f"Testing selector: {name} ({selector_value})")
-            
-            try:
-                if selector_type == "css":
-                    by_method = By.CSS_SELECTOR
-                elif selector_type == "xpath":
-                    by_method = By.XPATH
-                else:
-                    print(f"Unknown selector type: {selector_type}")
-                    continue
-                
-                # Wait for element(s) to be present
-                wait = WebDriverWait(self.driver, wait_time)
-                elements = wait.until(EC.presence_of_all_elements_located((by_method, selector_value)))
-                
-                # Record results
-                element_count = len(elements)
-                
-                # Get text and attributes from first 3 elements
-                sample_data = []
-                for i, elem in enumerate(elements[:3]):
-                    elem_data = {
-                        "text": elem.text.strip(),
-                        "html": elem.get_attribute("outerHTML"),
-                        "tag": elem.tag_name,
-                    }
-                    
-                    # Get common attributes
-                    for attr in ["href", "src", "alt", "class", "id"]:
-                        attr_value = elem.get_attribute(attr)
-                        if attr_value:
-                            elem_data[attr] = attr_value
-                            
-                    sample_data.append(elem_data)
-                
-                # Save element screenshot if possible
-                if element_count > 0:
-                    try:
-                        elements[0].screenshot(
-                            f"{self.output_dir}/{name}_element_{self.timestamp}.png"
-                        )
-                    except Exception as e:
-                        print(f"Could not capture element screenshot: {e}")
-                
-                results[name] = {
-                    "found": True,
-                    "count": element_count,
-                    "samples": sample_data,
-                    "selector": selector_value,
-                    "type": selector_type,
-                }
-                
-                print(f"✅ Found {element_count} elements with selector {name}")
-                logging.info(f"Found {element_count} elements with selector {name}")
-                
-            except (TimeoutException, NoSuchElementException) as e:
-                results[name] = {
-                    "found": False,
-                    "error": str(e),
-                    "selector": selector_value,
-                    "type": selector_type,
-                }
-                print(f"❌ No elements found with selector {name}")
-        
-        # Save detailed results
-        with open(f"{self.output_dir}/selector_results_{self.timestamp}.json", "w") as f:
-            json.dump(results, f, indent=2)
-            
-        self.results.update(results)
-        return results
-    
-    def analyze_listings_page(self, url):
-        if not self.navigate_to_page(url):
-            return False
-        
-        # Extract family links
-        family_links = self.driver.find_elements(By.CSS_SELECTOR, "a[href*='family=']")
-        for link in family_links[:5]:  # Limit for testing
-            family_url = link.get_attribute("href")
-            print(f"Visiting family page: {family_url}")
-            self.navigate_to_page(family_url)
-            
-            # Test selectors for bike entries on family page
-            family_selectors = {
-                "bike_entries": {"type": "css", "value": "div.bike-entry, div.model-card"},
-                "bike_detail_links": {"type": "css", "value": "a[href*='/bikes/']"}
-            }
-            self.test_selectors(family_selectors)
-        
-        # Test original selectors on main listings page
-        selectors = {
-            "bike_cards": {
-                "type": "css", 
-                "value": "div.bike-card, div.product-card, div[data-testid='bike-card']"
-            },
-            "bike_titles": {
-                "type": "css", 
-                "value": "h3.bike-name, h3.product-name, div.product-title"
-            },
-            "bike_prices": {
-                "type": "css", 
-                "value": "div.price-tag, span.price, div.product-price"
-            },
-            "bike_images": {
-                "type": "css", 
-                "value": "div.bike-card img, div.product-card img"
-            },
-            "pagination": {
-                "type": "css", 
-                "value": "a.next-page, div.pagination a, a[aria-label='Next page']"
-            },
-            "bike_links": {
-                "type": "css", 
-                "value": "a[href^='/bikes/'][href*='/20']"
-            },
-            # XPath alternatives
-            "bike_cards_xpath": {
-                "type": "xpath", 
-                "value": "//div[contains(@class, 'bike-card') or contains(@class, 'product-card')]"
-            },
-            "bike_links_xpath": {
-                "type": "xpath", 
-                "value": "//a[starts-with(@href, '/bikes/') and contains(@href, '/20')]"
-            },
-            # Family links
-            "family_links": {
-                "type": "css",
-                "value": "a[href*='family=']"
-            }
-        }
-        
-        return self.test_selectors(selectors)
-    
-    def analyze_detail_page(self, url):
-        if not self.navigate_to_page(url):
-            return False
-        
-        selectors = {
-            "model_name": {"type": "css", "value": "h1"},
-            "specs_container": {"type": "css", "value": "div#specs-section"},
-            "spec_items": {"type": "css", "value": "div.spec-item"},
-            "spec_keys": {"type": "css", "value": "div.spec-item .spec-label"},
-            "spec_values": {"type": "css", "value": "div.spec-item .spec-value"},
-            "geometry_table": {"type": "css", "value": "table.geometry-table"}
-        }
-        return self.test_selectors(selectors)
-    
-    def generate_report(self):
-        """Generate a summary report of selector effectiveness"""
-        report = {
-            "timestamp": self.timestamp,
-            "summary": {
-                "working_selectors": [],
-                "failing_selectors": []
-            },
-            "recommendations": {}
-        }
-        
-        for name, result in self.results.items():
-            if result["found"] and result["count"] > 0:
-                report["summary"]["working_selectors"].append({
-                    "name": name,
-                    "count": result["count"],
-                    "selector": result["selector"]
-                })
-            else:
-                report["summary"]["failing_selectors"].append({
-                    "name": name,
-                    "selector": result["selector"],
-                    "error": result.get("error", "No elements found")
-                })
-        
-        # Generate recommendations based on results
-        if any(s["name"].startswith("bike_cards") for s in report["summary"]["working_selectors"]):
-            working = next(s for s in report["summary"]["working_selectors"] 
-                          if s["name"].startswith("bike_cards"))
-            report["recommendations"]["bike_card_selector"] = working["selector"]
-        
-        # Write report to file
-        report_path = f"{self.output_dir}/analysis_report_{self.timestamp}.json"
-        with open(report_path, "w") as f:
-            json.dump(report, f, indent=2)
-        
-        print(f"Analysis report saved to {report_path}")
-        return report
-    
-    def analyze_website(self):
-        """Run full analysis on website"""
-        # Analyze different page types
-        listings_url = "https://99spokes.com/bikes"
-        self.analyze_listings_page(listings_url)
-        
-        # Try to find a bike detail page
         try:
-            bike_link = self.driver.find_element(By.CSS_SELECTOR, "a[href^='/bikes/'][href*='/20']")
-            detail_url = "https://99spokes.com" + bike_link.get_attribute("href")
-            self.analyze_detail_page(detail_url)
+            logging.info(f"Navigating to {url}")
+            self.driver.get(url)
+            time.sleep(5)
+            return True
         except Exception as e:
-            print(f"Could not find bike detail link: {e}")
-            # Fallback to a specific bike URL
-            detail_url = "https://99spokes.com/bikes/trek/2023/checkpoint-sl-6-axs"
-            self.analyze_detail_page(detail_url)
-        
-        # Generate final report
-        return self.generate_report()
+            logging.error(f"Error navigating to {url}: {str(e)}")
+            return False
+    
+    def extract_family_links(self, max_families=None):
+        family_links = []
+        try:
+            logging.info("Extracting family links...")
+            wait = WebDriverWait(self.driver, 10)
+            elements = wait.until(
+                EC.presence_of_all_elements_located((By.CSS_SELECTOR, "a[href*='family=']"))
+            )
+            for element in elements:
+                try:
+                    href = element.get_attribute("href")
+                    if href and "family=" in href:
+                        family_links.append(href)
+                except StaleElementReferenceException:
+                    continue
+            logging.info(f"Found {len(family_links)} family links")
+            family_links = list(set(family_links))
+            if max_families:
+                family_links = family_links[:max_families]
+            return family_links
+        except Exception as e:
+            logging.error(f"Error extracting family links: {str(e)}")
+            return []
+    
+    def extract_bike_links(self, max_bikes=None):
+        bike_links = []
+        try:
+            logging.info("Extracting bike detail links...")
+            wait = WebDriverWait(self.driver, 10)
+            try:
+                elements = wait.until(
+                    EC.presence_of_all_elements_located((By.CSS_SELECTOR, "a[href*='/bikes/'][href*='/20']"))
+                )
+            except:
+                try:
+                    elements = wait.until(
+                        EC.presence_of_all_elements_located((By.CSS_SELECTOR, "a[href^='/bikes/']"))
+                    )
+                except:
+                    logging.warning("Could not find bike links with standard selectors, trying XPath")
+                    elements = wait.until(
+                        EC.presence_of_all_elements_located((By.XPATH, "//a[contains(@href, '/bikes/')]"))
+                    )
+            for element in elements:
+                try:
+                    href = element.get_attribute("href")
+                    parts = urlparse(href).path.split("/")
+                    if len(parts) >= 5 and parts[1] == "bikes" and parts[3].isdigit():
+                        bike_links.append(href)
+                except StaleElementReferenceException:
+                    continue
+            logging.info(f"Found {len(bike_links)} bike detail links")
+            bike_links = list(set(bike_links))
+            if max_bikes:
+                bike_links = bike_links[:max_bikes]
+            return bike_links
+        except Exception as e:
+            logging.error(f"Error extracting bike links: {str(e)}")
+            return []
+    
+    def click_tab(self, tab_id):
+        """Click on a tab based on tab ID rather than text content"""
+        try:
+            # Try multiple selector strategies for tab clicking
+            selectors = [
+                f"a[href='#{tab_id}']",           # By href
+                f"button[data-tab='{tab_id}']",    # By data attribute
+                f"li[data-tab='{tab_id}'] a",      # By parent data attribute
+                f"//a[contains(@class, 'nav-link') and contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '{tab_id.lower()}')]" # By text
+            ]
+            
+            for selector in selectors:
+                try:
+                    if selector.startswith('//'):
+                        # XPath selector
+                        tab = WebDriverWait(self.driver, 10).until(
+                            EC.element_to_be_clickable((By.XPATH, selector))
+                        )
+                    else:
+                        # CSS selector
+                        tab = WebDriverWait(self.driver, 10).until(
+                            EC.element_to_be_clickable((By.CSS_SELECTOR, selector))
+                        )
+                    tab.click()
+                    logging.info(f"Clicked {tab_id} tab using selector: {selector}")
+                    time.sleep(5)  # Increased wait time for content to load
+                    self.driver.save_screenshot(f"debug_{tab_id}_tab.png")
+                    return True
+                except Exception:
+                    continue
+            
+            logging.warning(f"Could not find {tab_id} tab with any selector")
+            return False
+        except Exception as e:
+            logging.error(f"Error clicking {tab_id} tab: {str(e)}")
+            return False
+
+    def extract_specifications(self, bike_id):
+        """Extract specifications with enhanced selectors and waiting"""
+        try:
+            logging.info(f"Extracting specifications for {bike_id}")
+            wait = WebDriverWait(self.driver, 10)
+            
+            # Try multiple selectors for the active pane
+            pane_selectors = [
+                ".tab-pane.active", 
+                "#specifications", 
+                "[data-tab='specifications']",
+                "div.specifications-container"
+            ]
+            
+            active_pane = None
+            for selector in pane_selectors:
+                try:
+                    active_pane = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, selector)))
+                    logging.info(f"Found specifications pane with selector: {selector}")
+                    break
+                except Exception:
+                    continue
+                    
+            if not active_pane:
+                logging.warning(f"Could not find specifications pane for {bike_id}")
+                return False
+                
+            # Look for table within the pane
+            try:
+                # First check for direct table
+                table = active_pane.find_element(By.TAG_NAME, "table")
+                rows = table.find_elements(By.TAG_NAME, "tr")
+                for row in rows:
+                    cells = row.find_elements(By.TAG_NAME, "td")
+                    if len(cells) >= 2:
+                        key = cells[0].text.strip()
+                        value = cells[1].text.strip()
+                        if key and value:
+                            self.specs.append({
+                                "bike_id": bike_id,
+                                "spec_name": key,
+                                "spec_value": value
+                            })
+                logging.info(f"Extracted {len(self.specs)} specifications for {bike_id}")
+            except NoSuchElementException:
+                # If no table, try dl/dt/dd structure
+                logging.info("No table found, trying dl/dt/dd structure")
+                try:
+                    dl_elements = active_pane.find_elements(By.TAG_NAME, "dl")
+                    if dl_elements:
+                        dl = dl_elements[0]
+                        dt_elements = dl.find_elements(By.TAG_NAME, "dt")
+                        
+                        for dt in dt_elements:
+                            try:
+                                key = dt.text.strip()
+                                # Get the next dd element
+                                dd = self.driver.execute_script(
+                                    "return arguments[0].nextElementSibling;", dt
+                                )
+                                
+                                if dd and dd.tag_name.lower() == "dd":
+                                    value = dd.text.strip()
+                                    
+                                    if key and value:
+                                        self.specs.append({
+                                            "bike_id": bike_id,
+                                            "spec_name": key,
+                                            "spec_value": value
+                                        })
+                            except Exception as e:
+                                logging.warning(f"Error with dt/dd: {str(e)}")
+                        logging.info(f"Extracted {len(self.specs)} specifications using dl/dt/dd structure")
+                    else:
+                        logging.warning("No dl elements found")
+                except Exception as e:
+                    logging.warning(f"Error checking dl structure: {str(e)}")
+                    
+            return True
+        except Exception as e:
+            logging.error(f"Error extracting specifications: {str(e)}")
+            return False
+
+    def extract_geometry(self, bike_id):
+        """Extract geometry measurements with enhanced selectors and waiting"""
+        try:
+            logging.info(f"Extracting geometry for {bike_id}")
+            wait = WebDriverWait(self.driver, 10)
+            
+            # Try multiple selectors for the active pane
+            pane_selectors = [
+                ".tab-pane.active", 
+                "#geometry", 
+                "[data-tab='geometry']",
+                "div.geometry-container"
+            ]
+            
+            active_pane = None
+            for selector in pane_selectors:
+                try:
+                    active_pane = wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, selector)))
+                    logging.info(f"Found geometry pane with selector: {selector}")
+                    break
+                except Exception:
+                    continue
+                    
+            if not active_pane:
+                logging.warning(f"Could not find geometry pane for {bike_id}")
+                return False
+                
+            # Look for table within the pane
+            try:
+                table = active_pane.find_element(By.TAG_NAME, "table")
+                rows = table.find_elements(By.TAG_NAME, "tr")
+                for row in rows:
+                    cells = row.find_elements(By.TAG_NAME, "td")
+                    if len(cells) >= 2:
+                        key = cells[0].text.strip()
+                        value = cells[1].text.strip()
+                        if key and value:
+                            self.geometry.append({
+                                "bike_id": bike_id,
+                                "geometry_name": key,
+                                "geometry_value": value
+                            })
+                logging.info(f"Extracted {len(self.geometry)} geometry measurements for {bike_id}")
+            except NoSuchElementException:
+                logging.warning(f"No geometry table found in active pane for {bike_id}")
+            return True
+        except Exception as e:
+            logging.error(f"Error extracting geometry: {str(e)}")
+            return False
+
+    def scrape_bike_details(self, url):
+        try:
+            logging.info(f"Scraping bike details from {url}")
+            path_parts = urlparse(url).path.split("/")
+            if len(path_parts) >= 5:
+                brand = path_parts[2]
+                year = path_parts[3]
+                model_slug = "/".join(path_parts[4:])
+            else:
+                logging.warning(f"URL format unexpected: {url}")
+                brand = "unknown"
+                year = "unknown"
+                model_slug = "unknown"
+            wait = WebDriverWait(self.driver, 10)
+            try:
+                model_element = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "h1")))
+                model_name = model_element.text.strip()
+            except:
+                logging.warning(f"Could not find model name for {url}")
+                model_name = model_slug
+            bike_id = f"{brand}_{year}_{model_slug.replace('/', '_')}"
+            bike_data = {
+                "id": bike_id,
+                "brand": brand,
+                "year": year,
+                "model_name": model_name,
+                "model_slug": model_slug,
+                "url": url
+            }
+            self.bikes.append(bike_data)
+            self.click_tab("specifications")
+            self.extract_specifications(bike_id)
+            self.click_tab("geometry")
+            self.extract_geometry(bike_id)
+            return True
+        except Exception as e:
+            logging.error(f"Error scraping bike details from {url}: {str(e)}")
+            return False
+    
+    def save_data(self):
+        """Save all scraped data to CSV files"""
+        try:
+            bikes_df = pd.DataFrame(self.bikes)
+            specs_df = pd.DataFrame(self.specs)
+            geometry_df = pd.DataFrame(self.geometry)
+            
+            bikes_file = f"{self.output_dir}/bikes_{self.timestamp}.csv"
+            specs_file = f"{self.output_dir}/specifications_{self.timestamp}.csv"
+            geometry_file = f"{self.output_dir}/geometry_{self.timestamp}.csv"
+            
+            bikes_df.to_csv(bikes_file, index=False)
+            specs_df.to_csv(specs_file, index=False)
+            geometry_df.to_csv(geometry_file, index=False)
+            
+            logging.info(f"Saved {len(self.bikes)} bikes to {bikes_file}")
+            logging.info(f"Saved {len(self.specs)} specifications to {specs_file}")
+            logging.info(f"Saved {len(self.geometry)} geometry measurements to {geometry_file}")
+            
+            return True
+        except Exception as e:
+            logging.error(f"Error saving data: {str(e)}")
+            return False
+    
+    def run(self, max_families=5, max_bikes_per_family=3):
+        try:
+            if not self.navigate_to_page("https://99spokes.com/bikes"):
+                return False
+            
+            family_links = self.extract_family_links(max_families)
+            for i, family_url in enumerate(family_links):
+                logging.info(f"Processing family {i+1}/{len(family_links)}: {family_url}")
+                if not self.navigate_to_page(family_url):
+                    continue
+                bike_links = self.extract_bike_links(max_bikes_per_family)
+                for j, bike_url in enumerate(bike_links):
+                    logging.info(f"Processing bike {j+1}/{len(bike_links)}: {bike_url}")
+                    if not self.navigate_to_page(bike_url):
+                        continue
+                    self.scrape_bike_details(bike_url)
+                    time.sleep(5)
+            
+            self.save_data()
+            return True
+        except Exception as e:
+            logging.error(f"Error during scraping: {str(e)}")
+            return False
+        finally:
+            self.close()
     
     def close(self):
-        """Close browser and clean up"""
-        if self.driver:
+        if hasattr(self, 'driver'):
             self.driver.quit()
 
-
-# Main execution
 if __name__ == "__main__":
-    analyzer = BikeListingAnalyzer()
-    try:
-        analyzer.analyze_website()
-    finally:
-        analyzer.close()
+    scraper = BikeDataScraper()
+    scraper.run(max_families=5, max_bikes_per_family=3)
