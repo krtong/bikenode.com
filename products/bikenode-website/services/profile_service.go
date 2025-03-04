@@ -169,21 +169,9 @@ func (s *ProfileService) UpdateTimelineEvent(event *models.TimelineEvent, userID
 }
 
 // RemoveTimelineEvent removes a timeline event
-func (s *ProfileService) RemoveTimelineEvent(userID string, eventID int) error {
-	// Convert string userID to UUID
-	userUUID, err := uuid.Parse(userID)
-	if err != nil {
-		return fmt.Errorf("invalid user ID: %w", err)
-	}
-
-	// Convert int eventID to UUID (this would need to be adjusted based on actual ID type)
-	eventUUID, err := uuid.Parse(fmt.Sprintf("%d", eventID))
-	if err != nil {
-		return fmt.Errorf("invalid event ID: %w", err)
-	}
-
+func (s *ProfileService) RemoveTimelineEvent(userID uuid.UUID, eventID uuid.UUID) error {
 	// Verify event exists and belongs to user
-	isOwner, err := s.timelineRepo.EnsureEventOwnership(eventUUID, userUUID)
+	isOwner, err := s.timelineRepo.EnsureEventOwnership(eventID, userID)
 	if err != nil {
 		return fmt.Errorf("failed to verify event ownership: %w", err)
 	}
@@ -193,7 +181,7 @@ func (s *ProfileService) RemoveTimelineEvent(userID string, eventID int) error {
 	}
 
 	// Delete the event
-	return s.timelineRepo.Delete(eventUUID)
+	return s.timelineRepo.Delete(eventID)
 }
 
 // GetUserServers retrieves servers where the user has joined

@@ -986,7 +986,11 @@ class AddToProfileButton(ui.Button):
         result = await self.bike_commands.api.add_bike(user_id, bike_data)
         
         if result and not result.get("error"):
-            await interaction.response.send_message(f"🏍️ Added to your BikeNode profile: {self.bike['year']} {self.bike['make']} {self.bike['model']} {f'({self.bike.get('package')})' if self.bike.get('package') else ''}", ephemeral=True)
+            package_str = f" ({self.bike.get('package')})" if self.bike.get('package') else ""
+            await interaction.response.send_message(
+                f"🏍️ Added to your BikeNode profile: {self.bike['year']} {self.bike['make']} {self.bike['model']}{package_str}",
+                ephemeral=True
+            )
             
             # Trigger role update in all servers
             await self.bike_commands.update_user_roles(self.ctx.author)

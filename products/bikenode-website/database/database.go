@@ -2,11 +2,12 @@ package database
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
+
+	"bikenode-website/logger"
 )
 
 // GetConnection establishes a connection to the PostgreSQL database
@@ -14,19 +15,30 @@ func GetConnection() (*sqlx.DB, error) {
 	dbURL := os.Getenv("DATABASE_URL")
 	if dbURL == "" {
 		dbURL = "postgres://postgres:postgres@localhost:5432/bikenode?sslmode=disable"
+		logger.Warn("DATABASE_URL not set, using default connection string", logger.Fields{
+			"default_url": "postgres://postgres:postgres@localhost:5432/bikenode?sslmode=disable",
+		})
 	}
 
 	db, err := sqlx.Connect("postgres", dbURL)
 	if err != nil {
+		logger.Error("Failed to connect to database", err, logger.Fields{
+			"database_url": dbURL,
+		})
 		return nil, fmt.Errorf("failed to connect to database: %w", err)
 	}
 
 	// Test connection
 	if err := db.Ping(); err != nil {
+		logger.Error("Failed to ping database", err, logger.Fields{
+			"database_url": dbURL,
+		})
 		return nil, fmt.Errorf("failed to ping database: %w", err)
 	}
 
-	log.Println("Database connection established")
+	logger.Info("Database connection established", logger.Fields{
+		"database_url": dbURL,
+	})
 	return db, nil
 }
 
@@ -139,9 +151,10 @@ func InitSchema(db *sqlx.DB) error {
 
 	_, err := db.Exec(schema)
 	if err != nil {
+		logger.Error("Failed to initialize database schema", err, nil)
 		return fmt.Errorf("failed to initialize schema: %w", err)
 	}
 
-	log.Println("Database schema initialized")
+	logger.Info("Database schema initialized", nil)
 	return nil
 }

@@ -2,8 +2,6 @@ package main
 
 import (
 	"flag"
-	"log"
-	"net/http"
 	"os"
 	"path/filepath"
 
@@ -14,6 +12,7 @@ import (
 
 	"bikenode-website/database"
 	"bikenode-website/handlers"
+	"bikenode-website/logger"
 	"bikenode-website/repositories"
 	"bikenode-website/services"
 	"bikenode-website/utils"
@@ -26,29 +25,33 @@ func main() {
 
 	// Load environment variables
 	if err := godotenv.Load(); err != nil {
-		log.Println("No .env file found, using environment variables")
+		logger.Warn("No .env file found, using environment variables", nil)
+	} else {
+		logger.Info("Environment variables loaded from .env file", nil)
 	}
 
 	// Setup database connection
 	db, err := database.GetConnection()
 	if err != nil {
-		log.Fatalf("Failed to connect to database: %v", err)
+		logger.Fatal("Failed to connect to database", err, nil)
 	}
 	defer db.Close()
 
 	// Initialize database schema
 	if err := database.InitSchema(db); err != nil {
-		log.Fatalf("Failed to initialize database schema: %v", err)
+		logger.Fatal("Failed to initialize database schema", err, nil)
 	}
 
 	// If seed flag is set, seed the database and exit
 	if *seedDB {
-		log.Println("Seeding database with motorcycle data...")
+		logger.Info("Seeding database with motorcycle data", nil)
 		dataFile := filepath.Join("data", "bikedata", "motorcycle_data_with_packages.csv")
 		if err := utils.SeedMotorcycleData(db, dataFile); err != nil {
-			log.Fatalf("Failed to seed database: %v", err)
+			logger.Fatal("Failed to seed database", err, logger.Fields{
+				"data_file": dataFile,
+			})
 		}
-		log.Println("Database seeded successfully")
+		logger.Info("Database seeded successfully", nil)
 		return
 	}
 
@@ -60,7 +63,19 @@ func main() {
 	serverRepo := repositories.NewServerRepository(db)
 
 	// Initialize services
-	authService := services.NewAuthService(userRepo, os.Getenv("DISCORD_CLIENT_ID"), os.Getenv("DISCORD_CLIENT_SECRET"), os.Getenv("DISCORD_REDIRECT_URI"))
+	discordClientID := os.Getenv("DISCORD_CLIENT_ID")
+	discordClientSecret := os.Getenv("DISCORD_CLIENT_SECRET")
+	discordRedirectURI := os.Getenv("DISCORD_REDIRECT_URI")
+	
+	if discordClientID == "" || discordClientSecret == "" || discordRedirectURI == "" {
+		logger.Warn("Discord OAuth configuration incomplete", logger.Fields{
+			"client_id_set": discordClientID != "",
+			"client_secret_set": discordClientSecret != "",
+			"redirect_uri_set": discordRedirectURI != "",
+		})
+	}
+	
+	authService := services.NewAuthService(userRepo, discordClientID, discordClientSecret, discordRedirectURI)
 	profileService := services.NewProfileService(userRepo, motorcycleRepo, ownershipRepo, timelineRepo, serverRepo)
 	serverService := services.NewServerService(serverRepo, userRepo)
 	timelineService := services.NewTimelineService(timelineRepo, ownershipRepo, serverRepo)
@@ -72,13 +87,16 @@ func main() {
 	apiHandler := handlers.NewAPIHandler(profileService)
 
 	// Setup Gin
+	if os.Getenv("GIN_MODE") == "release" {
+		gin.SetMode(gin.ReleaseMode)
+	}
 	r := gin.Default()
 
 	// Configure session middleware
 	sessionSecret := os.Getenv("SESSION_SECRET")
 	if sessionSecret == "" {
 		sessionSecret = "bikenode-secret-key"
-		log.Println("Warning: Using default session secret. Set SESSION_SECRET in .env for production.")
+		logger.Warn("Using default session secret. Set SESSION_SECRET in .env for production", nil)
 	}
 	store := cookie.NewStore([]byte(sessionSecret))
 	store.Options(sessions.Options{
@@ -97,8 +115,9 @@ func main() {
 	// Create uploads directory if it doesn't exist
 	uploadsDir := "./static/uploads"
 	if err := os.MkdirAll(uploadsDir, 0755); err != nil {
-		log.Fatalf("Fatal error: Failed to create uploads directory: %v", err)
-		// Program will exit here due to log.Fatalf
+		logger.Fatal("Failed to create uploads directory", err, logger.Fields{
+			"directory": uploadsDir,
+		})
 	}
 
 	// Setup routes
@@ -150,10 +169,19 @@ func main() {
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
+		logger.Info("PORT not set, using default port", logger.Fields{
+			"port": port,
+		})
 	}
 
-	log.Printf("Server starting on http://localhost:%s", port)
+	logger.Info("Server starting", logger.Fields{
+		"port": port,
+		"mode": os.Getenv("GIN_MODE"),
+	})
+	
 	if err := r.Run(":" + port); err != nil {
-		log.Fatalf("Failed to start server: %v", err)
+		logger.Fatal("Failed to start server", err, logger.Fields{
+			"port": port,
+		})
 	}
 }
