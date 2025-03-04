@@ -95,16 +95,16 @@ func main() {
 	r.Static("/uploads", "./static/uploads")
 
 	// Create uploads directory if it doesn't exist
-	if err := os.MkdirAll("./static/uploads", 0755); err != nil {
-		log.Printf("Warning: Failed to create uploads directory: %v", err)
+	uploadsDir := "./static/uploads"
+	if err := os.MkdirAll(uploadsDir, 0755); err != nil {
+		log.Fatalf("Fatal error: Failed to create uploads directory: %v", err)
+		// Program will exit here due to log.Fatalf
 	}
 
 	// Setup routes
 	// Public routes
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{
-			"title": "BikeNode - Connect Your Motorcycle Journey",
-		})
 	})
 	r.GET("/login", authHandler.Login)
 	r.GET("/callback", authHandler.Callback)
