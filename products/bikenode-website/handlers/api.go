@@ -24,6 +24,11 @@ func (h *APIHandler) RegisterRoutes(r *gin.Engine) {
 		api.GET("/motorcycles", h.SearchMotorcycles)
 		api.GET("/user/servers", h.GetUserServers)
 		api.GET("/user/motorcycles", h.GetUserMotorcycles)
+		api.POST("/ownerships", h.AddOwnership)
+		api.POST("/timeline", h.CreateTimelineEvent)
+		api.PUT("/timeline/:id", h.UpdateTimelineEvent)
+		api.DELETE("/timeline/:id", h.DeleteTimelineEvent)
+		api.POST("/servers/:id/share", h.ToggleServerSharing)
 	}
 }
 
@@ -106,4 +111,39 @@ func (h *APIHandler) GetUserMotorcycles(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"motorcycles": motorcycles,
 	})
+}
+
+// AddOwnership adds a new ownership for the authenticated user
+func (h *APIHandler) AddOwnership(c *gin.Context) {
+	// ...parse user & request data...
+	// ...call h.profileService or relevant service to create ownership...
+	// ...respond with JSON result...
+}
+
+// CreateTimelineEvent creates a new timeline event
+func (h *APIHandler) CreateTimelineEvent(c *gin.Context) {
+	// ...parse request data...
+	// ...call service to create timeline event...
+	// ...respond with JSON result...
+}
+
+// UpdateTimelineEvent updates an existing timeline event
+func (h *APIHandler) UpdateTimelineEvent(c *gin.Context) {
+	// ...parse timeline event ID & request data...
+	// ...call service to update event...
+	// ...respond with JSON result...
+}
+
+// DeleteTimelineEvent removes a timeline event
+func (h *APIHandler) DeleteTimelineEvent(c *gin.Context) {
+	// ...parse event ID...
+	// ...call service to delete event...
+	// ...respond with JSON result...
+}
+
+// ToggleServerSharing toggles sharing a timeline event to a given server
+func (h *APIHandler) ToggleServerSharing(c *gin.Context) {
+	// ...parse server ID & request data...
+	// ...call service to toggle sharing...
+	// ...respond with JSON result...
 }

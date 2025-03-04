@@ -1,11 +1,12 @@
 package repositories
 
 import (
-	"database/sql"
 	"time"
 
-	"github.com/bikenode/website/models"
+	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
+
+	"bikenode-website/models"
 )
 
 // UserRepository handles database operations for users
@@ -13,97 +14,170 @@ type UserRepository struct {
 	db *sqlx.DB
 }
 
-// NewUserRepository creates a new UserRepository
+// NewUserRepository creates a new user repository
 func NewUserRepository(db *sqlx.DB) *UserRepository {
 	return &UserRepository{db: db}
 }
 
-// GetUserByID retrieves a user by ID
-func (r *UserRepository) GetUserByID(id int) (*models.User, error) {
-	var user models.User
-	err := r.db.Get(&user, "SELECT * FROM users WHERE id = $1", id)
-	if err != nil {
-		return nil, err
-	}
-	return &user, nil
+// GetByID retrieves a user by ID
+func (r *UserRepository) GetByID(id uuid.UUID) (*models.User, error) {
+	user := &models.User{}
+	err := r.db.Get(user, "SELECT * FROM users WHERE id = $1", id)
+	return user, err
 }
 
-// GetUserByDiscordID retrieves a user by Discord ID
-func (r *UserRepository) GetUserByDiscordID(discordID string) (*models.User, error) {
-	var user models.User
-	err := r.db.Get(&user, "SELECT * FROM users WHERE discord_id = $1", discordID)
-	if err == sql.ErrNoRows {
-		return nil, nil
-	}
+// GetByDiscordID retrieves a user by Discord ID
+func (r *UserRepository) GetByDiscordID(discordID string) (*models.User, error) {
+	user := &models.User{}
+	err := r.db.Get(user, "SELECT * FROM users WHERE discord_id = $1", discordID)
 	if err != nil {
+		// Check if it's a "no rows" error, meaning user doesn't exist
+		if err.Error() == "sql: no rows in result set" {
+			return nil, nil
+		}
 		return nil, err
 	}
-	return &user, nil
+	return user, nil
 }
 
-// CreateUser creates a new user
-func (r *UserRepository) CreateUser(discordID, username, avatar string) (*models.User, error) {
-	var user models.User
-	err := r.db.QueryRowx(
-		"INSERT INTO users (discord_id, username, avatar) VALUES ($1, $2, $3) RETURNING *",
-		discordID, username, avatar,
-	).StructScan(&user)
-	if err != nil {
-		return nil, err
+// Create inserts a new user
+func (r *UserRepository) Create(user *models.User) error {
+	// Set timestamps if not already set
+	if user.CreatedAt.IsZero() {
+		user.CreatedAt = time.Now()
 	}
-	return &user, nil
-}
-
-// UpdateUser updates a user's information
-func (r *UserRepository) UpdateUser(id int, username, avatar string) (*models.User, error) {
-	var user models.User
-	err := r.db.QueryRowx(
-		"UPDATE users SET username = $1, avatar = $2, updated_at = $3 WHERE id = $4 RETURNING *",
-		username, avatar, time.Now(), id,
-	).StructScan(&user)
-	if err != nil {
-		return nil, err
+	if user.UpdatedAt.IsZero() {
+		user.UpdatedAt = time.Now()
 	}
-	return &user, nil
+
+	_, err := r.db.NamedExec(`
+		INSERT INTO users (id, discord_id, username, discriminator, avatar, email, created_at, updated_at)
+		VALUES (:id, :discord_id, :username, :discriminator, :avatar, :email, :created_at, :updated_at)
+	`, user)
+	return err
 }
 
-// GetUserServers retrieves all servers a user belongs to
-func (r *UserRepository) GetUserServers(userID int) ([]models.ServerWithSharing, error) {
-	servers := []models.ServerWithSharing{}
-	query := `
-		SELECT s.*, us.is_admin, us.shared_profile
-		FROM servers s
-		JOIN user_servers us ON s.id = us.server_id
-		WHERE us.user_id = $1
-		ORDER BY s.name
-	`
-	err := r.db.Select(&servers, query, userID)
+// Update updates an existing user
+func (r *UserRepository) Update(user *models.User) error {
+	user.UpdatedAt = time.Now()
+
+	_, err := r.db.NamedExec(`
+		UPDATE users SET 
+		username = :username, 
+		discriminator = :discriminator, 
+		avatar = :avatar, 
+		email = :email,
+		updated_at = :updated_at
+		WHERE id = :id
+	`, user)
+	return err
+}
+
+// Delete removes a user
+func (r *UserRepository) Delete(id uuid.UUID) error {
+	_, err := r.db.Exec("DELETE FROM users WHERE id = $1", id)
+	return err
+}
+
+// GetUserRoles retrieves all roles for a user across all servers
+func (r *UserRepository) GetUserRoles(userID uuid.UUID) ([]models.UserRole, error) {
+	var roles []models.UserRole
+	err := r.db.Select(&roles, `
+		SELECT ur.* 
+		FROM user_roles ur
+		WHERE ur.user_id = $1
+	`, userID)
+	return roles, err
+}
+
+// GetUserRolesByServer retrieves all roles for a user on a specific server
+func (r *UserRepository) GetUserRolesByServer(userID uuid.UUID, serverID uuid.UUID) ([]models.UserRole, error) {
+	var roles []models.UserRole
+	err := r.db.Select(&roles, `
+		SELECT ur.* 
+		FROM user_roles ur
+		WHERE ur.user_id = $1 AND ur.server_id = $2
+	`, userID, serverID)
+	return roles, err
+}
+
+// SaveUserRole creates or updates a user role
+func (r *UserRepository) SaveUserRole(role *models.UserRole) error {
+	// Check if role exists
+	var exists bool
+	err := r.db.Get(&exists, `
+		SELECT EXISTS(
+			SELECT 1 FROM user_roles 
+			WHERE user_id = $1 AND server_id = $2 AND role_id = $3
+		)
+	`, role.UserID, role.ServerID, role.RoleID)
+
 	if err != nil {
-		return nil, err
+		return err
 	}
-	return servers, nil
+
+	if exists {
+		// Update
+		_, err = r.db.NamedExec(`
+			UPDATE user_roles SET
+			role_name = :role_name,
+			role_color = :role_color,
+			updated_at = :updated_at
+			WHERE user_id = :user_id AND server_id = :server_id AND role_id = :role_id
+		`, role)
+	} else {
+		// Insert
+		role.ID = uuid.New()
+		role.CreatedAt = time.Now()
+		role.UpdatedAt = time.Now()
+
+		_, err = r.db.NamedExec(`
+			INSERT INTO user_roles (id, user_id, server_id, role_id, role_name, role_color, created_at, updated_at)
+			VALUES (:id, :user_id, :server_id, :role_id, :role_name, :role_color, :created_at, :updated_at)
+		`, role)
+	}
+
+	return err
 }
 
-// GetUserRolesForServer retrieves all roles a user has on a server
-func (r *UserRepository) GetUserRolesForServer(userID, serverID int) ([]models.UserRole, error) {
-	roles := []models.UserRole{}
-	query := `
-		SELECT * FROM user_roles
-		WHERE user_id = $1 AND server_id = $2
-		ORDER BY role_name
-	`
-	err := r.db.Select(&roles, query, userID, serverID)
+// DeleteUserRole removes a role from a user
+func (r *UserRepository) DeleteUserRole(userID, serverID uuid.UUID, roleID string) error {
+	_, err := r.db.Exec(`
+		DELETE FROM user_roles 
+		WHERE user_id = $1 AND server_id = $2 AND role_id = $3
+	`, userID, serverID, roleID)
+	return err
+}
+
+// SetServerVisibility sets whether a user's profile is visible on a server
+func (r *UserRepository) SetServerVisibility(userID, serverID uuid.UUID, isVisible bool) error {
+	// Check if record exists
+	var exists bool
+	err := r.db.Get(&exists, `
+		SELECT EXISTS(
+			SELECT 1 FROM user_server_visibility 
+			WHERE user_id = $1 AND server_id = $2
+		)
+	`, userID, serverID)
+
 	if err != nil {
-		return nil, err
+		return err
 	}
-	return roles, nil
-}
 
-// SetProfileSharing sets whether a user shares their profile with a server
-func (r *UserRepository) SetProfileSharing(userID, serverID int, shared bool) error {
-	_, err := r.db.Exec(
-		"UPDATE user_servers SET shared_profile = $1 WHERE user_id = $2 AND server_id = $3",
-		shared, userID, serverID,
-	)
+	if exists {
+		// Update
+		_, err = r.db.Exec(`
+			UPDATE user_server_visibility SET
+			is_visible = $3
+			WHERE user_id = $1 AND server_id = $2
+		`, userID, serverID, isVisible)
+	} else {
+		// Insert
+		_, err = r.db.Exec(`
+			INSERT INTO user_server_visibility (user_id, server_id, is_visible)
+			VALUES ($1, $2, $3)
+		`, userID, serverID, isVisible)
+	}
+
 	return err
 }

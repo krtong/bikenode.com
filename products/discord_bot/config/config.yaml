@@ -13,3 +13,16 @@ commands:
 logging:
   level: INFO
   file: bot.log
+api:
+  base_url: "https://api.bikenode.com/v1"
+  api_key: ""  # Set this via environment variable in production
+  timeout: 10  # seconds
+webhooks:
+  enabled: true
+  port: 8080
+  secret_key: ""  # Set this via environment variable in production
+roles:
+  default_color: "0x3498db"  # Blue
+  prefix: "Bike-"
+data:
+  storage_path: "data"

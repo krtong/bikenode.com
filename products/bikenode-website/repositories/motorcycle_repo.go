@@ -3,6 +3,7 @@ package repositories
 import (
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
@@ -27,73 +28,112 @@ func (r *MotorcycleRepository) GetByID(id uuid.UUID) (*models.Motorcycle, error)
 	return motorcycle, err
 }
 
-// Search searches for motorcycles by criteria
-func (r *MotorcycleRepository) Search(search models.MotorcycleSearch) ([]models.Motorcycle, error) {
-	var motorcycles []models.Motorcycle
-	var conditions []string
-	var args []interface{}
-	var argCount int = 1
+// Create inserts a new motorcycle
+func (r *MotorcycleRepository) Create(motorcycle *models.Motorcycle) error {
+	// Set ID and timestamps if not already set
+	if motorcycle.ID == uuid.Nil {
+		motorcycle.ID = uuid.New()
+	}
+	if motorcycle.CreatedAt.IsZero() {
+		motorcycle.CreatedAt = time.Now()
+	}
+	if motorcycle.UpdatedAt.IsZero() {
+		motorcycle.UpdatedAt = time.Now()
+	}
 
-	// Build query conditions
+	_, err := r.db.NamedExec(`
+		INSERT INTO motorcycles (id, year, make, model, package, category, engine, created_at, updated_at)
+		VALUES (:id, :year, :make, :model, :package, :category, :engine, :created_at, :updated_at)
+	`, motorcycle)
+	return err
+}
+
+// Search searches for motorcycles with filters
+func (r *MotorcycleRepository) Search(search *models.MotorcycleSearch) ([]models.Motorcycle, int, error) {
+	var where []string
+	var args []interface{}
+	argCount := 1
+
 	if search.Year > 0 {
-		conditions = append(conditions, fmt.Sprintf("year = $%d", argCount))
+		where = append(where, fmt.Sprintf("year = $%d", argCount))
 		args = append(args, search.Year)
 		argCount++
 	}
 
 	if search.Make != "" {
-		conditions = append(conditions, fmt.Sprintf("make ILIKE $%d", argCount))
+		where = append(where, fmt.Sprintf("make ILIKE $%d", argCount))
 		args = append(args, "%"+search.Make+"%")
 		argCount++
 	}
 
 	if search.Model != "" {
-		conditions = append(conditions, fmt.Sprintf("model ILIKE $%d", argCount))
+		where = append(where, fmt.Sprintf("model ILIKE $%d", argCount))
 		args = append(args, "%"+search.Model+"%")
 		argCount++
 	}
 
 	if search.Package != "" {
-		conditions = append(conditions, fmt.Sprintf("package ILIKE $%d", argCount))
+		where = append(where, fmt.Sprintf("package ILIKE $%d", argCount))
 		args = append(args, "%"+search.Package+"%")
 		argCount++
 	}
 
 	if search.Category != "" {
-		conditions = append(conditions, fmt.Sprintf("category ILIKE $%d", argCount))
+		where = append(where, fmt.Sprintf("category ILIKE $%d", argCount))
 		args = append(args, "%"+search.Category+"%")
 		argCount++
 	}
 
 	if search.Query != "" {
-		conditions = append(conditions, fmt.Sprintf("(make ILIKE $%d OR model ILIKE $%d OR category ILIKE $%d)", argCount, argCount, argCount))
+		queryWhere := fmt.Sprintf(`(
+			make ILIKE $%d OR 
+			model ILIKE $%d OR 
+			package ILIKE $%d OR
+			category ILIKE $%d OR
+			CAST(year AS TEXT) LIKE $%d
+		)`, argCount, argCount, argCount, argCount, argCount)
+		where = append(where, queryWhere)
 		args = append(args, "%"+search.Query+"%")
 		argCount++
 	}
 
-	// Build SQL query
-	sql := "SELECT * FROM motorcycles"
-	if len(conditions) > 0 {
-		sql += " WHERE " + strings.Join(conditions, " AND ")
+	whereClause := ""
+	if len(where) > 0 {
+		whereClause = "WHERE " + strings.Join(where, " AND ")
 	}
 
-	// Add ordering
-	sql += " ORDER BY year DESC, make, model"
-
-	// Add pagination
-	if search.PageSize <= 0 {
-		search.PageSize = 20 // Default page size
+	// Get total count
+	var total int
+	countQuery := fmt.Sprintf("SELECT COUNT(*) FROM motorcycles %s", whereClause)
+	err := r.db.QueryRow(countQuery, args...).Scan(&total)
+	if err != nil {
+		return nil, 0, err
 	}
+
+	// Calculate pagination
 	if search.Page <= 0 {
-		search.Page = 1 // Default page
+		search.Page = 1
 	}
-
+	if search.PageSize <= 0 {
+		search.PageSize = 20
+	}
 	offset := (search.Page - 1) * search.PageSize
-	sql += fmt.Sprintf(" LIMIT %d OFFSET %d", search.PageSize, offset)
 
-	// Execute query
-	err := r.db.Select(&motorcycles, sql, args...)
-	return motorcycles, err
+	// Add pagination to args
+	args = append(args, search.PageSize)
+	args = append(args, offset)
+
+	// Get paginated results
+	query := fmt.Sprintf(`
+		SELECT * FROM motorcycles 
+		%s
+		ORDER BY year DESC, make, model
+		LIMIT $%d OFFSET $%d
+	`, whereClause, argCount, argCount+1)
+
+	var motorcycles []models.Motorcycle
+	err = r.db.Select(&motorcycles, query, args...)
+	return motorcycles, total, err
 }
 
 // GetMakes gets all unique motorcycle makes

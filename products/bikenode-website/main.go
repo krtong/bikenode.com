@@ -5,14 +5,14 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
-	"github.com/jmoiron/sqlx"
 	"github.com/joho/godotenv"
-	_ "github.com/lib/pq"
 
+	"bikenode-website/database"
 	"bikenode-website/handlers"
 	"bikenode-website/repositories"
 	"bikenode-website/services"
@@ -26,25 +26,26 @@ func main() {
 
 	// Load environment variables
 	if err := godotenv.Load(); err != nil {
-		log.Println("No .env file found")
+		log.Println("No .env file found, using environment variables")
 	}
 
-	// Database connection
-	dbURL := os.Getenv("DATABASE_URL")
-	if dbURL == "" {
-		dbURL = "postgres://postgres:postgres@localhost:5432/bikenode?sslmode=disable"
-	}
-
-	db, err := sqlx.Connect("postgres", dbURL)
+	// Setup database connection
+	db, err := database.GetConnection()
 	if err != nil {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
 	defer db.Close()
 
-	// Seed database if flag is set
+	// Initialize database schema
+	if err := database.InitSchema(db); err != nil {
+		log.Fatalf("Failed to initialize database schema: %v", err)
+	}
+
+	// If seed flag is set, seed the database and exit
 	if *seedDB {
 		log.Println("Seeding database with motorcycle data...")
-		if err := utils.SeedMotorcycleData(db, "data/bikedata/motorcycle_data_with_packages.csv"); err != nil {
+		dataFile := filepath.Join("data", "bikedata", "motorcycle_data_with_packages.csv")
+		if err := utils.SeedMotorcycleData(db, dataFile); err != nil {
 			log.Fatalf("Failed to seed database: %v", err)
 		}
 		log.Println("Database seeded successfully")
@@ -59,37 +60,52 @@ func main() {
 	serverRepo := repositories.NewServerRepository(db)
 
 	// Initialize services
-	authService := services.NewAuthService(userRepo)
+	authService := services.NewAuthService(userRepo, os.Getenv("DISCORD_CLIENT_ID"), os.Getenv("DISCORD_CLIENT_SECRET"), os.Getenv("DISCORD_REDIRECT_URI"))
 	profileService := services.NewProfileService(userRepo, motorcycleRepo, ownershipRepo, timelineRepo, serverRepo)
 	serverService := services.NewServerService(serverRepo, userRepo)
+	timelineService := services.NewTimelineService(timelineRepo, ownershipRepo, serverRepo)
 
 	// Initialize handlers
 	authHandler := handlers.NewAuthHandler(authService)
 	profileHandler := handlers.NewProfileHandler(profileService)
 	serverHandler := handlers.NewServerHandler(serverService)
-	apiHandler := handlers.NewAPIHandler(motorcycleRepo, ownershipRepo, timelineRepo)
+	apiHandler := handlers.NewAPIHandler(profileService)
 
-	// Set up Gin
+	// Setup Gin
 	r := gin.Default()
 
 	// Configure session middleware
-	store := cookie.NewStore([]byte(os.Getenv("SESSION_SECRET")))
+	sessionSecret := os.Getenv("SESSION_SECRET")
+	if sessionSecret == "" {
+		sessionSecret = "bikenode-secret-key"
+		log.Println("Warning: Using default session secret. Set SESSION_SECRET in .env for production.")
+	}
+	store := cookie.NewStore([]byte(sessionSecret))
+	store.Options(sessions.Options{
+		Path:     "/",
+		MaxAge:   86400 * 7, // 7 days
+		HttpOnly: true,
+		Secure:   os.Getenv("GIN_MODE") == "release",
+	})
 	r.Use(sessions.Sessions("bikenode_session", store))
 
-	// Load templates
+	// Setup templates and static files
 	r.LoadHTMLGlob("templates/*")
-
-	// Static files
 	r.Static("/static", "./static")
+	r.Static("/uploads", "./static/uploads")
 
-	// Routes
+	// Create uploads directory if it doesn't exist
+	if err := os.MkdirAll("./static/uploads", 0755); err != nil {
+		log.Printf("Warning: Failed to create uploads directory: %v", err)
+	}
+
+	// Setup routes
+	// Public routes
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{
 			"title": "BikeNode - Connect Your Motorcycle Journey",
 		})
 	})
-
-	// Auth routes
 	r.GET("/login", authHandler.Login)
 	r.GET("/callback", authHandler.Callback)
 	r.GET("/logout", authHandler.Logout)
@@ -102,33 +118,39 @@ func main() {
 		authorized.GET("/profile", profileHandler.GetProfile)
 		authorized.POST("/profile/bikes/add", profileHandler.AddBike)
 		authorized.POST("/profile/bikes/:id/remove", profileHandler.RemoveBike)
-		authorized.POST("/profile/timeline/add", profileHandler.AddTimelineEvent)
+		authorized.POST("/profile/bikes/:id/timeline", profileHandler.AddTimelineEvent)
+		authorized.DELETE("/profile/timeline/:id", profileHandler.RemoveTimelineEvent)
+		authorized.PUT("/profile/servers/:id/visibility", profileHandler.ToggleServerVisibility)
 
-		// Server config routes
+		// Server routes
 		authorized.GET("/servers/:id/config", serverHandler.GetServerConfig)
 		authorized.POST("/servers/:id/config", serverHandler.UpdateServerConfig)
+
+		// API routes
+		api := authorized.Group("/api")
+		{
+			api.GET("/motorcycles", apiHandler.SearchMotorcycles)
+			api.GET("/motorcycles/makes", apiHandler.GetMakes)
+			api.GET("/motorcycles/makes/:make/models", apiHandler.GetModelsByMake)
+			api.GET("/motorcycles/makes/:make/models/:model/years", apiHandler.GetYearsByMakeAndModel)
+			api.GET("/motorcycles/categories", apiHandler.GetCategories)
+
+			api.GET("/user/servers", apiHandler.GetUserServers)
+			api.GET("/user/motorcycles", apiHandler.GetUserMotorcycles)
+
+			api.POST("/timeline", apiHandler.AddTimelineEvent)
+			api.PUT("/timeline/:id", apiHandler.UpdateTimelineEvent)
+			api.DELETE("/timeline/:id", apiHandler.DeleteTimelineEvent)
+		}
 	}
 
-	// API routes
-	api := r.Group("/api")
-	api.GET("/motorcycles", apiHandler.SearchMotorcycles)
-
-	authorized.Group("/api")
-	{
-		authorized.POST("/ownerships", apiHandler.AddOwnership)
-		authorized.DELETE("/ownerships/:id", apiHandler.RemoveOwnership)
-		authorized.POST("/timeline", apiHandler.AddTimelineEvent)
-		authorized.DELETE("/timeline/:id", apiHandler.DeleteTimelineEvent)
-		authorized.PUT("/servers/:id/share", apiHandler.ToggleServerShare)
-	}
-
-	// Start server
+	// Start the server
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8080"
 	}
 
-	log.Printf("Server starting on port %s", port)
+	log.Printf("Server starting on http://localhost:%s", port)
 	if err := r.Run(":" + port); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}
