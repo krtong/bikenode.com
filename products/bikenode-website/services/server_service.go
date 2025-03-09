@@ -1,6 +1,7 @@
 package services
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -9,24 +10,28 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-
-	"bikenode-website/models"
-	"bikenode-website/repositories"
+	"github.com/yourusername/bikenode-website/models"
+	"github.com/yourusername/bikenode-website/repositories"
+	"github.com/yourusername/bikenode-website/utils/logger"
 )
 
-// ServerService handles server-related operations
+// ServerService provides methods for managing Discord servers
 type ServerService struct {
 	serverRepo *repositories.ServerRepository
 	userRepo   *repositories.UserRepository
 	client     *http.Client
+	botAPIURL  string
+	botToken   string
 }
 
-// NewServerService creates a new server service
-func NewServerService(serverRepo *repositories.ServerRepository, userRepo *repositories.UserRepository) *ServerService {
+// NewServerService creates a new ServerService instance
+func NewServerService(serverRepo *repositories.ServerRepository, userRepo *repositories.UserRepository, botAPIURL, botToken string) *ServerService {
 	return &ServerService{
 		serverRepo: serverRepo,
 		userRepo:   userRepo,
 		client:     &http.Client{Timeout: 10 * time.Second},
+		botAPIURL:  botAPIURL,
+		botToken:   botToken,
 	}
 }
 
@@ -188,12 +193,12 @@ func (s *ServerService) notifyBotConfigChanged(config *models.ServerConfig) erro
 
 	// Call bot API to update config
 	url := fmt.Sprintf("%s/servers/%s/config", s.botAPIURL, server.DiscordID)
-	req, err := http.NewRequest("POST", url, nil)
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(configJSON))
 	if err != nil {
 		return err
 	}
 
-	req.Header.Set("Authorization", "Bearer "+s.botToken)
+	req.Header.Set("Authorization", "Bot "+s.botToken)
 	req.Header.Set("Content-Type", "application/json")
 
 	client := &http.Client{Timeout: 10 * time.Second}
@@ -208,4 +213,34 @@ func (s *ServerService) notifyBotConfigChanged(config *models.ServerConfig) erro
 	}
 
 	return nil
+}
+
+// SaveServerConfig saves a server configuration and notifies the Discord bot
+func (s *ServerService) SaveServerConfig(serverID uuid.UUID, config models.ServerConfig) error {
+	server, err := s.serverRepo.GetByID(serverID)
+	if err != nil {
+		return fmt.Errorf("error retrieving server: %w", err)
+	}
+
+	// Update the configuration
+	server.Config = config
+
+	if err := s.serverRepo.Update(server); err != nil {
+		return fmt.Errorf("error updating server config: %w", err)
+	}
+
+	// Notify the Discord bot about the configuration change
+	if err := s.notifyBotConfigChanged(server); err != nil {
+		logger.Error("Failed to notify bot of config change", err, logger.Fields{
+			"server_id": server.ID,
+		})
+		// Continue even if notification fails
+	}
+
+	return nil
+}
+
+// GetUserServers retrieves all servers for a specific user
+func (s *ServerService) GetUserServers(userID uuid.UUID) ([]models.Server, error) {
+	return s.serverRepo.GetByUserID(userID)
 }

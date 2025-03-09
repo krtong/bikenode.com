@@ -13,9 +13,9 @@ type Motorcycle struct {
 	Year      int       `db:"year" json:"year"`
 	Make      string    `db:"make" json:"make"`
 	Model     string    `db:"model" json:"model"`
-	Package   string    `db:"package" json:"package"`
-	Category  string    `db:"category" json:"category"`
-	Engine    string    `db:"engine" json:"engine"`
+	Package   *string   `db:"package" json:"package"`
+	Category  *string   `db:"category" json:"category"`
+	Engine    *string   `db:"engine" json:"engine"`
 	CreatedAt time.Time `db:"created_at" json:"created_at"`
 	UpdatedAt time.Time `db:"updated_at" json:"updated_at"`
 }
@@ -43,8 +43,8 @@ type MotorcycleSearch struct {
 
 // FormatName returns a formatted name of the motorcycle
 func (m *Motorcycle) FormatName() string {
-	if m.Package != "" {
-		return fmt.Sprintf("%d %s %s %s", m.Year, m.Make, m.Model, m.Package)
+	if m.Package != nil && *m.Package != "" {
+		return fmt.Sprintf("%d %s %s %s", m.Year, m.Make, m.Model, *m.Package)
 	}
 	return fmt.Sprintf("%d %s %s", m.Year, m.Make, m.Model)
 }

@@ -1,13 +1,16 @@
 package services
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
+	"net/http"
+	"os"
 	"time"
 
 	"github.com/google/uuid"
-
-	"bikenode-website/models"
-	"bikenode-website/repositories"
+	"github.com/yourusername/bikenode-website/models"
+	"github.com/yourusername/bikenode-website/repositories"
 )
 
 // ProfileService handles profile-related operations
@@ -17,6 +20,9 @@ type ProfileService struct {
 	ownershipRepo  *repositories.OwnershipRepository
 	timelineRepo   *repositories.TimelineEventRepository
 	serverRepo     *repositories.ServerRepository
+	client         *http.Client
+	botAPIURL      string
+	botToken       string
 }
 
 // NewProfileService creates a new profile service
@@ -26,6 +32,7 @@ func NewProfileService(
 	ownershipRepo *repositories.OwnershipRepository,
 	timelineRepo *repositories.TimelineEventRepository,
 	serverRepo *repositories.ServerRepository,
+	botAPIURL, botToken string,
 ) *ProfileService {
 	return &ProfileService{
 		userRepo:       userRepo,
@@ -33,10 +40,32 @@ func NewProfileService(
 		ownershipRepo:  ownershipRepo,
 		timelineRepo:   timelineRepo,
 		serverRepo:     serverRepo,
+		client:         &http.Client{Timeout: 10 * time.Second},
+		botAPIURL:      botAPIURL,
+		botToken:       botToken,
 	}
 }
 
-// GetUserProfile retrieves a user's profile data
+// ServerService handles server-related operations
+type ServerService struct {
+	serverRepo *repositories.ServerRepository
+	userRepo   *repositories.UserRepository
+	client     *http.Client
+	botAPIURL  string
+	botToken   string
+}
+
+// NewServerService creates a new server service
+func NewServerService(serverRepo *repositories.ServerRepository, userRepo *repositories.UserRepository, botAPIURL, botToken string) *ServerService {
+	return &ServerService{
+		serverRepo: serverRepo,
+		userRepo:   userRepo,
+		client:     &http.Client{Timeout: 10 * time.Second},
+		botAPIURL:  botAPIURL,
+		botToken:   botToken,
+	}
+}
+
 func (s *ProfileService) GetUserProfile(userID uuid.UUID) (*models.User, error) {
 	user, err := s.userRepo.GetByID(userID)
 	if err != nil {
@@ -248,4 +277,55 @@ func (s *ProfileService) SetServerVisibility(userID, serverID string, visible bo
 
 	// Update visibility setting
 	return s.serverRepo.SetUserServerSharing(userUUID, serverUUID, visible)
+}
+
+func (s *ProfileService) ShareEventToDiscordServers(event *models.TimelineEvent, serverIDs []uuid.UUID) error {
+	botToken := os.Getenv("DISCORD_BOT_TOKEN")
+	for _, serverID := range serverIDs {
+		server, err := s.serverRepo.GetByID(serverID)
+		if err != nil {
+			return err
+		}
+		channelID := server.Config.StoryFeedChannelID
+		if channelID == "" {
+			continue // Skip if no story feed channel is set
+		}
+		url := fmt.Sprintf("https://discord.com/api/v10/channels/%s/messages", channelID)
+		payload := map[string]interface{}{
+			"content": fmt.Sprintf("%s: %s", event.Title, event.Description),
+			"embeds": []map[string]interface{}{
+				{
+					"title":       event.Title,
+					"description": event.Description,
+					"image":       map[string]string{"url": event.MediaURL},
+				},
+			},
+		}
+		body, _ := json.Marshal(payload)
+		req, err := http.NewRequest("POST", url, bytes.NewBuffer(body))
+		if err != nil {
+			return err
+		}
+		req.Header.Set("Authorization", "Bot "+botToken)
+		req.Header.Set("Content-Type", "application/json")
+		resp, err := http.DefaultClient.Do(req)
+		if err != nil {
+			return err
+		}
+		defer resp.Body.Close()
+		if resp.StatusCode != http.StatusOK {
+			return fmt.Errorf("failed to post to Discord: %d", resp.StatusCode)
+		}
+	}
+	return nil
+}
+
+func (s *ProfileService) UpdateEventInDiscordServers(event *models.TimelineEvent, serverIDs []uuid.UUID) error {
+	// Placeholder: Requires storing message IDs in event_server_shares table
+	return nil
+}
+
+func (s *ProfileService) RemoveEventFromDiscordServer(event *models.TimelineEvent, serverID uuid.UUID) error {
+	// Placeholder: Requires message ID tracking for deletion
+	return nil
 }

@@ -200,6 +200,20 @@ func (h *APIHandler) CreateTimelineEvent(c *gin.Context) {
 	if err == nil && file != nil {
 		defer file.Close()
 
+		// Size validation (5MB limit)
+		if header.Size > 5*1024*1024 {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "File too large. Max size is 5MB"})
+			return
+		}
+
+		// Type validation
+		ext := strings.ToLower(filepath.Ext(header.Filename))
+		allowedExts := map[string]bool{".jpg": true, ".jpeg": true, ".png": true, ".gif": true}
+		if !allowedExts[ext] {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Only JPG, PNG, and GIF files are allowed"})
+			return
+		}
+
 		// Generate unique filename
 		filename := uuid.New().String() + filepath.Ext(header.Filename)
 		savePath := filepath.Join("static", "uploads", filename)
@@ -318,6 +332,20 @@ func (h *APIHandler) UpdateTimelineEvent(c *gin.Context) {
 	file, header, err := c.Request.FormFile("media")
 	if err == nil && file != nil {
 		defer file.Close()
+
+		// Size validation (5MB limit)
+		if header.Size > 5*1024*1024 {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "File too large. Max size is 5MB"})
+			return
+		}
+
+		// Type validation
+		ext := strings.ToLower(filepath.Ext(header.Filename))
+		allowedExts := map[string]bool{".jpg": true, ".jpeg": true, ".png": true, ".gif": true}
+		if !allowedExts[ext] {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Only JPG, PNG, and GIF files are allowed"})
+			return
+		}
 
 		// Generate unique filename
 		filename := uuid.New().String() + filepath.Ext(header.Filename)

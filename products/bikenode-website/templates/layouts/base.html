@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .Title }}{{ .Title }} - BikeNode{{ else }}BikeNode - Your Motorcycle Community{{ end }}</title>
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    
+    <!-- Base styles -->
+    <link rel="stylesheet" href="/static/css/normalize.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/components/auth-buttons.css">
+    
+    <!-- Page-specific head content -->
+    {{ block "head" . }}{{ end }}
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="/static/images/bikenode-logo.svg" alt="BikeNode" width="140" height="40">
+            </a>
+            <nav class="main-nav">
+                <!-- Navigation items would go here -->
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    {{ block "content" . }}{{ end }}
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; {{ currentYear }} BikeNode. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Base scripts -->
+    <script src="/static/js/main.js"></script>
+    
+    <!-- Page-specific scripts -->
+    {{ block "scripts" . }}{{ end }}
+</body>
+</html>

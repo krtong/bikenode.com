@@ -1,150 +1,260 @@
 import discord
 import logging
+import yaml
 from pathlib import Path
-import json
-import asyncio
-from .helpers import load_server_settings, create_bike_role_name
+from typing import Dict, List, Any, Optional
 
 logger = logging.getLogger('BikeRoleBot')
 
 class RoleManager:
-    """Manages bike-related roles in Discord servers"""
+    """Manages motorcycle-related roles for Discord members"""
     
-    def __init__(self, bot, api):
+    def __init__(self, bot, api_client):
+        """Initialize the role manager
+        
+        Args:
+            bot: Discord bot instance
+            api_client: BikeNode API client
+        """
         self.bot = bot
-        self.api = api
-        self.data_dir = Path(__file__).parent.parent / 'data'
-        self.data_dir.mkdir(exist_ok=True)
-        self.settings_file = self.data_dir / 'settings.json'
-        self.settings = self._load_settings()
+        self.api = api_client
+        self.config = self._load_role_config()
+        self.role_prefix = self.config.get('prefix', 'Bike-')
+    
+    def _load_role_config(self) -> Dict[str, Any]:
+        """Load role configuration from config file
         
-    def _load_settings(self):
-        """Load server settings from file"""
-        if self.settings_file.exists():
-            try:
-                with open(self.settings_file, 'r') as f:
-                    return json.load(f)
-            except Exception as e:
-                logger.error(f"Error loading settings: {e}")
-        return {}
+        Returns:
+            dict: Role configuration dictionary
+        """
+        config_path = Path(__file__).parent.parent / 'config' / 'config.yaml'
         
-    async def get_user_roles(self, member, guild):
-        """Get roles that should be assigned to a user based on their bikes"""
-        user_id = await self.api.get_user_id(str(member.id))
-        if not user_id:
-            return []
-            
-        # Get user's bikes
-        bikes = await self.api.get_user_bikes(user_id)
-        if not bikes:
-            return []
-            
-        # Get server settings
-        server_id = str(guild.id)
-        server_settings = self.settings.get(server_id, {})
-        role_mode = server_settings.get('role_mode', 'brand')
-        
-        if role_mode == 'none':
-            return []
-            
-        # Generate roles based on role_mode
-        roles = []
-        for bike in bikes:
-            if role_mode == 'brand' and 'make' in bike:
-                role_name = f"Bike-{bike['make']}"
-                role = discord.utils.get(guild.roles, name=role_name)
-                if not role:
-                    # Create role if it doesn't exist
-                    try:
-                        role_color = discord.Color(server_settings.get('role_color', discord.Color.blue().value))
-                        role = await guild.create_role(name=role_name, color=role_color)
-                        logger.info(f"Created role {role_name} in {guild.name}")
-                    except Exception as e:
-                        logger.error(f"Error creating role {role_name}: {e}")
-                        continue
-                roles.append(role)
-            elif role_mode == 'category' and 'category' in bike:
-                role_name = f"Bike-{bike['category']}"
-                role = discord.utils.get(guild.roles, name=role_name)
-                if not role:
-                    try:
-                        role_color = discord.Color(server_settings.get('role_color', discord.Color.blue().value))
-                        role = await guild.create_role(name=role_name, color=role_color)
-                    except Exception as e:
-                        logger.error(f"Error creating role {role_name}: {e}")
-                        continue
-                roles.append(role)
-                
-        return roles
-        
-    async def update_user_roles(self, member):
-        """Update roles for a specific user across all servers"""
-        for guild in self.bot.guilds:
-            if member in guild.members:
-                await self.update_member_roles_in_guild(member, guild)
-                
-    async def update_member_roles_in_guild(self, member, guild):
-        """Update roles for a member in a specific guild"""
         try:
-            # Get roles for this user
-            roles_to_add = await self.get_user_roles(member, guild)
-            if not roles_to_add:
-                return
-                
-            # Get bike roles the member currently has
-            current_bike_roles = [r for r in member.roles if r.name.startswith("Bike-")]
-            
-            # Add missing roles
-            roles_to_add_set = set(roles_to_add)
-            current_roles_set = set(current_bike_roles)
-            
-            # Add new roles
-            for role in roles_to_add_set - current_roles_set:
-                try:
-                    await member.add_roles(role, reason="BikeNode profile update")
-                    logger.info(f"Added role {role.name} to {member.display_name} in {guild.name}")
-                except Exception as e:
-                    logger.error(f"Error adding role {role.name} to {member.display_name}: {e}")
-            
-            # Remove outdated roles
-            for role in current_roles_set - roles_to_add_set:
-                try:
-                    await member.remove_roles(role, reason="BikeNode profile update")
-                    logger.info(f"Removed role {role.name} from {member.display_name} in {guild.name}")
-                except Exception as e:
-                    logger.error(f"Error removing role {role.name} from {member.display_name}: {e}")
-                    
+            with open(config_path, 'r') as f:
+                config = yaml.safe_load(f)
+                return config.get('roles', {})
         except Exception as e:
-            logger.error(f"Error updating roles for {member.display_name} in {guild.name}: {e}")
-            
-    async def update_roles_for_guild(self, guild):
-        """Update roles for all members in a guild"""
-        logger.info(f"Updating roles for all members in {guild.name}")
+            logger.error(f"Error loading role config: {e}")
+            return {'prefix': 'Bike-'}
+    
+    async def update_user_roles(self, member: discord.Member) -> bool:
+        """Update a member's roles based on their motorcycle data
         
-        for member in guild.members:
+        Args:
+            member: Discord member to update roles for
+            
+        Returns:
+            bool: True if roles were successfully updated
+        """
+        try:
+            # Get user's role data from API
+            discord_id = str(member.id)
+            roles_data = await self.api.get_user_roles(discord_id)
+            
+            if not roles_data:
+                logger.info(f"No role data found for user {discord_id}")
+                return False
+            
+            server_id = str(member.guild.id)
+            server_settings = await self._get_server_settings(member.guild)
+            role_mode = server_settings.get('role_mode', 'brand')
+            
+            # Get roles to add and remove
+            to_add, to_remove = await self._get_role_changes(member, roles_data, role_mode)
+            
+            # Update member roles
+            if to_remove:
+                await member.remove_roles(*to_remove, reason="BikeNode automatic role update")
+                
+            if to_add:
+                await member.add_roles(*to_add, reason="BikeNode automatic role update")
+            
+            # Update premium role if applicable
+            await self.check_and_update_premium_role(member)
+            
+            logger.info(f"Updated roles for {member.name} in {member.guild.name}")
+            return True
+        except Exception as e:
+            logger.error(f"Error updating roles for {member.name}: {e}")
+            return False
+    
+    async def _get_role_changes(
+        self, member: discord.Member, roles_data: List[str], role_mode: str
+    ) -> tuple:
+        """Determine which roles to add and remove
+        
+        Args:
+            member: Discord member
+            roles_data: List of role names from API
+            role_mode: 'brand' or 'category' mode
+            
+        Returns:
+            tuple: (roles_to_add, roles_to_remove)
+        """
+        guild = member.guild
+        to_add = []
+        
+        # Filter roles based on role mode
+        if role_mode == 'brand':
+            filtered_roles = [r for r in roles_data if 'brand:' in r.lower()]
+        elif role_mode == 'category':
+            filtered_roles = [r for r in roles_data if 'category:' in r.lower()]
+        else:
+            filtered_roles = []
+        
+        # Extract actual role names
+        role_names = []
+        for role_data in filtered_roles:
+            if ':' in role_data:
+                role_type, role_name = role_data.split(':', 1)
+                role_names.append(self.role_prefix + role_name.strip())
+        
+        # Find roles to add (create if missing)
+        for role_name in role_names:
+            role = discord.utils.get(guild.roles, name=role_name)
+            if not role:
+                try:
+                    default_color = int(self.config.get('default_color', '0x3498db').replace('0x', ''), 16)
+                    role = await guild.create_role(
+                        name=role_name, 
+                        color=discord.Color(default_color),
+                        mentionable=True,
+                        reason="BikeNode automatic role creation"
+                    )
+                    logger.info(f"Created role {role_name} in {guild.name}")
+                except Exception as e:
+                    logger.error(f"Error creating role {role_name}: {e}")
+                    continue
+            
+            if role not in member.roles:
+                to_add.append(role)
+        
+        # Find roles to remove (any bike role not in our list)
+        to_remove = []
+        for role in member.roles:
+            if role.name.startswith(self.role_prefix) and role.name not in role_names:
+                to_remove.append(role)
+        
+        return to_add, to_remove
+    
+    async def check_and_update_premium_role(self, member: discord.Member) -> bool:
+        """Add or remove premium role based on user's subscription status
+        
+        Args:
+            member: Discord member
+            
+        Returns:
+            bool: True if role was updated
+        """
+        try:
+            premium_role_name = self.config.get('premium')
+            if not premium_role_name:
+                return False
+            
+            # Check if premium role exists in server
+            premium_role = discord.utils.get(member.guild.roles, name=premium_role_name)
+            if not premium_role:
+                default_color = int(self.config.get('default_color', '0x3498db').replace('0x', ''), 16)
+                premium_role = await member.guild.create_role(
+                    name=premium_role_name,
+                    color=discord.Color(default_color),
+                    mentionable=True,
+                    reason="BikeNode premium role creation"
+                )
+            
+            # Check if user is premium
+            user_id = await self.api.get_user_id(str(member.id))
+            if not user_id:
+                # User not linked, remove premium role if they have it
+                if premium_role in member.roles:
+                    await member.remove_roles(premium_role, reason="BikeNode account not linked")
+                return False
+            
+            is_premium = await self.api.check_premium(user_id)
+            
+            # Update premium role
+            has_role = premium_role in member.roles
+            
+            if is_premium and not has_role:
+                await member.add_roles(premium_role, reason="BikeNode premium subscriber")
+                return True
+            elif not is_premium and has_role:
+                await member.remove_roles(premium_role, reason="BikeNode premium expired")
+                return True
+            
+            return False
+            
+        except Exception as e:
+            logger.error(f"Error updating premium role for {member.name}: {e}")
+            return False
+    
+    async def _get_server_settings(self, guild) -> Dict[str, Any]:
+        """Get server settings from data file
+        
+        Args:
+            guild: Discord guild
+            
+        Returns:
+            dict: Server settings
+        """
+        settings_path = Path(__file__).parent.parent / 'data' / 'settings.json'
+        
+        try:
+            import json
+            if settings_path.exists():
+                with open(settings_path, 'r') as f:
+                    settings = json.load(f)
+                    return settings.get(str(guild.id), {})
+        except Exception as e:
+            logger.error(f"Error loading server settings: {e}")
+        
+        return {'role_mode': 'brand'}
+    
+    async def update_roles_for_guild(self, guild: discord.Guild) -> int:
+        """Update roles for all members in a guild
+        
+        Args:
+            guild: Discord guild
+            
+        Returns:
+            int: Number of members updated
+        """
+        count = 0
+        async for member in guild.fetch_members():
             if not member.bot:
-                await self.update_member_roles_in_guild(member, guild)
-                
-        logger.info(f"Completed role update for {guild.name}")
-
-    async def cleanup_unused_roles(self, guild):
-        """Delete any 'Bike-' roles that have no members"""
-        try:
-            deleted_count = 0
-            for role in guild.roles:
-                if role.name.startswith('Bike-') and len(role.members) == 0:
-                    try:
-                        await role.delete(reason="BikeRole cleanup - unused role")
-                        deleted_count += 1
-                        # Add small delay to avoid rate limits
-                        await asyncio.sleep(0.5)
-                    except discord.Forbidden:
-                        logger.error(f"No permission to delete role {role.name} in {guild.name}")
-                    except discord.HTTPException as e:
-                        logger.error(f"Error deleting role {role.name}: {e}")
-
-            logger.info(f"Cleaned up {deleted_count} unused bike roles in {guild.name}")
-            return deleted_count
-        except Exception as e:
-            logger.error(f"Error during role cleanup in {guild.name}: {e}")
-            return 0
+                success = await self.update_user_roles(member)
+                if success:
+                    count += 1
+        return count
+    
+    async def sync_all_members(self, guild: discord.Guild) -> int:
+        """Sync all members' roles with BikeNode data
+        
+        This is a more comprehensive sync that also removes
+        roles from users who no longer have the relevant bikes
+        
+        Args:
+            guild: Discord guild
+            
+        Returns: 
+            int: Number of members updated
+        """
+        count = 0
+        async for member in guild.fetch_members():
+            if not member.bot:
+                # Check if user exists in BikeNode
+                user_id = await self.api.get_user_id(str(member.id))
+                if user_id:
+                    # Update roles for linked users
+                    success = await self.update_user_roles(member)
+                    if success:
+                        count += 1
+                else:
+                    # Remove bike roles from unlinked users
+                    bike_roles = [role for role in member.roles 
+                                 if role.name.startswith(self.role_prefix)]
+                    if bike_roles:
+                        await member.remove_roles(*bike_roles, reason="BikeNode account not linked")
+                        count += 1
+        
+        return count

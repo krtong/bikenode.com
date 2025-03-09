@@ -1,48 +1,30 @@
-from aiohttp import web
-import json
+import asyncio
 import logging
-from pathlib import Path
+import json
+import hmac
+import hashlib
+from aiohttp import web
 import discord
 
 logger = logging.getLogger('BikeRoleBot')
 
 class WebhookHandler:
-    """Handle webhooks from BikeNode"""
+    """Handles webhooks from the BikeNode API"""
     
-    def __init__(self, bot, api, port=8080):
+    def __init__(self, bot, api_client, port=5000, secret=None):
         self.bot = bot
-        self.api = api
+        self.api = api_client
         self.port = port
+        self.secret = secret
         self.app = web.Application()
-        self.app.add_routes([
-            web.post('/webhook/story', self.handle_story_webhook)
-        ])
         self.runner = None
         self.site = None
         
-        # Load story mapping
-        self.data_dir = Path(__file__).parent.parent / 'data'
-        self.data_dir.mkdir(exist_ok=True)
-        self.stories_file = self.data_dir / 'stories.json'
-        self.stories = self._load_stories()
-    
-    def _load_stories(self):
-        """Load stories mapping from JSON file"""
-        if self.stories_file.exists():
-            try:
-                with open(self.stories_file, 'r') as f:
-                    return json.load(f)
-            except Exception as e:
-                logger.error(f"Error loading stories mapping: {e}")
-        return {}
-    
-    def _save_stories(self):
-        """Save stories mapping to JSON file"""
-        try:
-            with open(self.stories_file, 'w') as f:
-                json.dump(self.stories, f)
-        except Exception as e:
-            logger.error(f"Error saving stories mapping: {e}")
+        # Set up webhook routes
+        self.app.add_routes([
+            web.post('/webhook', self.handle_webhook),
+            web.get('/health', self.health_check)
+        ])
     
     async def start(self):
         """Start the webhook server"""
@@ -52,8 +34,10 @@ class WebhookHandler:
             self.site = web.TCPSite(self.runner, '0.0.0.0', self.port)
             await self.site.start()
             logger.info(f"Webhook server started on port {self.port}")
+            return True
         except Exception as e:
             logger.error(f"Failed to start webhook server: {e}")
+            return False
     
     async def stop(self):
         """Stop the webhook server"""
@@ -61,116 +45,142 @@ class WebhookHandler:
             await self.site.stop()
         if self.runner:
             await self.runner.cleanup()
+        logger.info("Webhook server stopped")
     
-    async def handle_story_webhook(self, request):
-        """Handle story webhook from BikeNode"""
+    async def handle_webhook(self, request):
+        """Handle incoming webhook from BikeNode API"""
         try:
-            # Verify webhook signature (implement proper validation)
-            if 'X-BikeNode-Signature' not in request.headers:
-                return web.Response(status=401, text="Unauthorized")
+            # Verify webhook signature if secret is set
+            if self.secret:
+                signature = request.headers.get('X-BikeNode-Signature')
+                if not signature or not self.verify_signature(await request.read(), signature):
+                    logger.warning("Invalid webhook signature")
+                    return web.Response(status=401, text="Invalid signature")
             
-            data = await request.json()
-            if data.get('action') == 'publish':
-                await self._handle_story_publish(data)
-            elif data.get('action') == 'delete':
-                await self._handle_story_delete(data)
+            # Parse the webhook data
+            webhook_data = await request.json()
+            event_type = webhook_data.get('event')
+            
+            # Process different event types
+            if event_type == 'user.link':
+                await self.handle_user_link_event(webhook_data)
+            elif event_type == 'user.unlink':
+                await self.handle_user_unlink_event(webhook_data)
+            elif event_type == 'bike.add':
+                await self.handle_bike_add_event(webhook_data)
+            elif event_type == 'bike.remove':
+                await self.handle_bike_remove_event(webhook_data)
+            elif event_type == 'premium.change':
+                await self.handle_premium_change_event(webhook_data)
+            else:
+                logger.warning(f"Unknown webhook event type: {event_type}")
             
             return web.Response(status=200, text="OK")
         except Exception as e:
             logger.error(f"Error handling webhook: {e}")
-            return web.Response(status=500, text="Server Error")
+            return web.Response(status=500, text="Internal server error")
     
-    async def _handle_story_publish(self, data):
-        """Handle story publish action"""
-        story_id = data.get('story_id')
-        content = data.get('content')
-        media_url = data.get('media_url')
-        allowed_servers = data.get('allowed_servers', [])
-        author_discord_id = data.get('discord_id')
-        
-        if not story_id or not allowed_servers:
-            return
-        
-        # For each allowed server, find the story channel and post
-        for server_id in allowed_servers:
-            guild = self.bot.get_guild(int(server_id))
-            if not guild:
-                continue
-            
-            # Load server settings
-            settings_file = self.data_dir / 'settings.json'
-            settings = {}
-            if settings_file.exists():
-                with open(settings_file, 'r') as f:
-                    settings = json.load(f)
-            
-            channel_id = settings.get(str(server_id), {}).get('story_channel_id')
-            if not channel_id:
-                continue
-                
-            channel = guild.get_channel(int(channel_id))
-            if not channel:
-                continue
-            
-            # Create message embed
-            author = guild.get_member(int(author_discord_id))
-            if not author:
-                continue
-                
-            embed = discord.Embed(
-                title=f"Motorcycle Story from {author.display_name}",
-                description=content,
-                color=discord.Color.blue()
-            )
-            embed.set_author(name=author.display_name, icon_url=author.avatar.url if author.avatar else None)
-            
-            if media_url:
-                embed.set_image(url=media_url)
-            
-            try:
-                message = await channel.send(embed=embed)
-                
-                # Store mapping of story to Discord messages
-                if story_id not in self.stories:
-                    self.stories[story_id] = {}
-                self.stories[story_id][str(server_id)] = str(message.id)
-                self._save_stories()
-            except Exception as e:
-                logger.error(f"Error sending story to channel {channel_id}: {e}")
+    async def health_check(self, request):
+        """Health check endpoint"""
+        return web.Response(text="OK")
     
-    async def _handle_story_delete(self, data):
-        """Handle story delete action"""
-        story_id = data.get('story_id')
-        if not story_id or story_id not in self.stories:
-            return
+    def verify_signature(self, payload, signature):
+        """Verify that the webhook came from BikeNode"""
+        if not self.secret:
+            return True
         
-        # For each server where the story was posted, delete the message
-        for server_id, message_id in self.stories[story_id].items():
-            try:
-                guild = self.bot.get_guild(int(server_id))
-                if not guild:
-                    continue
-                
-                settings_file = self.data_dir / 'settings.json'
-                settings = {}
-                if settings_file.exists():
-                    with open(settings_file, 'r') as f:
-                        settings = json.load(f)
-                
-                channel_id = settings.get(server_id, {}).get('story_channel_id')
-                if not channel_id:
-                    continue
-                    
-                channel = guild.get_channel(int(channel_id))
-                if not channel:
-                    continue
-                
-                message = await channel.fetch_message(int(message_id))
-                if message:
-                    await message.delete()
-            except Exception as e:
-                logger.error(f"Error deleting message {message_id}: {e}")
+        # Compute HMAC signature
+        computed = hmac.new(
+            self.secret.encode('utf-8'),
+            payload,
+            hashlib.sha256
+        ).hexdigest()
         
-        # Remove story from mapping
-        del self.stories[story_id]
-        self._save_stories()
+        return hmac.compare_digest(computed, signature)
+    
+    async def handle_user_link_event(self, data):
+        """Handle user account linking event"""
+        try:
+            discord_id = data.get('discord_id')
+            user_id = data.get('user_id')
+            
+            if discord_id:
+                # Update user roles across all servers
+                for guild in self.bot.guilds:
+                    member = guild.get_member(int(discord_id))
+                    if member:
+                        await self.bot.role_manager.update_user_roles(member)
+                
+                logger.info(f"Processed user link event for Discord ID {discord_id}")
+        except Exception as e:
+            logger.error(f"Error handling user link event: {e}")
+    
+    async def handle_user_unlink_event(self, data):
+        """Handle user account unlinking event"""
+        try:
+            discord_id = data.get('discord_id')
+            
+            if discord_id:
+                # Remove all BikeNode roles across all servers
+                for guild in self.bot.guilds:
+                    member = guild.get_member(int(discord_id))
+                    if member:
+                        # Get all roles that start with the role prefix
+                        prefix_roles = [
+                            role for role in member.roles 
+                            if role.name.startswith(self.bot.role_manager.role_prefix)
+                        ]
+                        # Remove those roles
+                        await member.remove_roles(*prefix_roles, reason="BikeNode account unlinked")
+                
+                logger.info(f"Processed user unlink event for Discord ID {discord_id}")
+        except Exception as e:
+            logger.error(f"Error handling user unlink event: {e}")
+    
+    async def handle_bike_add_event(self, data):
+        """Handle bike add event"""
+        try:
+            discord_id = data.get('discord_id')
+            
+            if discord_id:
+                # Update user roles across all servers
+                for guild in self.bot.guilds:
+                    member = guild.get_member(int(discord_id))
+                    if member:
+                        await self.bot.role_manager.update_user_roles(member)
+                
+                logger.info(f"Processed bike add event for Discord ID {discord_id}")
+        except Exception as e:
+            logger.error(f"Error handling bike add event: {e}")
+    
+    async def handle_bike_remove_event(self, data):
+        """Handle bike remove event"""
+        try:
+            discord_id = data.get('discord_id')
+            
+            if discord_id:
+                # Update user roles across all servers
+                for guild in self.bot.guilds:
+                    member = guild.get_member(int(discord_id))
+                    if member:
+                        await self.bot.role_manager.update_user_roles(member)
+                
+                logger.info(f"Processed bike remove event for Discord ID {discord_id}")
+        except Exception as e:
+            logger.error(f"Error handling bike remove event: {e}")
+    
+    async def handle_premium_change_event(self, data):
+        """Handle premium status change event"""
+        try:
+            discord_id = data.get('discord_id')
+            
+            if discord_id:
+                # Update premium role across all servers
+                for guild in self.bot.guilds:
+                    member = guild.get_member(int(discord_id))
+                    if member:
+                        await self.bot.role_manager.check_and_update_premium_role(member)
+                
+                logger.info(f"Processed premium change event for Discord ID {discord_id}")
+        except Exception as e:
+            logger.error(f"Error handling premium change event: {e}")

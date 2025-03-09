@@ -1,28 +1,93 @@
 # BikeNode Discord Bot
 
-## Setup and Local Testing
+A powerful Discord bot for motorcycle enthusiasts and communities. This bot provides motorcycle lookup capabilities, server management, and integration with the BikeNode platform.
 
-1. Install the required dependencies:
+## Features
+
+- **Motorcycle Database**: Search for motorcycles by make, model, and year
+- **Role Management**: Automatically assign roles based on users' motorcycles
+- **Server Management**: Commands for server administrators
+- **BikeNode API Integration**: Connect with the BikeNode platform
+- **Webhook Support**: Receive and process external events
+
+## Project Structure
+
+```
+discord_bot/
+├── api/                # API integration modules
+│   ├── bikenode_client.py
+│   └── webhook_handler.py
+├── commands/           # Bot command modules
+│   ├── bike.py         # Motorcycle lookup commands
+│   ├── server_management.py
+│   └── story.py
+├── config/             # Configuration files
+│   └── config.yaml
+├── data/               # Data files
+│   └── bikedata/       
+│       └── motorcycles.csv
+├── events/             # Event handler modules
+│   └── message.py
+├── utils/              # Utility functions and classes
+│   ├── db_manager.py
+│   ├── helpers.py
+│   └── role_manager.py
+├── bot.py              # Main bot initialization
+├── .env                # Environment variables
+└── README.md           # This file
+```
+
+## Setup Instructions
+
+1. **Install Dependencies**
+
 ```bash
-pip install discord.py python-dotenv
+# Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
+
+# Install required packages
+pip install discord.py pyyaml pandas python-dotenv
 ```
 
-2. Create a `.env` file in the project root with your Discord bot token:
-```
-DISCORD_BOT_TOKEN=your_discord_bot_token
-BIKENODE_API_KEY=your_bikenode_api_key
-```
+2. **Configuration**
 
-3. Run the bot:
+- Copy `.env.example` to `.env` and fill in your Discord Bot Token
+- Review and update `config/config.yaml` as needed
+
+3. **Running the Bot**
+
 ```bash
 python bot.py
 ```
 
-## Getting a Discord Bot Token
+## Available Commands
 
-1. Go to the [Discord Developer Portal](https://discord.com/developers/applications)
-2. Create a new application
-3. Go to the "Bot" tab and click "Add Bot"
-4. Copy the token and add it to your `.env` file
-5. Under the "OAuth2" tab, generate an invite URL with the "bot" scope and required permissions
-6. Use the URL to invite your bot to your test server
+### Motorcycle Commands
+- `!bike search <query>` - Search the motorcycle database
+- `!bike stats` - View statistics about the motorcycle database
+- `!bike help` - Display motorcycle command help
+
+### Server Management Commands
+- `!bike role <role>` - Assign or remove a role
+- `!bike rolesetup` - Set up automatic role assignment (admin only)
+- `!bike config` - Configure bot settings (admin only)
+
+### Other Commands
+- `!bike story` - Generate a random motorcycle story
+- `!bike help` - Display general help information
+
+## Environment Variables
+
+The bot uses the following environment variables:
+- `DISCORD_BOT_TOKEN` - Your Discord bot token
+- `BIKENODE_API_KEY` - API key for BikeNode platform integration
+- `DATABASE_URL` - Database connection string (if applicable)
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
