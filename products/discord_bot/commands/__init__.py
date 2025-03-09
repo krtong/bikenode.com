@@ -1,1 +1,1 @@
-# Makes the directory a package
+# This file makes the commands directory a Python package

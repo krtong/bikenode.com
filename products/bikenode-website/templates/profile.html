@@ -1,31 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Your Profile - BikeNode</title>
-	<link rel="stylesheet" href="/static/css/style.css">
-	<script src="/static/js/profile.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile - BikeNode</title>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-	<header>
-		<h1>Your Profile</h1>
-	</header>
-	<main class="container">
-		<section id="motorcycles">
-			<h2>Your Motorcycles</h2>
-			<!-- ...existing code to list motorcycles... -->
-		</section>
-		<section id="timeline">
-			<h2>Timeline Events</h2>
-			<!-- ...existing code to list timeline events... -->
-		</section>
-		<section id="servers">
-			<h2>Your Servers</h2>
-			<!-- ...existing code to display server roles... -->
-		</section>
-	</main>
-	<footer>
-		<p>&copy; 2023 BikeNode</p>
-	</footer>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>BikeNode</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/profile" class="active">Profile</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container profile-container">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <img src="{{ .profile.GetAvatarURL }}" alt="{{ .profile.Username }}">
+                </div>
+                <div class="profile-info">
+                    <h2>{{ .profile.Username }}</h2>
+                    <div class="discord-badge">
+                        <img src="/static/images/discord-logo.svg" alt="Discord">
+                        Discord Connected
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-content">
+                <div class="motorcycles-section">
+                    <div class="section-header">
+                        <h3>Your Motorcycles</h3>
+                        <button id="addBikeBtn" class="btn">Add Motorcycle</button>
+                    </div>
+                    
+                    <div class="motorcycles-list">
+                        {{if .ownerships}}
+                            {{range .ownerships}}
+                                <div class="motorcycle-card {{if .EndDate}}inactive{{end}}">
+                                    <div class="motorcycle-info">
+                                        <h4>{{.Motorcycle.FormatName}}</h4>
+                                        <p class="ownership-dates">
+                                            Owned since: {{.PurchaseDate.Format "Jan 2, 2006"}}
+                                            {{if .EndDate}}
+                                                <span class="end-date"> to {{.EndDate.Format "Jan 2, 2006"}}</span>
+                                                <span class="end-reason">({{.EndReason}})</span>
+                                            {{end}}
+                                        </p>
+                                    </div>
+                                    <div class="motorcycle-actions">
+                                        <button class="btn btn-timeline" data-id="{{.ID}}">Timeline</button>
+                                        {{if not .EndDate}}
+                                            <button class="btn btn-end" data-id="{{.ID}}">End Ownership</button>
+                                        {{end}}
+                                    </div>
+                                </div>
+                            {{end}}
+                        {{else}}
+                            <div class="no-motorcycles">
+                                <p>You haven't added any motorcycles yet.</p>
+                                <button id="addFirstBikeBtn" class="btn">Add Your First Motorcycle</button>
+                            </div>
+                        {{end}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Motorcycle Modal -->
+    <div id="addBikeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Add a Motorcycle</h3>
+            <form id="addBikeForm" action="/profile/bikes/add" method="POST">
+                <div class="form-group">
+                    <label for="motorcycleSearch">Search Motorcycle:</label>
+                    <input type="text" id="motorcycleSearch" placeholder="Year, Make, Model...">
+                    <div id="searchResults"></div>
+                </div>
+                
+                <input type="hidden" id="motorcycle_id" name="motorcycle_id">
+                
+                <div class="form-group">
+                    <label for="purchase_date">Purchase Date:</label>
+                    <input type="date" id="purchase_date" name="purchase_date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notes">Notes:</label>
+                    <textarea id="notes" name="notes" rows="3"></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Add Motorcycle</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Timeline Modal -->
+    <div id="timelineModal" class="modal">
+        <div class="modal-content timeline-modal">
+            <span class="close">&times;</span>
+            <div id="timelineContent"></div>
+            
+            <form id="addEventForm" action="/profile/timeline/add" method="POST" enctype="multipart/form-data">
+                <h4>Add Timeline Event</h4>
+                <input type="hidden" id="ownership_id" name="ownership_id">
+                
+                <div class="form-group">
+                    <label for="event_type">Event Type:</label>
+                    <select id="event_type" name="type" required>
+                        <option value="PHOTO">Photo</option>
+                        <option value="MAINTENANCE">Maintenance</option>
+                        <option value="MODIFICATION">Modification</option>
+                        <option value="REPAIR">Repair</option>
+                        <option value="TRIP">Trip</option>
+                        <option value="MILESTONE">Milestone</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="event_date">Date:</label>
+                    <input type="date" id="event_date" name="date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="event_title">Title:</label>
+                    <input type="text" id="event_title" name="title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="event_description">Description:</label>
+                    <textarea id="event_description" name="description" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="event_media">Photo/Media:</label>
+                    <input type="file" id="event_media" name="media">
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="is_public" value="true">
+                        Make public (visible to others)
+                    </label>
+                </div>
+                
+                <div class="form-group servers-share">
+                    <label>Share to Discord servers:</label>
+                    <div id="serverCheckboxes"></div>
+                </div>
+                
+                <button type="submit" class="btn">Add Event</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- End Ownership Modal -->
+    <div id="endOwnershipModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>End Motorcycle Ownership</h3>
+            <form id="endOwnershipForm" method="POST">
+                <input type="hidden" id="end_ownership_id" name="ownership_id">
+                
+                <div class="form-group">
+                    <label for="end_date">End Date:</label>
+                    <input type="date" id="end_date" name="end_date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="end_reason">Reason:</label>
+                    <select id="end_reason" name="end_reason" required>
+                        <option value="SOLD">Sold</option>
+                        <option value="STOLEN">Stolen</option>
+                        <option value="TOTALED">Totaled/Crashed</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="end_notes">Notes:</label>
+                    <textarea id="end_notes" name="end_notes" rows="3"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-danger">End Ownership</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; {{.currentYear}} BikeNode. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="/static/js/profile.js"></script>
 </body>
 </html>

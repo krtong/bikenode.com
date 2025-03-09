@@ -1,136 +1,166 @@
 import sqlite3
+import os
 import logging
 from pathlib import Path
+import json
 
 logger = logging.getLogger('BikeRoleBot')
 
 class BikeDatabase:
-    """Class to interact with the motorcycle database"""
+    """Database manager for motorcycle data"""
     
-    def __init__(self):
-        self.db_path = Path(__file__).parent.parent / 'data' / 'bikes.db'
-        self.connection = None
+    def __init__(self, db_path=None):
+        """Initialize database connection
         
+        Args:
+            db_path: Path to SQLite database file (optional)
+        """
+        if db_path is None:
+            self.db_path = Path(__file__).parent.parent / 'data' / 'bikes.db'
+        else:
+            self.db_path = Path(db_path)
+        
+        self.connection = None
+    
     def connect(self):
-        """Connect to the SQLite database"""
+        """Connect to the database
+        
+        Returns:
+            bool: True if connection successful, False otherwise
+        """
         try:
             self.connection = sqlite3.connect(self.db_path)
-            # Enable dictionary access to rows
             self.connection.row_factory = sqlite3.Row
-            return True
-        except sqlite3.Error as e:
-            logger.error(f"Database connection error: {e}")
-            return False
             
+            # Check if tables exist, create if not
+            self._ensure_tables_exist()
+            
+            return True
+        except Exception as e:
+            logger.error(f"Failed to connect to database: {e}")
+            return False
+    
     def close(self):
         """Close the database connection"""
         if self.connection:
             self.connection.close()
             self.connection = None
     
-    def lookup_bike(self, year, make, model=None, package=None):
-        """Look up a motorcycle in the database"""
-        if not self.connection and not self.connect():
-            return None
-            
-        try:
-            cursor = self.connection.cursor()
-            
-            # Build the query based on provided parameters
-            query = "SELECT * FROM motorcycles WHERE year = ? AND make = ?"
-            params = [year, make]
-            
-            if model:
-                query += " AND model = ?"
-                params.append(model)
-                
-            if package:
-                query += " AND package = ?"
-                params.append(package)
-                
-            cursor.execute(query, params)
-            result = cursor.fetchone()
-            
-            if result:
-                # Convert SQLite Row to dictionary
-                return dict(result)
-            return None
-            
-        except sqlite3.Error as e:
-            logger.error(f"Database lookup error: {e}")
-            return None
-    
-    def search_bikes(self, **kwargs):
-        """Search for motorcycles with filters"""
-        if not self.connection and not self.connect():
-            return []
-            
-        try:
-            cursor = self.connection.cursor()
-            
-            # Build the query based on provided filters
-            query = "SELECT * FROM motorcycles WHERE 1=1"
-            params = []
-            
-            if 'year' in kwargs:
-                query += " AND year = ?"
-                params.append(kwargs['year'])
-                
-            if 'make' in kwargs:
-                query += " AND make = ?"
-                params.append(kwargs['make'])
-                
-            if 'model' in kwargs:
-                query += " AND model LIKE ?"
-                params.append(f"%{kwargs['model']}%")
-                
-            if 'category' in kwargs:
-                query += " AND category = ?"
-                params.append(kwargs['category'])
-                
-            if 'engine' in kwargs:
-                query += " AND engine LIKE ?"
-                params.append(f"%{kwargs['engine']}%")
-                
-            # Add limit
-            limit = kwargs.get('limit', 10)
-            query += " LIMIT ?"
-            params.append(limit)
-            
-            cursor.execute(query, params)
-            results = cursor.fetchall()
-            
-            # Convert SQLite Rows to dictionaries
-            return [dict(row) for row in results]
-            
-        except sqlite3.Error as e:
-            logger.error(f"Database search error: {e}")
-            return []
-    
-    def get_categories(self):
-        """Get all distinct motorcycle categories"""
-        if not self.connection and not self.connect():
-            return []
-            
-        try:
-            cursor = self.connection.cursor()
-            cursor.execute("SELECT DISTINCT category FROM motorcycles WHERE category IS NOT NULL ORDER BY category")
-            results = cursor.fetchall()
-            return [row['category'] for row in results]
-        except sqlite3.Error as e:
-            logger.error(f"Database error getting categories: {e}")
-            return []
+    def _ensure_tables_exist(self):
+        """Create database tables if they don't exist"""
+        cursor = self.connection.cursor()
+        
+        # Create motorcycles table
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS motorcycles (
+                id INTEGER PRIMARY KEY,
+                year INTEGER,
+                make TEXT,
+                model TEXT,
+                package TEXT,
+                category TEXT,
+                engine TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+        
+        # Create indices for faster lookups
+        cursor.execute('CREATE INDEX IF NOT EXISTS idx_year_make_model ON motorcycles(year, make, model)')
+        cursor.execute('CREATE INDEX IF NOT EXISTS idx_category ON motorcycles(category)')
+        cursor.execute('CREATE INDEX IF NOT EXISTS idx_make ON motorcycles(make)')
+        
+        self.connection.commit()
     
     def get_makes_by_year(self, year):
-        """Get all makes available for a specific year"""
-        if not self.connection and not self.connect():
-            return []
+        """Get all makes for a specific year
+        
+        Args:
+            year: The motorcycle model year
             
+        Returns:
+            list: Sorted list of motorcycle makes
+        """
         try:
+            if not self.connection:
+                self.connect()
+                
             cursor = self.connection.cursor()
-            cursor.execute("SELECT DISTINCT make FROM motorcycles WHERE year = ? ORDER BY make", (year,))
+            cursor.execute(
+                "SELECT DISTINCT make FROM motorcycles WHERE year = ? ORDER BY make",
+                (year,)
+            )
             results = cursor.fetchall()
             return [row['make'] for row in results]
-        except sqlite3.Error as e:
-            logger.error(f"Database error getting makes: {e}")
+        except Exception as e:
+            logger.error(f"Database error in get_makes_by_year: {e}")
             return []
+    
+    def insert_motorcycle(self, year, make, model, package=None, category=None, engine=None):
+        """Insert a new motorcycle into the database
+        
+        Args:
+            year: Model year
+            make: Manufacturer name
+            model: Model name
+            package: Package or trim level (optional)
+            category: Motorcycle category (optional)
+            engine: Engine details (optional)
+            
+        Returns:
+            int: ID of the inserted motorcycle, or None on failure
+        """
+        try:
+            if not self.connection:
+                self.connect()
+                
+            cursor = self.connection.cursor()
+            cursor.execute(
+                """
+                INSERT INTO motorcycles (year, make, model, package, category, engine)
+                VALUES (?, ?, ?, ?, ?, ?)
+                """,
+                (year, make, model, package, category, engine)
+            )
+            self.connection.commit()
+            return cursor.lastrowid
+        except Exception as e:
+            logger.error(f"Database error inserting motorcycle: {e}")
+            return None
+    
+    def import_from_json(self, json_path):
+        """Import motorcycle data from JSON file
+        
+        Args:
+            json_path: Path to JSON file with motorcycle data
+            
+        Returns:
+            tuple: (success_count, error_count)
+        """
+        try:
+            if not self.connection:
+                self.connect()
+                
+            with open(json_path, 'r') as f:
+                motorcycles = json.load(f)
+                
+            success = 0
+            errors = 0
+            
+            for bike in motorcycles:
+                try:
+                    self.insert_motorcycle(
+                        bike.get('year'),
+                        bike.get('make'),
+                        bike.get('model'),
+                        bike.get('package'),
+                        bike.get('category'),
+                        bike.get('engine')
+                    )
+                    success += 1
+                except Exception:
+                    errors += 1
+            
+            return (success, errors)
+        except Exception as e:
+            logger.error(f"Error importing JSON data: {e}")
+            return (0, 0)

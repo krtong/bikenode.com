@@ -12,8 +12,8 @@ type User struct {
 	DiscordID     string    `db:"discord_id" json:"discord_id"`
 	Username      string    `db:"username" json:"username"`
 	Discriminator string    `db:"discriminator" json:"discriminator"`
-	Avatar        string    `db:"avatar" json:"avatar"`
-	Email         string    `db:"email" json:"email"`
+	Avatar        *string   `db:"avatar" json:"avatar"`
+	Email         *string   `db:"email" json:"email"`
 	CreatedAt     time.Time `db:"created_at" json:"created_at"`
 	UpdatedAt     time.Time `db:"updated_at" json:"updated_at"`
 
@@ -40,8 +40,8 @@ func (u *User) FormatUsername() string {
 
 // GetAvatarURL returns the Discord avatar URL
 func (u *User) GetAvatarURL() string {
-	if u.Avatar == "" {
+	if u.Avatar == nil || *u.Avatar == "" {
 		return "https://cdn.discordapp.com/embed/avatars/0.png"
 	}
-	return "https://cdn.discordapp.com/avatars/" + u.DiscordID + "/" + u.Avatar + ".png"
+	return "https://cdn.discordapp.com/avatars/" + u.DiscordID + "/" + *u.Avatar + ".png"
 }

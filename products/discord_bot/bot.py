@@ -1,7 +1,5 @@
 import discord
 from discord.ext import commands
-import os
-import yaml
 import logging
 from commands.bike import BikeCommands
 from commands.server_management import ServerManagementCommands
@@ -10,10 +8,6 @@ from events.message import MessageEvents
 from utils.role_manager import RoleManager
 from api.bikenode_client import BikeNodeAPI
 from api.webhook_handler import WebhookHandler
-from dotenv import load_dotenv
-
-# Load environment variables from .env file
-load_dotenv()
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, filename='bot.log', format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -23,9 +17,6 @@ logger = logging.getLogger('BikeRoleBot')
 with open('config/config.yaml', 'r') as config_file:
     config = yaml.safe_load(config_file)
 
-# Get the bot token from environment variables
-TOKEN = os.getenv('DISCORD_BOT_TOKEN')
-
 # Initialize the bot with the prefix from config
 bot = commands.Bot(command_prefix=config['commands']['prefix'], intents=discord.Intents.all())
 
@@ -34,10 +25,6 @@ async def on_ready():
     # Log when the bot is ready and set its activity
     logger.info(f'Bot connected as {bot.user.name}')
     await bot.change_presence(activity=discord.Game(config['bot']['activity_message']))
-
-@bot.command(name='hello')
-async def hello(ctx):
-    await ctx.send('Hello! I am the BikeNode Discord Bot.')
 
 async def setup_bot():
     # Initialize API client
@@ -69,7 +56,8 @@ async def setup_bot():
 # Run the bot setup and start it
 if __name__ == "__main__":
     bot.loop.run_until_complete(setup_bot())
-    if not TOKEN:
+    token = os.getenv("DISCORD_BOT_TOKEN")
+    if not token:
         logger.error("DISCORD_BOT_TOKEN not set in environment variables")
         raise ValueError("Please set the DISCORD_BOT_TOKEN environment variable")
-    bot.run(TOKEN)
+    bot.run(token)

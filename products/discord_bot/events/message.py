@@ -8,6 +8,7 @@ import logging
 import asyncio
 import re
 from datetime import datetime
+from utils.data_manager import BikeDataManager
 
 logger = logging.getLogger('BikeRoleBot')
 
@@ -31,7 +32,7 @@ class MessageEvents(commands.Cog):
             
             # Auto-detect motorcycle mentions if enabled
             if settings.get('auto_detect_bikes', False):
-                await self._detect_motorcycle_mentions(message)
+                await self.detect_motorcycle_mentions(message)
             
             # Handle URL recognition for bike media if enabled
             if settings.get('auto_detect_media', False):
@@ -54,52 +55,34 @@ class MessageEvents(commands.Cog):
             logger.error(f"Error getting server settings: {e}")
             return {}
     
-    async def _detect_motorcycle_mentions(self, message):
-        """Detect and respond to motorcycle mentions in messages"""
-        # Simple regex to match potential motorcycle patterns: YYYY Make Model
-        bike_pattern = r'\b(19|20)\d{2}\s+([A-Z][a-z]+|[A-Z]{2,})\s+([A-Z][a-zA-Z0-9]+)'
-        matches = re.findall(bike_pattern, message.content)
+    async def detect_motorcycle_mentions(self, message):
+        """Detect motorcycle mentions in messages and respond with information"""
+        # Simple regex to detect potential motorcycle mentions (year + make + model pattern)
+        pattern = r'\b(19|20)\d{2}\s+([A-Za-z]+)\s+([A-Za-z0-9]+)'
+        matches = re.findall(pattern, message.content)
         
         if not matches:
             return
             
-        # Avoid spamming with too many responses
-        if len(matches) > 3:
-            matches = matches[:3]
+        # Use the first match
+        year, make, model = matches[0]
+        query = f"{year} {make} {model}"
         
-        for match in matches:
-            year, make, model = match
+        # Search for matching bikes
+        bikes = BikeDataManager.search_bikes(query, limit=1)
+        
+        if bikes:
+            bike = bikes[0]
+            embed = discord.Embed(
+                title=f"{bike['Year']} {bike['Make']} {bike['Model']}",
+                description="I noticed you mentioned this motorcycle!",
+                color=discord.Color.blue()
+            )
             
-            # Check cooldown for this specific motorcycle
-            cooldown_key = f"{message.guild.id}_{year}_{make}_{model}"
-            if cooldown_key in self.cooldowns:
-                if datetime.now().timestamp() - self.cooldowns[cooldown_key] < 300:  # 5 minute cooldown
-                    continue
+            embed.add_field(name="Category", value=bike['Category'], inline=True)
+            embed.add_field(name="Engine", value=bike['Engine'], inline=True)
             
-            # Look up the motorcycle if we have an API client
-            if hasattr(self.bot, 'api'):
-                try:
-                    bike_data = await self.bot.api.lookup_bike(year, make, model)
-                    if bike_data:
-                        # Create an embed with bike info
-                        embed = discord.Embed(
-                            title=f"{year} {make} {model}",
-                            description=f"I noticed you mentioned this motorcycle. Here's some information about it:",
-                            color=discord.Color.blue()
-                        )
-                        if 'category' in bike_data:
-                            embed.add_field(name="Category", value=bike_data['category'], inline=True)
-                        if 'engine' in bike_data:
-                            embed.add_field(name="Engine", value=bike_data['engine'], inline=True)
-                        
-                        embed.set_footer(text="Use !lookup for more detailed information")
-                        
-                        await message.channel.send(embed=embed)
-                        
-                        # Set cooldown
-                        self.cooldowns[cooldown_key] = datetime.now().timestamp()
-                except Exception as e:
-                    logger.error(f"Error looking up bike data: {e}")
+            await message.channel.send(embed=embed)
     
     async def _detect_bike_media(self, message):
         """Detect motorcycle media links and handle them if appropriate"""

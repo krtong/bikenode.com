@@ -1,20 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Login - BikeNode</title>
-	<link rel="stylesheet" href="/static/css/style.css">
-</head>
-<body>
-	<header>
-		<h1>Login</h1>
-	</header>
-	<main class="container">
-		<p>Sign in with Discord to continue.</p>
-		<a href="/login" class="btn">Login with Discord</a>
-	</main>
-	<footer>
-		<p>&copy; 2023 BikeNode</p>
-	</footer>
-</body>
-</html>
+{{ template "layouts/base.html" . }}
+
+{{ define "head" }}
+<!-- Login page specific styles -->
+<link rel="stylesheet" href="/static/css/auth/login.css">
+<meta name="description" content="Login to BikeNode with your Discord account to access your motorcycle profile">
+{{ end }}
+
+{{ define "content" }}
+<main class="container login-container">
+    <section class="login-card" aria-labelledby="login-heading">
+        <h2 id="login-heading">Login to BikeNode</h2>
+        <p>Connect with Discord to access your motorcycle profile.</p>
+        
+        {{ template "components/auth/discord-button.html" . }}
+        
+        <div class="login-info">
+            <h3>Why Discord?</h3>
+            <ul>
+                <li>Share your motorcycle stories with your Discord communities</li>
+                <li>No need to remember another password</li>
+                <li>Easily connect with fellow riders</li>
+            </ul>
+        </div>
+    </section>
+</main>
+{{ end }}

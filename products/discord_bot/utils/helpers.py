@@ -7,6 +7,7 @@ import discord
 import json
 from pathlib import Path
 import logging
+from typing import Dict, Any, Optional, List
 
 logger = logging.getLogger('BikeRoleBot')
 
@@ -14,35 +15,97 @@ def example_helper():
     """Example helper function"""
     pass
 
-def parse_bike_string(bike_string):
-    """Parse a bike string into components (year, make, model, package)"""
-    try:
-        # Match patterns like "2020 Honda CBR1000RR" or "2022 Ducati Panigale V4 (S)"
-        pattern = r"(\d{4})\s+(\w+)\s+(.+?)(?:\s+\((.+)\))?$"
-        match = re.match(pattern, bike_string)
+def is_admin(member: discord.Member) -> bool:
+    """Check if a member has administrator privileges
+    
+    Args:
+        member: Discord member to check
         
-        if not match:
-            return None
-            
-        return {
-            "year": match.group(1),
-            "make": match.group(2),
-            "model": match.group(3),
-            "package": match.group(4)
-        }
-    except Exception as e:
-        logger.error(f"Error parsing bike string '{bike_string}': {e}")
-        return None
+    Returns:
+        bool: True if member is an administrator
+    """
+    return member.guild_permissions.administrator or member.guild_permissions.manage_guild
 
-def format_bike_name(bike_data):
-    """Format bike data into a readable string"""
-    if not bike_data:
-        return "Unknown Motorcycle"
+def create_embed(title: str, description: str = "", color: int = 0x3498db) -> discord.Embed:
+    """Create a standardized Discord embed
+    
+    Args:
+        title: Embed title
+        description: Embed description
+        color: RGB color code (default: blue)
         
-    bike_str = f"{bike_data.get('year', '')} {bike_data.get('make', '')} {bike_data.get('model', '')}"
-    if bike_data.get('package'):
-        bike_str += f" ({bike_data['package']})"
-    return bike_str.strip()
+    Returns:
+        discord.Embed: Formatted embed object
+    """
+    embed = discord.Embed(
+        title=title,
+        description=description,
+        color=discord.Color(color)
+    )
+    
+    return embed
+
+def parse_bike_string(bike_string: str) -> Optional[Dict[str, Any]]:
+    """Parse a user-provided motorcycle description string into components
+    
+    Args:
+        bike_string: String like "2020 Honda CBR1000RR-R Fireblade SP"
+        
+    Returns:
+        dict: Dictionary with year, make, model, and package components
+              or None if parsing failed
+    """
+    # Match patterns like:
+    # 2020 Honda CBR1000RR
+    # 2019 Kawasaki Ninja 650 (ABS)
+    # 2021 Ducati Panigale V4 S
+    
+    # Try to extract year as first digits in the string
+    year_match = re.search(r'^(\d{4})', bike_string)
+    if not year_match:
+        return None
+    
+    year = year_match.group(1)
+    remaining = bike_string[len(year):].strip()
+    
+    # Try to find package in parentheses
+    package = None
+    package_match = re.search(r'\(([^)]+)\)', remaining)
+    if package_match:
+        package = package_match.group(1)
+        # Remove package from remaining string
+        remaining = re.sub(r'\([^)]+\)', '', remaining).strip()
+    
+    # Split remaining string into words
+    if len(parts) < 2:
+        return None
+    
+    # First word is make, remaining is model
+    make = parts[0]
+    model = ' '.join(parts[1:])
+    
+    return {
+        "year": year,
+        "make": make,
+        "model": model,
+        "package": package
+    }
+
+def format_bike_name(bike: Dict[str, Any]) -> str:
+    """Format a motorcycle dictionary into a readable string
+    
+    Args:
+        bike: Dictionary with motorcycle details
+        
+    Returns:
+        str: Formatted string (e.g., "2020 Honda CBR1000RR (SP)")
+    """
+    name = f"{bike.get('year')} {bike.get('make')} {bike.get('model')}"
+    
+    if bike.get('package'):
+        name += f" ({bike.get('package')})"
+        
+    return name
 
 def load_json_data(file_path):
     """Load data from a JSON file"""
@@ -97,3 +160,35 @@ def create_bike_role_name(bike_data, role_mode):
             name += f"-{bike_data['package']}"
         return name.replace(' ', '-')
     return None
+
+def paginate_content(content: str, max_length: int = 2000) -> List[str]:
+    """Split content into multiple messages if it exceeds Discord's limit
+    
+    Args:
+        content: Content to split
+        max_length: Maximum length per chunk (default: 2000)
+        
+    Returns:
+        list: List of content chunks
+    """
+    if len(content) <= max_length:
+        return [content]
+        
+    # Split by newlines to avoid breaking in the middle of lines
+    lines = content.split('\n')
+    chunks = []
+    current_chunk = ""
+    
+    for line in lines:
+        # If adding this line would exceed limit, start a new chunk
+        if len(current_chunk) + len(line) + 1 > max_length:
+            chunks.append(current_chunk)
+            current_chunk = line + '\n'
+        else:
+            current_chunk += line + '\n'
+    
+    # Add final chunk if not empty
+    if current_chunk:
+        chunks.append(current_chunk)
+    
+    return chunks

@@ -1,21 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>BikeNode - Connect Your Motorcycle Journey</title>
-	<link rel="stylesheet" href="/static/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .title }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-	<header>
-		<h1>BikeNode</h1>
-	</header>
-	<main class="container">
-		<h2>Welcome to BikeNode</h2>
-		<p>Connect and manage your motorcycle journey.</p>
-		<a href="/login">Login with Discord</a>
-	</main>
-	<footer>
-		<p>&copy; 2023 BikeNode</p>
-	</footer>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>BikeNode</h1>
+                <p>Connect Your Motorcycle Journey</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    {{if .user}}
+                        <li><a href="/profile">Profile</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    {{else}}
+                        <li><a href="/login" class="btn">Login with Discord</a></li>
+                    {{end}}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero">
+            <div class="container">
+                <h2>Your Motorcycle Story, Connected</h2>
+                <p>Track your motorcycles, share your journey, connect with fellow riders on Discord.</p>
+                {{if not .user}}
+                    <a href="/login" class="btn btn-large">Get Started</a>
+                {{else}}
+                    <a href="/profile" class="btn btn-large">View Your Profile</a>
+                {{end}}
+            </div>
+        </div>
+
+        <div class="features container">
+            <div class="feature">
+                <h3>Track Your Collection</h3>
+                <p>Log all your motorcycles past and present, with detailed information.</p>
+            </div>
+            <div class="feature">
+                <h3>Share Your Journey</h3>
+                <p>Create a timeline of memories, mods, and milestones for each bike.</p>
+            </div>
+            <div class="feature">
+                <h3>Connect on Discord</h3>
+                <p>Share your stories and bikes with your Discord communities.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; {{.currentYear}} BikeNode. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

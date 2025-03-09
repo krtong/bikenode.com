@@ -14,8 +14,15 @@ from utils.helpers import parse_bike_string, format_bike_name
 from utils.db_manager import BikeDatabase
 from discord import ui
 import math
+import pandas as pd
+import os
+import re
+from utils.data_manager import BikeDataManager
 
 logger = logging.getLogger('BikeRoleBot')
+
+# Get the absolute path to the CSV file
+DATA_PATH = Path(os.path.dirname(os.path.abspath(__file__))) / '../data/bikedata/motorcycles.csv'
 
 class BikeCommands(commands.Cog):
     """Commands for bike information and management"""
@@ -24,9 +31,20 @@ class BikeCommands(commands.Cog):
         self.api = bot.bikenode_api
         # Initialize the bike database connection
         self.db = BikeDatabase()
+        self.bike_data = None
+        self.load_bike_data()
+
+    def load_bike_data(self):
+        """Load motorcycle data from CSV file"""
+        try:
+            self.bike_data = pd.read_csv(DATA_PATH)
+            print(f"Loaded {len(self.bike_data)} motorcycle records")
+        except Exception as e:
+            print(f"Error loading motorcycle data: {e}")
+            self.bike_data = pd.DataFrame()
 
     @commands.command(name="bike")
-    async def bike_info(self, ctx, *, search_term: str):
+    async def bike_info(self, ctx, *, search_term: str = None):
         """Get information about a specific bike by name"""
         if not self.db.connect():
             await ctx.send("❌ Failed to connect to the motorcycle database.")
@@ -361,6 +379,107 @@ class BikeCommands(commands.Cog):
         except Exception as e:
             logger.exception("Database error in get_bikes_by_year_make_model")
             return []
+
+    async def update_user_roles(self, user):
+        """Update roles for a user across all servers"""
+        if hasattr(self.bot, 'role_manager'):
+            for guild in self.bot.guilds:
+                member = guild.get_member(user.id)
+                if member:
+                    await self.bot.role_manager.update_user_roles(member)
+        else:
+            logger.warning("Role manager not initialized, can't update user roles")
+
+    @commands.command(name="bikeyear")
+    async def bike_year(self, ctx, year=None):
+        """Show motorcycles from a specific year"""
+        if not year or not year.isdigit():
+            await ctx.send("Please specify a valid year. Example: `!bikeyear 1995`")
+            return
+            
+        year = int(year)
+        if not self.bike_data.empty:
+            year_df = self.bike_data[self.bike_data['Year'] == year]
+            if not year_df.empty:
+                count = len(year_df)
+                makes_count = len(year_df['Make'].unique())
+                await ctx.send(f"**Year {year}**: Found {count} motorcycles from {makes_count} manufacturers.")
+                
+                # Show some examples
+                if count > 10:
+                    sample = year_df.sample(10)
+                    results = format_bike_results(sample, is_sample=True)
+                    await ctx.send(f"Sample of motorcycles from {year}:\n{results}")
+                else:
+                    results = format_bike_results(year_df)
+                    await ctx.send(f"All motorcycles from {year}:\n{results}")
+            else:
+                await ctx.send(f"No motorcycles found for year {year}.")
+        else:
+            await ctx.send("Motorcycle data is not available. Please notify an administrator.")
+
+    @commands.command(name="searchbike")
+    async def search_bike(self, ctx, *, query):
+        """Search for motorcycle by make, model, or year"""
+        bikes = BikeDataManager.search_bikes(query)
+        
+        if not bikes:
+            await ctx.send(f"No motorcycles found matching '{query}'")
+            return
+            
+        embed = discord.Embed(
+            title=f"Motorcycle Search Results for '{query}'",
+            color=discord.Color.blue()
+        )
+        
+        for bike in bikes:
+            embed.add_field(
+                name=f"{bike['Year']} {bike['Make']} {bike['Model']}",
+                value=f"Category: {bike['Category']}\nEngine: {bike['Engine']}",
+                inline=False
+            )
+            
+        await ctx.send(embed=embed)
+    
+    @commands.command(name="bikestats")
+    async def bike_stats(self, ctx):
+        """Show statistics about the motorcycle database"""
+        try:
+            bikes = BikeDataManager.load_csv_data()
+            total_bikes = len(bikes)
+            makes = set(bike['Make'] for bike in bikes)
+            years = set(bike['Year'] for bike in bikes)
+            
+            embed = discord.Embed(
+                title="Motorcycle Database Statistics",
+                description=f"Total motorcycles: {total_bikes}",
+                color=discord.Color.green()
+            )
+            
+            embed.add_field(name="Number of Makes", value=str(len(makes)), inline=True)
+            embed.add_field(name="Year Range", value=f"{min(years)} - {max(years)}", inline=True)
+            
+            await ctx.send(embed=embed)
+        except Exception as e:
+            await ctx.send(f"Error retrieving bike statistics: {str(e)}")
+
+def format_bike_results(df, is_sample=False):
+    """Format motorcycle results for display in Discord"""
+    results = []
+    
+    for _, row in df.iterrows():
+        package = f" {row['Package']}" if pd.notna(row['Package']) and row['Package'] else ""
+        engine = f" - {row['Engine']}" if pd.notna(row['Engine']) else ""
+        category = f" ({row['Category']})" if pd.notna(row['Category']) else ""
+        
+        bike_str = f"**{row['Year']} {row['Make']} {row['Model']}{package}**{category}{engine}"
+        results.append(bike_str)
+    
+    output = "\n".join(results)
+    if is_sample:
+        output += "\n\n*This is a sample of results. Please refine your search for more specific results.*"
+    
+    return output
 
 # Year Selection View
 class YearSelectionView(ui.View):

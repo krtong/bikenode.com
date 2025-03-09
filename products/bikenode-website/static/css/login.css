@@ -1,0 +1,73 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 2rem 0;
+}
+
+.login-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+}
+
+.login-card h2 {
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.login-card p {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.discord-login {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.btn-discord {
+  background-color: #7289da;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 250px;
+  margin: 0 auto;
+  transition: background-color 0.3s;
+}
+
+.btn-discord:hover {
+  background-color: #5f73bc;
+}
+
+.btn-discord img {
+  width: 24px;
+  height: 24px;
+}
+
+.login-info {
+  margin-top: 2rem;
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+}
+
+.login-info p {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.login-info ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+}
+
+.login-info li {
+  margin-bottom: 0.5rem;
+}

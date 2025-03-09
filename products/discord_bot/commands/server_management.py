@@ -4,11 +4,13 @@ import logging
 import asyncio
 from pathlib import Path
 import json
+from utils.helpers import is_admin, create_embed
 
 logger = logging.getLogger('BikeRoleBot')
 
 class ServerManagementCommands(commands.Cog):
-    """Commands for server administrators to manage BikeRole settings"""
+    """Commands for server management and configuration."""
+    
     def __init__(self, bot):
         self.bot = bot
         self.settings = {}
@@ -49,14 +51,17 @@ class ServerManagementCommands(commands.Cog):
             }
             self._save_settings()
             
-            embed = discord.Embed(
-                title="BikeRole Setup",
-                description="BikeRole has been set up for your server with the following defaults:\n"
-                           "• Role Creation Mode: Brand-based\n"
-                           "• Role Color: Blue\n"
-                           "• Auto-approve: Enabled\n"
-                           "• Max Bikes per User: 5",
-                color=discord.Color.green()
+            # Create default server roles if role manager exists
+            if hasattr(self.bot, 'role_manager'):
+                await self._create_default_roles(ctx)
+                
+            embed = create_embed(
+                "BikeRole Setup",
+                "BikeRole has been set up for your server with the following defaults:\n"
+                "• Role Creation Mode: Brand-based\n"
+                "• Role Color: Blue\n"
+                "• Auto-approve: Enabled\n"
+                "• Max Bikes per User: 5"
             )
             await ctx.send(embed=embed)
             logger.info(f"Setup completed for server {server_id}")
@@ -160,6 +165,139 @@ class ServerManagementCommands(commands.Cog):
         
         await ctx.send(embed=embed)
 
+    @commands.command(name="sync")
+    @commands.has_permissions(administrator=True)
+    async def sync_roles(self, ctx):
+        """Sync all users' roles with BikeNode data (Admin only)."""
+        try:
+            if not hasattr(self.bot, 'role_manager'):
+                await ctx.send("❌ Role manager not initialized. Please contact the bot administrator.")
+                return
+                
+            await ctx.send("Starting role sync for all members... This may take a while.")
+            
+            # Start role sync process
+            await self.bot.role_manager.sync_all_members(ctx.guild)
+            
+            await ctx.send("✅ Role sync complete! All members have been updated.")
+        except Exception as e:
+            logger.error(f"Error in sync command: {e}")
+            await ctx.send("❌ An error occurred during role sync.")
+    
+    async def _create_default_roles(self, ctx):
+        """Create default BikeNode roles in the server."""
+        try:
+            # Load role config
+            role_config = self.bot.role_manager.config
+            if not role_config:
+                await ctx.send("❌ Error: Role configuration not found.")
+                return
+            
+            # Get default color
+            color_hex = role_config.get('default_color', '0x3498db')
+            color = discord.Color(int(color_hex.replace('0x', ''), 16))
+            
+            # Create category roles
+            category_roles = {k: v for k, v in role_config.items() 
+                             if k not in ['staff', 'premium', 'default_color', 'prefix']}
+            
+            created = []
+            existing = []
+            
+            for _, role_name in category_roles.items():
+                if discord.utils.get(ctx.guild.roles, name=role_name):
+                    existing.append(role_name)
+                else:
+                    await ctx.guild.create_role(
+                        name=role_name,
+                        color=color,
+                        mentionable=True,
+                        reason="BikeNode setup"
+                    )
+                    created.append(role_name)
+            
+            # Create premium role if configured
+            premium_role = role_config.get('premium')
+            if premium_role and not discord.utils.get(ctx.guild.roles, name=premium_role):
+                await ctx.guild.create_role(
+                    name=premium_role,
+                    color=color,
+                    mentionable=True,
+                    reason="BikeNode setup - Premium"
+                )
+                created.append(premium_role)
+            elif premium_role:
+                existing.append(premium_role)
+            
+            # Send result
+            result_embed = create_embed("Role Setup Complete", "BikeNode roles have been set up.")
+            
+            if created:
+                result_embed.add_field(
+                    name="Created Roles",
+                    value="\n".join(created) if created else "None",
+                    inline=False
+                )
+            
+            if existing:
+                result_embed.add_field(
+                    name="Existing Roles",
+                    value="\n".join(existing) if existing else "None",
+                    inline=False
+                )
+            
+            result_embed.add_field(
+                name="Next Steps", 
+                value="Use `!sync` to update all members' roles.", 
+                inline=False
+            )
+            
+            await ctx.send(embed=result_embed)
+            
+        except Exception as e:
+            logger.error(f"Error creating default roles: {e}")
+            await ctx.send("❌ An error occurred while creating roles.")
+
+    @commands.command(name="setrole")
+    @commands.has_permissions(administrator=True)
+    async def set_category_role(self, ctx, category: str, *, role_name: str):
+        """Set which role to use for a specific motorcycle category (Admin only).
+        
+        Example: !setrole sportbike "Sport Bike Rider"
+        """
+        try:
+            # Get config file path
+            config_path = Path(__file__).parent.parent / 'config' / 'config.yaml'
+            
+            if not config_path.exists():
+                await ctx.send("❌ Configuration file not found.")
+                return
+                
+            # Load current config
+            with open(config_path, 'r') as file:
+                import yaml
+                config = yaml.safe_load(file)
+            
+            # Update role mapping
+            if 'roles' not in config:
+                config['roles'] = {}
+            
+            config['roles'][category.lower()] = role_name
+            
+            # Save updated config
+            with open(config_path, 'w') as file:
+                yaml.dump(config, file)
+            
+            # Reload role manager config if it exists
+            if hasattr(self.bot, 'role_manager'):
+                self.bot.role_manager.config = config.get('roles', {})
+                await ctx.send(f"✅ Updated role mapping: {category} → '{role_name}'")
+            else:
+                await ctx.send("⚠️ Role manager not initialized, but configuration was saved.")
+        
+        except Exception as e:
+            logger.error(f"Error in setrole command: {e}")
+            await ctx.send("❌ An error occurred while updating role settings.")
+
 async def setup(bot):
-    # Register this cog with the bot
     await bot.add_cog(ServerManagementCommands(bot))

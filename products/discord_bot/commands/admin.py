@@ -5,34 +5,110 @@
 import discord
 from discord.ext import commands
 import logging
+from utils.helpers import create_embed, is_admin
 
 logger = logging.getLogger('BikeRoleBot')
 
-class BikeServerCommands(commands.Cog):
+class AdminCommands(commands.Cog):
     """Commands for server administrators to manage BikeRole settings"""
     def __init__(self, bot):
         self.bot = bot
-        self.settings = {}
-
-    @commands.command(name='bikerole-setup')
+    
+    @commands.command(name='debug')
     @commands.has_permissions(administrator=True)
-    async def setup_bikerole(self, ctx):
-        """Initial setup for BikeRole in your server"""
-        server_id = str(ctx.guild.id)
-        if server_id not in self.settings:
-            self.settings[server_id] = {
-                'role_color': discord.Color.blue().value,
-                'auto_approve': True,
-                'max_bikes_per_user': 5
-            }
-            embed = discord.Embed(
-                title="BikeRole Setup",
-                description="BikeRole has been set up for your server!",
-                color=discord.Color.green()
+    async def debug_info(self, ctx):
+        """Display debug information for troubleshooting"""
+        embed = create_embed(
+            title="BikeRole Debug Info",
+            description="Technical information about the bot instance"
+        )
+        
+        # Add bot info
+        embed.add_field(
+            name="Bot Version", 
+            value=self.bot.config['bot']['version'],
+            inline=True
+        )
+        
+        # Add guild info
+        embed.add_field(
+            name="Guild Info", 
+            value=f"ID: {ctx.guild.id}\nMembers: {ctx.guild.member_count}",
+            inline=True
+        )
+        
+        # Add API connection status
+        api_status = "Connected" if hasattr(self.bot, 'bikenode_api') else "Not Connected"
+        embed.add_field(
+            name="API Connection", 
+            value=api_status,
+            inline=True
+        )
+        
+        # Add role manager status
+        role_mgr_status = "Initialized" if hasattr(self.bot, 'role_manager') else "Not Initialized"
+        embed.add_field(
+            name="Role Manager", 
+            value=role_mgr_status,
+            inline=True
+        )
+        
+        # Add database status
+        from utils.db_manager import BikeDatabase
+        db = BikeDatabase()
+        db_status = "Connected" if db.connect() else "Connection Failed"
+        if db.connection:
+            db.close()
+        
+        embed.add_field(
+            name="Database", 
+            value=db_status,
+            inline=True
+        )
+        
+        await ctx.send(embed=embed)
+    
+    @commands.command(name='stats')
+    @commands.has_permissions(administrator=True)
+    async def bot_stats(self, ctx):
+        """Display bot statistics"""
+        embed = create_embed(
+            title="BikeRole Statistics",
+            description="Usage statistics for BikeRole bot"
+        )
+        
+        # Get stats from all guilds
+        total_guilds = len(self.bot.guilds)
+        total_members = sum(g.member_count for g in self.bot.guilds)
+        
+        embed.add_field(
+            name="Servers", 
+            value=str(total_guilds),
+            inline=True
+        )
+        
+        embed.add_field(
+            name="Total Members", 
+            value=str(total_members),
+            inline=True
+        )
+        
+        # Get uptime if available
+        if hasattr(self.bot, 'start_time'):
+            import datetime
+            uptime = datetime.datetime.utcnow() - self.bot.start_time
+            days, remainder = divmod(int(uptime.total_seconds()), 86400)
+            hours, remainder = divmod(remainder, 3600)
+            minutes, seconds = divmod(remainder, 60)
+            
+            embed.add_field(
+                name="Uptime", 
+                value=f"{days}d {hours}h {minutes}m {seconds}s",
+                inline=True
             )
-            await ctx.send(embed=embed)
-            logger.info(f"Setup completed for server {server_id}")
+        
+        await ctx.send(embed=embed)
 
 async def setup(bot):
     # Register this cog with the bot
-    await bot.add_cog(BikeServerCommands(bot))
+    await bot.add_cog(AdminCommands(bot))
