@@ -65,7 +65,10 @@ python bot.py
 
 ### Motorcycle Commands
 - `!bike search <query>` - Search the motorcycle database
-- `!bike stats` - View statistics about the motorcycle database
+- `!bike stats [type]` - View statistics about the motorcycle database
+  - `!bike stats brands` - View brand statistics with charts
+  - `!bike stats categories` - View category statistics with charts
+  - `!bike stats years` - View year statistics with charts
 - `!bike help` - Display motorcycle command help
 
 ### Server Management Commands
