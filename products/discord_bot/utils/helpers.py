@@ -77,6 +77,7 @@ def parse_bike_string(bike_string: str) -> Optional[Dict[str, Any]]:
         remaining = re.sub(r'\([^)]+\)', '', remaining).strip()
     
     # Split remaining string into words
+    parts = remaining.split()
     if len(parts) < 2:
         return None
     
