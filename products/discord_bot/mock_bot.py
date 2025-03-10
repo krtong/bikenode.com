@@ -42,6 +42,7 @@ class MockBot:
         logger.info(f"  {self.prefix}removebike - Remove a motorcycle from your BikeNode profile")
         logger.info(f"  {self.prefix}findmoto - Search for a motorcycle using interactive menus")
         logger.info(f"  {self.prefix}stats - Display motorcycle statistics [brands|categories|years]")
+        logger.info(f"  {self.prefix}compare - Compare two motorcycles side by side")
         
         # Keep the bot running
         while True:

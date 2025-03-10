@@ -69,6 +69,8 @@ python bot.py
   - `!bike stats brands` - View brand statistics with charts
   - `!bike stats categories` - View category statistics with charts
   - `!bike stats years` - View year statistics with charts
+- `!bike compare <bike1> vs <bike2>` - Compare two motorcycles side by side
+  - Example: `!bike compare 2023 Honda CBR1000RR vs 2023 Kawasaki Ninja ZX-10R`
 - `!bike help` - Display motorcycle command help
 
 ### Server Management Commands
