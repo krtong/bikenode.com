@@ -1,0 +1,124 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>99Spokes.com Bike Data Analysis</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 20px;
+                color: #333;
+            }
+            h1, h2, h3 {
+                color: #2c3e50;
+            }
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            .header {
+                background-color: #f8f9fa;
+                padding: 20px;
+                margin-bottom: 20px;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .section {
+                margin-bottom: 30px;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .visualization {
+                text-align: center;
+                margin: 20px 0;
+            }
+            .visualization img {
+                max-width: 100%;
+                height: auto;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+            .footer {
+                text-align: center;
+                margin-top: 30px;
+                padding: 20px;
+                background-color: #f8f9fa;
+                border-radius: 5px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+            }
+            table, th, td {
+                border: 1px solid #ddd;
+            }
+            th, td {
+                padding: 12px;
+                text-align: left;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>99Spokes.com Bike Data Analysis</h1>
+                <p>Report generated on: 2025-03-10 07:22:16</p>
+                <p>Data source: 99spokes_specific_bikes_2025-03-10T07-21-34.406271.json</p>
+            </div>
+            
+            <div class="section">
+                <h2>Visualizations</h2>
+                
+                <div class="visualization">
+                    <h3>Brand Distribution</h3>
+                    <img src="../analysis/brand_distribution.png" alt="Brand Distribution">
+                </div>
+                
+                <div class="visualization">
+                    <h3>Suspension Type Distribution</h3>
+                    <img src="../analysis/suspension_distribution.png" alt="Suspension Type Distribution">
+                </div>
+                
+                <div class="visualization">
+                    <h3>Weight Distribution</h3>
+                    <img src="../analysis/weight_distribution.png" alt="Weight Distribution">
+                </div>
+                
+                <div class="visualization">
+                    <h3>Price vs Weight</h3>
+                    <img src="../analysis/price_vs_weight.png" alt="Price vs Weight">
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Data Collection Process</h2>
+                <p>The data was collected using a Python-based web scraper that extracts bike information from 99spokes.com. The scraper uses the following approach:</p>
+                <ol>
+                    <li>Uses cloudscraper library to bypass Cloudflare protection</li>
+                    <li>Accesses specific bike URLs directly</li>
+                    <li>Extracts detailed specifications for each bike</li>
+                    <li>Saves the data in JSON format for analysis</li>
+                </ol>
+                <p>The analysis was performed using pandas and matplotlib to generate statistics and visualizations.</p>
+            </div>
+            
+            <div class="footer">
+                <p>&copy; 2025 BikeNode.com - All Rights Reserved</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    
