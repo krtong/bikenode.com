@@ -8,6 +8,7 @@ from commands.bike import BikeCommands
 from commands.server_management import ServerManagementCommands
 from commands.story import StoryCommands
 from commands.stats import StatsCommands
+from commands.compare import CompareCommands
 from events.message import MessageEvents
 from utils.role_manager import RoleManager
 from api.bikenode_client import BikeNodeAPI
@@ -48,6 +49,7 @@ async def setup_bot():
     await bot.add_cog(ServerManagementCommands(bot))
     await bot.add_cog(StoryCommands(bot))
     await bot.add_cog(StatsCommands(bot))
+    await bot.add_cog(CompareCommands(bot))
     await bot.add_cog(MessageEvents(bot))
     
     # Start webhook handler if enabled
