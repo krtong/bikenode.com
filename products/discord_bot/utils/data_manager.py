@@ -2,6 +2,12 @@ import os
 import csv
 import sqlite3
 from pathlib import Path
+import pandas as pd
+import logging
+import re
+from typing import List, Dict, Any, Optional
+
+logger = logging.getLogger('BikeRoleBot')
 
 # Define base directories
 BASE_DIR = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -17,7 +23,7 @@ CSV_PATH = DATA_DIR / 'motorcycles.csv'
 DB_PATH = DB_DIR / 'motorcycles.db'
 
 class BikeDataManager:
-    """Centralized manager for motorcycle data access"""
+    """Manages motorcycle data loading and searching with error handling"""
     
     @staticmethod
     def get_csv_path():
@@ -30,38 +36,72 @@ class BikeDataManager:
         return DB_PATH
     
     @staticmethod
-    def load_csv_data():
-        """Load motorcycle data from CSV file"""
-        bikes = []
-        with open(CSV_PATH, 'r', encoding='utf-8') as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                bikes.append(row)
-        return bikes
+    def get_data_path() -> Path:
+        """Get the path to the motorcycle data CSV file"""
+        return Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) / 'data/bikedata/motorcycles.csv'
     
-    @staticmethod
-    def search_bikes(query, limit=5):
-        """
-        Search for bikes matching the query in make, model or year
-        Returns list of matching bikes limited to specified number
-        """
-        matches = []
-        query = query.lower()
+    @classmethod
+    def load_csv_data(cls) -> List[Dict[str, Any]]:
+        """Load motorcycle data from CSV file, handling parsing errors"""
+        data_path = cls.get_data_path()
+        logger.info(f"Loading motorcycle data from {data_path}")
         
         try:
-            with open(CSV_PATH, 'r', encoding='utf-8') as f:
-                reader = csv.DictReader(f)
-                for row in reader:
-                    if (query in row['Make'].lower() or 
-                        query in row['Model'].lower() or
-                        query in str(row['Year']).lower()):
-                        matches.append(row)
-                        if len(matches) >= limit:
-                            break
-        except Exception as e:
-            print(f"Error searching bikes: {e}")
+            # Try first with the standard pandas reader
+            df = pd.read_csv(data_path)
+            logger.info(f"Successfully loaded {len(df)} motorcycle records")
+            return df.to_dict('records')
+        except pd.errors.ParserError as e:
+            logger.warning(f"Error parsing CSV: {e}. Trying with error handling...")
             
-        return matches
+            # If there's a parsing error, try with error_bad_lines=False (pandas <1.3) or on_bad_lines='skip' (pandas >=1.3)
+            try:
+                # For newer pandas versions
+                df = pd.read_csv(data_path, on_bad_lines='skip')
+                logger.info(f"Loaded {len(df)} motorcycle records (skipped bad lines)")
+                return df.to_dict('records')
+            except TypeError:
+                # For older pandas versions
+                df = pd.read_csv(data_path, error_bad_lines=False, warn_bad_lines=True)
+                logger.info(f"Loaded {len(df)} motorcycle records (skipped bad lines)")
+                return df.to_dict('records')
+        except Exception as e:
+            logger.error(f"Failed to load motorcycle data: {e}")
+            return []
+    
+    @classmethod
+    def search_bikes(cls, query: str, max_results: int = 10) -> List[Dict[str, Any]]:
+        """Search for motorcycles matching the query"""
+        bikes = cls.load_csv_data()
+        if not bikes:
+            return []
+        
+        query = query.lower()
+        results = []
+        
+        # Try to parse year from query
+        year_match = re.search(r'\b(1[8-9]\d{2}|20\d{2})\b', query)
+        year = int(year_match.group(0)) if year_match else None
+        
+        # Remove year from query if found
+        if year:
+            query = query.replace(year_match.group(0), '').strip()
+        
+        for bike in bikes:
+            # If year specified, filter by it
+            if year and bike['Year'] != year:
+                continue
+                
+            make = str(bike['Make']).lower()
+            model = str(bike['Model']).lower()
+            
+            if not query or query in make or query in model:
+                results.append(bike)
+        
+        # Sort by Year (newest first), then Make, then Model
+        results.sort(key=lambda x: (-x['Year'], x['Make'], x['Model']))
+        
+        return results[:max_results]
     
     @staticmethod
     def get_bike_by_id(bike_id):

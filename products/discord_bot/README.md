@@ -10,6 +10,55 @@ A powerful Discord bot for motorcycle enthusiasts and communities. This bot prov
 - **BikeNode API Integration**: Connect with the BikeNode platform
 - **Webhook Support**: Receive and process external events
 
+## Setup
+
+1. **Install Dependencies**
+
+```bash
+# Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
+
+# Install required packages
+pip install -r requirements.txt
+```
+
+2. **Configuration**
+
+- Copy `.env.example` to `.env` and fill in your Discord Bot Token
+- Review and update `config/config.yaml` as needed
+
+3. **Running the Bot**
+
+```bash
+# Recommended: Use the launcher (handles SSL issues automatically)
+python launch.py
+
+# Alternative: Run the bot directly
+python bot.py
+```
+
+## Troubleshooting
+
+### SSL Certificate Errors
+
+If you encounter SSL certificate verification errors (particularly common on macOS):
+
+1. The launcher script (`launch.py`) should handle these automatically
+2. If you still have issues, run the SSL fix script:
+   ```bash
+   python fix_ssl.py
+   ```
+   
+3. Or install Python certificates manually:
+   ```bash
+   /Applications/Python\ 3.13/Install\ Certificates.command
+   ```
+
+### CSV Data Loading Errors
+
+If you see errors related to malformed CSV data, the bot will attempt to load the data by skipping bad rows, but this may result in missing motorcycles.
+
 ## Project Structure
 
 ```
@@ -20,6 +69,8 @@ discord_bot/
 ├── commands/           # Bot command modules
 │   ├── bike.py         # Motorcycle lookup commands
 │   ├── server_management.py
+│   ├── stats.py
+│   ├── compare.py
 │   └── story.py
 ├── config/             # Configuration files
 │   └── config.yaml
@@ -32,45 +83,19 @@ discord_bot/
 │   ├── db_manager.py
 │   ├── helpers.py
 │   └── role_manager.py
-├── bot.py              # Main bot initialization
+├── bot.py              # Main bot implementation
+├── launch.py           # Bot launcher script (recommended)
+├── fix_ssl.py          # Helper script for SSL issues
 ├── .env                # Environment variables
 └── README.md           # This file
 ```
 
-## Setup Instructions
-
-1. **Install Dependencies**
-
-```bash
-# Create and activate a virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
-
-# Install required packages
-pip install discord.py pyyaml pandas python-dotenv
-```
-
-2. **Configuration**
-
-- Copy `.env.example` to `.env` and fill in your Discord Bot Token
-- Review and update `config/config.yaml` as needed
-
-3. **Running the Bot**
-
-```bash
-python bot.py
-```
-
-## Available Commands
+## Commands
 
 ### Motorcycle Commands
 - `!bike search <query>` - Search the motorcycle database
-- `!bike stats [type]` - View statistics about the motorcycle database
-  - `!bike stats brands` - View brand statistics with charts
-  - `!bike stats categories` - View category statistics with charts
-  - `!bike stats years` - View year statistics with charts
-- `!bike compare <bike1> vs <bike2>` - Compare two motorcycles side by side
-  - Example: `!bike compare 2023 Honda CBR1000RR vs 2023 Kawasaki Ninja ZX-10R`
+- `!bike stats` - View statistics about the motorcycle database
+- `!bike compare <bike1> <bike2>` - Compare two motorcycles
 - `!bike help` - Display motorcycle command help
 
 ### Server Management Commands
@@ -88,10 +113,6 @@ The bot uses the following environment variables:
 - `DISCORD_BOT_TOKEN` - Your Discord bot token
 - `BIKENODE_API_KEY` - API key for BikeNode platform integration
 - `DATABASE_URL` - Database connection string (if applicable)
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
