@@ -18,6 +18,7 @@ import pandas as pd
 import os
 import re
 from utils.data_manager import BikeDataManager
+from typing import Dict, Any, List, Optional
 
 logger = logging.getLogger('BikeRoleBot')
 
@@ -37,8 +38,15 @@ class BikeCommands(commands.Cog):
     def load_bike_data(self):
         """Load motorcycle data from CSV file"""
         try:
-            self.bike_data = pd.read_csv(DATA_PATH)
-            print(f"Loaded {len(self.bike_data)} motorcycle records")
+            from utils.data_manager import BikeDataManager
+            bikes = BikeDataManager.load_csv_data()
+            if bikes:
+                # Convert to DataFrame if needed
+                self.bike_data = pd.DataFrame(bikes)
+                print(f"Loaded {len(self.bike_data)} motorcycle records")
+            else:
+                print("No motorcycle data loaded")
+                self.bike_data = pd.DataFrame()
         except Exception as e:
             print(f"Error loading motorcycle data: {e}")
             self.bike_data = pd.DataFrame()
