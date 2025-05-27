@@ -49,6 +49,22 @@ hierarchical_scraper.log
 # Progress tracking
 hierarchical_progress.json
 
+# AI/Build artifacts to prevent duplicates
+*.d.ts.map
+*.js.map
+*.pyc
+*_copy*
+*\ 2.*
+*_1740930*.*
+bike_data/
+exports/
+temp/
+logs/
+cache/
+dump/
+report/
+workspaces/
+
 # Environment variables
 .env
 .env.local
