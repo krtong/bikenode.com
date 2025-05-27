@@ -1,14 +1,43 @@
 # BikeNode Discord Bot
 
-A powerful Discord bot for motorcycle enthusiasts and communities. This bot provides motorcycle lookup capabilities, server management, and integration with the BikeNode platform.
+A comprehensive Discord bot designed for bike enthusiasts that bridges Discord servers with the BikeNode platform. Transform your Discord server into a cycling and motorcycle hub with profile management, extensive database lookup, and automated community features covering motorcycles, bicycles, and e-bikes.
 
-## Features
+## Overview
 
-- **Motorcycle Database**: Search for motorcycles by make, model, and year
-- **Role Management**: Automatically assign roles based on users' motorcycles
-- **Server Management**: Commands for server administrators
-- **BikeNode API Integration**: Connect with the BikeNode platform
-- **Webhook Support**: Receive and process external events
+The BikeNode Discord Bot serves as the central hub for bike enthusiasts across all categories, providing:
+- **Community Management**: Automatic role assignment based on bike ownership (motorcycles, bicycles, e-bikes)
+- **Comprehensive Database**: Access to extensive bike specifications and data across all categories
+- **Profile Integration**: Seamless connection between Discord and BikeNode accounts
+- **Data Visualization**: Interactive charts and bike comparisons
+- **Story Sharing**: Community storytelling with image support for all bike types
+
+## Core Features
+
+### 🚴 Bike Management (All Categories)
+- **Multi-Category Database**: Search motorcycles, bicycles, and e-bikes by make, model, year
+- **Profile Management**: Add/remove bikes from your BikeNode profile across all categories
+- **Account Linking**: Secure connection between Discord and BikeNode accounts
+- **Interactive UI**: Dropdown menus and pagination for easy navigation
+
+### 📊 Data & Analytics
+- **Statistics Dashboard**: Visual charts for brands, categories, and year distributions across all bike types
+- **Bike Comparisons**: Side-by-side specification comparisons with charts (motorcycles, bicycles, e-bikes)
+- **Data Visualization**: Matplotlib-powered charts and graphs
+- **Advanced Search**: Fuzzy matching and intelligent query parsing across all bike categories
+- **Category-Specific Metrics**: Specialized analytics for each bike type
+
+### 👥 Community Features
+- **Automatic Roles**: Role assignment based on bike ownership (by brand, category, or bike type)
+- **Story Sharing**: Share bike stories with image attachments (any bike type)
+- **Premium Recognition**: Special roles for BikeNode premium users
+- **Cross-Server Sync**: Synchronize roles across multiple servers
+- **Multi-Community Support**: Motorcycle clubs, cycling groups, e-bike enthusiasts
+
+### ⚙️ Administration Tools
+- **Flexible Configuration**: Choose role assignment mode (brand, category, or disabled)
+- **Bulk Operations**: Sync all users' roles at once
+- **Channel Management**: Configure story posting channels
+- **Server Setup**: Automated initial configuration
 
 ## Setup
 
@@ -90,22 +119,42 @@ discord_bot/
 └── README.md           # This file
 ```
 
-## Commands
+## Commands Reference
 
-### Motorcycle Commands
-- `!bike search <query>` - Search the motorcycle database
-- `!bike stats` - View statistics about the motorcycle database
-- `!bike compare <bike1> <bike2>` - Compare two motorcycles
-- `!bike help` - Display motorcycle command help
+### 🔍 Bike Lookup Commands
+- `!bike search <query>` - Search all bike databases (motorcycles, bicycles, e-bikes) by make/model/year
+- `!searchbike <query>` - Alternative search command with enhanced results across all categories
+- `!bikeyear <year>` - Show all bikes from a specific year (all types)
+- `!findmoto` - Interactive motorcycle finder with dropdown menus
+- `!findbike` - Interactive bicycle/e-bike finder (coming soon)
 
-### Server Management Commands
-- `!bike role <role>` - Assign or remove a role
-- `!bike rolesetup` - Set up automatic role assignment (admin only)
-- `!bike config` - Configure bot settings (admin only)
+### 👤 Profile Management Commands  
+- `!addbike <year make model [package]>` - Add any bike type to your BikeNode profile
+- `!removebike` - Remove a bike from your profile (interactive selection, all types)
+- `!link` - Link your Discord account to BikeNode platform
 
-### Other Commands
-- `!bike story` - Generate a random motorcycle story
-- `!bike help` - Display general help information
+### 📊 Statistics & Analysis Commands
+- `!bike stats` - Overview of all bike database statistics
+- `!bike stats brands` - Brand distribution with bar chart (all bike types)
+- `!bike stats categories` - Category breakdown with pie chart (motorcycles, bicycles, e-bikes)
+- `!bike stats years` - Year distribution with line chart (all types)
+- `!bike compare <bike1> vs <bike2>` - Side-by-side bike comparison (cross-category supported)
+
+### 📖 Story & Social Commands
+- `!story <content>` - Create a new bike story (supports image attachments, any bike type)
+- `!recent` - Share your most recent BikeNode story
+- `!setstorychannel [channel]` - Set channel for story posting (admin only)
+
+### ⚙️ Server Management Commands (Admin Only)
+- `!bikerole-setup` - Initial bot setup and configuration
+- `!setrolecreation [brand|category|biketype|none]` - Configure automatic role creation mode
+- `!bikerole-settings` - View current server configuration
+- `!sync` - Synchronize all users' roles with BikeNode data
+- `!setrole <category> <role_name>` - Map bike categories to Discord roles
+
+### ❓ Help Commands
+- `!bike help` - Display comprehensive command help
+- `!help <command>` - Get detailed help for specific commands
 
 ## Environment Variables
 
