@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Frontend Test</title>
+</head>
+<body>
+    <h1>Testing BikeNode Frontend</h1>
+    <button id="testBtn">Test API Calls</button>
+    <div id="results"></div>
+
+    <script>
+        document.getElementById('testBtn').addEventListener('click', async function() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                // Test 1: Manufacturers
+                console.log('Testing manufacturers API...');
+                const response1 = await fetch('http://localhost:8083/api/bicycles/manufacturers');
+                const data1 = await response1.json();
+                
+                // Test 2: Years  
+                console.log('Testing years API...');
+                const response2 = await fetch('http://localhost:8083/api/bicycles/years');
+                const data2 = await response2.json();
+                
+                // Test 3: Search
+                console.log('Testing search API...');
+                const response3 = await fetch('http://localhost:8083/api/bicycles/search?q=trek');
+                const data3 = await response3.json();
+                
+                results.innerHTML = `
+                    <h3>✅ All API calls successful!</h3>
+                    <p><strong>Manufacturers:</strong> ${data1.manufacturers.length} found</p>
+                    <p><strong>Years:</strong> ${data2.years.length} found</p>
+                    <p><strong>Search Results:</strong> ${data3.total} bikes found</p>
+                    <h4>Sample bike:</h4>
+                    <p>${data3.bicycles[0]?.name || 'No bikes'}</p>
+                `;
+                
+            } catch (error) {
+                results.innerHTML = `<p style="color: red;">❌ Error: ${error.message}</p>`;
+                console.error('API test failed:', error);
+            }
+        });
+    </script>
+</body>
+</html>

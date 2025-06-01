@@ -1,50 +1,81 @@
-# Bikenode.com Project Repository
+# BikeNode.com
 
-This repository contains multiple projects related to the Bikenode ecosystem:
+A comprehensive bike data platform with web application, Discord bot, data scrapers, and browser extensions.
 
-## Project Structure
+## 🏗️ Repository Structure
 
-- **website/**
-  - Bikenode.com splash page and website files
-  - Frontend UI elements and assets
-  
-- **discord_bot/**
-  - Bikerole Discord bot that allows users to select motorcycles and bicycles they own
-  - Discord role attribution and commands
-  
-- **chrome_extension/**
-  - Bikenode Chrome extension
-  - Aggregates listings for bikes (motorcycles and bicycles) and component sales
-  - Monitors both new and used markets
-  
-- **shared_data/**
-  - Shared datasets used by multiple projects
-  - Includes comprehensive databases of bicycles and motorcycles
-  - Utility scripts for data scraping, processing and analysis
-    - Tools to scrape 99spokes, BikeExchange, and other websites for bicycle specs
-    - Tools to scrape CycleTrader, Craigslist, and other websites
+```
+bikenode.com/
+├── website/              # Go web application
+├── discord-bot/          # Python Discord bot
+├── scrapers/             # 99spokes data scrapers
+├── browser-extension/    # Chrome/Firefox extensions
+├── database/             # Database files and migrations
+├── docs/                 # Documentation
+├── scripts/              # Utility scripts
+└── deprecated/           # Legacy/test files
+```
 
+## 🚀 Components
 
-## Getting Started
+### **Website** (`/website/`)
+Go-based web application with PostgreSQL backend
+- **Stack**: Go, PostgreSQL, HTML templates
+- **Features**: User auth, bike search, profiles
+- **Run**: `cd website && go run main.go`
 
-Each project has its own setup and running instructions in their respective directories.
+### **Discord Bot** (`/discord-bot/`)
+Python Discord bot for bike data queries
+- **Stack**: Python, discord.py
+- **Features**: Bike commands, stats, comparisons
+- **Run**: `cd discord-bot && python bot.py`
 
-## Data Files
+### **Scrapers** (`/scrapers/`)
+4-stage pipeline for scraping 99spokes.com bike data
+- **Stages**: Brands → Years → URLs → Data
+- **Output**: PostgreSQL database with 69k+ bike variants
+- **Run**: `cd scrapers && node pipeline_runner.js`
 
-The shared_data directory contains:
+### **Browser Extension** (`/browser-extension/`)
+Chrome extension for bike data detection
+- **Features**: Page parsing, data extraction
+- **Install**: Load unpacked extension in Chrome
 
-- Motorcycle datasets (historical and current models)
-- Bicycle datasets
-- Scraping utilities for data collection
-- Data transformation and normalization tools
+### **Database** (`/database/`)
+Centralized database files and schemas
+- **Migrations**: SQL schema files
+- **Backups**: PostgreSQL dumps
+- **Data**: CSV files, SQLite databases
 
-## Development
+## 📊 Current Status
 
-When working on a specific project, stick to its directory to maintain clear separation between components.
+- **Website**: ✅ Functional with auth and search
+- **Discord Bot**: ✅ Active with bike commands
+- **Scrapers**: 🔄 ~20k/69k variants scraped (57% complete)
+- **Browser Extension**: ✅ Chrome extension working
+- **Database**: ✅ PostgreSQL with relational schema
 
-## Deployment
+## 🗄️ Database Schema
 
-Each project has independent deployment processes:
-- Website: Standard web deployment
-- Discord Bot: Hosted bot service
-- Chrome Extension: Published through Chrome Web Store
+**Relational Structure:**
+- `bikes_catalog` - Make/model/year/variant (19k+ entries)
+- `bikes_data` - Comprehensive JSONB data (573MB)
+
+## 🚀 Quick Start
+
+1. **Setup Database**: PostgreSQL running locally
+2. **Run Migrations**: `psql bikenode < database/migrations/*.sql`
+3. **Start Website**: `cd website && go run main.go`
+4. **Start Bot**: `cd discord-bot && python bot.py`
+5. **Continue Scraping**: `cd scrapers && node 04_data_scraper.js`
+
+## 📚 Documentation
+
+- **Website**: [`docs/WEBSITE.md`](docs/WEBSITE.md)
+- **Discord Bot**: [`docs/DISCORD_BOT.md`](docs/DISCORD_BOT.md)
+- **Scrapers**: [`docs/SCRAPERS.md`](docs/SCRAPERS.md)
+- **Setup**: [`docs/SCRAPER_SETUP.md`](docs/SCRAPER_SETUP.md)
+
+## 🗂️ Legacy Files
+
+Deprecated and test files are preserved in [`/deprecated/`](deprecated/) with the same organizational structure.

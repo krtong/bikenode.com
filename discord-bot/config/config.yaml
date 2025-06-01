@@ -1,0 +1,55 @@
+# BikeNode Discord Bot Configuration
+
+bot:
+  name: "BikeNode Bot"
+  description: A Discord bot for bike communities
+  version: 1.0.0
+  activity_message: "Vrooom! 🏍️"
+
+commands:
+  prefix: "!bike "
+  cooldown_seconds: 3
+  max_search_results: 15
+
+logging:
+  level: INFO
+  file: bot.log
+
+api:
+  base_url: "https://api.bikenode.com/v1"
+  api_key: "${BIKENODE_API_KEY}"
+  timeout: 10  # seconds
+
+webhooks:
+  enabled: false
+  port: 8080
+  secret: "your_webhook_secret"
+
+roles:
+  # Role mappings for bike categories
+  sportbike: "Sportbike Rider"
+  cruiser: "Cruiser Rider"
+  touring: "Touring Rider"
+  adventure: "Adventure Rider"
+  standard: "Standard Rider"
+  offroad: "Offroad Rider"
+  
+  # Special roles
+  staff: "BikeNode Staff"
+  premium: "BikeNode Premium"
+  default_color: "0x3498db"  # Blue
+  prefix: "Bike-"
+
+data:
+  storage_path: "data"
+
+discord:
+  embed_color: 3447003  # Blue color in decimal
+
+errors:
+  not_found: "Sorry, I couldn't find any motorcycles matching that query."
+  invalid_input: "Please provide a valid search term."
+  no_data: "I couldn't access the motorcycle database. Please try again later."
+
+paths:
+  motorcycle_data: "data/bikedata/motorcycles.csv"

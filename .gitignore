@@ -72,6 +72,14 @@ workspaces/
 .env.test.local
 .env.production.local
 
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+database/data/
+database/backups/
+*.sql
+
 # OS specific files
 .DS_Store
 .DS_Store?
