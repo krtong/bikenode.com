@@ -45,6 +45,10 @@ hierarchical_scraper.log
 *.json
 !sample_data/*.json
 !sample_data/*.csv
+!package.json
+!package-lock.json
+!**/package.json
+!**/package-lock.json
 
 # Progress tracking
 hierarchical_progress.json
@@ -79,6 +83,25 @@ workspaces/
 database/data/
 database/backups/
 *.sql
+
+# Image files and downloads
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.svg
+*.webp
+*.ico
+downloads/
+images/
+scrapers/downloads/
+scrapers/06_motorcycle_image_scrapers/
+**/downloads/
+**/images/
+
+# Large data directories
+products/
+%USERPROFILE%/
 
 # OS specific files
 .DS_Store

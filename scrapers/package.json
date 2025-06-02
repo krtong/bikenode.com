@@ -1,0 +1,39 @@
+{
+  "name": "autonomous-99spokes-scraper",
+  "version": "1.0.0",
+  "description": "Autonomous bike data scraper for 99spokes.com using Stagehand",
+  "main": "autonomous_99spokes_scraper.js",
+  "scripts": {
+    "start": "node autonomous_99spokes_scraper.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scrape:images": "node 05_image_scraper.js",
+    "scrape:motorcycles": "node 06_motorcycle_image_scraper.js",
+    "scrape:ducati2025": "node 07_ducati_2025_image_scraper.js",
+    "pipeline": "node pipeline_runner.js"
+  },
+  "keywords": [
+    "stagehand",
+    "browser",
+    "automation",
+    "scraper",
+    "99spokes",
+    "autonomous"
+  ],
+  "dependencies": {
+    "@browserbasehq/stagehand": "latest",
+    "axios": "^1.9.0",
+    "cheerio": "^1.0.0",
+    "cli-progress": "^3.12.0",
+    "csv-parser": "^3.2.0",
+    "dotenv": "^16.5.0",
+    "node-fetch": "^3.3.2",
+    "p-limit": "^6.2.0",
+    "pg": "^8.16.0",
+    "playwright": "^1.52.0",
+    "zod": "^3.25.30"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0"
+  },
+  "type": "module"
+}
