@@ -196,7 +196,10 @@ async function validateScraper() {
             data.images.forEach(url => console.log(`  - ${url}`));
             
             const hasThumbnails = data.images.some(url => 
-              url.includes('50x50') || url.includes('300x300') || url.includes('600x450')
+              url.includes('50x50') || url.includes('100x100') || url.includes('150x150') ||
+              url.includes('200x200') || url.includes('300x300') || url.includes('400x400') ||
+              url.includes('600x450') || url.includes('thumb') || url.includes('thumbnail') ||
+              url.includes('small') || url.includes('_s.') || url.includes('_t.') || url.includes('_m.')
             );
             
             if (test.expected.shouldNotHaveThumbnails && hasThumbnails) {

@@ -199,7 +199,10 @@ async function runAdvancedTests() {
           // Check for thumbnails
           if (data.images && data.images.length > 0) {
             const thumbnails = data.images.filter(url => 
-              url.includes('50x50') || url.includes('thumb')
+              url.includes('50x50') || url.includes('100x100') || url.includes('150x150') ||
+              url.includes('200x200') || url.includes('300x300') || url.includes('400x400') ||
+              url.includes('600x450') || url.includes('thumb') || url.includes('thumbnail') ||
+              url.includes('small') || url.includes('_s.') || url.includes('_t.') || url.includes('_m.')
             );
             if (thumbnails.length > 0) {
               console.log(`✗ Found ${thumbnails.length} thumbnail images`);

@@ -12,37 +12,59 @@ customCSS: ["/assets/css/profile.css"]
         <div class="profile-banner">
             <img src="/assets/images/profile-banner.jpg" alt="" class="banner-image">
             <div class="banner-overlay"></div>
+            <button class="edit-banner-btn" title="Change Banner">📸</button>
         </div>
         
         <div class="profile-info">
             <div class="profile-avatar-large">
                 <img src="/assets/images/nerd_blank_profile.png" alt="Kevin Tong Avatar" class="avatar-image">
-                <div class="status-indicator online"></div>
+                <div class="status-indicator online" title="Online"></div>
+                <button class="edit-avatar-btn" title="Change Avatar">📷</button>
             </div>
             
             <div class="profile-details">
-                <h1 class="profile-name">Kevin Tong</h1>
-                <p class="profile-username">@krtong</p>
+                <div class="name-section">
+                    <h1 class="profile-name">Kevin Tong
+                        <span class="verified-badge" title="Verified Account">✓</span>
+                        <span class="premium-badge" title="Premium Member">⭐</span>
+                    </h1>
+                    <p class="profile-username">@krtong</p>
+                    <div class="profile-badges">
+                        <span class="badge moderator">Moderator</span>
+                        <span class="badge track-rider">Track Rider</span>
+                        <span class="badge contributor">Top Contributor</span>
+                    </div>
+                </div>
                 <div class="profile-stats">
-                    <div class="stat-item">
+                    <div class="stat-item clickable" onclick="showModal('followers')">
                         <span class="stat-number">156</span>
                         <span class="stat-label">Followers</span>
+                        <span class="stat-trend">+12 this week</span>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-item clickable" onclick="showModal('following')">
                         <span class="stat-number">203</span>
                         <span class="stat-label">Following</span>
+                        <span class="stat-trend">+3 this week</span>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-item clickable" onclick="showModal('communities')">
                         <span class="stat-number">8</span>
                         <span class="stat-label">Communities</span>
+                        <span class="stat-trend">Recently active</span>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-item clickable" onclick="showModal('garage')">
                         <span class="stat-number">{{ bikes.length }}</span>
                         <span class="stat-label">Bikes</span>
+                        <span class="stat-trend">2 new this year</span>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-item clickable" onclick="showModal('posts')">
                         <span class="stat-number">134</span>
                         <span class="stat-label">Posts</span>
+                        <span class="stat-trend">8 this month</span>
+                    </div>
+                    <div class="stat-item clickable" onclick="showModal('achievements')">
+                        <span class="stat-number">24</span>
+                        <span class="stat-label">Achievements</span>
+                        <span class="stat-trend">3 new</span>
                     </div>
                 </div>
                 
@@ -77,25 +99,55 @@ customCSS: ["/assets/css/profile.css"]
                 </div>
                 
                 <div class="profile-actions">
-                    <button class="btn-primary">
+                    <button class="btn-primary" onclick="sendMessage()">
                         <span class="icon">💬</span>
                         Send Message
                     </button>
-                    <button class="btn-secondary">
+                    <button class="btn-secondary follow-btn" onclick="toggleFollow()" data-following="false">
                         <span class="icon">👤</span>
-                        Follow
+                        <span class="follow-text">Follow</span>
                     </button>
-                    <button class="btn-secondary">
-                        <span class="icon">🚫</span>
-                        Block
+                    <button class="btn-secondary" onclick="addToFriends()">
+                        <span class="icon">👥</span>
+                        Add Friend
+                    </button>
+                    <button class="btn-secondary" onclick="shareProfile()">
+                        <span class="icon">🔗</span>
+                        Share
                     </button>
                     <div class="action-menu">
-                        <button class="btn-icon" onclick="toggleActionMenu()">⋯</button>
+                        <button class="btn-icon" onclick="toggleActionMenu()" title="More actions">⋯</button>
                         <div class="action-dropdown" id="action-dropdown">
-                            <a href="#" class="dropdown-item">Report User</a>
-                            <a href="#" class="dropdown-item">Share Profile</a>
+                            <a href="#" class="dropdown-item" onclick="reportUser()">🚨 Report User</a>
+                            <a href="#" class="dropdown-item" onclick="blockUser()">🚫 Block User</a>
+                            <a href="#" class="dropdown-item" onclick="exportProfile()">📄 Export Profile</a>
+                            <a href="#" class="dropdown-item" onclick="copyProfileLink()">🔗 Copy Profile Link</a>
                         </div>
                     </div>
+                </div>
+                
+                <!-- Quick Actions Bar -->
+                <div class="quick-actions-bar">
+                    <button class="quick-action" onclick="viewGarage()" title="View Garage">
+                        <span class="action-icon">🏍️</span>
+                        <span class="action-label">Garage</span>
+                    </button>
+                    <button class="quick-action" onclick="viewPosts()" title="View Posts">
+                        <span class="action-icon">📝</span>
+                        <span class="action-label">Posts</span>
+                    </button>
+                    <button class="quick-action" onclick="viewEvents()" title="View Events">
+                        <span class="action-icon">📅</span>
+                        <span class="action-label">Events</span>
+                    </button>
+                    <button class="quick-action" onclick="viewAchievements()" title="View Achievements">
+                        <span class="action-icon">🏆</span>
+                        <span class="action-label">Trophies</span>
+                    </button>
+                    <button class="quick-action" onclick="startChat()" title="Start Chat">
+                        <span class="action-icon">💬</span>
+                        <span class="action-label">Chat</span>
+                    </button>
                 </div>
             </div>
         </div>

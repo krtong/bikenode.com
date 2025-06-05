@@ -262,14 +262,34 @@ class UniversalScraper {
       const elements = this.document.querySelectorAll(selector);
       for (const img of elements) {
         if (img.src && img.src.startsWith('http')) {
-          // Skip thumbnails and small images
-          if (img.src.includes('50x50c') || 
-              img.src.includes('50x50') ||
+          // Skip ALL thumbnails and small images - we want full resolution only
+          if (img.src.includes('50x50') || 
+              img.src.includes('100x100') ||
+              img.src.includes('150x150') ||
+              img.src.includes('200x200') ||
+              img.src.includes('300x300') ||
+              img.src.includes('400x400') ||
+              img.src.includes('600x450') ||
               img.src.includes('thumb') || 
+              img.src.includes('thumbnail') ||
+              img.src.includes('small') ||
               img.src.includes('icon') || 
               img.src.includes('logo') ||
-              img.src.includes('300x300')) {
+              img.src.includes('preview') ||
+              img.src.includes('_s.') ||
+              img.src.includes('_t.') ||
+              img.src.includes('_m.')) {
             continue;
+          }
+          
+          // Additional size-based filtering - skip images with dimensions in URL under 800px
+          const dimensionMatch = img.src.match(/(\d+)x(\d+)/);
+          if (dimensionMatch) {
+            const width = parseInt(dimensionMatch[1]);
+            const height = parseInt(dimensionMatch[2]);
+            if (width < 800 || height < 600) {
+              continue; // Skip images smaller than 800x600
+            }
           }
           
           let url = img.src;
