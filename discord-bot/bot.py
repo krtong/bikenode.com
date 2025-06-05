@@ -17,6 +17,7 @@ from commands.compare import CompareCommands
 # from commands.claude_bridge import ClaudeBridge
 # from commands.claude_simple import ClaudeSimple
 from commands.claude_fixed import ClaudeFixed
+from commands.slash_commands import SlashCommands
 from events.message import MessageEvents
 from utils.role_manager import RoleManager
 from api.bikenode_client import BikeNodeAPI
@@ -77,6 +78,21 @@ async def setup_bot():
         config['api']['api_key']
     )
     
+    # Load bike data for slash commands
+    try:
+        import pandas as pd
+        from pathlib import Path
+        data_path = Path('data/bikedata/motorcycles.csv')
+        if data_path.exists():
+            bot.bike_data = pd.read_csv(data_path, on_bad_lines='skip')
+            logger.info(f"Loaded {len(bot.bike_data)} bikes for slash commands")
+        else:
+            bot.bike_data = None
+            logger.warning("Motorcycle data file not found")
+    except Exception as e:
+        bot.bike_data = None
+        logger.error(f"Error loading bike data: {e}")
+    
     # Initialize role manager
     bot.role_manager = RoleManager(bot, bot.bikenode_api)
     
@@ -91,6 +107,7 @@ async def setup_bot():
     # await bot.add_cog(ClaudeBridge(bot))
     # await bot.add_cog(ClaudeSimple(bot))
     await bot.add_cog(ClaudeFixed(bot))
+    await bot.add_cog(SlashCommands(bot))
     await bot.add_cog(MessageEvents(bot))
     
     # Start webhook handler if enabled
