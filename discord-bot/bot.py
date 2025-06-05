@@ -80,6 +80,10 @@ async def on_ready():
         # Log command details
         for cmd in synced:
             logger.info(f"Registered command: /{cmd.name} - {cmd.description}")
+        
+        # Also log all commands in the tree
+        all_commands = list(bot.tree.get_commands())
+        logger.info(f"All commands in tree: {[cmd.name for cmd in all_commands]}")
     except Exception as e:
         logger.error(f"Failed to sync commands: {e}")
 
