@@ -262,9 +262,8 @@ class UniversalScraper {
       const elements = this.document.querySelectorAll(selector);
       for (const img of elements) {
         if (img.src && img.src.startsWith('http')) {
-          // Skip thumbnails and small images
-          if (img.src.includes('600x450') ||
-              img.src.includes('thumb') || 
+          // Skip thumbnails and small images by keywords in URL
+          if (img.src.includes('thumb') || 
               img.src.includes('thumbnail') ||
               img.src.includes('small') ||
               img.src.includes('icon') || 
@@ -274,13 +273,24 @@ class UniversalScraper {
             continue;
           }
           
-          // Skip only very small images based on dimensions
+          // Skip thumbnails based on HTML attributes
+          if (img.className && img.className.toLowerCase().includes('thumb')) {
+            continue;
+          }
+          if (img.alt && img.alt.toLowerCase().includes('thumb')) {
+            continue;
+          }
+          if (img.title && img.title.toLowerCase().includes('thumb')) {
+            continue;
+          }
+          
+          // Skip images with dimensions smaller than 600x450
           const dimensionMatch = img.src.match(/(\d+)x(\d+)/);
           if (dimensionMatch) {
             const width = parseInt(dimensionMatch[1]);
             const height = parseInt(dimensionMatch[2]);
-            if (width < 200 || height < 200) {
-              continue; // Skip only truly tiny images
+            if (width <= 600 && height <= 450) {
+              continue;
             }
           }
           
