@@ -1,0 +1,723 @@
+---
+layout: dashboard.njk
+title: Create New Community
+subtitle: Build a community around your passion
+breadcrumb:
+  - title: Communities
+    url: /communities-dashboard/
+  - title: Create Community
+---
+
+<div class="community-create-container">
+    <div class="create-form-wrapper">
+        <form class="community-form" id="community-form">
+            <!-- Basic Information -->
+            <div class="form-section">
+                <div class="section-header">
+                    <h2>Basic Information</h2>
+                    <p>Tell us about your community</p>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label for="community-name">Community Name *</label>
+                        <input type="text" id="community-name" name="name" placeholder="e.g., Sport Bike Riders" required>
+                        <div class="field-hint">Choose a clear, descriptive name that represents your community</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="community-category">Category *</label>
+                        <select id="community-category" name="category" required>
+                            <option value="">Select a category</option>
+                            <option value="motorcycle">Motorcycle</option>
+                            <option value="bicycle">Bicycle</option>
+                            <option value="general">General Discussion</option>
+                            <option value="racing">Racing</option>
+                            <option value="touring">Touring</option>
+                            <option value="maintenance">Maintenance & Repair</option>
+                            <option value="marketplace">Marketplace</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="community-privacy">Privacy Setting *</label>
+                        <select id="community-privacy" name="privacy" required>
+                            <option value="public">Public - Anyone can join</option>
+                            <option value="approval">Approval Required</option>
+                            <option value="invite">Invite Only</option>
+                            <option value="private">Private</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="community-description">Description *</label>
+                        <textarea id="community-description" name="description" placeholder="Describe your community's purpose, what members can expect, and any guidelines..." rows="4" required></textarea>
+                        <div class="field-hint">Minimum 50 characters. Be specific about your community's focus and culture.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Identity -->
+            <div class="form-section">
+                <div class="section-header">
+                    <h2>Visual Identity</h2>
+                    <p>Make your community recognizable</p>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Community Avatar</label>
+                        <div class="avatar-upload">
+                            <div class="avatar-preview" id="avatar-preview">
+                                <div class="avatar-placeholder">📸</div>
+                            </div>
+                            <div class="upload-controls">
+                                <button type="button" class="btn-secondary" onclick="uploadAvatar()">Upload Image</button>
+                                <div class="upload-hint">Recommended: 256x256px, PNG or JPG</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Banner Image</label>
+                        <div class="banner-upload">
+                            <div class="banner-preview" id="banner-preview">
+                                <div class="banner-placeholder">🖼️ Add a banner image</div>
+                            </div>
+                            <div class="upload-controls">
+                                <button type="button" class="btn-secondary" onclick="uploadBanner()">Upload Banner</button>
+                                <div class="upload-hint">Recommended: 1200x300px, PNG or JPG</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="community-color">Theme Color</label>
+                        <div class="color-picker">
+                            <input type="color" id="community-color" name="color" value="#5865f2">
+                            <div class="color-presets">
+                                <button type="button" class="color-preset" style="background: #5865f2" onclick="setColor('#5865f2')"></button>
+                                <button type="button" class="color-preset" style="background: #57f287" onclick="setColor('#57f287')"></button>
+                                <button type="button" class="color-preset" style="background: #fee75c" onclick="setColor('#fee75c')"></button>
+                                <button type="button" class="color-preset" style="background: #eb459e" onclick="setColor('#eb459e')"></button>
+                                <button type="button" class="color-preset" style="background: #ed4245" onclick="setColor('#ed4245')"></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="community-emoji">Community Emoji</label>
+                        <div class="emoji-picker">
+                            <input type="text" id="community-emoji" name="emoji" placeholder="🏍️" maxlength="2">
+                            <div class="emoji-suggestions">
+                                <button type="button" class="emoji-btn" onclick="setEmoji('🏍️')">🏍️</button>
+                                <button type="button" class="emoji-btn" onclick="setEmoji('🚴')">🚴</button>
+                                <button type="button" class="emoji-btn" onclick="setEmoji('🏁')">🏁</button>
+                                <button type="button" class="emoji-btn" onclick="setEmoji('🛣️')">🛣️</button>
+                                <button type="button" class="emoji-btn" onclick="setEmoji('⚡')">⚡</button>
+                                <button type="button" class="emoji-btn" onclick="setEmoji('🔧')">🔧</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Community Rules -->
+            <div class="form-section">
+                <div class="section-header">
+                    <h2>Community Guidelines</h2>
+                    <p>Set expectations for your members</p>
+                </div>
+                
+                <div class="rules-container">
+                    <div class="rule-item">
+                        <input type="text" placeholder="Rule 1: Be respectful to all members" name="rules[]">
+                        <button type="button" class="remove-rule" onclick="removeRule(this)">❌</button>
+                    </div>
+                    <div class="rule-item">
+                        <input type="text" placeholder="Rule 2: Stay on topic" name="rules[]">
+                        <button type="button" class="remove-rule" onclick="removeRule(this)">❌</button>
+                    </div>
+                    <div class="rule-item">
+                        <input type="text" placeholder="Rule 3: No spam or self-promotion" name="rules[]">
+                        <button type="button" class="remove-rule" onclick="removeRule(this)">❌</button>
+                    </div>
+                </div>
+                
+                <button type="button" class="btn-secondary add-rule" onclick="addRule()">➕ Add Rule</button>
+            </div>
+
+            <!-- Features & Integration -->
+            <div class="form-section">
+                <div class="section-header">
+                    <h2>Features & Integration</h2>
+                    <p>Choose what features to enable</p>
+                </div>
+                
+                <div class="features-grid">
+                    <label class="feature-card">
+                        <input type="checkbox" name="features[]" value="discord" checked>
+                        <div class="feature-content">
+                            <div class="feature-icon">🤖</div>
+                            <div class="feature-info">
+                                <h3>Discord Integration</h3>
+                                <p>Connect with Discord servers and enable bot features</p>
+                            </div>
+                        </div>
+                    </label>
+                    
+                    <label class="feature-card">
+                        <input type="checkbox" name="features[]" value="marketplace">
+                        <div class="feature-content">
+                            <div class="feature-icon">🛒</div>
+                            <div class="feature-info">
+                                <h3>Marketplace</h3>
+                                <p>Allow members to buy and sell bikes and parts</p>
+                            </div>
+                        </div>
+                    </label>
+                    
+                    <label class="feature-card">
+                        <input type="checkbox" name="features[]" value="events">
+                        <div class="feature-content">
+                            <div class="feature-icon">📅</div>
+                            <div class="feature-info">
+                                <h3>Events</h3>
+                                <p>Organize rides, meetups, and community events</p>
+                            </div>
+                        </div>
+                    </label>
+                    
+                    <label class="feature-card">
+                        <input type="checkbox" name="features[]" value="garage">
+                        <div class="feature-content">
+                            <div class="feature-icon">🏍️</div>
+                            <div class="feature-info">
+                                <h3>Shared Garage</h3>
+                                <p>Members can showcase their bikes to the community</p>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="button" class="btn-secondary" onclick="saveDraft()">💾 Save as Draft</button>
+                <button type="button" class="btn-secondary" onclick="previewCommunity()">👁️ Preview</button>
+                <button type="submit" class="btn-primary">🚀 Create Community</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Preview Panel -->
+    <div class="preview-panel" id="preview-panel">
+        <div class="preview-header">
+            <h3>Live Preview</h3>
+            <button class="close-preview" onclick="closePreview()">✕</button>
+        </div>
+        
+        <div class="community-preview">
+            <div class="preview-banner" id="preview-banner"></div>
+            <div class="preview-content">
+                <div class="preview-avatar" id="preview-avatar">🏍️</div>
+                <div class="preview-info">
+                    <h2 id="preview-name">Community Name</h2>
+                    <p id="preview-description">Community description will appear here...</p>
+                    <div class="preview-stats">
+                        <span>0 members</span>
+                        <span>•</span>
+                        <span id="preview-category">Category</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.community-create-container {
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+}
+
+.create-form-wrapper {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 32px;
+}
+
+.form-section {
+    margin-bottom: 40px;
+}
+
+.form-section:last-child {
+    margin-bottom: 0;
+}
+
+.section-header {
+    margin-bottom: 24px;
+}
+
+.section-header h2 {
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.section-header p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    color: var(--text-primary);
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.field-hint {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
+
+.avatar-upload,
+.banner-upload {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.avatar-preview {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.banner-preview {
+    width: 100%;
+    height: 100px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+}
+
+.upload-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.upload-hint {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.color-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.color-picker input[type="color"] {
+    width: 60px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.color-presets {
+    display: flex;
+    gap: 8px;
+}
+
+.color-preset {
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.color-preset:hover {
+    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.emoji-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.emoji-picker input {
+    width: 80px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.emoji-suggestions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.emoji-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.emoji-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.rules-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.rule-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.rule-item input {
+    flex: 1;
+}
+
+.remove-rule {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.remove-rule:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+}
+
+.add-rule {
+    align-self: flex-start;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.feature-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.feature-card input[type="checkbox"] {
+    margin: 0;
+    width: 18px;
+    height: 18px;
+}
+
+.feature-content {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.feature-icon {
+    font-size: 1.5rem;
+    background: rgba(88, 101, 242, 0.1);
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.feature-info h3 {
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.feature-info p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.form-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.preview-panel {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background: var(--card-bg);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+}
+
+.preview-panel.active {
+    right: 0;
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.preview-header h3 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.close-preview {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.close-preview:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.community-preview {
+    padding: 20px;
+}
+
+.preview-banner {
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(135deg, var(--accent), rgba(88, 101, 242, 0.7));
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.preview-content {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.preview-avatar {
+    width: 60px;
+    height: 60px;
+    background: rgba(88, 101, 242, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-top: -30px;
+    border: 3px solid var(--card-bg);
+}
+
+.preview-info h2 {
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+}
+
+.preview-info p {
+    color: var(--text-secondary);
+    margin: 0 0 12px 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.preview-stats {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .preview-panel {
+        width: 100%;
+        right: -100%;
+    }
+}
+</style>
+
+<script>
+function addRule() {
+    const container = document.querySelector('.rules-container');
+    const ruleCount = container.children.length + 1;
+    const ruleItem = document.createElement('div');
+    ruleItem.className = 'rule-item';
+    ruleItem.innerHTML = `
+        <input type="text" placeholder="Rule ${ruleCount}: Enter rule text" name="rules[]">
+        <button type="button" class="remove-rule" onclick="removeRule(this)">❌</button>
+    `;
+    container.appendChild(ruleItem);
+}
+
+function removeRule(button) {
+    button.parentElement.remove();
+}
+
+function setColor(color) {
+    document.getElementById('community-color').value = color;
+    updatePreview();
+}
+
+function setEmoji(emoji) {
+    document.getElementById('community-emoji').value = emoji;
+    updatePreview();
+}
+
+function uploadAvatar() {
+    alert('Avatar upload functionality would be implemented here');
+}
+
+function uploadBanner() {
+    alert('Banner upload functionality would be implemented here');
+}
+
+function saveDraft() {
+    alert('Community saved as draft');
+}
+
+function previewCommunity() {
+    document.getElementById('preview-panel').classList.add('active');
+    updatePreview();
+}
+
+function closePreview() {
+    document.getElementById('preview-panel').classList.remove('active');
+}
+
+function updatePreview() {
+    const name = document.getElementById('community-name').value || 'Community Name';
+    const description = document.getElementById('community-description').value || 'Community description will appear here...';
+    const category = document.getElementById('community-category').value || 'Category';
+    const emoji = document.getElementById('community-emoji').value || '🏍️';
+    const color = document.getElementById('community-color').value;
+    
+    document.getElementById('preview-name').textContent = name;
+    document.getElementById('preview-description').textContent = description;
+    document.getElementById('preview-category').textContent = category;
+    document.getElementById('preview-avatar').textContent = emoji;
+    document.getElementById('preview-banner').style.background = `linear-gradient(135deg, ${color}, ${color}aa)`;
+}
+
+// Real-time preview updates
+document.getElementById('community-name').addEventListener('input', updatePreview);
+document.getElementById('community-description').addEventListener('input', updatePreview);
+document.getElementById('community-category').addEventListener('change', updatePreview);
+document.getElementById('community-emoji').addEventListener('input', updatePreview);
+document.getElementById('community-color').addEventListener('change', updatePreview);
+
+// Form submission
+document.getElementById('community-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Community creation would be processed here');
+});
+</script>

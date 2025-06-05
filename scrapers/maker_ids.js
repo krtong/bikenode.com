@@ -381,3 +381,5 @@ const maker_ids = {
   "zen": "Zen",
   "zerode": "Zerode"
 };
+
+export default maker_ids;

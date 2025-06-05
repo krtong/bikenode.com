@@ -1,0 +1,431 @@
+---
+layout: docs.njk
+title: Feedback & Suggestions
+subtitle: Help us improve BikeNode with your ideas and feedback
+---
+
+<div class="feedback-content">
+    <!-- Feedback Header -->
+    <section class="feedback-header">
+        <div class="header-content">
+            <h2>We Value Your Input</h2>
+            <p>Your feedback helps us build a better platform for all riders. Whether it's a bug report, feature request, or general suggestion, we want to hear from you.</p>
+        </div>
+    </section>
+
+    <!-- Feedback Form -->
+    <section class="feedback-form-section">
+        <form class="feedback-form" id="feedback-form">
+            <div class="form-group">
+                <label for="feedback-type">Feedback Type</label>
+                <select id="feedback-type" name="type" required>
+                    <option value="">Select a type...</option>
+                    <option value="feature">Feature Request</option>
+                    <option value="bug">Bug Report</option>
+                    <option value="improvement">Improvement Suggestion</option>
+                    <option value="general">General Feedback</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="feedback-title">Title</label>
+                <input 
+                    type="text" 
+                    id="feedback-title" 
+                    name="title" 
+                    placeholder="Brief description of your feedback"
+                    required
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="feedback-category">Category</label>
+                <select id="feedback-category" name="category" required>
+                    <option value="">Select a category...</option>
+                    <option value="virtual-garage">Virtual Garage</option>
+                    <option value="discord-bot">Discord Bot</option>
+                    <option value="communities">Communities</option>
+                    <option value="web-extension">Web Extension</option>
+                    <option value="mobile-app">Mobile App</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="feedback-details">Details</label>
+                <textarea 
+                    id="feedback-details" 
+                    name="details" 
+                    rows="8" 
+                    placeholder="Please provide as much detail as possible..."
+                    required
+                ></textarea>
+                <span class="char-count">0 / 1000 characters</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="feedback-email">Email (optional)</label>
+                <input 
+                    type="email" 
+                    id="feedback-email" 
+                    name="email" 
+                    placeholder="your@email.com"
+                >
+                <span class="form-note">Include if you'd like us to follow up with you</span>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Submit Feedback</button>
+                <button type="reset" class="btn-secondary">Clear Form</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Success Message -->
+    <section class="success-message" id="success-message" style="display: none;">
+        <div class="success-content">
+            <div class="success-icon">✅</div>
+            <h2>Thank You!</h2>
+            <p>Your feedback has been submitted successfully. We appreciate you taking the time to help us improve BikeNode.</p>
+            <button class="btn-secondary" onclick="resetForm()">Submit Another</button>
+        </div>
+    </section>
+
+    <!-- Recent Updates -->
+    <section class="recent-updates">
+        <h2>Recent Updates Based on Your Feedback</h2>
+        <div class="updates-list">
+            <div class="update-item">
+                <div class="update-icon">✨</div>
+                <div class="update-content">
+                    <h3>Bulk Photo Upload</h3>
+                    <p>You asked for it! Now upload multiple photos at once to your bike galleries.</p>
+                    <span class="update-date">Implemented 2 weeks ago</span>
+                </div>
+            </div>
+            
+            <div class="update-item">
+                <div class="update-icon">🔧</div>
+                <div class="update-content">
+                    <h3>Maintenance Cost Tracking</h3>
+                    <p>Track expenses for each maintenance record and see total costs over time.</p>
+                    <span class="update-date">Implemented 1 month ago</span>
+                </div>
+            </div>
+            
+            <div class="update-item">
+                <div class="update-icon">🤖</div>
+                <div class="update-content">
+                    <h3>Discord Bot Slash Commands</h3>
+                    <p>All bot commands now support Discord's slash command interface.</p>
+                    <span class="update-date">Implemented 1 month ago</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Preview -->
+    <section class="roadmap-section">
+        <h2>What We're Working On</h2>
+        <div class="roadmap-items">
+            <div class="roadmap-item">
+                <div class="roadmap-status in-progress">In Progress</div>
+                <h3>Mobile App</h3>
+                <p>Native iOS and Android apps for on-the-go access to your garage.</p>
+            </div>
+            
+            <div class="roadmap-item">
+                <div class="roadmap-status planned">Planned</div>
+                <h3>Ride Tracking</h3>
+                <p>GPS tracking for rides with route history and statistics.</p>
+            </div>
+            
+            <div class="roadmap-item">
+                <div class="roadmap-status planned">Planned</div>
+                <h3>Marketplace</h3>
+                <p>Buy, sell, and trade bikes within the BikeNode community.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+.feedback-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.feedback-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.header-content h2 {
+    color: var(--text-primary);
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+}
+
+.header-content p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.feedback-form-section {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 60px;
+}
+
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.form-group textarea {
+    resize: vertical;
+    font-family: inherit;
+    line-height: 1.5;
+}
+
+.char-count {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-align: right;
+}
+
+.form-note {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.form-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.success-message {
+    background: var(--card-bg);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 16px;
+    padding: 48px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.success-icon {
+    font-size: 4rem;
+    margin-bottom: 24px;
+}
+
+.success-content h2 {
+    color: var(--text-primary);
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+}
+
+.success-content p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 32px;
+}
+
+.recent-updates {
+    margin-bottom: 60px;
+}
+
+.recent-updates h2 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin-bottom: 32px;
+}
+
+.updates-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.update-item {
+    display: flex;
+    gap: 20px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.update-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.update-content {
+    flex: 1;
+}
+
+.update-content h3 {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.update-content p {
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.update-date {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.roadmap-section h2 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin-bottom: 32px;
+}
+
+.roadmap-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+.roadmap-item {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.roadmap-status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.roadmap-status.in-progress {
+    background: rgba(251, 191, 36, 0.2);
+    color: #fbbf24;
+}
+
+.roadmap-status.planned {
+    background: rgba(88, 101, 242, 0.2);
+    color: var(--accent);
+}
+
+.roadmap-item h3 {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.roadmap-item p {
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .feedback-form-section {
+        padding: 24px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .roadmap-items {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<script>
+// Character counter
+const textarea = document.getElementById('feedback-details');
+const charCount = document.querySelector('.char-count');
+
+textarea.addEventListener('input', function() {
+    const length = this.value.length;
+    charCount.textContent = `${length} / 1000 characters`;
+    
+    if (length > 1000) {
+        this.value = this.value.substring(0, 1000);
+        charCount.textContent = '1000 / 1000 characters';
+    }
+});
+
+// Form submission
+document.getElementById('feedback-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Collect form data
+    const formData = {
+        type: document.getElementById('feedback-type').value,
+        title: document.getElementById('feedback-title').value,
+        category: document.getElementById('feedback-category').value,
+        details: document.getElementById('feedback-details').value,
+        email: document.getElementById('feedback-email').value
+    };
+    
+    console.log('Feedback submitted:', formData);
+    
+    // Show success message
+    document.querySelector('.feedback-form-section').style.display = 'none';
+    document.getElementById('success-message').style.display = 'block';
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Reset form
+function resetForm() {
+    document.getElementById('feedback-form').reset();
+    document.querySelector('.char-count').textContent = '0 / 1000 characters';
+    document.querySelector('.feedback-form-section').style.display = 'block';
+    document.getElementById('success-message').style.display = 'none';
+}
+</script>

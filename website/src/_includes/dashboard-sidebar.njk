@@ -1,0 +1,87 @@
+<aside class="dashboard-sidebar">
+    <nav class="sidebar-nav">
+        <div class="nav-section">
+            <h3>Overview</h3>
+            <a href="/dashboard/" class="sidebar-link{% if page.url == '/dashboard/' %} active{% endif %}">
+                <span class="icon">📊</span>
+                Dashboard
+            </a>
+        </div>
+        
+        <div class="nav-section">
+            <h3>My Content</h3>
+            <a href="/profile/" class="sidebar-link{% if page.url.includes('/profile') %} active{% endif %}">
+                <span class="icon">👤</span>
+                My Profile
+            </a>
+            <a href="/virtual-garage-dashboard/" class="sidebar-link{% if page.url.includes('/virtual-garage') %} active{% endif %}">
+                <span class="icon">🏍️</span>
+                Virtual Garage
+            </a>
+            <a href="/discord-dashboard/" class="sidebar-link{% if page.url.includes('/discord-dashboard') %} active{% endif %}">
+                <span class="icon">💬</span>
+                Discord Servers
+            </a>
+            <a href="/communities-dashboard/" class="sidebar-link{% if page.url.includes('/communities-dashboard') %} active{% endif %}">
+                <span class="icon">👥</span>
+                Communities
+            </a>
+        </div>
+        
+        <div class="nav-section">
+            <h3>Administration</h3>
+            <a href="/admin-dashboard/" class="sidebar-link{% if page.url.includes('/admin-dashboard') %} active{% endif %}">
+                <span class="icon">⚙️</span>
+                Admin Panel
+            </a>
+            <a href="/report-management/" class="sidebar-link{% if page.url.includes('/report-management') %} active{% endif %}">
+                <span class="icon">🚨</span>
+                Reports
+            </a>
+            <a href="/security-center/" class="sidebar-link{% if page.url.includes('/security-center') %} active{% endif %}">
+                <span class="icon">🔒</span>
+                Security
+            </a>
+            <a href="/system-health/" class="sidebar-link{% if page.url.includes('/system-health') %} active{% endif %}">
+                <span class="icon">💻</span>
+                System Health
+            </a>
+        </div>
+        
+        <div class="nav-section">
+            <h3>Content & Users</h3>
+            <a href="/messaging-admin/" class="sidebar-link{% if page.url.includes('/messaging-admin') %} active{% endif %}">
+                <span class="icon">💬</span>
+                Messaging
+            </a>
+            <a href="/forum-management/" class="sidebar-link{% if page.url.includes('/forum-management') %} active{% endif %}">
+                <span class="icon">📝</span>
+                Forums
+            </a>
+            <a href="/user-analytics/" class="sidebar-link{% if page.url.includes('/user-analytics') %} active{% endif %}">
+                <span class="icon">👥</span>
+                User Analytics
+            </a>
+            <a href="/bot-management/" class="sidebar-link{% if page.url.includes('/bot-management') %} active{% endif %}">
+                <span class="icon">🤖</span>
+                Bot Management
+            </a>
+            <a href="/analytics-dashboard/" class="sidebar-link{% if page.url.includes('/analytics-dashboard') %} active{% endif %}">
+                <span class="icon">📈</span>
+                Analytics
+            </a>
+        </div>
+        
+        <div class="nav-section">
+            <h3>Settings</h3>
+            <a href="/account-settings/" class="sidebar-link{% if page.url.includes('/account-settings') %} active{% endif %}">
+                <span class="icon">👤</span>
+                Account
+            </a>
+            <a href="/notification-settings/" class="sidebar-link{% if page.url.includes('/notification-settings') %} active{% endif %}">
+                <span class="icon">🔔</span>
+                Notifications
+            </a>
+        </div>
+    </nav>
+</aside>

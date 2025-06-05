@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Send Feedback - BikeNode</title>
+    <meta name="description" content="Send feedback to BikeNode. Share your ideas, suggestions, and experiences to help us improve our Discord bot and community features.">
+    
+    <link rel="icon" type="image/png" href="./assets/images/bikenode_logo.png">
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/docs.css">
+</head>
+<body>
+    <!-- Background Animation Canvas -->
+    <canvas id="backgroundCanvas"></canvas>
+    
+    <!-- Header -->
+    <header class="docs-header">
+        <div class="header-content">
+            <div class="nav-brand">
+                <a href="./index.html">
+                    <img src="./assets/images/bikenode_logo.png" alt="BikeNode" class="logo">
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="./features.html" class="nav-link">Features</a>
+                <a href="./discord-bot.html" class="nav-link">Discord Bot</a>
+                <a href="./web-extension.html" class="nav-link">Web Extension</a>
+                <a href="./community.html" class="nav-link">Community</a>
+                <a href="./login.html" class="nav-link">Log In</a>
+                <a href="./signup.html" class="btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Documentation Layout -->
+    <div class="docs-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="docs-sidebar">
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3>Features</h3>
+                    <a href="./features.html" class="sidebar-link">Overview</a>
+                    <a href="./discord-bot.html" class="sidebar-link">Discord Bot</a>
+                    <a href="./virtual-garage.html" class="sidebar-link">Virtual Garage</a>
+                    <a href="./web-extension.html" class="sidebar-link">Web Extension</a>
+                    <a href="./community-tools.html" class="sidebar-link">Community Tools</a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Community</h3>
+                    <a href="./community.html" class="sidebar-link">Overview</a>
+                    <a href="https://discord.gg/JMCPCcnth4" class="sidebar-link external">Discord Server</a>
+                    <a href="./communities.html" class="sidebar-link">Partner Communities</a>
+                    <a href="./support.html" class="sidebar-link">Support</a>
+                    <a href="./feedback.html" class="sidebar-link active">Send Feedback</a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Company</h3>
+                    <a href="./about.html" class="sidebar-link">About BikeNode</a>
+                    <a href="/blog" class="sidebar-link">Blog</a>
+                    <a href="/careers" class="sidebar-link">Careers</a>
+                    <a href="/press" class="sidebar-link">Press</a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Legal</h3>
+                    <a href="./terms.html" class="sidebar-link">Terms of Service</a>
+                    <a href="./privacy.html" class="sidebar-link">Privacy Policy</a>
+                    <a href="./contact.html" class="sidebar-link">Contact</a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="docs-content">
+            <div class="content-header">
+                <h1>Send Feedback</h1>
+                <p class="content-subtitle">Help us improve BikeNode with your suggestions</p>
+            </div>
+
+            <div class="content-body">
+                <section class="content-section">
+                    <h2>We Value Your Input</h2>
+                    <p>Your feedback helps us build better features and create the bike community platform you actually want to use. Whether it's a feature request, bug report, or general suggestion, we want to hear from you.</p>
+                </section>
+
+                <section class="content-section">
+                    <h2>Types of Feedback We Love</h2>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <h3>Feature Requests</h3>
+                            <p>Got an idea for a new Discord bot command, Virtual Garage feature, or community tool? Tell us what would make your bike community better.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>User Experience</h3>
+                            <p>Is something confusing, hard to find, or not working as expected? Help us make BikeNode more intuitive and user-friendly.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>Bug Reports</h3>
+                            <p>Found something broken? Detailed bug reports help us fix issues quickly and improve reliability for everyone.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>Community Ideas</h3>
+                            <p>Ideas for better community integration, new bike types to support, or ways to connect riders more effectively.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2>Feedback Form</h2>
+                    <div class="feedback-form-container">
+                        <form class="feedback-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Name (Optional)</label>
+                                    <input type="text" id="name" name="name" placeholder="Your name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email (Optional)</label>
+                                    <input type="email" id="email" name="email" placeholder="your@email.com">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="feedback-type">Feedback Type *</label>
+                                <select id="feedback-type" name="feedback-type" required>
+                                    <option value="">Select feedback type</option>
+                                    <option value="feature-request">Feature Request</option>
+                                    <option value="bug-report">Bug Report</option>
+                                    <option value="ux-improvement">User Experience</option>
+                                    <option value="community-idea">Community Idea</option>
+                                    <option value="discord-bot">Discord Bot Feedback</option>
+                                    <option value="virtual-garage">Virtual Garage Feedback</option>
+                                    <option value="general">General Suggestion</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="bike-community">Your Bike Community (Optional)</label>
+                                <select id="bike-community" name="bike-community">
+                                    <option value="">Select your main bike interest</option>
+                                    <option value="road">Road Cycling</option>
+                                    <option value="mountain">Mountain Biking</option>
+                                    <option value="bmx">BMX</option>
+                                    <option value="sport">Sport Bikes</option>
+                                    <option value="cruiser">Cruisers</option>
+                                    <option value="touring">Touring</option>
+                                    <option value="enduro">Enduro</option>
+                                    <option value="scooter">Scooters</option>
+                                    <option value="ebike">E-Bikes</option>
+                                    <option value="emoto">E-Motorcycles</option>
+                                    <option value="mixed">Multiple Types</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Summary *</label>
+                                <input type="text" id="subject" name="subject" required placeholder="Brief summary of your feedback">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="feedback">Detailed Feedback *</label>
+                                <textarea id="feedback" name="feedback" rows="6" required placeholder="Please provide as much detail as possible. For bug reports, include steps to reproduce. For feature requests, describe the problem you're trying to solve and how you envision the solution working."></textarea>
+                            </div>
+                            
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" name="follow-up">
+                                    <span class="checkmark"></span>
+                                    I'd like to be contacted about this feedback
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary btn-large">Submit Feedback</button>
+                        </form>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2>Other Ways to Share Feedback</h2>
+                    <div class="feedback-methods">
+                        <div class="feedback-method">
+                            <h3>💬 Discord Community</h3>
+                            <p>Join our Discord server to discuss ideas with other users and get real-time feedback from our team.</p>
+                            <a href="https://discord.gg/JMCPCcnth4" class="btn-secondary">Join Discord</a>
+                        </div>
+                        
+                        <div class="feedback-method">
+                            <h3>🎯 Feature Voting</h3>
+                            <p>Vote on existing feature requests and see what other community members are asking for.</p>
+                            <a href="https://discord.gg/JMCPCcnth4" class="btn-secondary">Vote on Features</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2>What Happens Next?</h2>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>We Review</h3>
+                                <p>Our team reviews all feedback within 1-2 business days and categorizes it for prioritization.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Community Discussion</h3>
+                                <p>Popular suggestions get discussed with the community to gather broader input and refinement.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Development</h3>
+                                <p>Approved features enter our development roadmap and you'll be notified of progress if you requested follow-up.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="./assets/js/background.js"></script>
+    
+    <style>
+        .feedback-form-container {
+            max-width: 700px;
+            margin: 2rem 0;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: var(--text-primary);
+            font-size: 16px;
+            font-family: inherit;
+            transition: border-color 0.2s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .checkbox-group label {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+        
+        .feedback-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .feedback-method {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        .feedback-method h3 {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .feedback-method p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .feedback-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</body>
+</html>

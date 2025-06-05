@@ -1,0 +1,714 @@
+---
+layout: dashboard.njk
+title: Analytics Dashboard
+subtitle: Community engagement and performance metrics
+---
+
+<div class="analytics-content">
+    <!-- Key Metrics -->
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-header">
+                <h3>Total Users</h3>
+                <span class="metric-trend up">+12.5%</span>
+            </div>
+            <div class="metric-value">2,847</div>
+            <div class="metric-subtitle">vs last month</div>
+        </div>
+        
+        <div class="metric-card">
+            <div class="metric-header">
+                <h3>Active Communities</h3>
+                <span class="metric-trend up">+8.3%</span>
+            </div>
+            <div class="metric-value">47</div>
+            <div class="metric-subtitle">vs last month</div>
+        </div>
+        
+        <div class="metric-card">
+            <div class="metric-header">
+                <h3>Messages Sent</h3>
+                <span class="metric-trend up">+15.7%</span>
+            </div>
+            <div class="metric-value">18.2k</div>
+            <div class="metric-subtitle">this month</div>
+        </div>
+        
+        <div class="metric-card">
+            <div class="metric-header">
+                <h3>Bikes Added</h3>
+                <span class="metric-trend up">+22.1%</span>
+            </div>
+            <div class="metric-value">1,234</div>
+            <div class="metric-subtitle">this month</div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="charts-section">
+        <div class="chart-container">
+            <div class="chart-header">
+                <h3>User Growth</h3>
+                <div class="chart-controls">
+                    <button class="chart-btn active">7D</button>
+                    <button class="chart-btn">30D</button>
+                    <button class="chart-btn">90D</button>
+                </div>
+            </div>
+            <div class="chart-placeholder">
+                <div class="chart-mock">
+                    <svg viewBox="0 0 400 200" class="chart-svg">
+                        <polyline fill="none" stroke="var(--accent)" stroke-width="2" 
+                                  points="20,180 60,160 100,140 140,120 180,100 220,80 260,60 300,40 340,20 380,10"/>
+                        <circle cx="380" cy="10" r="4" fill="var(--accent)"/>
+                    </svg>
+                </div>
+                <div class="chart-stats">
+                    <div class="chart-stat">
+                        <div class="stat-dot" style="background: var(--accent)"></div>
+                        <span>New Users: 342 this week</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-header">
+                <h3>Community Engagement</h3>
+                <div class="chart-controls">
+                    <button class="chart-btn">Messages</button>
+                    <button class="chart-btn active">Reactions</button>
+                    <button class="chart-btn">Shares</button>
+                </div>
+            </div>
+            <div class="chart-placeholder">
+                <div class="engagement-bars">
+                    <div class="bar-item">
+                        <div class="bar" style="height: 80%"></div>
+                        <span class="bar-label">Mon</span>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar" style="height: 65%"></div>
+                        <span class="bar-label">Tue</span>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar" style="height: 90%"></div>
+                        <span class="bar-label">Wed</span>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar" style="height: 75%"></div>
+                        <span class="bar-label">Thu</span>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar" style="height: 95%"></div>
+                        <span class="bar-label">Fri</span>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar" style="height: 60%"></div>
+                        <span class="bar-label">Sat</span>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar" style="height: 45%"></div>
+                        <span class="bar-label">Sun</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Communities -->
+    <div class="top-communities">
+        <h3>Top Performing Communities</h3>
+        <div class="communities-table">
+            <div class="table-header">
+                <span>Community</span>
+                <span>Members</span>
+                <span>Growth</span>
+                <span>Engagement</span>
+                <span>Messages</span>
+            </div>
+            <div class="table-row">
+                <div class="community-cell">
+                    <div class="community-icon">SB</div>
+                    <span>Sport Bike Riders</span>
+                </div>
+                <span class="member-count">1,234</span>
+                <span class="growth positive">+8.2%</span>
+                <span class="engagement high">94%</span>
+                <span class="message-count">2.1k</span>
+            </div>
+            <div class="table-row">
+                <div class="community-cell">
+                    <div class="community-icon">MT</div>
+                    <span>Mountain Bike Central</span>
+                </div>
+                <span class="member-count">856</span>
+                <span class="growth positive">+5.7%</span>
+                <span class="engagement high">87%</span>
+                <span class="message-count">1.8k</span>
+            </div>
+            <div class="table-row">
+                <div class="community-cell">
+                    <div class="community-icon">CR</div>
+                    <span>Cruiser Nation</span>
+                </div>
+                <span class="member-count">432</span>
+                <span class="growth positive">+3.1%</span>
+                <span class="engagement medium">72%</span>
+                <span class="message-count">890</span>
+            </div>
+            <div class="table-row">
+                <div class="community-cell">
+                    <div class="community-icon">RD</div>
+                    <span>Road Cycling Pro</span>
+                </div>
+                <span class="member-count">298</span>
+                <span class="growth negative">-1.2%</span>
+                <span class="engagement medium">68%</span>
+                <span class="message-count">456</span>
+            </div>
+            <div class="table-row">
+                <div class="community-cell">
+                    <div class="community-icon">EB</div>
+                    <span>E-Bike Enthusiasts</span>
+                </div>
+                <span class="member-count">187</span>
+                <span class="growth positive">+12.4%</span>
+                <span class="engagement high">91%</span>
+                <span class="message-count">623</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Geographic Distribution -->
+    <div class="geographic-section">
+        <h3>User Distribution</h3>
+        <div class="geo-grid">
+            <div class="geo-chart">
+                <div class="geo-placeholder">
+                    <div class="geo-region">
+                        <span class="region-name">North America</span>
+                        <span class="region-percentage">42%</span>
+                        <div class="region-bar">
+                            <div class="region-fill" style="width: 42%"></div>
+                        </div>
+                    </div>
+                    <div class="geo-region">
+                        <span class="region-name">Europe</span>
+                        <span class="region-percentage">28%</span>
+                        <div class="region-bar">
+                            <div class="region-fill" style="width: 28%"></div>
+                        </div>
+                    </div>
+                    <div class="geo-region">
+                        <span class="region-name">Asia Pacific</span>
+                        <span class="region-percentage">18%</span>
+                        <div class="region-bar">
+                            <div class="region-fill" style="width: 18%"></div>
+                        </div>
+                    </div>
+                    <div class="geo-region">
+                        <span class="region-name">South America</span>
+                        <span class="region-percentage">8%</span>
+                        <div class="region-bar">
+                            <div class="region-fill" style="width: 8%"></div>
+                        </div>
+                    </div>
+                    <div class="geo-region">
+                        <span class="region-name">Africa</span>
+                        <span class="region-percentage">4%</span>
+                        <div class="region-bar">
+                            <div class="region-fill" style="width: 4%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="geo-stats">
+                <h4>Top Countries</h4>
+                <div class="country-list">
+                    <div class="country-item">
+                        <span class="country-flag">🇺🇸</span>
+                        <span class="country-name">United States</span>
+                        <span class="country-users">1,247 users</span>
+                    </div>
+                    <div class="country-item">
+                        <span class="country-flag">🇩🇪</span>
+                        <span class="country-name">Germany</span>
+                        <span class="country-users">328 users</span>
+                    </div>
+                    <div class="country-item">
+                        <span class="country-flag">🇬🇧</span>
+                        <span class="country-name">United Kingdom</span>
+                        <span class="country-users">267 users</span>
+                    </div>
+                    <div class="country-item">
+                        <span class="country-flag">🇨🇦</span>
+                        <span class="country-name">Canada</span>
+                        <span class="country-users">198 users</span>
+                    </div>
+                    <div class="country-item">
+                        <span class="country-flag">🇦🇺</span>
+                        <span class="country-name">Australia</span>
+                        <span class="country-users">156 users</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Options -->
+    <div class="export-section">
+        <h3>Export Reports</h3>
+        <div class="export-grid">
+            <button class="export-btn">
+                <div class="export-icon">📊</div>
+                <span>Download CSV Report</span>
+            </button>
+            <button class="export-btn">
+                <div class="export-icon">📈</div>
+                <span>Generate PDF Summary</span>
+            </button>
+            <button class="export-btn">
+                <div class="export-icon">📧</div>
+                <span>Email Monthly Report</span>
+            </button>
+            <button class="export-btn">
+                <div class="export-icon">🔗</div>
+                <span>Share Analytics Link</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+.analytics-content {
+    max-width: 1200px;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.metric-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.metric-header h3 {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.metric-trend {
+    font-size: 0.8rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.metric-trend.up {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.metric-trend.down {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+.metric-value {
+    color: var(--text-primary);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.metric-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.charts-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.chart-container {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.chart-header h3 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.chart-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.chart-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-secondary);
+    padding: 4px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.chart-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.chart-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.chart-placeholder {
+    height: 200px;
+    position: relative;
+}
+
+.chart-svg {
+    width: 100%;
+    height: 160px;
+}
+
+.chart-stats {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.chart-stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.stat-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.engagement-bars {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    height: 160px;
+    padding: 0 20px;
+}
+
+.bar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.bar {
+    width: 24px;
+    background: var(--accent);
+    border-radius: 4px 4px 0 0;
+    min-height: 20px;
+}
+
+.bar-label {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.top-communities {
+    margin-bottom: 40px;
+}
+
+.top-communities h3 {
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    font-size: 1.25rem;
+}
+
+.communities-table {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table-header,
+.table-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    padding: 16px 24px;
+    align-items: center;
+}
+
+.table-header {
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+.community-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.community-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.community-cell span {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.member-count,
+.message-count {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.growth {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.growth.positive {
+    color: #10b981;
+}
+
+.growth.negative {
+    color: #ef4444;
+}
+
+.engagement {
+    font-weight: 500;
+}
+
+.engagement.high {
+    color: #10b981;
+}
+
+.engagement.medium {
+    color: #f59e0b;
+}
+
+.engagement.low {
+    color: #ef4444;
+}
+
+.geographic-section {
+    margin-bottom: 40px;
+}
+
+.geographic-section h3 {
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    font-size: 1.25rem;
+}
+
+.geo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.geo-chart,
+.geo-stats {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.geo-region {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.region-name {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.region-percentage {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: right;
+}
+
+.region-bar {
+    grid-column: 1 / -1;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.region-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.geo-stats h4 {
+    color: var(--text-primary);
+    margin: 0 0 16px 0;
+    font-size: 1rem;
+}
+
+.country-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.country-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.country-flag {
+    font-size: 1.2rem;
+}
+
+.country-name {
+    flex: 1;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.country-users {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.export-section h3 {
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    font-size: 1.25rem;
+}
+
+.export-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.export-btn {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+}
+
+.export-btn:hover {
+    border-color: var(--accent);
+    background: rgba(88, 101, 242, 0.05);
+}
+
+.export-icon {
+    font-size: 1.5rem;
+}
+
+.export-btn span {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .charts-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .table-header,
+    .table-row {
+        grid-template-columns: 2fr 1fr 1fr;
+        font-size: 0.8rem;
+    }
+    
+    .geo-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .export-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+</style>

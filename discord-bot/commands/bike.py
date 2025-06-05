@@ -339,6 +339,7 @@ class BikeCommands(commands.Cog):
             
             # Create the year selection menu
             view = YearSelectionView(self, ctx)
+            await view.initialize_data()
             await ctx.send("Select a motorcycle year:", view=view)
             
         except Exception as e:
@@ -350,6 +351,12 @@ class BikeCommands(commands.Cog):
     async def get_years_from_db(self):
         """Get list of years from database"""
         try:
+            # Ensure database is connected
+            if not self.db.connection:
+                if not self.db.connect():
+                    logger.error("Failed to connect to database in get_years_from_db")
+                    return []
+            
             cursor = self.db.connection.cursor()
             cursor.execute("SELECT DISTINCT year FROM motorcycles ORDER BY year DESC")
             results = cursor.fetchall()
@@ -471,6 +478,49 @@ class BikeCommands(commands.Cog):
         except Exception as e:
             await ctx.send(f"Error retrieving bike statistics: {str(e)}")
 
+    @commands.command(name="message")
+    async def send_message(self, ctx, *, message_content: str = None):
+        """Send a message that can be read by Claude Code
+        
+        Usage: !bike message Your message here
+        """
+        if not message_content:
+            await ctx.send("Please provide a message to send. Usage: `!bike message Your message here`")
+            return
+        
+        # Create a log file for messages if it doesn't exist
+        log_dir = Path(__file__).parent.parent / 'data'
+        log_dir.mkdir(exist_ok=True)
+        log_file = log_dir / 'claude_messages.log'
+        
+        # Format the message with timestamp and user info
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        user_info = f"{ctx.author.name}#{ctx.author.discriminator} ({ctx.author.id})"
+        server_info = f"{ctx.guild.name} ({ctx.guild.id})" if ctx.guild else "DM"
+        
+        log_entry = f"[{timestamp}] {user_info} in {server_info}: {message_content}\n"
+        
+        try:
+            # Append the message to the log file
+            with open(log_file, 'a', encoding='utf-8') as f:
+                f.write(log_entry)
+            
+            # Send confirmation
+            embed = discord.Embed(
+                title="Message Sent to Claude Code",
+                description=f"Your message has been logged for Claude Code to read.",
+                color=discord.Color.green()
+            )
+            embed.add_field(name="Message", value=message_content[:1000], inline=False)
+            embed.add_field(name="Timestamp", value=timestamp, inline=True)
+            embed.set_footer(text="Messages are stored in data/claude_messages.log")
+            
+            await ctx.send(embed=embed)
+            
+        except Exception as e:
+            logger.error(f"Error logging message: {e}")
+            await ctx.send("❌ Failed to log message. Please try again later.")
+
 def format_bike_results(df, is_sample=False):
     """Format motorcycle results for display in Discord"""
     results = []
@@ -496,7 +546,12 @@ class YearSelectionView(ui.View):
         self.bike_commands = bike_commands
         self.ctx = ctx
         self.page = 0
-        self.add_item(YearSelect(bike_commands, self))
+        self.year_select = YearSelect(bike_commands, self)
+        self.add_item(self.year_select)
+    
+    async def initialize_data(self):
+        """Initialize the year selection data asynchronously"""
+        await self.year_select.load_years_data()
         
     async def on_timeout(self):
         try:
@@ -513,30 +568,48 @@ class YearSelect(ui.Select):
     def __init__(self, bike_commands, parent_view):
         self.bike_commands = bike_commands
         self.parent_view = parent_view
+        self.years = []  # Initialize empty, will be loaded async
         
-        # Get years from database
-        self.years = asyncio.run_coroutine_threadsafe(
-            bike_commands.get_years_from_db(), 
-            bike_commands.bot.loop
-        ).result()
+        # Initialize with placeholder until data loads
+        super().__init__(
+            placeholder="Loading years...",
+            min_values=1,
+            max_values=1,
+            options=[discord.SelectOption(label="Loading...", value="loading")]
+        )
         
-        # Handle pagination
-        items_per_page = 25  # Discord's max options in a dropdown
-        self.total_pages = math.ceil(len(self.years) / items_per_page)
-        start_idx = parent_view.page * items_per_page
-        end_idx = min(start_idx + items_per_page, len(self.years))
-        
-        # Create the dropdown options
-        options = [
-            discord.SelectOption(
-                label=str(self.years[i]),
-                value=str(self.years[i])
-            )
-            for i in range(start_idx, end_idx)
-        ]
-        
-        placeholder = f"Select Year (Page {parent_view.page + 1}/{self.total_pages})"
-        super().__init__(placeholder=placeholder, min_values=1, max_values=1, options=options)
+    async def load_years_data(self):
+        """Load years data asynchronously and update the select options"""
+        try:
+            # Get years from database
+            self.years = await self.bike_commands.get_years_from_db()
+            
+            # Handle pagination
+            items_per_page = 25  # Discord's max options in a dropdown
+            self.total_pages = math.ceil(len(self.years) / items_per_page)
+            start_idx = self.parent_view.page * items_per_page
+            end_idx = min(start_idx + items_per_page, len(self.years))
+            
+            # Create the dropdown options
+            options = [
+                discord.SelectOption(
+                    label=str(self.years[i]),
+                    value=str(self.years[i])
+                )
+                for i in range(start_idx, end_idx)
+            ]
+            
+            placeholder = f"Select Year (Page {self.parent_view.page + 1}/{self.total_pages})"
+            
+            # Update the select with new options
+            self.placeholder = placeholder
+            self.options = options
+            
+        except Exception as e:
+            logger.error(f"Error loading years data: {e}")
+            # Fallback to error message
+            self.placeholder = "Error loading years"
+            self.options = [discord.SelectOption(label="Error loading data", value="error")]
         
         # Add pagination buttons if needed
         if self.total_pages > 1:
@@ -586,6 +659,7 @@ class PaginationButton(ui.Button):
         # Create new view with updated page
         new_view = YearSelectionView(self.view.bike_commands, self.view.ctx)
         new_view.page = self.view.page
+        await new_view.initialize_data()
         
         await interaction.response.edit_message(
             content=f"Select a motorcycle year (Page {new_view.page + 1}):",
@@ -728,6 +802,7 @@ class BackToYearsButton(ui.Button):
             
         # Create new year selection view
         new_view = YearSelectionView(self.bike_commands, self.ctx)
+        await new_view.initialize_data()
         
         await interaction.response.edit_message(
             content="Select a motorcycle year:",

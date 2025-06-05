@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Virtual Garage - BikeNode Dashboard</title>
+    <meta name="description" content="Manage your virtual garage. Add bikes, upload photos, track maintenance, and share with communities.">
+    
+    <link rel="icon" type="image/png" href="./assets/images/bikenode_logo.png">
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/dashboard.css">
+</head>
+<body>
+    <!-- Background Animation Canvas -->
+    <canvas id="backgroundCanvas"></canvas>
+    
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="nav-brand">
+                <a href="./index.html">
+                    <img src="./assets/images/bikenode_logo.png" alt="BikeNode" class="logo">
+                </a>
+            </div>
+            <div class="header-nav">
+                <a href="./dashboard.html" class="nav-link">Dashboard</a>
+                <a href="./virtual-garage-dashboard.html" class="nav-link active">Virtual Garage</a>
+                <a href="./discord-dashboard.html" class="nav-link">Discord</a>
+                <a href="./communities-dashboard.html" class="nav-link">Communities</a>
+            </div>
+            <div class="header-user">
+                <div class="user-avatar">
+                    <img src="./assets/images/bikenode_logo.png" alt="User Avatar">
+                </div>
+                <div class="user-menu">
+                    <span class="username">RiderName</span>
+                    <div class="dropdown">
+                        <a href="./account-settings.html">Account Settings</a>
+                        <a href="./index.html">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Layout -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3>Overview</h3>
+                    <a href="./dashboard.html" class="sidebar-link">
+                        <span class="icon">📊</span>
+                        Dashboard
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>My Content</h3>
+                    <a href="./virtual-garage-dashboard.html" class="sidebar-link active">
+                        <span class="icon">🏍️</span>
+                        Virtual Garage
+                    </a>
+                    <a href="./discord-dashboard.html" class="sidebar-link">
+                        <span class="icon">💬</span>
+                        Discord Servers
+                    </a>
+                    <a href="./communities-dashboard.html" class="sidebar-link">
+                        <span class="icon">👥</span>
+                        Communities
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Administration</h3>
+                    <a href="./admin-dashboard.html" class="sidebar-link">
+                        <span class="icon">⚙️</span>
+                        Admin Panel
+                    </a>
+                    <a href="./bot-management.html" class="sidebar-link">
+                        <span class="icon">🤖</span>
+                        Bot Management
+                    </a>
+                    <a href="./analytics-dashboard.html" class="sidebar-link">
+                        <span class="icon">📈</span>
+                        Analytics
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Settings</h3>
+                    <a href="./account-settings.html" class="sidebar-link">
+                        <span class="icon">👤</span>
+                        Account
+                    </a>
+                    <a href="./notification-settings.html" class="sidebar-link">
+                        <span class="icon">🔔</span>
+                        Notifications
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <div class="content-header">
+                <div class="header-actions">
+                    <div>
+                        <h1>Virtual Garage</h1>
+                        <p class="content-subtitle">Manage your bikes, photos, and maintenance records</p>
+                    </div>
+                    <a href="./add-bike.html" class="btn-primary">
+                        <span>➕</span>
+                        Add New Bike
+                    </a>
+                </div>
+            </div>
+
+            <div class="garage-content">
+                <!-- Garage Stats -->
+                <div class="garage-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">🏍️</div>
+                        <div class="stat-content">
+                            <h3>5</h3>
+                            <p>Total Bikes</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📸</div>
+                        <div class="stat-content">
+                            <h3>24</h3>
+                            <p>Photos Uploaded</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔧</div>
+                        <div class="stat-content">
+                            <h3>12</h3>
+                            <p>Maintenance Records</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-content">
+                            <h3>8</h3>
+                            <p>Communities Shared</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter and Search -->
+                <div class="garage-filters">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search your bikes..." class="search-input">
+                        <button class="search-btn">🔍</button>
+                    </div>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active">All Bikes</button>
+                        <span class="filter-divider">|</span>
+                        <button class="filter-btn">Motorcycles</button>
+                        <button class="filter-btn">Bicycles</button>
+                        <button class="filter-btn">eBikes</button>
+                        <span class="filter-divider">|</span>
+                        <button class="filter-btn">Sport Bikes</button>
+                        <button class="filter-btn">Cruisers</button>
+                        <button class="filter-btn">Mountain Bikes</button>
+                    </div>
+                </div>
+
+                <!-- Bikes Grid -->
+                <div class="bikes-grid">
+                    <div class="bike-card">
+                        <div class="bike-image">
+                            <img src="./assets/images/bikenode_logo.png" alt="2023 Sport Bike">
+                            <div class="bike-overlay">
+                                <button class="btn-secondary small">View Details</button>
+                                <button class="btn-secondary small">Edit</button>
+                            </div>
+                        </div>
+                        <div class="bike-info">
+                            <h3>2023 Yamaha YZF-R1</h3>
+                            <p class="bike-type">Sport Bike</p>
+                            <div class="bike-stats">
+                                <span class="stat">📸 8 photos</span>
+                                <span class="stat">🔧 3 records</span>
+                                <span class="stat">👥 Shared with 4 communities</span>
+                            </div>
+                            <div class="bike-actions">
+                                <a href="./bike-details.html" class="action-link">View Details</a>
+                                <a href="./edit-bike.html" class="action-link">Edit</a>
+                                <a href="./bike-maintenance.html" class="action-link">Maintenance</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bike-card">
+                        <div class="bike-image">
+                            <img src="./assets/images/bikenode_logo.png" alt="2022 Mountain Bike">
+                            <div class="bike-overlay">
+                                <button class="btn-secondary small">View Details</button>
+                                <button class="btn-secondary small">Edit</button>
+                            </div>
+                        </div>
+                        <div class="bike-info">
+                            <h3>2022 Trek Fuel EX 8</h3>
+                            <p class="bike-type">Mountain Bike</p>
+                            <div class="bike-stats">
+                                <span class="stat">📸 12 photos</span>
+                                <span class="stat">🔧 5 records</span>
+                                <span class="stat">👥 Shared with 2 communities</span>
+                            </div>
+                            <div class="bike-actions">
+                                <a href="./bike-details.html" class="action-link">View Details</a>
+                                <a href="./edit-bike.html" class="action-link">Edit</a>
+                                <a href="./bike-maintenance.html" class="action-link">Maintenance</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bike-card">
+                        <div class="bike-image">
+                            <img src="./assets/images/bikenode_logo.png" alt="2021 Cruiser">
+                            <div class="bike-overlay">
+                                <button class="btn-secondary small">View Details</button>
+                                <button class="btn-secondary small">Edit</button>
+                            </div>
+                        </div>
+                        <div class="bike-info">
+                            <h3>2021 Harley Street Glide</h3>
+                            <p class="bike-type">Cruiser</p>
+                            <div class="bike-stats">
+                                <span class="stat">📸 6 photos</span>
+                                <span class="stat">🔧 2 records</span>
+                                <span class="stat">👥 Shared with 3 communities</span>
+                            </div>
+                            <div class="bike-actions">
+                                <a href="./bike-details.html" class="action-link">View Details</a>
+                                <a href="./edit-bike.html" class="action-link">Edit</a>
+                                <a href="./bike-maintenance.html" class="action-link">Maintenance</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bike-card">
+                        <div class="bike-image">
+                            <img src="./assets/images/bikenode_logo.png" alt="2023 E-Bike">
+                            <div class="bike-overlay">
+                                <button class="btn-secondary small">View Details</button>
+                                <button class="btn-secondary small">Edit</button>
+                            </div>
+                        </div>
+                        <div class="bike-info">
+                            <h3>2023 Giant Trance E+ 2</h3>
+                            <p class="bike-type">E-Mountain Bike</p>
+                            <div class="bike-stats">
+                                <span class="stat">📸 4 photos</span>
+                                <span class="stat">🔧 1 record</span>
+                                <span class="stat">👥 Shared with 1 community</span>
+                            </div>
+                            <div class="bike-actions">
+                                <a href="./bike-details.html" class="action-link">View Details</a>
+                                <a href="./edit-bike.html" class="action-link">Edit</a>
+                                <a href="./bike-maintenance.html" class="action-link">Maintenance</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bike-card">
+                        <div class="bike-image">
+                            <img src="./assets/images/bikenode_logo.png" alt="2020 Road Bike">
+                            <div class="bike-overlay">
+                                <button class="btn-secondary small">View Details</button>
+                                <button class="btn-secondary small">Edit</button>
+                            </div>
+                        </div>
+                        <div class="bike-info">
+                            <h3>2020 Specialized Tarmac</h3>
+                            <p class="bike-type">Road Bike</p>
+                            <div class="bike-stats">
+                                <span class="stat">📸 9 photos</span>
+                                <span class="stat">🔧 4 records</span>
+                                <span class="stat">👥 Shared with 2 communities</span>
+                            </div>
+                            <div class="bike-actions">
+                                <a href="./bike-details.html" class="action-link">View Details</a>
+                                <a href="./edit-bike.html" class="action-link">Edit</a>
+                                <a href="./bike-maintenance.html" class="action-link">Maintenance</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add New Bike Card -->
+                    <div class="bike-card add-bike-card">
+                        <a href="./add-bike.html" class="add-bike-content">
+                            <div class="add-bike-icon">➕</div>
+                            <h3>Add New Bike</h3>
+                            <p>Upload photos and specifications for another bike in your collection</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="./assets/js/background.js"></script>
+    
+    <style>
+        .header-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 32px;
+        }
+        
+        .garage-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .garage-filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            gap: 24px;
+        }
+        
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 0;
+            min-width: 300px;
+        }
+        
+        .search-input {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 12px 16px;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+        
+        .search-input:focus {
+            outline: none;
+        }
+        
+        .search-btn {
+            background: none;
+            border: none;
+            padding: 12px 16px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        
+        .filter-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--accent);
+        }
+        
+        .filter-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        
+        .filter-divider {
+            color: rgba(255, 255, 255, 0.3);
+            font-weight: 300;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            margin: 0 8px;
+        }
+        
+        .bikes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        
+        .bike-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .bike-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+        
+        .bike-image {
+            position: relative;
+            aspect-ratio: 16/10;
+            overflow: hidden;
+        }
+        
+        .bike-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .bike-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .bike-card:hover .bike-overlay {
+            opacity: 1;
+        }
+        
+        .btn-secondary.small {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+        
+        .bike-info {
+            padding: 20px;
+        }
+        
+        .bike-info h3 {
+            color: var(--text-primary);
+            margin: 0 0 4px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .bike-type {
+            color: var(--accent);
+            margin: 0 0 12px 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .bike-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 16px;
+        }
+        
+        .stat {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+        
+        .bike-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .action-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .action-link:hover {
+            text-decoration: underline;
+        }
+        
+        .add-bike-card {
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            background: transparent;
+        }
+        
+        .add-bike-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            height: 100%;
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: color 0.2s ease;
+        }
+        
+        .add-bike-content:hover {
+            color: var(--text-primary);
+        }
+        
+        .add-bike-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            opacity: 0.6;
+        }
+        
+        .add-bike-content h3 {
+            color: inherit;
+            margin: 0 0 8px 0;
+            font-size: 1.1rem;
+        }
+        
+        .add-bike-content p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header-actions {
+                flex-direction: column;
+                gap: 16px;
+                align-items: stretch;
+            }
+            
+            .garage-filters {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .search-bar {
+                min-width: auto;
+            }
+            
+            .filter-buttons {
+                flex-wrap: wrap;
+            }
+            
+            .bikes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</body>
+</html>

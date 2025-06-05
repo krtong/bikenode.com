@@ -1,0 +1,13 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% if title %}{{ title }} - BikeNode{% else %}BikeNode{% endif %}</title>
+<meta name="description" content="{% if description %}{{ description }}{% else %}BikeNode - The ultimate platform for bike enthusiasts to connect, share, and discover.{% endif %}">
+
+<link rel="icon" type="image/png" href="/assets/images/bikenode_logo.png">
+<link rel="stylesheet" href="/assets/css/index.css">
+{% if page.url.includes('/dashboard') or page.url.includes('/bot-management') or page.url.includes('/admin') or page.url.includes('/account') or page.url.includes('/notification') or page.url.includes('/analytics') or page.url.includes('/virtual-garage') or page.url.includes('/discord-dashboard') or page.url.includes('/communities-dashboard') or page.url.includes('/add-bike') or page.url.includes('/profile') or page.url.includes('/bike-details') or page.url.includes('/edit-bike') or page.url.includes('/bike-maintenance') or page.url.includes('/add-photos') or page.url.includes('/messaging-admin') or page.url.includes('/forum-management') or page.url.includes('/user-analytics') or page.url.includes('/report-management') or page.url.includes('/security-center') or page.url.includes('/system-health') %}
+<link rel="stylesheet" href="/assets/css/dashboard.css">
+{% endif %}
+{% if page.url.includes('/docs') or page.url.includes('/blog') or page.url.includes('/about') or page.url.includes('/features') or page.url.includes('/community') %}
+<link rel="stylesheet" href="/assets/css/docs.css">
+{% endif %}

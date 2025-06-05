@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Logo Verification</title>
+  <style>
+    .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 20px; }
+    .logo-item { border: 2px solid #ccc; padding: 10px; text-align: center; }
+    .logo-item img { max-width: 200px; max-height: 150px; }
+    .suspicious { border-color: red; }
+    .verified { border-color: green; }
+  </style>
+</head>
+<body>
+  <h1>Motorcycle Logo Verification</h1>
+  
+  <h2>Suspicious Logos</h2>
+  <div class="logo-grid">
+    <div class="logo-item suspicious">
+      <h3>ABC</h3>
+      <img src="abc.png" />
+      <p>Check: Does this look like a motorcycle brand?</p>
+    </div>
+    <div class="logo-item suspicious">
+      <h3>Access</h3>
+      <img src="access.png" />
+      <p>Check: Does this look like a motorcycle brand?</p>
+    </div>
+    <div class="logo-item suspicious">
+      <h3>Abarth</h3>
+      <img src="abarth.png" />
+      <p>Check: Does this look like a motorcycle brand?</p>
+    </div>
+  </div>
+  
+  <h2>Verified Logos</h2>
+  <div class="logo-grid">
+    <div class="logo-item verified">
+      <h3>Honda</h3>
+      <img src="honda.png" />
+    </div>
+    <div class="logo-item verified">
+      <h3>Yamaha</h3>
+      <img src="yamaha.png" />
+    </div>
+    <div class="logo-item verified">
+      <h3>Ducati</h3>
+      <img src="ducati.png" />
+    </div>
+  </div>
+</body>
+</html>

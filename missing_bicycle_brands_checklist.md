@@ -1,0 +1,240 @@
+# Missing Bicycle Brands Checklist
+
+Generated on: 2025-06-04T23:04:43.847Z
+
+Total brands in maker_ids.js: 381
+Total brands in bicycle_brands.js: 154
+Missing brands: 230
+
+## Missing Brands:
+
+- [ ] 1. **geometron** - Geometron
+- [ ] 2. **gepida** - Gepida
+- [ ] 3. **ghost** - Ghost
+- [ ] 4. **giant** - Giant
+- [ ] 5. **globber** - Globber
+- [ ] 6. **gocycle** - Gocycle
+- [ ] 7. **gopower** - GoPower
+- [ ] 8. **growlerbikes** - Growler Bikes
+- [ ] 9. **gt** - GT
+- [ ] 10. **guerrillagravity** - Guerrilla Gravity
+- [ ] 11. **guru** - Guru
+- [ ] 12. **haro** - Haro
+- [ ] 13. **head** - HEAD
+- [ ] 14. **himiway** - Himiway
+- [ ] 15. **holdsworth** - Holdsworth
+- [ ] 16. **hopetechnology** - Hope Technology
+- [ ] 17. **hudski** - Hudski
+- [ ] 18. **huffy** - Huffy
+- [ ] 19. **husqvarna** - Husqvarna
+- [ ] 20. **ibis** - Ibis
+- [ ] 21. **igoelectric** - iGO Electric
+- [ ] 22. **intense** - Intense
+- [ ] 23. **intense951** - Intense 951
+- [ ] 24. **izip** - iZIP
+- [ ] 25. **jamis** - Jamis
+- [ ] 26. **jetson** - Jetson
+- [ ] 27. **juicedbikes** - Juiced Bikes
+- [ ] 28. **juliana** - Juliana
+- [ ] 29. **jupiterbike** - JupiterBike
+- [ ] 30. **k2** - K2
+- [ ] 31. **kavenz** - Kavenz
+- [ ] 32. **kellys** - Kellys
+- [ ] 33. **kestrel** - Kestrel
+- [ ] 34. **kettler** - Kettler
+- [ ] 35. **khs** - KHS
+- [ ] 36. **kidsrideshotgun** - Kids Ride Shotgun
+- [ ] 37. **knolly** - Knolly
+- [ ] 38. **kona** - Kona
+- [ ] 39. **ktm** - KTM
+- [ ] 40. **kuota** - Kuota
+- [ ] 41. **lapierre** - Lapierre
+- [ ] 42. **last** - Last
+- [ ] 43. **lauf** - Lauf
+- [ ] 44. **lectric** - Lectric
+- [ ] 45. **lectricebikes** - Lectric eBikes
+- [ ] 46. **leecougan** - Lee Cougan
+- [ ] 47. **lekker** - Lekker
+- [ ] 48. **lemondbicycles** - LeMond Bicycles
+- [ ] 49. **libertytrike** - Liberty Trike
+- [ ] 50. **lightweight** - Lightweight
+- [ ] 51. **litespeed** - Litespeed
+- [ ] 52. **liteville** - Liteville
+- [ ] 53. **liv** - Liv
+- [ ] 54. **lombardo** - Lombardo
+- [ ] 55. **look** - Look
+- [ ] 56. **lynskey** - Lynskey
+- [ ] 57. **m2s** - M2S
+- [ ] 58. **magnum** - Magnum
+- [ ] 59. **marin** - Marin
+- [ ] 60. **masi** - Masi
+- [ ] 61. **mason** - Mason
+- [ ] 62. **maxfoot** - Maxfoot
+- [ ] 63. **mde** - MDE Bikes
+- [ ] 64. **mec** - MEC
+- [ ] 65. **meekboyz** - Meekboyz
+- [ ] 66. **merida** - Merida
+- [ ] 67. **modbikes** - MOD Bikes
+- [ ] 68. **momentum** - Momentum
+- [ ] 69. **mondraker** - Mondraker
+- [ ] 70. **mongoose** - Mongoose
+- [ ] 71. **montague** - Montague
+- [ ] 72. **moots** - Moots
+- [ ] 73. **motiv** - Motiv
+- [ ] 74. **motobecane** - Motobecane
+- [ ] 75. **nakto** - Nakto
+- [ ] 76. **ncm** - NCM
+- [ ] 77. **nicolai** - Nicolai
+- [ ] 78. **niner** - Niner
+- [ ] 79. **nireeka** - Nireeka
+- [ ] 80. **norco** - Norco
+- [ ] 81. **nordest** - Nordest
+- [ ] 82. **ns** - NS Bikes
+- [ ] 83. **nukeproof** - Nukeproof
+- [ ] 84. **obed** - Obed
+- [ ] 85. **ocoee** - Ocoee
+- [ ] 86. **ohm** - OHM
+- [ ] 87. **open** - OPEN
+- [ ] 88. **orange** - Orange
+- [ ] 89. **orbea** - Orbea
+- [ ] 90. **orro** - Orro
+- [ ] 91. **otso** - Otso
+- [ ] 92. **oxylane** - Oxylane
+- [ ] 93. **pace** - Pace
+- [ ] 94. **panorama** - Panorama
+- [ ] 95. **parlee** - Parlee
+- [ ] 96. **pashley** - Pashley
+- [ ] 97. **patrol** - Patrol
+- [ ] 98. **pedego** - Pedego
+- [ ] 99. **pendleton** - Pendleton
+- [ ] 100. **pinarello** - Pinarello
+- [ ] 101. **pinnacle** - Pinnacle
+- [ ] 102. **pivot** - Pivot
+- [ ] 103. **pole** - Pole
+- [ ] 104. **polygon** - Polygon
+- [ ] 105. **poseidon** - Poseidon
+- [ ] 106. **premium** - Premium
+- [ ] 107. **prevelo** - Prevelo
+- [ ] 108. **prime** - Prime
+- [ ] 109. **priority** - Priority
+- [ ] 110. **privateer** - Privateer
+- [ ] 111. **productionprivee** - Production Privee
+- [ ] 112. **propain** - Propain
+- [ ] 113. **propella** - Propella
+- [ ] 114. **public** - Public
+- [ ] 115. **puky** - Puky
+- [ ] 116. **pure** - Pure
+- [ ] 117. **pyga** - Pyga
+- [ ] 118. **qualisports** - Qualisports
+- [ ] 119. **quietkat** - QuietKat
+- [ ] 120. **quintanaroo** - Quintana Roo
+- [ ] 121. **raaw** - Raaw
+- [ ] 122. **radio** - Radio
+- [ ] 123. **radpowerbikes** - Rad Power Bikes
+- [ ] 124. **ragley** - Ragley
+- [ ] 125. **raleigh** - Raleigh
+- [ ] 126. **rambobikes** - Rambo Bikes
+- [ ] 127. **rattan** - Rattan
+- [ ] 128. **redline** - Redline
+- [ ] 129. **reeb** - REEB
+- [ ] 130. **reid** - Reid
+- [ ] 131. **revel** - Revel
+- [ ] 132. **revolve** - Revolve
+- [ ] 133. **ride1up** - Ride1Up
+- [ ] 134. **ridgeback** - Ridgeback
+- [ ] 135. **ridley** - Ridley
+- [ ] 136. **rieseandmuller** - Riese & Müller
+- [ ] 137. **ritchey** - Ritchey
+- [ ] 138. **riva** - Riva
+- [ ] 139. **riverside** - Riverside
+- [ ] 140. **rizebikes** - Rize Bikes
+- [ ] 141. **rockrider** - Rockrider
+- [ ] 142. **rockymountain** - Rocky Mountain
+- [ ] 143. **rondo** - Rondo
+- [ ] 144. **roodog** - RooDog
+- [ ] 145. **rossignol** - Rossignol
+- [ ] 146. **rsd** - RSD
+- [ ] 147. **sage** - Sage
+- [ ] 148. **salsa** - Salsa
+- [ ] 149. **santacruz** - Santa Cruz
+- [ ] 150. **sava** - Sava
+- [ ] 151. **scamp** - Scamp
+- [ ] 152. **schwinn** - Schwinn
+- [ ] 153. **scor** - SCOR
+- [ ] 154. **scott** - Scott
+- [ ] 155. **sensa** - Sensa
+- [ ] 156. **serial1** - Serial 1
+- [ ] 157. **sherpa** - Sherpa
+- [ ] 158. **silverback** - Silverback
+- [ ] 159. **skorpion** - Skorpion
+- [ ] 160. **soma** - Soma
+- [ ] 161. **sonder** - Sonder
+- [ ] 162. **sondors** - Sondors
+- [ ] 163. **soulfastebikes** - Soul Fast eBikes
+- [ ] 164. **sparkbikes** - Spark Bikes
+- [ ] 165. **sparkcycleworks** - Spark Cycleworks
+- [ ] 166. **spawn** - Spawn
+- [ ] 167. **specialized** - Specialized
+- [ ] 168. **spot** - Spot
+- [ ] 169. **stanton** - Stanton
+- [ ] 170. **statebicycleco** - State Bicycle Co.
+- [ ] 171. **stilus** - Stilus
+- [ ] 172. **strider** - Strider
+- [ ] 173. **stromer** - Stromer
+- [ ] 174. **super73** - Super73
+- [ ] 175. **superior** - Superior
+- [ ] 176. **surface604** - Surface 604
+- [ ] 177. **surly** - Surly
+- [ ] 178. **synergy** - Synergy
+- [ ] 179. **tenways** - Tenways
+- [ ] 180. **tern** - Tern
+- [ ] 181. **thesis** - Thesis
+- [ ] 182. **thoemus** - Thömus
+- [ ] 183. **thok** - Thok
+- [ ] 184. **time** - TIME
+- [ ] 185. **titus** - Titus
+- [ ] 186. **tommaso** - Tommaso
+- [ ] 187. **toutterrain** - Tout Terrain
+- [ ] 188. **tower** - Tower
+- [ ] 189. **trailcraft** - Trailcraft
+- [ ] 190. **transition** - Transition
+- [ ] 191. **trek** - Trek
+- [ ] 192. **trifox** - Trifox
+- [ ] 193. **tumbleweed** - Tumbleweed
+- [ ] 194. **tunturi** - Tunturi
+- [ ] 195. **turboant** - TurboAnt
+- [ ] 196. **turner** - Turner
+- [ ] 197. **urbanarrow** - Urban Arrow
+- [ ] 198. **urbandrivestyle** - Urban Drivestyle
+- [ ] 199. **urtopia** - Urtopia
+- [ ] 200. **vaast** - VAAST
+- [ ] 201. **vandessel** - Van Dessel
+- [ ] 202. **vanmoof** - VanMoof
+- [ ] 203. **vannicholas** - Van Nicholas
+- [ ] 204. **vbike** - VBike
+- [ ] 205. **velec** - Velec
+- [ ] 206. **ventum** - Ventum
+- [ ] 207. **verde** - Verde
+- [ ] 208. **viathon** - Viathon
+- [ ] 209. **vielo** - Vielo
+- [ ] 210. **viking** - Viking
+- [ ] 211. **vintageelectric** - Vintage Electric
+- [ ] 212. **vitus** - Vitus
+- [ ] 213. **voltbike** - VoltBike
+- [ ] 214. **voodoo** - Voodoo
+- [ ] 215. **votec** - Votec
+- [ ] 216. **vvolt** - Vvolt
+- [ ] 217. **whyte** - Whyte
+- [ ] 218. **wiggins** - Wiggins
+- [ ] 219. **wildsyde** - Wildsyde
+- [ ] 220. **wilier** - Wilier
+- [ ] 221. **wisper** - Wisper
+- [ ] 222. **woom** - Woom
+- [ ] 223. **xn** - XN
+- [ ] 224. **xtracycle** - Xtracycle
+- [ ] 225. **yamaha** - Yamaha
+- [ ] 226. **yeti** - Yeti
+- [ ] 227. **yt** - YT
+- [ ] 228. **yuba** - Yuba
+- [ ] 229. **zen** - Zen
+- [ ] 230. **zerode** - Zerode

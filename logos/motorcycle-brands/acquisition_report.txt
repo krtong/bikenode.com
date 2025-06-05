@@ -1,0 +1,693 @@
+Logo Acquisition Report - 2025-06-04T16:16:04.219142
+==================================================
+
+Total brands: 682
+Logos acquired: 57
+Logos remaining: 625
+Progress: 8.4%
+
+Brands with logos:
+✓ ABC - abc.png - Wikipedia/Commons
+✓ AJP - ajp.png - Wikipedia/Commons
+✓ AMC - amc.png - Wikipedia/Commons
+✓ APC - apc.png - Wikipedia/Commons
+✓ ATM - atm.png - Wikipedia/Commons
+✓ Abarth - abarth.png - Wikipedia/Commons
+✓ Access - access.png - Wikipedia/Commons
+✓ Ace - ace.png - Wikipedia/Commons
+✓ Adiva - adiva.png - Wikipedia/Commons
+✓ Adler - adler.png - Wikipedia/Commons
+✓ Aeon - aeon.png - Wikipedia/Commons
+✓ Alldays - alldays.png - Wikipedia/Commons
+✓ Alligator - alligator.png - Wikipedia/Commons
+✓ Allstate - allstate.png - Wikipedia/Commons
+✓ Amazonas - amazonas.png - Wikipedia/Commons
+✓ Ambassador - ambassador.png - Wikipedia/Commons
+✓ Apollo - apollo.png - Wikipedia/Commons
+✓ Aprilia - aprilia.png - Wikipedia/Commons
+✓ Arch - arch.png - Wikipedia/Commons
+✓ Arco - arco.png - Wikipedia/Commons
+✓ Ariel - ariel.png - Wikipedia/Commons
+✓ Arlen - arlen.png - Wikipedia/Commons
+✓ Armstrong - armstrong.png - Wikipedia/Commons
+✓ Aspes - aspes.png - Wikipedia/Commons
+✓ Atlas - atlas.png - Wikipedia/Commons
+✓ Aurora - aurora.png - Wikipedia/Commons
+✓ Austin - austin.png - Wikipedia/Commons
+✓ Avon - avon.png - Wikipedia/Commons
+✓ BMW - bmw.png - Wikipedia/Commons
+✓ BSA - bsa.png - Wikipedia/Commons
+✓ Baja - baja.png - Wikipedia/Commons
+✓ Baker - baker.png - Wikipedia/Commons
+✓ Beeline - beeline.png - Wikipedia/Commons
+✓ Benelli - benelli.png - Wikipedia/Commons
+✓ Beta - beta.png - Wikipedia/Commons
+✓ Bianchi - bianchi.png - Wikipedia/Commons
+✓ Big - big.png - Wikipedia/Commons
+✓ Bimota - bimota.png - Wikipedia/Commons
+✓ Bombardier - bombardier.png - Wikipedia/Commons
+✓ Boom - boom.png - Wikipedia/Commons
+✓ Boss - boss.png - Wikipedia/Commons
+✓ Bridgestone - bridgestone.png - Wikipedia/Commons
+✓ Buell - buell.png - Wikipedia/Commons
+✓ Cagiva - cagiva.png - Wikipedia/Commons
+✓ Ducati - ducati.png - Wikipedia/Commons
+✓ Gilera - gilera.png - Wikipedia/Commons
+✓ Harley-Davidson - harley_davidson.png - Wikipedia/Commons
+✓ Honda - honda.png - Wikipedia/Commons
+✓ Indian - indian.png - Wikipedia/Commons
+✓ KTM - ktm.png - Wikipedia/Commons
+✓ Kawasaki - kawasaki.png - Wikipedia/Commons
+✓ Laverda - laverda.png - Wikipedia/Commons
+✓ MV Agusta - mv_agusta.png - Wikipedia/Commons
+✓ Moto Guzzi - moto_guzzi.png - Wikipedia/Commons
+✓ Suzuki - suzuki.png - Wikipedia/Commons
+✓ Triumph - triumph.png - Wikipedia/Commons
+✓ Yamaha - yamaha.png - Wikipedia/Commons
+
+Brands without logos:
+✗ AJS
+✗ AJW
+✗ ATK
+✗ AWO
+✗ Abingdon
+✗ Acabion
+✗ Adly
+✗ Aermacchi
+✗ Agrati
+✗ Alfer
+✗ AlphaSports
+✗ Alta
+✗ American
+✗ Ancillotti
+✗ Apollino
+✗ Aprilla
+✗ Apsonic
+✗ Archive
+✗ Arctic
+✗ Ardie
+✗ Ariel-FH
+✗ Arqin
+✗ Askoll
+✗ Aspes-Jawa
+✗ Ather
+✗ Auriol
+✗ Auto-Fauteuil
+✗ Automoto
+✗ Avada
+✗ Avanturaa
+✗ Avinton
+✗ Azel
+✗ BMC
+✗ BPG
+✗ BSA-Triumph
+✗ Bajaj
+✗ Balkan
+✗ Baltmotors
+✗ BamX
+✗ Baotian
+✗ Barigo
+✗ Barossa
+✗ Bashan
+✗ Batavus
+✗ Bellasi
+✗ Benda
+✗ Bennche
+✗ Benotto
+✗ Better
+✗ Bimm
+✗ Bintelli
+✗ Binter
+✗ Bismarck
+✗ Bitri
+✗ Black
+✗ Blackbird
+✗ Blackburne
+✗ Blata
+✗ Bleriot
+✗ Bloody
+✗ Bluroc
+✗ Bohmerland
+✗ Bond
+✗ Borgo
+✗ Borile
+✗ Bourget
+✗ Brammo
+✗ Brennabor
+✗ Britten
+✗ Brixton
+✗ Brough
+✗ Brudeli
+✗ BucciMoto
+✗ Bullit
+✗ Bultaco
+✗ Bulto
+✗ Burasca
+✗ Burkhart
+✗ Byer
+✗ CCM
+✗ CF
+✗ CFMoto
+✗ CH
+✗ CH Racing
+✗ CMC
+✗ CPI
+✗ CR&S
+✗ CRP
+✗ CSC
+✗ CSR
+✗ CZ
+✗ CZ-Jawa
+✗ Cagiva-Ducati
+✗ Califfo
+✗ California
+✗ Calthorpe
+✗ Campion
+✗ Can-Am
+✗ Cannondale
+✗ Capirelli
+✗ Capriolo
+✗ Carfield
+✗ Cargobike
+✗ Casal
+✗ Case
+✗ Caterham
+✗ Cectek
+✗ Centaur
+✗ Chang-Jiang
+✗ Chater-Lea
+✗ Cheetah
+✗ Cheney
+✗ Christini
+✗ CityBike
+✗ Clarke
+✗ Clement
+✗ Cleveland
+✗ Clipic
+✗ Clyno
+✗ Cobra
+✗ Combat
+✗ Condor
+✗ Confederate
+✗ Cosmos
+✗ Cotton
+✗ Cotton-Villiers
+✗ Coventry
+✗ Coventry-Eagle
+✗ Covingtons
+✗ Crocker
+✗ Cummins
+✗ Current
+✗ Curtiss
+✗ Cushman
+✗ DB
+✗ DB Motors
+✗ DF
+✗ DKW
+✗ Daelim
+✗ Dafier
+✗ Dafra
+✗ Dam
+✗ Damon
+✗ Dandy
+✗ Davinci
+✗ Dayang
+✗ Dayton
+✗ Daytona
+✗ Dayun
+✗ De Dion-Bouton
+✗ Delfast
+✗ Demak
+✗ Derbi
+✗ Derringer
+✗ Dfang
+✗ Di
+✗ Diamo
+✗ Dihao
+✗ Dinamo
+✗ Dinli
+✗ Dirico
+✗ Dnepr
+✗ Docker
+✗ Dodge
+✗ Dollar
+✗ Donghai
+✗ Douglas
+✗ Drysdale
+✗ Dunelt
+✗ Dürkopp
+✗ E-Racer
+✗ E-Ton
+✗ E-Tropolis
+✗ E-max
+✗ EKO
+✗ Eagle-Wing
+✗ Ebretti
+✗ Eccity
+✗ Ecooter
+✗ Ecosse
+✗ Electric
+✗ Electric Motion
+✗ Emblem
+✗ Energica
+✗ Enfield
+✗ Erik
+✗ Evader
+✗ Evolet
+✗ Evolve
+✗ Excelsior
+✗ Exile
+✗ FB
+✗ FB Mondial
+✗ FGR
+✗ FX
+✗ Factory
+✗ Factory Bike
+✗ Falcon
+✗ Fantic
+✗ Felo
+✗ Fischer
+✗ Flying
+✗ Flying Merkel
+✗ Flyrite
+✗ Fokamo
+✗ Fosti
+✗ Francis-Barnett
+✗ Fuego
+✗ Fuell
+✗ Fury
+✗ G&G
+✗ GAS GAS
+✗ GG
+✗ GPX
+✗ GRC
+✗ Garelli
+✗ Geely
+✗ Genata
+✗ Generic
+✗ Genuine
+✗ Geon
+✗ Ghezzi-Brian
+✗ Giantco
+✗ Gibbs
+✗ Goes
+✗ Gogo
+✗ Gogoro
+✗ Govecs
+✗ GreenTrans
+✗ Greeves
+✗ Gymotor
+✗ HDM
+✗ HM
+✗ HP
+✗ Hadin
+✗ Hamachi
+✗ Hanway
+✗ Haojin
+✗ Haojue
+✗ Hartford
+✗ Headbanger
+✗ Heinkel
+✗ Henderson
+✗ Herald
+✗ Hercules
+✗ Hero
+✗ Hesketh
+✗ Highland
+✗ Hildebrand-Wolfmüller
+✗ Hodaka
+✗ Horex
+✗ Horwin
+✗ Hunter
+✗ Husaberg
+✗ Husqvarna
+✗ Hyosung
+✗ IMZ
+✗ ITM
+✗ IZH
+✗ Ice
+✗ Ikon
+✗ Ingersoll
+✗ Innocenti
+✗ Innoscooter
+✗ Intrepid
+✗ Ion
+✗ Irbis
+✗ IronHorse
+✗ Italika
+✗ Italjet
+✗ Italmoto
+✗ Itar
+✗ Iver
+✗ Izuka
+✗ JRL
+✗ James
+✗ Janus
+✗ Jawa
+✗ Jawa-CZ
+✗ Jialing
+✗ Jianshe
+✗ Jincheng
+✗ Jinlun
+✗ Joerns
+✗ Johammer
+✗ Johnny
+✗ Jonway
+✗ Jordan
+✗ Jotagas
+✗ Junak
+✗ K2O
+✗ KRC
+✗ KSR Group
+✗ KYMCO
+✗ Kabirdass
+✗ Kangda
+✗ Kanuni
+✗ Kasinski
+✗ Kayo
+✗ Keeway
+✗ Kemi
+✗ Kenbo
+✗ Kentoya
+✗ Kikker 5150
+✗ Kimco
+✗ Kinetic
+✗ Kinroad
+✗ Kokomo
+✗ Kollter
+✗ Kove
+✗ Kramit
+✗ Kreidler
+✗ Kuba
+✗ Kuberg
+✗ Kumpan Electric
+✗ Kurazai
+✗ LML
+✗ LSL
+✗ Lambretta
+✗ Lance
+✗ Lauge
+✗ Lea
+✗ Lectrix
+✗ Lehman
+✗ Lem
+✗ Leonart
+✗ Leonhardt
+✗ Lexmoto
+✗ Lifan
+✗ Lightning
+✗ Ligier
+✗ Linhai
+✗ Lintex
+✗ Lit
+✗ Lito
+✗ LiveWire
+✗ Lohia
+✗ Loncin
+✗ Longjia
+✗ Luojia
+✗ Luxxon
+✗ MBK
+✗ MBS
+✗ MGB
+✗ MH
+✗ MM
+✗ MV
+✗ MZ
+✗ Macbor
+✗ Magnat
+✗ Magni
+✗ Mahindra
+✗ Maico
+✗ Malaguti
+✗ Malanca
+✗ Marine Turbine Technologies
+✗ Marks
+✗ Marsh
+✗ Marusho
+✗ Mash
+✗ Matchless
+✗ Mavizen
+✗ Megelli
+✗ Metisse
+✗ Midual
+✗ Mikilon
+✗ Millet
+✗ Mini
+✗ Minsk
+✗ Mission Motors
+✗ Mitt
+✗ Modenas
+✗ Mojo Motorcycles
+✗ Monark
+✗ Mondial
+✗ Montesa
+✗ Monto
+✗ Moto
+✗ Moto Morini
+✗ MotoCzysz
+✗ MotoTrans
+✗ Motobi
+✗ Motolevo
+✗ Motom
+✗ Motomel
+✗ Motoposh
+✗ Motorhispania
+✗ Motorino
+✗ Motors
+✗ Motowell
+✗ Motron
+✗ Motus
+✗ MuZ
+✗ Mustang Motorcycles
+✗ Münch
+✗ NCR
+✗ NOX
+✗ NSU
+✗ Neander Motors
+✗ Neco
+✗ Nembo
+✗ New
+✗ Nimbus
+✗ Nipponia
+✗ Niu
+✗ Norton
+✗ Nuuk
+✗ Ohvale
+✗ Okinawa
+✗ Ola Electric
+✗ Opel
+✗ Orcal
+✗ Orient
+✗ Orion
+✗ Oset
+✗ Ossa
+✗ Otto
+✗ Over
+✗ Oxygen
+✗ PGO
+✗ PRC
+✗ Pagsta
+✗ Palmo
+✗ Pannonia
+✗ Panther
+✗ Paton
+✗ Peda
+✗ Penton
+✗ Peraves
+✗ Perks and Birch
+✗ Peugeot
+✗ Piaggio
+✗ Pierce
+✗ Pitster Pro
+✗ Polaris
+✗ Polini
+✗ Pope
+✗ Power
+✗ Praga
+✗ Precision
+✗ Pro-One
+✗ Puch
+✗ Puma
+✗ QJMotor
+✗ Qingqi
+✗ Qlink
+✗ Qooder
+✗ Quadro Vehicles
+✗ Quantya
+✗ Quasar
+✗ RGNT
+✗ Radisa
+✗ Raleigh
+✗ Ravi
+✗ Raybar
+✗ Reading
+✗ Red
+✗ Redneck
+✗ Revatto
+✗ Revolt Motors
+✗ Rewaco
+✗ Rhino
+✗ Rickman
+✗ Ridley
+✗ Riedel
+✗ Rieju
+✗ Rikuo
+✗ Road
+✗ Rockford
+✗ Roehr
+✗ Rokon
+✗ Romet
+✗ Roxon
+✗ Royal Enfield
+✗ Rucker
+✗ Rudge
+✗ Ryvid
+✗ SEAT
+✗ SIM
+✗ SVM
+✗ SWM
+✗ SYM
+✗ Sachs
+✗ Samurai
+✗ Sanglas
+✗ Sanya
+✗ Sarolea
+✗ Savic Motorcycles
+✗ Saxon
+✗ Saxxx
+✗ Schickel
+✗ Schwinn
+✗ Scomadi
+✗ Scorpa
+✗ Scott
+✗ Sears
+✗ Senke
+✗ Serpento
+✗ Shanyang
+✗ Sharmax
+✗ Sherco
+✗ ShineTime
+✗ Shineray
+✗ Siamoto
+✗ Silence
+✗ Silk
+✗ Simplex
+✗ Simson
+✗ Sinnis
+✗ Skygo
+✗ Skyteam
+✗ Sommer
+✗ Sonik
+✗ Sora
+✗ Soriano
+✗ Sparta
+✗ Standbike
+✗ Stark Future
+✗ Starway
+✗ Stealth Electric Bikes
+✗ Stels
+✗ Sucker Punch Sallys
+✗ Sukida
+✗ Sunbeam
+✗ Sundiro
+✗ Super
+✗ Sur-Ron
+✗ Suzuko
+✗ Swaygo
+✗ Swift
+✗ TGB
+✗ TM Racing
+✗ TRS
+✗ TVS
+✗ Tacita
+✗ Tank
+✗ Tao Motor
+✗ Tauris
+✗ Tayo
+✗ Techo
+✗ Terra Motors
+✗ Terrot
+✗ Thumpstar
+✗ Tiger
+✗ Titan
+✗ Tohqi
+✗ Tomberlin
+✗ Tomos
+✗ Tork Motors
+✗ Torrot
+✗ Track
+✗ Travertson
+✗ Triton
+✗ Troll
+✗ Tunturi
+✗ UM
+✗ Ultra
+✗ Ural
+✗ VOR
+✗ Vahrenkamp
+✗ Valenti
+✗ Van
+✗ Vastro
+✗ Vectrix
+✗ Veli
+✗ Velocette
+✗ Veloci
+✗ Velocifero
+✗ Vent
+✗ Vento
+✗ Verge Motorcycles
+✗ Vertemati
+✗ Vertigo
+✗ Vervemoto
+✗ Vespa
+✗ Vetter
+✗ Viarelli
+✗ Vibgyor
+✗ Victoria
+✗ Victory
+✗ Vincent
+✗ Vins
+✗ Viper
+✗ Vmoto
+✗ Voge
+✗ Volta
+✗ Von Dutch
+✗ Voskhod
+✗ Voxan
+✗ Vuka
+✗ Vyrus
+✗ WK Bikes
+✗ WRM
+✗ WSK
+✗ WT
+✗ Wakan
+✗ Werner
+✗ West
+✗ Whizzer
+✗ XOR
+✗ Xingfu
+✗ Xingyue
+✗ Xispa
+✗ Xmotos
+✗ YObykes
+✗ Yadea
+✗ Yale
+✗ Yamasaki
+✗ Yangtze
+✗ Yiben
+✗ Yuki
+✗ Zanella
+✗ Zero
+✗ Zero Electric Vehicles
+✗ Zero Engineering
+✗ Zest
+✗ Znen
+✗ Zongshen
+✗ Zontes
+✗ Zweirad-Union
+✗ Zündapp
+✗ eCRP
+✗ emco
+✗ proEco
+✗ unu

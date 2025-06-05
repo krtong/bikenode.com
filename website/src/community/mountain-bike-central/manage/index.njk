@@ -1,0 +1,1376 @@
+---
+layout: dashboard.njk
+title: Manage Mountain Bike Central
+subtitle: Community administration and moderation tools
+breadcrumb:
+  - { title: "Dashboard", url: "/dashboard/" }
+  - { title: "Communities", url: "/communities-dashboard/" }
+  - { title: "Mountain Bike Central", url: "/community/mountain-bike-central/" }
+  - { title: "Manage" }
+permalink: /community/mountain-bike-central/manage/
+---
+
+<div class="community-management">
+    <!-- Quick Stats -->
+    <div class="management-overview">
+        <div class="overview-stats">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-content">
+                    <h3>892</h3>
+                    <p>Total Members</p>
+                    <span class="stat-change positive">+12 this week</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📝</div>
+                <div class="stat-content">
+                    <h3>5</h3>
+                    <p>Pending Requests</p>
+                    <span class="stat-change neutral">Review needed</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🛡️</div>
+                <div class="stat-content">
+                    <h3>2</h3>
+                    <p>Moderation Queue</p>
+                    <span class="stat-change attention">Action required</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-content">
+                    <h3>94%</h3>
+                    <p>Engagement Rate</p>
+                    <span class="stat-change positive">+3% this month</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Management Tabs -->
+    <div class="management-tabs">
+        <button class="management-tab active" data-tab="members">Members</button>
+        <button class="management-tab" data-tab="moderation">Moderation</button>
+        <button class="management-tab" data-tab="content">Content</button>
+        <button class="management-tab" data-tab="events">Events</button>
+        <button class="management-tab" data-tab="settings">Settings</button>
+    </div>
+
+    <!-- Members Management -->
+    <div class="tab-content active" id="members-tab">
+        <div class="section-header">
+            <h2>Member Management</h2>
+            <div class="section-actions">
+                <button class="btn-secondary" onclick="exportMembers()">Export List</button>
+                <button class="btn-primary" onclick="inviteMembers()">Invite Members</button>
+            </div>
+        </div>
+
+        <!-- Pending Requests -->
+        <div class="management-section">
+            <h3>Pending Join Requests (5)</h3>
+            <div class="requests-list">
+                <div class="request-item">
+                    <div class="member-info">
+                        <div class="member-avatar">TR</div>
+                        <div class="member-details">
+                            <h4>TrailRunner2024</h4>
+                            <p>Applied 2 days ago</p>
+                            <small>"Experienced mountain biker from Colorado, love technical trails"</small>
+                        </div>
+                    </div>
+                    <div class="member-bikes">
+                        <span class="bike-tag">Trek Fuel EX 9.8</span>
+                        <span class="bike-tag">Santa Cruz Bronson</span>
+                    </div>
+                    <div class="request-actions">
+                        <button class="btn-success small" onclick="approveRequest('tr')">Approve</button>
+                        <button class="btn-danger small" onclick="denyRequest('tr')">Deny</button>
+                        <button class="btn-secondary small" onclick="viewProfile('tr')">View Profile</button>
+                    </div>
+                </div>
+
+                <div class="request-item">
+                    <div class="member-info">
+                        <div class="member-avatar">MB</div>
+                        <div class="member-details">
+                            <h4>MudBuster</h4>
+                            <p>Applied 1 day ago</p>
+                            <small>"New to MTB but passionate about getting better!"</small>
+                        </div>
+                    </div>
+                    <div class="member-bikes">
+                        <span class="bike-tag">Specialized Rockhopper</span>
+                    </div>
+                    <div class="request-actions">
+                        <button class="btn-success small" onclick="approveRequest('mb')">Approve</button>
+                        <button class="btn-danger small" onclick="denyRequest('mb')">Deny</button>
+                        <button class="btn-secondary small" onclick="viewProfile('mb')">View Profile</button>
+                    </div>
+                </div>
+
+                <div class="request-item">
+                    <div class="member-info">
+                        <div class="member-avatar">DH</div>
+                        <div class="member-details">
+                            <h4>DownhillDave</h4>
+                            <p>Applied 4 hours ago</p>
+                            <small>"Downhill specialist looking to connect with fellow shredders"</small>
+                        </div>
+                    </div>
+                    <div class="member-bikes">
+                        <span class="bike-tag">YT Tues</span>
+                        <span class="bike-tag">Evil Following</span>
+                        <span class="bike-tag">Transition Patrol</span>
+                    </div>
+                    <div class="request-actions">
+                        <button class="btn-success small" onclick="approveRequest('dh')">Approve</button>
+                        <button class="btn-danger small" onclick="denyRequest('dh')">Deny</button>
+                        <button class="btn-secondary small" onclick="viewProfile('dh')">View Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Member Search & Filters -->
+        <div class="management-section">
+            <h3>Manage Members (892)</h3>
+            <div class="member-controls">
+                <div class="search-filter">
+                    <input type="text" placeholder="Search members..." class="search-input">
+                    <select class="filter-select">
+                        <option>All Members</option>
+                        <option>Moderators</option>
+                        <option>Active (30 days)</option>
+                        <option>New Members</option>
+                        <option>Inactive</option>
+                    </select>
+                    <select class="role-filter">
+                        <option>All Roles</option>
+                        <option>Admin</option>
+                        <option>Moderator</option>
+                        <option>Trail Guide</option>
+                        <option>Member</option>
+                    </select>
+                </div>
+                <div class="bulk-actions">
+                    <button class="btn-secondary small">Bulk Message</button>
+                    <button class="btn-secondary small">Export Selected</button>
+                </div>
+            </div>
+
+            <div class="members-table">
+                <div class="table-header">
+                    <span class="select-col">
+                        <input type="checkbox" id="select-all">
+                    </span>
+                    <span class="member-col">Member</span>
+                    <span class="role-col">Role</span>
+                    <span class="activity-col">Last Active</span>
+                    <span class="bikes-col">Bikes</span>
+                    <span class="actions-col">Actions</span>
+                </div>
+
+                <div class="table-row">
+                    <span class="select-col">
+                        <input type="checkbox">
+                    </span>
+                    <span class="member-col">
+                        <div class="member-info">
+                            <div class="member-avatar online">MT</div>
+                            <div class="member-details">
+                                <h4>MountainTrailBlazer</h4>
+                                <small>Joined Mar 2023 • Expert Level</small>
+                            </div>
+                        </div>
+                    </span>
+                    <span class="role-col">
+                        <span class="role-badge moderator">Moderator</span>
+                    </span>
+                    <span class="activity-col">2 hours ago</span>
+                    <span class="bikes-col">3 bikes</span>
+                    <span class="actions-col">
+                        <button class="btn-icon" onclick="editMember('mt')" title="Edit">✏️</button>
+                        <button class="btn-icon" onclick="viewMember('mt')" title="View">👁️</button>
+                        <button class="btn-icon" onclick="messageMember('mt')" title="Message">💬</button>
+                    </span>
+                </div>
+
+                <div class="table-row">
+                    <span class="select-col">
+                        <input type="checkbox">
+                    </span>
+                    <span class="member-col">
+                        <div class="member-info">
+                            <div class="member-avatar">TR</div>
+                            <div class="member-details">
+                                <h4>TechRider99</h4>
+                                <small>Joined Jan 2024 • Advanced Level</small>
+                            </div>
+                        </div>
+                    </span>
+                    <span class="role-col">
+                        <span class="role-badge trail-guide">Trail Guide</span>
+                    </span>
+                    <span class="activity-col">1 day ago</span>
+                    <span class="bikes-col">2 bikes</span>
+                    <span class="actions-col">
+                        <button class="btn-icon" onclick="editMember('tr')" title="Edit">✏️</button>
+                        <button class="btn-icon" onclick="viewMember('tr')" title="View">👁️</button>
+                        <button class="btn-icon" onclick="messageMember('tr')" title="Message">💬</button>
+                    </span>
+                </div>
+
+                <div class="table-row">
+                    <span class="select-col">
+                        <input type="checkbox">
+                    </span>
+                    <span class="member-col">
+                        <div class="member-info">
+                            <div class="member-avatar">NR</div>
+                            <div class="member-details">
+                                <h4>NewbieMTBer</h4>
+                                <small>Joined Feb 2024 • Beginner Level</small>
+                            </div>
+                        </div>
+                    </span>
+                    <span class="role-col">
+                        <span class="role-badge member">Member</span>
+                    </span>
+                    <span class="activity-col">3 days ago</span>
+                    <span class="bikes-col">1 bike</span>
+                    <span class="actions-col">
+                        <button class="btn-icon" onclick="editMember('nr')" title="Edit">✏️</button>
+                        <button class="btn-icon" onclick="viewMember('nr')" title="View">👁️</button>
+                        <button class="btn-icon" onclick="messageMember('nr')" title="Message">💬</button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="table-pagination">
+                <span class="pagination-info">Showing 1-20 of 892 members</span>
+                <div class="pagination-controls">
+                    <button class="btn-secondary small">Previous</button>
+                    <span class="page-numbers">
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <span>...</span>
+                        <button class="page-btn">45</button>
+                    </span>
+                    <button class="btn-secondary small">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Moderation Tab -->
+    <div class="tab-content" id="moderation-tab">
+        <div class="section-header">
+            <h2>Moderation Queue</h2>
+            <div class="queue-stats">
+                <span class="queue-stat">2 items pending</span>
+                <span class="queue-stat">5 resolved today</span>
+            </div>
+        </div>
+
+        <div class="moderation-items">
+            <div class="moderation-item">
+                <div class="item-header">
+                    <div class="report-type flagged">🚩 Flagged Content</div>
+                    <span class="report-time">2 hours ago</span>
+                </div>
+                <div class="item-content">
+                    <div class="reported-content">
+                        <h4>Post by TrailDestroyer: "Check out this sick jump!"</h4>
+                        <p>Posted photos and video of unauthorized trail features built on protected land...</p>
+                        <div class="content-preview">
+                            <div class="photo-placeholder">📸</div>
+                            <div class="photo-placeholder">📸</div>
+                            <div class="photo-placeholder">🎥</div>
+                        </div>
+                    </div>
+                    <div class="report-details">
+                        <p><strong>Reported by:</strong> ConservationMinded</p>
+                        <p><strong>Reason:</strong> Promoting illegal trail building on protected land</p>
+                        <p><strong>Additional info:</strong> This appears to be in a state park where trail building is prohibited</p>
+                    </div>
+                </div>
+                <div class="moderation-actions">
+                    <button class="btn-danger small">Remove Content</button>
+                    <button class="btn-warning small">Issue Warning</button>
+                    <button class="btn-success small">Approve Content</button>
+                    <button class="btn-secondary small">Contact Member</button>
+                </div>
+            </div>
+
+            <div class="moderation-item">
+                <div class="item-header">
+                    <div class="report-type harassment">⚠️ Member Report</div>
+                    <span class="report-time">5 hours ago</span>
+                </div>
+                <div class="item-content">
+                    <div class="reported-content">
+                        <h4>Comment by AggroRider: Response to beginner question</h4>
+                        <p>"Maybe you should stick to road biking if you can't handle real trails..."</p>
+                    </div>
+                    <div class="report-details">
+                        <p><strong>Reported by:</strong> HelpfulMember</p>
+                        <p><strong>Reason:</strong> Harassment/Discouraging to new members</p>
+                        <p><strong>Additional info:</strong> Pattern of negative comments toward beginners</p>
+                    </div>
+                </div>
+                <div class="moderation-actions">
+                    <button class="btn-danger small">Remove Comment</button>
+                    <button class="btn-warning small">Temporary Mute</button>
+                    <button class="btn-secondary small">Issue Warning</button>
+                    <button class="btn-success small">No Action</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Management Tab -->
+    <div class="tab-content" id="content-tab">
+        <div class="section-header">
+            <h2>Content Management</h2>
+            <div class="section-actions">
+                <button class="btn-secondary" onclick="schedulePost()">Schedule Post</button>
+                <button class="btn-primary" onclick="createAnnouncement()">Create Announcement</button>
+            </div>
+        </div>
+
+        <div class="content-stats">
+            <div class="content-stat-card">
+                <h3>156</h3>
+                <p>Posts This Week</p>
+            </div>
+            <div class="content-stat-card">
+                <h3>423</h3>
+                <p>Comments</p>
+            </div>
+            <div class="content-stat-card">
+                <h3>89</h3>
+                <p>Photos Shared</p>
+            </div>
+            <div class="content-stat-card">
+                <h3>12</h3>
+                <p>Events Created</p>
+            </div>
+        </div>
+
+        <div class="featured-content">
+            <h3>Featured Content</h3>
+            <div class="featured-list">
+                <div class="featured-item">
+                    <div class="content-preview">
+                        <div class="content-type">📸 Photo</div>
+                        <h4>"Epic ride through Redwood trails"</h4>
+                        <p>by MountainTrailBlazer • 234 likes • 45 comments</p>
+                    </div>
+                    <div class="feature-actions">
+                        <button class="btn-secondary small">Unfeature</button>
+                        <button class="btn-secondary small">Pin</button>
+                    </div>
+                </div>
+                <div class="featured-item">
+                    <div class="content-preview">
+                        <div class="content-type">🎥 Video</div>
+                        <h4>"Trail maintenance at Skyline Ridge"</h4>
+                        <p>by VolunteerCoordinator • 189 likes • 32 comments</p>
+                    </div>
+                    <div class="feature-actions">
+                        <button class="btn-secondary small">Unfeature</button>
+                        <button class="btn-secondary small">Pin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Events Management Tab -->
+    <div class="tab-content" id="events-tab">
+        <div class="section-header">
+            <h2>Event Management</h2>
+            <div class="section-actions">
+                <button class="btn-primary" onclick="createEvent()">Create Event</button>
+            </div>
+        </div>
+
+        <div class="events-overview">
+            <div class="event-stat">
+                <h3>5</h3>
+                <p>Upcoming Events</p>
+            </div>
+            <div class="event-stat">
+                <h3>127</h3>
+                <p>Total Attendees</p>
+            </div>
+            <div class="event-stat">
+                <h3>23</h3>
+                <p>Events This Year</p>
+            </div>
+        </div>
+
+        <div class="upcoming-events">
+            <h3>Upcoming Events</h3>
+            <div class="event-list">
+                <div class="event-item">
+                    <div class="event-info">
+                        <h4>Saturday Shred at Skyline Ridge</h4>
+                        <p>March 18, 2024 • 9:00 AM</p>
+                        <span class="attendees">12 attending • 8 spots left</span>
+                    </div>
+                    <div class="event-actions">
+                        <button class="btn-secondary small">Edit</button>
+                        <button class="btn-secondary small">View</button>
+                        <button class="btn-danger small">Cancel</button>
+                    </div>
+                </div>
+                <div class="event-item">
+                    <div class="event-info">
+                        <h4>Trail Maintenance Day - Marin Headlands</h4>
+                        <p>March 25, 2024 • 8:00 AM</p>
+                        <span class="attendees">8 volunteers • 4 spots left</span>
+                    </div>
+                    <div class="event-actions">
+                        <button class="btn-secondary small">Edit</button>
+                        <button class="btn-secondary small">View</button>
+                        <button class="btn-danger small">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Tab -->
+    <div class="tab-content" id="settings-tab">
+        <div class="section-header">
+            <h2>Community Settings</h2>
+        </div>
+
+        <div class="settings-sections">
+            <div class="settings-group">
+                <h3>General Settings</h3>
+                <div class="setting-item">
+                    <label>Community Name</label>
+                    <input type="text" value="Mountain Bike Central" class="setting-input">
+                </div>
+                <div class="setting-item">
+                    <label>Community Description</label>
+                    <textarea class="setting-textarea">For trail riders and mountain bike adventurers</textarea>
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <h3>Privacy & Access</h3>
+                <div class="setting-toggle">
+                    <span>Public Community</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-toggle">
+                    <span>Require Approval for New Members</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="settings-actions">
+                <button class="btn-primary">Save Changes</button>
+                <button class="btn-secondary">Reset</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.community-management {
+    max-width: 1200px;
+}
+
+.management-overview {
+    margin-bottom: 32px;
+}
+
+.overview-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.stat-icon {
+    font-size: 2rem;
+    background: rgba(34, 197, 94, 0.1);
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.stat-content h3 {
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.stat-content p {
+    color: var(--text-secondary);
+    margin: 0 0 4px 0;
+    font-size: 0.9rem;
+}
+
+.stat-change {
+    font-size: 0.8rem;
+}
+
+.stat-change.positive {
+    color: #10b981;
+}
+
+.stat-change.neutral {
+    color: var(--text-secondary);
+}
+
+.stat-change.attention {
+    color: #f59e0b;
+}
+
+.management-tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 32px;
+}
+
+.management-tab {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.management-tab:hover {
+    color: var(--text-primary);
+}
+
+.management-tab.active {
+    color: #22c55e;
+    border-bottom-color: #22c55e;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.section-header h2 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.section-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.management-section {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.management-section h3 {
+    color: var(--text-primary);
+    margin: 0 0 20px 0;
+    font-size: 1.1rem;
+}
+
+.requests-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.request-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.member-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.member-avatar {
+    width: 40px;
+    height: 40px;
+    background: #22c55e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.member-avatar.online {
+    position: relative;
+}
+
+.member-avatar.online::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 10px;
+    height: 10px;
+    background: #10b981;
+    border: 2px solid var(--bg-primary);
+    border-radius: 50%;
+}
+
+.member-details h4 {
+    color: var(--text-primary);
+    margin: 0 0 2px 0;
+    font-size: 0.9rem;
+}
+
+.member-details p {
+    color: var(--text-secondary);
+    margin: 0 0 4px 0;
+    font-size: 0.8rem;
+}
+
+.member-details small {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-style: italic;
+}
+
+.member-bikes {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.bike-tag {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.request-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-success {
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s ease;
+}
+
+.btn-success:hover {
+    background: #059669;
+}
+
+.btn-warning {
+    background: #f59e0b;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s ease;
+}
+
+.btn-warning:hover {
+    background: #d97706;
+}
+
+.member-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 16px;
+}
+
+.search-filter {
+    display: flex;
+    gap: 12px;
+}
+
+.search-input,
+.filter-select,
+.role-filter {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.search-input {
+    min-width: 200px;
+}
+
+.bulk-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.members-table {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table-header {
+    background: rgba(34, 197, 94, 0.1);
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 40px 1fr 120px 120px 100px 120px;
+    gap: 12px;
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.table-row {
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 40px 1fr 120px 120px 100px 120px;
+    gap: 12px;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+.role-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.role-badge.moderator {
+    background: #3b82f6;
+    color: white;
+}
+
+.role-badge.trail-guide {
+    background: #22c55e;
+    color: white;
+}
+
+.role-badge.member {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.table-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.pagination-info {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.page-numbers {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.page-btn {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-secondary);
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.page-btn:hover {
+    border-color: #22c55e;
+    color: #22c55e;
+}
+
+.page-btn.active {
+    background: #22c55e;
+    border-color: #22c55e;
+    color: white;
+}
+
+.queue-stats {
+    display: flex;
+    gap: 16px;
+}
+
+.queue-stat {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+.moderation-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.moderation-item {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.report-type {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.report-type.flagged {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+.report-type.harassment {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+}
+
+.report-time {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.item-content {
+    margin-bottom: 16px;
+}
+
+.reported-content {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.reported-content h4 {
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    font-size: 0.95rem;
+}
+
+.reported-content p {
+    color: var(--text-secondary);
+    margin: 0 0 12px 0;
+    font-size: 0.9rem;
+}
+
+.content-preview {
+    display: flex;
+    gap: 8px;
+}
+
+.photo-placeholder {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.report-details p {
+    color: var(--text-secondary);
+    margin: 0 0 4px 0;
+    font-size: 0.8rem;
+}
+
+.report-details strong {
+    color: var(--text-primary);
+}
+
+.moderation-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.content-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.content-stat-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+}
+
+.content-stat-card h3 {
+    color: #22c55e;
+    margin: 0 0 4px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.content-stat-card p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+.featured-content {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.featured-content h3 {
+    color: var(--text-primary);
+    margin: 0 0 16px 0;
+    font-size: 1rem;
+}
+
+.featured-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.featured-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 6px;
+}
+
+.content-type {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    margin-bottom: 4px;
+    display: inline-block;
+}
+
+.content-preview h4 {
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    font-size: 0.9rem;
+}
+
+.content-preview p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+.feature-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.events-overview {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 24px;
+}
+
+.event-stat {
+    text-align: center;
+}
+
+.event-stat h3 {
+    color: #22c55e;
+    margin: 0 0 4px 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.event-stat p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.upcoming-events {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.upcoming-events h3 {
+    color: var(--text-primary);
+    margin: 0 0 16px 0;
+    font-size: 1rem;
+}
+
+.event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.event-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 6px;
+}
+
+.event-info h4 {
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    font-size: 0.9rem;
+}
+
+.event-info p {
+    color: var(--text-secondary);
+    margin: 0 0 4px 0;
+    font-size: 0.8rem;
+}
+
+.attendees {
+    color: #22c55e;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.event-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.settings-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.settings-group {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.settings-group h3 {
+    color: var(--text-primary);
+    margin: 0 0 16px 0;
+    font-size: 1rem;
+}
+
+.setting-item {
+    margin-bottom: 16px;
+}
+
+.setting-item label {
+    display: block;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+}
+
+.setting-input,
+.setting-textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.setting-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 44px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: 0.2s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.2s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #22c55e;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.settings-actions {
+    display: flex;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+    .overview-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .management-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .request-item {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .member-controls {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .search-filter {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .table-header,
+    .table-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .events-overview {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .event-item {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+}
+</style>
+
+<script>
+// Tab switching
+document.querySelectorAll('.management-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+        // Remove active class from all tabs and content
+        document.querySelectorAll('.management-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        
+        // Add active class to clicked tab
+        this.classList.add('active');
+        
+        // Show corresponding content
+        const tabId = this.dataset.tab + '-tab';
+        document.getElementById(tabId).classList.add('active');
+    });
+});
+
+// Member request actions
+function approveRequest(memberId) {
+    alert(`Approved request for ${memberId}`);
+}
+
+function denyRequest(memberId) {
+    if (confirm('Are you sure you want to deny this request?')) {
+        alert(`Denied request for ${memberId}`);
+    }
+}
+
+function viewProfile(memberId) {
+    alert(`Viewing profile for ${memberId}`);
+}
+
+// Member management actions
+function editMember(memberId) {
+    alert(`Editing member ${memberId}`);
+}
+
+function viewMember(memberId) {
+    alert(`Viewing member ${memberId}`);
+}
+
+function messageMember(memberId) {
+    alert(`Sending message to ${memberId}`);
+}
+
+// Bulk actions
+function exportMembers() {
+    alert('Exporting member list...');
+}
+
+function inviteMembers() {
+    alert('Opening member invitation tool...');
+}
+
+// Content management
+function schedulePost() {
+    alert('Opening post scheduler...');
+}
+
+function createAnnouncement() {
+    alert('Creating community announcement...');
+}
+
+// Event management
+function createEvent() {
+    alert('Opening event creation form...');
+}
+
+// Select all checkbox
+document.getElementById('select-all').addEventListener('change', function() {
+    const checkboxes = document.querySelectorAll('.table-row input[type="checkbox"]');
+    checkboxes.forEach(cb => cb.checked = this.checked);
+});
+</script>

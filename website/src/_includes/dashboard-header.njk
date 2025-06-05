@@ -1,0 +1,27 @@
+<header class="dashboard-header">
+    <div class="header-content">
+        <div class="nav-brand">
+            <a href="/">
+                <img src="/assets/images/bikenode_logo.png" alt="BikeNode" class="logo">
+            </a>
+        </div>
+        <div class="header-nav">
+            <a href="/dashboard/" class="nav-link{% if page.url.includes('/dashboard/') %} active{% endif %}">Dashboard</a>
+            <a href="/virtual-garage-dashboard/" class="nav-link{% if page.url.includes('/virtual-garage') %} active{% endif %}">Virtual Garage</a>
+            <a href="/discord-dashboard/" class="nav-link{% if page.url.includes('/discord-dashboard') %} active{% endif %}">Discord</a>
+            <a href="/communities-dashboard/" class="nav-link{% if page.url.includes('/communities-dashboard') %} active{% endif %}">Communities</a>
+        </div>
+        <div class="header-user">
+            <div class="user-avatar">
+                <img src="/assets/images/bikenode_logo.png" alt="User Avatar">
+            </div>
+            <div class="user-menu">
+                <span class="username">RiderName</span>
+                <div class="dropdown">
+                    <a href="/account-settings/">Account Settings</a>
+                    <a href="/">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

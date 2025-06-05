@@ -1,0 +1,14 @@
+<aside class="docs-sidebar">
+    <nav class="sidebar-nav">
+        {%- for section in navigation.docs -%}
+        <div class="nav-section">
+            <h3>{{ section.section }}</h3>
+            {%- for item in section.items -%}
+            <a href="{{ item.url }}" class="sidebar-link{% if page.url.includes(item.url) and item.url != '/' %} active{% endif %}{% if page.url == item.url %} active{% endif %}{% if item.external %} external{% endif %}">
+                {{ item.title }}
+            </a>
+            {%- endfor -%}
+        </div>
+        {%- endfor -%}
+    </nav>
+</aside>

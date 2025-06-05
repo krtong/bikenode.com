@@ -1,0 +1,32 @@
+---
+layout: base.njk
+---
+
+{% include "dashboard-header.njk" %}
+
+<!-- Dashboard Layout -->
+<div class="dashboard-layout">
+    {% include "dashboard-sidebar.njk" %}
+    
+    <!-- Main Content -->
+    <main class="dashboard-content">
+        {% if showContentHeader !== false %}
+        <div class="content-header">
+            {% if breadcrumb %}
+            <div class="breadcrumb">
+                {% for crumb in breadcrumb %}
+                {% if crumb.url %}<a href="{{ crumb.url }}">{{ crumb.title }}</a>{% else %}{{ crumb.title }}{% endif %}
+                {% if not loop.last %}<span class="separator">›</span>{% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            <h1>{{ title or 'Dashboard' }}</h1>
+            {% if subtitle %}
+            <p class="content-subtitle">{{ subtitle }}</p>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        {{ content | safe }}
+    </main>
+</div>

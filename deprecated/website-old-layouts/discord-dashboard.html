@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Discord Servers - BikeNode Dashboard</title>
+    <meta name="description" content="Manage your Discord servers with BikeNode bot. Configure settings, view analytics, and manage community features.">
+    
+    <link rel="icon" type="image/png" href="./assets/images/bikenode_logo.png">
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/dashboard.css">
+</head>
+<body>
+    <!-- Background Animation Canvas -->
+    <canvas id="backgroundCanvas"></canvas>
+    
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="nav-brand">
+                <a href="./index.html">
+                    <img src="./assets/images/bikenode_logo.png" alt="BikeNode" class="logo">
+                </a>
+            </div>
+            <div class="header-nav">
+                <a href="./dashboard.html" class="nav-link">Dashboard</a>
+                <a href="./virtual-garage-dashboard.html" class="nav-link">Virtual Garage</a>
+                <a href="./discord-dashboard.html" class="nav-link active">Discord</a>
+                <a href="./communities-dashboard.html" class="nav-link">Communities</a>
+            </div>
+            <div class="header-user">
+                <div class="user-avatar">
+                    <img src="./assets/images/bikenode_logo.png" alt="User Avatar">
+                </div>
+                <div class="user-menu">
+                    <span class="username">RiderName</span>
+                    <div class="dropdown">
+                        <a href="./account-settings.html">Account Settings</a>
+                        <a href="./index.html">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Layout -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3>Overview</h3>
+                    <a href="./dashboard.html" class="sidebar-link">
+                        <span class="icon">📊</span>
+                        Dashboard
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>My Content</h3>
+                    <a href="./virtual-garage-dashboard.html" class="sidebar-link">
+                        <span class="icon">🏍️</span>
+                        Virtual Garage
+                    </a>
+                    <a href="./discord-dashboard.html" class="sidebar-link active">
+                        <span class="icon">💬</span>
+                        Discord Servers
+                    </a>
+                    <a href="./communities-dashboard.html" class="sidebar-link">
+                        <span class="icon">👥</span>
+                        Communities
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Administration</h3>
+                    <a href="./admin-dashboard.html" class="sidebar-link">
+                        <span class="icon">⚙️</span>
+                        Admin Panel
+                    </a>
+                    <a href="./bot-management.html" class="sidebar-link">
+                        <span class="icon">🤖</span>
+                        Bot Management
+                    </a>
+                    <a href="./analytics-dashboard.html" class="sidebar-link">
+                        <span class="icon">📈</span>
+                        Analytics
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Settings</h3>
+                    <a href="./account-settings.html" class="sidebar-link">
+                        <span class="icon">👤</span>
+                        Account
+                    </a>
+                    <a href="./notification-settings.html" class="sidebar-link">
+                        <span class="icon">🔔</span>
+                        Notifications
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <div class="content-header">
+                <div class="header-actions">
+                    <div>
+                        <h1>Discord Servers</h1>
+                        <p class="content-subtitle">Manage BikeNode bot integration across your Discord servers</p>
+                    </div>
+                    <a href="./bot-setup.html" class="btn-primary">
+                        <span>🤖</span>
+                        Add Bot to Server
+                    </a>
+                </div>
+            </div>
+
+            <div class="discord-content">
+                <!-- Discord Stats -->
+                <div class="discord-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">🛠️</div>
+                        <div class="stat-content">
+                            <h3>3</h3>
+                            <p>Active Servers</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-content">
+                            <h3>2,456</h3>
+                            <p>Total Members</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💬</div>
+                        <div class="stat-content">
+                            <h3>1,234</h3>
+                            <p>Bot Interactions</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-content">
+                            <h3>98%</h3>
+                            <p>Uptime</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Server List -->
+                <div class="servers-section">
+                    <h2>Your Discord Servers</h2>
+                    <div class="servers-grid">
+                        <div class="server-card">
+                            <div class="server-header">
+                                <div class="server-icon">SB</div>
+                                <div class="server-info">
+                                    <h3>Sport Bike Riders</h3>
+                                    <p>1,234 members • Owner</p>
+                                </div>
+                                <div class="server-status">
+                                    <span class="status-indicator online"></span>
+                                    <span class="status-text">Online</span>
+                                </div>
+                            </div>
+                            <div class="server-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Bot Commands:</span>
+                                    <span class="stat-value">567</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Active Users:</span>
+                                    <span class="stat-value">234</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Verified Members:</span>
+                                    <span class="stat-value">89</span>
+                                </div>
+                            </div>
+                            <div class="server-actions">
+                                <a href="./server-settings.html" class="btn-secondary small">Configure</a>
+                                <a href="./server-analytics.html" class="btn-secondary small">Analytics</a>
+                                <a href="./server-moderation.html" class="btn-secondary small">Moderation</a>
+                            </div>
+                        </div>
+
+                        <div class="server-card">
+                            <div class="server-header">
+                                <div class="server-icon">MT</div>
+                                <div class="server-info">
+                                    <h3>Mountain Bike Central</h3>
+                                    <p>856 members • Admin</p>
+                                </div>
+                                <div class="server-status">
+                                    <span class="status-indicator online"></span>
+                                    <span class="status-text">Online</span>
+                                </div>
+                            </div>
+                            <div class="server-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Bot Commands:</span>
+                                    <span class="stat-value">432</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Active Users:</span>
+                                    <span class="stat-value">156</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Verified Members:</span>
+                                    <span class="stat-value">67</span>
+                                </div>
+                            </div>
+                            <div class="server-actions">
+                                <a href="./server-settings.html" class="btn-secondary small">Configure</a>
+                                <a href="./server-analytics.html" class="btn-secondary small">Analytics</a>
+                                <a href="./server-moderation.html" class="btn-secondary small">Moderation</a>
+                            </div>
+                        </div>
+
+                        <div class="server-card">
+                            <div class="server-header">
+                                <div class="server-icon">CR</div>
+                                <div class="server-info">
+                                    <h3>Cruiser Nation</h3>
+                                    <p>432 members • Moderator</p>
+                                </div>
+                                <div class="server-status">
+                                    <span class="status-indicator maintenance"></span>
+                                    <span class="status-text">Maintenance</span>
+                                </div>
+                            </div>
+                            <div class="server-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Bot Commands:</span>
+                                    <span class="stat-value">235</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Active Users:</span>
+                                    <span class="stat-value">98</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Verified Members:</span>
+                                    <span class="stat-value">45</span>
+                                </div>
+                            </div>
+                            <div class="server-actions">
+                                <a href="./server-settings.html" class="btn-secondary small">Configure</a>
+                                <a href="./server-analytics.html" class="btn-secondary small">Analytics</a>
+                                <a href="./server-moderation.html" class="btn-secondary small">Moderation</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions-section">
+                    <h2>Quick Actions</h2>
+                    <div class="action-grid">
+                        <div class="action-card">
+                            <div class="action-icon">🤖</div>
+                            <h3>Add Bot to New Server</h3>
+                            <p>Invite BikeNode bot to another Discord server</p>
+                            <a href="./bot-setup.html" class="action-link">Get Started →</a>
+                        </div>
+                        <div class="action-card">
+                            <div class="action-icon">⚙️</div>
+                            <h3>Configure Bot Settings</h3>
+                            <p>Set up commands, roles, and permissions</p>
+                            <a href="./bot-configuration.html" class="action-link">Configure →</a>
+                        </div>
+                        <div class="action-card">
+                            <div class="action-icon">📊</div>
+                            <h3>View Analytics</h3>
+                            <p>Check bot usage and community engagement</p>
+                            <a href="./analytics-dashboard.html" class="action-link">View Stats →</a>
+                        </div>
+                        <div class="action-card">
+                            <div class="action-icon">🛡️</div>
+                            <h3>Moderation Tools</h3>
+                            <p>Manage user verification and community rules</p>
+                            <a href="./moderation-dashboard.html" class="action-link">Moderate →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Bot Activity -->
+                <div class="recent-activity-section">
+                    <h2>Recent Bot Activity</h2>
+                    <div class="activity-feed">
+                        <div class="activity-item">
+                            <div class="activity-icon">👤</div>
+                            <div class="activity-content">
+                                <h4>New user verified in Sport Bike Riders</h4>
+                                <p>RiderMike completed verification and received Sport Bike role</p>
+                                <span class="activity-time">2 minutes ago</span>
+                            </div>
+                            <div class="activity-server">Sport Bike Riders</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🏍️</div>
+                            <div class="activity-content">
+                                <h4>Garage shared in Mountain Bike Central</h4>
+                                <p>TrailRider shared their 2023 Trek Fuel EX</p>
+                                <span class="activity-time">15 minutes ago</span>
+                            </div>
+                            <div class="activity-server">Mountain Bike Central</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">⚙️</div>
+                            <div class="activity-content">
+                                <h4>Bot configuration updated</h4>
+                                <p>Welcome message customized in Cruiser Nation</p>
+                                <span class="activity-time">1 hour ago</span>
+                            </div>
+                            <div class="activity-server">Cruiser Nation</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🎉</div>
+                            <div class="activity-content">
+                                <h4>Achievement unlocked</h4>
+                                <p>CruiserFan earned "Community Helper" badge</p>
+                                <span class="activity-time">3 hours ago</span>
+                            </div>
+                            <div class="activity-server">Cruiser Nation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="./assets/js/background.js"></script>
+    
+    <style>
+        .discord-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .servers-section {
+            margin-bottom: 32px;
+        }
+        
+        .servers-section h2 {
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .servers-grid {
+            display: grid;
+            gap: 24px;
+        }
+        
+        .server-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .server-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .server-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .server-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        
+        .server-info {
+            flex: 1;
+        }
+        
+        .server-info h3 {
+            color: var(--text-primary);
+            margin: 0 0 4px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .server-info p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        .server-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .status-indicator.online {
+            background: #10b981;
+        }
+        
+        .status-indicator.maintenance {
+            background: #f59e0b;
+        }
+        
+        .status-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .server-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+        }
+        
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+        
+        .stat-value {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .server-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .quick-actions-section,
+        .recent-activity-section {
+            margin-bottom: 32px;
+        }
+        
+        .quick-actions-section h2,
+        .recent-activity-section h2 {
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .activity-feed {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .activity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-icon {
+            background: rgba(88, 101, 242, 0.1);
+            color: var(--accent);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        .activity-content h4 {
+            color: var(--text-primary);
+            margin: 0 0 4px 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .activity-content p {
+            color: var(--text-secondary);
+            margin: 0 0 8px 0;
+            font-size: 0.8rem;
+        }
+        
+        .activity-time {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+        }
+        
+        .activity-server {
+            background: rgba(88, 101, 242, 0.1);
+            color: var(--accent);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        @media (max-width: 768px) {
+            .server-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            
+            .server-status {
+                align-self: flex-end;
+            }
+            
+            .server-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .activity-item {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .activity-server {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</body>
+</html>

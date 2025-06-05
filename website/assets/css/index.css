@@ -1,307 +1,411 @@
+/* Discord Font Loading */
+@font-face {
+    font-family: 'gg sans';
+    src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'gg sans';
+    src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-medium.woff2') format('woff2');
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'gg sans';
+    src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-semibold.woff2') format('woff2');
+    font-weight: 600;
+    font-display: swap;
+}
+
 /* Variables */
 :root {
-    --font-family-base: 'gg sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  
-    /* Colors */
-    --color-background: #1a1c1f;
-    --color-text-primary: #ffffff;
-    --color-text-secondary: #b9bbbe;
-    --color-accent: #5865F2;
-    --color-accent-hover: #4752c4;
-    --color-input-bg: #202225;
-    --color-input-focus: #2a2d31;
-  
-    /* Spacing */
-    --spacing-xs: 8px;
-    --spacing-sm: 16px;
-    --spacing-md: 24px;
-    --spacing-lg: 40px;
-  }
-  
-  /* Discord Font (gg sans) */
-  @font-face {
-      font-family: 'gg sans';
-      src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-regular.woff2') format('woff2');
-      font-weight: 300;
-      font-style: normal;
-      font-display: swap;
-  }
-  
-  @font-face {
-      font-family: 'gg sans';
-      src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-medium.woff2') format('woff2');
-      font-weight: 500;
-      font-style: normal;
-      font-display: swap;
-  }
-  
-  @font-face {
-      font-family: 'gg sans';
-      src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-semibold.woff2') format('woff2');
-      font-weight: 600;
-      font-style: normal;
-      font-display: swap;
-  }
-  
-  @font-face {
-      font-family: 'gg sans';
-      src: url('https://cdn.jsdelivr.net/npm/@discord-font/gg-sans@1.0.0/gg-sans-bold.woff2') format('woff2');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-  }
-  
-  /* Reset & Base Styles */
-  * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-  }
-  
-  body {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background-color: #1a1c1f;
-      font-family: 'gg sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      color: #ffffff;
-      line-height: 1.5;
-      letter-spacing: 0.01em;
-  }
-  
-  /* Layout & Components */
-  .container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      max-width: 1100px;
-      width: 100%;
-      padding: 24px;
-      margin: 0 auto;
-      gap: 40px;
-      animation: fadeIn 1s ease-in;
-  }
-  
-  .left-section {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      max-width: 45%;
-  }
-  
-  .left-section .logo {
-      width: 280px;
-  }
-  
-  .left-section .logo img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-  }
-  
-  .vertical-divider {
-      width: 3px;
-      height: 240px;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
-      border-radius: 3px;
-  }
-  
-  .right-section {
-      flex: 1;
-      max-width: 500px;
-  }
-  
-  h1,
-  h2 {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: #ffffff;
-      letter-spacing: -0.02em;
-  }
-  
-  .tagline {
-      font-size: 14px;
-      margin-bottom: 24px;
-      color: #b9bbbe;
-      font-weight: 400;
-      line-height: 1.6;
-      letter-spacing: 0.01em;
-  }
-  
-  /* Buttons & Interactive Elements */
-  .cta {
-      display: inline-block;
-      background-color: #5865F2;
-      color: #ffffff;
-      text-decoration: none;
-      padding: 8px 24px;
-      border-radius: 4px;
-      font-size: 16px;
-      font-weight: 500;
-      transition: all 0.2s ease;
-      margin-top: 16px;
-      box-shadow: 0 2px 8px rgba(88, 101, 242, 0.3);
-      letter-spacing: 0.01em;
-  }
-  
-  .cta:hover {
-      background-color: #4752c4;
-      box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
-      transform: translateY(-2px);
-  }
-  
-  /* Form Styles */
-  .email-signup {
-      margin-top: 40px;
-      width: 100%;
-  }
-  
-  .email-signup .email-form {
-      display: flex;
-      max-width: 100%;
-  }
-  
-  .email-input {
-      flex-grow: 1;
-      padding: 8px 16px;
-      border-radius: 4px 0 0 4px;
-      border: 1px solid #202225;
-      font-size: 14px;
-      outline: none;
-      background-color: #202225;
-      color: #b9bbbe;
-      transition: background-color 0.2s ease, border-color 0.2s ease;
-      letter-spacing: 0.01em;
-  }
-  
-  .email-input:focus {
-      background-color: #2a2d31;
-      border-color: #5865F2;
-  }
-  
-  .submit-btn {
-      background-color: #5865F2;
-      color: #ffffff;
-      border: none;
-      padding: 8px 24px;
-      border-radius: 0 4px 4px 0;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-      box-shadow: 0 2px 8px rgba(88, 101, 242, 0.3);
-      letter-spacing: 0.01em;
-  }
-  
-  .submit-btn:hover {
-      background-color: #4752c4;
-      box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);
-  }
-  
-  /* Footer & Social Links */
-  .social-links {
-      margin-top: 24px;
-      display: flex;
-      gap: 24px;
-  }
-  
-  .social-links a {
-      color: #b9bbbe;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      font-size: 14px;
-      padding: 4px 8px;
-      border-radius: 4px;
-      letter-spacing: 0.01em;
-  }
-  
-  .social-links a:hover {
-      color: #ffffff;
-      background-color: rgba(255, 255, 255, 0.05);
-  }
-  
-  /* Animations */
-  @keyframes fadeIn {
-      from {
-          opacity: 0;
-          transform: translateY(20px);
-      }
-      to {
-          opacity: 1;
-          transform: translateY(0);
-      }
-  }
-  
-  /* Background Animation */
-  #backgroundCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      opacity: 1;
-  }
-  
-  /* Accessibility */
-  .screen-reader-text {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 980px) {
-      .container {
-          flex-direction: column;
-          text-align: center;
-          gap: 24px;
-      }
-  
-      .left-section {
-          max-width: 280px;
-          justify-content: center;
-      }
-  
-      .vertical-divider {
-          width: 80px;
-          height: 3px;
-          margin: 8px 0;
-          background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
-      }
-  
-      .right-section {
-          max-width: 90%;
-      }
-  
-      .tagline {
-          text-align: center;
-          margin-left: auto;
-          margin-right: auto;
-      }
-  
-      .social-links {
-          justify-content: center;
-      }
-  }
-  
-  @media (max-width: 480px) {
-      .email-form {
-          flex-direction: column;
-          gap: 8px;
-      }
-  
-      .email-input,
-      .submit-btn {
-          width: 100%;
-          border-radius: 4px;
-      }
-  }
+    --bg-primary: #2f3136;
+    --bg-secondary: #36393f;
+    --text-primary: #ffffff;
+    --text-secondary: #b9bbbe;
+    --accent: #5865f2;
+    --accent-hover: #4752c4;
+    --card-bg: #40444b;
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'gg sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Background Canvas */
+#backgroundCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+/* Main Container - like Vercel/Linear */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navigation - like Discord/Strava */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    height: 28px;
+    width: auto;
+}
+
+.brand-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-left: auto;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 8px 16px;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+}
+
+.nav-menu .btn-primary {
+    padding: 8px 16px;
+    font-size: 15px;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+}
+
+.nav-menu .btn-primary:hover {
+    background: var(--accent);
+    color: white;
+}
+
+/* Hero Section - like Ash Thorp/Vercel style */
+.hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 0;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, var(--accent) 0%, #7289da 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.hero-terms {
+    font-size: 14px;
+    color: var(--text-secondary);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.hero-terms a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.hero-terms a:hover {
+    text-decoration: underline;
+}
+
+/* Features - like Strava cards but minimal */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    padding: 60px 0;
+}
+
+.feature {
+    background: var(--card-bg);
+    padding: 32px 24px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.feature h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.feature p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* Buttons - Discord style */
+.btn-primary,
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+}
+
+.btn-large {
+    padding: 16px 32px;
+    font-size: 18px;
+}
+
+/* Footer - Strava-style */
+.footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 48px 0 24px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h4 {
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+    color: var(--text-primary);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-logo {
+    height: 24px;
+    width: auto;
+}
+
+.footer-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.footer-social {
+    display: flex;
+    gap: 24px;
+}
+
+.social-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.social-link:hover {
+    color: var(--text-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+    
+    .nav {
+        padding: 16px 0;
+    }
+    
+    .brand-text {
+        display: none;
+    }
+    
+    .hero {
+        padding: 80px 0;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        width: 200px;
+    }
+    
+    .features {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 40px 0;
+    }
+    
+    .footer-content {
+        padding: 0 16px;
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+    
+    .footer-content {
+        padding: 0 16px;
+    }
+    
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+    
+    .footer-text {
+        display: none;
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 1024px) {
+    .nav-menu {
+        display: none;
+    }
+}

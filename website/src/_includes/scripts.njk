@@ -1,0 +1,11 @@
+<script src="/assets/js/background.js"></script>
+{% if customJS %}
+{% for script in customJS %}
+<script src="{{ script }}"></script>
+{% endfor %}
+{% endif %}
+{% if inlineJS %}
+<script>
+{{ inlineJS | safe }}
+</script>
+{% endif %}

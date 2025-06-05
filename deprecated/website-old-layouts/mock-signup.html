@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Sign Up - BikeNode</title>
+    <meta name="description" content="Create your BikeNode account. Join thousands of bike enthusiasts and access virtual garage, Discord bot features, and community tools.">
+    
+    <link rel="icon" type="image/png" href="./assets/images/bikenode_logo.png">
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/auth.css">
+</head>
+<body>
+    <!-- Background Animation Canvas -->
+    <canvas id="backgroundCanvas"></canvas>
+    
+    <!-- Auth Container -->
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="./index.html" class="logo-link">
+                    <img src="./assets/images/bikenode_logo.png" alt="BikeNode" class="auth-logo">
+                </a>
+                <h1>Join BikeNode</h1>
+                <p>Create your account and start building your bike community</p>
+            </div>
+
+            <form class="auth-form" id="signupForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required placeholder="John">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required placeholder="Rider">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required placeholder="Choose a unique username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Create a secure password">
+                </div>
+                
+                <div class="form-group">
+                    <label>What bikes are you interested in? (Optional)</label>
+                    <div class="bike-type-grid">
+                        <div class="bike-type-option">
+                            <input type="checkbox" id="road" name="bikeTypes" value="road">
+                            <label for="road">🚴 Road Cycling</label>
+                        </div>
+                        <div class="bike-type-option">
+                            <input type="checkbox" id="mountain" name="bikeTypes" value="mountain">
+                            <label for="mountain">🏔️ Mountain Biking</label>
+                        </div>
+                        <div class="bike-type-option">
+                            <input type="checkbox" id="sport" name="bikeTypes" value="sport">
+                            <label for="sport">🏍️ Sport Bikes</label>
+                        </div>
+                        <div class="bike-type-option">
+                            <input type="checkbox" id="cruiser" name="bikeTypes" value="cruiser">
+                            <label for="cruiser">🛣️ Cruisers</label>
+                        </div>
+                        <div class="bike-type-option">
+                            <input type="checkbox" id="bmx" name="bikeTypes" value="bmx">
+                            <label for="bmx">🚲 BMX</label>
+                        </div>
+                        <div class="bike-type-option">
+                            <input type="checkbox" id="ebike" name="bikeTypes" value="ebike">
+                            <label for="ebike">⚡ E-Bikes</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-options">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" name="terms" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="./terms.html">Terms of Service</a> and <a href="./privacy.html">Privacy Policy</a>
+                    </label>
+                </div>
+                
+                <div class="form-options">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" name="newsletter">
+                        <span class="checkmark"></span>
+                        Send me updates about new features and community events
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn-primary btn-large auth-submit">Create Account</button>
+            </form>
+            
+            <div class="auth-divider">
+                <span>or</span>
+            </div>
+            
+            <button class="btn-discord auth-submit" id="discordSignup">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.317 4.37c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.64 18.64 0 0 0-5.487 0 12.404 12.404 0 0 0-.617-1.23A.077.077 0 0 0 8.562 2.88c-1.714.29-3.354.8-4.885 1.49a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                </svg>
+                Continue with Discord
+            </button>
+
+            <div class="auth-footer">
+                <p>Already have an account? <a href="./mock-login.html">Sign in</a></p>
+                <div class="auth-links">
+                    <a href="./terms.html">Terms</a>
+                    <a href="./privacy.html">Privacy</a>
+                    <a href="./support.html">Help</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/background.js"></script>
+    
+    <script>
+        // Bike type selection
+        document.querySelectorAll('.bike-type-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const checkbox = this.querySelector('input[type="checkbox"]');
+                checkbox.checked = !checkbox.checked;
+                this.classList.toggle('selected', checkbox.checked);
+            });
+        });
+        
+        // Mock signup functionality
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitBtn = document.querySelector('.auth-submit');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Creating account...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Show success message then redirect
+                showSuccessMessage();
+            }, 2000);
+        });
+        
+        document.getElementById('discordSignup').addEventListener('click', function() {
+            // Show loading state
+            const submitBtn = this;
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="31.416" stroke-dashoffset="31.416" class="spinner"/></svg>Connecting...';
+            submitBtn.disabled = true;
+            
+            // Simulate Discord OAuth
+            setTimeout(() => {
+                showSuccessMessage();
+            }, 2500);
+        });
+        
+        function showSuccessMessage() {
+            const authCard = document.querySelector('.auth-card');
+            authCard.innerHTML = `
+                <div class="auth-success">
+                    <div class="success-icon">✅</div>
+                    <h2>Welcome to BikeNode!</h2>
+                    <p>Your account has been created successfully. Redirecting to your dashboard...</p>
+                    <div class="btn-primary btn-large" style="display: inline-block; padding: 14px 32px;">Setting up your profile...</div>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                window.location.href = './dashboard.html';
+            }, 3000);
+        }
+    </script>
+    
+    <style>
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { stroke-dashoffset: 31.416; }
+            50% { stroke-dashoffset: 15.708; }
+            100% { stroke-dashoffset: 0; }
+        }
+    </style>
+</body>
+</html>

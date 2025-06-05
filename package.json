@@ -1,0 +1,38 @@
+{
+  "name": "bikenode-scrapers",
+  "version": "1.0.0",
+  "description": "Motorcycle data scraping tools for bikenode.com",
+  "main": "index.js",
+  "scripts": {
+    "scrape:bennetts": "node run_scraper.js",
+    "scrape:bennetts:small": "node run_scraper.js 10",
+    "scrape:bennetts:medium": "node run_scraper.js 50",
+    "demo": "node demo_full.js",
+    "test:database": "node test_database.js",
+    "start": "node run_scraper.js"
+  },
+  "keywords": [
+    "motorcycle",
+    "scraping",
+    "web-scraping",
+    "puppeteer",
+    "sqlite",
+    "data-extraction"
+  ],
+  "author": "Kevin Tong",
+  "license": "MIT",
+  "dependencies": {
+    "@browserbasehq/stagehand": "^2.3.0",
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12",
+    "fs-extra": "^11.2.0",
+    "puppeteer": "^21.5.2",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

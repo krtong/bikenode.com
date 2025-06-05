@@ -12,6 +12,11 @@ from commands.server_management import ServerManagementCommands
 from commands.story import StoryCommands
 from commands.stats import StatsCommands
 from commands.compare import CompareCommands
+# from commands.claude import ClaudeCommands
+# from commands.claude_chat import ClaudeChatCommands
+# from commands.claude_bridge import ClaudeBridge
+# from commands.claude_simple import ClaudeSimple
+from commands.claude_fixed import ClaudeFixed
 from events.message import MessageEvents
 from utils.role_manager import RoleManager
 from api.bikenode_client import BikeNodeAPI
@@ -57,6 +62,13 @@ async def on_ready():
     # Log when the bot is ready and set its activity
     logger.info(f'Bot connected as {bot.user.name} ({bot.user.id})')
     await bot.change_presence(activity=discord.Game(config['bot']['activity_message']))
+    
+    # Sync slash commands
+    try:
+        synced = await bot.tree.sync()
+        logger.info(f"Synced {len(synced)} slash commands")
+    except Exception as e:
+        logger.error(f"Failed to sync commands: {e}")
 
 async def setup_bot():
     # Initialize API client - don't pass SSL context, it's set globally now
@@ -74,6 +86,11 @@ async def setup_bot():
     await bot.add_cog(StoryCommands(bot))
     await bot.add_cog(StatsCommands(bot))
     await bot.add_cog(CompareCommands(bot))
+    # await bot.add_cog(ClaudeCommands(bot))
+    # await bot.add_cog(ClaudeChatCommands(bot))
+    # await bot.add_cog(ClaudeBridge(bot))
+    # await bot.add_cog(ClaudeSimple(bot))
+    await bot.add_cog(ClaudeFixed(bot))
     await bot.add_cog(MessageEvents(bot))
     
     # Start webhook handler if enabled

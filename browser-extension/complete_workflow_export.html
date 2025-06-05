@@ -1,0 +1,642 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Classified Ads Export</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .description { max-width: 300px; overflow: hidden; text-overflow: ellipsis; }
+        .images { color: #666; }
+        .price { font-weight: bold; color: #2c5aa0; }
+    </style>
+</head>
+<body>
+    <h1>Classified Ads Export</h1>
+    <p>Generated on: 6/4/2025, 3:06:43 PM</p>
+    <p>Total ads: 2</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th><th>Price</th><th>Location</th><th>Category</th><th>Domain</th><th>URL</th><th>Description</th><th>Images Count</th><th>Contact Phone</th><th>Contact Email</th><th>Date Scraped</th><th>Extraction Time (ms)</th>
+            </tr>
+        </thead>
+        <tbody>
+<tr><td class="">Touring / Commuter Bicycle --1986 Miyata 1000 Rebuilt - $1,300 (santa rosa)</td><td class="price">$1,300</td><td class="">Touring / Commuter Bicycle --1986 Miyata 1000 Rebuilt - bicycles - by owner - bike sale - craigslist
+	
+	
+
+
+
+    
+
+
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"name":"sfbay.craigslist.org","item":"https://sfbay.craigslist.org","@type":"ListItem","position":1},{"@type":"ListItem","position":2,"name":"north bay","item":"https://sfbay.craigslist.org/nby/"},{"position":3,"@type":"ListItem","item":"https://sfbay.craigslist.org/search/nby/sss","name":"for sale"},{"item":"https://sfbay.craigslist.org/search/nby/bia?purveyor=owner","name":"bicycles - by owner","position":4,"@type":"ListItem"},{"@type":"ListItem","position":5,"name":"Touring / Commuter Bicycle --1986 Miyata 1000 Rebuilt","item":"https://sfbay.craigslist.org/nby/bik/d/santa-rosa-touring-commuter-bicycle/7831917767.html"}]}
+
+
+
+    {"description":"This is a 58cm touring bike in excellent condition. For rider 5'11\" to 6'5\".  Paint has no dings, scratches, or fading, but a few small chips. The original components are the rear carrier rack and the center pull Shimano 600 cantilever brakes. This bike has been completely built up with new, heavy duty components. The frame has splined and triple butted steel tubes and is sought after as one of the best touring frames made. It would be suitable as a gravel bike or commuter. Price firm.  Componen...","@type":"Product","offers":{"availableAtOrFrom":{"@type":"Place","address":{"postalCode":"95406","addressLocality":"Santa Rosa","@type":"PostalAddress","addressCountry":"US","addressRegion":"CA","streetAddress":""},"geo":{"longitude":"-122.714400","latitude":"38.440500","@type":"GeoCoordinates"}},"price":"1300.00","priceCurrency":"USD","@type":"Offer"},"image":["https://images.craigslist.org/00A0A_WjPppOyn6a_1320MM_600x450.jpg","https://images.craigslist.org/00g0g_aRkVGu49kFL_1320MM_600x450.jpg","https://images.craigslist.org/00J0J_1R3CipcApzM_1320MM_600x450.jpg","https://images.craigslist.org/00A0A_6BWf0GrD0vg_1320MM_600x450.jpg","https://images.craigslist.org/00q0q_50t1t8L9tbk_1320MM_600x450.jpg","https://images.craigslist.org/01414_35noU92SuXy_1320MM_600x450.jpg","https://images.craigslist.org/00505_1f95CDAVhKc_1320MM_600x450.jpg","https://images.craigslist.org/00606_5SQ51qJzLfR_1320MM_600x450.jpg","https://images.craigslist.org/00g0g_4XOffy3nNUn_0MM132_600x450.jpg","https://images.craigslist.org/00g0g_8PaN7GjrrPb_0MM132_600x450.jpg"],"name":"Touring / Commuter Bicycle --1986 Miyata 1000 Rebuilt","@context":"http://schema.org"}
+
+
+
+    
+        body {
+            font-family: sans-serif;
+        }
+
+        #no-js {
+            position: fixed;
+            z-index: 100000;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            overflow:auto;
+            margin: 0;
+            background: transparent;
+        }
+
+        #no-js h1 {
+            margin: 0;
+            padding: .5em;
+            color: #00E;
+            background-color: #cccccc;
+        }
+
+        #no-js  p {
+            margin: 1em;
+        }
+
+        .no-js header,
+        .no-js form,
+        .no-js .tsb,
+        .unsupported-browser header,
+        .unsupported-browser form,
+        .unsupported-browser .tsb {
+            display: none;
+        }
+
+        #curtain {
+            display: none;
+            position: fixed;
+            z-index: 9000;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: transparent;
+        }
+
+        .show-curtain #curtain {
+            display: block;
+        }
+
+        #curtain .cover,
+        #curtain .content {
+            position: absolute;
+            display: block;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        #curtain .cover {
+            z-index: 1;
+            background-color: white;
+        }
+
+        .show-curtain #curtain .cover {
+            opacity: 0.7;
+        }
+
+        .show-curtain.clear #curtain .cover {
+            opacity: 0;
+        }
+
+        .show-curtain.opaque #curtain .cover {
+            opacity: 1;
+        }
+
+        #curtain .content {
+            z-index: 2;
+            background: transparent;
+            color: #00E;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .unrecoverable #curtain .content,
+        .unsupported-browser #curtain .content {
+            display: block;
+            align-items: start;
+        }
+
+        #curtain h1 {
+            margin: 0;
+            padding: .5em;
+            background-color: #cccccc;
+        }
+
+        #curtain  p {
+            margin: 1em;
+            color: black;
+        }
+
+        .pacify #curtain .icom-:after {
+            content: "\eb23";
+        }
+
+        #curtain .text {
+            display: none;
+        }
+
+        .loading #curtain .text.loading,
+        .reading #curtain .text.reading,
+        .writing #curtain .text.writing,
+        .saving #curtain .text.saving,
+        .searching #curtain .text.searching,
+        .unrecoverable #curtain .text.unrecoverable,
+        .message #curtain .text.message {
+            display: block;
+        }
+
+        .unrecoverable #curtain .text.unrecoverable {
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(359deg);
+            }
+        }
+
+        .pacify #curtain .icom- {
+            font-size: 3em;
+            animation: rotate 2s infinite linear;
+        }
+    
+
+
+    
+     
+     
+     
+         window.cl.init(
+             'https://www.craigslist.org/static/www/',
+             '',
+             'www',
+             'posting',
+             {
+'countOfTotalText': "image {count} of {total}",
+'defaultLocale': "en_US",
+'imageConfig': {"0":{"hostname":"https://images.craigslist.org","sizes":["50x50c","300x300","600x450"]},"3":{"hostname":"https://images.craigslist.org","sizes":["50x50c","300x300","600x450","1200x900"]},"4":{"sizes":["50x50c","300x300","600x450","1200x900"],"hostname":"https://images.craigslist.org"},"2":{"sizes":["50x50c","300x300","600x450","1200x900"],"hostname":"https://images.craigslist.org"},"1":{"hostname":"https://images.craigslist.org","sizes":["50x50c","300x300","600x450","1200x900"]}},
+'initialCategoryAbbr': "bik",
+'maptileBaseUrl': "//map{s}.craigslist.org/t09/{z}/{x}/{y}.png",
+'pID': 7831917767,
+'whereAmI': {"nearbyAreas":[{"name":"chico","hostname":"chico","id":187,"lon":"-121.835999","description":"chico, CA","lat":"39.728600","subareas":[],"region":"CA","country":"US","abbr":"chc"},{"lat":"36.747799","subareas":[],"country":"US","region":"CA","abbr":"fre","id":43,"name":"fresno","hostname":"fresno","lon":"-119.771004","description":"fresno / madera"},{"id":373,"hostname":"goldcountry","name":"gold country","lon":"-120.801003","description":"gold country","subareas":[],"lat":"38.732498","abbr":"gld","region":"CA","country":"US"},{"subareas":[],"lat":"36.327400","abbr":"hnf","country":"US","region":"CA","hostname":"hanford","name":"hanford","id":709,"lon":"-119.646004","description":"hanford-corcoran"},{"description":"mendocino county","lon":"-123.430000","id":454,"hostname":"mendocino","name":"mendocino co","abbr":"mdo","region":"CA","country":"US","subareas":[],"lat":"39.363098"},{"lat":"37.302200","subareas":[],"region":"CA","country":"US","abbr":"mer","name":"merced","hostname":"merced","id":285,"lon":"-120.482002","description":"merced, CA"},{"hostname":"modesto","name":"modesto","id":96,"lon":"-120.996002","description":"modesto, CA","subareas":[],"lat":"37.639198","abbr":"mod","region":"CA","country":"US"},{"abbr":"mtb","region":"CA","country":"US","subareas":[],"lat":"36.600300","lon":"-121.893997","description":"monterey bay","hostname":"monterey","name":"monterey","id":102},{"abbr":"rdd","region":"CA","country":"US","subareas":[],"lat":"40.586700","description":"redding, CA","lon":"-122.390999","id":188,"hostname":"redding","name":"redding"},{"lat":"39.529701","subareas":[],"country":"US","region":"NV","abbr":"rno","id":92,"name":"reno","hostname":"reno","lon":"-119.813004","description":"reno / tahoe"},{"abbr":"sac","country":"US","region":"CA","subareas":[],"lat":"38.581699","lon":"-121.492996","description":"sacramento","hostname":"sacramento","name":"sacramento","id":12},{"id":191,"name":"san luis obispo","hostname":"slo","lon":"-120.658997","description":"san luis obispo","lat":"35.282799","subareas":[],"country":"US","region":"CA","abbr":"slo"},{"subareas":[],"lat":"34.963799","abbr":"smx","country":"US","region":"CA","id":710,"hostname":"santamaria","name":"santa maria","description":"santa maria, CA","lon":"-120.433296"},{"subareas":[],"lat":"37.957802","abbr":"stk","region":"CA","country":"US","hostname":"stockton","name":"stockton","id":97,"description":"stockton, CA","lon":"-121.290001"},{"subareas":[],"lat":"40.416302","abbr":"ssn","region":"CA","country":"US","id":707,"hostname":"susanville","name":"susanville","lon":"-120.653000","description":"susanville, CA"},{"country":"US","region":"CA","abbr":"vis","lat":"36.330299","subareas":[],"description":"visalia-tulare","lon":"-119.291000","id":346,"name":"visalia-tulare","hostname":"visalia"},{"lat":"39.144402","subareas":[],"country":"US","region":"CA","abbr":"ybs","name":"yuba-sutter","hostname":"yubasutter","id":456,"lon":"-121.647003","description":"yuba-sutter, CA"}],"area":{"subareas":[{"id":3,"name":"east bay","lon":"-122.097694","description":"east bay area","lat":"37.816622","abbr":"eby"},{"lon":"-122.552650","description":"north bay / marin","name":"north bay","id":5,"abbr":"nby","lat":"38.213112"},{"abbr":"pen","lat":"37.513420","lon":"-122.237935","description":"peninsula","name":"peninsula","id":4},{"name":"san francisco","id":1,"description":"city of san francisco","lon":"-122.413431","lat":"37.774419","abbr":"sfc"},{"abbr":"scz","lat":"36.981202","description":"santa cruz co","lon":"-121.961466","name":"santa cruz","id":6},{"lon":"-121.925176","description":"south bay area","name":"south bay","id":2,"abbr":"sby","lat":"37.331272"}],"lat":"37.500000","abbr":"sfo","country":"US","region":"CA","hostname":"sfbay","name":"SF bay area","id":1,"lon":"-122.250000","description":"SF bay area"},"subareaId":0,"searchLocation":0}
+},
+             0
+         );
+     
+     
+
+    
+        window.cl.specialCurtainMessages = {
+            unsupportedBrowser: [
+                "We've detected you are using a browser that is missing critical features.",
+                "Please visit craigslist from a modern browser."
+            ],
+            unrecoverableError: [
+                "There was an error loading the page."
+            ]
+        };
+    
+
+
+
+
+    
+    
+    
+
+
+    
+        
+
+   CL
+
+    
+
+        
+            
+                    SF bay area
+
+                    &gt;
+            
+        
+
+        
+            
+                    north bay
+                    &gt;
+            
+        
+
+        
+            
+                        for sale by owner
+
+                    &gt;
+            
+        
+
+        
+            
+                bicycles
+
+            
+        
+
+
+    
+
+
+    
+        
+            post
+        
+        
+            account
+        
+    
+    
+        
+            
+                0 favorites
+            
+        
+        
+            
+                
+                    
+                    0
+                     hidden
+                
+            
+        
+    
+
+
+
+
+   CL
+    
+
+    
+
+north bay            &gt;
+
+bicycles - by owner    
+
+
+    
+    ...
+
+        
+
+    
+        
+    ◀  prev 
+    ▲
+     next ▶ 
+
+
+    
+
+    
+    
+    
+      reply
+    
+
+      
+    
+        
+            
+            favorite
+        
+        
+            
+            favorite
+        
+    
+
+  
+    
+    hide
+  
+  
+    
+    unhide
+  
+
+    
+        
+            
+                ⚐
+                ⚑
+            
+            
+                flag
+            
+        
+        
+            ⚑
+            
+                flagged
+            
+        
+    
+    
+        share
+    
+    
+
+            
+                    Posted
+                    3 months ago
+            
+
+            
+                Contact Information:  
+            
+            print
+
+    
+
+
+
+
+    
+Touring / Commuter Bicycle --1986 Miyata 1000 Rebuilt - $1,300 (santa rosa)    
+
+
+    
+    
+        ‹
+        image 1 of 10
+        ›
+
+        
+            
+                
+                    
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            
+        
+    
+    
+    
+        
+var imgList = [{"shortid":"WjPppOyn6a_1320MM","url":"https://images.craigslist.org/00A0A_WjPppOyn6a_1320MM_600x450.jpg","thumb":"https://images.craigslist.org/00A0A_WjPppOyn6a_1320MM_50x50c.jpg","altBase":"Touring / Commuter Bicycle --1986 Miyata 1000 Rebuilt","imgid":"3:00A0A_WjPppOyn6a_1320MM"},{"altBase":"Touring / Commuter Bicycle --1986 Miyata 1000 Rebuilt","imgid":"3:00g0g_aRkVGu49kFL_1320MM","shortid":"aRkVGu49kFL_1320MM","url":"https://images.craigslist.org/00g0g_aRkVGu49kFL_1320MM_600x450.jpg","thumb":"https://images.craigslist.org/00g0g_aRkVGu49kFL_1320MM_50x50c.jpg"},{"shortid":"1R3CipcApzM_1320MM","url":"https://images.craigslist.org/00J0J_1R3CipcApzM_1320MM_600x450.jpg","thumb":"https://images.craigslist.org/00J0J_1R3CipcApzM_1320MM_50x50c.jpg","altBase":"Touring / Commuter Bicycle --1986 Miyata 1000 Rebuilt","imgid":"3:00J0J_1R3CipcApzM_1320MM"},{"imgid":"3:00A0A_6BWf0GrD0vg_1320MM","altBase":"Touring / Commuter Bicycle --1986 Miyata 1000 Rebuilt","thumb":"https://images.craigslist.org/00A0A_6BWf0GrD0vg_1320MM_50x50c.jpg","shortid":"6BWf0GrD0vg_1320MM","url":"https://images.craigslist.org/00A0A_6BWf0GrD0vg_1320MM_600x450.jpg"},{"altBase":"Touring / Commuter Bicycle --1986 Miyata 1000 Rebuilt","imgid":"3:00q0q_50t1t8L9tbk_1320MM","shortid":"50t1t8L9tbk_1320MM","url":"https://images.craigslist.org/00q0q_50t1t8L9tbk_1320MM_600x450.jpg","thumb":"https://images.craigslist.org/00q0q_50t1t8L9tbk_1320MM_50x50c.jpg"},{"thumb":"https://images.craigslist.org/01414_35noU92SuXy_1320MM_50x50c.jpg","shortid":"35noU92SuXy_1320MM","url":"https://images.craigslist.org/01414_35noU92SuXy_1320MM_600x450.jpg","imgid":"3:01414_35noU92SuXy_1320MM","altBase":"Touring / Commuter Bicycle --1986 Miyata 1000 Rebuilt"},{"altBase":"Touring / Commuter Bicycle --1986 Miyata 1000 Rebuilt","imgid":"3:00505_1f95CDAVhKc_1320MM","shortid":"1f95CDAVhKc_1320MM","url":"https://images.craigslist.org/00505_1f95CDAVhKc_1320MM_600x450.jpg","thumb":"https://images.craigslist.org/00505_1f95CDAVhKc_1320MM_50x50c.jpg"},{"altBase":"Touring / Commuter Bicycle --1986 Miyata 1000 Rebuilt","imgid":"3:00606_5SQ51qJzLfR_1320MM","url":"https://images.craigslist.org/00606_5SQ51qJzLfR_1320MM_600x450.jpg","shortid":"5SQ51qJzLfR_1320MM","thumb":"https://images.craigslist.org/00606_5SQ51qJzLfR_1320MM_50x50c.jpg"},{"thumb":"https://images.craigslist.org/00g0g_4XOffy3nNUn_0MM132_50x50c.jpg","shortid":"4XOffy3nNUn_0MM132","url":"https://images.craigslist.org/00g0g_4XOffy3nNUn_0MM132_600x450.jpg","imgid":"3:00g0g_4XOffy3nNUn_0MM132","altBase":"Touring / Commuter Bicycle --1986 Miyata 1000 Rebuilt"},{"thumb":"https://images.craigslist.org/00g0g_8PaN7GjrrPb_0MM132_50x50c.jpg","url":"https://images.craigslist.org/00g0g_8PaN7GjrrPb_0MM132_600x450.jpg","shortid":"8PaN7GjrrPb_0MM132","imgid":"3:00g0g_8PaN7GjrrPb_0MM132","altBase":"Touring / Commuter Bicycle --1986 Miyata 1000 Rebuilt"}];
+
+    
+
+
+
+    
+
+    © craigslist - Map data © OpenStreetMap
+    
+    
+
+
+    
+
+
+            
+                bicycle type:
+                              road
+
+            
+
+
+            
+                frame size:
+                58cm
+            
+
+
+            
+                wheel size:
+                              700C
+
+            
+
+
+            
+                bicycle frame material:
+                              steel
+
+            
+
+
+            
+                suspension:
+                              none (rigid)
+
+            
+
+
+            
+                brake type:
+                              cantilever
+
+            
+
+
+            
+                handlebar type:
+                              drop
+
+            
+
+
+            
+                electric assist:
+                              none
+
+            
+
+
+            
+                condition:
+                              excellent
+
+            
+
+
+            
+                make / manufacturer:
+                Miyata
+            
+
+
+            
+                model name / number:
+                1000 Touring
+            
+
+
+            
+                serial number:
+                NU61730
+            
+    
+    
+
+    
+        
+            QR Code Link to This Post
+            
+        
+This is a 58cm touring bike in excellent condition. For rider 5'11" to 6'5".  Paint has no dings, scratches, or fading, but a few small chips. The original components are the rear carrier rack and the center pull Shimano 600 cantilever brakes. This bike has been completely built up with new, heavy duty components. The frame has splined and triple butted steel tubes and is sought after as one of the best touring frames made. It would be suitable as a gravel bike or commuter. Price firm.
+Components:	
+Rear wheel is Mavic A719, 40 spoke, custom built with Phil Wood freewheel hub.
+Front wheel is Mavic A719, 36 spoke custom built with Schmidt SON Dynamo Hub
+Tires are fast and comfortable Jack Brown 700c from Rivendell. 
+Stem - Netto Technomic
+Handlebar - Netto Noodle
+Break levers - Cane Creek SCR-5
+Tape - Brooks Leather with gel padding
+Seat post- SR original Sake
+Saddle - Brooks Flyer Special
+Frame paint - original Royal Platinum/ Gold head tube
+Fenders - SKS
+Bottom bracket - Shimano UN-53 sealed bearing cartridge
+Crank - Sugino (110mm)	
+Crank set - Sugino XD 300 with 26-36-46 chain rings that are forged, ramped and pinned for smooth shifting
+Front derailleur - Shimano Deore LX, 3 speed
+Rear derailleur - Shimano Deore LX (Rapid Rise)
+Bar-end shifters - Shimano 8-speed SIS Ultegra
+Freewheel - Shimano 600EX (34/28/23/19/16/13)
+Front carrier rack - Blackburn LowRider
+Front light - Busch &amp; Muller Lumotec N halogen
+Tail light - Blackburn
+Water bottle cages - 3
+Stem mounted bell
+    
+
+
+
+
+    
+            post id: 7831917767
+                posted: 3 months ago
+
+                updated: 13 minutes ago
+
+        
+              
+                ♥ best of
+               [?]
+        
+        
+    
+
+    
+
+
+
+
+
+
+
+
+    
+        Avoid scams, deal locally
+        Beware wiring (e.g. Western Union), cashier checks, money orders, shipping.
+    
+
+
+
+
+
+        
+
+    
+        © 2025 craigslistCL
+        help
+        safety
+        privacy
+        terms
+        about
+        app
+    
+
+    0
+
+    
+        
+        
+            
+            loading
+            reading
+            writing
+            saving
+            searching
+            
+            
+                 refresh the page.
+             
+         
+    
+
+    
+        
+    
+
+
+
+chaterror connecting to chatretryactivehiddenno conversationsChat is a new feature available in select areas and categories.</td><td class="">bicycle</td><td class="">sfbay.craigslist.org</td><td class="">https://sfbay.craigslist.org/nby/bik/d/santa-rosa-touring-commuter-bicycle/7831917767.html</td><td class="description">QR Code Link to This Post
+            
+        
+This is a 58cm touring bike in excellent condition. For rider 5'11" to 6'5".  Paint has no dings, scratches, or fading, but a few small chips. The original components are the rear carrier rack and the center pull Shimano 600 cantilever brakes. This bike has been completely built up with new, heavy duty components. The frame has splined and triple butted steel tubes and is sought after as one of the best touring frames made. It would be suitable as ...</td><td class="images">7</td><td class="">7831917767</td><td class=""></td><td class="">2025-06-04T19:06:23.250Z</td><td class="">1</td></tr><tr><td class="">Privacy settings</td><td class="price">$143.50</td><td class="">Alto, CA</td><td class="">bicycle</td><td class="">mercari.com</td><td class="">https://www.mercari.com/search/?keyword=bicycle</td><td class="description">Skip to contentSign upLog inList an itemBrandsWomenMenElectronicsToysGamingHandbagsHomeVintageBeautyView allMercari&gt;bicyclebicycle(1000+ results)Filter byDealsDealsStatusAnyFor saleSoldItem originAnyUSAJapanYou can now order items direct from Japan.SizePriceCategoryConditionFree ShippingSave this searchGet notified when new items are posted.Sort by best match{"@context":"https://schema.org/","@type":"Product","name":"Road Master - Sierra Trail 24 Mountain Bike (Local Pick Up Only) !!!!","image":...</td><td class="images">20</td><td class="">1746485235</td><td class=""></td><td class="">2025-06-04T19:06:43.025Z</td><td class="">3</td></tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BikeNode Images Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #1a1a1a; color: white; }
+        .image-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .image-item { text-align: center; padding: 10px; background: #2a2a2a; border-radius: 8px; }
+        .image-item img { max-width: 100%; height: auto; border: 1px solid #555; }
+        .image-item h3 { margin: 10px 0 5px 0; }
+        .missing { background: #3a1a1a; border: 1px solid #aa4444; }
+    </style>
+</head>
+<body>
+    <h1>BikeNode Images Test</h1>
+    <p>This page tests all the restored images from git history.</p>
+    
+    <div class="image-grid">
+        <div class="image-item">
+            <h3>Main Logo</h3>
+            <img src="./assets/images/bikenode_logo.png" alt="BikeNode Logo" onerror="this.parentElement.classList.add('missing')">
+        </div>
+        
+        <div class="image-item">
+            <h3>Apple Touch Icon</h3>
+            <img src="./assets/images/apple-touch-icon-2.png" alt="Apple Touch Icon" onerror="this.parentElement.classList.add('missing')">
+        </div>
+        
+        <div class="image-item">
+            <h3>Favicon 16x16</h3>
+            <img src="./assets/images/favicon-16x16-2.png" alt="Favicon 16x16" onerror="this.parentElement.classList.add('missing')">
+        </div>
+        
+        <div class="image-item">
+            <h3>Favicon 32x32</h3>
+            <img src="./assets/images/favicon-32x32-2.png" alt="Favicon 32x32" onerror="this.parentElement.classList.add('missing')">
+        </div>
+        
+        <div class="image-item">
+            <h3>Favicon 48x48</h3>
+            <img src="./assets/images/favicon-48x48-2.png" alt="Favicon 48x48" onerror="this.parentElement.classList.add('missing')">
+        </div>
+        
+        <div class="image-item">
+            <h3>Favicon 64x64</h3>
+            <img src="./assets/images/favicon-64x64-2.png" alt="Favicon 64x64" onerror="this.parentElement.classList.add('missing')">
+        </div>
+        
+        <div class="image-item">
+            <h3>Favicon 96x96</h3>
+            <img src="./assets/images/favicon-96x96-2.png" alt="Favicon 96x96" onerror="this.parentElement.classList.add('missing')">
+        </div>
+        
+        <div class="image-item">
+            <h3>Favicon 128x128</h3>
+            <img src="./assets/images/favicon-128x128-2.png" alt="Favicon 128x128" onerror="this.parentElement.classList.add('missing')">
+        </div>
+        
+        <div class="image-item">
+            <h3>Image Copy</h3>
+            <img src="./assets/images/image-copy.png" alt="Image Copy" onerror="this.parentElement.classList.add('missing')">
+        </div>
+        
+        <div class="image-item">
+            <h3>Image Copy 2</h3>
+            <img src="./assets/images/image-copy-2.png" alt="Image Copy 2" onerror="this.parentElement.classList.add('missing')">
+        </div>
+    </div>
+    
+    <h2>File Listing</h2>
+    <p>Here are all the image files that were restored:</p>
+    <ul id="file-list"></ul>
+    
+    <script>
+        // List all image files for verification
+        const files = [
+            'bikenode_logo.png',
+            'apple-touch-icon-2.png', 
+            'favicon-16x16-2.png',
+            'favicon-32x32-2.png',
+            'favicon-48x48-2.png', 
+            'favicon-64x64-2.png',
+            'favicon-96x96-2.png',
+            'favicon-128x128-2.png',
+            'image-copy.png',
+            'image-copy-2.png'
+        ];
+        
+        const fileList = document.getElementById('file-list');
+        files.forEach(file => {
+            const li = document.createElement('li');
+            li.textContent = file;
+            fileList.appendChild(li);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1419 @@
+---
+layout: dashboard.njk
+title: Moderation Queue
+subtitle: Review and manage pending moderation actions and reports
+---
+
+<div class="moderation-queue-content">
+    <!-- Queue Overview -->
+    <div class="queue-overview">
+        <div class="overview-stats">
+            <div class="stat-card urgent">
+                <div class="stat-icon">🚨</div>
+                <div class="stat-content">
+                    <h3>3</h3>
+                    <p>Urgent Items</p>
+                </div>
+            </div>
+            <div class="stat-card pending">
+                <div class="stat-icon">⏳</div>
+                <div class="stat-content">
+                    <h3>12</h3>
+                    <p>Pending Review</p>
+                </div>
+            </div>
+            <div class="stat-card auto">
+                <div class="stat-icon">🤖</div>
+                <div class="stat-content">
+                    <h3>47</h3>
+                    <p>Auto-Resolved Today</p>
+                </div>
+            </div>
+            <div class="stat-card response">
+                <div class="stat-icon">⏱️</div>
+                <div class="stat-content">
+                    <h3>2.3min</h3>
+                    <p>Avg Response Time</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="queue-actions">
+            <select class="filter-select" id="serverFilter">
+                <option value="all">All Servers</option>
+                <option value="sportbike" selected>Sport Bike Riders</option>
+                <option value="mtb">Mountain Bike Central</option>
+                <option value="cruiser">Cruiser Nation</option>
+            </select>
+            <select class="filter-select" id="priorityFilter">
+                <option value="all">All Priorities</option>
+                <option value="urgent">Urgent</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+            </select>
+            <select class="filter-select" id="typeFilter">
+                <option value="all">All Types</option>
+                <option value="reports">User Reports</option>
+                <option value="automod">Auto-Moderation</option>
+                <option value="appeals">Appeals</option>
+                <option value="manual">Manual Review</option>
+            </select>
+            <button class="btn-primary" onclick="refreshQueue()">
+                <span>🔄</span>
+                Refresh Queue
+            </button>
+        </div>
+    </div>
+
+    <!-- Urgent Queue -->
+    <div class="queue-section urgent-section">
+        <div class="section-header">
+            <h3>🚨 Urgent Items</h3>
+            <span class="item-count">3 items requiring immediate attention</span>
+        </div>
+        
+        <div class="queue-items">
+            <div class="queue-item urgent" data-id="urgent-1">
+                <div class="item-priority">
+                    <div class="priority-indicator urgent"></div>
+                    <span class="priority-text">URGENT</span>
+                </div>
+                <div class="item-content">
+                    <div class="item-header">
+                        <h4>Harassment Report</h4>
+                        <div class="item-meta">
+                            <span class="server-tag">Sport Bike Riders</span>
+                            <span class="time-ago">5 minutes ago</span>
+                        </div>
+                    </div>
+                    <div class="item-description">
+                        <p><strong>@ToxicUser123</strong> reported for harassment in #general channel. Multiple users involved, escalating situation.</p>
+                        <div class="evidence-preview">
+                            <span class="evidence-count">3 screenshots</span>
+                            <span class="evidence-count">7 message reports</span>
+                            <span class="evidence-count">2 witness statements</span>
+                        </div>
+                    </div>
+                    <div class="involved-users">
+                        <span class="user-tag perpetrator">@ToxicUser123</span>
+                        <span class="user-tag victim">@NewMember456</span>
+                        <span class="user-tag witness">@Moderator789</span>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <button class="btn-danger" onclick="takeAction('urgent-1', 'ban')">Ban User</button>
+                    <button class="btn-warning" onclick="takeAction('urgent-1', 'timeout')">Timeout</button>
+                    <button class="btn-secondary" onclick="viewDetails('urgent-1')">Review Details</button>
+                    <button class="btn-secondary" onclick="escalate('urgent-1')">Escalate</button>
+                </div>
+            </div>
+
+            <div class="queue-item urgent" data-id="urgent-2">
+                <div class="item-priority">
+                    <div class="priority-indicator urgent"></div>
+                    <span class="priority-text">URGENT</span>
+                </div>
+                <div class="item-content">
+                    <div class="item-header">
+                        <h4>Spam Bot Attack</h4>
+                        <div class="item-meta">
+                            <span class="server-tag">Sport Bike Riders</span>
+                            <span class="time-ago">12 minutes ago</span>
+                        </div>
+                    </div>
+                    <div class="item-description">
+                        <p>Auto-moderation detected coordinated spam attack. 15 new accounts posting identical messages with suspicious links.</p>
+                        <div class="evidence-preview">
+                            <span class="evidence-count">15 bot accounts</span>
+                            <span class="evidence-count">47 spam messages</span>
+                            <span class="evidence-count">3 malicious links</span>
+                        </div>
+                    </div>
+                    <div class="auto-actions-taken">
+                        <span class="action-tag completed">Messages deleted</span>
+                        <span class="action-tag completed">Accounts flagged</span>
+                        <span class="action-tag pending">Awaiting ban confirmation</span>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <button class="btn-danger" onclick="takeAction('urgent-2', 'mass-ban')">Confirm Mass Ban</button>
+                    <button class="btn-secondary" onclick="viewDetails('urgent-2')">Review Accounts</button>
+                    <button class="btn-secondary" onclick="markFalsePositive('urgent-2')">False Positive</button>
+                </div>
+            </div>
+
+            <div class="queue-item urgent" data-id="urgent-3">
+                <div class="item-priority">
+                    <div class="priority-indicator urgent"></div>
+                    <span class="priority-text">URGENT</span>
+                </div>
+                <div class="item-content">
+                    <div class="item-header">
+                        <h4>Ban Appeal - High Profile</h4>
+                        <div class="item-meta">
+                            <span class="server-tag">Sport Bike Riders</span>
+                            <span class="time-ago">45 minutes ago</span>
+                        </div>
+                    </div>
+                    <div class="item-description">
+                        <p><strong>@CommunityLeader</strong> (500+ followers) appealing 7-day ban for "doxxing". Claims information was already public.</p>
+                        <div class="appeal-details">
+                            <span class="detail-item">Original ban: @AdminRider</span>
+                            <span class="detail-item">Reason: Sharing personal info</span>
+                            <span class="detail-item">Evidence: Screenshot of social media</span>
+                        </div>
+                    </div>
+                    <div class="community-impact">
+                        <span class="impact-tag high">High community impact</span>
+                        <span class="impact-tag">Public figure</span>
+                        <span class="impact-tag">Media attention risk</span>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <button class="btn-success" onclick="takeAction('urgent-3', 'approve-appeal')">Approve Appeal</button>
+                    <button class="btn-danger" onclick="takeAction('urgent-3', 'deny-appeal')">Deny Appeal</button>
+                    <button class="btn-secondary" onclick="viewDetails('urgent-3')">Review Case</button>
+                    <button class="btn-secondary" onclick="requestSecondOpinion('urgent-3')">Second Opinion</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Standard Queue -->
+    <div class="queue-section standard-section">
+        <div class="section-header">
+            <h3>📋 Pending Review</h3>
+            <span class="item-count">9 items awaiting moderation</span>
+        </div>
+        
+        <div class="queue-items">
+            <div class="queue-item high" data-id="standard-1">
+                <div class="item-priority">
+                    <div class="priority-indicator high"></div>
+                    <span class="priority-text">HIGH</span>
+                </div>
+                <div class="item-content">
+                    <div class="item-header">
+                        <h4>Profanity Filter Appeal</h4>
+                        <div class="item-meta">
+                            <span class="server-tag">Mountain Bike Central</span>
+                            <span class="time-ago">1 hour ago</span>
+                        </div>
+                    </div>
+                    <div class="item-description">
+                        <p>User's message about "Specialized Shiv" was flagged by profanity filter. Appeal for whitelist addition.</p>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <button class="btn-success" onclick="takeAction('standard-1', 'whitelist')">Add to Whitelist</button>
+                    <button class="btn-secondary" onclick="takeAction('standard-1', 'dismiss')">Dismiss</button>
+                </div>
+            </div>
+
+            <div class="queue-item medium" data-id="standard-2">
+                <div class="item-priority">
+                    <div class="priority-indicator medium"></div>
+                    <span class="priority-text">MEDIUM</span>
+                </div>
+                <div class="item-content">
+                    <div class="item-header">
+                        <h4>Role Assignment Issue</h4>
+                        <div class="item-meta">
+                            <span class="server-tag">Sport Bike Riders</span>
+                            <span class="time-ago">2 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="item-description">
+                        <p>Auto-role assignment failed for @BikeEnthusiast - owns Honda CBR but didn't receive @Honda role.</p>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <button class="btn-primary" onclick="takeAction('standard-2', 'manual-assign')">Assign Role</button>
+                    <button class="btn-secondary" onclick="takeAction('standard-2', 'investigate')">Investigate</button>
+                </div>
+            </div>
+
+            <div class="queue-item medium" data-id="standard-3">
+                <div class="item-priority">
+                    <div class="priority-indicator medium"></div>
+                    <span class="priority-text">MEDIUM</span>
+                </div>
+                <div class="item-content">
+                    <div class="item-header">
+                        <h4>Suspicious Link Detection</h4>
+                        <div class="item-meta">
+                            <span class="server-tag">Cruiser Nation</span>
+                            <span class="time-ago">3 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="item-description">
+                        <p>Link to "harley-parts-discount.sus" flagged as suspicious. User claims it's legitimate dealer.</p>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <button class="btn-success" onclick="takeAction('standard-3', 'whitelist-domain')">Whitelist Domain</button>
+                    <button class="btn-danger" onclick="takeAction('standard-3', 'block-domain')">Block Domain</button>
+                    <button class="btn-secondary" onclick="takeAction('standard-3', 'verify')">Verify Site</button>
+                </div>
+            </div>
+
+            <div class="queue-item low" data-id="standard-4">
+                <div class="item-priority">
+                    <div class="priority-indicator low"></div>
+                    <span class="priority-text">LOW</span>
+                </div>
+                <div class="item-content">
+                    <div class="item-header">
+                        <h4>Username Change Request</h4>
+                        <div class="item-meta">
+                            <span class="server-tag">Sport Bike Riders</span>
+                            <span class="time-ago">5 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="item-description">
+                        <p>@TempName123 requests nickname change to "RocketRider" (already in use by inactive member).</p>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <button class="btn-primary" onclick="takeAction('standard-4', 'approve-change')">Approve</button>
+                    <button class="btn-secondary" onclick="takeAction('standard-4', 'suggest-alternative')">Suggest Alternative</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="load-more">
+            <button class="btn-secondary" onclick="loadMoreItems()">
+                Load More Items (5 remaining)
+            </button>
+        </div>
+    </div>
+
+    <!-- Recently Resolved -->
+    <div class="queue-section resolved-section">
+        <div class="section-header">
+            <h3>✅ Recently Resolved</h3>
+            <span class="item-count">Last 10 actions in the past 24 hours</span>
+        </div>
+        
+        <div class="resolved-items">
+            <div class="resolved-item">
+                <div class="resolution-info">
+                    <span class="resolution-type approved">Approved</span>
+                    <span class="resolution-time">15 minutes ago</span>
+                </div>
+                <div class="resolution-content">
+                    <h4>Ban Appeal - @AccidentalSpammer</h4>
+                    <p>Resolved by @ModeratorRider - Appeal approved, user was legitimately sharing bike specs</p>
+                </div>
+                <div class="resolution-tags">
+                    <span class="tag">False positive</span>
+                    <span class="tag">Education provided</span>
+                </div>
+            </div>
+
+            <div class="resolved-item">
+                <div class="resolution-info">
+                    <span class="resolution-type rejected">Rejected</span>
+                    <span class="resolution-time">32 minutes ago</span>
+                </div>
+                <div class="resolution-content">
+                    <h4>Profanity Filter Appeal</h4>
+                    <p>Resolved by Auto-moderation - Message contained actual profanity, not bike terminology</p>
+                </div>
+                <div class="resolution-tags">
+                    <span class="tag">Correctly flagged</span>
+                    <span class="tag">Warning issued</span>
+                </div>
+            </div>
+
+            <div class="resolved-item">
+                <div class="resolution-info">
+                    <span class="resolution-type auto">Auto-resolved</span>
+                    <span class="resolution-time">1 hour ago</span>
+                </div>
+                <div class="resolution-content">
+                    <h4>Spam Detection - @AdvertiserBot</h4>
+                    <p>Auto-banned for posting promotional content in 5+ channels simultaneously</p>
+                </div>
+                <div class="resolution-tags">
+                    <span class="tag">Spam bot</span>
+                    <span class="tag">Permanent ban</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk Actions -->
+    <div class="bulk-actions-section">
+        <div class="section-header">
+            <h3>⚡ Bulk Actions</h3>
+            <p>Perform actions on multiple items at once</p>
+        </div>
+        
+        <div class="bulk-controls">
+            <div class="selection-controls">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="selectAll" onchange="toggleSelectAll(this.checked)">
+                    <span class="checkmark"></span>
+                    Select All Visible Items
+                </label>
+                <span class="selection-count" id="selectionCount">0 items selected</span>
+            </div>
+            
+            <div class="bulk-action-buttons">
+                <button class="btn-secondary" onclick="bulkAction('approve')" disabled id="bulkApprove">
+                    Approve Selected
+                </button>
+                <button class="btn-secondary" onclick="bulkAction('dismiss')" disabled id="bulkDismiss">
+                    Dismiss Selected
+                </button>
+                <button class="btn-warning" onclick="bulkAction('escalate')" disabled id="bulkEscalate">
+                    Escalate Selected
+                </button>
+                <button class="btn-danger" onclick="bulkAction('priority')" disabled id="bulkPriority">
+                    Mark as Urgent
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Action Modal -->
+<div id="actionModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modalTitle">Confirm Action</h3>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div id="modalContent">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+            <div class="modal-actions">
+                <button class="btn-danger" id="confirmAction" onclick="confirmAction()">Confirm</button>
+                <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let selectedItems = new Set();
+let currentAction = null;
+
+// Queue management
+function refreshQueue() {
+    const btn = document.querySelector('.queue-actions .btn-primary');
+    const original = btn.innerHTML;
+    
+    btn.innerHTML = '<span>⏳</span>Refreshing...';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+        btn.innerHTML = '<span>✅</span>Updated!';
+        setTimeout(() => {
+            btn.innerHTML = original;
+            btn.disabled = false;
+        }, 1000);
+    }, 1500);
+}
+
+// Action handling
+function takeAction(itemId, actionType) {
+    currentAction = { itemId, actionType };
+    const item = document.querySelector(`[data-id="${itemId}"]`);
+    const title = item.querySelector('h4').textContent;
+    
+    showActionModal(title, actionType);
+}
+
+function showActionModal(itemTitle, actionType) {
+    const modal = document.getElementById('actionModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalContent = document.getElementById('modalContent');
+    const confirmBtn = document.getElementById('confirmAction');
+    
+    const actionDetails = getActionDetails(actionType);
+    
+    modalTitle.textContent = `${actionDetails.title} - ${itemTitle}`;
+    modalContent.innerHTML = actionDetails.content;
+    confirmBtn.textContent = actionDetails.confirmText;
+    confirmBtn.className = `btn-${actionDetails.type}`;
+    
+    modal.style.display = 'flex';
+}
+
+function getActionDetails(actionType) {
+    const actions = {
+        'ban': {
+            title: 'Ban User',
+            content: `
+                <p>This will permanently ban the user from the server.</p>
+                <div class="form-group">
+                    <label>Ban Reason:</label>
+                    <textarea class="form-input" placeholder="Enter reason for ban..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" checked> Delete message history (7 days)
+                    </label>
+                </div>
+            `,
+            confirmText: 'Ban User',
+            type: 'danger'
+        },
+        'timeout': {
+            title: 'Timeout User',
+            content: `
+                <p>This will temporarily restrict the user's ability to send messages.</p>
+                <div class="form-group">
+                    <label>Timeout Duration:</label>
+                    <select class="form-input">
+                        <option>5 minutes</option>
+                        <option>10 minutes</option>
+                        <option>1 hour</option>
+                        <option>1 day</option>
+                        <option>1 week</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Reason:</label>
+                    <textarea class="form-input" placeholder="Enter reason for timeout..."></textarea>
+                </div>
+            `,
+            confirmText: 'Apply Timeout',
+            type: 'warning'
+        },
+        'approve-appeal': {
+            title: 'Approve Appeal',
+            content: `
+                <p>This will reverse the original moderation action and restore the user's access.</p>
+                <div class="form-group">
+                    <label>Resolution Notes:</label>
+                    <textarea class="form-input" placeholder="Enter notes about why the appeal was approved..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" checked> Send notification to user
+                    </label>
+                </div>
+            `,
+            confirmText: 'Approve Appeal',
+            type: 'success'
+        },
+        'whitelist': {
+            title: 'Add to Whitelist',
+            content: `
+                <p>This will add the term to the profanity filter whitelist.</p>
+                <div class="form-group">
+                    <label>Term to whitelist:</label>
+                    <input type="text" class="form-input" value="Specialized Shiv" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Category:</label>
+                    <select class="form-input">
+                        <option>Bike model names</option>
+                        <option>Brand names</option>
+                        <option>Technical terms</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+            `,
+            confirmText: 'Add to Whitelist',
+            type: 'success'
+        }
+    };
+    
+    return actions[actionType] || {
+        title: 'Confirm Action',
+        content: '<p>Are you sure you want to perform this action?</p>',
+        confirmText: 'Confirm',
+        type: 'primary'
+    };
+}
+
+function confirmAction() {
+    if (!currentAction) return;
+    
+    const { itemId, actionType } = currentAction;
+    const item = document.querySelector(`[data-id="${itemId}"]`);
+    
+    // Simulate action processing
+    const confirmBtn = document.getElementById('confirmAction');
+    const original = confirmBtn.textContent;
+    
+    confirmBtn.textContent = 'Processing...';
+    confirmBtn.disabled = true;
+    
+    setTimeout(() => {
+        // Remove item from queue or update its status
+        if (item) {
+            item.style.opacity = '0.5';
+            item.style.transform = 'translateX(-100%)';
+            setTimeout(() => {
+                item.remove();
+                updateItemCounts();
+            }, 300);
+        }
+        
+        closeModal();
+        showNotification(`Action "${actionType}" completed successfully`, 'success');
+    }, 1500);
+}
+
+function closeModal() {
+    document.getElementById('actionModal').style.display = 'none';
+    currentAction = null;
+}
+
+// Bulk actions
+function toggleSelectAll(checked) {
+    const items = document.querySelectorAll('.queue-item');
+    items.forEach(item => {
+        const checkbox = item.querySelector('.item-checkbox');
+        if (!checkbox) {
+            // Add checkbox if it doesn't exist
+            const checkboxEl = document.createElement('div');
+            checkboxEl.className = 'item-checkbox';
+            checkboxEl.innerHTML = '<input type="checkbox" onchange="toggleItemSelection(this)">';
+            item.querySelector('.item-priority').appendChild(checkboxEl);
+        }
+        
+        const input = item.querySelector('.item-checkbox input');
+        input.checked = checked;
+        
+        if (checked) {
+            selectedItems.add(item.dataset.id);
+        } else {
+            selectedItems.delete(item.dataset.id);
+        }
+    });
+    
+    updateSelectionCount();
+    updateBulkButtons();
+}
+
+function toggleItemSelection(checkbox) {
+    const item = checkbox.closest('.queue-item');
+    const itemId = item.dataset.id;
+    
+    if (checkbox.checked) {
+        selectedItems.add(itemId);
+    } else {
+        selectedItems.delete(itemId);
+    }
+    
+    updateSelectionCount();
+    updateBulkButtons();
+}
+
+function updateSelectionCount() {
+    const count = selectedItems.size;
+    document.getElementById('selectionCount').textContent = `${count} items selected`;
+}
+
+function updateBulkButtons() {
+    const hasSelection = selectedItems.size > 0;
+    const buttons = ['bulkApprove', 'bulkDismiss', 'bulkEscalate', 'bulkPriority'];
+    
+    buttons.forEach(buttonId => {
+        document.getElementById(buttonId).disabled = !hasSelection;
+    });
+}
+
+function bulkAction(actionType) {
+    if (selectedItems.size === 0) return;
+    
+    const count = selectedItems.size;
+    const actionText = actionType.charAt(0).toUpperCase() + actionType.slice(1);
+    
+    if (confirm(`Are you sure you want to ${actionType} ${count} selected items?`)) {
+        // Process bulk action
+        selectedItems.forEach(itemId => {
+            const item = document.querySelector(`[data-id="${itemId}"]`);
+            if (item) {
+                item.style.opacity = '0.5';
+                item.style.transform = 'translateX(-100%)';
+                setTimeout(() => {
+                    item.remove();
+                }, 300);
+            }
+        });
+        
+        selectedItems.clear();
+        updateSelectionCount();
+        updateBulkButtons();
+        updateItemCounts();
+        
+        showNotification(`Bulk ${actionType} completed for ${count} items`, 'success');
+    }
+}
+
+// Utility functions
+function viewDetails(itemId) {
+    alert(`View details for item ${itemId} - feature coming soon`);
+}
+
+function escalate(itemId) {
+    alert(`Escalate item ${itemId} - feature coming soon`);
+}
+
+function markFalsePositive(itemId) {
+    if (confirm('Mark this as a false positive? This will improve auto-moderation accuracy.')) {
+        const item = document.querySelector(`[data-id="${itemId}"]`);
+        if (item) {
+            item.remove();
+            showNotification('Marked as false positive and removed from queue', 'success');
+        }
+    }
+}
+
+function requestSecondOpinion(itemId) {
+    alert(`Request second opinion for item ${itemId} - feature coming soon`);
+}
+
+function loadMoreItems() {
+    const btn = event.target;
+    const original = btn.textContent;
+    
+    btn.textContent = 'Loading...';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+        btn.textContent = 'No more items';
+        btn.disabled = true;
+        showNotification('All items loaded', 'info');
+    }, 1000);
+}
+
+function updateItemCounts() {
+    // Update the counts in the overview stats
+    const urgentCount = document.querySelectorAll('.queue-item.urgent').length;
+    const pendingCount = document.querySelectorAll('.queue-item:not(.urgent)').length;
+    
+    document.querySelector('.stat-card.urgent h3').textContent = urgentCount;
+    document.querySelector('.stat-card.pending h3').textContent = pendingCount;
+}
+
+// Notification system
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 4000);
+}
+
+// Modal click outside to close
+window.addEventListener('click', function(e) {
+    const modal = document.getElementById('actionModal');
+    if (e.target === modal) {
+        closeModal();
+    }
+});
+</script>
+
+<style>
+.moderation-queue-content {
+    max-width: 1400px;
+}
+
+.queue-overview {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+}
+
+.overview-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.stat-card.urgent {
+    border-color: rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.stat-card.pending {
+    border-color: rgba(245, 158, 11, 0.3);
+    background: rgba(245, 158, 11, 0.05);
+}
+
+.stat-card.auto {
+    border-color: rgba(16, 185, 129, 0.3);
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.stat-card.response {
+    border-color: rgba(88, 101, 242, 0.3);
+    background: rgba(88, 101, 242, 0.05);
+}
+
+.stat-icon {
+    font-size: 1.5rem;
+}
+
+.stat-content h3 {
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.stat-content p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.queue-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-select {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    min-width: 140px;
+}
+
+.queue-section {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+}
+
+.urgent-section {
+    border-color: rgba(239, 68, 68, 0.3);
+    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(239, 68, 68, 0.02) 100%);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-header h3 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.item-count {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.queue-items,
+.resolved-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.queue-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.queue-item.urgent {
+    border-color: rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.03);
+}
+
+.queue-item.high {
+    border-color: rgba(245, 158, 11, 0.3);
+    background: rgba(245, 158, 11, 0.03);
+}
+
+.queue-item.medium {
+    border-color: rgba(88, 101, 242, 0.3);
+    background: rgba(88, 101, 242, 0.03);
+}
+
+.queue-item.low {
+    border-color: rgba(107, 114, 128, 0.3);
+    background: rgba(107, 114, 128, 0.03);
+}
+
+.queue-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.item-priority {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.priority-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.priority-indicator.urgent {
+    background: #ef4444;
+    box-shadow: 0 0 6px rgba(239, 68, 68, 0.5);
+}
+
+.priority-indicator.high {
+    background: #f59e0b;
+}
+
+.priority-indicator.medium {
+    background: #5865f2;
+}
+
+.priority-indicator.low {
+    background: #6b7280;
+}
+
+.priority-text {
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.item-content {
+    margin-bottom: 16px;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.item-header h4 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.item-meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.server-tag {
+    background: rgba(88, 101, 242, 0.1);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.time-ago {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.item-description {
+    margin-bottom: 12px;
+}
+
+.item-description p {
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    line-height: 1.5;
+}
+
+.evidence-preview,
+.appeal-details {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.evidence-count,
+.detail-item {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+}
+
+.involved-users,
+.auto-actions-taken,
+.community-impact {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.user-tag {
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.user-tag.perpetrator {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.user-tag.victim {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+}
+
+.user-tag.witness {
+    background: rgba(88, 101, 242, 0.2);
+    color: var(--accent);
+}
+
+.action-tag {
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.action-tag.completed {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+}
+
+.action-tag.pending {
+    background: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+}
+
+.impact-tag {
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: rgba(139, 92, 246, 0.2);
+    color: #8b5cf6;
+}
+
+.impact-tag.high {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.item-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.item-actions button {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-danger {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+}
+
+.btn-warning {
+    background: #f59e0b;
+    color: white;
+}
+
+.btn-warning:hover {
+    background: #d97706;
+}
+
+.btn-success {
+    background: #10b981;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #059669;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.resolved-item {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.resolution-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 120px;
+}
+
+.resolution-type {
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.resolution-type.approved {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+}
+
+.resolution-type.rejected {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.resolution-type.auto {
+    background: rgba(88, 101, 242, 0.2);
+    color: var(--accent);
+}
+
+.resolution-time {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.resolution-content {
+    flex: 1;
+}
+
+.resolution-content h4 {
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    font-size: 1rem;
+}
+
+.resolution-content p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.resolution-tags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.tag {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+}
+
+.bulk-actions-section {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.bulk-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
+.selection-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.checkbox-label input {
+    display: none;
+}
+
+.checkmark {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    position: relative;
+}
+
+.checkbox-label input:checked + .checkmark {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.checkbox-label input:checked + .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: -2px;
+    left: 2px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.selection-count {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.bulk-action-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.bulk-action-buttons button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.bulk-action-buttons button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.load-more {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h3 {
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.form-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+/* Notification styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    z-index: 1001;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.notification.success {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.notification.info {
+    background: rgba(88, 101, 242, 0.1);
+    color: var(--accent);
+    border: 1px solid rgba(88, 101, 242, 0.3);
+}
+
+@media (max-width: 768px) {
+    .overview-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .queue-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .item-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .item-actions {
+        justify-content: center;
+    }
+    
+    .resolved-item {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .bulk-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+    
+    .bulk-action-buttons {
+        justify-content: center;
+    }
+}
+</style>

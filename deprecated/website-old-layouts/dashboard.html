@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Dashboard - BikeNode</title>
+    <meta name="description" content="BikeNode user dashboard. Manage your virtual garage, Discord servers, and community settings.">
+    
+    <link rel="icon" type="image/png" href="./assets/images/bikenode_logo.png">
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/dashboard.css">
+</head>
+<body>
+    <!-- Background Animation Canvas -->
+    <canvas id="backgroundCanvas"></canvas>
+    
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="nav-brand">
+                <a href="./index.html">
+                    <img src="./assets/images/bikenode_logo.png" alt="BikeNode" class="logo">
+                </a>
+            </div>
+            <div class="header-nav">
+                <a href="./dashboard.html" class="nav-link active">Dashboard</a>
+                <a href="./virtual-garage-dashboard.html" class="nav-link">Virtual Garage</a>
+                <a href="./discord-dashboard.html" class="nav-link">Discord</a>
+                <a href="./communities-dashboard.html" class="nav-link">Communities</a>
+            </div>
+            <div class="header-user">
+                <div class="user-avatar">
+                    <img src="./assets/images/bikenode_logo.png" alt="User Avatar">
+                </div>
+                <div class="user-menu">
+                    <span class="username">RiderName</span>
+                    <div class="dropdown">
+                        <a href="./account-settings.html">Account Settings</a>
+                        <a href="./index.html">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Layout -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3>Overview</h3>
+                    <a href="./dashboard.html" class="sidebar-link active">
+                        <span class="icon">📊</span>
+                        Dashboard
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>My Content</h3>
+                    <a href="./virtual-garage-dashboard.html" class="sidebar-link">
+                        <span class="icon">🏍️</span>
+                        Virtual Garage
+                    </a>
+                    <a href="./discord-dashboard.html" class="sidebar-link">
+                        <span class="icon">💬</span>
+                        Discord Servers
+                    </a>
+                    <a href="./communities-dashboard.html" class="sidebar-link">
+                        <span class="icon">👥</span>
+                        Communities
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Administration</h3>
+                    <a href="./admin-dashboard.html" class="sidebar-link">
+                        <span class="icon">⚙️</span>
+                        Admin Panel
+                    </a>
+                    <a href="./bot-management.html" class="sidebar-link">
+                        <span class="icon">🤖</span>
+                        Bot Management
+                    </a>
+                    <a href="./analytics-dashboard.html" class="sidebar-link">
+                        <span class="icon">📈</span>
+                        Analytics
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Settings</h3>
+                    <a href="./account-settings.html" class="sidebar-link">
+                        <span class="icon">👤</span>
+                        Account
+                    </a>
+                    <a href="./notification-settings.html" class="sidebar-link">
+                        <span class="icon">🔔</span>
+                        Notifications
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <div class="content-header">
+                <h1>Welcome back, RiderName!</h1>
+                <p class="content-subtitle">Here's what's happening with your bike communities</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Stats Cards -->
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-icon">🏍️</div>
+                        <div class="stat-content">
+                            <h3>5</h3>
+                            <p>Bikes in Garage</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🛠️</div>
+                        <div class="stat-content">
+                            <h3>3</h3>
+                            <p>Discord Servers</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-content">
+                            <h3>12</h3>
+                            <p>Communities</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⭐</div>
+                        <div class="stat-content">
+                            <h3>47</h3>
+                            <p>Community Points</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h2>Quick Actions</h2>
+                    <div class="action-grid">
+                        <a href="./virtual-garage-dashboard.html" class="action-card">
+                            <div class="action-icon">➕</div>
+                            <h3>Add New Bike</h3>
+                            <p>Upload photos and specs to your virtual garage</p>
+                        </a>
+                        <a href="./bot-setup.html" class="action-card">
+                            <div class="action-icon">🤖</div>
+                            <h3>Add Bot to Server</h3>
+                            <p>Set up BikeNode bot on your Discord server</p>
+                        </a>
+                        <a href="./communities-dashboard.html" class="action-card">
+                            <div class="action-icon">🔍</div>
+                            <h3>Find Communities</h3>
+                            <p>Discover bike communities to join</p>
+                        </a>
+                        <a href="./account-settings.html" class="action-card">
+                            <div class="action-icon">⚙️</div>
+                            <h3>Update Profile</h3>
+                            <p>Manage your account and preferences</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <h2>Recent Activity</h2>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">📸</div>
+                            <div class="activity-content">
+                                <h4>Photos added to 2023 Sport Bike</h4>
+                                <p>2 hours ago</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🤖</div>
+                            <div class="activity-content">
+                                <h4>Bot added to "Sport Bike Riders" server</h4>
+                                <p>1 day ago</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">👥</div>
+                            <div class="activity-content">
+                                <h4>Joined "Mountain Bike Central" community</h4>
+                                <p>3 days ago</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">⭐</div>
+                            <div class="activity-content">
+                                <h4>Earned "Active Member" achievement</h4>
+                                <p>1 week ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- My Communities -->
+                <div class="my-communities">
+                    <h2>My Communities</h2>
+                    <div class="community-list">
+                        <div class="community-item">
+                            <div class="community-avatar">SB</div>
+                            <div class="community-info">
+                                <h4>Sport Bike Riders</h4>
+                                <p>1,234 members • Admin</p>
+                            </div>
+                            <div class="community-status">
+                                <span class="status-badge admin">Admin</span>
+                            </div>
+                        </div>
+                        <div class="community-item">
+                            <div class="community-avatar">MT</div>
+                            <div class="community-info">
+                                <h4>Mountain Bike Central</h4>
+                                <p>856 members • Member</p>
+                            </div>
+                            <div class="community-status">
+                                <span class="status-badge member">Member</span>
+                            </div>
+                        </div>
+                        <div class="community-item">
+                            <div class="community-avatar">CR</div>
+                            <div class="community-info">
+                                <h4>Cruiser Nation</h4>
+                                <p>432 members • Moderator</p>
+                            </div>
+                            <div class="community-status">
+                                <span class="status-badge moderator">Moderator</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="./communities-dashboard.html" class="view-all-link">View All Communities →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="./assets/js/background.js"></script>
+</body>
+</html>

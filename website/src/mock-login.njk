@@ -1,0 +1,72 @@
+---
+layout: auth.njk
+title: Log In - BikeNode
+description: Log in to your BikeNode account to access your dashboard, virtual garage, and Discord management tools.
+authTitle: Welcome back
+authSubtitle: Sign in to your BikeNode account
+footerText: Don't have an account? <a href="/mock-signup/">Sign up</a>
+inlineJS: |
+  // Mock login functionality
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Show loading state
+      const submitBtn = document.querySelector('.auth-submit');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Signing in...';
+      submitBtn.disabled = true;
+      
+      // Simulate API call
+      setTimeout(() => {
+          // Redirect to dashboard
+          window.location.href = '/dashboard/';
+      }, 1500);
+  });
+  
+  document.getElementById('discordLogin').addEventListener('click', function() {
+      // Show loading state
+      const submitBtn = this;
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="31.416" stroke-dashoffset="31.416" class="spinner"/></svg>Connecting...';
+      submitBtn.disabled = true;
+      
+      // Simulate Discord OAuth
+      setTimeout(() => {
+          window.location.href = '/dashboard/';
+      }, 2000);
+  });
+---
+
+<form class="auth-form" id="loginForm">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="your@email.com">
+    </div>
+    
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required placeholder="Enter your password">
+    </div>
+    
+    <div class="form-options">
+        <label class="checkbox-wrapper">
+            <input type="checkbox" name="remember">
+            <span class="checkmark"></span>
+            Remember me
+        </label>
+        <a href="/forgot-password/" class="forgot-link">Forgot password?</a>
+    </div>
+    
+    <button type="submit" class="btn-primary btn-large auth-submit">Sign In</button>
+</form>
+
+<div class="auth-divider">
+    <span>or</span>
+</div>
+
+<button class="btn-discord auth-submit" id="discordLogin">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.317 4.37c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.64 18.64 0 0 0-5.487 0 12.404 12.404 0 0 0-.617-1.23A.077.077 0 0 0 8.562 2.88c-1.714.29-3.354.8-4.885 1.49a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+    </svg>
+    Continue with Discord
+</button>

@@ -1,0 +1,506 @@
+---
+layout: dashboard.njk
+title: "Messaging Administration"
+subtitle: "Monitor and manage platform messaging systems"
+---
+
+<style>
+.messaging-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.msg-stat-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
+.msg-stat-number {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 8px 0;
+}
+
+.msg-stat-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.msg-stat-trend {
+    font-size: 0.8rem;
+    margin-top: 8px;
+}
+
+.messaging-controls {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+}
+
+.controls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.control-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.control-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.control-title {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin: 0;
+}
+
+.control-status {
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+}
+
+.status-enabled {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.status-disabled {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+.status-limited {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+}
+
+.message-monitor {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    margin-bottom: 32px;
+}
+
+.monitor-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.monitor-filters {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.message-item {
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    gap: 16px;
+}
+
+.message-flag {
+    width: 4px;
+    height: 60px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.flag-spam { background: #ef4444; }
+.flag-inappropriate { background: #f59e0b; }
+.flag-suspicious { background: #3b82f6; }
+.flag-clean { background: #10b981; }
+
+.message-content {
+    flex: 1;
+}
+
+.message-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.message-type {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.type-dm { background: rgba(88, 101, 242, 0.1); color: var(--accent); }
+.type-group { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+.type-community { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+
+.message-meta {
+    display: flex;
+    gap: 16px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.message-text {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    border-left: 3px solid var(--accent);
+}
+
+.message-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.action-btn-sm {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-approve {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.btn-flag {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+}
+
+.btn-block {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+.bulk-actions {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 32px;
+}
+
+.bulk-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.bulk-controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.checkbox-group {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.analytics-chart {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.chart-container {
+    height: 250px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    position: relative;
+    padding: 20px;
+    display: flex;
+    align-items: end;
+    gap: 8px;
+}
+
+.chart-bar {
+    flex: 1;
+    background: var(--accent);
+    border-radius: 4px 4px 0 0;
+    min-height: 20px;
+}
+</style>
+
+<div class="messaging-admin">
+    <!-- Messaging Statistics -->
+    <div class="messaging-stats">
+        <div class="msg-stat-card">
+            <div class="msg-stat-label">Messages Today</div>
+            <div class="msg-stat-number">47.2k</div>
+            <div class="msg-stat-trend trend-positive">↑ 8.3% from yesterday</div>
+        </div>
+        
+        <div class="msg-stat-card">
+            <div class="msg-stat-label">Flagged Messages</div>
+            <div class="msg-stat-number">234</div>
+            <div class="msg-stat-trend trend-negative">↑ 12 new in last hour</div>
+        </div>
+        
+        <div class="msg-stat-card">
+            <div class="msg-stat-label">Auto-Blocked</div>
+            <div class="msg-stat-number">1,847</div>
+            <div class="msg-stat-trend trend-positive">94% accuracy rate</div>
+        </div>
+        
+        <div class="msg-stat-card">
+            <div class="msg-stat-label">Active Conversations</div>
+            <div class="msg-stat-number">12.8k</div>
+            <div class="msg-stat-trend trend-positive">↑ 15% this week</div>
+        </div>
+        
+        <div class="msg-stat-card">
+            <div class="msg-stat-label">Response Time</div>
+            <div class="msg-stat-number">2.4s</div>
+            <div class="msg-stat-trend trend-positive">↓ 0.3s improvement</div>
+        </div>
+    </div>
+
+    <!-- Messaging Controls -->
+    <div class="messaging-controls">
+        <h3>Messaging Controls</h3>
+        <div class="controls-grid">
+            <div class="control-card">
+                <div class="control-header">
+                    <h4 class="control-title">Spam Detection</h4>
+                    <span class="control-status status-enabled">Enabled</span>
+                </div>
+                <p>AI-powered spam detection with 94% accuracy</p>
+                <button class="btn-secondary">Configure</button>
+            </div>
+            
+            <div class="control-card">
+                <div class="control-header">
+                    <h4 class="control-title">Rate Limiting</h4>
+                    <span class="control-status status-enabled">Active</span>
+                </div>
+                <p>50 messages/minute per user limit</p>
+                <button class="btn-secondary">Adjust Limits</button>
+            </div>
+            
+            <div class="control-card">
+                <div class="control-header">
+                    <h4 class="control-title">Image Scanning</h4>
+                    <span class="control-status status-enabled">Enabled</span>
+                </div>
+                <p>Automatic inappropriate content detection</p>
+                <button class="btn-secondary">View Settings</button>
+            </div>
+            
+            <div class="control-card">
+                <div class="control-header">
+                    <h4 class="control-title">Link Validation</h4>
+                    <span class="control-status status-limited">Limited</span>
+                </div>
+                <p>External links require manual approval</p>
+                <button class="btn-secondary">Modify Rules</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Monitor -->
+    <div class="message-monitor">
+        <div class="monitor-header">
+            <h3>Real-time Message Monitor</h3>
+            <div class="monitor-filters">
+                <select class="filter-select">
+                    <option>All Messages</option>
+                    <option>Flagged Only</option>
+                    <option>Direct Messages</option>
+                    <option>Group Chats</option>
+                    <option>Community Posts</option>
+                </select>
+                <select class="filter-select">
+                    <option>Last Hour</option>
+                    <option>Last 24 Hours</option>
+                    <option>Last Week</option>
+                </select>
+                <button class="btn-primary">Live View</button>
+            </div>
+        </div>
+
+        <!-- Flagged Message -->
+        <div class="message-item">
+            <div class="message-flag flag-spam"></div>
+            <div class="message-content">
+                <div class="message-header">
+                    <span class="message-type type-dm">Direct Message</span>
+                    <h4 style="margin: 0; color: var(--text-primary);">Potential Spam Detected</h4>
+                </div>
+                <div class="message-meta">
+                    <span>👤 @sketchy_seller99</span>
+                    <span>→ @bikelover2024</span>
+                    <span>⏰ 2 minutes ago</span>
+                    <span>🚩 High spam score (94%)</span>
+                </div>
+                <div class="message-text">
+                    "Hey! I have AMAZING deals on premium bike parts! Click this link for 90% OFF everything! Limited time only!!! bit.ly/fake-deals-123"
+                </div>
+                <div class="message-actions">
+                    <button class="action-btn-sm btn-block">Block User</button>
+                    <button class="action-btn-sm btn-flag">Delete Message</button>
+                    <button class="action-btn-sm btn-approve">False Positive</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inappropriate Content -->
+        <div class="message-item">
+            <div class="message-flag flag-inappropriate"></div>
+            <div class="message-content">
+                <div class="message-header">
+                    <span class="message-type type-community">Community Post</span>
+                    <h4 style="margin: 0; color: var(--text-primary);">Inappropriate Language</h4>
+                </div>
+                <div class="message-meta">
+                    <span>👤 @angry_rider_2024</span>
+                    <span>📍 Sport Bike Riders</span>
+                    <span>⏰ 8 minutes ago</span>
+                    <span>⚠️ Language filter triggered</span>
+                </div>
+                <div class="message-text">
+                    "That [CENSORED] driver almost killed me today! These [CENSORED] cars need to [CENSORED] watch where they're going!"
+                </div>
+                <div class="message-actions">
+                    <button class="action-btn-sm btn-flag">Issue Warning</button>
+                    <button class="action-btn-sm btn-flag">Edit Message</button>
+                    <button class="action-btn-sm btn-approve">Allow</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Suspicious Activity -->
+        <div class="message-item">
+            <div class="message-flag flag-suspicious"></div>
+            <div class="message-content">
+                <div class="message-header">
+                    <span class="message-type type-group">Group Chat</span>
+                    <h4 style="margin: 0; color: var(--text-primary);">Suspicious Link</h4>
+                </div>
+                <div class="message-meta">
+                    <span>👤 @newuser_today</span>
+                    <span>📍 Mountain Bike Central Chat</span>
+                    <span>⏰ 15 minutes ago</span>
+                    <span>🔗 External link detected</span>
+                </div>
+                <div class="message-text">
+                    "Check out this cool bike trail map I found: totally-safe-site.bike-trails.net/map?id=suspicious"
+                </div>
+                <div class="message-actions">
+                    <button class="action-btn-sm btn-flag">Verify Link</button>
+                    <button class="action-btn-sm btn-block">Block Domain</button>
+                    <button class="action-btn-sm btn-approve">Approve</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clean Message -->
+        <div class="message-item">
+            <div class="message-flag flag-clean"></div>
+            <div class="message-content">
+                <div class="message-header">
+                    <span class="message-type type-community">Community Post</span>
+                    <h4 style="margin: 0; color: var(--text-primary);">Clean Message</h4>
+                </div>
+                <div class="message-meta">
+                    <span>👤 @trail_expert</span>
+                    <span>📍 Mountain Bike Central</span>
+                    <span>⏰ 1 hour ago</span>
+                    <span>✅ Passed all filters</span>
+                </div>
+                <div class="message-text">
+                    "Just finished an amazing ride on the new trail system! The single track section is challenging but really fun. Weather was perfect today!"
+                </div>
+                <div class="message-actions">
+                    <span style="color: var(--text-secondary); font-size: 0.8rem;">No action needed</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk Actions -->
+    <div class="bulk-actions">
+        <div class="bulk-header">
+            <h3>Bulk Message Actions</h3>
+            <span class="text-secondary">234 flagged messages pending review</span>
+        </div>
+        
+        <div class="checkbox-group">
+            <label><input type="checkbox"> Select All Spam (127)</label>
+            <label><input type="checkbox"> Select All Inappropriate (89)</label>
+            <label><input type="checkbox"> Select All Suspicious Links (18)</label>
+        </div>
+        
+        <div class="bulk-controls">
+            <button class="btn-danger">Delete Selected</button>
+            <button class="btn-secondary">Mark as Reviewed</button>
+            <button class="btn-secondary">Export Report</button>
+            <select class="filter-select">
+                <option>Bulk Action...</option>
+                <option>Block All Users</option>
+                <option>Send Warnings</option>
+                <option>Escalate to Legal</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Message Analytics -->
+    <div class="analytics-chart">
+        <div class="chart-header">
+            <h3>Message Volume Analytics</h3>
+            <select class="filter-select">
+                <option>Last 7 Days</option>
+                <option>Last 30 Days</option>
+                <option>Last 3 Months</option>
+            </select>
+        </div>
+        <div class="chart-container">
+            <div class="chart-bar" style="height: 60%"></div>
+            <div class="chart-bar" style="height: 80%"></div>
+            <div class="chart-bar" style="height: 45%"></div>
+            <div class="chart-bar" style="height: 90%"></div>
+            <div class="chart-bar" style="height: 100%"></div>
+            <div class="chart-bar" style="height: 75%"></div>
+            <div class="chart-bar" style="height: 85%"></div>
+        </div>
+    </div>
+</div>

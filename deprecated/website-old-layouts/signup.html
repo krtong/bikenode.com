@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Sign Up - BikeNode</title>
+    <meta name="description" content="Create your BikeNode account. Get started with Discord bot integration, virtual garage, and community features for free.">
+    
+    <link rel="icon" type="image/png" href="./assets/images/bikenode_logo.png">
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/docs.css">
+</head>
+<body>
+    <!-- Background Animation Canvas -->
+    <canvas id="backgroundCanvas"></canvas>
+    
+    <!-- Header -->
+    <header class="docs-header">
+        <div class="header-content">
+            <div class="nav-brand">
+                <a href="./index.html">
+                    <img src="./assets/images/bikenode_logo.png" alt="BikeNode" class="logo">
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="./features.html" class="nav-link">Features</a>
+                <a href="./discord-bot.html" class="nav-link">Discord Bot</a>
+                <a href="./web-extension.html" class="nav-link">Web Extension</a>
+                <a href="./community.html" class="nav-link">Community</a>
+                <a href="./login.html" class="nav-link">Log In</a>
+                <a href="./signup.html" class="btn-primary active">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Documentation Layout -->
+    <div class="docs-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="docs-sidebar">
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3>Features</h3>
+                    <a href="./features.html" class="sidebar-link">Overview</a>
+                    <a href="./discord-bot.html" class="sidebar-link">Discord Bot</a>
+                    <a href="./virtual-garage.html" class="sidebar-link">Virtual Garage</a>
+                    <a href="./web-extension.html" class="sidebar-link">Web Extension</a>
+                    <a href="./community-tools.html" class="sidebar-link">Community Tools</a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Community</h3>
+                    <a href="./community.html" class="sidebar-link">Overview</a>
+                    <a href="https://discord.gg/JMCPCcnth4" class="sidebar-link external">Discord Server</a>
+                    <a href="./communities.html" class="sidebar-link">Partner Communities</a>
+                    <a href="./support.html" class="sidebar-link">Support</a>
+                    <a href="./feedback.html" class="sidebar-link">Send Feedback</a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Company</h3>
+                    <a href="./about.html" class="sidebar-link">About BikeNode</a>
+                    <a href="/blog" class="sidebar-link">Blog</a>
+                    <a href="/careers" class="sidebar-link">Careers</a>
+                    <a href="/press" class="sidebar-link">Press</a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Legal</h3>
+                    <a href="./terms.html" class="sidebar-link">Terms of Service</a>
+                    <a href="./privacy.html" class="sidebar-link">Privacy Policy</a>
+                    <a href="./contact.html" class="sidebar-link">Contact</a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="docs-content">
+            <div class="content-header">
+                <h1>Create Your Account</h1>
+                <p class="content-subtitle">Join thousands of bike enthusiasts on BikeNode</p>
+            </div>
+
+            <div class="content-body">
+                <section class="content-section">
+                    <h2>Get Started for Free</h2>
+                    <p>Create your BikeNode account to access Discord bot features, build your virtual garage, and connect with bike communities worldwide.</p>
+                    
+                    <div class="auth-form">
+                        <form class="signup-form">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required placeholder="your@email.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" id="username" name="username" required placeholder="Choose a username">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password" required placeholder="Create a secure password">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="bike-types">Primary Bike Interest (Optional)</label>
+                                <select id="bike-types" name="bike-types">
+                                    <option value="">Select your main interest</option>
+                                    <option value="road">Road Cycling</option>
+                                    <option value="mountain">Mountain Biking</option>
+                                    <option value="bmx">BMX</option>
+                                    <option value="sport">Sport Bikes</option>
+                                    <option value="cruiser">Cruisers</option>
+                                    <option value="touring">Touring</option>
+                                    <option value="enduro">Enduro</option>
+                                    <option value="scooter">Scooters</option>
+                                    <option value="ebike">E-Bikes</option>
+                                    <option value="emoto">E-Motorcycles</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" name="terms" required>
+                                    <span class="checkmark"></span>
+                                    I agree to the <a href="./terms.html">Terms of Service</a> and <a href="./privacy.html">Privacy Policy</a>
+                                </label>
+                            </div>
+                            
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" name="newsletter">
+                                    <span class="checkmark"></span>
+                                    Send me updates about new features and community events
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary btn-large form-submit">Create Account</button>
+                        </form>
+                        
+                        <div class="auth-divider">
+                            <span>or</span>
+                        </div>
+                        
+                        <div class="social-auth">
+                            <button class="btn-discord">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20.317 4.37c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.64 18.64 0 0 0-5.487 0 12.404 12.404 0 0 0-.617-1.23A.077.077 0 0 0 8.562 2.88c-1.714.29-3.354.8-4.885 1.49a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                                </svg>
+                                Continue with Discord
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2>What You Get</h2>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <h3>Discord Bot Access</h3>
+                            <p>Add BikeNode bot to your Discord servers and access community verification, role management, and engagement features.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>Virtual Garage</h3>
+                            <p>Create detailed profiles for all your bikes with photos, specifications, maintenance tracking, and community sharing.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>Community Connection</h3>
+                            <p>Connect with bike enthusiasts worldwide, join our Discord community, and discover partner communities.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h3>Early Access</h3>
+                            <p>Get early access to new features like our upcoming web extension and beta testing opportunities.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <p class="auth-footer">Already have an account? <a href="./login.html">Log in here</a></p>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="./assets/js/background.js"></script>
+    
+    <style>
+        .auth-form {
+            max-width: 400px;
+            margin: 2rem 0;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: var(--text-primary);
+            font-size: 16px;
+            transition: border-color 0.2s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .checkbox-group label {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+        
+        .form-submit {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .auth-divider {
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .auth-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .auth-divider span {
+            background: var(--bg-primary);
+            padding: 0 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .btn-discord {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 12px 24px;
+            background: #5865f2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .btn-discord:hover {
+            background: #4752c4;
+        }
+        
+        .auth-footer {
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        
+        .auth-footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</body>
+</html>

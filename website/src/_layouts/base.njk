@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "head.njk" %}
+    {% if customCSS %}
+    {% for stylesheet in customCSS %}
+    <link rel="stylesheet" href="{{ stylesheet }}">
+    {% endfor %}
+    {% endif %}
+</head>
+<body>
+    {% include "background-canvas.njk" %}
+    
+    {{ content | safe }}
+    
+    {% include "scripts.njk" %}
+</body>
+</html>

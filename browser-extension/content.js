@@ -3,11 +3,7 @@
  * Runs on matching pages to extract bike listing information
  */
 
-// Import required modules
-// Note: In production, we'll use dynamic imports or bundle everything together
-const { createExtractor } = require('./platformHandlers');
-const { generatePrompt } = require('./llmPromptGenerator');
-const { parseWithLLM } = require('./llmParser');
+// Content script - modules will be injected by popup when needed
 
 // Signal that the content script is ready
 window.__contentScriptReady = true;

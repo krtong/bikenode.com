@@ -1,0 +1,735 @@
+---
+layout: dashboard.njk
+title: User Profile
+subtitle: Community member profile
+showContentHeader: false
+customCSS: ["/assets/css/profile.css"]
+---
+
+<div class="profile-container">
+    <!-- Profile Header -->
+    <div class="profile-header">
+        <div class="profile-banner">
+            <img src="/assets/images/profile-banner.jpg" alt="" class="banner-image">
+            <div class="banner-overlay"></div>
+        </div>
+        
+        <div class="profile-info">
+            <div class="profile-avatar-large">
+                <img src="/assets/images/nerd_blank_profile.png" alt="Kevin Tong Avatar" class="avatar-image">
+                <div class="status-indicator online"></div>
+            </div>
+            
+            <div class="profile-details">
+                <h1 class="profile-name">Kevin Tong</h1>
+                <p class="profile-username">@krtong</p>
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">156</span>
+                        <span class="stat-label">Followers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">203</span>
+                        <span class="stat-label">Following</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">8</span>
+                        <span class="stat-label">Communities</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">{{ bikes.length }}</span>
+                        <span class="stat-label">Bikes</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">134</span>
+                        <span class="stat-label">Posts</span>
+                    </div>
+                </div>
+                
+                <div class="profile-meta">
+                    <div class="meta-item">
+                        <span class="meta-icon">📍</span>
+                        <span>San Francisco Bay Area, CA</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">📅</span>
+                        <span>Joined January 2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">🏍️</span>
+                        <span>Sport & Track Day Enthusiast</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-icon">💬</span>
+                        <span>Discord: kevinnoodles</span>
+                    </div>
+                </div>
+                
+                <div class="profile-links">
+                    <a href="https://www.strava.com/athletes/krtong" target="_blank" class="profile-link strava">
+                        <span class="link-icon">🚴</span>
+                        <span>Strava</span>
+                    </a>
+                    <a href="https://instagram.com/krtong" target="_blank" class="profile-link instagram">
+                        <span class="link-icon">📸</span>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+                
+                <div class="profile-actions">
+                    <button class="btn-primary">
+                        <span class="icon">💬</span>
+                        Send Message
+                    </button>
+                    <button class="btn-secondary">
+                        <span class="icon">👤</span>
+                        Follow
+                    </button>
+                    <button class="btn-secondary">
+                        <span class="icon">🚫</span>
+                        Block
+                    </button>
+                    <div class="action-menu">
+                        <button class="btn-icon" onclick="toggleActionMenu()">⋯</button>
+                        <div class="action-dropdown" id="action-dropdown">
+                            <a href="#" class="dropdown-item">Report User</a>
+                            <a href="#" class="dropdown-item">Share Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Content -->
+    <div class="profile-content">
+        <!-- Navigation Tabs -->
+        <div class="profile-tabs">
+            <button class="tab-btn active" data-tab="overview">Overview</button>
+            <button class="tab-btn" data-tab="garage">Virtual Garage</button>
+            <button class="tab-btn" data-tab="posts">Posts</button>
+            <button class="tab-btn" data-tab="forums">Forums</button>
+            <button class="tab-btn" data-tab="events">Events</button>
+            <button class="tab-btn" data-tab="trophies">Trophies</button>
+            <button class="tab-btn" data-tab="communities">Communities</button>
+        </div>
+
+        <!-- Overview Tab -->
+        <div class="tab-content active" id="overview">
+            <div class="content-grid">
+                <!-- About Section -->
+                <div class="content-card">
+                    <h3>About</h3>
+                    <p class="bio-text">
+                        Bay Area motorcycle & bicycle enthusiast focused on track days and technical riding. 
+                        Software engineer by day, track junkie by weekend. Always learning something new 
+                        about suspension setup, tire compounds, or finding that perfect apex. 
+                        Member of AMA and Redwood Road (RWR).
+                    </p>
+                    
+                    <div class="interests">
+                        <h4>Riding Interests</h4>
+                        <div class="interest-tags">
+                            <span class="tag">Track Days</span>
+                            <span class="tag">Sport Bikes</span>
+                            <span class="tag">Suspension Tuning</span>
+                            <span class="tag">Data Analysis</span>
+                            <span class="tag">Group A Racing</span>
+                            <span class="tag">Cycling</span>
+                        </div>
+                    </div>
+                    
+                    <div class="clubs-section">
+                        <h4>Clubs & Organizations</h4>
+                        <div class="club-list">
+                            <div class="club-item">
+                                <img src="/assets/images/ama.png" alt="AMA" class="club-icon-img">
+                                <span class="club-name">AMA</span>
+                            </div>
+                            <div class="club-item">
+                                <img src="/assets/images/redwoodroad.png" alt="RWR" class="club-icon-img">
+                                <span class="club-name">RWR</span>
+                            </div>
+                            <div class="club-item">
+                                <img src="/assets/images/bayarearidersforum.png" alt="BARF" class="club-icon-img">
+                                <span class="club-name">BARF</span>
+                            </div>
+                            <div class="club-item">
+                                <img src="/assets/images/af1racing.png" alt="AF1 Racing" class="club-icon-img">
+                                <span class="club-name">AF1</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="content-card">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-feed">
+                        <div class="activity-item">
+                            <div class="activity-icon">🏆</div>
+                            <div class="activity-content">
+                                <p><strong>Moved up to Group A</strong> - Finally made it! Thunderhill track day</p>
+                                <span class="activity-time">4 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🛡️</div>
+                            <div class="activity-content">
+                                <p><strong>Gear review posted</strong> - New Shoei RF-1400 helmet review</p>
+                                <span class="activity-time">1 day ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">❓</div>
+                            <div class="activity-content">
+                                <p><strong>Posted question</strong> - Error code 46 on R1 - BARF Forum</p>
+                                <span class="activity-time">3 days ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">📸</div>
+                            <div class="activity-content">
+                                <p><strong>Shared photos</strong> - Laguna Seca track day album</p>
+                                <span class="activity-time">5 days ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🍺</div>
+                            <div class="activity-content">
+                                <p><strong>Bar review</strong> - Alice's Restaurant on Skyline - great post-ride spot</p>
+                                <span class="activity-time">1 week ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🔧</div>
+                            <div class="activity-content">
+                                <p><strong>Suspension setup</strong> - Dialed in my Öhlins for next track day</p>
+                                <span class="activity-time">2 weeks ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Trophies -->
+                <div class="content-card">
+                    <h3>Recent Trophies</h3>
+                    <div class="trophies-grid">
+                        <div class="trophy-item">
+                            <div class="trophy-icon">🏍️</div>
+                            <div class="trophy-info">
+                                <h4>First Bike</h4>
+                                <span class="trophy-date">Mar 15, 2024</span>
+                            </div>
+                        </div>
+                        <div class="trophy-item">
+                            <div class="trophy-icon">🏁</div>
+                            <div class="trophy-info">
+                                <h4>Track Enthusiast</h4>
+                                <span class="trophy-date">Nov 20, 2024</span>
+                            </div>
+                        </div>
+                        <div class="trophy-item">
+                            <div class="trophy-icon">📸</div>
+                            <div class="trophy-info">
+                                <h4>Photographer</h4>
+                                <span class="trophy-date">Oct 8, 2024</span>
+                            </div>
+                        </div>
+                        <div class="trophy-item">
+                            <div class="trophy-icon">👥</div>
+                            <div class="trophy-info">
+                                <h4>Social Rider</h4>
+                                <span class="trophy-date">Aug 12, 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Bike -->
+                <div class="content-card featured-bike">
+                    <h3>Featured Bike</h3>
+                    <div class="bike-showcase">
+                        <div class="bike-image">
+                            <img src="/assets/images/bike-placeholder.jpg" alt="2007 Aprilia Tuono 1000R">
+                        </div>
+                        <div class="bike-details">
+                            <h4>2007 Aprilia Tuono 1000R</h4>
+                            <p class="bike-specs">998cc • Naked Sport • 139hp • 18,500 miles</p>
+                            <p class="bike-description">My main track bike. The perfect balance of power and handling. The V4 sound is absolutely intoxicating!</p>
+                            <a href="#" class="view-bike-btn">View Details →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Virtual Garage Tab -->
+        <div class="tab-content" id="garage">
+            <div class="garage-content">
+                <!-- Bikes Grid -->
+                <div class="bikes-grid">
+                    {% for bike in bikes %}
+                    <div class="bike-card">
+                        <div class="bike-image">
+                            <img src="{{ bike.image }}" alt="{{ bike.name }}">
+                            <div class="bike-overlay">
+                                <a href="/bike-details/{{ bike.id }}/" class="btn-secondary small">View Details</a>
+                                <button class="btn-secondary small">Edit</button>
+                            </div>
+                        </div>
+                        <div class="bike-info">
+                            <h3>{{ bike.name }}</h3>
+                            <p class="bike-type">{{ bike.type }}</p>
+                            <div class="bike-stats">
+                                <span class="stat">📸 {{ bike.photos }} photos</span>
+                                <span class="stat">🔧 {{ bike.records }} records</span>
+                                <span class="stat">👥 Shared with {{ bike.communities }} communities</span>
+                            </div>
+                            <div class="bike-actions">
+                                <a href="/bike-details/{{ bike.id }}/" class="action-link">View Details</a>
+                                <a href="/edit-bike/" class="action-link">Edit</a>
+                                <a href="/bike-maintenance/" class="action-link">Maintenance</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Posts Tab -->
+        <div class="tab-content" id="posts">
+            <div class="posts-feed">
+                <div class="post-item">
+                    <div class="post-header">
+                        <div class="post-avatar">
+                            <img src="/assets/images/nerd_blank_profile.png" alt="Kevin Tong">
+                        </div>
+                        <div class="post-info">
+                            <h4>Kevin Tong</h4>
+                            <span class="post-time">4 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>Finally made it to Group A at Thunderhill! 🏆 All those suspension tweaks and data analysis sessions paid off. Shaved 3 seconds off my best lap time. The Öhlins are perfectly dialed in now.</p>
+                        <div class="post-images">
+                            <img src="/assets/images/bike-placeholder.jpg" alt="Group A certificate">
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <button class="post-action">👍 31 Likes</button>
+                        <button class="post-action">💬 12 Comments</button>
+                        <button class="post-action">🔗 Share</button>
+                    </div>
+                </div>
+
+                <div class="post-item">
+                    <div class="post-header">
+                        <div class="post-avatar">
+                            <img src="/assets/images/nerd_blank_profile.png" alt="Kevin Tong">
+                        </div>
+                        <div class="post-info">
+                            <h4>Kevin Tong</h4>
+                            <span class="post-time">1 day ago</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>New Shoei RF-1400 review is up! Amazing upgrade from my old helmet. The ventilation and aerodynamics are next level. Worth every penny for track days. Anyone else running one of these?</p>
+                        <div class="post-images">
+                            <img src="/assets/images/bike-placeholder.jpg" alt="Shoei RF-1400 helmet">
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <button class="post-action">👍 18 Likes</button>
+                        <button class="post-action">💬 9 Comments</button>
+                        <button class="post-action">🔗 Share</button>
+                    </div>
+                </div>
+
+                <div class="post-item">
+                    <div class="post-header">
+                        <div class="post-avatar">
+                            <img src="/assets/images/nerd_blank_profile.png" alt="Kevin Tong">
+                        </div>
+                        <div class="post-info">
+                            <h4>Kevin Tong</h4>
+                            <span class="post-time">3 days ago</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>Help needed! Getting error code 46 on my R1 - anyone dealt with this before? Posted on BARF but figured I'd ask here too. Bike runs fine but the code keeps coming back.</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="post-action">👍 7 Likes</button>
+                        <button class="post-action">💬 23 Comments</button>
+                        <button class="post-action">🔗 Share</button>
+                    </div>
+                </div>
+
+                <div class="post-item">
+                    <div class="post-header">
+                        <div class="post-avatar">
+                            <img src="/assets/images/nerd_blank_profile.png" alt="Kevin Tong">
+                        </div>
+                        <div class="post-info">
+                            <h4>Kevin Tong</h4>
+                            <span class="post-time">1 week ago</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>Alice's Restaurant on Skyline Blvd review: Perfect post-ride stop! Great food, bike-friendly parking, and the view is incredible. Their burgers hit the spot after a long canyon run. Highly recommend! 🍔🏍️</p>
+                        <div class="post-images">
+                            <img src="/assets/images/bike-placeholder.jpg" alt="Alice's Restaurant">
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <button class="post-action">👍 25 Likes</button>
+                        <button class="post-action">💬 14 Comments</button>
+                        <button class="post-action">🔗 Share</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Forums Tab -->
+        <div class="tab-content" id="forums">
+            <div class="forums-section">
+                <h3>Forum Activity</h3>
+                <div class="forum-stats">
+                    <div class="stat-card">
+                        <span class="stat-number">127</span>
+                        <span class="stat-label">Topics Created</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">1,243</span>
+                        <span class="stat-label">Posts Made</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">856</span>
+                        <span class="stat-label">Helpful Answers</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">4.8</span>
+                        <span class="stat-label">Average Rating</span>
+                    </div>
+                </div>
+
+                <h3>Recent Forum Posts</h3>
+                <div class="forum-posts">
+                    <div class="forum-post-item">
+                        <div class="forum-post-header">
+                            <h4 class="forum-topic">Best chain lube for wet conditions?</h4>
+                            <div class="forum-meta">
+                                <span class="forum-category">🔧 Maintenance</span>
+                                <span class="forum-time">3 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="forum-post-preview">
+                            I've been riding in wet conditions lately and my chain seems to be collecting a lot of grime. What's everyone using for chain lube that holds up well in rain?
+                        </div>
+                        <div class="forum-post-stats">
+                            <span class="forum-replies">🗨️ 12 replies</span>
+                            <span class="forum-views">👁️ 89 views</span>
+                            <span class="forum-rating">⭐ 4.2</span>
+                        </div>
+                    </div>
+
+                    <div class="forum-post-item">
+                        <div class="forum-post-header">
+                            <h4 class="forum-topic">Track day preparation checklist</h4>
+                            <div class="forum-meta">
+                                <span class="forum-category">🏁 Track Days</span>
+                                <span class="forum-time">1 day ago</span>
+                            </div>
+                        </div>
+                        <div class="forum-post-preview">
+                            Getting ready for my first track day next month. Created this comprehensive checklist - what am I missing?
+                        </div>
+                        <div class="forum-post-stats">
+                            <span class="forum-replies">🗨️ 24 replies</span>
+                            <span class="forum-views">👁️ 156 views</span>
+                            <span class="forum-rating">⭐ 4.7</span>
+                        </div>
+                    </div>
+
+                    <div class="forum-post-item">
+                        <div class="forum-post-header">
+                            <h4 class="forum-topic">BMW R1250GS vs Honda Africa Twin comparison</h4>
+                            <div class="forum-meta">
+                                <span class="forum-category">🛣️ Adventure</span>
+                                <span class="forum-time">3 days ago</span>
+                            </div>
+                        </div>
+                        <div class="forum-post-preview">
+                            Torn between these two adventure bikes. Here's my detailed comparison after test riding both...
+                        </div>
+                        <div class="forum-post-stats">
+                            <span class="forum-replies">🗨️ 45 replies</span>
+                            <span class="forum-views">👁️ 312 views</span>
+                            <span class="forum-rating">⭐ 4.9</span>
+                        </div>
+                    </div>
+
+                    <div class="forum-post-item">
+                        <div class="forum-post-header">
+                            <h4 class="forum-topic">Tire pressure for sport riding</h4>
+                            <div class="forum-meta">
+                                <span class="forum-category">🏍️ Sport Bikes</span>
+                                <span class="forum-time">5 days ago</span>
+                            </div>
+                        </div>
+                        <div class="forum-post-preview">
+                            What tire pressures are you running for spirited canyon rides? Stock recommendations seem conservative...
+                        </div>
+                        <div class="forum-post-stats">
+                            <span class="forum-replies">🗨️ 18 replies</span>
+                            <span class="forum-views">👁️ 203 views</span>
+                            <span class="forum-rating">⭐ 4.5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Top Contributed Topics</h3>
+                <div class="top-topics">
+                    <div class="topic-item">
+                        <div class="topic-icon">🥇</div>
+                        <div class="topic-content">
+                            <h4>Complete Guide to Motorcycle Track Days</h4>
+                            <p>Comprehensive guide with 156 replies and 2.3k views</p>
+                            <span class="topic-badge featured">Featured Post</span>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <div class="topic-icon">🥈</div>
+                        <div class="topic-content">
+                            <h4>Winter Storage Tips and Tricks</h4>
+                            <p>Seasonal maintenance guide with 89 replies and 1.8k views</p>
+                            <span class="topic-badge popular">Popular</span>
+                        </div>
+                    </div>
+                    <div class="topic-item">
+                        <div class="topic-icon">🥉</div>
+                        <div class="topic-content">
+                            <h4>Budget-Friendly Bike Modifications</h4>
+                            <p>DIY modification guide with 67 replies and 1.2k views</p>
+                            <span class="topic-badge helpful">Most Helpful</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Events Tab -->
+        <div class="tab-content" id="events">
+            <div class="events-section">
+                <h3>Upcoming Events</h3>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-date">
+                            <span class="month">DEC</span>
+                            <span class="day">15</span>
+                        </div>
+                        <div class="event-info">
+                            <h4>Norcal Track Day</h4>
+                            <p>Thunderhill Raceway • Willows, CA</p>
+                            <span class="event-status interested">Interested</span>
+                        </div>
+                    </div>
+                    
+                    <div class="event-card">
+                        <div class="event-date">
+                            <span class="month">JAN</span>
+                            <span class="day">8</span>
+                        </div>
+                        <div class="event-info">
+                            <h4>Bay Area Group Ride</h4>
+                            <p>Golden Gate Bridge • San Francisco, CA</p>
+                            <span class="event-status attending">Attending</span>
+                        </div>
+                    </div>
+                    
+                    <div class="event-card">
+                        <div class="event-date">
+                            <span class="month">FEB</span>
+                            <span class="day">22</span>
+                        </div>
+                        <div class="event-info">
+                            <h4>Motorcycle Show 2025</h4>
+                            <p>Moscone Center • San Francisco, CA</p>
+                            <span class="event-status interested">Interested</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Past Events</h3>
+                <div class="events-grid">
+                    <div class="event-card past">
+                        <div class="event-date">
+                            <span class="month">NOV</span>
+                            <span class="day">20</span>
+                        </div>
+                        <div class="event-info">
+                            <h4>Laguna Seca Track Day</h4>
+                            <p>WeatherTech Raceway • Monterey, CA</p>
+                            <span class="event-status attended">Attended</span>
+                        </div>
+                    </div>
+                    
+                    <div class="event-card past">
+                        <div class="event-date">
+                            <span class="month">OCT</span>
+                            <span class="day">12</span>
+                        </div>
+                        <div class="event-info">
+                            <h4>Marin County Ride</h4>
+                            <p>Mt. Tamalpais • Marin County, CA</p>
+                            <span class="event-status attended">Attended</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trophies Tab -->
+        <div class="tab-content" id="trophies">
+            <div class="trophies-section">
+                <div class="trophies-grid">
+                    <div class="trophy-card earned">
+                        <div class="trophy-icon">🏍️</div>
+                        <h4>First Bike</h4>
+                        <p>Added your first bike to the garage</p>
+                        <span class="trophy-date">Earned Mar 15, 2024</span>
+                    </div>
+                    
+                    <div class="trophy-card earned">
+                        <div class="trophy-icon">🏁</div>
+                        <h4>Track Enthusiast</h4>
+                        <p>Attended your first track day</p>
+                        <span class="trophy-date">Earned Nov 20, 2024</span>
+                    </div>
+                    
+                    <div class="trophy-card earned">
+                        <div class="trophy-icon">📸</div>
+                        <h4>Photographer</h4>
+                        <p>Shared 25 photos with the community</p>
+                        <span class="trophy-date">Earned Oct 8, 2024</span>
+                    </div>
+                    
+                    <div class="trophy-card earned">
+                        <div class="trophy-icon">👥</div>
+                        <h4>Social Rider</h4>
+                        <p>Connected with 50 community members</p>
+                        <span class="trophy-date">Earned Aug 12, 2024</span>
+                    </div>
+                    
+                    <div class="trophy-card earned">
+                        <div class="trophy-icon">🌟</div>
+                        <h4>Community Member</h4>
+                        <p>Active in the community for 30 days</p>
+                        <span class="trophy-date">Earned Apr 14, 2024</span>
+                    </div>
+                    
+                    <div class="trophy-card earned">
+                        <div class="trophy-icon">📊</div>
+                        <h4>Mileage Tracker</h4>
+                        <p>Logged 10,000 miles on your bikes</p>
+                        <span class="trophy-date">Earned Jun 3, 2024</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Communities Tab -->
+        <div class="tab-content" id="communities">
+            <div class="communities-grid">
+                <div class="community-card">
+                    <div class="community-info">
+                        <div class="community-icon">🏍️</div>
+                        <div class="community-details">
+                            <h4>Sport Bike Riders</h4>
+                            <p>1,234 members • Very Active</p>
+                        </div>
+                    </div>
+                    <div class="community-role admin">Admin</div>
+                </div>
+                
+                <div class="community-card">
+                    <div class="community-info">
+                        <div class="community-icon">🏁</div>
+                        <div class="community-details">
+                            <h4>Track Day Warriors</h4>
+                            <p>567 members • Active</p>
+                        </div>
+                    </div>
+                    <div class="community-role moderator">Moderator</div>
+                </div>
+                
+                <div class="community-card">
+                    <div class="community-info">
+                        <div class="community-icon">🛣️</div>
+                        <div class="community-details">
+                            <h4>Bay Area Riders</h4>
+                            <p>892 members • Very Active</p>
+                        </div>
+                    </div>
+                    <div class="community-role member">Member</div>
+                </div>
+
+                <div class="community-card">
+                    <div class="community-info">
+                        <div class="community-icon">⚙️</div>
+                        <div class="community-details">
+                            <h4>Motorcycle Mechanics</h4>
+                            <p>445 members • Active</p>
+                        </div>
+                    </div>
+                    <div class="community-role member">Member</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+// Tab functionality
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const tabId = this.dataset.tab;
+        
+        // Remove active class from all tabs and content
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        this.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+    });
+});
+
+// Action menu toggle
+function toggleActionMenu() {
+    const dropdown = document.getElementById('action-dropdown');
+    dropdown.classList.toggle('active');
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+    const actionMenu = document.querySelector('.action-menu');
+    const dropdown = document.getElementById('action-dropdown');
+    
+    if (!actionMenu.contains(e.target)) {
+        dropdown.classList.remove('active');
+    }
+});
+
+// Mock button functionality
+document.querySelectorAll('.btn-primary, .btn-secondary, .post-action').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const action = this.textContent.trim();
+        alert(`${action} functionality would be implemented here!`);
+    });
+});
+</script>

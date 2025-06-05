@@ -1,0 +1,4 @@
+2025-01-06T10:30:00|123456789|987654321|TestUser|Hello Claude, this is a test message
+2025-06-04T11:35:00|999888777|111222333|UserFromChannel2|Message from different channel
+2025-06-04T11:37:00|123456789|987654321|TestUser|Test with pipe | character and newline
+and emoji 🚀

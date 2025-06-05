@@ -1,0 +1,16 @@
+{
+  "name": "bikenode-website",
+  "version": "1.0.0",
+  "description": "BikeNode static website with 11ty",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "dev": "eleventy --serve --watch",
+    "clean": "rm -rf _site"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  },
+  "keywords": ["static-site", "eleventy", "bikenode"],
+  "author": "BikeNode Team"
+}

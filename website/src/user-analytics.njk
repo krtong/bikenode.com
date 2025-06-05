@@ -1,0 +1,752 @@
+---
+layout: dashboard.njk
+title: "User Analytics"
+subtitle: "Detailed user behavior and engagement metrics"
+---
+
+<style>
+.analytics-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.analytics-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
+.analytics-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    opacity: 0.8;
+}
+
+.analytics-number {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 8px 0 4px 0;
+}
+
+.analytics-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.analytics-change {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    border-radius: 12px;
+}
+
+.change-positive {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.change-negative {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+.change-neutral {
+    background: rgba(107, 114, 128, 0.1);
+    color: #6b7280;
+}
+
+.user-segments {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+}
+
+.segments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.segment-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.segment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.segment-name {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin: 0;
+}
+
+.segment-count {
+    background: var(--accent);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.segment-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+}
+
+.segment-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.segment-metric {
+    text-align: center;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 6px;
+}
+
+.metric-value {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+}
+
+.metric-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.user-activity {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    margin-bottom: 32px;
+}
+
+.activity-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.activity-chart {
+    height: 300px;
+    padding: 20px;
+    position: relative;
+}
+
+.chart-area {
+    height: 100%;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.chart-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70%;
+    background: linear-gradient(to top, rgba(88, 101, 242, 0.1), rgba(88, 101, 242, 0.3));
+    border-top: 2px solid var(--accent);
+}
+
+.engagement-metrics {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+}
+
+.engagement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.engagement-section {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.section-title {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    font-size: 1.1rem;
+}
+
+.engagement-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.engagement-item:last-child {
+    border-bottom: none;
+}
+
+.item-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.item-value {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.user-search {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+}
+
+.search-controls {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.search-input {
+    flex: 1;
+    min-width: 200px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.search-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.user-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.user-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.user-info {
+    flex: 1;
+}
+
+.user-name {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin: 0 0 4px 0;
+}
+
+.user-stats {
+    display: flex;
+    gap: 16px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.user-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.cohort-analysis {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.cohort-table {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.cohort-grid {
+    display: grid;
+    grid-template-columns: 120px repeat(12, 60px);
+    gap: 2px;
+    min-width: 800px;
+}
+
+.cohort-header {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.cohort-cell {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 8px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    border-radius: 4px;
+}
+
+.cohort-high {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+}
+
+.cohort-medium {
+    background: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+}
+
+.cohort-low {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+</style>
+
+<div class="user-analytics">
+    <!-- Analytics Overview -->
+    <div class="analytics-overview">
+        <div class="analytics-card">
+            <div class="analytics-icon">👥</div>
+            <div class="analytics-number">24,657</div>
+            <div class="analytics-label">Total Users</div>
+            <div class="analytics-change change-positive">+12% this month</div>
+        </div>
+        
+        <div class="analytics-card">
+            <div class="analytics-icon">🟢</div>
+            <div class="analytics-number">3,421</div>
+            <div class="analytics-label">Active Users</div>
+            <div class="analytics-change change-positive">+8% this week</div>
+        </div>
+        
+        <div class="analytics-card">
+            <div class="analytics-icon">📊</div>
+            <div class="analytics-number">47m</div>
+            <div class="analytics-label">Avg Session</div>
+            <div class="analytics-change change-negative">-3% this week</div>
+        </div>
+        
+        <div class="analytics-card">
+            <div class="analytics-icon">🔄</div>
+            <div class="analytics-number">78%</div>
+            <div class="analytics-label">Retention Rate</div>
+            <div class="analytics-change change-positive">+2% this month</div>
+        </div>
+        
+        <div class="analytics-card">
+            <div class="analytics-icon">📱</div>
+            <div class="analytics-number">2.3</div>
+            <div class="analytics-label">Sessions/User</div>
+            <div class="analytics-change change-neutral">No change</div>
+        </div>
+        
+        <div class="analytics-card">
+            <div class="analytics-icon">⚡</div>
+            <div class="analytics-number">4.2</div>
+            <div class="analytics-label">Pages/Session</div>
+            <div class="analytics-change change-positive">+5% this week</div>
+        </div>
+    </div>
+
+    <!-- User Segments -->
+    <div class="user-segments">
+        <h3>User Segments</h3>
+        <div class="segments-grid">
+            <div class="segment-card">
+                <div class="segment-header">
+                    <h4 class="segment-name">Power Users</h4>
+                    <span class="segment-count">1,247</span>
+                </div>
+                <p class="segment-description">Highly engaged users with 20+ posts and daily activity</p>
+                <div class="segment-metrics">
+                    <div class="segment-metric">
+                        <div class="metric-value">89m</div>
+                        <div class="metric-label">Avg Session</div>
+                    </div>
+                    <div class="segment-metric">
+                        <div class="metric-value">12.4</div>
+                        <div class="metric-label">Pages/Session</div>
+                    </div>
+                    <div class="segment-metric">
+                        <div class="metric-value">94%</div>
+                        <div class="metric-label">Retention</div>
+                    </div>
+                    <div class="segment-metric">
+                        <div class="metric-value">4.7x</div>
+                        <div class="metric-label">Weekly Visits</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="segment-card">
+                <div class="segment-header">
+                    <h4 class="segment-name">Regular Users</h4>
+                    <span class="segment-count">8,934</span>
+                </div>
+                <p class="segment-description">Active community members with moderate engagement</p>
+                <div class="segment-metrics">
+                    <div class="segment-metric">
+                        <div class="metric-value">34m</div>
+                        <div class="metric-label">Avg Session</div>
+                    </div>
+                    <div class="segment-metric">
+                        <div class="metric-value">6.2</div>
+                        <div class="metric-label">Pages/Session</div>
+                    </div>
+                    <div class="segment-metric">
+                        <div class="metric-value">67%</div>
+                        <div class="metric-label">Retention</div>
+                    </div>
+                    <div class="segment-metric">
+                        <div class="metric-value">2.1x</div>
+                        <div class="metric-label">Weekly Visits</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="segment-card">
+                <div class="segment-header">
+                    <h4 class="segment-name">Casual Users</h4>
+                    <span class="segment-count">12,876</span>
+                </div>
+                <p class="segment-description">Occasional visitors with light engagement</p>
+                <div class="segment-metrics">
+                    <div class="segment-metric">
+                        <div class="metric-value">18m</div>
+                        <div class="metric-label">Avg Session</div>
+                    </div>
+                    <div class="segment-metric">
+                        <div class="metric-value">3.4</div>
+                        <div class="metric-label">Pages/Session</div>
+                    </div>
+                    <div class="segment-metric">
+                        <div class="metric-value">34%</div>
+                        <div class="metric-label">Retention</div>
+                    </div>
+                    <div class="segment-metric">
+                        <div class="metric-value">0.8x</div>
+                        <div class="metric-label">Weekly Visits</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="segment-card">
+                <div class="segment-header">
+                    <h4 class="segment-name">New Users</h4>
+                    <span class="segment-count">1,600</span>
+                </div>
+                <p class="segment-description">Users who joined within the last 30 days</p>
+                <div class="segment-metrics">
+                    <div class="segment-metric">
+                        <div class="metric-value">12m</div>
+                        <div class="metric-label">Avg Session</div>
+                    </div>
+                    <div class="segment-metric">
+                        <div class="metric-value">2.8</div>
+                        <div class="metric-label">Pages/Session</div>
+                    </div>
+                    <div class="segment-metric">
+                        <div class="metric-value">45%</div>
+                        <div class="metric-label">Retention</div>
+                    </div>
+                    <div class="segment-metric">
+                        <div class="metric-value">1.2x</div>
+                        <div class="metric-label">Weekly Visits</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Activity Chart -->
+    <div class="user-activity">
+        <div class="activity-header">
+            <h3>User Activity Trends</h3>
+            <select class="filter-select">
+                <option>Last 30 Days</option>
+                <option>Last 90 Days</option>
+                <option>Last 6 Months</option>
+                <option>Last Year</option>
+            </select>
+        </div>
+        <div class="activity-chart">
+            <div class="chart-area">
+                <div class="chart-gradient"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Engagement Metrics -->
+    <div class="engagement-metrics">
+        <h3>Detailed Engagement Metrics</h3>
+        <div class="engagement-grid">
+            <div class="engagement-section">
+                <h4 class="section-title">Content Interaction</h4>
+                <div class="engagement-item">
+                    <span class="item-label">Posts Created</span>
+                    <span class="item-value">2,847/day</span>
+                </div>
+                <div class="engagement-item">
+                    <span class="item-label">Comments Posted</span>
+                    <span class="item-value">8,234/day</span>
+                </div>
+                <div class="engagement-item">
+                    <span class="item-label">Likes Given</span>
+                    <span class="item-value">15,623/day</span>
+                </div>
+                <div class="engagement-item">
+                    <span class="item-label">Shares</span>
+                    <span class="item-value">1,247/day</span>
+                </div>
+                <div class="engagement-item">
+                    <span class="item-label">Bookmarks</span>
+                    <span class="item-value">892/day</span>
+                </div>
+            </div>
+
+            <div class="engagement-section">
+                <h4 class="section-title">Community Activity</h4>
+                <div class="engagement-item">
+                    <span class="item-label">New Members</span>
+                    <span class="item-value">127/day</span>
+                </div>
+                <div class="engagement-item">
+                    <span class="item-label">Active Communities</span>
+                    <span class="item-value">847</span>
+                </div>
+                <div class="engagement-item">
+                    <span class="item-label">Messages Sent</span>
+                    <span class="item-value">47.2k/day</span>
+                </div>
+                <div class="engagement-item">
+                    <span class="item-label">Events Created</span>
+                    <span class="item-value">23/day</span>
+                </div>
+                <div class="engagement-item">
+                    <span class="item-label">Group Joins</span>
+                    <span class="item-value">456/day</span>
+                </div>
+            </div>
+
+            <div class="engagement-section">
+                <h4 class="section-title">Platform Usage</h4>
+                <div class="engagement-item">
+                    <span class="item-label">Search Queries</span>
+                    <span class="item-value">12.4k/day</span>
+                </div>
+                <div class="engagement-item">
+                    <span class="item-label">Profile Views</span>
+                    <span class="item-value">8.9k/day</span>
+                </div>
+                <div class="engagement-item">
+                    <span class="item-label">Image Uploads</span>
+                    <span class="item-value">1.8k/day</span>
+                </div>
+                <div class="engagement-item">
+                    <span class="item-label">API Calls</span>
+                    <span class="item-value">234k/day</span>
+                </div>
+                <div class="engagement-item">
+                    <span class="item-label">Mobile App Opens</span>
+                    <span class="item-value">18.7k/day</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Search -->
+    <div class="user-search">
+        <h3>User Search & Analysis</h3>
+        <div class="search-controls">
+            <input type="text" class="search-input" placeholder="Search users by name, email, or ID">
+            <select class="filter-select">
+                <option>All Users</option>
+                <option>Power Users</option>
+                <option>Regular Users</option>
+                <option>Casual Users</option>
+                <option>New Users</option>
+                <option>Suspended Users</option>
+            </select>
+            <select class="filter-select">
+                <option>Sort by Activity</option>
+                <option>Sort by Join Date</option>
+                <option>Sort by Posts</option>
+                <option>Sort by Engagement</option>
+            </select>
+            <button class="btn-primary">Search</button>
+        </div>
+
+        <div class="user-list">
+            <div class="user-item">
+                <div class="user-avatar">ST</div>
+                <div class="user-info">
+                    <h4 class="user-name">@speedtrail_rider</h4>
+                    <div class="user-stats">
+                        <span>247 posts</span>
+                        <span>1.2k followers</span>
+                        <span>89% engagement</span>
+                        <span>Last active: 2 hours ago</span>
+                    </div>
+                </div>
+                <div class="user-actions">
+                    <button class="btn-secondary small">View Profile</button>
+                    <button class="btn-secondary small">View Activity</button>
+                </div>
+            </div>
+
+            <div class="user-item">
+                <div class="user-avatar">MG</div>
+                <div class="user-info">
+                    <h4 class="user-name">@mountain_goat_24</h4>
+                    <div class="user-stats">
+                        <span>156 posts</span>
+                        <span>834 followers</span>
+                        <span>76% engagement</span>
+                        <span>Last active: 1 day ago</span>
+                    </div>
+                </div>
+                <div class="user-actions">
+                    <button class="btn-secondary small">View Profile</button>
+                    <button class="btn-secondary small">View Activity</button>
+                </div>
+            </div>
+
+            <div class="user-item">
+                <div class="user-avatar">BC</div>
+                <div class="user-info">
+                    <h4 class="user-name">@bike_commuter_pro</h4>
+                    <div class="user-stats">
+                        <span>89 posts</span>
+                        <span>567 followers</span>
+                        <span>62% engagement</span>
+                        <span>Last active: 3 days ago</span>
+                    </div>
+                </div>
+                <div class="user-actions">
+                    <button class="btn-secondary small">View Profile</button>
+                    <button class="btn-secondary small">View Activity</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cohort Analysis -->
+    <div class="cohort-analysis">
+        <h3>User Retention Cohort Analysis</h3>
+        <div class="cohort-table">
+            <div class="cohort-grid">
+                <div class="cohort-header">Cohort</div>
+                <div class="cohort-header">Week 1</div>
+                <div class="cohort-header">Week 2</div>
+                <div class="cohort-header">Week 3</div>
+                <div class="cohort-header">Week 4</div>
+                <div class="cohort-header">Week 5</div>
+                <div class="cohort-header">Week 6</div>
+                <div class="cohort-header">Week 7</div>
+                <div class="cohort-header">Week 8</div>
+                <div class="cohort-header">Week 9</div>
+                <div class="cohort-header">Week 10</div>
+                <div class="cohort-header">Week 11</div>
+                <div class="cohort-header">Week 12</div>
+
+                <div class="cohort-header">Jan 2024</div>
+                <div class="cohort-cell cohort-high">100%</div>
+                <div class="cohort-cell cohort-high">78%</div>
+                <div class="cohort-cell cohort-medium">65%</div>
+                <div class="cohort-cell cohort-medium">58%</div>
+                <div class="cohort-cell cohort-medium">52%</div>
+                <div class="cohort-cell cohort-medium">48%</div>
+                <div class="cohort-cell cohort-low">42%</div>
+                <div class="cohort-cell cohort-low">38%</div>
+                <div class="cohort-cell cohort-low">35%</div>
+                <div class="cohort-cell cohort-low">32%</div>
+                <div class="cohort-cell cohort-low">29%</div>
+                <div class="cohort-cell cohort-low">27%</div>
+
+                <div class="cohort-header">Feb 2024</div>
+                <div class="cohort-cell cohort-high">100%</div>
+                <div class="cohort-cell cohort-high">82%</div>
+                <div class="cohort-cell cohort-medium">69%</div>
+                <div class="cohort-cell cohort-medium">61%</div>
+                <div class="cohort-cell cohort-medium">55%</div>
+                <div class="cohort-cell cohort-medium">51%</div>
+                <div class="cohort-cell cohort-low">45%</div>
+                <div class="cohort-cell cohort-low">41%</div>
+                <div class="cohort-cell cohort-low">38%</div>
+                <div class="cohort-cell cohort-low">34%</div>
+                <div class="cohort-cell cohort-low">31%</div>
+                <div class="cohort-cell">-</div>
+
+                <div class="cohort-header">Mar 2024</div>
+                <div class="cohort-cell cohort-high">100%</div>
+                <div class="cohort-cell cohort-high">85%</div>
+                <div class="cohort-cell cohort-high">72%</div>
+                <div class="cohort-cell cohort-medium">64%</div>
+                <div class="cohort-cell cohort-medium">58%</div>
+                <div class="cohort-cell cohort-medium">53%</div>
+                <div class="cohort-cell cohort-low">47%</div>
+                <div class="cohort-cell cohort-low">43%</div>
+                <div class="cohort-cell cohort-low">39%</div>
+                <div class="cohort-cell cohort-low">36%</div>
+                <div class="cohort-cell">-</div>
+                <div class="cohort-cell">-</div>
+            </div>
+        </div>
+    </div>
+</div>

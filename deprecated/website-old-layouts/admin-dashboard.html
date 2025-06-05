@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Admin Panel - BikeNode Dashboard</title>
+    <meta name="description" content="BikeNode admin panel for community administrators. Manage users, configure settings, and monitor community health.">
+    
+    <link rel="icon" type="image/png" href="./assets/images/bikenode_logo.png">
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/dashboard.css">
+</head>
+<body>
+    <!-- Background Animation Canvas -->
+    <canvas id="backgroundCanvas"></canvas>
+    
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="nav-brand">
+                <a href="./index.html">
+                    <img src="./assets/images/bikenode_logo.png" alt="BikeNode" class="logo">
+                </a>
+            </div>
+            <div class="header-nav">
+                <a href="./dashboard.html" class="nav-link">Dashboard</a>
+                <a href="./virtual-garage-dashboard.html" class="nav-link">Virtual Garage</a>
+                <a href="./discord-dashboard.html" class="nav-link">Discord</a>
+                <a href="./communities-dashboard.html" class="nav-link">Communities</a>
+            </div>
+            <div class="header-user">
+                <div class="user-avatar">
+                    <img src="./assets/images/bikenode_logo.png" alt="User Avatar">
+                </div>
+                <div class="user-menu">
+                    <span class="username">RiderName</span>
+                    <div class="dropdown">
+                        <a href="./account-settings.html">Account Settings</a>
+                        <a href="./index.html">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Layout -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h3>Overview</h3>
+                    <a href="./dashboard.html" class="sidebar-link">
+                        <span class="icon">📊</span>
+                        Dashboard
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>My Content</h3>
+                    <a href="./virtual-garage-dashboard.html" class="sidebar-link">
+                        <span class="icon">🏍️</span>
+                        Virtual Garage
+                    </a>
+                    <a href="./discord-dashboard.html" class="sidebar-link">
+                        <span class="icon">💬</span>
+                        Discord Servers
+                    </a>
+                    <a href="./communities-dashboard.html" class="sidebar-link">
+                        <span class="icon">👥</span>
+                        Communities
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Administration</h3>
+                    <a href="./admin-dashboard.html" class="sidebar-link active">
+                        <span class="icon">⚙️</span>
+                        Admin Panel
+                    </a>
+                    <a href="./bot-management.html" class="sidebar-link">
+                        <span class="icon">🤖</span>
+                        Bot Management
+                    </a>
+                    <a href="./analytics-dashboard.html" class="sidebar-link">
+                        <span class="icon">📈</span>
+                        Analytics
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h3>Settings</h3>
+                    <a href="./account-settings.html" class="sidebar-link">
+                        <span class="icon">👤</span>
+                        Account
+                    </a>
+                    <a href="./notification-settings.html" class="sidebar-link">
+                        <span class="icon">🔔</span>
+                        Notifications
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-content">
+            <div class="content-header">
+                <div>
+                    <h1>Admin Panel</h1>
+                    <p class="content-subtitle">Manage your communities and monitor platform health</p>
+                </div>
+            </div>
+
+            <div class="admin-content">
+                <!-- Admin Stats -->
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-content">
+                            <h3>2,456</h3>
+                            <p>Total Members</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🛠️</div>
+                        <div class="stat-content">
+                            <h3>3</h3>
+                            <p>Communities Managed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⚠️</div>
+                        <div class="stat-content">
+                            <h3>5</h3>
+                            <p>Pending Actions</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-content">
+                            <h3>+12%</h3>
+                            <p>Growth This Month</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="admin-actions">
+                    <h2>Quick Actions</h2>
+                    <div class="action-grid">
+                        <div class="admin-action-card">
+                            <div class="action-icon">👤</div>
+                            <h3>User Management</h3>
+                            <p>Manage user accounts, roles, and permissions</p>
+                            <a href="./user-management.html" class="action-link">Manage Users →</a>
+                        </div>
+                        <div class="admin-action-card">
+                            <div class="action-icon">🛡️</div>
+                            <h3>Moderation Queue</h3>
+                            <p>Review reports and moderate community content</p>
+                            <a href="./moderation-queue.html" class="action-link">Review Queue →</a>
+                        </div>
+                        <div class="admin-action-card">
+                            <div class="action-icon">⚙️</div>
+                            <h3>Community Settings</h3>
+                            <p>Configure community rules and bot settings</p>
+                            <a href="./community-settings.html" class="action-link">Configure →</a>
+                        </div>
+                        <div class="admin-action-card">
+                            <div class="action-icon">📊</div>
+                            <h3>Analytics & Reports</h3>
+                            <p>View detailed community analytics and reports</p>
+                            <a href="./analytics-dashboard.html" class="action-link">View Reports →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="admin-activity">
+                    <h2>Recent Admin Activity</h2>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">👤</div>
+                            <div class="activity-content">
+                                <h4>User verification approved</h4>
+                                <p>SpeedRider123 verified in Sport Bike Riders community</p>
+                                <span class="activity-time">5 minutes ago</span>
+                            </div>
+                            <div class="activity-status approved">Approved</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">⚠️</div>
+                            <div class="activity-content">
+                                <h4>Content reported</h4>
+                                <p>Message flagged for review in Mountain Bike Central</p>
+                                <span class="activity-time">15 minutes ago</span>
+                            </div>
+                            <div class="activity-status pending">Pending</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🔧</div>
+                            <div class="activity-content">
+                                <h4>Bot settings updated</h4>
+                                <p>Welcome message customized in Cruiser Nation</p>
+                                <span class="activity-time">1 hour ago</span>
+                            </div>
+                            <div class="activity-status completed">Completed</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">👥</div>
+                            <div class="activity-content">
+                                <h4>New moderator assigned</h4>
+                                <p>TrailMaster promoted to moderator in Mountain Bike Central</p>
+                                <span class="activity-time">3 hours ago</span>
+                            </div>
+                            <div class="activity-status completed">Completed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Community Overview */
+                <div class="community-overview">
+                    <h2>Community Overview</h2>
+                    <div class="communities-table">
+                        <div class="table-header">
+                            <div class="col-community">Community</div>
+                            <div class="col-members">Members</div>
+                            <div class="col-activity">Activity</div>
+                            <div class="col-status">Status</div>
+                            <div class="col-actions">Actions</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="col-community">
+                                <div class="community-cell">
+                                    <div class="community-avatar">SB</div>
+                                    <div>
+                                        <h4>Sport Bike Riders</h4>
+                                        <p>Owner</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-members">1,234</div>
+                            <div class="col-activity">
+                                <div class="activity-bar">
+                                    <div class="activity-fill" style="width: 85%"></div>
+                                </div>
+                                <span>High</span>
+                            </div>
+                            <div class="col-status">
+                                <span class="status-badge healthy">Healthy</span>
+                            </div>
+                            <div class="col-actions">
+                                <a href="./community-manage.html" class="action-btn">Manage</a>
+                            </div>
+                        </div>
+                        <div class="table-row">
+                            <div class="col-community">
+                                <div class="community-cell">
+                                    <div class="community-avatar">MT</div>
+                                    <div>
+                                        <h4>Mountain Bike Central</h4>
+                                        <p>Admin</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-members">856</div>
+                            <div class="col-activity">
+                                <div class="activity-bar">
+                                    <div class="activity-fill" style="width: 65%"></div>
+                                </div>
+                                <span>Medium</span>
+                            </div>
+                            <div class="col-status">
+                                <span class="status-badge healthy">Healthy</span>
+                            </div>
+                            <div class="col-actions">
+                                <a href="./community-manage.html" class="action-btn">Manage</a>
+                            </div>
+                        </div>
+                        <div class="table-row">
+                            <div class="col-community">
+                                <div class="community-cell">
+                                    <div class="community-avatar">CR</div>
+                                    <div>
+                                        <h4>Cruiser Nation</h4>
+                                        <p>Moderator</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-members">432</div>
+                            <div class="col-activity">
+                                <div class="activity-bar">
+                                    <div class="activity-fill" style="width: 40%"></div>
+                                </div>
+                                <span>Low</span>
+                            </div>
+                            <div class="col-status">
+                                <span class="status-badge warning">Needs Attention</span>
+                            </div>
+                            <div class="col-actions">
+                                <a href="./community-manage.html" class="action-btn">Manage</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="./assets/js/background.js"></script>
+    
+    <style>
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .admin-actions {
+            margin-bottom: 32px;
+        }
+        
+        .admin-actions h2 {
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .admin-action-card {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .admin-action-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+        
+        .admin-activity {
+            margin-bottom: 32px;
+        }
+        
+        .admin-activity h2 {
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .activity-status {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .activity-status.approved {
+            background: rgba(34, 197, 94, 0.1);
+            color: #86efac;
+        }
+        
+        .activity-status.pending {
+            background: rgba(245, 158, 11, 0.1);
+            color: #fbbf24;
+        }
+        
+        .activity-status.completed {
+            background: rgba(59, 130, 246, 0.1);
+            color: #93c5fd;
+        }
+        
+        .community-overview h2 {
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .communities-table {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .table-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 16px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+        
+        .table-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 16px;
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            align-items: center;
+        }
+        
+        .table-row:last-child {
+            border-bottom: none;
+        }
+        
+        .community-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .community-cell .community-avatar {
+            width: 32px;
+            height: 32px;
+            font-size: 0.8rem;
+        }
+        
+        .community-cell h4 {
+            color: var(--text-primary);
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .community-cell p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 0.75rem;
+        }
+        
+        .col-members {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .col-activity {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .activity-bar {
+            width: 60px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .activity-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 3px;
+        }
+        
+        .col-activity span {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        .status-badge.healthy {
+            background: rgba(34, 197, 94, 0.1);
+            color: #86efac;
+        }
+        
+        .status-badge.warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: #fbbf24;
+        }
+        
+        .action-btn {
+            background: var(--accent);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: background 0.2s ease;
+        }
+        
+        .action-btn:hover {
+            background: var(--accent-hover);
+        }
+        
+        @media (max-width: 768px) {
+            .table-header,
+            .table-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            
+            .table-header {
+                display: none;
+            }
+            
+            .table-row {
+                padding: 20px;
+                background: rgba(255, 255, 255, 0.02);
+                margin-bottom: 1px;
+            }
+            
+            .col-activity {
+                margin: 8px 0;
+            }
+        }
+    </style>
+</body>
+</html>

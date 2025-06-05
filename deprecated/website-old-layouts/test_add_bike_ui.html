@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Add Bike UI</title>
+</head>
+<body>
+    <h1>Testing Add Bike UI</h1>
+    <iframe src="http://localhost:8081/add-bike/" width="100%" height="600" id="testFrame"></iframe>
+    
+    <div id="log" style="margin-top: 20px; border: 1px solid #ccc; padding: 10px; height: 200px; overflow-y: scroll;">
+        <h3>Test Log:</h3>
+    </div>
+    
+    <script>
+        const log = document.getElementById('log');
+        
+        function addLog(message) {
+            const entry = document.createElement('div');
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+        
+        window.addEventListener('load', () => {
+            const iframe = document.getElementById('testFrame');
+            
+            setTimeout(() => {
+                try {
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                    
+                    // Test 1: Check if categories are loaded
+                    const menuContent = iframeDoc.getElementById('menu-content');
+                    const categoryOptions = menuContent.querySelectorAll('.menu-option');
+                    addLog(`Found ${categoryOptions.length} categories`);
+                    
+                    // Test 2: Click on Motorcycle
+                    const motorcycleOption = Array.from(categoryOptions).find(opt => 
+                        opt.textContent.includes('Motorcycle')
+                    );
+                    
+                    if (motorcycleOption) {
+                        addLog('Clicking on Motorcycle category...');
+                        motorcycleOption.click();
+                        
+                        setTimeout(() => {
+                            // Test 3: Check if brands loaded
+                            const brands = menuContent.querySelectorAll('.menu-option');
+                            addLog(`Found ${brands.length} motorcycle brands`);
+                            
+                            // Test 4: Check breadcrumb
+                            const breadcrumb = iframeDoc.getElementById('breadcrumb');
+                            addLog(`Breadcrumb: ${breadcrumb.textContent}`);
+                            
+                            // Test 5: Look for Honda
+                            const hondaOption = Array.from(brands).find(opt => 
+                                opt.textContent.includes('Honda')
+                            );
+                            
+                            if (hondaOption) {
+                                addLog('Found Honda! Clicking...');
+                                hondaOption.click();
+                                
+                                setTimeout(() => {
+                                    // Check years
+                                    const years = menuContent.querySelectorAll('.menu-option');
+                                    addLog(`Found ${years.length} years for Honda`);
+                                    
+                                    // Look for 2001
+                                    const year2001 = Array.from(years).find(opt => 
+                                        opt.textContent.includes('2001')
+                                    );
+                                    
+                                    if (year2001) {
+                                        addLog('Found 2001! Clicking...');
+                                        year2001.click();
+                                        
+                                        setTimeout(() => {
+                                            // Check models
+                                            const models = menuContent.querySelectorAll('.menu-option');
+                                            addLog(`Found ${models.length} models for Honda 2001`);
+                                            
+                                            // Log first few models
+                                            Array.from(models).slice(0, 5).forEach((model, i) => {
+                                                addLog(`Model ${i + 1}: ${model.textContent.trim()}`);
+                                            });
+                                        }, 2000);
+                                    } else {
+                                        addLog('ERROR: 2001 not found!');
+                                    }
+                                }, 2000);
+                            } else {
+                                addLog('ERROR: Honda not found!');
+                            }
+                        }, 2000);
+                    } else {
+                        addLog('ERROR: Motorcycle category not found!');
+                    }
+                } catch (error) {
+                    addLog(`ERROR: ${error.message}`);
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

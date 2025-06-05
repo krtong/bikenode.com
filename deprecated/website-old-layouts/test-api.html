@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test API Integration</title>
+</head>
+<body>
+    <h1>BikeNode API Test</h1>
+    <button onclick="testAPI()">Test API</button>
+    <button onclick="testPage()">Test Add-Bike Page</button>
+    <pre id="output"></pre>
+
+    <script>
+    async function testAPI() {
+        const output = document.getElementById('output');
+        output.textContent = 'Testing API...\n';
+        
+        try {
+            // Test manufacturers
+            const resp1 = await fetch('http://localhost:8080/api/bicycles/manufacturers');
+            const data1 = await resp1.json();
+            output.textContent += 'Manufacturers: ' + JSON.stringify(data1, null, 2) + '\n\n';
+            
+            // Test years
+            const resp2 = await fetch('http://localhost:8080/api/bicycles/years');
+            const data2 = await resp2.json();
+            output.textContent += 'Years: ' + JSON.stringify(data2, null, 2) + '\n\n';
+            
+            // Test models
+            if (data1.manufacturers && data1.manufacturers[0] && data2.years && data2.years[0]) {
+                const resp3 = await fetch(`http://localhost:8080/api/bicycles/models/${data1.manufacturers[0]}/${data2.years[0]}`);
+                const data3 = await resp3.json();
+                output.textContent += `Models for ${data1.manufacturers[0]} ${data2.years[0]}: ` + JSON.stringify(data3, null, 2) + '\n';
+            }
+        } catch (error) {
+            output.textContent += 'Error: ' + error.message + '\n';
+        }
+    }
+    
+    function testPage() {
+        window.open('http://localhost:8081/add-bike/', '_blank');
+    }
+    </script>
+</body>
+</html>

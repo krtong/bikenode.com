@@ -1,0 +1,352 @@
+---
+layout: dashboard.njk
+showContentHeader: false
+permalink: "/add-photos/{{ bike.id }}/"
+pagination:
+  data: bikes
+  size: 1
+  alias: bike
+---
+
+<div class="add-photos-container">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="/virtual-garage-dashboard/">Virtual Garage</a>
+        <span class="breadcrumb-separator">></span>
+        <a href="/bike-details/{{ bike.id }}/">{{ bike.name }}</a>
+        <span class="breadcrumb-separator">></span>
+        <span>Add Photos</span>
+    </div>
+
+    <!-- Upload Section -->
+    <div class="upload-section">
+        <div class="upload-area" id="upload-area">
+            <div class="upload-icon">📸</div>
+            <h2>Upload Photos</h2>
+            <p>Drag and drop your photos here or click to browse</p>
+            <input type="file" id="file-input" multiple accept="image/*" style="display: none;">
+            <button class="btn-primary" onclick="document.getElementById('file-input').click()">
+                Select Photos
+            </button>
+        </div>
+
+        <!-- Photo Preview Grid -->
+        <div id="photo-preview" class="photo-preview-grid" style="display: none;">
+            <h3>Selected Photos</h3>
+            <div id="preview-grid" class="preview-grid"></div>
+            <div class="upload-actions">
+                <button class="btn-secondary" onclick="clearPhotos()">Clear All</button>
+                <button class="btn-primary" onclick="uploadPhotos()">
+                    <span class="icon">⬆️</span>
+                    Upload Photos
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Existing Photos -->
+    <div class="existing-photos-section">
+        <h3>Current Photos ({{ bike.photos }})</h3>
+        {% if bike.photos > 0 %}
+        <div class="existing-photos-grid">
+            {% if bike.id == 1 %}
+                {% for photo in ['BAA64891-1650-46D4-BBD7-E80A7C1FE385_1_105_c.jpeg', '4876820D-6A68-47C5-B12E-1E0AEA8F0F14_1_105_c.jpeg', 'BF0FC511-90E4-4F61-852F-E48892D22336_1_105_c.jpeg', 'D496A872-0E92-4D2B-BCDE-6F0028FBCEE9_1_105_c.jpeg', '1B4A68E5-5D69-4A5D-A900-9FD59BA96193_1_105_c.jpeg', 'BF0FC511-90E4-4F61-852F-E48892D22336_1_105_c copy.jpeg'] %}
+                <div class="photo-item">
+                    <img src="/assets/images/kevintong/tuono/{{ photo }}" alt="{{ bike.name }}">
+                    <button class="photo-delete" onclick="deletePhoto('{{ photo }}')">×</button>
+                </div>
+                {% endfor %}
+            {% elif bike.id == 2 %}
+                {% for photo in ['07708AC7-556C-4B6A-8767-DE1A272C29C1_1_105_c.jpeg', '30068309-9811-4E2E-AB66-5EC1F0146907_1_105_c.jpeg', '6D0E930C-6252-4C7B-B325-2A2E1D18FA31_1_105_c.jpeg'] %}
+                <div class="photo-item">
+                    <img src="/assets/images/kevintong/f4i/{{ photo }}" alt="{{ bike.name }}">
+                    <button class="photo-delete" onclick="deletePhoto('{{ photo }}')">×</button>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        {% else %}
+        <div class="no-photos">
+            <p>No photos uploaded yet.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+.add-photos-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.breadcrumb {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+}
+
+.breadcrumb a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb-separator {
+    margin: 0 8px;
+    opacity: 0.5;
+}
+
+.upload-section {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 32px;
+}
+
+.upload-area {
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 48px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.upload-area:hover {
+    border-color: var(--accent);
+    background: rgba(88, 101, 242, 0.05);
+}
+
+.upload-area.drag-over {
+    border-color: var(--accent);
+    background: rgba(88, 101, 242, 0.1);
+}
+
+.upload-icon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+}
+
+.upload-area h2 {
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    font-size: 1.5rem;
+}
+
+.upload-area p {
+    color: var(--text-secondary);
+    margin: 0 0 24px 0;
+}
+
+.photo-preview-grid {
+    margin-top: 32px;
+}
+
+.photo-preview-grid h3 {
+    color: var(--text-primary);
+    margin: 0 0 16px 0;
+}
+
+.preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.preview-item {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.preview-remove {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.preview-remove:hover {
+    background: #ef4444;
+}
+
+.upload-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.existing-photos-section {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 32px;
+}
+
+.existing-photos-section h3 {
+    color: var(--text-primary);
+    margin: 0 0 24px 0;
+}
+
+.existing-photos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.photo-item {
+    position: relative;
+    aspect-ratio: 4/3;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-delete {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    opacity: 0;
+}
+
+.photo-item:hover .photo-delete {
+    opacity: 1;
+}
+
+.photo-delete:hover {
+    background: #ef4444;
+}
+
+.no-photos {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-secondary);
+}
+</style>
+
+<script>
+let selectedFiles = [];
+
+// Drag and drop functionality
+const uploadArea = document.getElementById('upload-area');
+const fileInput = document.getElementById('file-input');
+const photoPreview = document.getElementById('photo-preview');
+const previewGrid = document.getElementById('preview-grid');
+
+uploadArea.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    uploadArea.classList.add('drag-over');
+});
+
+uploadArea.addEventListener('dragleave', () => {
+    uploadArea.classList.remove('drag-over');
+});
+
+uploadArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadArea.classList.remove('drag-over');
+    handleFiles(e.dataTransfer.files);
+});
+
+fileInput.addEventListener('change', (e) => {
+    handleFiles(e.target.files);
+});
+
+function handleFiles(files) {
+    selectedFiles = [...selectedFiles, ...Array.from(files).filter(file => file.type.startsWith('image/'))];
+    displayPreview();
+}
+
+function displayPreview() {
+    if (selectedFiles.length === 0) {
+        photoPreview.style.display = 'none';
+        return;
+    }
+
+    photoPreview.style.display = 'block';
+    previewGrid.innerHTML = '';
+
+    selectedFiles.forEach((file, index) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const previewItem = document.createElement('div');
+            previewItem.className = 'preview-item';
+            previewItem.innerHTML = `
+                <img src="${e.target.result}" alt="Preview">
+                <button class="preview-remove" onclick="removeFile(${index})">×</button>
+            `;
+            previewGrid.appendChild(previewItem);
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+function removeFile(index) {
+    selectedFiles.splice(index, 1);
+    displayPreview();
+}
+
+function clearPhotos() {
+    selectedFiles = [];
+    fileInput.value = '';
+    displayPreview();
+}
+
+function uploadPhotos() {
+    if (selectedFiles.length === 0) return;
+    
+    alert(`Uploading ${selectedFiles.length} photo(s) for {{ bike.name }}!`);
+    // Here you would implement the actual upload logic
+}
+
+function deletePhoto(photoName) {
+    if (confirm('Are you sure you want to delete this photo?')) {
+        alert(`Deleting photo: ${photoName}`);
+        // Here you would implement the actual delete logic
+    }
+}
+</script>
