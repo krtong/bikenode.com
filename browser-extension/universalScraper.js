@@ -87,7 +87,12 @@ class UniversalScraper {
   }
 
   extractLocation() {
+    // Platform-specific selectors
     const locationSelectors = [
+      // Craigslist specific
+      '.postingtitletext small', // Craigslist location in parentheses
+      '.mapaddress', // Craigslist map address
+      // General selectors
       '.location', '[data-testid*="location"]', '.address',
       '.listing-location', '.ad-location', '.post-location',
       '[class*="location"]', '[id*="location"]'
@@ -96,12 +101,29 @@ class UniversalScraper {
     for (const selector of locationSelectors) {
       const element = this.document.querySelector(selector);
       if (element && element.textContent.trim()) {
-        return element.textContent.trim();
+        let location = element.textContent.trim();
+        // Clean up Craigslist location format
+        location = location.replace(/[()]/g, '').trim();
+        if (location && location.length < 100) { // Ensure it's not picking up full page content
+          return location;
+        }
+      }
+    }
+
+    // For Craigslist, try to extract from title
+    const titleElement = this.document.querySelector('.postingtitletext');
+    if (titleElement) {
+      const titleText = titleElement.textContent;
+      // Look for location in parentheses at end of title
+      const locationMatch = titleText.match(/\(([^)]+)\)$/);
+      if (locationMatch) {
+        return locationMatch[1].trim();
       }
     }
 
     // Look for common location patterns in text
-    const allText = this.document.body.textContent;
+    const textElement = this.document.querySelector('#postingbody') || this.document.body;
+    const allText = textElement.textContent.substring(0, 1000); // Only check first 1000 chars
     const locationPatterns = [
       /\b[A-Z][a-z]+,\s*[A-Z]{2}\b/g, // City, State
       /\b\d{5}(?:-\d{4})?\b/g, // ZIP codes
@@ -148,18 +170,47 @@ class UniversalScraper {
 
   extractImages() {
     const images = [];
+    
+    // First check for script-based image data (common in Craigslist)
+    const scripts = this.document.querySelectorAll('script');
+    for (const script of scripts) {
+      const content = script.textContent;
+      if (content.includes('imgList')) {
+        // Extract Craigslist image list from JavaScript
+        const imgListMatch = content.match(/var imgList = (\[.*?\]);/s);
+        if (imgListMatch) {
+          try {
+            const imgList = eval(imgListMatch[1]);
+            imgList.forEach(img => {
+              if (img.url) {
+                images.push(img.url);
+              }
+            });
+          } catch (e) {
+            // Fallback to regex extraction
+            const urlMatches = content.match(/https?:\/\/[^"'\s]+\.(?:jpg|jpeg|png|webp)/gi);
+            if (urlMatches) {
+              images.push(...urlMatches);
+            }
+          }
+        }
+      }
+    }
+    
+    // Also check for regular img tags
     const imageSelectors = [
       'img[src*="jpg"]', 'img[src*="jpeg"]', 'img[src*="png"]', 'img[src*="webp"]',
       '.gallery img', '.images img', '.photos img', '[data-testid*="image"] img',
-      '.listing-images img', '.ad-images img', '#icImg', '.swipe img'
+      '.listing-images img', '.ad-images img', '#icImg', '.swipe img',
+      '.thumb img' // Craigslist thumbnails
     ];
 
     for (const selector of imageSelectors) {
       const elements = this.document.querySelectorAll(selector);
       for (const img of elements) {
         if (img.src && img.src.startsWith('http') && !img.src.includes('icon') && !img.src.includes('logo')) {
-          // Filter out small images (likely icons)
-          if (img.naturalWidth > 100 || img.width > 100) {
+          // Don't filter by size for thumbnails
+          if (selector.includes('thumb') || img.naturalWidth > 50 || img.width > 50 || !img.naturalWidth) {
             images.push(img.src);
           }
         }
@@ -170,21 +221,40 @@ class UniversalScraper {
   }
 
   extractContactInfo() {
-    const allText = this.document.body.textContent;
+    // Focus on the main content area to avoid picking up post IDs
+    const contentElement = this.document.querySelector('#postingbody') || 
+                          this.document.querySelector('.description') || 
+                          this.document.body;
+    const allText = contentElement.textContent;
     const contact = {};
 
-    // Phone numbers
+    // Phone numbers - be more specific to avoid post IDs
     const phonePattern = /\b(?:\+?1[-.\s]?)?\(?([0-9]{3})\)?[-.\s]?([0-9]{3})[-.\s]?([0-9]{4})\b/g;
     const phoneMatches = allText.match(phonePattern);
     if (phoneMatches) {
-      contact.phone = phoneMatches[0];
+      // Filter out numbers that look like post IDs (10 digits with no formatting)
+      const validPhones = phoneMatches.filter(phone => {
+        // Must have some formatting (parentheses, dashes, or spaces)
+        return phone.includes('(') || phone.includes('-') || phone.includes(' ') || phone.includes('.');
+      });
+      if (validPhones.length > 0) {
+        contact.phone = validPhones[0];
+      }
     }
 
     // Email addresses
     const emailPattern = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g;
     const emailMatches = allText.match(emailPattern);
     if (emailMatches) {
-      contact.email = emailMatches[0];
+      // Filter out common system emails
+      const validEmails = emailMatches.filter(email => 
+        !email.includes('noreply') && 
+        !email.includes('craigslist') &&
+        !email.includes('system')
+      );
+      if (validEmails.length > 0) {
+        contact.email = validEmails[0];
+      }
     }
 
     return contact;
