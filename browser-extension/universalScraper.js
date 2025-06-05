@@ -246,10 +246,15 @@ class UniversalScraper {
       }
     }
     
-    // Fallback to checking for regular img tags if script parsing fails
+    // Platform-specific image selectors
     const imageSelectors = [
+      // eBay specific
+      '#icImg', // Main eBay image
+      // Facebook specific
+      '[data-visualcompletion="media-vc-image"]', // Facebook Marketplace
+      // General selectors
       '.gallery img', '.images img', '.photos img',
-      '.listing-images img', '.ad-images img'
+      '.listing-images img', '.ad-images img', 'img'
     ];
 
     const uniqueUrls = new Set();
@@ -259,6 +264,7 @@ class UniversalScraper {
         if (img.src && img.src.startsWith('http')) {
           // Skip thumbnails and small images
           if (img.src.includes('50x50c') || 
+              img.src.includes('50x50') ||
               img.src.includes('thumb') || 
               img.src.includes('icon') || 
               img.src.includes('logo') ||
@@ -455,6 +461,22 @@ class UniversalScraper {
     const title = this.extractTitle().toLowerCase();
     const description = this.extractDescription().toLowerCase();
     const allText = (title + ' ' + description).toLowerCase();
+
+    // Check for motorcycle brands first
+    const motorcycleBrands = ['yamaha', 'honda', 'suzuki', 'kawasaki', 'harley', 'bmw', 'ducati', 'triumph', 'ktm'];
+    const motorcycleModels = ['mt-07', 'mt-09', 'r1200rt', 'gsxr', 'ninja', 'cbr', 'sportster'];
+    
+    for (const brand of motorcycleBrands) {
+      if (allText.includes(brand)) {
+        return 'motorcycle';
+      }
+    }
+    
+    for (const model of motorcycleModels) {
+      if (allText.includes(model)) {
+        return 'motorcycle';
+      }
+    }
 
     // Vehicle categories
     if (allText.match(/\b(car|auto|vehicle|sedan|suv|truck|motorcycle|bike|bicycle)\b/)) {
