@@ -1,0 +1,308 @@
+---
+layout: dashboard.njk
+title: Activity Heatmap
+subtitle: Popular cycling areas in your region
+breadcrumb:
+  - title: Explore
+    url: /explore/
+  - title: Heatmap
+---
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<div class="heatmap-container">
+  <div id="heatmap" class="heatmap-view"></div>
+
+  <div class="map-tools">
+    <button class="tool-btn" title="Zoom In">➕</button>
+    <button class="tool-btn" title="Zoom Out">➖</button>
+    <button class="tool-btn" title="My Location">📍</button>
+    <button class="tool-btn" title="Full Screen">⛶</button>
+  </div>
+
+  <div class="stats-overlay">
+    <div class="stat-item">
+      <div class="stat-number">12,847</div>
+      <div class="stat-desc">Activities</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">3,421</div>
+      <div class="stat-desc">Riders</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">256K</div>
+      <div class="stat-desc">Miles</div>
+    </div>
+  </div>
+
+  <div class="heatmap-controls">
+    <div class="control-section">
+      <div class="control-title">Activity Type</div>
+      <div class="activity-filters">
+        <label class="filter-option">
+          <input type="checkbox" checked>
+          <span>🚴 Road Cycling</span>
+        </label>
+        <label class="filter-option">
+          <input type="checkbox" checked>
+          <span>🏔️ Mountain Biking</span>
+        </label>
+        <label class="filter-option">
+          <input type="checkbox" checked>
+          <span>🚵 Gravel Riding</span>
+        </label>
+        <label class="filter-option">
+          <input type="checkbox">
+          <span>🏃 Running</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="control-section">
+      <div class="control-title">Time Range</div>
+      <div class="time-range-selector">
+        <button class="time-btn">24h</button>
+        <button class="time-btn">7d</button>
+        <button class="time-btn active">30d</button>
+        <button class="time-btn">90d</button>
+        <button class="time-btn">1y</button>
+        <button class="time-btn">All</button>
+      </div>
+    </div>
+
+    <div class="control-section">
+      <div class="control-title">Heat Intensity</div>
+      <div class="intensity-slider">
+        <div class="slider-container">
+          <span style="font-size: 12px;">Low</span>
+          <div class="slider">
+            <div class="slider-fill"></div>
+            <div class="slider-handle"></div>
+          </div>
+          <span style="font-size: 12px;">High</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="heatmap-legend">
+    <div class="legend-title">Activity Density</div>
+    <div class="legend-scale">
+      <div class="legend-gradient"></div>
+    </div>
+    <div class="legend-labels">
+      <span>Low</span>
+      <span>High</span>
+    </div>
+  </div>
+</div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- Leaflet Heatmap Plugin -->
+<script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+
+<script>
+  let map;
+  let heatLayer;
+  let currentIntensity = 0.7;
+
+  // Initialize map
+  function initMap() {
+    // Create map centered on San Francisco Bay Area
+    map = L.map('heatmap', {
+      zoomControl: false // We'll use custom controls
+    }).setView([37.7749, -122.4194], 11);
+
+    // Dark theme tile layer using CartoDB Dark Matter
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '© OpenStreetMap contributors © CARTO',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }).addTo(map);
+
+    // Generate sample heatmap data (cycling activity points)
+    const heatData = generateSampleHeatData();
+    
+    // Create heatmap layer
+    heatLayer = L.heatLayer(heatData, {
+      radius: 25,
+      blur: 15,
+      maxZoom: 17,
+      max: 1.0,
+      gradient: {
+        0.0: '#000428',
+        0.2: '#004e92', 
+        0.4: '#009ffd',
+        0.6: '#00d2ff',
+        0.8: '#7209b7',
+        1.0: '#ff0844'
+      }
+    }).addTo(map);
+  }
+
+  // Generate sample cycling activity data for the Bay Area
+  function generateSampleHeatData() {
+    const points = [];
+    const hotspots = [
+      // San Francisco popular cycling areas
+      [37.7849, -122.4094], // Golden Gate Park
+      [37.8199, -122.4783], // Golden Gate Bridge
+      [37.7849, -122.5094], // Ocean Beach
+      [37.7549, -122.4194], // Mission District
+      
+      // Peninsula routes
+      [37.4419, -122.1430], // Palo Alto
+      [37.3688, -122.0363], // Mountain View
+      [37.4024, -122.3278], // Half Moon Bay
+      
+      // East Bay
+      [37.8044, -122.2711], // Berkeley Hills
+      [37.7349, -122.1949], // Oakland Hills
+      [37.9161, -122.3097], // Marin Headlands
+      
+      // Popular cycling routes
+      [37.5665, -122.2756], // San Mateo Bridge area
+      [37.6188, -122.3750], // Crystal Springs
+    ];
+
+    // Generate clusters around hotspots
+    hotspots.forEach(center => {
+      const clusterSize = Math.random() * 50 + 20;
+      for (let i = 0; i < clusterSize; i++) {
+        const lat = center[0] + (Math.random() - 0.5) * 0.02;
+        const lng = center[1] + (Math.random() - 0.5) * 0.02;
+        const intensity = Math.random() * 0.8 + 0.2;
+        points.push([lat, lng, intensity]);
+      }
+    });
+
+    // Add random points for general activity
+    for (let i = 0; i < 200; i++) {
+      const lat = 37.4 + Math.random() * 0.8;
+      const lng = -122.6 + Math.random() * 0.4;
+      const intensity = Math.random() * 0.3;
+      points.push([lat, lng, intensity]);
+    }
+
+    return points;
+  }
+
+  // Map tool functions
+  function setupMapTools() {
+    const zoomInBtn = document.querySelector('[title="Zoom In"]');
+    const zoomOutBtn = document.querySelector('[title="Zoom Out"]');
+    const locationBtn = document.querySelector('[title="My Location"]');
+    const fullscreenBtn = document.querySelector('[title="Full Screen"]');
+
+    zoomInBtn.addEventListener('click', () => map.zoomIn());
+    zoomOutBtn.addEventListener('click', () => map.zoomOut());
+    
+    locationBtn.addEventListener('click', () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          map.setView([lat, lng], 13);
+        });
+      }
+    });
+
+    fullscreenBtn.addEventListener('click', () => {
+      const container = document.querySelector('.heatmap-container');
+      if (container.requestFullscreen) {
+        container.requestFullscreen();
+      }
+    });
+  }
+
+  // Update heatmap intensity
+  function updateHeatmapIntensity(intensity) {
+    if (heatLayer) {
+      heatLayer.setOptions({
+        max: intensity
+      });
+    }
+  }
+
+  // Time range selection
+  document.querySelectorAll('.time-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // Simulate different data for different time ranges
+      const timeRange = btn.textContent;
+      console.log('Time range changed to:', timeRange);
+      
+      // In a real app, you'd fetch different data here
+      // For demo, we'll just update the stats
+      updateStatsForTimeRange(timeRange);
+    });
+  });
+
+  // Update stats based on time range
+  function updateStatsForTimeRange(range) {
+    const stats = {
+      '24h': { activities: '1,247', riders: '421', miles: '12K' },
+      '7d': { activities: '8,547', riders: '1,421', miles: '89K' },
+      '30d': { activities: '12,847', riders: '3,421', miles: '256K' },
+      '90d': { activities: '35,247', riders: '8,421', miles: '687K' },
+      '1y': { activities: '124,847', riders: '15,421', miles: '2.1M' },
+      'All': { activities: '512,847', riders: '25,421', miles: '8.7M' }
+    };
+
+    const data = stats[range] || stats['30d'];
+    document.querySelector('.stat-number').textContent = data.activities;
+    document.querySelectorAll('.stat-number')[1].textContent = data.riders;
+    document.querySelectorAll('.stat-number')[2].textContent = data.miles;
+  }
+
+  // Slider interaction
+  const slider = document.querySelector('.slider');
+  const sliderHandle = document.querySelector('.slider-handle');
+  const sliderFill = document.querySelector('.slider-fill');
+  let isDragging = false;
+
+  sliderHandle.addEventListener('mousedown', () => isDragging = true);
+  document.addEventListener('mouseup', () => isDragging = false);
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    
+    const rect = slider.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+    
+    sliderHandle.style.left = percentage + '%';
+    sliderFill.style.width = percentage + '%';
+    
+    // Update heatmap intensity
+    currentIntensity = percentage / 100;
+    updateHeatmapIntensity(currentIntensity);
+  });
+
+  // Activity filter changes
+  document.querySelectorAll('.filter-option input').forEach(input => {
+    input.addEventListener('change', () => {
+      console.log('Filter updated:', input.nextElementSibling.textContent);
+      // In a real app, you'd filter the heatmap data here
+    });
+  });
+
+  // Initialize everything when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    // Small delay to ensure the container is rendered
+    setTimeout(() => {
+      initMap();
+      setupMapTools();
+    }, 100);
+  });
+
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    if (map) {
+      setTimeout(() => map.invalidateSize(), 100);
+    }
+  });
+</script>
