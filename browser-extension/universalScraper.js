@@ -353,25 +353,45 @@ class UniversalScraper {
     // Craigslist specific attribute groups
     const attrGroups = this.document.querySelectorAll('.attrgroup');
     for (const group of attrGroups) {
-      const spans = group.querySelectorAll('span');
-      for (const span of spans) {
-        const text = span.textContent.trim();
-        // Parse "key: value" format
-        if (text.includes(':')) {
-          const parts = text.split(':');
-          if (parts.length === 2) {
-            const key = parts[0].trim().toLowerCase();
-            const value = parts[1].trim();
-            if (key && value) {
-              attributes[key] = value;
-              // Also store common variations
-              if (key === 'vin') attributes.VIN = value;
-              if (key === 'engine displacement (cc)') attributes.displacement = value;
+      // Look for year and make/model in the "important" attributes
+      const yearSpan = group.querySelector('span.year');
+      if (yearSpan) {
+        attributes.year = yearSpan.textContent.trim();
+      }
+      
+      const makeModelSpan = group.querySelector('span.makemodel');
+      if (makeModelSpan) {
+        const makeModel = makeModelSpan.textContent.trim();
+        // Extract make and model from text like "BMW R 1200 RT K52"
+        const parts = makeModel.split(/\s+/);
+        if (parts.length > 0) {
+          attributes.make = parts[0];
+          attributes.model = parts.slice(1).join(' ');
+        }
+      }
+      
+      // Look for label/value pairs in attribute divs
+      const attrDivs = group.querySelectorAll('.attr');
+      for (const div of attrDivs) {
+        const label = div.querySelector('.labl');
+        const value = div.querySelector('.valu');
+        
+        if (label && value) {
+          const key = label.textContent.replace(':', '').trim().toLowerCase();
+          const val = value.textContent.trim();
+          
+          if (key && val) {
+            attributes[key] = val;
+            
+            // Store common variations
+            if (key === 'vin') {
+              attributes.VIN = val;
+              attributes.vin = val;
+            }
+            if (key === 'engine displacement (cc)') {
+              attributes.displacement = val;
             }
           }
-        } else {
-          // Some attributes are just values (like "manual transmission")
-          attributes[text.toLowerCase()] = true;
         }
       }
     }
