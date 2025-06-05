@@ -111,12 +111,14 @@ class UniversalScraper {
     }
 
     // For Craigslist, try to extract from title
-    const titleElement = this.document.querySelector('.postingtitletext');
+    const titleElement = this.document.querySelector('.postingtitletext') || 
+                         this.document.querySelector('h1') ||
+                         this.document.querySelector('[class*="title"]');
     if (titleElement) {
       const titleText = titleElement.textContent;
       // Look for location in parentheses at end of title
       const locationMatch = titleText.match(/\(([^)]+)\)$/);
-      if (locationMatch) {
+      if (locationMatch && locationMatch[1].length < 50) {
         return locationMatch[1].trim();
       }
     }
@@ -175,49 +177,64 @@ class UniversalScraper {
     const scripts = this.document.querySelectorAll('script');
     for (const script of scripts) {
       const content = script.textContent;
-      if (content.includes('imgList')) {
+      if (content.includes('var imgList =')) {
         // Extract Craigslist image list from JavaScript
-        const imgListMatch = content.match(/var imgList = (\[.*?\]);/s);
+        const imgListMatch = content.match(/var imgList = (\[[\s\S]*?\]);/);
         if (imgListMatch) {
           try {
-            const imgList = eval(imgListMatch[1]);
+            // Use JSON.parse on the matched string after cleaning it up
+            const imgListStr = imgListMatch[1]
+              .replace(/(\w+):/g, '"$1":') // Add quotes to keys
+              .replace(/'/g, '"'); // Replace single quotes with double
+            const imgList = JSON.parse(imgListStr);
+            
+            // Extract unique full-size image URLs
+            const uniqueUrls = new Set();
             imgList.forEach(img => {
-              if (img.url) {
-                images.push(img.url);
+              if (img.url && img.url.includes('600x450')) {
+                // Get the 600x450 version (full size for Craigslist)
+                uniqueUrls.add(img.url);
               }
             });
+            
+            return Array.from(uniqueUrls);
           } catch (e) {
-            // Fallback to regex extraction
-            const urlMatches = content.match(/https?:\/\/[^"'\s]+\.(?:jpg|jpeg|png|webp)/gi);
+            // If JSON parsing fails, try a more direct approach
+            const urlMatches = content.match(/"url":"([^"]+600x450[^"]+)"/g);
             if (urlMatches) {
-              images.push(...urlMatches);
+              const uniqueUrls = new Set();
+              urlMatches.forEach(match => {
+                const url = match.match(/"url":"([^"]+)"/)[1];
+                uniqueUrls.add(url);
+              });
+              return Array.from(uniqueUrls);
             }
           }
         }
       }
     }
     
-    // Also check for regular img tags
+    // Fallback to checking for regular img tags if script parsing fails
     const imageSelectors = [
-      'img[src*="jpg"]', 'img[src*="jpeg"]', 'img[src*="png"]', 'img[src*="webp"]',
-      '.gallery img', '.images img', '.photos img', '[data-testid*="image"] img',
-      '.listing-images img', '.ad-images img', '#icImg', '.swipe img',
-      '.thumb img' // Craigslist thumbnails
+      '.gallery img[src*="600x450"]', // Craigslist full-size images
+      '.swipe img[src*="600x450"]',
+      'img[src*="600x450"]',
+      // General selectors as last resort
+      '.gallery img', '.images img', '.photos img',
+      '.listing-images img', '.ad-images img'
     ];
 
+    const uniqueUrls = new Set();
     for (const selector of imageSelectors) {
       const elements = this.document.querySelectorAll(selector);
       for (const img of elements) {
         if (img.src && img.src.startsWith('http') && !img.src.includes('icon') && !img.src.includes('logo')) {
-          // Don't filter by size for thumbnails
-          if (selector.includes('thumb') || img.naturalWidth > 50 || img.width > 50 || !img.naturalWidth) {
-            images.push(img.src);
-          }
+          uniqueUrls.add(img.src);
         }
       }
     }
 
-    return [...new Set(images)]; // Remove duplicates
+    return Array.from(uniqueUrls);
   }
 
   extractContactInfo() {
