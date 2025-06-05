@@ -16,7 +16,15 @@ class SlashCommands(commands.Cog):
     @app_commands.command(name="test", description="Test if the BikeNode bot is working")
     async def test(self, interaction: discord.Interaction):
         """Test command to verify bot is working"""
-        await interaction.response.send_message("✅ BikeNode bot is working!", ephemeral=True)
+        embed = discord.Embed(
+            title="✅ Bot Status",
+            description="BikeNode bot is working correctly!",
+            color=discord.Color.green()
+        )
+        embed.add_field(name="Bot Name", value=self.bot.user.name, inline=True)
+        embed.add_field(name="Bot ID", value=self.bot.user.id, inline=True)
+        embed.add_field(name="Latency", value=f"{round(self.bot.latency * 1000)}ms", inline=True)
+        await interaction.response.send_message(embed=embed, ephemeral=True)
     
     @app_commands.command(name="api_test", description="Test BikeNode API connectivity")
     async def api_test(self, interaction: discord.Interaction):

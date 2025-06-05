@@ -309,7 +309,49 @@ class UniversalScraper {
   extractAttributes() {
     const attributes = {};
     
-    // Look for key-value pairs in the content
+    // Craigslist specific attribute groups
+    const attrGroups = this.document.querySelectorAll('.attrgroup');
+    for (const group of attrGroups) {
+      const spans = group.querySelectorAll('span');
+      for (const span of spans) {
+        const text = span.textContent.trim();
+        // Parse "key: value" format
+        if (text.includes(':')) {
+          const [key, value] = text.split(':').map(s => s.trim());
+          if (key && value) {
+            attributes[key.toLowerCase()] = value;
+          }
+        } else {
+          // Some attributes are just values (like "manual transmission")
+          attributes[text.toLowerCase()] = true;
+        }
+      }
+    }
+    
+    // Extract year/make/model from title if present
+    const title = this.extractTitle();
+    const yearMatch = title.match(/\b(19|20)\d{2}\b/);
+    if (yearMatch) {
+      attributes.year = yearMatch[0];
+    }
+    
+    // Common motorcycle/bicycle brands
+    const brands = ['BMW', 'Honda', 'Yamaha', 'Suzuki', 'Kawasaki', 'Harley', 'Ducati', 
+                    'Trek', 'Specialized', 'Giant', 'Cannondale', 'Santa Cruz'];
+    for (const brand of brands) {
+      if (title.toUpperCase().includes(brand.toUpperCase())) {
+        attributes.make = brand;
+        // Try to extract model after brand
+        const regex = new RegExp(brand + '\\s+([A-Z0-9]+)', 'i');
+        const modelMatch = title.match(regex);
+        if (modelMatch) {
+          attributes.model = modelMatch[1];
+        }
+        break;
+      }
+    }
+    
+    // Look for generic key-value pairs
     const attributeSelectors = [
       '.attributes', '.specs', '.details', '.specifications',
       '.item-specifics', '.features', '.props', '[class*="spec"]'
@@ -323,22 +365,10 @@ class UniversalScraper {
         const dds = container.querySelectorAll('dd');
         
         for (let i = 0; i < Math.min(dts.length, dds.length); i++) {
-          const key = dts[i].textContent.trim();
+          const key = dts[i].textContent.trim().toLowerCase();
           const value = dds[i].textContent.trim();
           if (key && value) {
             attributes[key] = value;
-          }
-        }
-
-        // Look for label:value patterns in text
-        const text = container.textContent;
-        const pairs = text.match(/([^:\n]+):\s*([^:\n]+)/g);
-        if (pairs) {
-          for (const pair of pairs) {
-            const [key, value] = pair.split(':').map(s => s.trim());
-            if (key && value && key.length < 50 && value.length < 200) {
-              attributes[key] = value;
-            }
           }
         }
       }

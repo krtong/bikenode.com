@@ -55,7 +55,16 @@ with open('config/config.yaml', 'r') as config_file:
 
 # Initialize the bot with the prefix from config
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix=config['commands']['prefix'], intents=intents)
+# Get application ID from environment
+app_id = os.getenv('APP_ID') or os.getenv('DISCORD_APPLICATION_ID')
+if app_id:
+    bot = commands.Bot(
+        command_prefix=config['commands']['prefix'], 
+        intents=intents,
+        application_id=int(app_id)
+    )
+else:
+    bot = commands.Bot(command_prefix=config['commands']['prefix'], intents=intents)
 bot.config = config  # Make config accessible to all cogs
 
 @bot.event

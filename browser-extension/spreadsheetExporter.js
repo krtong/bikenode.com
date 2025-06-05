@@ -7,13 +7,23 @@ class SpreadsheetExporter {
   constructor() {
     this.headers = [
       'Title', 'Price', 'Location', 'Category', 'Domain', 'URL', 
-      'Description', 'Images Count', 'Contact Phone', 'Contact Email',
+      'Description', 'Images', 'Contact Phone', 'Contact Email',
+      'Condition', 'Odometer', 'VIN', 'Year', 'Make', 'Model',
       'Date Scraped', 'Extraction Time (ms)'
     ];
   }
 
   // Convert single ad data to row format
   adToRow(adData) {
+    // Extract vehicle attributes
+    const attrs = adData.attributes || {};
+    const year = attrs.year || attrs['model year'] || '';
+    const make = attrs.make || '';
+    const model = attrs.model || '';
+    const condition = attrs.condition || '';
+    const odometer = attrs.odometer || attrs.mileage || '';
+    const vin = attrs.VIN || attrs.vin || '';
+    
     return [
       adData.title || '',
       adData.price || '',
@@ -22,9 +32,15 @@ class SpreadsheetExporter {
       adData.domain || '',
       adData.url || '',
       (adData.description || '').substring(0, 500) + (adData.description && adData.description.length > 500 ? '...' : ''),
-      adData.images ? adData.images.length : 0,
+      adData.images ? adData.images.join(' | ') : '', // Join URLs with pipe separator
       adData.contact?.phone || '',
       adData.contact?.email || '',
+      condition,
+      odometer,
+      vin,
+      year,
+      make,
+      model,
       adData.timestamp || '',
       adData.extractionTime || ''
     ];
@@ -122,10 +138,19 @@ class SpreadsheetExporter {
       row.forEach((cell, index) => {
         let cellClass = '';
         if (this.headers[index] === 'Description') cellClass = 'description';
-        if (this.headers[index] === 'Images Count') cellClass = 'images';
+        if (this.headers[index] === 'Images') cellClass = 'images';
         if (this.headers[index] === 'Price') cellClass = 'price';
         
-        html += `<td class="${cellClass}">${this.escapeHtml(String(cell))}</td>`;
+        // Special handling for image URLs
+        if (this.headers[index] === 'Images' && cell) {
+          const imageUrls = String(cell).split(' | ');
+          const imageLinks = imageUrls.map((url, i) => 
+            `<a href="${url}" target="_blank">Image ${i + 1}</a>`
+          ).join(', ');
+          html += `<td class="${cellClass}">${imageLinks}</td>`;
+        } else {
+          html += `<td class="${cellClass}">${this.escapeHtml(String(cell))}</td>`;
+        }
       });
       html += '</tr>';
     });
