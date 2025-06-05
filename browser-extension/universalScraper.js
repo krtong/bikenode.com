@@ -202,11 +202,30 @@ class UniversalScraper {
             // Parse the imgList JavaScript array
             const imgList = eval(imgListMatch[1]);
             
-            // Extract only full-size image URLs (600x450)
+            // Extract the highest resolution image URLs
             const fullSizeUrls = [];
             imgList.forEach(img => {
-              if (img.url && img.url.includes('600x450')) {
-                fullSizeUrls.push(img.url);
+              // Get the image ID and construct the full-size URL
+              if (img.imgid) {
+                // Craigslist stores full images at URLs like:
+                // https://images.craigslist.org/00y0y_9SyqWVZhD0S_0CI0lM.jpg
+                const imgIdParts = img.imgid.split(':');
+                if (imgIdParts.length > 1) {
+                  const imageId = imgIdParts[1];
+                  // Remove any size suffix and add .jpg
+                  const fullSizeUrl = `https://images.craigslist.org/${imageId.split('_')[0]}_${imageId.split('_')[1]}.jpg`;
+                  fullSizeUrls.push(fullSizeUrl);
+                }
+              } else if (img.url) {
+                // Try to get the highest resolution version by modifying the URL
+                let url = img.url;
+                // Replace 600x450 with 1200x900 or remove size entirely
+                url = url.replace('_600x450', '_1200x900');
+                if (url === img.url) {
+                  // If no 600x450, try removing any size suffix
+                  url = url.replace(/_\d+x\d+/, '');
+                }
+                fullSizeUrls.push(url);
               }
             });
             
@@ -223,10 +242,6 @@ class UniversalScraper {
     
     // Fallback to checking for regular img tags if script parsing fails
     const imageSelectors = [
-      '.gallery img[src*="600x450"]', // Craigslist full-size images
-      '.swipe img[src*="600x450"]',
-      'img[src*="600x450"]',
-      // General selectors as last resort (but filter out thumbnails)
       '.gallery img', '.images img', '.photos img',
       '.listing-images img', '.ad-images img'
     ];
@@ -236,18 +251,26 @@ class UniversalScraper {
       const elements = this.document.querySelectorAll(selector);
       for (const img of elements) {
         if (img.src && img.src.startsWith('http')) {
-          // Skip thumbnails and icons
+          // Skip thumbnails and small images
           if (img.src.includes('50x50c') || 
               img.src.includes('thumb') || 
               img.src.includes('icon') || 
-              img.src.includes('logo')) {
+              img.src.includes('logo') ||
+              img.src.includes('300x300')) {
             continue;
           }
-          // For Craigslist, only add 600x450 images
-          if (this.domain.includes('craigslist') && !img.src.includes('600x450')) {
-            continue;
+          
+          let url = img.src;
+          // For Craigslist, try to get the full resolution
+          if (this.domain.includes('craigslist')) {
+            // Replace any size suffix with 1200x900 or remove it
+            url = url.replace(/_\d+x\d+/, '_1200x900');
+            if (url === img.src) {
+              // If no size found, try removing .jpg and adding _1200x900.jpg
+              url = url.replace('.jpg', '_1200x900.jpg');
+            }
           }
-          uniqueUrls.add(img.src);
+          uniqueUrls.add(url);
         }
       }
     }
