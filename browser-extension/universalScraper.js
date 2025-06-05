@@ -87,6 +87,23 @@ class UniversalScraper {
   }
 
   extractLocation() {
+    // First try to extract from title for Craigslist
+    const titleText = this.document.title || '';
+    const h1Text = this.document.querySelector('h1')?.textContent || '';
+    const titleSources = [titleText, h1Text];
+    
+    for (const source of titleSources) {
+      // Look for location in parentheses
+      const locationMatch = source.match(/\(([^)]+)\)\s*$/);
+      if (locationMatch && locationMatch[1].length < 50) {
+        const location = locationMatch[1].trim();
+        // Filter out non-location parentheses content
+        if (!location.toLowerCase().includes('map') && !location.match(/^\d+$/)) {
+          return location;
+        }
+      }
+    }
+    
     // Platform-specific selectors
     const locationSelectors = [
       // Craigslist specific
@@ -182,33 +199,23 @@ class UniversalScraper {
         const imgListMatch = content.match(/var imgList = (\[[\s\S]*?\]);/);
         if (imgListMatch) {
           try {
-            // Use JSON.parse on the matched string after cleaning it up
-            const imgListStr = imgListMatch[1]
-              .replace(/(\w+):/g, '"$1":') // Add quotes to keys
-              .replace(/'/g, '"'); // Replace single quotes with double
-            const imgList = JSON.parse(imgListStr);
+            // Parse the imgList JavaScript array
+            const imgList = eval(imgListMatch[1]);
             
-            // Extract unique full-size image URLs
-            const uniqueUrls = new Set();
+            // Extract only full-size image URLs (600x450)
+            const fullSizeUrls = [];
             imgList.forEach(img => {
               if (img.url && img.url.includes('600x450')) {
-                // Get the 600x450 version (full size for Craigslist)
-                uniqueUrls.add(img.url);
+                fullSizeUrls.push(img.url);
               }
             });
             
-            return Array.from(uniqueUrls);
-          } catch (e) {
-            // If JSON parsing fails, try a more direct approach
-            const urlMatches = content.match(/"url":"([^"]+600x450[^"]+)"/g);
-            if (urlMatches) {
-              const uniqueUrls = new Set();
-              urlMatches.forEach(match => {
-                const url = match.match(/"url":"([^"]+)"/)[1];
-                uniqueUrls.add(url);
-              });
-              return Array.from(uniqueUrls);
+            // If we found full-size images, return them
+            if (fullSizeUrls.length > 0) {
+              return fullSizeUrls;
             }
+          } catch (e) {
+            console.log('Failed to parse imgList:', e);
           }
         }
       }
@@ -317,9 +324,16 @@ class UniversalScraper {
         const text = span.textContent.trim();
         // Parse "key: value" format
         if (text.includes(':')) {
-          const [key, value] = text.split(':').map(s => s.trim());
-          if (key && value) {
-            attributes[key.toLowerCase()] = value;
+          const parts = text.split(':');
+          if (parts.length === 2) {
+            const key = parts[0].trim().toLowerCase();
+            const value = parts[1].trim();
+            if (key && value) {
+              attributes[key] = value;
+              // Also store common variations
+              if (key === 'vin') attributes.VIN = value;
+              if (key === 'engine displacement (cc)') attributes.displacement = value;
+            }
           }
         } else {
           // Some attributes are just values (like "manual transmission")
