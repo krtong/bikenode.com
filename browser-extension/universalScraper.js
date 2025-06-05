@@ -226,7 +226,7 @@ class UniversalScraper {
       '.gallery img[src*="600x450"]', // Craigslist full-size images
       '.swipe img[src*="600x450"]',
       'img[src*="600x450"]',
-      // General selectors as last resort
+      // General selectors as last resort (but filter out thumbnails)
       '.gallery img', '.images img', '.photos img',
       '.listing-images img', '.ad-images img'
     ];
@@ -235,7 +235,18 @@ class UniversalScraper {
     for (const selector of imageSelectors) {
       const elements = this.document.querySelectorAll(selector);
       for (const img of elements) {
-        if (img.src && img.src.startsWith('http') && !img.src.includes('icon') && !img.src.includes('logo')) {
+        if (img.src && img.src.startsWith('http')) {
+          // Skip thumbnails and icons
+          if (img.src.includes('50x50c') || 
+              img.src.includes('thumb') || 
+              img.src.includes('icon') || 
+              img.src.includes('logo')) {
+            continue;
+          }
+          // For Craigslist, only add 600x450 images
+          if (this.domain.includes('craigslist') && !img.src.includes('600x450')) {
+            continue;
+          }
           uniqueUrls.add(img.src);
         }
       }
