@@ -58,9 +58,15 @@ class UniversalScraper {
       const element = this.document.querySelector(selector);
       if (element && element.textContent.trim()) {
         const priceText = element.textContent.trim();
-        const match = priceText.match(/\$[\d,]+(?:\.\d{2})?/);
-        if (match) {
-          return match[0];
+        // Look for currency patterns with prefix
+        const fullMatch = priceText.match(/(US\s*\$|USD\s*|€|£|¥)[\s]*[\d,]+(?:\.\d{2})?/i);
+        if (fullMatch) {
+          return fullMatch[0];
+        }
+        // Fallback to simple dollar amount
+        const dollarMatch = priceText.match(/\$[\d,]+(?:\.\d{2})?/);
+        if (dollarMatch) {
+          return dollarMatch[0];
         }
       }
     }
@@ -68,8 +74,8 @@ class UniversalScraper {
     // Then search through all text for price patterns
     const allText = this.document.body.textContent;
     const pricePatterns = [
+      /(US\s*\$|USD\s*)[\s]*[\d,]+(?:\.\d{2})?/gi,
       /\$[\d,]+(?:\.\d{2})?/g,
-      /USD[\s\$]*[\d,]+(?:\.\d{2})?/gi,
       /€[\d,]+(?:\.\d{2})?/g,
       /£[\d,]+(?:\.\d{2})?/g,
       /¥[\d,]+(?:\.\d{2})?/g
