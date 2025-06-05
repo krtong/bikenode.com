@@ -217,21 +217,14 @@ class UniversalScraper {
                 // https://images.craigslist.org/00y0y_9SyqWVZhD0S_0CI0lM.jpg
                 const imgIdParts = img.imgid.split(':');
                 if (imgIdParts.length > 1) {
-                  const imageId = imgIdParts[1];
-                  // Remove any size suffix and add .jpg
-                  const fullSizeUrl = `https://images.craigslist.org/${imageId.split('_')[0]}_${imageId.split('_')[1]}.jpg`;
-                  fullSizeUrls.push(fullSizeUrl);
+                  // Just use the URL as provided by Craigslist
+                  if (img.url && !img.url.includes('50x50') && !img.url.includes('300x300')) {
+                    fullSizeUrls.push(img.url);
+                  }
                 }
               } else if (img.url) {
-                // Try to get the highest resolution version by modifying the URL
-                let url = img.url;
-                // Replace 600x450 with 1200x900 or remove size entirely
-                url = url.replace('_600x450', '_1200x900');
-                if (url === img.url) {
-                  // If no 600x450, try removing any size suffix
-                  url = url.replace(/_\d+x\d+/, '');
-                }
-                fullSizeUrls.push(url);
+                // Just use the URL as-is, filtering will handle thumbnails
+                fullSizeUrls.push(img.url);
               }
             });
             
@@ -295,15 +288,6 @@ class UniversalScraper {
           }
           
           let url = img.src;
-          // For Craigslist, try to get the full resolution
-          if (this.domain.includes('craigslist')) {
-            // Replace any size suffix with 1200x900 or remove it
-            url = url.replace(/_\d+x\d+/, '_1200x900');
-            if (url === img.src) {
-              // If no size found, try removing .jpg and adding _1200x900.jpg
-              url = url.replace('.jpg', '_1200x900.jpg');
-            }
-          }
           uniqueUrls.add(url);
         }
       }
