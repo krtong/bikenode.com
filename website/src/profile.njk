@@ -744,23 +744,103 @@ customCSS: ["/assets/css/profile.css"]
 </div>
 
 
+<!-- Enhanced Modals -->
+<div id="profileModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modalTitle">Modal Title</h3>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body" id="modalBody">
+            <!-- Dynamic content will be inserted here -->
+        </div>
+    </div>
+</div>
+
+<!-- Followers/Following Modal -->
+<div id="followersModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="followersTitle">Followers</h3>
+            <button class="modal-close" onclick="closeFollowersModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="search-bar">
+                <input type="text" placeholder="Search users..." class="search-input">
+            </div>
+            <div class="users-list" id="usersList">
+                <!-- Dynamic user list will be populated here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Share Profile Modal -->
+<div id="shareModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Share Profile</h3>
+            <button class="modal-close" onclick="closeShareModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="share-options">
+                <button class="share-btn discord" onclick="shareToDiscord()">
+                    <span class="share-icon">💬</span>
+                    Share to Discord
+                </button>
+                <button class="share-btn twitter" onclick="shareToTwitter()">
+                    <span class="share-icon">🐦</span>
+                    Share to Twitter
+                </button>
+                <button class="share-btn copy" onclick="copyProfileLink()">
+                    <span class="share-icon">🔗</span>
+                    Copy Link
+                </button>
+                <button class="share-btn email" onclick="shareByEmail()">
+                    <span class="share-icon">📧</span>
+                    Share by Email
+                </button>
+            </div>
+            <div class="share-link">
+                <input type="text" value="https://bikenode.com/profile/krtong" readonly class="link-input">
+                <button class="copy-btn" onclick="copyToClipboard()">Copy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notifications -->
+<div id="toastContainer" class="toast-container"></div>
+
 <script>
-// Tab functionality
+// Enhanced Tab functionality with animations
 document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', function() {
         const tabId = this.dataset.tab;
         
         // Remove active class from all tabs and content
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => {
+            c.classList.remove('active');
+            c.style.opacity = '0';
+        });
         
         // Add active class to clicked tab and corresponding content
         this.classList.add('active');
-        document.getElementById(tabId).classList.add('active');
+        const targetContent = document.getElementById(tabId);
+        targetContent.classList.add('active');
+        
+        // Animate content in
+        setTimeout(() => {
+            targetContent.style.opacity = '1';
+        }, 50);
+        
+        // Update URL without page reload
+        history.pushState(null, null, `#${tabId}`);
     });
 });
 
-// Action menu toggle
+// Enhanced Action menu toggle
 function toggleActionMenu() {
     const dropdown = document.getElementById('action-dropdown');
     dropdown.classList.toggle('active');
@@ -771,17 +851,292 @@ document.addEventListener('click', function(e) {
     const actionMenu = document.querySelector('.action-menu');
     const dropdown = document.getElementById('action-dropdown');
     
-    if (!actionMenu.contains(e.target)) {
+    if (actionMenu && !actionMenu.contains(e.target)) {
         dropdown.classList.remove('active');
     }
 });
 
-// Mock button functionality
-document.querySelectorAll('.btn-primary, .btn-secondary, .post-action').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const action = this.textContent.trim();
-        alert(`${action} functionality would be implemented here!`);
+// Enhanced Profile Actions
+function sendMessage() {
+    showToast('Opening message composer...', 'info');
+    // Simulate opening message interface
+    setTimeout(() => {
+        showToast('Message interface ready!', 'success');
+    }, 1000);
+}
+
+function toggleFollow() {
+    const btn = document.querySelector('.follow-btn');
+    const isFollowing = btn.dataset.following === 'true';
+    const text = btn.querySelector('.follow-text');
+    const icon = btn.querySelector('.icon');
+    
+    if (isFollowing) {
+        btn.dataset.following = 'false';
+        text.textContent = 'Follow';
+        icon.textContent = '👤';
+        btn.classList.remove('following');
+        showToast('Unfollowed Kevin Tong', 'info');
+    } else {
+        btn.dataset.following = 'true';
+        text.textContent = 'Following';
+        icon.textContent = '✓';
+        btn.classList.add('following');
+        showToast('Now following Kevin Tong!', 'success');
+    }
+}
+
+function addToFriends() {
+    showToast('Friend request sent!', 'success');
+}
+
+function shareProfile() {
+    document.getElementById('shareModal').style.display = 'flex';
+}
+
+function reportUser() {
+    showToast('Report form opened', 'warning');
+}
+
+function blockUser() {
+    if (confirm('Are you sure you want to block this user?')) {
+        showToast('User blocked successfully', 'error');
+    }
+}
+
+function exportProfile() {
+    showToast('Preparing profile export...', 'info');
+    setTimeout(() => {
+        showToast('Profile exported! Check your downloads.', 'success');
+    }, 2000);
+}
+
+function copyProfileLink() {
+    navigator.clipboard.writeText('https://bikenode.com/profile/krtong').then(() => {
+        showToast('Profile link copied to clipboard!', 'success');
+    });
+}
+
+// Quick Actions
+function viewGarage() {
+    document.querySelector('[data-tab="garage"]').click();
+}
+
+function viewPosts() {
+    document.querySelector('[data-tab="posts"]').click();
+}
+
+function viewEvents() {
+    document.querySelector('[data-tab="events"]').click();
+}
+
+function viewAchievements() {
+    document.querySelector('[data-tab="trophies"]').click();
+}
+
+function startChat() {
+    showToast('Opening chat window...', 'info');
+}
+
+// Modal Functions
+function showModal(type) {
+    const modal = document.getElementById('profileModal');
+    const title = document.getElementById('modalTitle');
+    const body = document.getElementById('modalBody');
+    
+    let content = '';
+    
+    switch(type) {
+        case 'followers':
+            title.textContent = 'Followers (156)';
+            content = generateUsersList('followers');
+            break;
+        case 'following':
+            title.textContent = 'Following (203)';
+            content = generateUsersList('following');
+            break;
+        case 'communities':
+            title.textContent = 'Communities (8)';
+            content = generateCommunitiesList();
+            break;
+        case 'garage':
+            viewGarage();
+            return;
+        case 'posts':
+            viewPosts();
+            return;
+        case 'achievements':
+            title.textContent = 'Achievements (24)';
+            content = generateAchievementsList();
+            break;
+    }
+    
+    body.innerHTML = content;
+    modal.style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('profileModal').style.display = 'none';
+}
+
+function closeFollowersModal() {
+    document.getElementById('followersModal').style.display = 'none';
+}
+
+function closeShareModal() {
+    document.getElementById('shareModal').style.display = 'none';
+}
+
+// Generate content for modals
+function generateUsersList(type) {
+    const users = [
+        { name: 'SpeedDemon23', username: '@speeddemon', avatar: '🏍️', status: 'online' },
+        { name: 'MountainRider', username: '@mtbiker', avatar: '🚵', status: 'offline' },
+        { name: 'TrackDayPro', username: '@trackpro', avatar: '🏁', status: 'online' },
+        { name: 'CruiserKing', username: '@cruiser', avatar: '🛣️', status: 'away' }
+    ];
+    
+    return `
+        <div class="users-grid">
+            ${users.map(user => `
+                <div class="user-item">
+                    <div class="user-avatar">${user.avatar}</div>
+                    <div class="user-info">
+                        <div class="user-name">${user.name}</div>
+                        <div class="user-username">${user.username}</div>
+                    </div>
+                    <div class="user-status ${user.status}"></div>
+                    <button class="btn-secondary small">View</button>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+function generateCommunitiesList() {
+    const communities = [
+        { name: 'Sport Bike Riders', members: '1,234', role: 'Admin', icon: '🏍️' },
+        { name: 'Track Day Warriors', members: '567', role: 'Moderator', icon: '🏁' },
+        { name: 'Bay Area Riders', members: '892', role: 'Member', icon: '🛣️' },
+        { name: 'Motorcycle Mechanics', members: '445', role: 'Member', icon: '🔧' }
+    ];
+    
+    return `
+        <div class="communities-grid">
+            ${communities.map(community => `
+                <div class="community-item">
+                    <div class="community-icon">${community.icon}</div>
+                    <div class="community-info">
+                        <div class="community-name">${community.name}</div>
+                        <div class="community-meta">${community.members} members</div>
+                    </div>
+                    <div class="community-role ${community.role.toLowerCase()}">${community.role}</div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+function generateAchievementsList() {
+    const achievements = [
+        { name: 'First Bike', description: 'Added your first bike to the garage', icon: '🏍️', date: 'Mar 15, 2024', rarity: 'common' },
+        { name: 'Track Enthusiast', description: 'Attended your first track day', icon: '🏁', date: 'Nov 20, 2024', rarity: 'rare' },
+        { name: 'Community Leader', description: 'Became a moderator', icon: '👑', date: 'Aug 12, 2024', rarity: 'epic' },
+        { name: 'Speed Demon', description: 'Reached Group A level', icon: '⚡', date: 'Dec 5, 2024', rarity: 'legendary' }
+    ];
+    
+    return `
+        <div class="achievements-grid">
+            ${achievements.map(achievement => `
+                <div class="achievement-item ${achievement.rarity}">
+                    <div class="achievement-icon">${achievement.icon}</div>
+                    <div class="achievement-info">
+                        <div class="achievement-name">${achievement.name}</div>
+                        <div class="achievement-description">${achievement.description}</div>
+                        <div class="achievement-date">Earned ${achievement.date}</div>
+                    </div>
+                    <div class="achievement-rarity ${achievement.rarity}">${achievement.rarity}</div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
+// Share Functions
+function shareToDiscord() {
+    showToast('Opening Discord share...', 'info');
+}
+
+function shareToTwitter() {
+    const text = encodeURIComponent('Check out Kevin Tong\'s BikeNode profile!');
+    const url = encodeURIComponent('https://bikenode.com/profile/krtong');
+    window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+}
+
+function shareByEmail() {
+    const subject = encodeURIComponent('Check out this BikeNode profile');
+    const body = encodeURIComponent('I thought you might be interested in Kevin Tong\'s BikeNode profile: https://bikenode.com/profile/krtong');
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+}
+
+function copyToClipboard() {
+    const input = document.querySelector('.link-input');
+    input.select();
+    document.execCommand('copy');
+    showToast('Link copied to clipboard!', 'success');
+}
+
+// Toast Notification System
+function showToast(message, type = 'info') {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+    
+    container.appendChild(toast);
+    
+    // Animate in
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 100);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            container.removeChild(toast);
+        }, 300);
+    }, 3000);
+}
+
+// Initialize profile features
+document.addEventListener('DOMContentLoaded', function() {
+    // Load tab from URL hash
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+        const tabBtn = document.querySelector(`[data-tab="${hash}"]`);
+        if (tabBtn) {
+            tabBtn.click();
+        }
+    }
+    
+    // Initialize status indicators
+    const statusIndicator = document.querySelector('.status-indicator');
+    if (statusIndicator) {
+        setInterval(() => {
+            statusIndicator.classList.toggle('pulse');
+        }, 2000);
+    }
+});
+
+// Close modals when clicking outside
+window.addEventListener('click', function(e) {
+    const modals = ['profileModal', 'followersModal', 'shareModal'];
+    modals.forEach(modalId => {
+        const modal = document.getElementById(modalId);
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
     });
 });
 </script>

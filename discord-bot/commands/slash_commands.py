@@ -3,6 +3,9 @@ from discord import app_commands
 from discord.ext import commands
 import logging
 import aiohttp
+import json
+import os
+from datetime import datetime
 from typing import Optional
 
 logger = logging.getLogger('BikeRoleBot')
@@ -148,6 +151,107 @@ class SlashCommands(commands.Cog):
                 "❌ An error occurred while searching", 
                 ephemeral=True
             )
+    
+    @app_commands.command(name="claude", description="Send a message to Claude")
+    @app_commands.describe(message="Your message to Claude")
+    async def claude_message(self, interaction: discord.Interaction, message: str):
+        """Send a message to Claude"""
+        await interaction.response.defer(ephemeral=True)
+        
+        try:
+            # Load existing messages
+            messages_file = "claude_messages.json"
+            if os.path.exists(messages_file):
+                with open(messages_file, 'r') as f:
+                    messages = json.load(f)
+            else:
+                messages = []
+            
+            # Create message object
+            msg_data = {
+                'id': len(messages) + 1,
+                'timestamp': datetime.now().isoformat(),
+                'channel_id': interaction.channel.id,
+                'user_id': interaction.user.id,
+                'username': interaction.user.name,
+                'message': message,
+                'responded': False
+            }
+            
+            # Append and save
+            messages.append(msg_data)
+            with open(messages_file, 'w') as f:
+                json.dump(messages, f, indent=2)
+            
+            embed = discord.Embed(
+                title="📨 Message Sent to Claude",
+                description=f"Your message: '{message[:100]}{'...' if len(message) > 100 else ''}'",
+                color=discord.Color.blue()
+            )
+            embed.add_field(name="Message ID", value=str(msg_data['id']), inline=True)
+            embed.add_field(name="Status", value="Queued for Claude", inline=True)
+            embed.add_field(name="Next Steps", value="Use `/claude_check` to see responses", inline=False)
+            
+            await interaction.followup.send(embed=embed, ephemeral=True)
+            
+        except Exception as e:
+            logger.error(f"Claude message error: {e}")
+            await interaction.followup.send("❌ Error sending message to Claude", ephemeral=True)
+    
+    @app_commands.command(name="claude_check", description="Check for Claude's responses")
+    @app_commands.describe(message_id="Optional: Check specific message ID")
+    async def claude_check(self, interaction: discord.Interaction, message_id: Optional[int] = None):
+        """Check for Claude's responses"""
+        await interaction.response.defer(ephemeral=True)
+        
+        try:
+            responses_file = "claude_responses.json"
+            if not os.path.exists(responses_file):
+                await interaction.followup.send("No responses yet. Claude hasn't replied.", ephemeral=True)
+                return
+            
+            with open(responses_file, 'r') as f:
+                responses = json.load(f)
+            
+            if not responses:
+                await interaction.followup.send("No responses yet. Claude hasn't replied.", ephemeral=True)
+                return
+            
+            # Filter responses for this channel
+            channel_responses = [r for r in responses if r['channel_id'] == interaction.channel.id]
+            
+            if not channel_responses:
+                await interaction.followup.send("No responses for this channel yet.", ephemeral=True)
+                return
+            
+            # If specific message ID requested
+            if message_id:
+                response = next((r for r in channel_responses if r['message_id'] == message_id), None)
+                if not response:
+                    await interaction.followup.send(f"No response found for message ID {message_id}", ephemeral=True)
+                    return
+            else:
+                # Get latest response
+                response = channel_responses[-1]
+            
+            # Create embed
+            embed = discord.Embed(
+                title="💬 Claude's Response",
+                description=response['response'][:4000],  # Discord limit
+                color=discord.Color.green()
+            )
+            embed.add_field(
+                name="Your message", 
+                value=response['original_message'][:200] + ('...' if len(response['original_message']) > 200 else ''),
+                inline=False
+            )
+            embed.set_footer(text=f"Message ID: {response['message_id']} | {response['timestamp']}")
+            
+            await interaction.followup.send(embed=embed, ephemeral=True)
+            
+        except Exception as e:
+            logger.error(f"Claude check error: {e}")
+            await interaction.followup.send("❌ Error checking Claude responses", ephemeral=True)
 
 async def setup(bot):
     await bot.add_cog(SlashCommands(bot))
