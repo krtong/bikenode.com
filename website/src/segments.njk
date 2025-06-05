@@ -1,0 +1,616 @@
+---
+layout: dashboard.njk
+title: Segments
+subtitle: Popular route segments and leaderboards
+breadcrumb:
+  - title: Explore
+    url: /explore/
+  - title: Segments
+---
+
+<style>
+  .segments-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+
+  .search-filter-bar {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .search-box {
+    flex: 1;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .search-box input {
+    background: none;
+    border: none;
+    outline: none;
+    flex: 1;
+    color: var(--text-primary);
+  }
+
+  .filter-dropdown {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .filter-dropdown:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .segments-grid {
+    display: grid;
+    gap: 20px;
+  }
+
+  .segment-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .segment-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-1px);
+  }
+
+  .segment-info {
+    display: flex;
+    gap: 20px;
+  }
+
+  .segment-map {
+    width: 120px;
+    height: 80px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  .segment-details {
+    flex: 1;
+  }
+
+  .segment-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .segment-location {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+
+  .segment-stats {
+    display: flex;
+    gap: 24px;
+  }
+
+  .segment-stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .segment-stat-value {
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .segment-stat-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .segment-leaderboard {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .leaderboard-header {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .leaderboard-entry {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .leaderboard-position {
+    width: 24px;
+    font-weight: bold;
+    color: var(--text-secondary);
+  }
+
+  .leaderboard-position.gold {
+    color: #fbbf24;
+  }
+
+  .leaderboard-position.silver {
+    color: #9ca3af;
+  }
+
+  .leaderboard-position.bronze {
+    color: #d97706;
+  }
+
+  .leaderboard-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+  }
+
+  .leaderboard-name {
+    flex: 1;
+    font-size: 14px;
+  }
+
+  .leaderboard-time {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .your-attempt {
+    background: rgba(88, 101, 242, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+
+  .segment-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .starred-segment {
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+  }
+
+  .star-btn {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .star-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .star-btn.starred {
+    background: rgba(251, 191, 36, 0.1);
+    border-color: #fbbf24;
+    color: #fbbf24;
+  }
+
+  .nearby-map {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 32px;
+  }
+
+  .map-container {
+    height: 300px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 18px;
+    margin-top: 16px;
+  }
+
+  .segment-filter-pills {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .filter-pill {
+    padding: 6px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .filter-pill:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .filter-pill.active {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .segments-header {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .search-filter-bar {
+      flex-direction: column;
+    }
+
+    .segment-card {
+      grid-template-columns: 1fr;
+    }
+
+    .segment-info {
+      flex-direction: column;
+    }
+
+    .segment-map {
+      width: 100%;
+      height: 120px;
+    }
+  }
+</style>
+
+<div class="segments-header">
+  <div>
+    <h1>Segments</h1>
+    <p style="color: var(--text-secondary); margin-top: 8px;">Challenge yourself on popular local segments</p>
+  </div>
+  <button class="btn-primary">
+    <span>➕</span> Create Segment
+  </button>
+</div>
+
+<div class="search-filter-bar">
+  <div class="search-box">
+    <span>🔍</span>
+    <input type="text" placeholder="Search segments...">
+  </div>
+  
+  <div class="filter-dropdown">
+    <span>📍</span>
+    <span>Within 10 miles</span>
+    <span>▼</span>
+  </div>
+  
+  <div class="filter-dropdown">
+    <span>🏔️</span>
+    <span>All Types</span>
+    <span>▼</span>
+  </div>
+</div>
+
+<div class="segment-filter-pills">
+  <button class="filter-pill active">All Segments</button>
+  <button class="filter-pill">⭐ Starred</button>
+  <button class="filter-pill">🏆 Your PRs</button>
+  <button class="filter-pill">🔥 Trending</button>
+  <button class="filter-pill">🆕 New</button>
+</div>
+
+<div class="nearby-map">
+  <h3 style="font-size: 18px; font-weight: 600;">Segments Near You</h3>
+  <div class="map-container">
+    Interactive Map with Segment Locations
+  </div>
+</div>
+
+<div class="segments-grid">
+  <div class="segment-card starred-segment">
+    <div class="segment-info">
+      <div class="segment-map">Segment Map</div>
+      <div class="segment-details">
+        <h3 class="segment-name">Hawk Hill Climb</h3>
+        <p class="segment-location">Mill Valley, CA • Cat 2 Climb</p>
+        
+        <div class="segment-stats">
+          <div class="segment-stat">
+            <span class="segment-stat-value">2.1 mi</span>
+            <span class="segment-stat-label">Distance</span>
+          </div>
+          <div class="segment-stat">
+            <span class="segment-stat-value">656 ft</span>
+            <span class="segment-stat-label">Elevation</span>
+          </div>
+          <div class="segment-stat">
+            <span class="segment-stat-value">6.2%</span>
+            <span class="segment-stat-label">Avg Grade</span>
+          </div>
+          <div class="segment-stat">
+            <span class="segment-stat-value">12,847</span>
+            <span class="segment-stat-label">Attempts</span>
+          </div>
+        </div>
+        
+        <div class="segment-actions">
+          <button class="star-btn starred">
+            <span>⭐</span> Starred
+          </button>
+          <button class="btn-secondary">View Full Leaderboard</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="segment-leaderboard">
+      <div class="leaderboard-header">Top Performances</div>
+      
+      <div class="leaderboard-entry">
+        <span class="leaderboard-position gold">1</span>
+        <div class="leaderboard-avatar">MR</div>
+        <span class="leaderboard-name">Mike Rodriguez</span>
+        <span class="leaderboard-time">7:23</span>
+      </div>
+      
+      <div class="leaderboard-entry">
+        <span class="leaderboard-position silver">2</span>
+        <div class="leaderboard-avatar">SC</div>
+        <span class="leaderboard-name">Sarah Chen</span>
+        <span class="leaderboard-time">7:41</span>
+      </div>
+      
+      <div class="leaderboard-entry">
+        <span class="leaderboard-position bronze">3</span>
+        <div class="leaderboard-avatar">TD</div>
+        <span class="leaderboard-name">Tom Davies</span>
+        <span class="leaderboard-time">7:52</span>
+      </div>
+      
+      <div class="leaderboard-entry your-attempt">
+        <span class="leaderboard-position">147</span>
+        <div class="leaderboard-avatar">👤</div>
+        <span class="leaderboard-name">You</span>
+        <span class="leaderboard-time">9:18</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="segment-card">
+    <div class="segment-info">
+      <div class="segment-map">Segment Map</div>
+      <div class="segment-details">
+        <h3 class="segment-name">Marina Sprint</h3>
+        <p class="segment-location">San Francisco, CA • Flat Sprint</p>
+        
+        <div class="segment-stats">
+          <div class="segment-stat">
+            <span class="segment-stat-value">0.8 mi</span>
+            <span class="segment-stat-label">Distance</span>
+          </div>
+          <div class="segment-stat">
+            <span class="segment-stat-value">12 ft</span>
+            <span class="segment-stat-label">Elevation</span>
+          </div>
+          <div class="segment-stat">
+            <span class="segment-stat-value">0.3%</span>
+            <span class="segment-stat-label">Avg Grade</span>
+          </div>
+          <div class="segment-stat">
+            <span class="segment-stat-value">8,234</span>
+            <span class="segment-stat-label">Attempts</span>
+          </div>
+        </div>
+        
+        <div class="segment-actions">
+          <button class="star-btn">
+            <span>☆</span> Star
+          </button>
+          <button class="btn-secondary">View Full Leaderboard</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="segment-leaderboard">
+      <div class="leaderboard-header">Top Performances</div>
+      
+      <div class="leaderboard-entry">
+        <span class="leaderboard-position gold">1</span>
+        <div class="leaderboard-avatar">JW</div>
+        <span class="leaderboard-name">Jake Wilson</span>
+        <span class="leaderboard-time">1:32</span>
+      </div>
+      
+      <div class="leaderboard-entry">
+        <span class="leaderboard-position silver">2</span>
+        <div class="leaderboard-avatar">EF</div>
+        <span class="leaderboard-name">Emma Foster</span>
+        <span class="leaderboard-time">1:34</span>
+      </div>
+      
+      <div class="leaderboard-entry">
+        <span class="leaderboard-position bronze">3</span>
+        <div class="leaderboard-avatar">RL</div>
+        <span class="leaderboard-name">Ryan Lee</span>
+        <span class="leaderboard-time">1:35</span>
+      </div>
+      
+      <div class="leaderboard-entry">
+        <span class="leaderboard-position">-</span>
+        <div class="leaderboard-avatar">👤</div>
+        <span class="leaderboard-name">You</span>
+        <span class="leaderboard-time">No attempt</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="segment-card">
+    <div class="segment-info">
+      <div class="segment-map">Segment Map</div>
+      <div class="segment-details">
+        <h3 class="segment-name">Paradise Loop KOM</h3>
+        <p class="segment-location">Tiburon, CA • Rolling Hills</p>
+        
+        <div class="segment-stats">
+          <div class="segment-stat">
+            <span class="segment-stat-value">5.3 mi</span>
+            <span class="segment-stat-label">Distance</span>
+          </div>
+          <div class="segment-stat">
+            <span class="segment-stat-value">287 ft</span>
+            <span class="segment-stat-label">Elevation</span>
+          </div>
+          <div class="segment-stat">
+            <span class="segment-stat-value">1.0%</span>
+            <span class="segment-stat-label">Avg Grade</span>
+          </div>
+          <div class="segment-stat">
+            <span class="segment-stat-value">15,623</span>
+            <span class="segment-stat-label">Attempts</span>
+          </div>
+        </div>
+        
+        <div class="segment-actions">
+          <button class="star-btn">
+            <span>☆</span> Star
+          </button>
+          <button class="btn-secondary">View Full Leaderboard</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="segment-leaderboard">
+      <div class="leaderboard-header">Top Performances</div>
+      
+      <div class="leaderboard-entry">
+        <span class="leaderboard-position gold">1</span>
+        <div class="leaderboard-avatar">AP</div>
+        <span class="leaderboard-name">Alex Park</span>
+        <span class="leaderboard-time">12:45</span>
+      </div>
+      
+      <div class="leaderboard-entry">
+        <span class="leaderboard-position silver">2</span>
+        <div class="leaderboard-avatar">LM</div>
+        <span class="leaderboard-name">Lisa Martinez</span>
+        <span class="leaderboard-time">12:58</span>
+      </div>
+      
+      <div class="leaderboard-entry">
+        <span class="leaderboard-position bronze">3</span>
+        <div class="leaderboard-avatar">CJ</div>
+        <span class="leaderboard-name">Chris Johnson</span>
+        <span class="leaderboard-time">13:02</span>
+      </div>
+      
+      <div class="leaderboard-entry your-attempt">
+        <span class="leaderboard-position">523</span>
+        <div class="leaderboard-avatar">👤</div>
+        <span class="leaderboard-name">You</span>
+        <span class="leaderboard-time">15:47</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="segment-card">
+    <div class="segment-info">
+      <div class="segment-map">Segment Map</div>
+      <div class="segment-details">
+        <h3 class="segment-name">Twin Peaks West</h3>
+        <p class="segment-location">San Francisco, CA • Cat 1 Climb</p>
+        
+        <div class="segment-stats">
+          <div class="segment-stat">
+            <span class="segment-stat-value">1.1 mi</span>
+            <span class="segment-stat-label">Distance</span>
+          </div>
+          <div class="segment-stat">
+            <span class="segment-stat-value">410 ft</span>
+            <span class="segment-stat-label">Elevation</span>
+          </div>
+          <div class="segment-stat">
+            <span class="segment-stat-value">7.1%</span>
+            <span class="segment-stat-label">Avg Grade</span>
+          </div>
+          <div class="segment-stat">
+            <span class="segment-stat-value">9,872</span>
+            <span class="segment-stat-label">Attempts</span>
+          </div>
+        </div>
+        
+        <div class="segment-actions">
+          <button class="star-btn">
+            <span>☆</span> Star
+          </button>
+          <button class="btn-secondary">View Full Leaderboard</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="segment-leaderboard">
+      <div class="leaderboard-header">Top Performances</div>
+      
+      <div class="leaderboard-entry">
+        <span class="leaderboard-position gold">1</span>
+        <div class="leaderboard-avatar">KH</div>
+        <span class="leaderboard-name">Kevin Hill</span>
+        <span class="leaderboard-time">5:12</span>
+      </div>
+      
+      <div class="leaderboard-entry">
+        <span class="leaderboard-position silver">2</span>
+        <div class="leaderboard-avatar">NR</div>
+        <span class="leaderboard-name">Nina Ross</span>
+        <span class="leaderboard-time">5:28</span>
+      </div>
+      
+      <div class="leaderboard-entry">
+        <span class="leaderboard-position bronze">3</span>
+        <div class="leaderboard-avatar">DK</div>
+        <span class="leaderboard-name">David Kim</span>
+        <span class="leaderboard-time">5:31</span>
+      </div>
+      
+      <div class="leaderboard-entry">
+        <span class="leaderboard-position">-</span>
+        <div class="leaderboard-avatar">👤</div>
+        <span class="leaderboard-name">You</span>
+        <span class="leaderboard-time">No attempt</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/js/segments.js"></script>

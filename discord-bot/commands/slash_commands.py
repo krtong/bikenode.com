@@ -3,8 +3,10 @@ from discord import app_commands
 from discord.ext import commands
 import logging
 import aiohttp
+import asyncio
 import json
 import os
+import time
 from datetime import datetime
 from typing import Optional
 
@@ -155,48 +157,67 @@ class SlashCommands(commands.Cog):
     @app_commands.command(name="claude", description="Send a message to Claude")
     @app_commands.describe(message="Your message to Claude")
     async def claude_message(self, interaction: discord.Interaction, message: str):
-        """Send a message to Claude"""
-        await interaction.response.defer(ephemeral=True)
+        """Send a message to Claude and get immediate response"""
+        await interaction.response.defer()  # Not ephemeral - everyone can see
         
         try:
-            # Load existing messages
-            messages_file = "claude_messages.json"
-            if os.path.exists(messages_file):
-                with open(messages_file, 'r') as f:
-                    messages = json.load(f)
-            else:
-                messages = []
+            import requests
             
-            # Create message object
-            msg_data = {
-                'id': len(messages) + 1,
-                'timestamp': datetime.now().isoformat(),
-                'channel_id': interaction.channel.id,
-                'user_id': interaction.user.id,
+            # Generate message ID
+            msg_id = int(time.time() * 1000) % 1000000  # Simple ID generation
+            
+            # Send to Claude server
+            payload = {
+                'id': msg_id,
                 'username': interaction.user.name,
+                'user_id': interaction.user.id,
+                'channel_id': interaction.channel.id,
                 'message': message,
-                'responded': False
+                'timestamp': datetime.now().isoformat()
             }
             
-            # Append and save
-            messages.append(msg_data)
-            with open(messages_file, 'w') as f:
-                json.dump(messages, f, indent=2)
-            
-            embed = discord.Embed(
-                title="📨 Message Sent to Claude",
-                description=f"Your message: '{message[:100]}{'...' if len(message) > 100 else ''}'",
-                color=discord.Color.blue()
-            )
-            embed.add_field(name="Message ID", value=str(msg_data['id']), inline=True)
-            embed.add_field(name="Status", value="Queued for Claude", inline=True)
-            embed.add_field(name="Next Steps", value="Use `/claude_check` to see responses", inline=False)
-            
-            await interaction.followup.send(embed=embed, ephemeral=True)
+            try:
+                # Call Claude server
+                response = requests.post(
+                    'http://localhost:5555/message',
+                    json=payload,
+                    timeout=55  # Must be less than server's 60 seconds
+                )
+                
+                if response.status_code == 200:
+                    data = response.json()
+                    if data.get('success'):
+                        # Got response from Claude!
+                        embed = discord.Embed(
+                            title="💬 Claude's Response",
+                            description=data['response'][:4000],
+                            color=discord.Color.green()
+                        )
+                        embed.set_footer(text=f"Responding to: {message[:100]}...")
+                        await interaction.followup.send(embed=embed)
+                    else:
+                        # Timeout
+                        embed = discord.Embed(
+                            title="⏳ Claude is thinking...",
+                            description="Claude Code needs more time to respond. Try again in a moment.",
+                            color=discord.Color.yellow()
+                        )
+                        await interaction.followup.send(embed=embed)
+                else:
+                    raise Exception(f"Server returned {response.status_code}")
+                    
+            except requests.exceptions.ConnectionError:
+                # Server not running
+                embed = discord.Embed(
+                    title="❌ Claude Server Offline",
+                    description="The Claude Code server is not running. Start it with:\n`python3 claude_server.py`",
+                    color=discord.Color.red()
+                )
+                await interaction.followup.send(embed=embed)
             
         except Exception as e:
             logger.error(f"Claude message error: {e}")
-            await interaction.followup.send("❌ Error sending message to Claude", ephemeral=True)
+            await interaction.followup.send(f"❌ Error: {str(e)}", ephemeral=True)
     
     @app_commands.command(name="claude_check", description="Check for Claude's responses")
     @app_commands.describe(message_id="Optional: Check specific message ID")
@@ -252,6 +273,97 @@ class SlashCommands(commands.Cog):
         except Exception as e:
             logger.error(f"Claude check error: {e}")
             await interaction.followup.send("❌ Error checking Claude responses", ephemeral=True)
+
+    @app_commands.command(name="request", description="Submit a feature request or feedback")
+    @app_commands.describe(request="Your feature request or feedback")
+    async def request_feature(self, interaction: discord.Interaction, request: str):
+        """Submit a feature request"""
+        await interaction.response.defer(ephemeral=True)
+        
+        try:
+            # Create request entry
+            request_data = {
+                'id': int(time.time() * 1000) % 1000000,
+                'timestamp': datetime.now().isoformat(),
+                'user_id': interaction.user.id,
+                'username': interaction.user.name,
+                'channel_id': interaction.channel.id,
+                'request': request,
+                'status': 'pending'
+            }
+            
+            # Load existing requests
+            requests_file = "feature_requests.json"
+            if os.path.exists(requests_file):
+                with open(requests_file, 'r') as f:
+                    requests_list = json.load(f)
+            else:
+                requests_list = []
+            
+            # Add new request
+            requests_list.append(request_data)
+            
+            # Save requests
+            with open(requests_file, 'w') as f:
+                json.dump(requests_list, f, indent=2)
+            
+            # Create confirmation embed
+            embed = discord.Embed(
+                title="📝 Feature Request Submitted",
+                description=f"Your request has been added to the inbox!",
+                color=discord.Color.blue()
+            )
+            embed.add_field(name="Request ID", value=str(request_data['id']), inline=True)
+            embed.add_field(name="Status", value="Pending Review", inline=True)
+            embed.add_field(name="Your Request", value=request[:500] + ("..." if len(request) > 500 else ""), inline=False)
+            embed.set_footer(text=f"Submitted by {interaction.user.name}")
+            
+            await interaction.followup.send(embed=embed, ephemeral=True)
+            
+        except Exception as e:
+            logger.error(f"Request feature error: {e}")
+            await interaction.followup.send("❌ Error submitting request", ephemeral=True)
+
+    @app_commands.command(name="requests", description="View recent feature requests")
+    async def view_requests(self, interaction: discord.Interaction):
+        """View recent feature requests"""
+        await interaction.response.defer(ephemeral=True)
+        
+        try:
+            requests_file = "feature_requests.json"
+            if not os.path.exists(requests_file):
+                await interaction.followup.send("No feature requests found.", ephemeral=True)
+                return
+            
+            with open(requests_file, 'r') as f:
+                requests_list = json.load(f)
+            
+            if not requests_list:
+                await interaction.followup.send("No feature requests found.", ephemeral=True)
+                return
+            
+            # Show last 5 requests
+            recent_requests = requests_list[-5:]
+            
+            embed = discord.Embed(
+                title="📋 Recent Feature Requests",
+                description=f"Showing {len(recent_requests)} of {len(requests_list)} total requests",
+                color=discord.Color.green()
+            )
+            
+            for req in recent_requests:
+                status_emoji = "⏳" if req['status'] == 'pending' else "✅" if req['status'] == 'completed' else "🔄"
+                embed.add_field(
+                    name=f"{status_emoji} Request #{req['id']} by {req['username']}",
+                    value=req['request'][:200] + ("..." if len(req['request']) > 200 else ""),
+                    inline=False
+                )
+            
+            await interaction.followup.send(embed=embed, ephemeral=True)
+            
+        except Exception as e:
+            logger.error(f"View requests error: {e}")
+            await interaction.followup.send("❌ Error viewing requests", ephemeral=True)
 
 async def setup(bot):
     await bot.add_cog(SlashCommands(bot))

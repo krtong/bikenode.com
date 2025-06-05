@@ -9,13 +9,36 @@
 }
 
 .auth-card {
-    background: var(--card-bg);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--glass-bg);
+    backdrop-filter: var(--blur-lg);
+    -webkit-backdrop-filter: var(--blur-lg);
+    border: 1px solid var(--glass-border);
     border-radius: 16px;
     padding: 48px;
     width: 100%;
     max-width: 420px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--glass-shadow);
+    position: relative;
+    overflow: hidden;
+    animation: slideIn 0.5s ease-out;
+}
+
+.auth-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+    opacity: 0.05;
+    animation: rotateGradient 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotateGradient {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 .auth-header {
@@ -51,7 +74,8 @@
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    position: relative;
 }
 
 .form-group label {
@@ -60,6 +84,41 @@
     font-weight: 500;
     color: var(--text-primary);
     font-size: 14px;
+    transition: all var(--transition-base);
+}
+
+.form-group.focused label {
+    color: var(--accent);
+}
+
+/* Floating labels */
+.form-floating {
+    position: relative;
+}
+
+.form-floating input {
+    padding: 20px 16px 8px;
+}
+
+.form-floating label {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    pointer-events: none;
+    transition: all var(--transition-base);
+    background: transparent;
+    padding: 0 4px;
+}
+
+.form-floating input:focus ~ label,
+.form-floating input:not(:placeholder-shown) ~ label {
+    top: 12px;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: var(--accent);
+    background: var(--card-bg);
 }
 
 .form-group input,
@@ -67,12 +126,35 @@
 .form-group textarea {
     width: 100%;
     padding: 14px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.05);
     color: var(--text-primary);
     font-size: 16px;
-    transition: all 0.2s ease;
+    transition: all var(--transition-base);
+    position: relative;
+}
+
+/* Input icons */
+.input-icon {
+    position: relative;
+}
+
+.input-icon i {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    transition: color var(--transition-base);
+}
+
+.input-icon input {
+    padding-left: 44px;
+}
+
+.input-icon.focused i {
+    color: var(--accent);
 }
 
 .form-group input:focus,
@@ -81,6 +163,76 @@
     outline: none;
     border-color: var(--accent);
     background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 4px rgba(88, 101, 242, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Validation states */
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
+    border-color: #f04747;
+}
+
+.form-group.error input:focus {
+    box-shadow: 0 0 0 4px rgba(240, 71, 71, 0.2);
+}
+
+.form-group.success input,
+.form-group.success select,
+.form-group.success textarea {
+    border-color: #43b581;
+}
+
+.form-group.success input:focus {
+    box-shadow: 0 0 0 4px rgba(67, 181, 129, 0.2);
+}
+
+/* Validation messages */
+.form-message {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    font-size: 12px;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: all var(--transition-base);
+}
+
+.form-group.error .form-message.error,
+.form-group.success .form-message.success {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.form-message.error {
+    color: #f04747;
+}
+
+.form-message.success {
+    color: #43b581;
+}
+
+/* Validation icons */
+.validation-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    transition: transform var(--transition-base);
+}
+
+.form-group.error .validation-icon.error,
+.form-group.success .validation-icon.success {
+    transform: translateY(-50%) scale(1);
+}
+
+.validation-icon.error {
+    color: #f04747;
+}
+
+.validation-icon.success {
+    color: #43b581;
 }
 
 .form-group input::placeholder {
@@ -101,6 +253,62 @@
     cursor: pointer;
     color: var(--text-secondary);
     font-size: 14px;
+    position: relative;
+    padding-left: 28px;
+}
+
+/* Custom checkbox */
+.checkbox-wrapper input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkbox-wrapper .checkmark {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 20px;
+    width: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    transition: all var(--transition-base);
+}
+
+.checkbox-wrapper:hover .checkmark {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: var(--accent);
+}
+
+.checkbox-wrapper input:checked ~ .checkmark {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.checkbox-wrapper .checkmark::after {
+    content: '';
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-wrapper input:checked ~ .checkmark::after {
+    display: block;
+    animation: checkmarkPop 0.3s ease-out;
+}
+
+@keyframes checkmarkPop {
+    0% { transform: rotate(45deg) scale(0); }
+    50% { transform: rotate(45deg) scale(1.3); }
+    100% { transform: rotate(45deg) scale(1); }
 }
 
 .checkbox-wrapper input[type="checkbox"] {
@@ -122,6 +330,57 @@
 .auth-submit {
     width: 100%;
     margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-submit .btn-primary {
+    width: 100%;
+    background: var(--gradient-accent);
+    position: relative;
+    z-index: 1;
+}
+
+.auth-submit .btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.auth-submit .btn-primary:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Loading state */
+.auth-submit.loading .btn-primary {
+    color: transparent;
+}
+
+.auth-submit.loading .btn-primary::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
 .auth-divider {
@@ -161,13 +420,31 @@
     font-weight: 600;
     font-size: 16px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-base);
     text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-discord::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-discord:hover::before {
+    left: 100%;
 }
 
 .btn-discord:hover {
     background: #4752c4;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(88, 101, 242, 0.4);
 }
 
 .btn-discord:disabled {
@@ -221,7 +498,8 @@
 }
 
 .form-grid .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    position: relative;
 }
 
 /* Bike Type Selection */
@@ -238,20 +516,46 @@
     gap: 8px;
     padding: 12px;
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.bike-type-option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-accent);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    z-index: -1;
 }
 
 .bike-type-option:hover {
     background: rgba(255, 255, 255, 0.08);
     border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(88, 101, 242, 0.2);
+}
+
+.bike-type-option:hover::before {
+    opacity: 0.1;
 }
 
 .bike-type-option.selected {
-    background: rgba(88, 101, 242, 0.1);
+    background: rgba(88, 101, 242, 0.15);
     border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(88, 101, 242, 0.1);
+}
+
+.bike-type-option.selected::before {
+    opacity: 0.15;
 }
 
 .bike-type-option input[type="checkbox"] {

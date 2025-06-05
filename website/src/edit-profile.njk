@@ -1,0 +1,1079 @@
+---
+layout: dashboard.njk
+title: Edit Profile
+subtitle: Update your profile information and settings
+breadcrumb:
+  - title: Profile
+    url: /profile/
+  - title: Edit
+---
+
+<div class="edit-profile-container">
+  <!-- Success/Error Message -->
+  <div class="message-container" id="messageContainer" style="display: none;">
+    <div class="message success" id="successMessage">
+      <span class="message-icon">✓</span>
+      <span class="message-text">Profile updated successfully!</span>
+      <button class="message-close" onclick="hideMessage()">&times;</button>
+    </div>
+  </div>
+
+  <!-- Profile Navigation Tabs -->
+  <div class="profile-tabs">
+    <button class="tab-btn active" data-tab="personal">Personal Info</button>
+    <button class="tab-btn" data-tab="account">Account Settings</button>
+    <button class="tab-btn" data-tab="social">Social Links</button>
+    <button class="tab-btn" data-tab="preferences">Preferences</button>
+    <button class="tab-btn" data-tab="privacy">Privacy</button>
+    <button class="tab-btn" data-tab="danger">Advanced</button>
+  </div>
+
+  <form id="editProfileForm">
+    <!-- Personal Information Tab -->
+    <div class="tab-content active" id="personal">
+      <!-- Profile Picture Section -->
+      <div class="profile-section">
+        <div class="section-header">
+          <h2 class="section-title">Profile Picture</h2>
+          <span class="section-badge">Recommended: 400x400px</span>
+        </div>
+        
+        <div class="avatar-upload">
+          <div class="avatar-preview" id="avatarPreview">
+            <img src="/assets/images/nerd_blank_profile.png" alt="Current Avatar" id="currentAvatar">
+            <div class="avatar-overlay">
+              <span class="avatar-overlay-text">Change Photo</span>
+            </div>
+          </div>
+          <div class="avatar-info">
+            <div class="avatar-actions">
+              <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+              <button type="button" class="btn-primary upload-btn" onclick="document.getElementById('avatarInput').click()">
+                <span>📷</span> Upload New Photo
+              </button>
+              <button type="button" class="btn-outline remove-btn" onclick="removeAvatar()">
+                <span>🗑️</span> Remove Photo
+              </button>
+            </div>
+            <div class="avatar-guidelines">
+              <p><strong>Photo Guidelines:</strong></p>
+              <ul>
+                <li>Square format works best (1:1 ratio)</li>
+                <li>Maximum file size: 5MB</li>
+                <li>Supported formats: JPG, PNG, GIF</li>
+                <li>Your face should be clearly visible</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Banner Image Section -->
+      <div class="profile-section">
+        <div class="section-header">
+          <h2 class="section-title">Profile Banner</h2>
+          <span class="section-badge">Optional</span>
+        </div>
+        
+        <div class="banner-upload">
+          <div class="banner-preview" id="bannerPreview">
+            <img src="/assets/images/profile-banner.jpg" alt="Profile Banner" id="currentBanner">
+            <div class="banner-overlay">
+              <span class="banner-overlay-text">Change Banner</span>
+            </div>
+          </div>
+          <div class="banner-actions">
+            <input type="file" id="bannerInput" accept="image/*" style="display: none;">
+            <button type="button" class="btn-secondary" onclick="document.getElementById('bannerInput').click()">
+              <span>🖼️</span> Upload Banner
+            </button>
+            <button type="button" class="btn-outline" onclick="removeBanner()">
+              <span>🗑️</span> Remove Banner
+            </button>
+          </div>
+          <small class="banner-info">Recommended size: 1200x400px. Maximum 10MB.</small>
+        </div>
+      </div>
+
+      <!-- Basic Information Section -->
+      <div class="profile-section">
+        <div class="section-header">
+          <h2 class="section-title">Basic Information</h2>
+          <span class="section-badge required">Required</span>
+        </div>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="firstName">First Name <span class="required">*</span></label>
+            <input type="text" id="firstName" value="Kevin" required autocomplete="given-name">
+            <div class="field-help">Your real first name</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="lastName">Last Name <span class="required">*</span></label>
+            <input type="text" id="lastName" value="Tong" required autocomplete="family-name">
+            <div class="field-help">Your real last name</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="displayName">Display Name</label>
+            <input type="text" id="displayName" value="Kevin Tong" placeholder="How your name appears to others">
+            <div class="field-help">Leave empty to use "First Last"</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="username">Username <span class="required">*</span></label>
+            <input type="text" id="username" value="krtong" required pattern="[a-zA-Z0-9_-]{3,20}">
+            <div class="field-help">
+              <span class="username-preview">bikenode.com/@krtong</span>
+              <span class="availability-check" id="usernameAvailability"></span>
+            </div>
+          </div>
+          
+          <div class="form-group full-width">
+            <label for="bio">Bio</label>
+            <textarea id="bio" rows="4" maxlength="500" placeholder="Tell us about yourself, your cycling journey, favorite routes, achievements, or anything that makes you unique...">Bay Area motorcycle & bicycle enthusiast focused on track days and technical riding. Software engineer by day, track junkie by weekend. Always learning something new about suspension setup, tire compounds, or finding that perfect apex. Member of AMA and Redwood Road (RWR).</textarea>
+            <div class="bio-stats">
+              <span class="char-count">368 / 500 characters</span>
+              <span class="markdown-note">✓ Markdown supported</span>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" id="location" value="San Francisco Bay Area, CA" placeholder="City, State, Country">
+            <div class="field-help">Your general location (city level)</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="website">Personal Website</label>
+            <input type="url" id="website" placeholder="https://your-website.com">
+            <div class="field-help">Your personal or professional website</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cycling Information Section -->
+      <div class="profile-section">
+        <div class="section-header">
+          <h2 class="section-title">Cycling Profile</h2>
+          <span class="section-badge">Help others find you</span>
+        </div>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="primaryRidingStyle">Primary Riding Style</label>
+            <select id="primaryRidingStyle">
+              <option value="">Select your main style</option>
+              <option value="road" selected>Road Cycling</option>
+              <option value="mountain">Mountain Biking</option>
+              <option value="gravel">Gravel Riding</option>
+              <option value="commuting">Commuting</option>
+              <option value="bmx">BMX</option>
+              <option value="track">Track Cycling</option>
+              <option value="cyclocross">Cyclocross</option>
+              <option value="touring">Touring</option>
+              <option value="electric">E-Bike</option>
+              <option value="recreational">Recreational</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="experienceLevel">Experience Level</label>
+            <select id="experienceLevel">
+              <option value="">Select your level</option>
+              <option value="beginner">Beginner (0-2 years)</option>
+              <option value="intermediate">Intermediate (2-5 years)</option>
+              <option value="advanced" selected>Advanced (5+ years)</option>
+              <option value="expert">Expert/Competitive</option>
+              <option value="professional">Professional</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="favoriteTerrain">Favorite Terrain</label>
+            <select id="favoriteTerrain" multiple>
+              <option value="flat">Flat Roads</option>
+              <option value="hills" selected>Hills</option>
+              <option value="mountains" selected>Mountains</option>
+              <option value="trails">Trails</option>
+              <option value="urban">Urban</option>
+              <option value="countryside">Countryside</option>
+              <option value="coastal">Coastal</option>
+            </select>
+            <div class="field-help">Hold Ctrl/Cmd to select multiple</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="weeklyMiles">Weekly Miles (approx.)</label>
+            <select id="weeklyMiles">
+              <option value="">Select range</option>
+              <option value="0-25">0-25 miles</option>
+              <option value="25-50">25-50 miles</option>
+              <option value="50-100" selected>50-100 miles</option>
+              <option value="100-200">100-200 miles</option>
+              <option value="200+">200+ miles</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group full-width">
+          <label for="interests">Cycling Interests & Goals</label>
+          <div class="interests-tags">
+            <div class="tag-category">
+              <h4>Disciplines:</h4>
+              <div class="tag-group">
+                <label class="tag-checkbox"><input type="checkbox" value="track-days" checked> <span>Track Days</span></label>
+                <label class="tag-checkbox"><input type="checkbox" value="racing" checked> <span>Racing</span></label>
+                <label class="tag-checkbox"><input type="checkbox" value="touring"> <span>Touring</span></label>
+                <label class="tag-checkbox"><input type="checkbox" value="commuting"> <span>Commuting</span></label>
+                <label class="tag-checkbox"><input type="checkbox" value="fitness"> <span>Fitness</span></label>
+                <label class="tag-checkbox"><input type="checkbox" value="social-rides"> <span>Social Rides</span></label>
+              </div>
+            </div>
+            <div class="tag-category">
+              <h4>Technical Interests:</h4>
+              <div class="tag-group">
+                <label class="tag-checkbox"><input type="checkbox" value="bike-maintenance" checked> <span>Bike Maintenance</span></label>
+                <label class="tag-checkbox"><input type="checkbox" value="suspension-tuning" checked> <span>Suspension Tuning</span></label>
+                <label class="tag-checkbox"><input type="checkbox" value="data-analysis" checked> <span>Data Analysis</span></label>
+                <label class="tag-checkbox"><input type="checkbox" value="bike-building"> <span>Bike Building</span></label>
+                <label class="tag-checkbox"><input type="checkbox" value="technology"> <span>Cycling Technology</span></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account Settings Tab -->
+    <div class="tab-content" id="account">
+      <div class="profile-section">
+        <div class="section-header">
+          <h2 class="section-title">Account Information</h2>
+          <span class="section-badge">Sensitive data</span>
+        </div>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="email">Email Address <span class="required">*</span></label>
+            <input type="email" id="email" value="kevin@example.com" required autocomplete="email">
+            <div class="field-help">Used for login and important notifications</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="tel" id="phoneNumber" placeholder="+1 (555) 123-4567" autocomplete="tel">
+            <div class="field-help">Optional - for account recovery</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="timezone">Timezone</label>
+            <select id="timezone">
+              <option value="America/Los_Angeles" selected>Pacific Time (PT)</option>
+              <option value="America/Denver">Mountain Time (MT)</option>
+              <option value="America/Chicago">Central Time (CT)</option>
+              <option value="America/New_York">Eastern Time (ET)</option>
+              <option value="UTC">UTC</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="language">Language</label>
+            <select id="language">
+              <option value="en" selected>English</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="de">Deutsch</option>
+              <option value="it">Italiano</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Password Section -->
+      <div class="profile-section">
+        <div class="section-header">
+          <h2 class="section-title">Security</h2>
+          <span class="section-badge">Keep your account safe</span>
+        </div>
+        
+        <div class="security-item">
+          <div class="security-info">
+            <h3>Password</h3>
+            <p>Last changed 3 months ago</p>
+          </div>
+          <button type="button" class="btn-secondary" onclick="openPasswordModal()">Change Password</button>
+        </div>
+        
+        <div class="security-item">
+          <div class="security-info">
+            <h3>Two-Factor Authentication</h3>
+            <p class="status-enabled">Enabled with authenticator app</p>
+          </div>
+          <button type="button" class="btn-secondary">Manage 2FA</button>
+        </div>
+        
+        <div class="security-item">
+          <div class="security-info">
+            <h3>Login Sessions</h3>
+            <p>Currently active on 3 devices</p>
+          </div>
+          <button type="button" class="btn-secondary">View Sessions</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Links Tab -->
+    <div class="tab-content" id="social">
+      <div class="profile-section">
+        <div class="section-header">
+          <h2 class="section-title">Social Media Links</h2>
+          <span class="section-badge">Connect your accounts</span>
+        </div>
+        
+        <div class="social-links">
+          <div class="social-link-item">
+            <div class="social-icon instagram">📸</div>
+            <div class="social-input">
+              <label>Instagram</label>
+              <input type="url" placeholder="https://instagram.com/yourusername" value="https://instagram.com/krtong">
+            </div>
+            <button type="button" class="remove-social-btn" onclick="clearSocialField(this)">×</button>
+          </div>
+          
+          <div class="social-link-item">
+            <div class="social-icon twitter">🐦</div>
+            <div class="social-input">
+              <label>Twitter/X</label>
+              <input type="url" placeholder="https://twitter.com/yourusername">
+            </div>
+            <button type="button" class="remove-social-btn" onclick="clearSocialField(this)">×</button>
+          </div>
+          
+          <div class="social-link-item">
+            <div class="social-icon strava">🚴</div>
+            <div class="social-input">
+              <label>Strava</label>
+              <input type="url" placeholder="https://strava.com/athletes/yourid" value="https://www.strava.com/athletes/krtong">
+            </div>
+            <button type="button" class="remove-social-btn" onclick="clearSocialField(this)">×</button>
+          </div>
+          
+          <div class="social-link-item">
+            <div class="social-icon youtube">📹</div>
+            <div class="social-input">
+              <label>YouTube</label>
+              <input type="url" placeholder="https://youtube.com/c/yourchannel">
+            </div>
+            <button type="button" class="remove-social-btn" onclick="clearSocialField(this)">×</button>
+          </div>
+          
+          <div class="social-link-item">
+            <div class="social-icon github">💻</div>
+            <div class="social-input">
+              <label>GitHub</label>
+              <input type="url" placeholder="https://github.com/yourusername">
+            </div>
+            <button type="button" class="remove-social-btn" onclick="clearSocialField(this)">×</button>
+          </div>
+          
+          <div class="social-link-item">
+            <div class="social-icon linkedin">💼</div>
+            <div class="social-input">
+              <label>LinkedIn</label>
+              <input type="url" placeholder="https://linkedin.com/in/yourprofile">
+            </div>
+            <button type="button" class="remove-social-btn" onclick="clearSocialField(this)">×</button>
+          </div>
+        </div>
+        
+        <button type="button" class="add-social-btn" onclick="addCustomSocialLink()">
+          <span>➕</span> Add Custom Link
+        </button>
+      </div>
+    </div>
+
+    <!-- Preferences Tab -->
+    <div class="tab-content" id="preferences">
+      <div class="profile-section">
+        <div class="section-header">
+          <h2 class="section-title">Notification Preferences</h2>
+          <span class="section-badge">Control what you receive</span>
+        </div>
+        
+        <div class="preference-category">
+          <h3>Email Notifications</h3>
+          <div class="preference-grid">
+            <div class="preference-item">
+              <div class="preference-info">
+                <div class="preference-title">Activity Comments</div>
+                <div class="preference-desc">When someone comments on your rides or posts</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            
+            <div class="preference-item">
+              <div class="preference-info">
+                <div class="preference-title">New Followers</div>
+                <div class="preference-desc">When someone starts following you</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            
+            <div class="preference-item">
+              <div class="preference-info">
+                <div class="preference-title">Weekly Summary</div>
+                <div class="preference-desc">Your weekly activity summary</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            
+            <div class="preference-item">
+              <div class="preference-info">
+                <div class="preference-title">Community Updates</div>
+                <div class="preference-desc">News from communities you've joined</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="preference-category">
+          <h3>App Notifications</h3>
+          <div class="preference-grid">
+            <div class="preference-item">
+              <div class="preference-info">
+                <div class="preference-title">Push Notifications</div>
+                <div class="preference-desc">Real-time notifications on your device</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            
+            <div class="preference-item">
+              <div class="preference-info">
+                <div class="preference-title">Friend Activity</div>
+                <div class="preference-desc">When friends complete rides or achievements</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Units & Display -->
+      <div class="profile-section">
+        <div class="section-header">
+          <h2 class="section-title">Units & Display</h2>
+          <span class="section-badge">Customize your experience</span>
+        </div>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="distanceUnit">Distance Unit</label>
+            <select id="distanceUnit">
+              <option value="miles" selected>Miles</option>
+              <option value="kilometers">Kilometers</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="elevationUnit">Elevation Unit</label>
+            <select id="elevationUnit">
+              <option value="feet" selected>Feet</option>
+              <option value="meters">Meters</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="temperatureUnit">Temperature Unit</label>
+            <select id="temperatureUnit">
+              <option value="fahrenheit" selected>Fahrenheit (°F)</option>
+              <option value="celsius">Celsius (°C)</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="startOfWeek">Start of Week</label>
+            <select id="startOfWeek">
+              <option value="sunday" selected>Sunday</option>
+              <option value="monday">Monday</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Privacy Tab -->
+    <div class="tab-content" id="privacy">
+      <div class="profile-section">
+        <div class="section-header">
+          <h2 class="section-title">Privacy Settings</h2>
+          <span class="section-badge">Control your visibility</span>
+        </div>
+        
+        <div class="privacy-category">
+          <h3>Profile Visibility</h3>
+          <div class="privacy-options">
+            <div class="privacy-item">
+              <div class="privacy-info">
+                <div class="privacy-title">Profile Visibility</div>
+                <div class="privacy-desc">Control who can see your profile</div>
+              </div>
+              <select class="privacy-select">
+                <option value="public" selected>Public - Anyone can view</option>
+                <option value="friends">Friends Only</option>
+                <option value="private">Private - Only you</option>
+              </select>
+            </div>
+            
+            <div class="privacy-item">
+              <div class="privacy-info">
+                <div class="privacy-title">Activity Feed</div>
+                <div class="privacy-desc">Display your rides and activities on your profile</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            
+            <div class="privacy-item">
+              <div class="privacy-info">
+                <div class="privacy-title">Bike Collection</div>
+                <div class="privacy-desc">Allow others to see your bikes</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            
+            <div class="privacy-item">
+              <div class="privacy-info">
+                <div class="privacy-title">Location Information</div>
+                <div class="privacy-desc">Display your location on your profile</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            
+            <div class="privacy-item">
+              <div class="privacy-info">
+                <div class="privacy-title">Online Status</div>
+                <div class="privacy-desc">Show when you're active on BikeNode</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="privacy-category">
+          <h3>Activity Sharing</h3>
+          <div class="privacy-options">
+            <div class="privacy-item">
+              <div class="privacy-info">
+                <div class="privacy-title">Auto-share Rides</div>
+                <div class="privacy-desc">Automatically share completed rides to your feed</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            
+            <div class="privacy-item">
+              <div class="privacy-info">
+                <div class="privacy-title">Route Start/End Points</div>
+                <div class="privacy-desc">Hide the exact start and end locations of your rides</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="privacy-category">
+          <h3>Data & Analytics</h3>
+          <div class="privacy-options">
+            <div class="privacy-item">
+              <div class="privacy-info">
+                <div class="privacy-title">Usage Analytics</div>
+                <div class="privacy-desc">Help improve BikeNode by sharing anonymous usage data</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            
+            <div class="privacy-item">
+              <div class="privacy-info">
+                <div class="privacy-title">Personalized Recommendations</div>
+                <div class="privacy-desc">Use your data to suggest routes and communities</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Advanced/Danger Zone Tab -->
+    <div class="tab-content" id="danger">
+      <div class="profile-section">
+        <div class="section-header">
+          <h2 class="section-title">Data Export</h2>
+          <span class="section-badge">Download your data</span>
+        </div>
+        
+        <div class="export-options">
+          <div class="export-item">
+            <div class="export-info">
+              <h3>Download Profile Data</h3>
+              <p>Export all your profile information, settings, and preferences</p>
+            </div>
+            <button type="button" class="btn-secondary">Download JSON</button>
+          </div>
+          
+          <div class="export-item">
+            <div class="export-info">
+              <h3>Download Activity Data</h3>
+              <p>Export all your rides, routes, and activity history</p>
+            </div>
+            <button type="button" class="btn-secondary">Download GPX Archive</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Danger Zone -->
+      <div class="profile-section danger-zone">
+        <div class="section-header">
+          <h2 class="section-title">Danger Zone</h2>
+          <span class="section-badge danger">Irreversible actions</span>
+        </div>
+        
+        <div class="danger-options">
+          <div class="danger-item">
+            <div class="danger-info">
+              <h3>Deactivate Account</h3>
+              <p>Temporarily hide your profile and data. You can reactivate anytime.</p>
+            </div>
+            <button type="button" class="btn-danger-outline" onclick="confirmDeactivate()">Deactivate Account</button>
+          </div>
+          
+          <div class="danger-item">
+            <div class="danger-info">
+              <h3>Delete Account</h3>
+              <p><strong>Warning:</strong> This permanently deletes your account and all data. This cannot be undone.</p>
+            </div>
+            <button type="button" class="btn-danger" onclick="confirmDelete()">Delete Account</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+      <div class="action-buttons">
+        <button type="button" class="btn-secondary" onclick="resetForm()">
+          <span>↶</span> Reset Changes
+        </button>
+        <button type="button" class="btn-outline" onclick="window.location.href='/profile/'">
+          <span>✕</span> Cancel
+        </button>
+        <button type="submit" class="btn-primary save-btn">
+          <span class="save-icon">💾</span>
+          <span class="save-text">Save Changes</span>
+        </button>
+      </div>
+      <div class="save-notice">
+        <span class="unsaved-indicator" id="unsavedIndicator" style="display: none;">
+          ● You have unsaved changes
+        </span>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Password Change Modal -->
+<div class="modal-overlay" id="passwordModal" style="display: none;">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Change Password</h3>
+      <button class="modal-close" onclick="closePasswordModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="passwordForm">
+        <div class="form-group">
+          <label for="currentPassword">Current Password</label>
+          <input type="password" id="currentPassword" required>
+        </div>
+        <div class="form-group">
+          <label for="newPassword">New Password</label>
+          <input type="password" id="newPassword" required minlength="8">
+          <div class="password-strength" id="passwordStrength"></div>
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm New Password</label>
+          <input type="password" id="confirmPassword" required>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn-secondary" onclick="closePasswordModal()">Cancel</button>
+      <button type="submit" form="passwordForm" class="btn-primary">Update Password</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Tab functionality
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const tabId = this.dataset.tab;
+    
+    // Remove active class from all tabs and content
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    
+    // Add active class to clicked tab and corresponding content
+    this.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+    
+    // Update URL hash
+    window.location.hash = tabId;
+  });
+});
+
+// Load tab from URL hash
+if (window.location.hash) {
+  const hash = window.location.hash.substring(1);
+  const tabBtn = document.querySelector(`[data-tab="${hash}"]`);
+  if (tabBtn) {
+    tabBtn.click();
+  }
+}
+
+// Character counter for bio
+const bioTextarea = document.getElementById('bio');
+const charCount = document.querySelector('.char-count');
+
+function updateCharCount() {
+  const length = bioTextarea.value.length;
+  charCount.textContent = `${length} / 500 characters`;
+  
+  if (length > 450) {
+    charCount.style.color = '#f59e0b';
+  } else if (length > 480) {
+    charCount.style.color = '#ef4444';
+  } else {
+    charCount.style.color = 'var(--text-secondary)';
+  }
+}
+
+bioTextarea.addEventListener('input', updateCharCount);
+updateCharCount(); // Initial call
+
+// Username availability check
+const usernameInput = document.getElementById('username');
+const availabilityCheck = document.getElementById('usernameAvailability');
+
+let usernameTimeout;
+usernameInput.addEventListener('input', function() {
+  clearTimeout(usernameTimeout);
+  const username = this.value;
+  
+  if (username.length < 3) {
+    availabilityCheck.textContent = '';
+    return;
+  }
+  
+  availabilityCheck.textContent = 'Checking...';
+  availabilityCheck.className = 'availability-check checking';
+  
+  usernameTimeout = setTimeout(() => {
+    // Simulate API check
+    const isAvailable = Math.random() > 0.3; // 70% chance available
+    if (isAvailable) {
+      availabilityCheck.textContent = '✓ Available';
+      availabilityCheck.className = 'availability-check available';
+    } else {
+      availabilityCheck.textContent = '✗ Already taken';
+      availabilityCheck.className = 'availability-check taken';
+    }
+  }, 1000);
+});
+
+// Avatar upload preview
+document.getElementById('avatarInput').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file && file.type.startsWith('image/')) {
+    if (file.size > 5 * 1024 * 1024) {
+      alert('File size too large. Maximum 5MB allowed.');
+      return;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('currentAvatar').src = e.target.result;
+      markUnsaved();
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// Banner upload preview
+document.getElementById('bannerInput').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file && file.type.startsWith('image/')) {
+    if (file.size > 10 * 1024 * 1024) {
+      alert('File size too large. Maximum 10MB allowed.');
+      return;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('currentBanner').src = e.target.result;
+      markUnsaved();
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// Remove avatar function
+function removeAvatar() {
+  document.getElementById('currentAvatar').src = '/assets/images/nerd_blank_profile.png';
+  document.getElementById('avatarInput').value = '';
+  markUnsaved();
+}
+
+// Remove banner function
+function removeBanner() {
+  document.getElementById('currentBanner').src = '';
+  document.getElementById('bannerInput').value = '';
+  markUnsaved();
+}
+
+// Clear social field
+function clearSocialField(button) {
+  const input = button.parentElement.querySelector('input');
+  input.value = '';
+  markUnsaved();
+}
+
+// Add custom social link
+function addCustomSocialLink() {
+  const socialLinks = document.querySelector('.social-links');
+  const newLink = document.createElement('div');
+  newLink.className = 'social-link-item';
+  newLink.innerHTML = `
+    <div class="social-icon custom">🔗</div>
+    <div class="social-input">
+      <label>Custom Link</label>
+      <input type="url" placeholder="https://your-link.com">
+    </div>
+    <button type="button" class="remove-social-btn" onclick="removeSocialLink(this)">×</button>
+  `;
+  socialLinks.appendChild(newLink);
+}
+
+// Remove social link
+function removeSocialLink(button) {
+  button.parentElement.remove();
+  markUnsaved();
+}
+
+// Unsaved changes tracking
+let hasUnsavedChanges = false;
+
+function markUnsaved() {
+  hasUnsavedChanges = true;
+  document.getElementById('unsavedIndicator').style.display = 'block';
+  document.querySelector('.save-btn').classList.add('highlight');
+}
+
+function markSaved() {
+  hasUnsavedChanges = false;
+  document.getElementById('unsavedIndicator').style.display = 'none';
+  document.querySelector('.save-btn').classList.remove('highlight');
+}
+
+// Track changes on form inputs
+document.querySelectorAll('input, textarea, select').forEach(input => {
+  input.addEventListener('change', markUnsaved);
+});
+
+// Password modal functions
+function openPasswordModal() {
+  document.getElementById('passwordModal').style.display = 'flex';
+}
+
+function closePasswordModal() {
+  document.getElementById('passwordModal').style.display = 'none';
+  document.getElementById('passwordForm').reset();
+}
+
+// Password strength checker
+document.getElementById('newPassword').addEventListener('input', function() {
+  const password = this.value;
+  const strengthEl = document.getElementById('passwordStrength');
+  
+  let score = 0;
+  let feedback = [];
+  
+  if (password.length >= 8) score++;
+  else feedback.push('At least 8 characters');
+  
+  if (/[A-Z]/.test(password)) score++;
+  else feedback.push('One uppercase letter');
+  
+  if (/[a-z]/.test(password)) score++;
+  else feedback.push('One lowercase letter');
+  
+  if (/\d/.test(password)) score++;
+  else feedback.push('One number');
+  
+  if (/[^A-Za-z0-9]/.test(password)) score++;
+  else feedback.push('One special character');
+  
+  const strength = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'][score];
+  const color = ['#ef4444', '#f59e0b', '#eab308', '#22c55e', '#16a34a'][score];
+  
+  strengthEl.innerHTML = `
+    <div class="strength-bar">
+      <div class="strength-fill" style="width: ${score * 20}%; background: ${color};"></div>
+    </div>
+    <div class="strength-text" style="color: ${color};">${strength}</div>
+    ${feedback.length ? `<div class="strength-feedback">Missing: ${feedback.join(', ')}</div>` : ''}
+  `;
+});
+
+// Form submission
+document.getElementById('editProfileForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // Show loading state
+  const saveBtn = document.querySelector('.save-btn');
+  const originalText = saveBtn.innerHTML;
+  saveBtn.innerHTML = '<span class="loading-spinner">⏳</span> Saving...';
+  saveBtn.disabled = true;
+  
+  // Simulate API call
+  setTimeout(() => {
+    // Reset button
+    saveBtn.innerHTML = originalText;
+    saveBtn.disabled = false;
+    
+    // Show success message
+    showMessage('Profile updated successfully!', 'success');
+    markSaved();
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 2000);
+});
+
+// Password form submission
+document.getElementById('passwordForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const newPassword = document.getElementById('newPassword').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  
+  if (newPassword !== confirmPassword) {
+    alert('Passwords do not match!');
+    return;
+  }
+  
+  // Simulate password change
+  setTimeout(() => {
+    closePasswordModal();
+    showMessage('Password updated successfully!', 'success');
+  }, 1000);
+});
+
+// Message system
+function showMessage(text, type = 'success') {
+  const messageContainer = document.getElementById('messageContainer');
+  const message = messageContainer.querySelector('.message');
+  const messageText = messageContainer.querySelector('.message-text');
+  
+  messageText.textContent = text;
+  message.className = `message ${type}`;
+  messageContainer.style.display = 'block';
+  
+  // Auto-hide after 5 seconds
+  setTimeout(hideMessage, 5000);
+}
+
+function hideMessage() {
+  document.getElementById('messageContainer').style.display = 'none';
+}
+
+// Reset form
+function resetForm() {
+  if (confirm('Are you sure you want to reset all changes? This cannot be undone.')) {
+    document.getElementById('editProfileForm').reset();
+    markSaved();
+    showMessage('Form reset to saved values', 'info');
+  }
+}
+
+// Confirm account actions
+function confirmDeactivate() {
+  if (confirm('Are you sure you want to deactivate your account? You can reactivate it anytime by logging in.')) {
+    alert('Account deactivation would happen here');
+  }
+}
+
+function confirmDelete() {
+  const confirmation = prompt('This will permanently delete your account and all data. Type "DELETE" to confirm:');
+  if (confirmation === 'DELETE') {
+    alert('Account deletion would happen here');
+  }
+}
+
+// Warn before leaving with unsaved changes
+window.addEventListener('beforeunload', function(e) {
+  if (hasUnsavedChanges) {
+    e.preventDefault();
+    e.returnValue = '';
+  }
+});
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  // Set initial values based on existing data
+  // This would normally come from an API
+  markSaved(); // Start as saved
+});
+</script>

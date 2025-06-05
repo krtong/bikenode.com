@@ -196,44 +196,84 @@ class UniversalScraper {
   extractImages() {
     const images = [];
     
-    // First check for script-based image data (common in Craigslist)
-    const scripts = this.document.querySelectorAll('script');
-    for (const script of scripts) {
-      const content = script.textContent;
-      if (content.includes('var imgList =')) {
-        // Extract Craigslist image list from JavaScript
-        const imgListMatch = content.match(/var imgList = (\[[\s\S]*?\]);/);
-        if (imgListMatch) {
-          try {
-            // Parse the imgList JavaScript array
-            const imgList = eval(imgListMatch[1]);
-            
-            // Extract the highest resolution image URLs
-            const fullSizeUrls = [];
-            imgList.forEach(img => {
-              // Get the image ID and construct the full-size URL
-              if (img.imgid) {
-                // Craigslist stores full images at URLs like:
-                // https://images.craigslist.org/00y0y_9SyqWVZhD0S_0CI0lM.jpg
-                const imgIdParts = img.imgid.split(':');
-                if (imgIdParts.length > 1) {
-                  // Just use the URL as provided by Craigslist
-                  if (img.url && !img.url.includes('50x50') && !img.url.includes('300x300')) {
-                    fullSizeUrls.push(img.url);
+    // For Craigslist, extract full-size images from gallery slides
+    if (this.domain.includes('craigslist') || this.document.querySelector('.attrgroup')) {
+      const slides = this.document.querySelectorAll('.slide[data-imgid]');
+      const fullSizeUrls = [];
+      
+      // If we have slides, use them
+      if (slides.length > 0) {
+        slides.forEach(slide => {
+        const imgId = slide.getAttribute('data-imgid');
+        if (imgId) {
+          // Extract the prefix from any existing images or construct it
+          const existingImg = slide.querySelector('img');
+          if (existingImg && existingImg.src) {
+            // Replace 600x450 with 1200x900 to get full size
+            const fullUrl = existingImg.src.replace('_600x450', '_1200x900');
+            if (fullUrl !== existingImg.src) {
+              fullSizeUrls.push(fullUrl);
+            }
+          } else {
+            // Try to find the image info from imgList
+            const scripts = this.document.querySelectorAll('script');
+            for (const script of scripts) {
+              if (script.textContent.includes('var imgList =')) {
+                const imgListMatch = script.textContent.match(/var imgList = (\[[\s\S]*?\]);/);
+                if (imgListMatch) {
+                  try {
+                    // Parse JavaScript object notation (handles unquoted keys)
+                const imgList = eval(imgListMatch[1]);
+                    const imgData = imgList.find(img => img.shortid === imgId || img.imgid?.includes(imgId));
+                    if (imgData && imgData.imgid) {
+                      // Extract prefix from imgid like "3:00y0y_9SyqWVZhD0S_0CI0lM"
+                      const idMatch = imgData.imgid.match(/\d+:(.+)/);
+                      if (idMatch) {
+                        // Construct full-size URL with 1200x900
+                        const fullUrl = `https://images.craigslist.org/${idMatch[1]}_1200x900.jpg`;
+                        fullSizeUrls.push(fullUrl);
+                      }
+                    }
+                  } catch (e) {
+                    console.log('Failed to parse imgList:', e);
                   }
                 }
-              } else if (img.url) {
-                // Just use the URL as-is, filtering will handle thumbnails
-                fullSizeUrls.push(img.url);
+                break;
               }
-            });
-            
-            // If we found full-size images, return them
-            if (fullSizeUrls.length > 0) {
-              return fullSizeUrls;
             }
-          } catch (e) {
-            console.log('Failed to parse imgList:', e);
+          }
+        }
+      });
+      
+        if (fullSizeUrls.length > 0) {
+          return fullSizeUrls;
+        }
+      } else {
+        // For mock tests, try to extract from imgList script
+        const scripts = this.document.querySelectorAll('script');
+        for (const script of scripts) {
+          if (script.textContent.includes('var imgList =')) {
+            const imgListMatch = script.textContent.match(/var imgList = (\[[\s\S]*?\]);/);
+            if (imgListMatch) {
+              try {
+                // Parse JavaScript object notation (handles unquoted keys)
+                const imgList = eval(imgListMatch[1]);
+                imgList.forEach(img => {
+                  if (img.imgid) {
+                    const idMatch = img.imgid.match(/\d+:(.+)/);
+                    if (idMatch) {
+                      const fullUrl = `https://images.craigslist.org/${idMatch[1]}_1200x900.jpg`;
+                      fullSizeUrls.push(fullUrl);
+                    }
+                  }
+                });
+                if (fullSizeUrls.length > 0) {
+                  return fullSizeUrls;
+                }
+              } catch (e) {
+                console.log('Failed to parse imgList:', e);
+              }
+            }
           }
         }
       }

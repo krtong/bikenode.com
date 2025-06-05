@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      width: 500px;
+      min-height: 400px;
+      padding: 15px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 14px;
+    }
+    
+    h1 {
+      font-size: 18px;
+      margin: 0 0 15px 0;
+      color: #333;
+    }
+    
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-bottom: 15px;
+      width: 100%;
+    }
+    
+    button:hover:not(:disabled) {
+      background-color: #0056b3;
+    }
+    
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    
+    #results {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 15px;
+      min-height: 250px;
+      max-height: 400px;
+      overflow-y: auto;
+      background-color: #f8f9fa;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    
+    .subtitle {
+      color: #666;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Universal Ad Scraper v3</h1>
+  <div class="subtitle">Extracts FULL-SIZE images, not thumbnails</div>
+  
+  <button id="extractBtn">Extract Data</button>
+  
+  <div id="results">
+    Click "Extract Data" to scrape the current page.
+    
+    For Craigslist: Will automatically load full-size (1200x900) images.
+  </div>
+  
+  <script src="popupV2.js"></script>
+</body>
+</html>

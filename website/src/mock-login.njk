@@ -5,52 +5,22 @@ description: Log in to your BikeNode account to access your dashboard, virtual g
 authTitle: Welcome back
 authSubtitle: Sign in to your BikeNode account
 footerText: Don't have an account? <a href="/mock-signup/">Sign up</a>
-inlineJS: |
-  // Mock login functionality
-  document.getElementById('loginForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Show loading state
-      const submitBtn = document.querySelector('.auth-submit');
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Signing in...';
-      submitBtn.disabled = true;
-      
-      // Simulate API call
-      setTimeout(() => {
-          // Redirect to dashboard
-          window.location.href = '/dashboard/';
-      }, 1500);
-  });
-  
-  document.getElementById('discordLogin').addEventListener('click', function() {
-      // Show loading state
-      const submitBtn = this;
-      const originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="31.416" stroke-dashoffset="31.416" class="spinner"/></svg>Connecting...';
-      submitBtn.disabled = true;
-      
-      // Simulate Discord OAuth
-      setTimeout(() => {
-          window.location.href = '/dashboard/';
-      }, 2000);
-  });
 ---
 
 <form class="auth-form" id="loginForm">
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" required placeholder="your@email.com">
+        <input type="email" id="email" name="email" required placeholder="your@email.com" autocomplete="email">
     </div>
     
     <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" required placeholder="Enter your password">
+        <input type="password" id="password" name="password" required placeholder="Enter your password" autocomplete="current-password">
     </div>
     
     <div class="form-options">
         <label class="checkbox-wrapper">
-            <input type="checkbox" name="remember">
+            <input type="checkbox" name="remember" value="true">
             <span class="checkmark"></span>
             Remember me
         </label>
@@ -70,3 +40,34 @@ inlineJS: |
     </svg>
     Continue with Discord
 </button>
+
+<script>
+// Mock login functionality for UI prototyping
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const submitBtn = document.querySelector('.auth-submit');
+    const originalText = submitBtn.textContent;
+    
+    // Show loading state
+    submitBtn.textContent = 'Signing in...';
+    submitBtn.disabled = true;
+    
+    // Simulate login delay
+    setTimeout(() => {
+        // Redirect to dashboard
+        window.location.href = '/dashboard/';
+    }, 1500);
+});
+
+document.getElementById('discordLogin').addEventListener('click', function() {
+    const originalText = this.innerHTML;
+    this.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" stroke-dasharray="31.416" stroke-dashoffset="31.416" class="spinner"/></svg>Connecting...';
+    this.disabled = true;
+    
+    // Simulate Discord OAuth
+    setTimeout(() => {
+        window.location.href = '/dashboard/';
+    }, 2000);
+});
+</script>

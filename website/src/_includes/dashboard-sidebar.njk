@@ -6,69 +6,145 @@
                 <span class="icon">📊</span>
                 Dashboard
             </a>
+            <a href="/activity-feed/" class="sidebar-link{% if page.url.includes('/activity-feed') %} active{% endif %}">
+                <span class="icon">📰</span>
+                Activity Feed
+            </a>
         </div>
         
         <div class="nav-section">
-            <h3>My Content</h3>
-            <a href="/profile/" class="sidebar-link{% if page.url.includes('/profile') %} active{% endif %}">
+            <h3>My Profile</h3>
+            <a href="/profile/" class="sidebar-link{% if page.url.includes('/profile') and not page.url.includes('/edit-profile') %} active{% endif %}">
                 <span class="icon">👤</span>
-                My Profile
+                View Profile
             </a>
-            <a href="/virtual-garage-dashboard/" class="sidebar-link{% if page.url.includes('/virtual-garage') %} active{% endif %}">
+            <a href="/edit-profile/" class="sidebar-link{% if page.url.includes('/edit-profile') %} active{% endif %}">
+                <span class="icon">✏️</span>
+                Edit Profile
+            </a>
+            <a href="/achievements/" class="sidebar-link{% if page.url.includes('/achievements') %} active{% endif %}">
+                <span class="icon">🏆</span>
+                Achievements
+            </a>
+            <a href="/following/" class="sidebar-link{% if page.url.includes('/following') %} active{% endif %}">
+                <span class="icon">👥</span>
+                Following
+            </a>
+        </div>
+        
+        <div class="nav-section">
+            <h3>My Bikes</h3>
+            <a href="/virtual-garage-dashboard/" class="sidebar-link{% if page.url == '/virtual-garage-dashboard/' %} active{% endif %}">
                 <span class="icon">🏍️</span>
                 Virtual Garage
             </a>
-            <a href="/discord-dashboard/" class="sidebar-link{% if page.url.includes('/discord-dashboard') %} active{% endif %}">
-                <span class="icon">💬</span>
-                Discord Servers
+            <a href="/add-bike/" class="sidebar-link{% if page.url.includes('/add-bike') %} active{% endif %}">
+                <span class="icon">➕</span>
+                Add Bike
             </a>
-            <a href="/communities-dashboard/" class="sidebar-link{% if page.url.includes('/communities-dashboard') %} active{% endif %}">
+            <a href="/bike-maintenance/" class="sidebar-link{% if page.url.includes('/bike-maintenance') %} active{% endif %}">
+                <span class="icon">🔧</span>
+                Maintenance
+            </a>
+        </div>
+        
+        <div class="nav-section">
+            <h3>Rides & Routes</h3>
+            <a href="/rides-dashboard/" class="sidebar-link{% if page.url.includes('/rides-dashboard') %} active{% endif %}">
+                <span class="icon">🚴</span>
+                My Rides
+            </a>
+            <a href="/record-ride/" class="sidebar-link{% if page.url.includes('/record-ride') %} active{% endif %}">
+                <span class="icon">⏺️</span>
+                Record Ride
+            </a>
+            <a href="/routes-gallery/" class="sidebar-link{% if page.url.includes('/routes-gallery') %} active{% endif %}">
+                <span class="icon">🗺️</span>
+                Route Gallery
+            </a>
+            <a href="/create-route/" class="sidebar-link{% if page.url.includes('/create-route') %} active{% endif %}">
+                <span class="icon">📍</span>
+                Create Route
+            </a>
+            <a href="/route-planner/" class="sidebar-link{% if page.url.includes('/route-planner') %} active{% endif %}">
+                <span class="icon">🗺️</span>
+                Route Planner
+            </a>
+            <a href="/activity-heatmap/" class="sidebar-link{% if page.url.includes('/activity-heatmap') %} active{% endif %}">
+                <span class="icon">🔥</span>
+                Activity Heatmap
+            </a>
+            <a href="/segments/" class="sidebar-link{% if page.url.includes('/segments') %} active{% endif %}">
+                <span class="icon">⚡</span>
+                Segments
+            </a>
+            <a href="/training-plans/" class="sidebar-link{% if page.url.includes('/training-plans') %} active{% endif %}">
+                <span class="icon">📋</span>
+                Training Plans
+            </a>
+        </div>
+        
+        <div class="nav-section">
+            <h3>Community</h3>
+            <a href="/communities-dashboard/" class="sidebar-link{% if page.url == '/communities-dashboard/' %} active{% endif %}">
                 <span class="icon">👥</span>
-                Communities
+                My Communities
             </a>
-        </div>
-        
-        <div class="nav-section">
-            <h3>Administration</h3>
-            <a href="/admin-dashboard/" class="sidebar-link{% if page.url.includes('/admin-dashboard') %} active{% endif %}">
-                <span class="icon">⚙️</span>
-                Admin Panel
+            <a href="/communities/" class="sidebar-link{% if page.url == '/communities/' %} active{% endif %}">
+                <span class="icon">🌍</span>
+                Browse Communities
             </a>
-            <a href="/report-management/" class="sidebar-link{% if page.url.includes('/report-management') %} active{% endif %}">
-                <span class="icon">🚨</span>
-                Reports
+            <a href="/community-create/" class="sidebar-link{% if page.url.includes('/community-create') %} active{% endif %}">
+                <span class="icon">➕</span>
+                Create Community
             </a>
-            <a href="/security-center/" class="sidebar-link{% if page.url.includes('/security-center') %} active{% endif %}">
-                <span class="icon">🔒</span>
-                Security
-            </a>
-            <a href="/system-health/" class="sidebar-link{% if page.url.includes('/system-health') %} active{% endif %}">
-                <span class="icon">💻</span>
-                System Health
-            </a>
-        </div>
-        
-        <div class="nav-section">
-            <h3>Content & Users</h3>
-            <a href="/messaging-admin/" class="sidebar-link{% if page.url.includes('/messaging-admin') %} active{% endif %}">
+            <a href="/forums/" class="sidebar-link{% if page.url.includes('/forums') and not page.url.includes('/forum-') %} active{% endif %}">
                 <span class="icon">💬</span>
-                Messaging
-            </a>
-            <a href="/forum-management/" class="sidebar-link{% if page.url.includes('/forum-management') %} active{% endif %}">
-                <span class="icon">📝</span>
                 Forums
             </a>
-            <a href="/user-analytics/" class="sidebar-link{% if page.url.includes('/user-analytics') %} active{% endif %}">
-                <span class="icon">👥</span>
-                User Analytics
+            <a href="/messages/" class="sidebar-link{% if page.url.includes('/messages') or page.url.includes('/conversation') %} active{% endif %}">
+                <span class="icon">✉️</span>
+                Messages
+            </a>
+        </div>
+        
+        <div class="nav-section">
+            <h3>Marketplace</h3>
+            <a href="/marketplace/" class="sidebar-link{% if page.url == '/marketplace/' %} active{% endif %}">
+                <span class="icon">🛒</span>
+                Browse Listings
+            </a>
+            <a href="/sell-item/" class="sidebar-link{% if page.url.includes('/sell-item') %} active{% endif %}">
+                <span class="icon">💰</span>
+                Sell Item
+            </a>
+            <a href="/manage-listings/" class="sidebar-link{% if page.url.includes('/manage-listings') %} active{% endif %}">
+                <span class="icon">📦</span>
+                My Listings
+            </a>
+        </div>
+        
+        <div class="nav-section">
+            <h3>Events</h3>
+            <a href="/events/" class="sidebar-link{% if page.url == '/events/' %} active{% endif %}">
+                <span class="icon">📅</span>
+                Browse Events
+            </a>
+        </div>
+        
+        <div class="nav-section">
+            <h3>Discord Integration</h3>
+            <a href="/discord-dashboard/" class="sidebar-link{% if page.url == '/discord-dashboard/' %} active{% endif %}">
+                <span class="icon">💬</span>
+                Discord Servers
             </a>
             <a href="/bot-management/" class="sidebar-link{% if page.url.includes('/bot-management') %} active{% endif %}">
                 <span class="icon">🤖</span>
                 Bot Management
             </a>
-            <a href="/analytics-dashboard/" class="sidebar-link{% if page.url.includes('/analytics-dashboard') %} active{% endif %}">
-                <span class="icon">📈</span>
-                Analytics
+            <a href="/bot-setup/" class="sidebar-link{% if page.url.includes('/bot-setup') and not page.url.includes('/bot-setup-guide') %} active{% endif %}">
+                <span class="icon">⚙️</span>
+                Bot Setup
             </a>
         </div>
         
@@ -76,11 +152,61 @@
             <h3>Settings</h3>
             <a href="/account-settings/" class="sidebar-link{% if page.url.includes('/account-settings') %} active{% endif %}">
                 <span class="icon">👤</span>
-                Account
+                Account Settings
+            </a>
+            <a href="/privacy-settings/" class="sidebar-link{% if page.url.includes('/privacy-settings') %} active{% endif %}">
+                <span class="icon">🔒</span>
+                Privacy
             </a>
             <a href="/notification-settings/" class="sidebar-link{% if page.url.includes('/notification-settings') %} active{% endif %}">
                 <span class="icon">🔔</span>
                 Notifications
+            </a>
+            <a href="/email-preferences/" class="sidebar-link{% if page.url.includes('/email-preferences') %} active{% endif %}">
+                <span class="icon">📧</span>
+                Email Preferences
+            </a>
+        </div>
+        
+        {% if user.isAdmin %}
+        <div class="nav-section">
+            <h3>Administration</h3>
+            <a href="/admin-dashboard/" class="sidebar-link{% if page.url.includes('/admin-dashboard') %} active{% endif %}">
+                <span class="icon">⚙️</span>
+                Admin Panel
+            </a>
+            <a href="/user-management/" class="sidebar-link{% if page.url.includes('/user-management') %} active{% endif %}">
+                <span class="icon">👥</span>
+                User Management
+            </a>
+            <a href="/content-moderation/" class="sidebar-link{% if page.url.includes('/content-moderation') %} active{% endif %}">
+                <span class="icon">🛡️</span>
+                Content Moderation
+            </a>
+            <a href="/report-management/" class="sidebar-link{% if page.url.includes('/report-management') %} active{% endif %}">
+                <span class="icon">🚨</span>
+                Reports
+            </a>
+            <a href="/analytics-dashboard/" class="sidebar-link{% if page.url.includes('/analytics-dashboard') %} active{% endif %}">
+                <span class="icon">📈</span>
+                Analytics
+            </a>
+            <a href="/system-health/" class="sidebar-link{% if page.url.includes('/system-health') %} active{% endif %}">
+                <span class="icon">💻</span>
+                System Health
+            </a>
+        </div>
+        {% endif %}
+        
+        <div class="nav-section">
+            <h3>Help & Support</h3>
+            <a href="/support/" class="sidebar-link{% if page.url.includes('/support') %} active{% endif %}">
+                <span class="icon">❓</span>
+                Support Center
+            </a>
+            <a href="/feedback/" class="sidebar-link{% if page.url.includes('/feedback') %} active{% endif %}">
+                <span class="icon">💭</span>
+                Send Feedback
             </a>
         </div>
     </nav>

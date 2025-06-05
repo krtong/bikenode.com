@@ -1,0 +1,266 @@
+---
+layout: dashboard.njk
+title: Sell Your Bike
+subtitle: List your bike in the marketplace
+breadcrumb:
+  - title: Marketplace
+    url: /marketplace/
+  - title: Sell Your Bike
+customCSS:
+  - "/assets/css/marketplace.css"
+inlineJS: |
+  // Image upload preview
+  function previewImages(input) {
+    const preview = document.getElementById('image-preview');
+    preview.innerHTML = '';
+    
+    if (input.files) {
+      Array.from(input.files).forEach((file, index) => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const div = document.createElement('div');
+          div.className = 'image-preview-item';
+          div.innerHTML = `
+            <img src="${e.target.result}" alt="Preview ${index + 1}">
+            <button type="button" onclick="removeImage(${index})" class="remove-image">×</button>
+          `;
+          preview.appendChild(div);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  }
+  
+  function removeImage(index) {
+    // Implementation for removing specific image
+    console.log('Remove image', index);
+  }
+  
+  // Form validation
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('sell-item-form');
+    const priceInput = document.getElementById('price');
+    
+    priceInput.addEventListener('input', function() {
+      this.value = this.value.replace(/[^0-9.]/g, '');
+    });
+    
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Form submission logic
+      console.log('Submitting listing...');
+    });
+  });
+---
+
+<div class="sell-item-container">
+  <div class="sell-item-header">
+    <h1>{{ title }}</h1>
+    <p class="subtitle">{{ subtitle }}</p>
+  </div>
+
+  <form id="sell-item-form" class="sell-item-form">
+    <div class="form-section">
+      <h2>Basic Information</h2>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="title">Listing Title*</label>
+          <input type="text" id="title" name="title" required 
+                 placeholder="e.g., 2023 Trek Fuel EX 8 - Excellent Condition">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="category">Category*</label>
+          <select id="category" name="category" required>
+            <option value="">Select Category</option>
+            <option value="mountain">Mountain Bikes</option>
+            <option value="road">Road Bikes</option>
+            <option value="hybrid">Hybrid Bikes</option>
+            <option value="electric">Electric Bikes</option>
+            <option value="bmx">BMX Bikes</option>
+            <option value="parts">Parts & Accessories</option>
+            <option value="gear">Riding Gear</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="condition">Condition*</label>
+          <select id="condition" name="condition" required>
+            <option value="">Select Condition</option>
+            <option value="new">New</option>
+            <option value="excellent">Excellent</option>
+            <option value="good">Good</option>
+            <option value="fair">Fair</option>
+            <option value="poor">Poor</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="brand">Brand</label>
+          <input type="text" id="brand" name="brand" placeholder="e.g., Trek, Specialized, Giant">
+        </div>
+        
+        <div class="form-group">
+          <label for="model">Model</label>
+          <input type="text" id="model" name="model" placeholder="e.g., Fuel EX 8">
+        </div>
+        
+        <div class="form-group">
+          <label for="year">Year</label>
+          <input type="number" id="year" name="year" min="1980" max="2025" placeholder="2023">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Pricing & Location</h2>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="price">Price (USD)*</label>
+          <div class="price-input-group">
+            <span class="price-symbol">$</span>
+            <input type="text" id="price" name="price" required placeholder="1,200">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="negotiable">
+            <input type="checkbox" id="negotiable" name="negotiable">
+            Price is negotiable
+          </label>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="location">Location*</label>
+          <input type="text" id="location" name="location" required 
+                 placeholder="City, State or ZIP code">
+        </div>
+        
+        <div class="form-group">
+          <label for="shipping">
+            <input type="checkbox" id="shipping" name="shipping">
+            Willing to ship
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Description</h2>
+      
+      <div class="form-group">
+        <label for="description">Detailed Description*</label>
+        <textarea id="description" name="description" required rows="6"
+                  placeholder="Describe your bike's condition, any upgrades, maintenance history, reason for selling, etc."></textarea>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Photos</h2>
+      
+      <div class="form-group">
+        <label for="images">Upload Photos (Max 10)*</label>
+        <div class="image-upload-area">
+          <input type="file" id="images" name="images" multiple accept="image/*" 
+                 onchange="previewImages(this)" required>
+          <div class="upload-placeholder">
+            <i class="upload-icon">📷</i>
+            <p>Click to upload photos or drag and drop</p>
+            <small>JPG, PNG up to 5MB each</small>
+          </div>
+        </div>
+        <div id="image-preview" class="image-preview"></div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Contact Information</h2>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="contact-method">Preferred Contact Method*</label>
+          <select id="contact-method" name="contactMethod" required>
+            <option value="">Select Method</option>
+            <option value="bikenode">BikeNode Messages</option>
+            <option value="email">Email</option>
+            <option value="phone">Phone</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group contact-details" id="email-contact" style="display: none;">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="your@email.com">
+      </div>
+
+      <div class="form-group contact-details" id="phone-contact" style="display: none;">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>Listing Options</h2>
+      
+      <div class="listing-options">
+        <div class="option-card">
+          <div class="option-header">
+            <input type="radio" id="standard" name="listingType" value="standard" checked>
+            <label for="standard">
+              <h3>Standard Listing</h3>
+              <p class="option-price">Free</p>
+            </label>
+          </div>
+          <ul class="option-features">
+            <li>30-day listing</li>
+            <li>Standard placement</li>
+            <li>Basic analytics</li>
+          </ul>
+        </div>
+
+        <div class="option-card featured">
+          <div class="option-header">
+            <input type="radio" id="featured" name="listingType" value="featured">
+            <label for="featured">
+              <h3>Featured Listing</h3>
+              <p class="option-price">$5.99</p>
+            </label>
+          </div>
+          <ul class="option-features">
+            <li>45-day listing</li>
+            <li>Featured placement</li>
+            <li>Advanced analytics</li>
+            <li>Social media boost</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary">Save as Draft</button>
+      <button type="submit" class="btn btn-primary">Publish Listing</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  // Contact method toggle
+  document.getElementById('contact-method').addEventListener('change', function() {
+    const method = this.value;
+    document.querySelectorAll('.contact-details').forEach(el => el.style.display = 'none');
+    
+    if (method === 'email') {
+      document.getElementById('email-contact').style.display = 'block';
+    } else if (method === 'phone') {
+      document.getElementById('phone-contact').style.display = 'block';
+    }
+  });
+</script>

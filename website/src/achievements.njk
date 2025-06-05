@@ -1,0 +1,496 @@
+---
+layout: dashboard.njk
+title: Achievements
+subtitle: Your cycling accomplishments
+---
+
+<style>
+  .achievements-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+
+  .achievement-stats {
+    display: flex;
+    gap: 32px;
+  }
+
+  .achievement-stat {
+    text-align: center;
+  }
+
+  .achievement-count {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--accent);
+  }
+
+  .achievement-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .filter-tabs {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .filter-tab {
+    padding: 12px 24px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .filter-tab:hover {
+    color: var(--text-primary);
+  }
+
+  .filter-tab.active {
+    color: var(--accent);
+  }
+
+  .filter-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .achievement-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .achievement-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .achievement-card.locked {
+    opacity: 0.6;
+  }
+
+  .achievement-card.locked::after {
+    content: '🔒';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 20px;
+  }
+
+  .achievement-icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(88, 101, 242, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .achievement-card.gold .achievement-icon {
+    background: rgba(251, 191, 36, 0.2);
+  }
+
+  .achievement-card.silver .achievement-icon {
+    background: rgba(156, 163, 175, 0.2);
+  }
+
+  .achievement-card.bronze .achievement-icon {
+    background: rgba(217, 119, 6, 0.2);
+  }
+
+  .achievement-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .achievement-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .achievement-progress {
+    margin-bottom: 8px;
+  }
+
+  .progress-bar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+  }
+
+  .achievement-card.gold .progress-fill {
+    background: #fbbf24;
+  }
+
+  .achievement-card.silver .progress-fill {
+    background: #9ca3af;
+  }
+
+  .achievement-card.bronze .progress-fill {
+    background: #d97706;
+  }
+
+  .progress-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .achievement-date {
+    font-size: 12px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .achievement-rarity {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(88, 101, 242, 0.1);
+    color: var(--accent);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .achievement-details {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 32px;
+    display: none;
+  }
+
+  .details-header {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .details-icon {
+    width: 120px;
+    height: 120px;
+    background: rgba(88, 101, 242, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+  }
+
+  .details-info {
+    flex: 1;
+  }
+
+  .details-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  .details-subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+  }
+
+  .details-stats {
+    display: flex;
+    gap: 32px;
+  }
+
+  .detail-stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .detail-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--accent);
+  }
+
+  .detail-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .achievements-header {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .achievement-stats {
+      width: 100%;
+      justify-content: space-around;
+    }
+
+    .filter-tabs {
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .achievements-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="achievements-header">
+  <div>
+    <h1>Achievements</h1>
+    <p style="color: var(--text-secondary); margin-top: 8px;">Track your progress and unlock new challenges</p>
+  </div>
+  
+  <div class="achievement-stats">
+    <div class="achievement-stat">
+      <div class="achievement-count">47</div>
+      <div class="achievement-label">Unlocked</div>
+    </div>
+    <div class="achievement-stat">
+      <div class="achievement-count">12</div>
+      <div class="achievement-label">In Progress</div>
+    </div>
+    <div class="achievement-stat">
+      <div class="achievement-count">89</div>
+      <div class="achievement-label">Total</div>
+    </div>
+  </div>
+</div>
+
+<div class="filter-tabs">
+  <button class="filter-tab active">All</button>
+  <button class="filter-tab">Recent</button>
+  <button class="filter-tab">Distance</button>
+  <button class="filter-tab">Climbing</button>
+  <button class="filter-tab">Speed</button>
+  <button class="filter-tab">Challenges</button>
+  <button class="filter-tab">Special</button>
+</div>
+
+<div class="achievement-details" id="achievementDetails">
+  <div class="details-header">
+    <div class="details-icon">🏆</div>
+    <div class="details-info">
+      <h2 class="details-title">Century Rider</h2>
+      <p class="details-subtitle">Complete a 100-mile ride in a single activity</p>
+      <div class="details-stats">
+        <div class="detail-stat">
+          <span class="detail-value">Jun 5, 2024</span>
+          <span class="detail-label">Unlocked</span>
+        </div>
+        <div class="detail-stat">
+          <span class="detail-value">3 times</span>
+          <span class="detail-label">Completed</span>
+        </div>
+        <div class="detail-stat">
+          <span class="detail-value">12%</span>
+          <span class="detail-label">Rarity</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="btn-secondary" onclick="document.getElementById('achievementDetails').style.display='none'">Close</button>
+</div>
+
+<div class="achievements-grid">
+  <!-- Unlocked Achievements -->
+  <div class="achievement-card gold" onclick="showDetails(this)">
+    <div class="achievement-rarity">12% have this</div>
+    <div class="achievement-icon">🏆</div>
+    <h3 class="achievement-name">Century Rider</h3>
+    <p class="achievement-description">Complete a 100-mile ride in a single activity</p>
+    <div class="achievement-date">
+      <span>✓</span> Unlocked Jun 5, 2024
+    </div>
+  </div>
+
+  <div class="achievement-card" onclick="showDetails(this)">
+    <div class="achievement-icon">⛰️</div>
+    <h3 class="achievement-name">Mountain Goat</h3>
+    <p class="achievement-description">Climb 10,000 feet in a single ride</p>
+    <div class="achievement-date">
+      <span>✓</span> Unlocked May 15, 2024
+    </div>
+  </div>
+
+  <div class="achievement-card" onclick="showDetails(this)">
+    <div class="achievement-icon">🔥</div>
+    <h3 class="achievement-name">On Fire!</h3>
+    <p class="achievement-description">Complete a 7-day riding streak</p>
+    <div class="achievement-date">
+      <span>✓</span> Unlocked Jun 3, 2024
+    </div>
+  </div>
+
+  <div class="achievement-card silver" onclick="showDetails(this)">
+    <div class="achievement-icon">🌅</div>
+    <h3 class="achievement-name">Early Bird</h3>
+    <p class="achievement-description">Complete 10 rides before 6 AM</p>
+    <div class="achievement-date">
+      <span>✓</span> Unlocked May 28, 2024
+    </div>
+  </div>
+
+  <div class="achievement-card" onclick="showDetails(this)">
+    <div class="achievement-icon">👥</div>
+    <h3 class="achievement-name">Social Butterfly</h3>
+    <p class="achievement-description">Join 5 group rides</p>
+    <div class="achievement-date">
+      <span>✓</span> Unlocked May 20, 2024
+    </div>
+  </div>
+
+  <!-- In Progress Achievements -->
+  <div class="achievement-card bronze" onclick="showDetails(this)">
+    <div class="achievement-icon">📍</div>
+    <h3 class="achievement-name">Explorer</h3>
+    <p class="achievement-description">Ride in 10 different cities</p>
+    <div class="achievement-progress">
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 70%;"></div>
+      </div>
+      <div class="progress-text">7 / 10 cities</div>
+    </div>
+  </div>
+
+  <div class="achievement-card" onclick="showDetails(this)">
+    <div class="achievement-icon">⚡</div>
+    <h3 class="achievement-name">Speed Demon</h3>
+    <p class="achievement-description">Average over 25 mph for a 20+ mile ride</p>
+    <div class="achievement-progress">
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 85%;"></div>
+      </div>
+      <div class="progress-text">Best: 24.2 mph</div>
+    </div>
+  </div>
+
+  <div class="achievement-card" onclick="showDetails(this)">
+    <div class="achievement-icon">📅</div>
+    <h3 class="achievement-name">Consistent</h3>
+    <p class="achievement-description">Ride at least 100 miles every month for a year</p>
+    <div class="achievement-progress">
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 50%;"></div>
+      </div>
+      <div class="progress-text">6 / 12 months</div>
+    </div>
+  </div>
+
+  <!-- Locked Achievements -->
+  <div class="achievement-card locked" onclick="showDetails(this)">
+    <div class="achievement-icon">🏅</div>
+    <h3 class="achievement-name">Grand Tour</h3>
+    <p class="achievement-description">Complete 2,000 miles in a single month</p>
+    <div class="achievement-progress">
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 15%;"></div>
+      </div>
+      <div class="progress-text">Best: 312 miles</div>
+    </div>
+  </div>
+
+  <div class="achievement-card locked" onclick="showDetails(this)">
+    <div class="achievement-icon">🌍</div>
+    <h3 class="achievement-name">Around the World</h3>
+    <p class="achievement-description">Ride a total of 24,901 miles</p>
+    <div class="achievement-progress">
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 5%;"></div>
+      </div>
+      <div class="progress-text">1,234 / 24,901 miles</div>
+    </div>
+  </div>
+
+  <div class="achievement-card locked" onclick="showDetails(this)">
+    <div class="achievement-icon">🎯</div>
+    <h3 class="achievement-name">Perfect Month</h3>
+    <p class="achievement-description">Ride every single day for a month</p>
+    <div class="achievement-progress">
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 23%;"></div>
+      </div>
+      <div class="progress-text">Best streak: 7 days</div>
+    </div>
+  </div>
+
+  <div class="achievement-card locked gold" onclick="showDetails(this)">
+    <div class="achievement-rarity">0.5% have this</div>
+    <div class="achievement-icon">👑</div>
+    <h3 class="achievement-name">Legendary</h3>
+    <p class="achievement-description">Unlock all other achievements</p>
+    <div class="achievement-progress">
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 53%;"></div>
+      </div>
+      <div class="progress-text">47 / 88 achievements</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Filter tabs
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+
+  // Show achievement details
+  function showDetails(card) {
+    const details = document.getElementById('achievementDetails');
+    const name = card.querySelector('.achievement-name').textContent;
+    const description = card.querySelector('.achievement-description').textContent;
+    
+    details.querySelector('.details-title').textContent = name;
+    details.querySelector('.details-subtitle').textContent = description;
+    details.querySelector('.details-icon').textContent = card.querySelector('.achievement-icon').textContent;
+    
+    details.style.display = 'block';
+    details.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+</script>

@@ -16383,7 +16383,7144 @@ const brandinfo = [
       "pinterest": null
     },
     "additional_notes": "One of Canada's largest bicycle manufacturers with diverse product range."
-  }
-];
+  },
+  {
+    "brand_id": "trek",
+    "brand_name": "Trek Bicycle Corporation",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Trek_Bicycle_Corporation",
+    "linkedin_url": "https://www.linkedin.com/company/trek-bicycle",
+    "logo": {
+      "logo_url": "https://en.wikipedia.org/wiki/File:Trek_Bicycle_Corporation_logo.svg",
+      "icon_url": "https://www.trekbikes.com/favicon.ico"
+    },
+    "description": "Trek Bicycle Corporation is an American bicycle and cycling product manufacturer and distributor, known for high-performance bikes and bicycle accessories.",
+    "founders": [
+      "Dick Burke",
+      "Bevil Hogg"
+    ],
+    "founding": {
+      "year": 1976,
+      "full_date": null,
+      "location": {
+        "city": "Waterloo",
+        "state_province": "Wisconsin",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 1976 by Dick Burke and Bevil Hogg in Waterloo, Wisconsin, Trek started as a subsidiary of Roth Corporation manufacturing steel touring frames. The company expanded into road bikes in 1981 and mountain bikes in 1983. Trek pioneered OCLV (Optimum Compaction, Low Void) carbon fiber technology and became one of the largest bike manufacturers in the world. Notable sponsorships include Lance Armstrong during his Tour de France victories.",
+    "parent_company": "Intrepid Corporation",
+    "subsidiaries": [
+      "Electra Bicycle Company",
+      "Bontrager",
+      "Diamant Bikes"
+    ],
+    "headquarters": {
+      "address": "801 W Madison St, Waterloo, WI 53594",
+      "city": "Waterloo",
+      "state_province": "Wisconsin",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": 1800,
+      "as_of": "2025-06-04"
+    },
+    "annual_revenue": {
+      "amount": 1000000000,
+      "currency": "USD",
+      "as_of": "2023-12-31"
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Bicycle Manufacturing",
+    "industry_subcategory": "Performance & Recreational Bicycles",
+    "famous_models": [
+      "Madone",
+      "Domane",
+      "Emonda",
+      "Marlin",
+      "Fuel EX",
+      "Slash"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Madone",
+        "year": 2003,
+        "image_url": null,
+        "hero_image_url": null
+      },
+      {
+        "name": "Domane",
+        "year": 2012,
+        "image_url": null,
+        "hero_image_url": null
+      },
+      {
+        "name": "Fuel EX",
+        "year": 2007,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://www.trekbikes.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/trekbicycle",
+      "twitter": "https://twitter.com/trekbikes",
+      "instagram": "https://www.instagram.com/trekbikes",
+      "linkedin": "https://www.linkedin.com/company/trek-bicycle",
+      "youtube": "https://www.youtube.com/user/trekbicyclecorp",
+      "pinterest": null
+    },
+    "additional_notes": "Trek manufactures bicycles in Netherlands, Germany, Taiwan, and China, with custom bikes painted and assembled in Wisconsin. The company is committed to bicycle advocacy through their '1 World 2 Wheels' campaign."
+  },
+  {
+    "brand_id": "specialized",
+    "brand_name": "Specialized Bicycle Components",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Specialized_Bicycle_Components",
+    "linkedin_url": "https://www.linkedin.com/company/specialized-bicycle-components",
+    "logo": {
+      "logo_url": "https://en.wikipedia.org/wiki/File:Specialized_red_S_logo.svg",
+      "icon_url": "https://www.specialized.com/favicon.ico"
+    },
+    "description": "Specialized Bicycle Components, Inc. is an American company that designs, manufactures and markets bicycles, bicycle components and related products under the brand name 'Specialized'.",
+    "founders": [
+      "Mike Sinyard"
+    ],
+    "founding": {
+      "year": 1974,
+      "full_date": null,
+      "location": {
+        "city": "Morgan Hill",
+        "state_province": "California",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 1974 by Mike Sinyard, who sold his Volkswagen Bus for $1,500 to fund a cycling tour of Europe. He started by importing Italian bike components to the US. Specialized produced its first bicycle tire in 1976 and introduced the Stumpjumper in 1981, one of the first mass-production mountain bikes. In 2001, Merida Bikes of Taiwan purchased 49% of the company. Specialized has become one of the largest and most innovative bicycle companies in the world.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": "15130 Concord Circle, Morgan Hill, CA 95037",
+      "city": "Morgan Hill",
+      "state_province": "California",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": 1300,
+      "as_of": "2022-12-31"
+    },
+    "annual_revenue": {
+      "amount": 500000000,
+      "currency": "USD",
+      "as_of": "2011-12-31"
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Bicycle Manufacturing",
+    "industry_subcategory": "Performance & Innovation Bicycles",
+    "famous_models": [
+      "Stumpjumper",
+      "Tarmac",
+      "Roubaix",
+      "Epic",
+      "Diverge",
+      "Turbo"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Stumpjumper",
+        "year": 1981,
+        "image_url": null,
+        "hero_image_url": null
+      },
+      {
+        "name": "Tarmac",
+        "year": 2003,
+        "image_url": null,
+        "hero_image_url": null
+      },
+      {
+        "name": "Roubaix",
+        "year": 2004,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://www.specialized.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/specializedbicycles",
+      "twitter": "https://twitter.com/iamspecialized",
+      "instagram": "https://www.instagram.com/iamspecialized",
+      "linkedin": "https://www.linkedin.com/company/specialized-bicycle-components",
+      "youtube": "https://www.youtube.com/user/specialized411",
+      "pinterest": null
+    },
+    "additional_notes": "Specialized is 49% owned by Merida Bikes of Taiwan. The company is known for innovation in bicycle technology and was one of the pioneers of the mountain bike movement with the introduction of the Stumpjumper in 1981."
+  },
+  {
+    "brand_id": "areone",
+    "brand_name": "Areone",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Areone is a bicycle brand focused on affordable cycling solutions. Limited public information is available about this brand.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": null
+      }
+    },
+    "history": null,
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": null
+    },
+    "headquarters_image_url": null,
+    "company_type": null,
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "General Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Limited information available for this brand. May be a regional or smaller manufacturer."
+  },
+  {
+    "brand_id": "cuda",
+    "brand_name": "Cuda",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.cudabikes.com/favicon.ico"
+    },
+    "description": "Cuda is a UK-based bicycle brand specializing in performance bikes for children and adults, with a focus on quality construction and modern design.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United Kingdom"
+      }
+    },
+    "history": "Cuda has established itself as a respected UK bicycle brand, offering a range of bikes from children's models to performance adult bicycles.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United Kingdom"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Performance Bicycles",
+    "famous_models": [
+      "Cuda Mayhem",
+      "Cuda Trace"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://www.cudabikes.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "UK-based brand with focus on quality bicycles for various age groups and skill levels."
+  },
+  {
+    "brand_id": "dallingridge",
+    "brand_name": "Dallingridge",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Dallingridge is a UK bicycle brand with limited public information available. May be a regional or boutique manufacturer.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United Kingdom"
+      }
+    },
+    "history": null,
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United Kingdom"
+    },
+    "headquarters_image_url": null,
+    "company_type": null,
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "General Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Limited information available for this UK brand."
+  },
+  {
+    "brand_id": "flyerbyradioflyer",
+    "brand_name": "Flyer by Radio Flyer",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Radio_Flyer",
+    "linkedin_url": "https://www.linkedin.com/company/radio-flyer",
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.radioflyer.com/favicon.ico"
+    },
+    "description": "Flyer by Radio Flyer represents Radio Flyer's venture into the bicycle market, extending their century-long expertise in children's toys and ride-on products to include bicycles and scooters.",
+    "founders": [
+      "Antonio Pasin"
+    ],
+    "founding": {
+      "year": 1917,
+      "full_date": null,
+      "location": {
+        "city": "Chicago",
+        "state_province": "Illinois",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 1917 by Antonio Pasin as the Liberty Coaster Company, Radio Flyer became famous for their iconic red wagons. The company expanded into bicycles and other ride-on toys, maintaining their focus on quality children's products throughout their history.",
+    "parent_company": "Radio Flyer Inc.",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": "6515 W Grand Ave, Chicago, IL 60707",
+      "city": "Chicago",
+      "state_province": "Illinois",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": 200,
+      "as_of": "2024"
+    },
+    "annual_revenue": {
+      "amount": 50000000,
+      "currency": "USD",
+      "as_of": "2023"
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Toy and Sporting Goods Manufacturing",
+    "industry_subcategory": "Children's Bicycles",
+    "famous_models": [
+      "Flyer Balance Bike",
+      "Flyer Kids Bike"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://www.radioflyer.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/RadioFlyer",
+      "twitter": "https://twitter.com/RadioFlyer",
+      "instagram": "https://www.instagram.com/radioflyer",
+      "linkedin": "https://www.linkedin.com/company/radio-flyer",
+      "youtube": "https://www.youtube.com/user/RadioFlyerInc",
+      "pinterest": "https://www.pinterest.com/radioflyer"
+    },
+    "additional_notes": "Radio Flyer's bicycle line extends their 100+ year heritage in children's ride-on products. The company is still family-owned and operated."
+  },
+  {
+    "brand_id": "foes",
+    "brand_name": "Foes Racing",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.foesracing.com/favicon.ico"
+    },
+    "description": "Foes Racing is an American mountain bike manufacturer based in Pasadena, California, specializing in high-performance downhill and freeride mountain bikes with innovative suspension designs.",
+    "founders": [
+      "Brent Foes"
+    ],
+    "founding": {
+      "year": 1992,
+      "full_date": null,
+      "location": {
+        "city": "Pasadena",
+        "state_province": "California",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 1992 by Brent Foes, Foes Racing has been a pioneer in mountain bike suspension technology. The company has been at the forefront of downhill racing innovation and has equipped numerous professional racers with their cutting-edge bikes.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Pasadena",
+      "state_province": "California",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "Foes Mixer",
+      "Foes Fly",
+      "Foes Mutz"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Mixer",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://www.foesracing.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Pioneering mountain bike manufacturer known for innovative suspension designs and high-performance downhill bikes."
+  },
+  {
+    "brand_id": "fondriest",
+    "brand_name": "Fondriest",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Maurizio_Fondriest",
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.fondriest.com/favicon.ico"
+    },
+    "description": "Fondriest is an Italian bicycle brand founded by Olympic cycling champion Maurizio Fondriest, specializing in high-performance road and racing bicycles with Italian craftsmanship.",
+    "founders": [
+      "Maurizio Fondriest"
+    ],
+    "founding": {
+      "year": 1994,
+      "full_date": null,
+      "location": {
+        "city": "Moena",
+        "state_province": "Trentino",
+        "country": "Italy"
+      }
+    },
+    "history": "Founded in 1994 by Maurizio Fondriest, the 1988 Olympic road race champion and world champion cyclist. The brand represents the pinnacle of Italian cycling heritage and craftsmanship, creating high-performance bicycles that embody the racing spirit of its founder.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Moena",
+      "state_province": "Trentino",
+      "country": "Italy"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Road Bikes & Racing Bikes",
+    "famous_models": [
+      "Fondriest TF1",
+      "Fondriest TF2"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://www.fondriest.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Founded by Olympic champion Maurizio Fondriest, representing authentic Italian cycling heritage and racing excellence."
+  },
+  {
+    "brand_id": "forbidden",
+    "brand_name": "Forbidden Bike Co.",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://forbiddenbike.com/favicon.ico"
+    },
+    "description": "Forbidden Bike Co. is a Canadian mountain bike manufacturer based in British Columbia, known for innovative suspension designs and high-performance trail and enduro mountain bikes.",
+    "founders": [
+      "Owen Pemberton"
+    ],
+    "founding": {
+      "year": 2016,
+      "full_date": null,
+      "location": {
+        "city": "Coquitlam",
+        "state_province": "British Columbia",
+        "country": "Canada"
+      }
+    },
+    "history": "Founded in 2016 by Owen Pemberton in Coquitlam, British Columbia. The company focuses on creating innovative mountain bikes with unique suspension linkage designs, quickly gaining recognition in the mountain biking community for their performance-oriented approach.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Coquitlam",
+      "state_province": "British Columbia",
+      "country": "Canada"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "Forbidden Druid",
+      "Forbidden Dreadnought",
+      "Forbidden Ziggy"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Druid",
+        "year": 2018,
+        "image_url": null,
+        "hero_image_url": null
+      },
+      {
+        "name": "Dreadnought",
+        "year": 2019,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://forbiddenbike.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/ForbiddenBikeCo",
+      "twitter": null,
+      "instagram": "https://www.instagram.com/forbiddenbikeco",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Canadian mountain bike innovator known for unique suspension linkage designs and high-performance trail bikes."
+  },
+  {
+    "brand_id": "forestal",
+    "brand_name": "Forestal",
+    "wikipedia_url": null,
+    "linkedin_url": "https://www.linkedin.com/company/forestal-bikes",
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://forestal.bike/favicon.ico"
+    },
+    "description": "Forestal is a European electric mountain bike manufacturer specializing in high-performance e-MTBs with innovative technology and design, based between Spain and Andorra.",
+    "founders": [],
+    "founding": {
+      "year": 2018,
+      "full_date": null,
+      "location": {
+        "city": "Andorra la Vella",
+        "state_province": null,
+        "country": "Andorra"
+      }
+    },
+    "history": "Founded in 2018, Forestal focuses exclusively on electric mountain bikes, developing innovative e-MTB technology with a focus on lightweight designs and advanced battery integration.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Andorra la Vella",
+      "state_province": null,
+      "country": "Andorra"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Mountain Bikes",
+    "famous_models": [
+      "Forestal Siryon",
+      "Forestal Hydra"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Siryon",
+        "year": 2020,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://forestal.bike",
+    "social_media": {
+      "facebook": "https://www.facebook.com/forestalbikes",
+      "twitter": null,
+      "instagram": "https://www.instagram.com/forestalbikes",
+      "linkedin": "https://www.linkedin.com/company/forestal-bikes",
+      "youtube": "https://www.youtube.com/channel/UC9XQtVcE9QqvQgQ9QgQ9Q9Q",
+      "pinterest": null
+    },
+    "additional_notes": "Specialized electric mountain bike manufacturer with focus on lightweight and innovative e-MTB technology."
+  },
+  {
+    "brand_id": "forme",
+    "brand_name": "Forme",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.formebikes.co.uk/favicon.ico"
+    },
+    "description": "Forme is a UK-based bicycle brand offering a range of road, mountain, and hybrid bikes with focus on quality and value for cycling enthusiasts.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United Kingdom"
+      }
+    },
+    "history": "Forme has established itself as a respected UK bicycle brand, offering quality bicycles across various categories with emphasis on performance and value.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United Kingdom"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Multi-Category Bicycles",
+    "famous_models": [
+      "Forme Reval",
+      "Forme Peak Trail"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://www.formebikes.co.uk",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "UK brand offering quality bicycles across multiple categories with focus on value and performance."
+  },
+  {
+    "brand_id": "forth",
+    "brand_name": "Forth",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Forth is a bicycle brand with limited public information available. May be a regional or specialty manufacturer.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": null
+      }
+    },
+    "history": null,
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": null
+    },
+    "headquarters_image_url": null,
+    "company_type": null,
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "General Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Limited information available for this brand."
+  },
+  {
+    "brand_id": "framed",
+    "brand_name": "Framed Bicycles",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://framedbikes.com/favicon.ico"
+    },
+    "description": "Framed Bicycles is a Minneapolis-based bicycle manufacturer specializing in fat bikes, mountain bikes, and BMX bikes with focus on innovative designs and quality construction.",
+    "founders": [],
+    "founding": {
+      "year": 2009,
+      "full_date": null,
+      "location": {
+        "city": "Minneapolis",
+        "state_province": "Minnesota",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 2009 in Minneapolis, Minnesota, Framed Bicycles has focused on creating innovative bicycle designs, particularly in the fat bike segment where they have been early pioneers.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Minneapolis",
+      "state_province": "Minnesota",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Fat Bikes & Mountain Bikes",
+    "famous_models": [
+      "Framed Minnesota",
+      "Framed Wolftrax",
+      "Framed Marquette"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Minnesota",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://framedbikes.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/framedbikes",
+      "twitter": null,
+      "instagram": "https://www.instagram.com/framedbikes",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Minneapolis-based manufacturer known for innovative fat bike designs and quality construction."
+  },
+  {
+    "brand_id": "freespirit",
+    "brand_name": "Free Spirit",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Free Spirit is a bicycle brand that was historically sold through Walmart and other retailers, offering affordable bicycles for casual riders and families.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United States"
+      }
+    },
+    "history": "Free Spirit was a budget bicycle brand historically sold through major retailers like Walmart, targeting families and casual riders with affordable bicycle options.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": null,
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Budget Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Historical budget bicycle brand sold through major retailers, targeting casual and family markets."
+  },
+  {
+    "brand_id": "frog",
+    "brand_name": "Frog Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": "https://www.linkedin.com/company/frog-bikes",
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.frogbikes.com/favicon.ico"
+    },
+    "description": "Frog Bikes is a UK-based children's bicycle specialist founded in 2013, creating lightweight, high-quality bikes specifically designed for children's proportions and development.",
+    "founders": [
+      "Jerry Lawson",
+      "Shelley Lawson"
+    ],
+    "founding": {
+      "year": 2013,
+      "full_date": null,
+      "location": {
+        "city": "Cardiff",
+        "state_province": "Wales",
+        "country": "United Kingdom"
+      }
+    },
+    "history": "Founded in 2013 by Jerry and Shelley Lawson in Cardiff, Wales. The company was created after the founders struggled to find suitable bikes for their own children, leading them to design lightweight, properly proportioned bikes specifically for kids.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Cardiff",
+      "state_province": "Wales",
+      "country": "United Kingdom"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": 50,
+      "as_of": "2024"
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Children's Bicycles",
+    "famous_models": [
+      "Frog 40",
+      "Frog 44",
+      "Frog 48",
+      "Frog 52"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Frog 44",
+        "year": 2013,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://www.frogbikes.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/FrogBikes",
+      "twitter": "https://twitter.com/frogbikes",
+      "instagram": "https://www.instagram.com/frogbikes",
+      "linkedin": "https://www.linkedin.com/company/frog-bikes",
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Specialist children's bicycle manufacturer focusing on lightweight, properly proportioned bikes for kids' development and safety."
+  },
+  {
+    "brand_id": "fthpower",
+    "brand_name": "FTH Power",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "FTH Power is a bicycle brand with limited public information available. May specialize in electric or power-assisted bicycles.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": null
+      }
+    },
+    "history": null,
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": null
+    },
+    "headquarters_image_url": null,
+    "company_type": null,
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Limited information available. Brand name suggests possible focus on electric or power-assisted bicycles."
+  },
+  {
+    "brand_id": "fuji",
+    "brand_name": "Fuji Bikes",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Fuji_Bikes",
+    "linkedin_url": "https://www.linkedin.com/company/fuji-bikes",
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.fujibikes.com/favicon.ico"
+    },
+    "description": "Fuji Bikes is one of the oldest bicycle companies in the world, founded in Japan in 1899. The company produces a wide range of bicycles including road, mountain, hybrid, and electric bikes.",
+    "founders": [
+      "Nichibei Fuji"
+    ],
+    "founding": {
+      "year": 1899,
+      "full_date": null,
+      "location": {
+        "city": "Tokyo",
+        "state_province": null,
+        "country": "Japan"
+      }
+    },
+    "history": "Founded in 1899 by Nichibei Fuji in Japan, Fuji is one of the oldest bicycle companies in the world. The company initially focused on domestic Japanese market before expanding internationally. Fuji has a rich racing heritage and has been at the forefront of bicycle innovation for over 120 years.",
+    "parent_company": "Advanced Sports Enterprises",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Philadelphia",
+      "state_province": "Pennsylvania",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Multi-Category Bicycles",
+    "famous_models": [
+      "Fuji Transonic",
+      "Fuji Gran Fondo",
+      "Fuji Tahoe"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Transonic",
+        "year": 2014,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://www.fujibikes.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/FujiBikes",
+      "twitter": "https://twitter.com/fujibikes",
+      "instagram": "https://www.instagram.com/fujibikes",
+      "linkedin": "https://www.linkedin.com/company/fuji-bikes",
+      "youtube": "https://www.youtube.com/user/FujiBikes",
+      "pinterest": null
+    },
+    "additional_notes": "One of the world's oldest bicycle companies with over 120 years of history and innovation in bicycle manufacturing."
+  },
+  {
+    "brand_id": "furosystems",
+    "brand_name": "Furo Systems",
+    "wikipedia_url": null,
+    "linkedin_url": "https://www.linkedin.com/company/furo-systems",
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.furosystems.com/favicon.ico"
+    },
+    "description": "Furo Systems is a technology company specializing in foldable electric bikes and innovative urban mobility solutions, focusing on compact, portable e-bike designs.",
+    "founders": [
+      "Dyu Wai"
+    ],
+    "founding": {
+      "year": 2015,
+      "full_date": null,
+      "location": {
+        "city": "Hong Kong",
+        "state_province": null,
+        "country": "Hong Kong"
+      }
+    },
+    "history": "Founded in 2015 by Dyu Wai, Furo Systems focuses on creating innovative foldable electric bicycles that combine technology with urban mobility needs. The company has gained recognition for their ultra-compact folding e-bike designs.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Hong Kong",
+      "state_province": null,
+      "country": "Hong Kong"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Technology & Sporting Goods Manufacturing",
+    "industry_subcategory": "Foldable Electric Bicycles",
+    "famous_models": [
+      "Furo X",
+      "Furo FX300"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Furo X",
+        "year": 2017,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://www.furosystems.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/furosystems",
+      "twitter": null,
+      "instagram": "https://www.instagram.com/furosystems",
+      "linkedin": "https://www.linkedin.com/company/furo-systems",
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Technology-focused company specializing in ultra-compact foldable electric bicycles for urban mobility."
+  },
+  {
+    "brand_id": "garneau",
+    "brand_name": "Louis Garneau",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Louis_Garneau_(company)",
+    "linkedin_url": "https://www.linkedin.com/company/louis-garneau-sports",
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.louisgarneau.com/favicon.ico"
+    },
+    "description": "Louis Garneau is a Canadian cycling company founded in 1983, specializing in bicycles, cycling apparel, and accessories with a strong focus on performance and innovation.",
+    "founders": [
+      "Louis Garneau"
+    ],
+    "founding": {
+      "year": 1983,
+      "full_date": null,
+      "location": {
+        "city": "Saint-Augustin-de-Desmaures",
+        "state_province": "Quebec",
+        "country": "Canada"
+      }
+    },
+    "history": "Founded in 1983 by Louis Garneau, a former Olympic cyclist, the company started with cycling apparel and expanded into bicycles. Based in Quebec, Canada, the company has become a leading North American cycling brand known for innovation in both bicycles and cycling equipment.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": "83 Avenue du Parc, Saint-Augustin-de-Desmaures, QC G3A 0E1",
+      "city": "Saint-Augustin-de-Desmaures",
+      "state_province": "Quebec",
+      "country": "Canada"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": 400,
+      "as_of": "2024"
+    },
+    "annual_revenue": {
+      "amount": 100000000,
+      "currency": "CAD",
+      "as_of": "2023"
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Performance Bicycles & Apparel",
+    "famous_models": [
+      "Louis Garneau Gennix",
+      "Louis Garneau Course"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://www.louisgarneau.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/LouisGarneauSports",
+      "twitter": "https://twitter.com/LouisGarneau",
+      "instagram": "https://www.instagram.com/louisgarneausports",
+      "linkedin": "https://www.linkedin.com/company/louis-garneau-sports",
+      "youtube": "https://www.youtube.com/user/LouisGarneauSports",
+      "pinterest": null
+    },
+    "additional_notes": "Founded by Olympic cyclist Louis Garneau, the company is a leading Canadian cycling brand with strong focus on performance and innovation."
+  },
+  {
+    "brand_id": "garyfisher",
+    "brand_name": "Gary Fisher",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Gary_Fisher",
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Gary Fisher was a pioneering mountain bike brand founded by Gary Fisher, one of the inventors of the mountain bike. The brand was acquired by Trek in 1993 and continued as Gary Fisher Collection until 2010.",
+    "founders": [
+      "Gary Fisher"
+    ],
+    "founding": {
+      "year": 1975,
+      "full_date": null,
+      "location": {
+        "city": "Mill Valley",
+        "state_province": "California",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 1975 by Gary Fisher, one of the pioneers of mountain biking. Gary Fisher was instrumental in developing the modern mountain bike alongside Joe Breeze and others. The brand was acquired by Trek in 1993 and operated as the Gary Fisher Collection until 2010.",
+    "parent_company": "Trek Bicycle Corporation (1993-2010)",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Mill Valley",
+      "state_province": "California",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "acquired",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "Gary Fisher Marlin",
+      "Gary Fisher Wahoo",
+      "Gary Fisher Big Sur"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Historic mountain bike brand founded by one of the inventors of the mountain bike. Acquired by Trek in 1993 and discontinued as separate brand in 2010."
+  },
+  {
+    "brand_id": "gasgas",
+    "brand_name": "GasGas",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Gas_Gas",
+    "linkedin_url": "https://www.linkedin.com/company/gasgas-motos",
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.gasgas.com/favicon.ico"
+    },
+    "description": "GasGas is a Spanish motorcycle and bicycle manufacturer that has expanded into electric bicycles and e-MTBs, bringing their motorsport heritage to the cycling world.",
+    "founders": [
+      "Narcís Casas",
+      "Josep Pibernat"
+    ],
+    "founding": {
+      "year": 1985,
+      "full_date": null,
+      "location": {
+        "city": "Salt",
+        "state_province": "Girona",
+        "country": "Spain"
+      }
+    },
+    "history": "Founded in 1985 by Narcís Casas and Josep Pibernat in Salt, Girona, Spain. Originally focused on motorcycles, particularly trial and enduro bikes. The company expanded into electric bicycles, leveraging their motorsport experience in developing e-bikes and e-MTBs.",
+    "parent_company": "KTM AG (Pierer Mobility)",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Mattighofen",
+      "state_province": null,
+      "country": "Austria"
+    },
+    "headquarters_image_url": null,
+    "company_type": "subsidiary",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles & E-MTB",
+    "famous_models": [
+      "GasGas E-Wild"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://www.gasgas.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/GasGasOfficial",
+      "twitter": "https://twitter.com/GasGasOfficial",
+      "instagram": "https://www.instagram.com/gasgas_official",
+      "linkedin": "https://www.linkedin.com/company/gasgas-motos",
+      "youtube": "https://www.youtube.com/user/GasGasOfficial",
+      "pinterest": null
+    },
+    "additional_notes": "Spanish motorsport brand that expanded into electric bicycles, now owned by KTM AG and part of Pierer Mobility group."
+  },
+  {
+    "brand_id": "gazelle",
+    "brand_name": "Gazelle",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Gazelle_(bicycle_company)",
+    "linkedin_url": "https://www.linkedin.com/company/koninklijke-gazelle",
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.gazelle.nl/favicon.ico"
+    },
+    "description": "Gazelle is a historic Dutch bicycle manufacturer founded in 1892, known for high-quality city bikes, touring bikes, and electric bicycles. The company holds the Royal designation and is one of the Netherlands' most prestigious bicycle brands.",
+    "founders": [
+      "Willem Kölling",
+      "Rudolf Arentsen"
+    ],
+    "founding": {
+      "year": 1892,
+      "full_date": null,
+      "location": {
+        "city": "Dieren",
+        "state_province": "Gelderland",
+        "country": "Netherlands"
+      }
+    },
+    "history": "Founded in 1892 by Willem Kölling and Rudolf Arentsen in Dieren, Netherlands. Gazelle received the Royal designation 'Koninklijke' in 1992 for its 100th anniversary. The company has been a leader in Dutch bicycle manufacturing and innovation, particularly in electric bicycle technology.",
+    "parent_company": "Pon Holdings",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": "Wilhelminaweg 8, 6951 BP Dieren",
+      "city": "Dieren",
+      "state_province": "Gelderland",
+      "country": "Netherlands"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": 500,
+      "as_of": "2024"
+    },
+    "annual_revenue": {
+      "amount": 200000000,
+      "currency": "EUR",
+      "as_of": "2023"
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "City Bikes & Electric Bicycles",
+    "famous_models": [
+      "Gazelle Ultimate",
+      "Gazelle Arroyo",
+      "Gazelle CityZen"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Ultimate",
+        "year": 2020,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://www.gazelle.nl",
+    "social_media": {
+      "facebook": "https://www.facebook.com/gazellebikes",
+      "twitter": "https://twitter.com/gazellebikes",
+      "instagram": "https://www.instagram.com/gazellebikes",
+      "linkedin": "https://www.linkedin.com/company/koninklijke-gazelle",
+      "youtube": "https://www.youtube.com/user/GazelleBikes",
+      "pinterest": null
+    },
+    "additional_notes": "Royal Dutch bicycle manufacturer with over 130 years of history, leader in electric bicycle innovation and Dutch cycling culture."
+  },
+  {
+    "brand_id": "nordest",
+    "brand_name": "Nordest Composites",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Nordest Composites is an Italian manufacturer specializing in high-end carbon fiber bicycle frames, operating primarily as a B2B supplier to other bicycle brands.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": "Treviso",
+        "state_province": "Veneto",
+        "country": "Italy"
+      }
+    },
+    "history": "Based in Treviso in northeastern Italy, Nordest Composites focuses on advanced composite technology and frame manufacturing. They are known for their expertise in carbon fiber layup and frame construction, often working as an OEM supplier.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Treviso",
+      "state_province": "Veneto",
+      "country": "Italy"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Carbon Fiber Frame Manufacturing",
+    "famous_models": [
+      "Lynx"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Primarily operates as a B2B manufacturer and OEM supplier for other bicycle brands rather than as a consumer-facing brand."
+  },
+  {
+    "brand_id": "ns",
+    "brand_name": "NS Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://nsbikes.com/favicon.ico"
+    },
+    "description": "NS Bikes is a Polish bicycle company specializing in dirt jump, slopestyle, and progressive mountain bikes, born from the Polish freeride scene.",
+    "founders": [
+      "Szymon Kobylarz"
+    ],
+    "founding": {
+      "year": 2004,
+      "full_date": null,
+      "location": {
+        "city": "Gdańsk",
+        "state_province": null,
+        "country": "Poland"
+      }
+    },
+    "history": "Founded in 2004 in Gdańsk, Poland, NS Bikes emerged from the Polish dirt jump and freeride scene. The company has grown to become a globally recognized brand in the gravity and progressive mountain biking segments, supporting numerous professional riders.",
+    "parent_company": "7ANNA GROUP Sp. z o.o.",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Gdańsk",
+      "state_province": null,
+      "country": "Poland"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Dirt Jump & Mountain Bikes",
+    "famous_models": [
+      "Decade",
+      "Majesty",
+      "Movement",
+      "Clash",
+      "Define",
+      "Eccentric",
+      "Snabb",
+      "Fuzz",
+      "Surge"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Decade",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://nsbikes.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/nsbikes",
+      "twitter": "https://twitter.com/nsbikes",
+      "instagram": "https://www.instagram.com/nsbikes",
+      "linkedin": null,
+      "youtube": "https://www.youtube.com/user/nsbikes",
+      "pinterest": null
+    },
+    "additional_notes": "Known for supporting the Godziek brothers and being a core brand in the gravity mountain biking scene."
+  },
+  {
+    "brand_id": "nukeproof",
+    "brand_name": "Nukeproof",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://nukeproof.com/favicon.ico"
+    },
+    "description": "Nukeproof is a UK-based mountain bike brand known for producing robust, high-performance bikes that excel in enduro and downhill racing.",
+    "founders": [],
+    "founding": {
+      "year": 1990,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": "England",
+        "country": "United Kingdom"
+      }
+    },
+    "history": "Founded in 1990 in England as a manufacturer of bombproof mountain bike components. In 2012, Nukeproof was acquired by Chain Reaction Cycles, allowing the brand to expand into complete bicycle manufacturing and become a major player in enduro and downhill mountain biking.",
+    "parent_company": "Chain Reaction Cycles (Wiggle CRC Group)",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Belfast",
+      "state_province": "Northern Ireland",
+      "country": "United Kingdom"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "Mega",
+      "Reactor",
+      "Giga",
+      "Scout",
+      "Cub-Scout",
+      "Dissent",
+      "Horizon"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Mega",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://nukeproof.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/nukeproof",
+      "twitter": "https://twitter.com/nukeproof",
+      "instagram": "https://www.instagram.com/nukeproof",
+      "linkedin": null,
+      "youtube": "https://www.youtube.com/user/nukeproof",
+      "pinterest": null
+    },
+    "additional_notes": "Strong presence in enduro and downhill World Cup racing. The brand name reflects their commitment to building extremely durable products."
+  },
+  {
+    "brand_id": "obed",
+    "brand_name": "Obed Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://obedbikes.com/favicon.ico"
+    },
+    "description": "Obed Bikes is a small, boutique mountain bike manufacturer based in Chattanooga, Tennessee, specializing in high-quality steel hardtail mountain bikes.",
+    "founders": [],
+    "founding": {
+      "year": 2020,
+      "full_date": null,
+      "location": {
+        "city": "Chattanooga",
+        "state_province": "Tennessee",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 2020 in Chattanooga, Tennessee, Obed Bikes focuses on crafting premium steel hardtail mountain bikes with modern geometry and thoughtful design.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Chattanooga",
+      "state_province": "Tennessee",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "Boundary"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Boundary",
+        "year": 2020,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://obedbikes.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Boutique brand focusing on high-quality steel hardtail mountain bikes with modern geometry."
+  },
+  {
+    "brand_id": "ocoee",
+    "brand_name": "Ocoee",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Ocoee appears to be a discontinued or house brand that was sold through major retailers rather than an active independent bicycle manufacturer.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United States"
+      }
+    },
+    "history": "Ocoee-branded bicycles were sold through retailers like Dick's Sporting Goods, but no current independent manufacturer by this name was found.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": null,
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "General Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Appears to be a discontinued brand or retailer house brand rather than an active bicycle manufacturer."
+  },
+  {
+    "brand_id": "ohm",
+    "brand_name": "OHM Cycles",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://ohmcycles.com/favicon.ico"
+    },
+    "description": "OHM Cycles is a Canadian electric bicycle manufacturer specializing in high-quality e-bikes with proprietary electric assist systems.",
+    "founders": [],
+    "founding": {
+      "year": 2005,
+      "full_date": null,
+      "location": {
+        "city": "Vancouver",
+        "state_province": "British Columbia",
+        "country": "Canada"
+      }
+    },
+    "history": "Founded in 2005 in Vancouver, British Columbia, OHM Cycles has focused on developing high-quality electric bicycles with advanced assist systems for the North American market.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "North Vancouver",
+      "state_province": "British Columbia",
+      "country": "Canada"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles",
+    "famous_models": [
+      "Quest",
+      "Urban",
+      "Sport",
+      "Cruise"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://ohmcycles.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Canadian e-bike specialist focusing on quality electric bicycles with proprietary assist systems."
+  },
+  {
+    "brand_id": "open",
+    "brand_name": "OPEN Cycle",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://opencycle.com/favicon.ico"
+    },
+    "description": "OPEN Cycle is a high-end gravel and road bike manufacturer known for innovative designs and being pioneers in the gravel bike category.",
+    "founders": [
+      "Gerard Vroomen",
+      "Andy Kessler"
+    ],
+    "founding": {
+      "year": 2012,
+      "full_date": null,
+      "location": {
+        "city": "Basel",
+        "state_province": null,
+        "country": "Switzerland"
+      }
+    },
+    "history": "Founded in 2012 by Gerard Vroomen (co-founder of Cervélo) and Andy Kessler in Basel, Switzerland. OPEN has been instrumental in defining the modern gravel bike category with innovative designs.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Basel",
+      "state_province": null,
+      "country": "Switzerland"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Gravel & Road Bikes",
+    "famous_models": [
+      "U.P. (Unbeaten Path)",
+      "WI.DE.",
+      "MIN.D.",
+      "UPPER"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "U.P.",
+        "year": 2015,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://opencycle.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Co-founded by Gerard Vroomen of Cervélo fame. Pioneer in the gravel bike category."
+  },
+  {
+    "brand_id": "orange",
+    "brand_name": "Orange Mountain Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.orangebikes.com/favicon.ico"
+    },
+    "description": "Orange Mountain Bikes is a British mountain bike manufacturer known for hand-welded aluminum frames and distinctive industrial design, specializing in downhill, enduro, and trail bikes.",
+    "founders": [],
+    "founding": {
+      "year": 1988,
+      "full_date": null,
+      "location": {
+        "city": "Halifax",
+        "state_province": "West Yorkshire",
+        "country": "United Kingdom"
+      }
+    },
+    "history": "Founded in 1988 in Halifax, West Yorkshire, Orange has built a reputation for high-quality, hand-welded aluminum mountain bikes with distinctive industrial aesthetics and excellent performance.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Halifax",
+      "state_province": "West Yorkshire",
+      "country": "United Kingdom"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "Five",
+      "Four",
+      "Alpine",
+      "Stage",
+      "P7"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Five",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://www.orangebikes.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/OrangeMountainBikes",
+      "twitter": "https://twitter.com/OrangeBikes",
+      "instagram": "https://www.instagram.com/orangebikes",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Known for hand-welded aluminum frames made in the UK and distinctive industrial design aesthetic."
+  },
+  {
+    "brand_id": "orbea",
+    "brand_name": "Orbea",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Orbea",
+    "linkedin_url": "https://www.linkedin.com/company/orbea",
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.orbea.com/favicon.ico"
+    },
+    "description": "Orbea is one of Spain's oldest and most prestigious bicycle manufacturers, known for high-performance road, mountain, and e-bikes with customizable paint schemes.",
+    "founders": [],
+    "founding": {
+      "year": 1840,
+      "full_date": null,
+      "location": {
+        "city": "Mallabia",
+        "state_province": "Basque Country",
+        "country": "Spain"
+      }
+    },
+    "history": "Founded in 1840 as a gun manufacturer, Orbea transitioned to bicycle production in 1930. Based in the Basque Country, it operates as a worker cooperative and has become one of Spain's leading bicycle manufacturers.",
+    "parent_company": "Mondragón Corporation",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Mallabia",
+      "state_province": "Basque Country",
+      "country": "Spain"
+    },
+    "headquarters_image_url": null,
+    "company_type": "cooperative",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Multi-Category Bicycles",
+    "famous_models": [
+      "Orca",
+      "Oiz",
+      "Alma",
+      "Terra",
+      "Rallon",
+      "Wild"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Orca",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://www.orbea.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/Orbea",
+      "twitter": "https://twitter.com/Orbea",
+      "instagram": "https://www.instagram.com/orbea",
+      "linkedin": "https://www.linkedin.com/company/orbea",
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Worker cooperative with MyO custom paint program. Originally a gun manufacturer that transitioned to bicycles in 1930."
+  },
+  {
+    "brand_id": "orro",
+    "brand_name": "Orro Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.orrobikes.com/favicon.ico"
+    },
+    "description": "Orro Bikes is a British bicycle brand focused on road and gravel bikes, known for using high-quality carbon fiber and offering excellent value for money.",
+    "founders": [],
+    "founding": {
+      "year": 2014,
+      "full_date": null,
+      "location": {
+        "city": "Ditchling",
+        "state_province": "East Sussex",
+        "country": "United Kingdom"
+      }
+    },
+    "history": "Founded in 2014 in Sussex, England, Orro has established itself as a British brand emphasizing quality carbon fiber construction and value in the road and gravel bike segments.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Ditchling",
+      "state_province": "East Sussex",
+      "country": "United Kingdom"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Road & Gravel Bikes",
+    "famous_models": [
+      "Gold",
+      "Terra",
+      "Venturi",
+      "Pyro"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Gold",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://www.orrobikes.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/orroBikes",
+      "twitter": "https://twitter.com/orroBikes",
+      "instagram": "https://www.instagram.com/orrobikes",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "British brand emphasizing quality carbon fiber construction and value for money in road and gravel segments."
+  },
+  {
+    "brand_id": "otso",
+    "brand_name": "Otso Cycles",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.otsocycles.com/favicon.ico"
+    },
+    "description": "Otso Cycles is an American bicycle manufacturer specializing in gravel, adventure, and mountain bikes with innovative adjustable dropout systems.",
+    "founders": [],
+    "founding": {
+      "year": 2016,
+      "full_date": null,
+      "location": {
+        "city": "Duluth",
+        "state_province": "Minnesota",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 2016 in Duluth, Minnesota, Otso Cycles is known for their Tuning Chip adjustable dropout system that allows riders to change wheelbase and tire clearance for versatile riding.",
+    "parent_company": "Wolf Tooth Components",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Duluth",
+      "state_province": "Minnesota",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Gravel & Adventure Bikes",
+    "famous_models": [
+      "Warakin",
+      "Waheela",
+      "Fenrir",
+      "Voytek"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Warakin",
+        "year": 2016,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://www.otsocycles.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/otsocycles",
+      "twitter": null,
+      "instagram": "https://www.instagram.com/otsocycles",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Part of Wolf Tooth Components. Known for Tuning Chip adjustable dropout system for versatile bike geometry."
+  },
+  {
+    "brand_id": "oxylane",
+    "brand_name": "Oxylane",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Oxylane was the former name of Decathlon Group. They produce multiple in-house bicycle brands including B'Twin, Rockrider, and Van Rysel.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": "Villeneuve-d'Ascq",
+        "state_province": null,
+        "country": "France"
+      }
+    },
+    "history": "Oxylane was Decathlon's corporate name before being changed to Decathlon in 2014. The company produces various sporting goods including multiple bicycle brands sold exclusively through Decathlon stores.",
+    "parent_company": "Decathlon",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Villeneuve-d'Ascq",
+      "state_province": null,
+      "country": "France"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Multi-Category Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://www.decathlon.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Former corporate name of Decathlon. Produces B'Twin, Rockrider, Van Rysel and other bicycle brands."
+  },
+  {
+    "brand_id": "pace",
+    "brand_name": "Pace Cycles",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://pacecycles.com/favicon.ico"
+    },
+    "description": "British bicycle frame builder specializing in custom and bespoke bicycle frames, known for their steel and titanium frames.",
+    "founders": [],
+    "founding": {
+      "year": 1970,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United Kingdom"
+      }
+    },
+    "history": "Established in the 1970s, Pace Cycles has built a reputation for high-quality custom frame building with focus on touring and adventure bicycles.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United Kingdom"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Custom Frame Building",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://pacecycles.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Specializes in custom steel and titanium frames for touring and adventure cycling."
+  },
+  {
+    "brand_id": "panorama",
+    "brand_name": "Panorama Cycles",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://panoramacycles.com/favicon.ico"
+    },
+    "description": "Canadian bicycle manufacturer specializing in touring and gravel bikes, known for versatile designs suitable for long-distance cycling.",
+    "founders": [],
+    "founding": {
+      "year": 2010,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "Canada"
+      }
+    },
+    "history": "Founded in the 2010s, Panorama Cycles focuses on creating versatile bicycles for touring and gravel riding, with emphasis on bikepacking capabilities.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "Canada"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Touring & Gravel Bikes",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://panoramacycles.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Canadian brand focusing on touring and gravel bikes for long-distance cycling and bikepacking."
+  },
+  {
+    "brand_id": "parlee",
+    "brand_name": "Parlee Cycles",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://parleecycles.com/favicon.ico"
+    },
+    "description": "High-end carbon fiber bicycle manufacturer specializing in custom and production road, gravel, and triathlon bikes.",
+    "founders": [
+      "Bob Parlee"
+    ],
+    "founding": {
+      "year": 2000,
+      "full_date": null,
+      "location": {
+        "city": "Beverly",
+        "state_province": "Massachusetts",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 2000 by Bob Parlee, a boat builder who brought his carbon fiber expertise to bicycle manufacturing. Known for lightweight, high-performance custom and production bikes.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Beverly",
+      "state_province": "Massachusetts",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "High-End Carbon Bikes",
+    "famous_models": [
+      "Altum",
+      "Chebacco",
+      "RZ7"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://parleecycles.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Founded by boat builder Bob Parlee, bringing carbon fiber expertise to high-end bicycle manufacturing."
+  },
+  {
+    "brand_id": "pashley",
+    "brand_name": "Pashley Cycles",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Pashley_Cycles",
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://pashley.co.uk/favicon.ico"
+    },
+    "description": "Britain's longest-established bicycle manufacturer, specializing in traditional styled bicycles, cargo bikes, and tricycles.",
+    "founders": [],
+    "founding": {
+      "year": 1926,
+      "full_date": null,
+      "location": {
+        "city": "Stratford-upon-Avon",
+        "state_province": "Warwickshire",
+        "country": "United Kingdom"
+      }
+    },
+    "history": "Founded in 1926, Pashley is Britain's longest continually operating bicycle manufacturer. Known for traditional designs, hand-built quality, and specializing in utility and cargo bicycles.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Stratford-upon-Avon",
+      "state_province": "Warwickshire",
+      "country": "United Kingdom"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Traditional & Cargo Bikes",
+    "famous_models": [
+      "Princess",
+      "Britannia",
+      "Mailstar"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://pashley.co.uk",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Britain's longest-established bicycle manufacturer, known for traditional designs and hand-built quality."
+  },
+  {
+    "brand_id": "patrol",
+    "brand_name": "Patrol Mountain",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://patrolmountain.com/favicon.ico"
+    },
+    "description": "Indonesian mountain bike manufacturer specializing in gravity-focused bikes including downhill, enduro, and trail bikes.",
+    "founders": [],
+    "founding": {
+      "year": 2010,
+      "full_date": null,
+      "location": {
+        "city": "Bali",
+        "state_province": null,
+        "country": "Indonesia"
+      }
+    },
+    "history": "Founded in 2010 in Bali, Indonesia, Patrol Mountain has built a reputation for aggressive geometry mountain bikes sold direct-to-consumer globally.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Bali",
+      "state_province": null,
+      "country": "Indonesia"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "C07",
+      "C09",
+      "791"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://patrolmountain.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Indonesian brand known for aggressive geometry mountain bikes and direct-to-consumer sales model."
+  },
+  {
+    "brand_id": "pedego",
+    "brand_name": "Pedego Electric Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": "https://www.linkedin.com/company/pedego-electric-bikes",
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://pedego.com/favicon.ico"
+    },
+    "description": "One of America's largest electric bike brands, offering a wide range of e-bikes from cruisers to cargo bikes.",
+    "founders": [
+      "Don DiCostanzo",
+      "Terry Sherry"
+    ],
+    "founding": {
+      "year": 2008,
+      "full_date": null,
+      "location": {
+        "city": "Fountain Valley",
+        "state_province": "California",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 2008 by Don DiCostanzo and Terry Sherry in California, Pedego has grown to become one of the largest electric bike brands in America with an extensive dealer network.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Fountain Valley",
+      "state_province": "California",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles",
+    "famous_models": [
+      "Interceptor",
+      "City Commuter",
+      "Boomerang",
+      "Element"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://pedego.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/pedegoelectricbikes",
+      "twitter": null,
+      "instagram": "https://www.instagram.com/pedegoelectricbikes",
+      "linkedin": "https://www.linkedin.com/company/pedego-electric-bikes",
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Known for extensive dealer network and customer service. One of America's largest e-bike brands."
+  },
+  {
+    "brand_id": "pendleton",
+    "brand_name": "Pendleton Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Halfords' exclusive bicycle brand offering traditional and modern bikes, named after Olympic cyclist Victoria Pendleton.",
+    "founders": [],
+    "founding": {
+      "year": 2011,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United Kingdom"
+      }
+    },
+    "history": "Launched in 2011 as Halfords' exclusive brand, with initial designs influenced by Olympic cyclist Victoria Pendleton. Offers a range of bikes from traditional to modern styles.",
+    "parent_company": "Halfords",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United Kingdom"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "General Bicycles",
+    "famous_models": [
+      "Somerby",
+      "Drake",
+      "Brooke"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://www.halfords.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Halfords exclusive brand named after Olympic cyclist Victoria Pendleton."
+  },
+{
+    "brand_id": "pinarello",
+    "brand_name": "Pinarello",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Pinarello",
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://pinarello.com/favicon.ico"
+    },
+    "description": "Pinarello is an Italian luxury bicycle manufacturer renowned for producing high-performance racing bicycles, particularly road bikes used by professional cycling teams and elite athletes worldwide.",
+    "founders": [
+      "Giovanni Pinarello"
+    ],
+    "founding": {
+      "year": 1953,
+      "full_date": null,
+      "location": {
+        "city": "Treviso",
+        "state_province": "Veneto",
+        "country": "Italy"
+      }
+    },
+    "history": "Founded in 1953 by Giovanni Pinarello after his own cycling career. Started as a small bicycle shop and evolved into a premium manufacturer. Achieved first Tour de France victory with Pedro Delgado in 1988, and continued dominance with Team Sky/INEOS including victories with Bradley Wiggins, Chris Froome, and Geraint Thomas.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Treviso",
+      "state_province": "Veneto",
+      "country": "Italy"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "High-End Racing Bikes",
+    "famous_models": [
+      "Dogma F12",
+      "Dogma X",
+      "Prince",
+      "Paris",
+      "Grevil"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Dogma F12",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://pinarello.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/pinarello",
+      "twitter": "https://twitter.com/pinarello",
+      "instagram": "https://www.instagram.com/pinarello",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Multiple Tour de France victories, pioneered asymmetric frame design, synonymous with professional road racing and Italian craftsmanship."
+  },
+  {
+    "brand_id": "pinnacle",
+    "brand_name": "Pinnacle",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Pinnacle is a UK bicycle brand sold exclusively through Evans Cycles, offering entry-level and mid-range road, mountain, and hybrid bicycles.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United Kingdom"
+      }
+    },
+    "history": "Pinnacle bikes are sold exclusively through Evans Cycles retail chain in the UK, targeting entry-level and recreational cyclists with affordable, quality bicycles.",
+    "parent_company": "Evans Cycles",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United Kingdom"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Entry-Level Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://www.evanscycles.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Evans Cycles exclusive brand focusing on affordable entry-level bicycles for recreational cyclists."
+  },
+  {
+    "brand_id": "pivot",
+    "brand_name": "Pivot Cycles",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://pivotcycles.com/favicon.ico"
+    },
+    "description": "Pivot Cycles is a premium mountain bike manufacturer specializing in high-performance full-suspension mountain bikes with innovative DW-Link suspension technology.",
+    "founders": [
+      "Chris Cocalis"
+    ],
+    "founding": {
+      "year": 2011,
+      "full_date": null,
+      "location": {
+        "city": "Tempe",
+        "state_province": "Arizona",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 2011 by Chris Cocalis, who previously founded Intense Manufacturing. Pivot has built a reputation for innovative suspension technology and race-proven designs in the premium mountain bike market.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Tempe",
+      "state_province": "Arizona",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "Firebird",
+      "Switchblade",
+      "Mach 4 SL",
+      "Mach 5.5",
+      "Trail 429"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Firebird",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://pivotcycles.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/pivotcycles",
+      "twitter": null,
+      "instagram": "https://www.instagram.com/pivotcycles",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Known for DW-Link suspension technology licensed from Dave Weagle, focusing on premium mountain bike performance and racing."
+  },
+  {
+    "brand_id": "pole",
+    "brand_name": "Pole Bicycles",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://polebicycles.com/favicon.ico"
+    },
+    "description": "Pole Bicycles is a Finnish mountain bike manufacturer known for innovative enduro bikes with progressive geometry and long travel suspension.",
+    "founders": [],
+    "founding": {
+      "year": 2013,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "Finland"
+      }
+    },
+    "history": "Founded in 2013 in Finland, Pole has gained recognition for pushing the boundaries of mountain bike geometry with their long, low, slack design philosophy for enduro and downhill riding.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "Finland"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Enduro Mountain Bikes",
+    "famous_models": [
+      "Evolink",
+      "Machine",
+      "Stamina"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://polebicycles.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": "https://www.instagram.com/polebicycles",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Finnish brand known for progressive geometry and innovative approach to enduro mountain bike design."
+  },
+  {
+    "brand_id": "polygon",
+    "brand_name": "Polygon Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://polygonbikes.com/favicon.ico"
+    },
+    "description": "Polygon Bikes is a leading Indonesian bicycle manufacturer known for producing high-quality mountain bikes, road bikes, and electric bicycles with a direct-to-consumer business model.",
+    "founders": [],
+    "founding": {
+      "year": 1989,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "Indonesia"
+      }
+    },
+    "history": "Founded in 1989 as PT Insera Sena, Polygon has grown from a local Indonesian manufacturer to an internationally recognized brand, expanding globally while maintaining competitive pricing through their direct-to-consumer model.",
+    "parent_company": "PT Insera Sena",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "Indonesia"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Multi-Category Bicycles",
+    "famous_models": [
+      "Siskiu",
+      "Collosus",
+      "Xtrada",
+      "Strattos",
+      "Helios"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://polygonbikes.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/polygonbikes",
+      "twitter": null,
+      "instagram": "https://www.instagram.com/polygonbikes",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Indonesian manufacturer with strong global presence, known for direct-to-consumer sales model and value engineering."
+  },
+  {
+    "brand_id": "poseidon",
+    "brand_name": "Poseidon Bike",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://poseidonbike.com/favicon.ico"
+    },
+    "description": "Poseidon Bike is an American direct-to-consumer bicycle manufacturer specializing in affordable steel road and gravel bikes.",
+    "founders": [],
+    "founding": {
+      "year": 2019,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 2019, Poseidon focuses on providing high-quality steel frame bicycles at affordable prices through direct-to-consumer sales, eliminating traditional retail markups.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Steel Road & Gravel Bikes",
+    "famous_models": [
+      "Triton",
+      "Redwood"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://poseidonbike.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": "https://www.instagram.com/poseidonbike",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Direct-to-consumer brand focusing on affordable steel frame road and gravel bikes with quality components."
+  },
+  {
+    "brand_id": "raleigh",
+    "brand_name": "Raleigh Bicycle Company",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Raleigh_Bicycle_Company",
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://raleigh.co.uk/favicon.ico"
+    },
+    "description": "Raleigh Bicycle Company is a historic British bicycle manufacturer that has been producing bicycles for over 135 years, known for innovative and iconic bicycle designs.",
+    "founders": [
+      "Frank Bowden"
+    ],
+    "founding": {
+      "year": 1887,
+      "full_date": null,
+      "location": {
+        "city": "Nottingham",
+        "state_province": "England",
+        "country": "United Kingdom"
+      }
+    },
+    "history": "Founded in 1887 by Frank Bowden in Nottingham, England. Named after Raleigh Street where it started. Became one of the world's largest bicycle manufacturers and created iconic designs like the Raleigh Chopper in 1969.",
+    "parent_company": "Accell Group",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Nottingham",
+      "state_province": "England",
+      "country": "United Kingdom"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Multi-Category Bicycles",
+    "famous_models": [
+      "Chopper",
+      "Twenty",
+      "Grifter",
+      "Burner"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Chopper",
+        "year": 1969,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://raleigh.co.uk",
+    "social_media": {
+      "facebook": "https://www.facebook.com/RaleighBikes",
+      "twitter": "https://twitter.com/raleighbikes",
+      "instagram": "https://www.instagram.com/raleighbikes",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "One of the world's oldest bicycle manufacturers with over 135 years of history. Created iconic designs that defined generations of cycling."
+  },
+  {
+    "brand_id": "santacruz",
+    "brand_name": "Santa Cruz Bicycles",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://santacruzbicycles.com/favicon.ico"
+    },
+    "description": "Santa Cruz Bicycles is a premium mountain bike manufacturer based in Santa Cruz, California, renowned for high-end mountain bikes with innovative VPP suspension technology.",
+    "founders": [
+      "Rob Roskopp",
+      "Rich Novak"
+    ],
+    "founding": {
+      "year": 1993,
+      "full_date": null,
+      "location": {
+        "city": "Santa Cruz",
+        "state_province": "California",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 1993 by Rob Roskopp (former professional skateboarder) and Rich Novak. Built reputation through innovative VPP suspension system developed with Dave Weagle and strong presence in competitive mountain bike racing.",
+    "parent_company": "PON Holdings",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Santa Cruz",
+      "state_province": "California",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "Hightower",
+      "Nomad",
+      "Bronson",
+      "5010",
+      "Tallboy",
+      "Megatower"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Hightower",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://santacruzbicycles.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/santacruzbicycles",
+      "twitter": "https://twitter.com/SCBicycles",
+      "instagram": "https://www.instagram.com/santacruzbicycles",
+      "linkedin": null,
+      "youtube": "https://www.youtube.com/user/santacruzbicycles",
+      "pinterest": null
+    },
+    "additional_notes": "Known for VPP suspension technology, Santa Cruz Syndicate racing team, and premium California mountain bike design."
+  },
+  {
+    "brand_id": "schwinn",
+    "brand_name": "Schwinn Bicycle Company",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Schwinn_Bicycle_Company",
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.schwinnbikes.com/favicon.ico"
+    },
+    "description": "Schwinn Bicycle Company is a historic American bicycle manufacturer founded in 1895, known as 'the original American bike brand' with over 125 years of cycling heritage.",
+    "founders": [
+      "Ignaz Schwinn",
+      "Adolph Arnold"
+    ],
+    "founding": {
+      "year": 1895,
+      "full_date": null,
+      "location": {
+        "city": "Chicago",
+        "state_province": "Illinois",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 1895 in Chicago by German immigrant Ignaz Schwinn and Adolph Arnold. Became synonymous with American cycling culture, producing iconic bikes like the Stingray. Now owned by Pacific Cycle and continues the legacy with modern innovations.",
+    "parent_company": "Pacific Cycle (Dorel Industries)",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Madison",
+      "state_province": "Wisconsin",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Multi-Category Bicycles",
+    "famous_models": [
+      "Stingray",
+      "Varsity",
+      "Continental",
+      "Paramount"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Stingray",
+        "year": 1963,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://www.schwinnbikes.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/schwinnbikes",
+      "twitter": "https://twitter.com/schwinnbikes",
+      "instagram": "https://www.instagram.com/schwinnbikes",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Historic American bicycle manufacturer, credited with building the bicycle industry and creating cycling memories for generations."
+  },
+  {
+    "brand_id": "scott",
+    "brand_name": "Scott Sports",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Scott_Sports",
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://scott-sports.com/favicon.ico"
+    },
+    "description": "Scott Sports is a Swiss sports equipment manufacturer specializing in bicycles, winter sports equipment, and motorsports gear, known for innovation in cycling technology.",
+    "founders": [
+      "Ed Scott"
+    ],
+    "founding": {
+      "year": 1958,
+      "full_date": null,
+      "location": {
+        "city": "Sun Valley",
+        "state_province": "Idaho",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 1958 by Ed Scott in Sun Valley, Idaho, initially focusing on ski poles. Expanded into bicycles in the 1980s and relocated headquarters to Switzerland. Known for lightweight materials and innovative design.",
+    "parent_company": null,
+    "subsidiaries": [
+      "Syncros"
+    ],
+    "headquarters": {
+      "address": null,
+      "city": "Givisiez",
+      "state_province": null,
+      "country": "Switzerland"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Multi-Category Bicycles",
+    "famous_models": [
+      "Spark",
+      "Genius",
+      "Scale",
+      "Addict",
+      "Foil"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Spark",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://scott-sports.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/scottsports",
+      "twitter": "https://twitter.com/scottsports",
+      "instagram": "https://www.instagram.com/scottsports",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Swiss engineering precision with innovations like TwinLoc suspension technology and strong presence in professional cycling."
+  },
+  {
+    "brand_id": "surly",
+    "brand_name": "Surly Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://surlybikes.com/favicon.ico"
+    },
+    "description": "Surly Bikes is a Minnesota-based bicycle manufacturer known for steel frame adventure and touring bicycles, with the philosophy of 'serious steel bikes for people who don't take themselves too seriously.'",
+    "founders": [],
+    "founding": {
+      "year": 1998,
+      "full_date": null,
+      "location": {
+        "city": "Bloomington",
+        "state_province": "Minnesota",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 1998 as part of Quality Bicycle Products (QBP) in Minnesota. Known for their distinctive brand personality, commitment to steel frame construction, and focus on adventure cycling and utility bikes.",
+    "parent_company": "Quality Bicycle Products (QBP)",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Bloomington",
+      "state_province": "Minnesota",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Adventure & Touring Bikes",
+    "famous_models": [
+      "Long Haul Trucker",
+      "Cross-Check",
+      "Midnight Special",
+      "Bridge Club",
+      "Big Dummy"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Long Haul Trucker",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://surlybikes.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/surlybikes",
+      "twitter": "https://twitter.com/surlybikes",
+      "instagram": "https://www.instagram.com/surlybikes",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Certified B Corporation committed to sustainability, known for steel frames, adventure cycling, and distinctive brand personality."
+  },
+  {
+    "brand_id": "yeti",
+    "brand_name": "Yeti Cycles",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://yeticycles.com/favicon.ico"
+    },
+    "description": "Yeti Cycles is a Colorado-based premium mountain bike manufacturer known for their Switch Infinity suspension technology and Turq carbon frame construction.",
+    "founders": [
+      "John Parker"
+    ],
+    "founding": {
+      "year": 1985,
+      "full_date": null,
+      "location": {
+        "city": "Camarillo",
+        "state_province": "California",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 1985 by John Parker in California, later moved to Colorado. Known for innovative mountain bike design, Switch Infinity suspension technology, and strong racing heritage in mountain biking.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Golden",
+      "state_province": "Colorado",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "SB130",
+      "SB150",
+      "SB165",
+      "ARC"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "SB130",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://yeticycles.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/yeticycles",
+      "twitter": "https://twitter.com/yeticycles",
+      "instagram": "https://www.instagram.com/yeticycles",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Known for Switch Infinity suspension, Turq carbon technology, and Colorado mountain biking heritage with strong racing presence."
+  },
+{
+    "brand_id": "premium",
+    "brand_name": "Premium BMX",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Premium BMX is a bicycle brand specializing in BMX bikes and components for freestyle and racing applications.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": null
+      }
+    },
+    "history": "Premium is known in the BMX community for producing quality BMX bikes and aftermarket components.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": null
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "BMX Bikes",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Specializes in BMX bicycles and components for freestyle and racing applications."
+  },
+  {
+    "brand_id": "prevelo",
+    "brand_name": "Prevelo Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": "https://www.linkedin.com/company/prevelo",
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.prevelo.com/favicon.ico"
+    },
+    "description": "Prevelo Bikes specializes in lightweight, high-quality bikes specifically engineered for kids, emphasizing safety, ease of use, and fun in children's bike design.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": "Westlake Village",
+        "state_province": "California",
+        "country": "United States"
+      }
+    },
+    "history": "Prevelo has built a reputation for creating bikes specifically designed for children, focusing on proper sizing, weight reduction, and safety features.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": "766A Hampshire Road, Westlake Village, CA 91361",
+      "city": "Westlake Village",
+      "state_province": "California",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Children's Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://www.prevelo.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/prevelobikes",
+      "twitter": null,
+      "instagram": "https://www.instagram.com/prevelobikes",
+      "linkedin": "https://www.linkedin.com/company/prevelo",
+      "youtube": "https://www.youtube.com/channel/UCxxx",
+      "pinterest": null
+    },
+    "additional_notes": "Specializes in lightweight bikes for children with emphasis on safety and proper sizing. Contact: support@prevelo.com, (805) 557-8300."
+  },
+  {
+    "brand_id": "prime",
+    "brand_name": "Prime Bicycles",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Prime Bicycles is a component and bicycle brand associated with Wiggle/Chain Reaction Cycles, offering cycling components and complete bikes.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United Kingdom"
+      }
+    },
+    "history": "Prime is a house brand of Wiggle/Chain Reaction Cycles, offering quality bicycle components and complete bikes at competitive prices.",
+    "parent_company": "Wiggle/Chain Reaction Cycles",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United Kingdom"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Bicycle Components",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "House brand of Wiggle/Chain Reaction Cycles focusing on bicycle components and complete bikes."
+  },
+  {
+    "brand_id": "priority",
+    "brand_name": "Priority Bicycles",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.prioritybicycles.com/favicon.ico"
+    },
+    "description": "Priority Bicycles specializes in low-maintenance belt drive bikes, offering maintenance-free cycling solutions for urban commuters and recreational riders.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United States"
+      }
+    },
+    "history": "Priority has focused on revolutionizing bicycle maintenance by utilizing belt drive systems and internal gear hubs to create virtually maintenance-free bicycles.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Belt Drive Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://www.prioritybicycles.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Focus on maintenance-free cycling solutions using belt drive technology and internal gear hubs."
+  },
+  {
+    "brand_id": "privateer",
+    "brand_name": "Privateer Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Privateer Bikes is a UK-based mountain bike manufacturer known for producing high-quality mountain bikes with a focus on performance and value.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United Kingdom"
+      }
+    },
+    "history": "Privateer has established itself in the UK mountain bike scene with models designed for various mountain biking disciplines.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United Kingdom"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "101",
+      "P4X"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "UK-based mountain bike brand known for models like 101 and P4X."
+  },
+  {
+    "brand_id": "productionprivee",
+    "brand_name": "Production Privée",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Production Privée is a French mountain bike manufacturer specializing in enduro and mountain bikes with innovative design and performance focus.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "France"
+      }
+    },
+    "history": "Production Privée has carved out a niche in the French cycling market with their focus on enduro mountain bikes and innovative designs.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "France"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "French mountain bike manufacturer known for enduro bikes and innovative design."
+  },
+  {
+    "brand_id": "propain",
+    "brand_name": "Propain Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Propain Bikes is a German mountain bike manufacturer known for producing high-quality mountain bikes with distinctive designs and performance-oriented features.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "Germany"
+      }
+    },
+    "history": "Propain has established itself in the German mountain bike market with a focus on innovative mountain bike designs and quality construction.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "Germany"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "Frechdax",
+      "Tyee",
+      "Ekano"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "German mountain bike brand with models like Frechdax, Tyee, and Ekano."
+  },
+  {
+    "brand_id": "propella",
+    "brand_name": "Propella Electric Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Propella Electric Bikes is a Seattle-based electric bike company specializing in lightweight electric bicycles for urban commuting and recreational riding.",
+    "founders": [],
+    "founding": {
+      "year": 2015,
+      "full_date": null,
+      "location": {
+        "city": "Seattle",
+        "state_province": "Washington",
+        "country": "United States"
+      }
+    },
+    "history": "Founded around 2015 in Seattle, Propella has focused on creating lightweight electric bikes that maintain the feel of traditional cycling while adding electric assistance.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Seattle",
+      "state_province": "Washington",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Seattle-based electric bike company founded around 2015, focusing on lightweight e-bikes."
+  },
+  {
+    "brand_id": "public",
+    "brand_name": "Public Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.publicbikes.com/favicon.ico"
+    },
+    "description": "Public Bikes is an online bicycle and accessories retailer specializing in urban and commuter bikes, targeting regular commuters and weekend warriors with versatile bike options.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United States"
+      }
+    },
+    "history": "Public Bikes has established itself as an online retailer focused on urban cycling solutions, offering step-through, mixte, diamond, and kids' bikes.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Urban Bicycles",
+    "famous_models": [
+      "C7"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "C7",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://www.publicbikes.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Online bicycle retailer specializing in urban bikes. C7 is their best-selling model at $599.99."
+  },
+  {
+    "brand_id": "puky",
+    "brand_name": "Puky",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.puky.de/favicon.ico"
+    },
+    "description": "Puky is a traditional German brand with over 75 years of experience creating safe, child-friendly, and durable vehicles including balance bikes, scooters, and bicycles for children.",
+    "founders": [],
+    "founding": {
+      "year": 1949,
+      "full_date": null,
+      "location": {
+        "city": "Wüllfrath",
+        "state_province": null,
+        "country": "Germany"
+      }
+    },
+    "history": "Founded in 1949, Puky has been a trusted German brand for over 75 years, specializing in children's mobility products with safety as the top priority.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Wüllfrath",
+      "state_province": null,
+      "country": "Germany"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Children's Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://www.puky.de",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "German brand founded in 1949 with over 75 years of experience. Offers 5-year warranty and multiple design awards. Product categories include balance bikes, scooters, and bicycles for ages 1-14."
+  },
+  {
+    "brand_id": "pure",
+    "brand_name": "Pure Cycles",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Pure Cycles is a San Diego-based bicycle manufacturer specializing in fixed gear and single speed urban bikes for city commuting and lifestyle cycling.",
+    "founders": [],
+    "founding": {
+      "year": 2009,
+      "full_date": null,
+      "location": {
+        "city": "San Diego",
+        "state_province": "California",
+        "country": "United States"
+      }
+    },
+    "history": "Founded around 2009 in San Diego, Pure Cycles has focused on the fixed gear and single speed bicycle market, offering affordable urban cycling solutions.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "San Diego",
+      "state_province": "California",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Fixed Gear/Single Speed Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "San Diego-based brand founded around 2009, specializing in fixed gear and single speed urban bikes."
+  },
+  {
+    "brand_id": "pyga",
+    "brand_name": "Pyga Industries",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Pyga Industries is a South African mountain bike manufacturer known for producing high-quality mountain bikes designed for the unique terrain and conditions of South Africa.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "South Africa"
+      }
+    },
+    "history": "Pyga has established itself as a prominent South African mountain bike manufacturer, designing bikes specifically for local terrain and riding conditions.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "South Africa"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "OneOne",
+      "Hyrax"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "South African mountain bike manufacturer with famous models including OneOne and Hyrax."
+  },
+  {
+    "brand_id": "qualisports",
+    "brand_name": "Qualisports",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Qualisports specializes in folding electric commuter bikes, offering compact e-bike solutions for urban transportation and commuting needs.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United States"
+      }
+    },
+    "history": "Qualisports has focused on the growing market for folding electric bikes, providing solutions for urban commuters who need portable transportation options.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles",
+    "famous_models": [
+      "Beluga",
+      "Volador"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Specializes in folding electric commuter bikes with models like Beluga and Volador."
+  },
+  {
+    "brand_id": "quietkat",
+    "brand_name": "QuietKat",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.quietkat.com/favicon.ico"
+    },
+    "description": "QuietKat specializes in rugged, all-terrain electric bikes designed for outdoor pursuits including hunting, fishing, mountain biking, overlanding, and camping.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United States"
+      }
+    },
+    "history": "QuietKat has carved out a unique niche in the electric bike market by focusing on outdoor recreational activities and rugged terrain applications.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Hunting/Outdoor Bikes",
+    "famous_models": [
+      "Ranger AWD",
+      "Apex XD",
+      "Apex HD",
+      "Ibex",
+      "Lynx",
+      "Villager"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Ranger AWD",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://www.quietkat.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Specializes in rugged electric bikes for outdoor activities. Features Variable Power Output (VPO) technology and offers 15-day, 10-mile risk-free test rides."
+  },
+  {
+    "brand_id": "quintanaroo",
+    "brand_name": "Quintana Roo",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Quintana Roo specializes in triathlon and time trial bicycles, focusing on aerodynamic design and performance for competitive triathlon racing.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": null
+      }
+    },
+    "history": "Quintana Roo has been a specialized manufacturer in the triathlon bicycle market, focusing exclusively on aerodynamic designs for time trials and triathlon racing.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": null
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Triathlon Bikes",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Specializes in triathlon and time trial bicycles with focus on aerodynamic design."
+  },
+  {
+    "brand_id": "raaw",
+    "brand_name": "RAAW Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "RAAW Bikes is a German manufacturer specializing in downhill and mountain bikes, known for aggressive designs and high-performance mountain biking applications.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "Germany"
+      }
+    },
+    "history": "RAAW has established itself in the German mountain bike scene with a focus on downhill and aggressive mountain biking disciplines.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "Germany"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "Madonna",
+      "Jibb"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "German downhill and mountain bike manufacturer with models like Madonna and Jibb."
+  },
+  {
+    "brand_id": "radio",
+    "brand_name": "Radio Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Radio Bikes is a Polish BMX bike manufacturer specializing in BMX bicycles and components for freestyle and racing applications.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "Poland"
+      }
+    },
+    "history": "Radio Bikes has established itself in the European BMX market, producing quality BMX bikes and components from their Polish operations.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "Poland"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "BMX Bikes",
+    "famous_models": [
+      "Raceline",
+      "Darko"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Polish BMX bike manufacturer with models like Raceline and Darko."
+  },
+  {
+    "brand_id": "radpowerbikes",
+    "brand_name": "Rad Power Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://radpowerbikes.com/favicon.ico"
+    },
+    "description": "Rad Power Bikes is a major electric bike manufacturer with over 680,000 riders in their community, specializing in affordable electric bicycles for various applications.",
+    "founders": [
+      "Mike Radenbaugh"
+    ],
+    "founding": {
+      "year": 2005,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 2005 by Mike Radenbaugh starting in his parent's garage, Rad Power Bikes has grown to become a major electric bike manufacturer with a community of over 680,000 riders and holds the world record for largest ebike group ride.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles",
+    "famous_models": [
+      "Radster",
+      "RadRunner",
+      "RadExpand",
+      "RadWagon",
+      "RadRover",
+      "RadCity",
+      "RadTrike",
+      "RadKick"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "RadRunner",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://radpowerbikes.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/RadPowerBikes",
+      "twitter": null,
+      "instagram": "https://www.instagram.com/radpowerbikes",
+      "linkedin": null,
+      "youtube": "https://www.youtube.com/channel/UCxxx",
+      "pinterest": null
+    },
+    "additional_notes": "Major ebike manufacturer founded in 2005 with 680,000+ riders community. Offers free shipping, 2-year warranty, and 1,400+ local bike shop partners. Holds world record for largest ebike group ride."
+  },
+{
+    "brand_id": "ragley",
+    "brand_name": "Ragley Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://ragley.co.uk/favicon.ico"
+    },
+    "description": "Ragley Bikes is a UK-based mountain bike manufacturer known for steel hardtail mountain bikes with aggressive geometry and distinctive designs.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United Kingdom"
+      }
+    },
+    "history": "Ragley has built a reputation in the UK mountain bike scene for creating steel hardtail frames with aggressive geometry designed for trail and enduro riding.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United Kingdom"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "Big Al",
+      "Marley",
+      "Blue Pig"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://ragley.co.uk",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": "https://www.instagram.com/ragleybikes",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "UK-based brand known for steel hardtail mountain bikes with aggressive geometry and models like Big Al, Marley, and Blue Pig."
+  },
+  {
+    "brand_id": "rambobikes",
+    "brand_name": "Rambo Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://rambobikes.com/favicon.ico"
+    },
+    "description": "Rambo Bikes specializes in electric fat tire bikes designed for hunting, fishing, and outdoor recreation with rugged all-terrain capabilities.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United States"
+      }
+    },
+    "history": "Rambo has carved out a niche in the electric bike market by focusing on outdoor enthusiasts who need rugged, all-terrain electric bikes for hunting and recreation.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Fat Tire Bikes",
+    "famous_models": [
+      "Rebel",
+      "Pursuit",
+      "Nomad"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://rambobikes.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": "https://www.instagram.com/rambobikes",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Specializes in electric fat tire bikes for hunting and outdoor recreation with models like Rebel, Pursuit, and Nomad."
+  },
+  {
+    "brand_id": "rattan",
+    "brand_name": "Rattan",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Rattan is an electric bike manufacturer offering affordable e-bikes for commuting and recreational riding with a focus on value and accessibility.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United States"
+      }
+    },
+    "history": "Rattan has focused on making electric bikes accessible to a broader market by offering feature-rich e-bikes at competitive price points.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Electric bike manufacturer focusing on affordable e-bikes for commuting and recreational riding."
+  },
+  {
+    "brand_id": "redline",
+    "brand_name": "Redline Bicycles",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Redline_Bicycles",
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Redline Bicycles is a historic BMX and mountain bike manufacturer founded in 1970, known for pioneering BMX racing and freestyle bikes.",
+    "founders": [
+      "Linn Kastan",
+      "Mike Konle"
+    ],
+    "founding": {
+      "year": 1970,
+      "full_date": null,
+      "location": {
+        "city": "Chatsworth",
+        "state_province": "California",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 1970 by Linn Kastan and Mike Konle, Redline was one of the first BMX manufacturers and helped establish the BMX racing scene. The company has been influential in both BMX racing and freestyle disciplines.",
+    "parent_company": "Accell Group",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Kent",
+      "state_province": "Washington",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "BMX Bikes",
+    "famous_models": [
+      "RL 20 II",
+      "MX-24",
+      "Proline"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "RL 20 II",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://redlinebicycles.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/redlinebicycles",
+      "twitter": null,
+      "instagram": "https://www.instagram.com/redlinebicycles",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Historic BMX manufacturer founded in 1970, one of the pioneers of BMX racing and freestyle. Known for models like RL 20 II and MX-24."
+  },
+  {
+    "brand_id": "reeb",
+    "brand_name": "REEB Cycles",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "REEB Cycles is a Colorado-based custom steel frame builder known for handcrafted mountain and gravel bikes with attention to detail and craftsmanship.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": "Colorado",
+        "country": "United States"
+      }
+    },
+    "history": "REEB has established itself in the custom bike building scene with hand-built steel frames designed for mountain biking and gravel riding applications.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": "Colorado",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Custom Steel Frames",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Colorado-based custom steel frame builder specializing in handcrafted mountain and gravel bikes."
+  },
+  {
+    "brand_id": "reid",
+    "brand_name": "Reid Cycles",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.reidcycles.com/favicon.ico"
+    },
+    "description": "Reid Cycles is an Australian bicycle manufacturer and retailer offering a wide range of bikes from kids' bikes to electric bikes, focusing on affordable quality cycling solutions.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "Australia"
+      }
+    },
+    "history": "Reid Cycles has grown to become a prominent Australian bicycle brand, offering everything from children's bikes to adult commuter and electric bikes with a focus on value.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "Australia"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Multi-Category Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://www.reidcycles.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": "https://www.instagram.com/reidcycles",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Australian bicycle manufacturer and retailer offering affordable quality bikes across multiple categories including electric bikes."
+  },
+  {
+    "brand_id": "revel",
+    "brand_name": "Revel Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://revelbikes.com/favicon.ico"
+    },
+    "description": "Revel Bikes is a Colorado-based mountain bike manufacturer known for innovative suspension designs and carbon fiber mountain bikes focused on climbing efficiency and descending capability.",
+    "founders": [
+      "Adam Miller"
+    ],
+    "founding": {
+      "year": 2017,
+      "full_date": null,
+      "location": {
+        "city": "Carbondale",
+        "state_province": "Colorado",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 2017 by Adam Miller in Carbondale, Colorado, Revel has quickly gained recognition for their innovative CBF (canfield brothers fabrication) suspension design and high-quality carbon mountain bikes.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Carbondale",
+      "state_province": "Colorado",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "Rascal",
+      "Rail",
+      "Ranger"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Rascal",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://revelbikes.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": "https://www.instagram.com/revelbikes",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Colorado-based mountain bike manufacturer founded in 2017, known for CBF suspension design and models like Rascal, Rail, and Ranger."
+  },
+  {
+    "brand_id": "revolve",
+    "brand_name": "Revolve",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Revolve is a bicycle brand focusing on electric bikes and urban mobility solutions for modern commuting needs.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": null
+      }
+    },
+    "history": "Revolve has positioned itself in the urban mobility market with electric bikes designed for city commuting and transportation.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": null
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Focuses on electric bikes and urban mobility solutions for modern commuting."
+  },
+  {
+    "brand_id": "ride1up",
+    "brand_name": "Ride1Up",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://ride1up.com/favicon.ico"
+    },
+    "description": "Ride1Up is a direct-to-consumer electric bike company offering affordable, high-quality e-bikes with modern features and reliable performance for urban and recreational riding.",
+    "founders": [],
+    "founding": {
+      "year": 2018,
+      "full_date": null,
+      "location": {
+        "city": "San Diego",
+        "state_province": "California",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 2018 in San Diego, Ride1Up has grown rapidly in the direct-to-consumer e-bike market by offering feature-rich electric bikes at competitive prices.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "San Diego",
+      "state_province": "California",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles",
+    "famous_models": [
+      "Core-5",
+      "700 Series",
+      "Roadster V2"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Core-5",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://ride1up.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": "https://www.instagram.com/ride1up",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "San Diego-based direct-to-consumer e-bike company founded in 2018, known for affordable high-quality electric bikes like Core-5 and 700 Series."
+  },
+  {
+    "brand_id": "ridgeback",
+    "brand_name": "Ridgeback Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Ridgeback Bikes is a UK bicycle manufacturer offering a comprehensive range of bikes including hybrid, mountain, road, and electric bikes with a focus on practical cycling solutions.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United Kingdom"
+      }
+    },
+    "history": "Ridgeback has established itself in the UK cycling market by offering reliable, practical bikes across multiple categories for commuting, touring, and recreational riding.",
+    "parent_company": "Madison",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United Kingdom"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Multi-Category Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://ridgebackbikes.co.uk",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": "https://www.instagram.com/ridgebackbikes",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "UK bicycle manufacturer owned by Madison, offering practical cycling solutions across hybrid, mountain, road, and electric bike categories."
+  },
+  {
+    "brand_id": "ridley",
+    "brand_name": "Ridley Bikes",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Ridley_Bikes",
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://ridleybikes.com/favicon.ico"
+    },
+    "description": "Ridley Bikes is a Belgian bicycle manufacturer specializing in high-performance road, cyclocross, and gravel bikes, known for innovation in carbon fiber technology and professional racing heritage.",
+    "founders": [
+      "Jochim Aerts"
+    ],
+    "founding": {
+      "year": 1997,
+      "full_date": null,
+      "location": {
+        "city": "Paal-Beringen",
+        "state_province": null,
+        "country": "Belgium"
+      }
+    },
+    "history": "Founded in 1997 by Jochim Aerts in Belgium, Ridley has built a strong reputation in professional cycling with innovations in carbon fiber technology and partnerships with professional teams.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Paal-Beringen",
+      "state_province": null,
+      "country": "Belgium"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Road & Cyclocross Bikes",
+    "famous_models": [
+      "Helium SLX",
+      "Noah Fast",
+      "X-Trail",
+      "Fenix SLiC"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Helium SLX",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://ridleybikes.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/ridleybikes",
+      "twitter": "https://twitter.com/ridleybikes",
+      "instagram": "https://www.instagram.com/ridleybikes",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Belgian manufacturer founded in 1997, known for carbon fiber innovation and professional racing heritage with models like Helium SLX and Noah Fast."
+  },
+  {
+    "brand_id": "rieseandmuller",
+    "brand_name": "Riese & Müller",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Riese_%26_M%C3%BCller",
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.r-m.de/favicon.ico"
+    },
+    "description": "Riese & Müller is a German premium e-bike manufacturer known for innovative electric bikes, cargo bikes, and folding bikes with high-quality engineering and design.",
+    "founders": [
+      "Markus Riese",
+      "Heiko Müller"
+    ],
+    "founding": {
+      "year": 1993,
+      "full_date": null,
+      "location": {
+        "city": "Weiterstadt",
+        "state_province": "Hesse",
+        "country": "Germany"
+      }
+    },
+    "history": "Founded in 1993 by Markus Riese and Heiko Müller, the company has become a leader in premium e-bikes and innovative bicycle solutions, particularly known for their full-suspension e-bikes and cargo bikes.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Weiterstadt",
+      "state_province": "Hesse",
+      "country": "Germany"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles",
+    "famous_models": [
+      "Load",
+      "Superdelite",
+      "Charger",
+      "Birdy"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Load",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://www.r-m.de",
+    "social_media": {
+      "facebook": "https://www.facebook.com/rieseundmueller",
+      "twitter": null,
+      "instagram": "https://www.instagram.com/rieseundmueller",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "German premium e-bike manufacturer founded in 1993, known for innovative electric bikes, cargo bikes like Load, and folding bikes like Birdy."
+  },
+  {
+    "brand_id": "ritchey",
+    "brand_name": "Ritchey Design",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Tom_Ritchey",
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://ritcheylogic.com/favicon.ico"
+    },
+    "description": "Ritchey Design is founded by mountain bike pioneer Tom Ritchey, specializing in high-quality steel and carbon frames, components, and complete bikes for road, mountain, and gravel cycling.",
+    "founders": [
+      "Tom Ritchey"
+    ],
+    "founding": {
+      "year": 1974,
+      "full_date": null,
+      "location": {
+        "city": "Palo Alto",
+        "state_province": "California",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 1974 by Tom Ritchey, a pioneer in mountain biking who built some of the first mountain bike frames. The company continues to produce high-quality frames and components with a focus on craftsmanship and innovation.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Redwood City",
+      "state_province": "California",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "High-End Frames & Components",
+    "famous_models": [
+      "Road Logic",
+      "Outback",
+      "Swiss Cross"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Road Logic",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://ritcheylogic.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": "https://www.instagram.com/ritcheylogic",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Founded by mountain bike pioneer Tom Ritchey in 1974, known for high-quality frames and components including Road Logic, Outback, and Swiss Cross models."
+  },
+  {
+    "brand_id": "riva",
+    "brand_name": "Riva",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Riva is a bicycle brand focusing on electric bikes and modern cycling solutions.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": null
+      }
+    },
+    "history": "Riva has positioned itself in the cycling market with a focus on electric bikes and contemporary cycling technology.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": null
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Bicycle brand focusing on electric bikes and modern cycling solutions."
+  },
+  {
+    "brand_id": "riverside",
+    "brand_name": "Riverside",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Riverside is Decathlon's cycling brand specializing in hybrid bikes, touring bikes, and urban cycling solutions designed for recreational and commuting use.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "France"
+      }
+    },
+    "history": "Riverside is part of Decathlon's portfolio of sports brands, focusing on providing accessible and reliable cycling solutions for everyday riders and touring enthusiasts.",
+    "parent_company": "Decathlon",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "France"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Hybrid & Touring Bikes",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Decathlon's cycling brand specializing in hybrid bikes, touring bikes, and urban cycling solutions."
+  },
+  {
+    "brand_id": "rizebikes",
+    "brand_name": "Rize Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://rizebikes.com/favicon.ico"
+    },
+    "description": "Rize Bikes is a Canadian electric bike manufacturer offering a range of e-bikes including fat tire, commuter, and cargo electric bikes with a focus on quality and performance.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "Canada"
+      }
+    },
+    "history": "Rize Bikes has established itself in the Canadian e-bike market by offering versatile electric bikes designed for various riding conditions and applications.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "Canada"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles",
+    "famous_models": [
+      "RX",
+      "Leisure",
+      "X"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://rizebikes.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": "https://www.instagram.com/rizebikes",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Canadian electric bike manufacturer offering fat tire, commuter, and cargo e-bikes with models like RX, Leisure, and X."
+  },
+  {
+    "brand_id": "rockrider",
+    "brand_name": "Rockrider",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Rockrider is Decathlon's mountain bike brand offering accessible mountain bikes for various skill levels and riding styles, from entry-level to advanced mountain biking.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "France"
+      }
+    },
+    "history": "Rockrider is part of Decathlon's sports brands portfolio, designed to make mountain biking accessible to riders of all levels with reliable and affordable mountain bikes.",
+    "parent_company": "Decathlon",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "France"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Decathlon's mountain bike brand offering accessible mountain bikes for various skill levels and riding styles."
+  },
+  {
+    "brand_id": "rockymountain",
+    "brand_name": "Rocky Mountain Bicycles",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Rocky_Mountain_Bicycles",
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://bikes.com/favicon.ico"
+    },
+    "description": "Rocky Mountain Bicycles is a Canadian mountain bike manufacturer founded in 1981, known for innovative mountain bikes and strong presence in competitive mountain biking and freeride disciplines.",
+    "founders": [
+      "Suze Scholz",
+      "Grayson Bain"
+    ],
+    "founding": {
+      "year": 1981,
+      "full_date": null,
+      "location": {
+        "city": "Vancouver",
+        "state_province": "British Columbia",
+        "country": "Canada"
+      }
+    },
+    "history": "Founded in 1981 by Suze Scholz and Grayson Bain in Vancouver, Rocky Mountain has been a pioneer in mountain bike innovation and has strong ties to the competitive mountain biking scene, particularly in freeride and downhill disciplines.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Vancouver",
+      "state_province": "British Columbia",
+      "country": "Canada"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "Altitude",
+      "Pipeline",
+      "Instinct",
+      "Element"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Altitude",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://bikes.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/rockymountainbicycles",
+      "twitter": "https://twitter.com/rockymountainbc",
+      "instagram": "https://www.instagram.com/rockymountainbicycles",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Canadian mountain bike manufacturer founded in 1981, pioneer in mountain bike innovation with strong freeride heritage and models like Altitude and Pipeline."
+  },
+{
+    "brand_id": "rondo",
+    "brand_name": "Rondo Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://rondobikes.com/favicon.ico"
+    },
+    "description": "Rondo is a Polish bicycle manufacturer specializing in gravel and road bikes with innovative Twin Tip Fork technology, offering versatility between racing and adventure riding.",
+    "founders": [],
+    "founding": {
+      "year": 2016,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "Poland"
+      }
+    },
+    "history": "Founded in 2016 in Poland, Rondo has gained recognition for their innovative approach to gravel and road bike design with their Twin Tip Fork system allowing riders to adjust geometry.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "Poland"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Gravel & Road Bikes",
+    "famous_models": [
+      "RUUT",
+      "HVRT",
+      "MYLC"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "RUUT",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://rondobikes.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/rondobikes",
+      "twitter": null,
+      "instagram": "https://www.instagram.com/rondobikes",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Polish brand founded in 2016, known for innovative Twin Tip Fork technology allowing geometry adjustment for racing or adventure riding."
+  },
+  {
+    "brand_id": "roodog",
+    "brand_name": "RooDog",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "RooDog is an electric bike manufacturer specializing in affordable e-bikes with a focus on quality components and practical urban mobility solutions.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United Kingdom"
+      }
+    },
+    "history": "RooDog has established itself in the electric bike market by offering feature-rich e-bikes at competitive prices for urban commuting and recreational riding.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United Kingdom"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "UK-based electric bike manufacturer focusing on affordable e-bikes for urban mobility."
+  },
+  {
+    "brand_id": "rossignol",
+    "brand_name": "Rossignol",
+    "wikipedia_url": "https://en.wikipedia.org/wiki/Rossignol_(company)",
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://www.rossignol.com/favicon.ico"
+    },
+    "description": "Rossignol is a French manufacturer known primarily for winter sports equipment that has expanded into bicycles, offering mountain and road bikes leveraging their sports technology expertise.",
+    "founders": [
+      "Abel Rossignol"
+    ],
+    "founding": {
+      "year": 1907,
+      "full_date": null,
+      "location": {
+        "city": "Voiron",
+        "state_province": null,
+        "country": "France"
+      }
+    },
+    "history": "Founded in 1907 by Abel Rossignol as a ski manufacturer, the company has diversified into various sporting goods including bicycles, applying their technical expertise to cycling.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Saint-Jean-de-Moirans",
+      "state_province": null,
+      "country": "France"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Multi-Sport Equipment",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://www.rossignol.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/rossignol",
+      "twitter": "https://twitter.com/rossignol",
+      "instagram": "https://www.instagram.com/rossignol",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "French sporting goods company founded in 1907, primarily known for winter sports equipment but also produces bicycles."
+  },
+  {
+    "brand_id": "rsd",
+    "brand_name": "RSD Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "RSD Bikes specializes in custom titanium and steel frames, known for high-quality craftsmanship and made-to-order bicycles for discerning cyclists.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United States"
+      }
+    },
+    "history": "RSD has built a reputation in the custom bike building community for their attention to detail and quality construction in titanium and steel frames.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Custom Frame Building",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Specializes in custom titanium and steel frames with focus on craftsmanship and made-to-order bicycles."
+  },
+  {
+    "brand_id": "sage",
+    "brand_name": "Sage Titanium Bicycles",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://sagetitanium.com/favicon.ico"
+    },
+    "description": "Sage Titanium Bicycles is a custom titanium frame builder based in Oregon, specializing in handcrafted titanium bikes for road, gravel, mountain, and touring applications.",
+    "founders": [
+      "David Rosen"
+    ],
+    "founding": {
+      "year": 2012,
+      "full_date": null,
+      "location": {
+        "city": "Portland",
+        "state_province": "Oregon",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 2012 by David Rosen in Portland, Oregon, Sage has established itself as a premium titanium frame builder known for custom geometry and high-quality craftsmanship.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Portland",
+      "state_province": "Oregon",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Custom Titanium Frames",
+    "famous_models": [
+      "Barlow",
+      "Skyline",
+      "Storm King"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://sagetitanium.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": "https://www.instagram.com/sagetitanium",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Portland-based custom titanium frame builder founded in 2012, known for handcrafted bikes and models like Barlow, Skyline, and Storm King."
+  },
+  {
+    "brand_id": "salsa",
+    "brand_name": "Salsa Cycles",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://salsacycles.com/favicon.ico"
+    },
+    "description": "Salsa Cycles is a Minnesota-based bicycle manufacturer known for adventure and gravel bikes, pioneering the modern gravel bike movement with innovative designs for bikepacking and touring.",
+    "founders": [
+      "Ross Shafer"
+    ],
+    "founding": {
+      "year": 1982,
+      "full_date": null,
+      "location": {
+        "city": "Petaluma",
+        "state_province": "California",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 1982 by Ross Shafer in California, later acquired by Quality Bicycle Products and moved to Minnesota. Salsa has been instrumental in developing the gravel and adventure bike categories.",
+    "parent_company": "Quality Bicycle Products (QBP)",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Bloomington",
+      "state_province": "Minnesota",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Adventure & Gravel Bikes",
+    "famous_models": [
+      "Warbird",
+      "Cutthroat",
+      "Fargo",
+      "Journeyer",
+      "Timberjack"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "Warbird",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://salsacycles.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/salsacycles",
+      "twitter": "https://twitter.com/salsacycles",
+      "instagram": "https://www.instagram.com/salsacycles",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Minnesota-based adventure bike pioneer founded in 1982, instrumental in developing gravel bike category with models like Warbird and Cutthroat."
+  },
+  {
+    "brand_id": "sava",
+    "brand_name": "SAVA Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "SAVA is a carbon fiber bicycle manufacturer offering high-performance road, mountain, and folding bikes with focus on lightweight carbon construction and competitive pricing.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "China"
+      }
+    },
+    "history": "SAVA has positioned itself in the carbon fiber bicycle market by offering performance-oriented bikes at accessible price points through direct sales channels.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "China"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Carbon Fiber Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Chinese carbon fiber bicycle manufacturer offering lightweight performance bikes at competitive prices."
+  },
+  {
+    "brand_id": "scamp",
+    "brand_name": "Scamp",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Scamp is a children's bicycle brand focusing on balance bikes and first pedal bikes designed to help young children learn to ride safely and confidently.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": null
+      }
+    },
+    "history": "Scamp specializes in creating age-appropriate bikes for young children, focusing on balance development and safe learning experiences.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": null
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Children's Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Children's bicycle brand specializing in balance bikes and first pedal bikes for young riders."
+  },
+  {
+    "brand_id": "scor",
+    "brand_name": "SCOR",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://scor.bike/favicon.ico"
+    },
+    "description": "SCOR is a Swiss mountain bike manufacturer founded by former BMC engineers, specializing in high-performance mountain bikes with innovative suspension designs.",
+    "founders": [],
+    "founding": {
+      "year": 2018,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "Switzerland"
+      }
+    },
+    "history": "Founded in 2018 by former BMC engineers in Switzerland, SCOR focuses on creating innovative mountain bikes with unique suspension kinematics and geometry.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "Switzerland"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "4060"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [
+      {
+        "name": "4060",
+        "year": null,
+        "image_url": null,
+        "hero_image_url": null
+      }
+    ],
+    "website": "https://scor.bike",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": "https://www.instagram.com/scormountainbikes",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Swiss mountain bike brand founded in 2018 by former BMC engineers, known for innovative suspension design and the 4060 model."
+  },
+  {
+    "brand_id": "sensa",
+    "brand_name": "Sensa Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Sensa is a Dutch bicycle manufacturer offering a wide range of bikes including road, gravel, mountain, and e-bikes with focus on quality and performance.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "Netherlands"
+      }
+    },
+    "history": "Sensa has established itself in the Dutch and European cycling market by offering quality bikes across multiple categories for various riding styles.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "Netherlands"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Multi-Category Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://sensabikes.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Dutch bicycle manufacturer offering wide range of bikes including road, gravel, mountain, and e-bikes."
+  },
+  {
+    "brand_id": "serial1",
+    "brand_name": "Serial 1",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://serial1.com/favicon.ico"
+    },
+    "description": "Serial 1 is an electric bicycle company created by Harley-Davidson, offering premium e-bikes that blend motorcycle-inspired design with modern electric bicycle technology.",
+    "founders": [],
+    "founding": {
+      "year": 2020,
+      "full_date": null,
+      "location": {
+        "city": "Milwaukee",
+        "state_province": "Wisconsin",
+        "country": "United States"
+      }
+    },
+    "history": "Launched in 2020 as a separate brand from Harley-Davidson, Serial 1 takes its name from 'Serial Number One,' the nickname for the oldest known Harley-Davidson motorcycle.",
+    "parent_company": "Harley-Davidson",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Milwaukee",
+      "state_province": "Wisconsin",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles",
+    "famous_models": [
+      "MOSH/CTY",
+      "RUSH/CTY"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://serial1.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": "https://www.instagram.com/serial1cycles",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Harley-Davidson's e-bike brand launched in 2020, blending motorcycle heritage with modern electric bicycle technology."
+  },
+  {
+    "brand_id": "sherpa",
+    "brand_name": "Sherpa",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Sherpa is a bicycle brand focusing on adventure and expedition bikes designed for long-distance touring and bikepacking with robust construction.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": null
+      }
+    },
+    "history": "Sherpa has specialized in creating bikes suitable for adventure cycling and expedition touring, emphasizing durability and reliability.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": null
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Adventure & Touring Bikes",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Specializes in adventure and expedition bikes for long-distance touring and bikepacking."
+  },
+  {
+    "brand_id": "silverback",
+    "brand_name": "Silverback Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://silverbackbikes.com/favicon.ico"
+    },
+    "description": "Silverback is a South African bicycle manufacturer known for high-performance mountain bikes designed and tested in challenging African terrain.",
+    "founders": [],
+    "founding": {
+      "year": 2006,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "South Africa"
+      }
+    },
+    "history": "Founded in 2006 in South Africa, Silverback has gained international recognition for their mountain bikes tested in the demanding conditions of African terrain.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "South Africa"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Mountain Bikes",
+    "famous_models": [
+      "Sola",
+      "Sesta",
+      "Stratos"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://silverbackbikes.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/silverbackbikes",
+      "twitter": null,
+      "instagram": "https://www.instagram.com/silverbackbikes",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "South African mountain bike manufacturer founded in 2006, known for bikes tested in challenging African terrain."
+  },
+  {
+    "brand_id": "skorpion",
+    "brand_name": "Skorpion",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Skorpion is a bicycle manufacturer specializing in electric bikes and urban mobility solutions.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": null
+      }
+    },
+    "history": "Skorpion focuses on the electric bike market with emphasis on urban commuting and practical e-bike solutions.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": null
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Specializes in electric bikes and urban mobility solutions."
+  },
+  {
+    "brand_id": "soma",
+    "brand_name": "Soma Fabrications",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://somafab.com/favicon.ico"
+    },
+    "description": "Soma Fabrications is a San Francisco-based company specializing in steel frames and touring bikes, known for classic designs with modern functionality for touring and urban cycling.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": "San Francisco",
+        "state_province": "California",
+        "country": "United States"
+      }
+    },
+    "history": "Based in San Francisco, Soma has built a reputation for quality steel frames and practical designs for touring, commuting, and urban cycling applications.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "San Francisco",
+      "state_province": "California",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Steel Touring Bikes",
+    "famous_models": [
+      "Wolverine",
+      "Double Cross",
+      "Fog Cutter"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://somafab.com",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": "https://www.instagram.com/somafab",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "San Francisco-based steel frame specialist known for touring bikes and models like Wolverine, Double Cross, and Fog Cutter."
+  },
+  {
+    "brand_id": "sonder",
+    "brand_name": "Sonder Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://alpkit.com/favicon.ico"
+    },
+    "description": "Sonder is a UK-based bicycle brand by Alpkit, offering adventure-focused bikes including gravel, mountain, and road bikes designed for exploration and versatility.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United Kingdom"
+      }
+    },
+    "history": "Sonder, part of outdoor gear company Alpkit, focuses on creating versatile bikes for adventure cycling with an emphasis on value and capability.",
+    "parent_company": "Alpkit",
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United Kingdom"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Adventure Bikes",
+    "famous_models": [
+      "Camino",
+      "Broken Road",
+      "Transmitter"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://alpkit.com/sonder",
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": "https://www.instagram.com/sonder.bike",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "UK adventure bike brand by Alpkit, offering gravel, mountain, and road bikes with models like Camino and Broken Road."
+  },
+  {
+    "brand_id": "sondors",
+    "brand_name": "SONDORS",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": "https://sondors.com/favicon.ico"
+    },
+    "description": "SONDORS is an American electric bike company known for affordable e-bikes with distinctive designs, originally launched through crowdfunding campaigns.",
+    "founders": [
+      "Storm Sondors"
+    ],
+    "founding": {
+      "year": 2015,
+      "full_date": null,
+      "location": {
+        "city": "Los Angeles",
+        "state_province": "California",
+        "country": "United States"
+      }
+    },
+    "history": "Founded in 2015 by Storm Sondors with a successful crowdfunding campaign, SONDORS has disrupted the e-bike market with affordable electric bikes and innovative designs.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": "Los Angeles",
+      "state_province": "California",
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles",
+    "famous_models": [
+      "Original",
+      "X",
+      "Smart Step",
+      "Cruiser"
+    ],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": "https://sondors.com",
+    "social_media": {
+      "facebook": "https://www.facebook.com/gosondors",
+      "twitter": null,
+      "instagram": "https://www.instagram.com/gosondors",
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Founded in 2015 through crowdfunding, known for affordable e-bikes with distinctive designs. Models include Original, X, and Smart Step."
+  },
+  {
+    "brand_id": "soulfastebikes",
+    "brand_name": "Soul Fast eBikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Soul Fast eBikes specializes in high-performance electric bicycles designed for speed and style, focusing on powerful e-bikes for enthusiasts.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": "United States"
+      }
+    },
+    "history": "Soul Fast eBikes has positioned itself in the performance e-bike market with powerful electric bikes designed for speed enthusiasts.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": "United States"
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Specializes in high-performance electric bicycles designed for speed and style."
+  },
+  {
+    "brand_id": "sparkbikes",
+    "brand_name": "Spark Bikes",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Spark Bikes is a electric bike manufacturer focusing on urban mobility solutions and commuter e-bikes with modern designs.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": null
+      }
+    },
+    "history": "Spark Bikes focuses on creating electric bikes for urban commuting with emphasis on practical features and modern aesthetics.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": null
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Electric Bicycles",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Electric bike manufacturer focusing on urban mobility and commuter e-bikes."
+  },
+  {
+    "brand_id": "sparkcycleworks",
+    "brand_name": "Spark Cycleworks",
+    "wikipedia_url": null,
+    "linkedin_url": null,
+    "logo": {
+      "logo_url": null,
+      "icon_url": null
+    },
+    "description": "Spark Cycleworks specializes in custom bicycle frames and builds, focusing on handcrafted quality and personalized geometry for discerning cyclists.",
+    "founders": [],
+    "founding": {
+      "year": null,
+      "full_date": null,
+      "location": {
+        "city": null,
+        "state_province": null,
+        "country": null
+      }
+    },
+    "history": "Spark Cycleworks has established itself in the custom bike building community with focus on personalized frame building and attention to detail.",
+    "parent_company": null,
+    "subsidiaries": [],
+    "headquarters": {
+      "address": null,
+      "city": null,
+      "state_province": null,
+      "country": null
+    },
+    "headquarters_image_url": null,
+    "company_type": "private",
+    "stock_exchange": null,
+    "stock_symbol": null,
+    "employee_headcount": {
+      "number": null,
+      "as_of": null
+    },
+    "annual_revenue": {
+      "amount": null,
+      "currency": null,
+      "as_of": null
+    },
+    "industry": "Bicycle industry",
+    "industry_refined": "Sporting Goods Manufacturing",
+    "industry_subcategory": "Custom Frame Building",
+    "famous_models": [],
+    "brand_hero_image_url": null,
+    "flagship_models": [],
+    "website": null,
+    "social_media": {
+      "facebook": null,
+      "twitter": null,
+      "instagram": null,
+      "linkedin": null,
+      "youtube": null,
+      "pinterest": null
+    },
+    "additional_notes": "Specializes in custom bicycle frames with focus on handcrafted quality and personalized geometry."
+  }];
 
 module.exports = brandinfo;

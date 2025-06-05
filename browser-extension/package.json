@@ -1,0 +1,16 @@
+{
+  "name": "browser-extension",
+  "version": "1.0.0",
+  "description": "Browser extension for BikeNode",
+  "type": "module",
+  "scripts": {
+    "test:lightbox": "npx playwright test test_craigslist_lightbox.js",
+    "test:advanced": "npx playwright test test_craigslist_advanced.js", 
+    "test:gallery": "npx playwright test test_craigslist_gallery.js",
+    "test:all": "npx playwright test test_craigslist_*.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "playwright": "^1.40.0"
+  }
+}

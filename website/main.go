@@ -5,10 +5,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"math"
 	"net/http"
 	"os"
 	"time"
 
+	"bikenode.com/api"
 	"github.com/google/uuid"
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
@@ -44,18 +46,57 @@ func main() {
 	}
 	defer db.Close()
 
+	// Initialize database tables for new features
+	if err := api.InitializeRouteTables(db); err != nil {
+		log.Printf("Warning: Failed to initialize route tables: %v", err)
+	}
+	if err := api.InitializeSegmentTables(db); err != nil {
+		log.Printf("Warning: Failed to initialize segment tables: %v", err)
+	}
+	if err := api.InitializeHeatmapTables(db); err != nil {
+		log.Printf("Warning: Failed to initialize heatmap tables: %v", err)
+	}
+
 	// Initialize router
 	router := mux.NewRouter()
 
 	// API routes
-	api := router.PathPrefix("/api").Subrouter()
-	api.HandleFunc("/motorcycles/models/{make}/{year}", getMotorcycleModels).Methods("GET")
-	api.HandleFunc("/motorcycles/makes", getMotorcycleMakes).Methods("GET")
-	api.HandleFunc("/motorcycles/years/{make}", getMotorcycleYears).Methods("GET")
-	api.HandleFunc("/bicycles/manufacturers", getBicycleManufacturers).Methods("GET")
-	api.HandleFunc("/bicycles/years/{manufacturer}", getBicycleYears).Methods("GET")
-	api.HandleFunc("/bicycles/models/{manufacturer}/{year}", getBicycleModels).Methods("GET")
-	api.HandleFunc("/health", healthCheck).Methods("GET")
+	apiRouter := router.PathPrefix("/api").Subrouter()
+	
+	// Existing routes
+	apiRouter.HandleFunc("/motorcycles/models/{make}/{year}", getMotorcycleModels).Methods("GET")
+	apiRouter.HandleFunc("/motorcycles/makes", getMotorcycleMakes).Methods("GET")
+	apiRouter.HandleFunc("/motorcycles/years/{make}", getMotorcycleYears).Methods("GET")
+	apiRouter.HandleFunc("/bicycles/manufacturers", getBicycleManufacturers).Methods("GET")
+	apiRouter.HandleFunc("/bicycles/years/{manufacturer}", getBicycleYears).Methods("GET")
+	apiRouter.HandleFunc("/bicycles/models/{manufacturer}/{year}", getBicycleModels).Methods("GET")
+	apiRouter.HandleFunc("/health", healthCheck).Methods("GET")
+	
+	// Route planning endpoints
+	apiRouter.HandleFunc("/routes", api.CreateRoute(db)).Methods("POST")
+	apiRouter.HandleFunc("/routes/{id}", api.GetRoute(db)).Methods("GET")
+	apiRouter.HandleFunc("/routes/nearby", api.GetNearbyRoutes(db)).Methods("GET")
+	apiRouter.HandleFunc("/routes/calculate", api.CalculateRoute(db)).Methods("POST")
+	
+	// Segment endpoints
+	apiRouter.HandleFunc("/segments", api.CreateSegment(db)).Methods("POST")
+	apiRouter.HandleFunc("/segments/{id}", api.GetSegment(db)).Methods("GET")
+	apiRouter.HandleFunc("/segments/nearby", api.GetNearbySegments(db)).Methods("GET")
+	apiRouter.HandleFunc("/segments/{id}/leaderboard", api.GetSegmentLeaderboard(db)).Methods("GET")
+	apiRouter.HandleFunc("/segments/attempt", api.RecordSegmentAttempt(db)).Methods("POST")
+	apiRouter.HandleFunc("/segments/user", api.GetUserSegments(db)).Methods("GET")
+	
+	// Heatmap endpoints
+	apiRouter.HandleFunc("/heatmap", api.GetHeatmapData(db)).Methods("GET")
+	apiRouter.HandleFunc("/heatmap/popular-routes", api.GetPopularRoutes(db)).Methods("GET")
+	apiRouter.HandleFunc("/heatmap/track", api.RecordActivityTrack(db)).Methods("POST")
+	apiRouter.HandleFunc("/heatmap/surface-types", api.GetSurfaceTypes(db)).Methods("POST")
+	
+	// Elevation endpoints
+	apiRouter.HandleFunc("/elevation/profile", api.GetElevationProfile(db)).Methods("POST")
+	apiRouter.HandleFunc("/elevation/point", api.GetPointElevation(db)).Methods("POST")
+	apiRouter.HandleFunc("/elevation/climbs", api.AnalyzeClimbs(db)).Methods("POST")
+	apiRouter.HandleFunc("/elevation/tiles", api.GetElevationTiles(db)).Methods("GET")
 
 	// Serve static files
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./")))

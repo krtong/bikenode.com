@@ -1,4 +1,4 @@
-module github.com/bikenode/website
+module bikenode.com
 
 go 1.21
 

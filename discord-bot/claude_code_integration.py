@@ -93,16 +93,34 @@ class ClaudeCodeIntegration:
         
         print(f"\n💬 New message from {username}: {user_message}")
         
-        # This is where Claude Code would process the message
-        # For now, let's create a simple response
-        response_text = f"Hello {username}! I received your message: '{user_message}'. "
-        response_text += "I'm Claude Code running through the Discord bot integration. "
-        response_text += "I can help you with coding tasks, file operations, and more!"
+        # Create a notification file that Claude Code can detect
+        notification_file = "claude_notification.txt"
+        with open(notification_file, 'w') as f:
+            f.write(f"NEW_MESSAGE|{message['id']}|{username}|{user_message}")
         
-        # In a real implementation, this would be where Claude Code
-        # actually processes the request and performs actions
+        print("⏳ Waiting for Claude Code to process the message...")
         
-        return response_text
+        # Wait for Claude Code to process and respond
+        response_check_file = f"claude_response_{message['id']}.txt"
+        max_wait = 30  # seconds
+        wait_time = 0
+        
+        while wait_time < max_wait:
+            if os.path.exists(response_check_file):
+                with open(response_check_file, 'r') as f:
+                    response_text = f.read()
+                os.remove(response_check_file)  # Clean up
+                if os.path.exists(notification_file):
+                    os.remove(notification_file)
+                return response_text
+            
+            time.sleep(1)
+            wait_time += 1
+        
+        # Timeout - no response received
+        if os.path.exists(notification_file):
+            os.remove(notification_file)
+        return "⏱️ Claude Code hasn't responded yet. The message has been queued."
     
     def save_response(self, original_message, response_text):
         """Save response to file for Discord bot to read"""

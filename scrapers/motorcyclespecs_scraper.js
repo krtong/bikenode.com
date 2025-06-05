@@ -17,6 +17,19 @@ class MotorcycleSpecsScraper {
             images: []
         };
         
+        // Progress tracking for resuming
+        this.progressFile = './scraped_data/progress.json';
+        this.progress = {
+            currentManufacturerIndex: 0,
+            currentModelIndex: 0,
+            processedManufacturers: [],
+            processedModels: [],
+            totalMotorcyclesScraped: 0,
+            lastSaved: null,
+            startTime: null,
+            lastCheckpoint: null
+        };
+        
         this.setupDirectories();
     }
 
@@ -37,6 +50,78 @@ class MotorcycleSpecsScraper {
                 console.log(`Directory ${dir} already exists or error creating:`, error.message);
             }
         }
+    }
+
+    async loadProgress() {
+        try {
+            const progressData = await fs.readFile(this.progressFile, 'utf8');
+            this.progress = { ...this.progress, ...JSON.parse(progressData) };
+            console.log(`📊 Loaded progress: Manufacturer ${this.progress.currentManufacturerIndex}, Model ${this.progress.currentModelIndex}`);
+            console.log(`📈 Already scraped ${this.progress.totalMotorcyclesScraped} motorcycles`);
+            return true;
+        } catch (error) {
+            console.log('📋 No previous progress found, starting fresh');
+            return false;
+        }
+    }
+
+    async saveProgress() {
+        try {
+            this.progress.lastCheckpoint = new Date().toISOString();
+            await fs.writeFile(this.progressFile, JSON.stringify(this.progress, null, 2));
+            console.log(`💾 Progress saved: Manufacturer ${this.progress.currentManufacturerIndex}, Model ${this.progress.currentModelIndex}`);
+        } catch (error) {
+            console.error('❌ Error saving progress:', error.message);
+        }
+    }
+
+    async loadExistingData() {
+        try {
+            // Load existing scraped data to avoid duplicates
+            const files = await fs.readdir('./scraped_data/motorcycles/');
+            const jsonFiles = files.filter(f => f.endsWith('.json') && f.includes('motorcyclespecs_'));
+            
+            if (jsonFiles.length > 0) {
+                // Load the most recent file
+                jsonFiles.sort();
+                const latestFile = jsonFiles[jsonFiles.length - 1];
+                const filePath = `./scraped_data/motorcycles/${latestFile}`;
+                
+                console.log(`📂 Loading existing data from ${latestFile}...`);
+                const existingData = JSON.parse(await fs.readFile(filePath, 'utf8'));
+                
+                if (existingData.motorcycles) {
+                    this.scraped_data.motorcycles = existingData.motorcycles;
+                    console.log(`📈 Loaded ${existingData.motorcycles.length} existing motorcycles`);
+                    
+                    // Find the most recent motorcycle by timestamp to determine resume position
+                    const sortedByTime = existingData.motorcycles.sort((a, b) => new Date(b.scraped_at) - new Date(a.scraped_at));
+                    if (sortedByTime.length > 0) {
+                        this.lastScrapedMotorcycle = sortedByTime[0];
+                        console.log(`🕐 Most recent: ${this.lastScrapedMotorcycle.manufacturer} - ${this.lastScrapedMotorcycle.model}`);
+                    }
+                }
+                
+                if (existingData.manufacturers) {
+                    this.scraped_data.manufacturers = new Set(existingData.manufacturers);
+                }
+                
+                if (existingData.models) {
+                    this.scraped_data.models = new Set(existingData.models);
+                }
+                
+                return true;
+            }
+        } catch (error) {
+            console.log('📋 No existing data found or error loading:', error.message);
+        }
+        return false;
+    }
+
+    isAlreadyScraped(manufacturerName, modelName) {
+        return this.scraped_data.motorcycles.some(bike => 
+            bike.manufacturer === manufacturerName && bike.model === modelName
+        );
     }
 
     async initBrowser() {
@@ -325,7 +410,9 @@ class MotorcycleSpecsScraper {
             maxManufacturers = null,
             maxModelsPerManufacturer = null,
             downloadImages = false,
-            startFromManufacturer = null
+            startFromManufacturer = null,
+            resume = true,
+            saveInterval = 5  // Save every 5 motorcycles
         } = options;
         
         try {
@@ -333,39 +420,110 @@ class MotorcycleSpecsScraper {
             
             console.log('🏁 Starting MotorcycleSpecs.co.za scraper...');
             
+            // Load existing progress and data
+            if (resume) {
+                await this.loadProgress();
+                await this.loadExistingData();
+            }
+            
+            this.progress.startTime = this.progress.startTime || new Date().toISOString();
+            
             // Get manufacturer list
             const manufacturers = await this.getManufacturerList();
             
             let manufacturersToProcess = manufacturers;
+            let startIndex = 0;
+            
+            // If we have existing data, find where to resume based on most recent motorcycle
+            if (this.lastScrapedMotorcycle && resume) {
+                const resumeManufacturerIndex = manufacturers.findIndex(m => 
+                    m.name === this.lastScrapedMotorcycle.manufacturer
+                );
+                if (resumeManufacturerIndex >= 0) {
+                    startIndex = resumeManufacturerIndex;
+                    console.log(`🔄 Resuming from manufacturer: ${manufacturers[resumeManufacturerIndex].name}`);
+                } else {
+                    console.log(`⚠️  Could not find manufacturer ${this.lastScrapedMotorcycle.manufacturer}, starting from beginning`);
+                }
+            } else if (this.progress.currentManufacturerIndex > 0) {
+                startIndex = this.progress.currentManufacturerIndex;
+            }
+            
             if (startFromManufacturer) {
-                const startIndex = manufacturers.findIndex(m => 
+                const foundIndex = manufacturers.findIndex(m => 
                     m.name.toLowerCase().includes(startFromManufacturer.toLowerCase())
                 );
-                if (startIndex >= 0) {
-                    manufacturersToProcess = manufacturers.slice(startIndex);
-                    console.log(`🎯 Starting from manufacturer: ${manufacturers[startIndex].name}`);
+                if (foundIndex >= 0) {
+                    startIndex = foundIndex;
+                    console.log(`🎯 Starting from manufacturer: ${manufacturers[foundIndex].name}`);
                 }
             }
             
             if (maxManufacturers) {
-                manufacturersToProcess = manufacturersToProcess.slice(0, maxManufacturers);
-                console.log(`🎯 Processing first ${maxManufacturers} manufacturers`);
+                manufacturersToProcess = manufacturers.slice(startIndex, startIndex + maxManufacturers);
+                console.log(`🎯 Processing ${maxManufacturers} manufacturers starting from index ${startIndex}`);
+            } else {
+                manufacturersToProcess = manufacturers.slice(startIndex);
+                console.log(`🎯 Processing ${manufacturersToProcess.length} manufacturers starting from index ${startIndex}`);
             }
             
-            for (const manufacturer of manufacturersToProcess) {
-                console.log(`\n🏭 Processing manufacturer: ${manufacturer.name}`);
+            let totalNewMotorcycles = 0;
+            
+            for (let mIndex = 0; mIndex < manufacturersToProcess.length; mIndex++) {
+                const manufacturer = manufacturersToProcess[mIndex];
+                const globalManufacturerIndex = startIndex + mIndex;
+                
+                console.log(`\n🏭 Processing manufacturer ${globalManufacturerIndex + 1}/${manufacturers.length}: ${manufacturer.name}`);
                 this.scraped_data.manufacturers.add(manufacturer.name);
+                this.progress.currentManufacturerIndex = globalManufacturerIndex;
+                this.progress.currentModelIndex = 0;
                 
                 try {
                     const models = await this.getModelList(manufacturer.fullUrl);
                     
                     let modelsToProcess = models;
-                    if (maxModelsPerManufacturer) {
-                        modelsToProcess = models.slice(0, maxModelsPerManufacturer);
+                    let modelStartIndex = 0;
+                    
+                    // If this is the manufacturer we're resuming from, find the model to resume from
+                    if (globalManufacturerIndex === startIndex && this.lastScrapedMotorcycle && 
+                        manufacturer.name === this.lastScrapedMotorcycle.manufacturer) {
+                        const resumeModelIndex = models.findIndex(m => 
+                            m.name === this.lastScrapedMotorcycle.model
+                        );
+                        if (resumeModelIndex >= 0) {
+                            modelStartIndex = resumeModelIndex;
+                            console.log(`  🔄 Resuming from model: ${this.lastScrapedMotorcycle.model}`);
+                        }
+                    } else if (globalManufacturerIndex === startIndex && this.progress.currentModelIndex > 0) {
+                        modelStartIndex = this.progress.currentModelIndex;
                     }
                     
-                    for (const model of modelsToProcess) {
+                    if (maxModelsPerManufacturer) {
+                        modelsToProcess = models.slice(modelStartIndex, modelStartIndex + maxModelsPerManufacturer);
+                    } else {
+                        modelsToProcess = models.slice(modelStartIndex);
+                    }
+                    
+                    let newMotorcyclesFound = 0;
+                    
+                    for (let modelIndex = 0; modelIndex < modelsToProcess.length; modelIndex++) {
+                        const model = modelsToProcess[modelIndex];
+                        const globalModelIndex = modelStartIndex + modelIndex;
+                        
+                        // Skip if already scraped
+                        if (this.isAlreadyScraped(manufacturer.name, model.name)) {
+                            // Only log the first few, then summarize
+                            if (modelIndex < 3) {
+                                console.log(`  ⏭️  Already scraped: ${manufacturer.name} ${model.name}`);
+                            }
+                            continue;
+                        }
+                        
+                        newMotorcyclesFound++;
+                        console.log(`  🔧 Model ${globalModelIndex + 1}/${models.length}: ${model.name}`);
+                        
                         this.scraped_data.models.add(model.name);
+                        this.progress.currentModelIndex = globalModelIndex;
                         
                         const motorcycleData = await this.scrapeMotorcycleDetails(
                             model.fullUrl, 
@@ -375,6 +533,9 @@ class MotorcycleSpecsScraper {
                         
                         if (motorcycleData) {
                             this.scraped_data.motorcycles.push(motorcycleData);
+                            this.progress.totalMotorcyclesScraped++;
+                            
+                            console.log(`📈 Total scraped: ${this.progress.totalMotorcyclesScraped} motorcycles`);
                             
                             // Download images if requested
                             if (downloadImages && motorcycleData.images.length > 0) {
@@ -402,22 +563,64 @@ class MotorcycleSpecsScraper {
                                     }
                                 }
                             }
+                            
+                            // Save progress periodically
+                            if (this.progress.totalMotorcyclesScraped % saveInterval === 0) {
+                                await this.saveProgress();
+                            }
                         }
                         
                         await this.delay(3000); // Delay between models
                     }
                     
+                    // Reset model index when moving to next manufacturer
+                    this.progress.currentModelIndex = 0;
+                    
+                    // Report summary for this manufacturer
+                    const totalSkipped = modelsToProcess.length - newMotorcyclesFound;
+                    if (totalSkipped > 3) {
+                        console.log(`  📊 Skipped ${totalSkipped} already scraped motorcycles`);
+                    }
+                    if (newMotorcyclesFound === 0) {
+                        console.log(`  ✅ All ${models.length} models already scraped for ${manufacturer.name}`);
+                    } else {
+                        console.log(`  🆕 Found ${newMotorcyclesFound} new motorcycles for ${manufacturer.name}`);
+                    }
+                    
+                    totalNewMotorcycles += newMotorcyclesFound;
+                    
                 } catch (manufacturerError) {
                     console.error(`❌ Error processing manufacturer ${manufacturer.name}:`, manufacturerError.message);
                 }
                 
+                // Save progress after each manufacturer
+                await this.saveProgress();
                 await this.delay(2000); // Delay between manufacturers
             }
             
-            await this.saveData();
+            console.log(`\n🏁 Scraping completed!`);
+            console.log(`📊 Total new motorcycles found: ${totalNewMotorcycles}`);
+            
+            if (totalNewMotorcycles === 0) {
+                console.log('✅ No new motorcycles found - scraping is complete!');
+            } else {
+                await this.saveData();
+                console.log(`💾 Saved ${totalNewMotorcycles} new motorcycles`);
+            }
+            
+            await this.saveProgress();
+            
+            // Clean up progress file on completion
+            try {
+                await fs.unlink(this.progressFile);
+                console.log('🧹 Cleaned up progress file');
+            } catch (error) {
+                // Ignore cleanup errors
+            }
             
         } catch (error) {
             console.error('❌ Fatal error:', error);
+            await this.saveProgress(); // Save progress even on error
         } finally {
             if (this.browser) {
                 await this.browser.close();

@@ -8,7 +8,7 @@
     {% endfor %}
     {% endif %}
 </head>
-<body>
+<body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
     {% include "background-canvas.njk" %}
     
     {{ content | safe }}

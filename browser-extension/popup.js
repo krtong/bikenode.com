@@ -100,20 +100,20 @@ class PopupController {
       statusEl.textContent = 'Extracting data from page...';
       statusEl.classList.remove('hidden');
       
-      // Inject and execute the universal scraper
+      // Inject and execute the dynamic scraper
       const results = await chrome.scripting.executeScript({
         target: { tabId: this.currentTab.id },
-        files: ['universalScraper.js']
+        files: ['dynamicScraper.js']
       });
       
       // Execute extraction
       const extractionResults = await chrome.scripting.executeScript({
         target: { tabId: this.currentTab.id },
-        function: () => {
+        func: async () => {
           if (typeof extractClassifiedAd === 'function') {
-            return extractClassifiedAd();
+            return await extractClassifiedAd();
           } else {
-            throw new Error('Universal scraper not loaded');
+            throw new Error('Dynamic scraper not loaded');
           }
         }
       });

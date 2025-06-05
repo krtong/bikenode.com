@@ -1,0 +1,633 @@
+---
+layout: dashboard.njk
+title: Activity Feed
+subtitle: See what your friends are up to
+---
+
+<style>
+  .feed-container {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .feed-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .create-post {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .create-post-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .post-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+    resize: none;
+    min-height: 60px;
+  }
+
+  .post-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+  }
+
+  .post-options {
+    display: flex;
+    gap: 16px;
+  }
+
+  .post-option {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+  }
+
+  .post-option:hover {
+    color: var(--accent);
+  }
+
+  .activity-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.2s ease;
+  }
+
+  .activity-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .activity-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .activity-user-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .activity-username {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .activity-time {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .activity-menu {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .ride-summary {
+    background: rgba(88, 101, 242, 0.1);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+  }
+
+  .ride-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .ride-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .ride-stat {
+    text-align: center;
+  }
+
+  .ride-stat-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--accent);
+  }
+
+  .ride-stat-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .ride-map {
+    height: 200px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border-radius: 8px;
+    margin: 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+  }
+
+  .activity-content {
+    margin: 16px 0;
+    line-height: 1.6;
+  }
+
+  .activity-images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin: 16px 0;
+  }
+
+  .activity-image {
+    height: 200px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+  }
+
+  .activity-image.single {
+    grid-column: 1 / -1;
+    height: 300px;
+  }
+
+  .activity-actions {
+    display: flex;
+    gap: 24px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .activity-action {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+  }
+
+  .activity-action:hover {
+    color: var(--accent);
+  }
+
+  .activity-action.active {
+    color: var(--accent);
+  }
+
+  .kudos-count {
+    font-weight: 500;
+  }
+
+  .feed-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .sidebar-section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .section-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .challenge-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .challenge-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(88, 101, 242, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .challenge-info {
+    flex: 1;
+  }
+
+  .challenge-name {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .challenge-progress {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .suggested-rider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .suggested-rider-info {
+    flex: 1;
+  }
+
+  .suggested-rider-name {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .suggested-rider-mutual {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .follow-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .follow-btn:hover {
+    background: var(--accent-hover);
+  }
+
+  .load-more {
+    text-align: center;
+    margin-top: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .feed-container {
+      grid-template-columns: 1fr;
+    }
+
+    .feed-sidebar {
+      display: none;
+    }
+
+    .ride-stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+<div class="feed-container">
+  <div class="feed-main">
+    <!-- Create Post -->
+    <div class="create-post">
+      <div class="create-post-header">
+        <div class="user-avatar">👤</div>
+        <div style="flex: 1;">
+          <textarea class="post-input" placeholder="Share your ride or thoughts..."></textarea>
+        </div>
+      </div>
+      <div class="post-actions">
+        <div class="post-options">
+          <button class="post-option">
+            <span>📸</span> Photo
+          </button>
+          <button class="post-option">
+            <span>🗺️</span> Route
+          </button>
+          <button class="post-option">
+            <span>🏆</span> Achievement
+          </button>
+        </div>
+        <button class="btn-primary">Post</button>
+      </div>
+    </div>
+
+    <!-- Activity Items -->
+    <div class="activity-card">
+      <div class="activity-header">
+        <div class="activity-user">
+          <div class="user-avatar">SC</div>
+          <div class="activity-user-info">
+            <div class="activity-username">Sarah Chen</div>
+            <div class="activity-time">2 hours ago</div>
+          </div>
+        </div>
+        <button class="activity-menu">⋯</button>
+      </div>
+      
+      <div class="ride-summary">
+        <div class="ride-title">Morning Century Ride 🌅</div>
+        <div class="ride-stats">
+          <div class="ride-stat">
+            <div class="ride-stat-value">102.3</div>
+            <div class="ride-stat-label">miles</div>
+          </div>
+          <div class="ride-stat">
+            <div class="ride-stat-value">4:23:45</div>
+            <div class="ride-stat-label">time</div>
+          </div>
+          <div class="ride-stat">
+            <div class="ride-stat-value">3,420</div>
+            <div class="ride-stat-label">ft elevation</div>
+          </div>
+          <div class="ride-stat">
+            <div class="ride-stat-value">23.3</div>
+            <div class="ride-stat-label">avg mph</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="ride-map">Route Map Preview</div>
+      
+      <div class="activity-content">
+        Perfect weather for a century ride! Started early to beat the heat and caught an amazing sunrise over the mountains. Legs felt strong throughout, and the new bike performed flawlessly. 💪
+      </div>
+      
+      <div class="activity-actions">
+        <button class="activity-action">
+          <span>👍</span>
+          <span class="kudos-count">42 Kudos</span>
+        </button>
+        <button class="activity-action">
+          <span>💬</span>
+          <span>8 Comments</span>
+        </button>
+        <button class="activity-action">
+          <span>📤</span>
+          <span>Share</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="activity-card">
+      <div class="activity-header">
+        <div class="activity-user">
+          <div class="user-avatar">MJ</div>
+          <div class="activity-user-info">
+            <div class="activity-username">Mike Johnson</div>
+            <div class="activity-time">5 hours ago</div>
+          </div>
+        </div>
+        <button class="activity-menu">⋯</button>
+      </div>
+      
+      <div class="activity-content">
+        New bike day! 🎉 Finally got my dream gravel bike. Can't wait to hit the trails this weekend!
+      </div>
+      
+      <div class="activity-images">
+        <div class="activity-image single">Bike Photo</div>
+      </div>
+      
+      <div class="activity-actions">
+        <button class="activity-action active">
+          <span>👍</span>
+          <span class="kudos-count">127 Kudos</span>
+        </button>
+        <button class="activity-action">
+          <span>💬</span>
+          <span>23 Comments</span>
+        </button>
+        <button class="activity-action">
+          <span>📤</span>
+          <span>Share</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="activity-card">
+      <div class="activity-header">
+        <div class="activity-user">
+          <div class="user-avatar">EW</div>
+          <div class="activity-user-info">
+            <div class="activity-username">Emma Wilson</div>
+            <div class="activity-time">Yesterday</div>
+          </div>
+        </div>
+        <button class="activity-menu">⋯</button>
+      </div>
+      
+      <div class="ride-summary">
+        <div class="ride-title">Trail Shredding Session 🏔️</div>
+        <div class="ride-stats">
+          <div class="ride-stat">
+            <div class="ride-stat-value">18.7</div>
+            <div class="ride-stat-label">miles</div>
+          </div>
+          <div class="ride-stat">
+            <div class="ride-stat-value">2:15:30</div>
+            <div class="ride-stat-label">time</div>
+          </div>
+          <div class="ride-stat">
+            <div class="ride-stat-value">2,850</div>
+            <div class="ride-stat-label">ft elevation</div>
+          </div>
+          <div class="ride-stat">
+            <div class="ride-stat-value">8.3</div>
+            <div class="ride-stat-label">avg mph</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="activity-images">
+        <div class="activity-image">Trail Photo 1</div>
+        <div class="activity-image">Trail Photo 2</div>
+      </div>
+      
+      <div class="activity-content">
+        Epic day on the trails! Hit some new features and finally cleared that rock garden that's been challenging me all season. 🚵‍♀️
+      </div>
+      
+      <div class="activity-actions">
+        <button class="activity-action">
+          <span>👍</span>
+          <span class="kudos-count">89 Kudos</span>
+        </button>
+        <button class="activity-action">
+          <span>💬</span>
+          <span>15 Comments</span>
+        </button>
+        <button class="activity-action">
+          <span>📤</span>
+          <span>Share</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="load-more">
+      <button class="btn-secondary">Load More Activities</button>
+    </div>
+  </div>
+
+  <div class="feed-sidebar">
+    <!-- Active Challenges -->
+    <div class="sidebar-section">
+      <h3 class="section-title">Active Challenges</h3>
+      
+      <div class="challenge-item">
+        <div class="challenge-icon">🏔️</div>
+        <div class="challenge-info">
+          <div class="challenge-name">Climbing Challenge</div>
+          <div class="challenge-progress">8,432 / 10,000 ft</div>
+        </div>
+      </div>
+      
+      <div class="challenge-item">
+        <div class="challenge-icon">📅</div>
+        <div class="challenge-info">
+          <div class="challenge-name">June Distance</div>
+          <div class="challenge-progress">234 / 300 miles</div>
+        </div>
+      </div>
+      
+      <div class="challenge-item">
+        <div class="challenge-icon">🔥</div>
+        <div class="challenge-info">
+          <div class="challenge-name">7-Day Streak</div>
+          <div class="challenge-progress">5 / 7 days</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Suggested Riders -->
+    <div class="sidebar-section">
+      <h3 class="section-title">Suggested Riders</h3>
+      
+      <div class="suggested-rider">
+        <div class="user-avatar">JD</div>
+        <div class="suggested-rider-info">
+          <div class="suggested-rider-name">John Davis</div>
+          <div class="suggested-rider-mutual">12 mutual friends</div>
+        </div>
+        <button class="follow-btn">Follow</button>
+      </div>
+      
+      <div class="suggested-rider">
+        <div class="user-avatar">LP</div>
+        <div class="suggested-rider-info">
+          <div class="suggested-rider-name">Lisa Park</div>
+          <div class="suggested-rider-mutual">8 mutual friends</div>
+        </div>
+        <button class="follow-btn">Follow</button>
+      </div>
+      
+      <div class="suggested-rider">
+        <div class="user-avatar">RT</div>
+        <div class="suggested-rider-info">
+          <div class="suggested-rider-name">Ryan Thompson</div>
+          <div class="suggested-rider-mutual">5 mutual friends</div>
+        </div>
+        <button class="follow-btn">Follow</button>
+      </div>
+    </div>
+
+    <!-- Upcoming Events -->
+    <div class="sidebar-section">
+      <h3 class="section-title">Upcoming Events</h3>
+      
+      <div class="challenge-item">
+        <div class="challenge-icon">🚴</div>
+        <div class="challenge-info">
+          <div class="challenge-name">Sunday Group Ride</div>
+          <div class="challenge-progress">Jun 9 • 23 attending</div>
+        </div>
+      </div>
+      
+      <div class="challenge-item">
+        <div class="challenge-icon">🏁</div>
+        <div class="challenge-info">
+          <div class="challenge-name">Local Crit Race</div>
+          <div class="challenge-progress">Jun 15 • Register now</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Kudos interaction
+  document.querySelectorAll('.activity-action').forEach(btn => {
+    if (btn.textContent.includes('Kudos')) {
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('active');
+        const kudosCount = btn.querySelector('.kudos-count');
+        const currentCount = parseInt(kudosCount.textContent);
+        if (btn.classList.contains('active')) {
+          kudosCount.textContent = `${currentCount + 1} Kudos`;
+        } else {
+          kudosCount.textContent = `${currentCount - 1} Kudos`;
+        }
+      });
+    }
+  });
+
+  // Post creation
+  document.querySelector('.btn-primary').addEventListener('click', () => {
+    const textarea = document.querySelector('.post-input');
+    if (textarea.value.trim()) {
+      alert('Post created!');
+      textarea.value = '';
+    }
+  });
+</script>

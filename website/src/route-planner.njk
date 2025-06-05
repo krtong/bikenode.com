@@ -1,0 +1,2259 @@
+---
+layout: dashboard.njk
+title: Route Planner
+subtitle: Plan your next motorcycle adventure
+---
+
+<div class="route-planner">
+    <!-- Route Planning Sidebar -->
+    <div class="route-sidebar">
+        <div class="route-header">
+            <h2>Plan Your Route</h2>
+            <div class="route-type-selector">
+                <button class="route-type active" data-type="motorcycle">🏍️ Motorcycle</button>
+                <button class="route-type" data-type="bicycle">🚴 Bicycle</button>
+            </div>
+        </div>
+
+        <!-- Build Your Route -->
+        <div class="build-route-section">
+            <h4>Build your route</h4>
+            <p class="instruction-text">Click the map or enter start point</p>
+            <div class="start-point-input">
+                <input type="text" id="startPointInput" placeholder="Enter start location..." class="form-control">
+                <button class="btn-start-here" id="useMyLocation">📍 Use My Location</button>
+            </div>
+        </div>
+
+        <!-- Routing Preferences -->
+        <div class="routing-preferences">
+            <h4>Routing preferences</h4>
+            
+            <div class="ride-type-section">
+                <label>Ride</label>
+                <select id="rideType" class="form-control">
+                    <option value="popular">Follow most popular</option>
+                    <option value="scenic">Scenic route</option>
+                    <option value="direct">Most direct</option>
+                    <option value="trails">Bike trails/paths</option>
+                </select>
+            </div>
+
+            <div class="elevation-preference">
+                <label>Elevation</label>
+                <select id="elevationPref" class="form-control">
+                    <option value="any">Any elevation</option>
+                    <option value="flat">Minimize elevation</option>
+                    <option value="hilly">Maximize elevation</option>
+                </select>
+            </div>
+
+            <div class="surface-preference">
+                <label>Surface type</label>
+                <select id="surfacePref" class="form-control">
+                    <option value="any">Any surface type</option>
+                    <option value="paved">Paved roads only</option>
+                    <option value="gravel">Include gravel</option>
+                    <option value="trails">Include trails</option>
+                </select>
+            </div>
+
+            <div class="mode-toggle">
+                <label class="toggle-item">
+                    <input type="checkbox" id="manualMode">
+                    <span class="toggle-slider"></span>
+                    Manual mode
+                </label>
+            </div>
+        </div>
+
+        <!-- Map Display Preferences -->
+        <div class="map-display-prefs">
+            <h4>Map display</h4>
+            
+            <div class="display-options">
+                <label class="toggle-item">
+                    <input type="checkbox" id="showSurfaceType" checked>
+                    <span class="toggle-slider"></span>
+                    Surface type
+                </label>
+                <label class="toggle-item">
+                    <input type="checkbox" id="showDistanceMarkers" checked>
+                    <span class="toggle-slider"></span>
+                    Distance markers
+                </label>
+                <label class="toggle-item">
+                    <input type="checkbox" id="showHeatmaps">
+                    <span class="toggle-slider"></span>
+                    Heatmaps (1)
+                </label>
+                <label class="toggle-item">
+                    <input type="checkbox" id="showSegments">
+                    <span class="toggle-slider"></span>
+                    Segments
+                </label>
+            </div>
+        </div>
+
+        <!-- Route Stats -->
+        <div class="route-stats-section">
+            <h4>Route path</h4>
+            <div class="distance-display">
+                <span class="distance-value" id="routeDistance">0</span>
+                <span class="distance-unit">mi</span>
+                <span class="distance-label">Miles</span>
+            </div>
+            
+            <div class="elevation-display">
+                <div class="elevation-item">
+                    <span class="elevation-label">Elevation Gain</span>
+                    <span class="elevation-value" id="routeElevation">0 ft</span>
+                </div>
+                <div class="elevation-item">
+                    <span class="elevation-label">Elevation Lost</span>
+                    <span class="elevation-value" id="elevationLost">0 ft</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Surface Type Display -->
+        <div class="surface-type-section">
+            <h4>Surface type</h4>
+            <div class="surface-breakdown">
+                <div class="surface-item">
+                    <span class="surface-color paved"></span>
+                    <span>Paved</span>
+                    <span class="surface-percent" id="pavedPercent">0%</span>
+                </div>
+                <div class="surface-item">
+                    <span class="surface-color gravel"></span>
+                    <span>Gravel</span>
+                    <span class="surface-percent" id="gravelPercent">0%</span>
+                </div>
+                <div class="surface-item">
+                    <span class="surface-color dirt"></span>
+                    <span>Trail</span>
+                    <span class="surface-percent" id="dirtPercent">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Routes Section -->
+        <div class="my-routes-section">
+            <h4>My Routes</h4>
+            <div class="route-list" id="savedRoutesList">
+                <p class="no-routes">No saved routes yet</p>
+            </div>
+            <button class="btn-secondary btn-small" id="viewAllRoutes">View all routes</button>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="route-actions">
+            <button class="btn-primary" id="saveRoute">Save Route</button>
+            <div class="secondary-actions">
+                <button class="btn-secondary" id="shareRoute">Share</button>
+                <button class="btn-secondary" id="exportRoute">Export GPX</button>
+                <button class="btn-outline" id="clearRoute">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Container -->
+    <div class="map-container">
+        <div class="map-controls">
+            <div class="map-style-selector">
+                <button class="map-style" data-style="street">Light</button>
+                <button class="map-style active" data-style="dark">Dark</button>
+                <button class="map-style" data-style="satellite">Satellite</button>
+                <button class="map-style" data-style="terrain">Terrain</button>
+            </div>
+            <div class="map-layers">
+                <button class="layer-toggle" data-layer="traffic">🚦 Traffic</button>
+                <button class="layer-toggle active" data-layer="curves">🌀 Twisty Roads</button>
+                <button class="layer-toggle" data-layer="elevation">⛰️ Elevation</button>
+            </div>
+        </div>
+        
+        <!-- Real OpenStreetMap Interface -->
+        <div class="map-display" id="routeMap"></div>
+
+        <!-- Elevation Profile -->
+        <div class="elevation-profile" id="elevationProfileContainer" style="display: none;">
+            <div class="profile-header">
+                <h4>Elevation Profile</h4>
+                <div class="profile-stats">
+                    <span>Max: <strong id="elevationMax">-- ft</strong></span>
+                    <span>Min: <strong id="elevationMin">-- ft</strong></span>
+                    <span>Avg Grade: <strong id="avgGrade">--%</strong></span>
+                </div>
+            </div>
+            <div class="profile-chart">
+                <canvas id="elevationChart" width="400" height="120"></canvas>
+                <div class="elevation-tooltip" id="elevationTooltip" style="display: none;">
+                    <div class="tooltip-distance">Distance: <span>0 mi</span></div>
+                    <div class="tooltip-elevation">Elevation: <span>0 ft</span></div>
+                    <div class="tooltip-grade">Grade: <span>0%</span></div>
+                </div>
+            </div>
+            <div class="elevation-legend">
+                <div class="legend-item">
+                    <span class="legend-color" style="background: #10b981;"></span>
+                    <span>Descent (&lt; -3%)</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background: #6b7280;"></span>
+                    <span>Flat (-3% to 3%)</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background: #f59e0b;"></span>
+                    <span>Moderate (3% to 7%)</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background: #ef4444;"></span>
+                    <span>Steep (&gt; 7%)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Route Planner Styles */
+.route-planner {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    height: 70vh;
+    min-height: 600px;
+    gap: 0;
+    background: var(--bg-primary);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0;
+    width: 100%;
+}
+
+/* Sidebar Styles */
+.route-sidebar {
+    background: var(--card-bg);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 24px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.route-header h2 {
+    color: var(--text-primary);
+    margin: 0 0 16px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.route-type-selector {
+    display: flex;
+    gap: 8px;
+}
+
+.route-type {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    color: var(--text-secondary);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.route-type.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.quick-start {
+    margin-bottom: 24px;
+}
+
+.btn-start-here {
+    width: 100%;
+    padding: 10px 16px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-start-here:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+.setting-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.setting-group label {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-control {
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.preference-toggles {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.toggle-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.toggle-slider {
+    width: 40px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.toggle-slider::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: all 0.3s ease;
+}
+
+.toggle-item input:checked + .toggle-slider {
+    background: var(--accent);
+}
+
+.toggle-item input:checked + .toggle-slider::after {
+    transform: translateX(20px);
+}
+
+.toggle-item input {
+    display: none;
+}
+
+.loop-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.loop-controls button {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+}
+
+.route-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stat-icon {
+    font-size: 1.2rem;
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-value {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+}
+
+.surface-breakdown h4 {
+    color: var(--text-primary);
+    margin: 0 0 12px 0;
+    font-size: 1rem;
+}
+
+.surface-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.surface-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.surface-color.paved { background: #10b981; }
+.surface-color.gravel { background: #f59e0b; }
+.surface-color.dirt { background: #8b5cf6; }
+
+.surface-percent {
+    margin-left: auto;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.poi-section h4 {
+    color: var(--text-primary);
+    margin: 0 0 12px 0;
+    font-size: 1rem;
+}
+
+.poi-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.poi-btn {
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.poi-btn:hover {
+    background: rgba(88, 101, 242, 0.1);
+    border-color: var(--accent);
+}
+
+.route-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+}
+
+/* Map Container Styles */
+.map-container {
+    position: relative;
+    background: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+}
+
+.map-controls {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 1000;
+    display: flex;
+    gap: 12px;
+    pointer-events: auto;
+}
+
+.map-style-selector {
+    display: flex;
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+}
+
+.map-style {
+    padding: 6px 12px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.map-style.active {
+    background: var(--accent);
+    color: white;
+}
+
+.map-layers {
+    display: flex;
+    gap: 8px;
+}
+
+.layer-toggle {
+    padding: 6px 12px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+}
+
+.layer-toggle.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.map-display {
+    flex: 1;
+    position: relative;
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    min-height: 500px;
+    height: 100%;
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Leaflet Map Styles */
+.leaflet-container {
+    height: 100% !important;
+    width: 100% !important;
+    background: #1a1a1a;
+    min-height: 500px;
+}
+
+.leaflet-control-container {
+    font-family: inherit;
+}
+
+.leaflet-popup-content-wrapper {
+    background: var(--card-bg);
+    color: var(--text-primary);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.leaflet-popup-tip {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.waypoint-marker {
+    background: var(--accent);
+    border: 3px solid white;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(88, 101, 242, 0.4);
+}
+
+.poi-marker {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.elevation-profile {
+    background: var(--card-bg);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 16px 24px;
+    min-height: 240px;
+    position: relative;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.profile-header h4 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1rem;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 16px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.profile-chart {
+    margin-top: 16px;
+    position: relative;
+}
+
+#elevationChart {
+    width: 100% !important;
+    height: 120px !important;
+    cursor: crosshair;
+}
+
+.elevation-tooltip {
+    position: absolute;
+    background: var(--card-bg);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 12px;
+    pointer-events: none;
+    z-index: 1000;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.elevation-tooltip div {
+    margin-bottom: 4px;
+    color: var(--text-secondary);
+}
+
+.elevation-tooltip div:last-child {
+    margin-bottom: 0;
+}
+
+.elevation-tooltip span {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.elevation-legend {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+@media (max-width: 1024px) {
+    .route-planner {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 500px;
+    }
+    
+    .route-sidebar {
+        max-height: 400px;
+    }
+    
+    .map-container {
+        height: 500px;
+    }
+}
+
+/* Build Route Section */
+.build-route-section h4 {
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.instruction-text {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin: 0 0 12px 0;
+}
+
+.start-point-input {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.start-point-input input {
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+/* Routing Preferences */
+.routing-preferences h4,
+.map-display-prefs h4,
+.route-stats-section h4,
+.surface-type-section h4,
+.my-routes-section h4 {
+    color: var(--text-primary);
+    margin: 0 0 16px 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.ride-type-section,
+.elevation-preference,
+.surface-preference {
+    margin-bottom: 16px;
+}
+
+.mode-toggle {
+    margin-top: 16px;
+}
+
+/* Map Display Preferences */
+.display-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Distance Display */
+.distance-display {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.distance-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.distance-unit {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.distance-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Elevation Display */
+.elevation-display {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.elevation-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.elevation-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.elevation-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* My Routes Section */
+.route-list {
+    margin-bottom: 12px;
+}
+
+.no-routes {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-style: italic;
+    margin: 0;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}
+
+/* Secondary Actions */
+.secondary-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.secondary-actions button {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+    .route-planner {
+        grid-template-columns: 1fr;
+    }
+    
+    .map-controls {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .secondary-actions {
+        flex-direction: column;
+    }
+}
+</style>
+
+<!-- Leaflet CSS and JS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+<!-- Chart.js for elevation profile -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<script>
+// Route Planner State Management
+class RoutePlanner {
+    constructor() {
+        this.map = null;
+        this.routingControl = null;
+        this.waypoints = [];
+        this.pois = [];
+        this.currentPOIMode = null;
+        this.currentRoute = null;
+        this.elevationProfile = null;
+        this.elevationChart = null;
+        this.elevationData = [];
+        this.preferences = {
+            avoidHighways: true,
+            avoidTolls: false,
+            preferCurves: true,
+            routeType: 'scenic',
+            rideType: 'popular',
+            elevationPref: 'any',
+            surfacePref: 'any',
+            manualMode: false
+        };
+        this.layers = {};
+        this.overlays = {};
+        this.distanceMarkers = [];
+        this.surfaceOverlay = null;
+        this.heatmapLayer = null;
+        this.segmentsLayer = null;
+        this.savedRoutes = [];
+    }
+
+    async init() {
+        await this.initializeMap();
+        this.setupEventListeners();
+        this.loadUserLocation();
+        this.loadSavedRoutes();
+    }
+
+    async initializeMap() {
+        console.log('Initializing map...');
+        
+        // Wait for DOM to be ready
+        const mapContainer = document.getElementById('routeMap');
+        if (!mapContainer) {
+            console.error('Map container not found!');
+            return;
+        }
+        
+        console.log('Map container found:', mapContainer);
+        
+        try {
+            // Initialize map with explicit height
+            this.map = L.map('routeMap', {
+                center: [39.8283, -98.5795],
+                zoom: 5,
+                zoomControl: true,
+                scrollWheelZoom: true
+            });
+            
+            console.log('Map initialized:', this.map);
+
+            // Map tile layers
+            this.layers.street = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 19
+            });
+
+            this.layers.satellite = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+                attribution: '© Google',
+                maxZoom: 20
+            });
+
+            this.layers.terrain = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenTopoMap contributors',
+                maxZoom: 17
+            });
+
+            // Dark theme WITH labels and good contrast
+            this.layers.dark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+                attribution: '© Stadia Maps © OpenMapTiles © OpenStreetMap contributors',
+                maxZoom: 19
+            });
+
+            // Add default layer (dark theme)
+            this.layers.dark.addTo(this.map);
+            console.log('Street layer added');
+
+            // Force map to resize after a short delay
+            setTimeout(() => {
+                this.map.invalidateSize();
+                console.log('Map size invalidated');
+            }, 100);
+
+            // Initialize routing control
+            this.initializeRouting();
+            
+        } catch (error) {
+            console.error('Error initializing map:', error);
+        }
+    }
+
+    initializeRouting() {
+        console.log('Initializing routing with OSRM...');
+        
+        // Initialize routing control with basic configuration first
+        this.routingControl = L.Routing.control({
+            waypoints: [],
+            createMarker: function() { return null; }, // Don't create default markers
+            addWaypoints: false,
+            routeWhileDragging: false,
+            lineOptions: {
+                styles: [{
+                    color: '#5865f2',
+                    weight: 6,
+                    opacity: 0.9
+                }]
+            },
+            show: false,
+            fitSelectedRoutes: false
+        });
+
+        // Add event listeners
+        this.routingControl.on('routesfound', (e) => {
+            console.log('✅ Route found successfully!');
+            console.log('Route details:', e.routes[0]);
+            if (e.routes && e.routes[0]) {
+                this.handleRouteFound(e.routes[0]);
+                this.currentRoute = e.routes[0];
+            }
+        });
+
+        this.routingControl.on('routingerror', (e) => {
+            console.error('❌ Routing error:', e);
+            this.showNotification('Routing failed: ' + (e.error ? e.error.message : 'Unknown error'), 'error');
+        });
+
+        this.routingControl.on('routingstart', (e) => {
+            console.log('🔄 Starting route calculation...');
+        });
+
+        // Add to map
+        this.routingControl.addTo(this.map);
+        console.log('✅ Routing control added to map');
+        
+        // Test routing is working
+        console.log('Router object:', this.routingControl.getRouter());
+    }
+
+    setupEventListeners() {
+        // Route type switching
+        document.querySelectorAll('.route-type').forEach(button => {
+            button.addEventListener('click', (e) => {
+                this.setVehicleType(e.target.dataset.type);
+            });
+        });
+
+        // Map style switching
+        document.querySelectorAll('.map-style').forEach(button => {
+            button.addEventListener('click', (e) => {
+                this.switchMapStyle(e.target.dataset.style);
+            });
+        });
+
+        // Layer toggles
+        document.querySelectorAll('.layer-toggle').forEach(button => {
+            button.addEventListener('click', (e) => {
+                this.toggleLayer(e.target.dataset.layer);
+            });
+        });
+
+        // Route preferences
+        document.getElementById('avoidHighways').addEventListener('change', (e) => {
+            this.preferences.avoidHighways = e.target.checked;
+            this.recalculateRoute();
+        });
+
+        document.getElementById('avoidTolls').addEventListener('change', (e) => {
+            this.preferences.avoidTolls = e.target.checked;
+            this.recalculateRoute();
+        });
+
+        document.getElementById('twistyRoads').addEventListener('change', (e) => {
+            this.preferences.preferCurves = e.target.checked;
+            this.recalculateRoute();
+        });
+
+        document.getElementById('routeType').addEventListener('change', (e) => {
+            this.preferences.routeType = e.target.value;
+            this.recalculateRoute();
+        });
+
+        // POI buttons
+        document.querySelectorAll('.poi-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                this.togglePOIMode(e.target.dataset.poi);
+            });
+        });
+
+        // Map interactions
+        this.map.on('click', (e) => {
+            this.handleMapClick(e);
+        });
+
+        this.map.on('contextmenu', (e) => {
+            this.handleRightClick(e);
+        });
+
+        // Route actions
+        document.getElementById('clearRoute').addEventListener('click', () => this.clearRoute());
+        document.getElementById('makeLoop').addEventListener('click', () => this.makeLoop());
+        document.getElementById('roundTrip').addEventListener('click', () => this.makeRoundTrip());
+        document.getElementById('saveRoute').addEventListener('click', () => this.saveRoute());
+        document.getElementById('shareRoute').addEventListener('click', () => this.shareRoute());
+        document.getElementById('exportRoute').addEventListener('click', () => this.exportRoute());
+        
+        // Start from location button
+        document.getElementById('useMyLocation').addEventListener('click', () => this.useMyLocationAsStart());
+        
+        // New routing preference listeners
+        document.getElementById('rideType').addEventListener('change', (e) => {
+            this.preferences.rideType = e.target.value;
+            this.recalculateRoute();
+        });
+        
+        document.getElementById('elevationPref').addEventListener('change', (e) => {
+            this.preferences.elevationPref = e.target.value;
+            this.recalculateRoute();
+        });
+        
+        document.getElementById('surfacePref').addEventListener('change', (e) => {
+            this.preferences.surfacePref = e.target.value;
+            this.recalculateRoute();
+        });
+        
+        document.getElementById('manualMode').addEventListener('change', (e) => {
+            this.preferences.manualMode = e.target.checked;
+            this.toggleManualMode(e.target.checked);
+        });
+        
+        // Map display preferences
+        document.getElementById('showSurfaceType').addEventListener('change', (e) => {
+            this.toggleSurfaceDisplay(e.target.checked);
+        });
+        
+        document.getElementById('showDistanceMarkers').addEventListener('change', (e) => {
+            this.toggleDistanceMarkers(e.target.checked);
+        });
+        
+        document.getElementById('showHeatmaps').addEventListener('change', (e) => {
+            this.toggleHeatmaps(e.target.checked);
+        });
+        
+        document.getElementById('showSegments').addEventListener('change', (e) => {
+            this.toggleSegments(e.target.checked);
+        });
+        
+        // Start point input
+        document.getElementById('startPointInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.geocodeAndAddWaypoint(e.target.value);
+            }
+        });
+        
+        // View all routes
+        document.getElementById('viewAllRoutes').addEventListener('click', () => {
+            this.showAllRoutes();
+        });
+    }
+
+    setVehicleType(type) {
+        document.querySelectorAll('.route-type').forEach(b => b.classList.remove('active'));
+        document.querySelector(`[data-type=\"${type}\"]`).classList.add('active');
+        
+        console.log('🚴 Switching vehicle type to:', type);
+        
+        // Update routing profile and recreate router for different vehicle types
+        const profiles = {
+            motorcycle: 'driving',
+            bicycle: 'cycling'  // Uses bike paths, trails, and bike-friendly roads
+        };
+        
+        const profile = profiles[type] || 'driving';
+        console.log('🗺️ Using routing profile:', profile);
+        
+        if (this.routingControl) {
+            // Update the router with new profile
+            this.routingControl.options.router = L.Routing.osrmv1({
+                serviceUrl: 'https://router.project-osrm.org/route/v1',
+                profile: profile,
+                timeout: 30 * 1000
+            });
+            
+            // Recalculate existing route with new profile
+            this.recalculateRoute();
+            
+            // Show notification about routing change
+            const messages = {
+                motorcycle: 'Routing optimized for motorcycles (roads only)',
+                bicycle: 'Routing optimized for bicycles (includes bike paths and trails)'
+            };
+            this.showNotification(messages[type], 'info');
+        }
+    }
+
+    switchMapStyle(style) {
+        document.querySelectorAll('.map-style').forEach(b => b.classList.remove('active'));
+        document.querySelector(`[data-style="${style}"]`).classList.add('active');
+        
+        // Remove current base layer and overlays
+        Object.values(this.layers).forEach(layer => {
+            if (this.map.hasLayer(layer)) {
+                this.map.removeLayer(layer);
+            }
+        });
+        
+        // Add selected layer
+        if (this.layers[style]) {
+            this.layers[style].addTo(this.map);
+        }
+    }
+
+    toggleLayer(layerName) {
+        const button = document.querySelector(`[data-layer="${layerName}"]`);
+        button.classList.toggle('active');
+        
+        if (layerName === 'traffic' && this.overlays.traffic) {
+            if (this.map.hasLayer(this.overlays.traffic)) {
+                this.map.removeLayer(this.overlays.traffic);
+            } else {
+                this.overlays.traffic.addTo(this.map);
+            }
+        }
+        
+        // Add other layer implementations here
+        if (layerName === 'curves') {
+            this.toggleCurvyRoadsOverlay(button.classList.contains('active'));
+        }
+    }
+
+    toggleCurvyRoadsOverlay(show) {
+        // Mock implementation - in real app, this would show roads with many curves
+        if (show) {
+            // Highlight curvy roads based on route preferences
+            this.showNotification('Curvy roads highlighted', 'info');
+        }
+    }
+
+    togglePOIMode(poiType) {
+        if (this.currentPOIMode === poiType) {
+            this.currentPOIMode = null;
+            this.map.getContainer().style.cursor = '';
+            document.querySelectorAll('.poi-btn').forEach(b => b.classList.remove('active'));
+        } else {
+            this.currentPOIMode = poiType;
+            this.map.getContainer().style.cursor = 'crosshair';
+            document.querySelectorAll('.poi-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`[data-poi="${poiType}"]`).classList.add('active');
+        }
+    }
+
+    handleMapClick(e) {
+        if (this.currentPOIMode) {
+            this.addPOI(e.latlng, this.currentPOIMode);
+            this.togglePOIMode(null);
+        } else {
+            this.addWaypoint(e.latlng);
+        }
+    }
+
+    handleRightClick(e) {
+        // Show context menu for advanced options
+        this.showContextMenu(e.latlng, e.containerPoint);
+    }
+
+    showContextMenu(latlng, point) {
+        // Create context menu
+        const menu = document.createElement('div');
+        menu.className = 'context-menu';
+        menu.style.position = 'absolute';
+        menu.style.left = point.x + 'px';
+        menu.style.top = point.y + 'px';
+        menu.style.background = 'var(--card-bg)';
+        menu.style.border = '1px solid rgba(255,255,255,0.1)';
+        menu.style.borderRadius = '8px';
+        menu.style.padding = '8px';
+        menu.style.zIndex = '1000';
+        
+        menu.innerHTML = `
+            <div class="menu-item" onclick="routePlanner.addWaypoint(L.latLng(${latlng.lat}, ${latlng.lng}))">Add Waypoint</div>
+            <div class="menu-item" onclick="routePlanner.addPOI(L.latLng(${latlng.lat}, ${latlng.lng}), 'gas')">Add Gas Station</div>
+            <div class="menu-item" onclick="routePlanner.reverseGeocode(L.latLng(${latlng.lat}, ${latlng.lng}))">What's Here?</div>
+        `;
+        
+        document.body.appendChild(menu);
+        
+        // Remove menu after 3 seconds or on next click
+        setTimeout(() => {
+            if (menu.parentNode) menu.parentNode.removeChild(menu);
+        }, 3000);
+    }
+
+    async addWaypoint(latlng) {
+        console.log('➕ Adding waypoint at:', latlng);
+        const letter = String.fromCharCode(65 + this.waypoints.length);
+        
+        const marker = L.marker(latlng, {
+            draggable: true,
+            icon: L.divIcon({
+                className: 'waypoint-marker',
+                html: `<div style="background: var(--accent); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 3px solid white; box-shadow: 0 2px 8px rgba(88, 101, 242, 0.4); cursor: move;">${letter}</div>`,
+                iconSize: [30, 30],
+                iconAnchor: [15, 15]
+            })
+        }).addTo(this.map);
+
+        // Add drag event with improved handling
+        marker.on('drag', () => {
+            console.log('🔄 Waypoint dragged, updating route...');
+            this.updateRoute();
+        });
+
+        marker.on('dragend', () => {
+            console.log('✅ Waypoint drag ended');
+        });
+
+        // Add popup with waypoint info
+        try {
+            const address = await this.reverseGeocode(latlng);
+            marker.bindPopup(`
+                <div style="text-align: center;">
+                    <strong>Waypoint ${letter}</strong><br>
+                    <small>${address}</small><br>
+                    <button onclick="routePlanner.removeWaypoint(${this.waypoints.length})" style="margin-top: 8px; padding: 6px 12px; background: #ef4444; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">Remove</button>
+                </div>
+            `);
+        } catch (error) {
+            console.warn('Could not get address for waypoint:', error);
+            marker.bindPopup(`
+                <div style="text-align: center;">
+                    <strong>Waypoint ${letter}</strong><br>
+                    <button onclick="routePlanner.removeWaypoint(${this.waypoints.length})" style="margin-top: 8px; padding: 6px 12px; background: #ef4444; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">Remove</button>
+                </div>
+            `);
+        }
+
+        this.waypoints.push(marker);
+        console.log('📍 Total waypoints:', this.waypoints.length);
+        
+        // Always update route when we have 2 or more waypoints
+        if (this.waypoints.length >= 2) {
+            console.log('🗺️ Triggering route calculation...');
+            this.updateRoute();
+        }
+    }
+
+    addPOI(latlng, type) {
+        const icons = {
+            gas: '⛽',
+            food: '🍔',
+            scenic: '📸',
+            mechanic: '🔧'
+        };
+
+        const marker = L.marker(latlng, {
+            icon: L.divIcon({
+                className: 'poi-marker',
+                html: `<div style="background: rgba(255, 255, 255, 0.95); border: 2px solid var(--accent); border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);">${icons[type]}</div>`,
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            })
+        }).addTo(this.map);
+
+        marker.bindPopup(`
+            <div>
+                <strong>${type.charAt(0).toUpperCase() + type.slice(1)} Stop</strong><br>
+                <button onclick="routePlanner.removePOI(${this.pois.length})" style="margin-top: 8px; padding: 4px 8px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">Remove</button>
+            </div>
+        `);
+
+        this.pois.push({ marker, type, latlng });
+    }
+
+    removeWaypoint(index) {
+        if (this.waypoints[index]) {
+            this.map.removeLayer(this.waypoints[index]);
+            this.waypoints.splice(index, 1);
+            
+            // Update letter labels
+            this.waypoints.forEach((marker, i) => {
+                const letter = String.fromCharCode(65 + i);
+                marker.setIcon(L.divIcon({
+                    className: 'waypoint-marker',
+                    html: `<div style="background: var(--accent); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 3px solid white; box-shadow: 0 2px 8px rgba(88, 101, 242, 0.4);">${letter}</div>`,
+                    iconSize: [30, 30],
+                    iconAnchor: [15, 15]
+                }));
+            });
+            
+            this.updateRoute();
+        }
+    }
+
+    removePOI(index) {
+        if (this.pois[index]) {
+            this.map.removeLayer(this.pois[index].marker);
+            this.pois.splice(index, 1);
+        }
+    }
+
+    async updateRoute() {
+        if (this.waypoints.length < 2) {
+            console.log('❌ Not enough waypoints for routing:', this.waypoints.length);
+            this.clearRouteDisplay();
+            this.routingControl.setWaypoints([]);
+            return;
+        }
+
+        console.log('🗺️ Updating route with', this.waypoints.length, 'waypoints');
+        const waypoints = this.waypoints.map(marker => marker.getLatLng());
+        console.log('📍 Waypoint coordinates:', waypoints);
+        
+        try {
+            // Set waypoints directly - Leaflet Routing Machine will handle the conversion
+            console.log('📍 Setting waypoints on routing control...');
+            this.routingControl.setWaypoints(waypoints);
+            console.log('✅ Waypoints set successfully, waiting for route calculation...');
+        } catch (error) {
+            console.error('❌ Error setting waypoints:', error);
+            this.showNotification('Error calculating route: ' + error.message, 'error');
+        }
+    }
+
+    handleRouteFound(route) {
+        console.log('🎯 Route found and handling:', route);
+        this.currentRoute = route;
+        
+        // Clear any existing route line
+        if (this.routeLine) {
+            this.map.removeLayer(this.routeLine);
+        }
+        
+        // Draw the route line manually to ensure it shows
+        if (route && route.coordinates && route.coordinates.length > 0) {
+            console.log('✅ Drawing route line with', route.coordinates.length, 'coordinates');
+            
+            // Convert coordinates to LatLng array
+            const latlngs = route.coordinates.map(coord => [coord.lat, coord.lng]);
+            
+            // Create and add the route polyline
+            this.routeLine = L.polyline(latlngs, {
+                color: '#5865f2',
+                weight: 6,
+                opacity: 0.8,
+                smoothFactor: 1,
+                lineCap: 'round',
+                lineJoin: 'round'
+            }).addTo(this.map);
+            
+            console.log('✅ Route line added to map');
+            
+            // Fit map to show the route
+            this.map.fitBounds(this.routeLine.getBounds().pad(0.1));
+            
+        } else {
+            console.warn('❌ Route has no coordinates');
+        }
+        
+        // Update stats
+        this.updateRouteStats(route);
+        this.updateElevationProfile(route);
+        this.analyzeCurves(route);
+        this.estimateSurfaceTypes(route);
+    }
+
+    updateRouteStats(route) {
+        const distance = (route.summary.totalDistance / 1609.34).toFixed(1);
+        const timeInMinutes = Math.round(route.summary.totalTime / 60);
+        const hours = Math.floor(timeInMinutes / 60);
+        const minutes = timeInMinutes % 60;
+        
+        document.getElementById('routeDistance').textContent = distance;
+        document.getElementById('routeTime').textContent = `${hours}h ${minutes}m`;
+        
+        // Calculate elevation gain from route coordinates
+        this.calculateElevation(route.coordinates);
+    }
+
+    async calculateElevation(coordinates) {
+        try {
+            // Use Open Elevation API for elevation data
+            const samplePoints = coordinates.filter((_, i) => i % 10 === 0); // Sample every 10th point
+            const elevations = await this.getElevationData(samplePoints);
+            
+            let totalGain = 0;
+            let totalLoss = 0;
+            let maxElevation = 0;
+            let minElevation = Infinity;
+            
+            for (let i = 1; i < elevations.length; i++) {
+                const change = elevations[i] - elevations[i-1];
+                if (change > 0) {
+                    totalGain += change;
+                } else {
+                    totalLoss += Math.abs(change);
+                }
+                maxElevation = Math.max(maxElevation, elevations[i]);
+                minElevation = Math.min(minElevation, elevations[i]);
+            }
+            
+            // Update elevation displays
+            document.getElementById('routeElevation').textContent = `${Math.round(totalGain * 3.28084)} ft`;
+            document.getElementById('elevationLost').textContent = `${Math.round(totalLoss * 3.28084)} ft`;
+            
+            // Update elevation profile
+            this.updateElevationChart(elevations);
+            
+        } catch (error) {
+            console.error('Elevation calculation error:', error);
+            document.getElementById('routeElevation').textContent = '0 ft';
+            document.getElementById('elevationLost').textContent = '0 ft';
+        }
+    }
+
+    async getElevationData(coordinates) {
+        // Mock elevation data - in real implementation, use elevation API
+        return coordinates.map(() => Math.random() * 1000 + 500);
+    }
+
+    updateElevationChart(elevations) {
+        const chart = document.querySelector('.elevation-svg');
+        if (!chart || !elevations.length) return;
+        
+        const width = 400;
+        const height = 80;
+        const maxElevation = Math.max(...elevations);
+        const minElevation = Math.min(...elevations);
+        const range = maxElevation - minElevation || 1;
+        
+        let pathData = '';
+        elevations.forEach((elevation, i) => {
+            const x = (i / (elevations.length - 1)) * width;
+            const y = height - ((elevation - minElevation) / range) * height;
+            pathData += i === 0 ? `M ${x} ${y}` : ` L ${x} ${y}`;
+        });
+        
+        chart.querySelector('path').setAttribute('d', pathData);
+    }
+
+    analyzeCurves(route) {
+        // Analyze route for curves and twisty sections
+        const coordinates = route.coordinates;
+        let curveCount = 0;
+        
+        for (let i = 2; i < coordinates.length; i++) {
+            const angle = this.calculateAngle(coordinates[i-2], coordinates[i-1], coordinates[i]);
+            if (Math.abs(angle) > 30) { // Significant direction change
+                curveCount++;
+            }
+        }
+        
+        document.getElementById('routeCurves').textContent = curveCount;
+    }
+
+    calculateAngle(p1, p2, p3) {
+        const angle1 = Math.atan2(p2.lat - p1.lat, p2.lng - p1.lng);
+        const angle2 = Math.atan2(p3.lat - p2.lat, p3.lng - p2.lng);
+        return ((angle2 - angle1) * 180 / Math.PI + 360) % 360;
+    }
+
+    estimateSurfaceTypes(route) {
+        // Mock surface analysis - in real implementation, analyze road types
+        const pavedPercent = Math.floor(Math.random() * 30 + 70);
+        const gravelPercent = Math.floor(Math.random() * 20 + 5);
+        const dirtPercent = 100 - pavedPercent - gravelPercent;
+        
+        document.getElementById('pavedPercent').textContent = `${pavedPercent}%`;
+        document.getElementById('gravelPercent').textContent = `${gravelPercent}%`;
+        document.getElementById('dirtPercent').textContent = `${dirtPercent}%`;
+    }
+
+    async reverseGeocode(latlng) {
+        try {
+            const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latlng.lat}&lon=${latlng.lng}`);
+            const data = await response.json();
+            return data.display_name || 'Unknown location';
+        } catch (error) {
+            console.error('Geocoding error:', error);
+            return `${latlng.lat.toFixed(6)}, ${latlng.lng.toFixed(6)}`;
+        }
+    }
+
+    clearRoute() {
+        console.log('🧹 Clearing route...');
+        
+        // Clear waypoint markers
+        this.waypoints.forEach(marker => this.map.removeLayer(marker));
+        this.waypoints = [];
+        
+        // Clear POI markers
+        this.pois.forEach(poi => this.map.removeLayer(poi.marker));
+        this.pois = [];
+        
+        // Clear route line
+        if (this.routeLine) {
+            this.map.removeLayer(this.routeLine);
+            this.routeLine = null;
+        }
+        
+        // Clear routing control
+        if (this.routingControl) {
+            this.routingControl.setWaypoints([]);
+        }
+        
+        this.clearRouteDisplay();
+        console.log('✅ Route cleared');
+    }
+
+    clearRouteDisplay() {
+        document.getElementById('routeDistance').textContent = '0';
+        document.getElementById('routeTime').textContent = '0h 0m';
+        document.getElementById('routeElevation').textContent = '0';
+        document.getElementById('routeCurves').textContent = '0';
+        document.getElementById('pavedPercent').textContent = '0%';
+        document.getElementById('gravelPercent').textContent = '0%';
+        document.getElementById('dirtPercent').textContent = '0%';
+    }
+
+    makeLoop() {
+        if (this.waypoints.length >= 2) {
+            const firstPoint = this.waypoints[0].getLatLng();
+            this.addWaypoint(firstPoint);
+        }
+    }
+
+    makeRoundTrip() {
+        if (this.waypoints.length >= 2) {
+            // Reverse the waypoints to create a round trip
+            const reversePoints = [...this.waypoints].reverse().slice(1); // Skip the last point to avoid duplicate
+            reversePoints.forEach(marker => {
+                this.addWaypoint(marker.getLatLng());
+            });
+        }
+    }
+
+    async saveRoute() {
+        if (this.waypoints.length < 2) {
+            this.showNotification('Please add at least 2 waypoints to save a route', 'warning');
+            return;
+        }
+        
+        const routeName = prompt('Enter route name:');
+        if (!routeName) return;
+        
+        const routeData = {
+            id: Date.now().toString(),
+            name: routeName,
+            waypoints: this.waypoints.map(marker => marker.getLatLng()),
+            pois: this.pois.map(poi => ({ type: poi.type, latlng: poi.latlng })),
+            preferences: { ...this.preferences },
+            stats: this.currentRoute ? {
+                distance: this.currentRoute.summary.totalDistance,
+                time: this.currentRoute.summary.totalTime
+            } : null,
+            created: new Date().toISOString()
+        };
+        
+        // Save to localStorage
+        const savedRoutes = JSON.parse(localStorage.getItem('bikenode_routes') || '[]');
+        savedRoutes.push(routeData);
+        localStorage.setItem('bikenode_routes', JSON.stringify(savedRoutes));
+        
+        this.showNotification('Route saved successfully!', 'success');
+    }
+
+    shareRoute() {
+        if (this.waypoints.length < 2) {
+            this.showNotification('Please create a route to share', 'warning');
+            return;
+        }
+        
+        const routeData = {
+            waypoints: this.waypoints.map(marker => marker.getLatLng()),
+            pois: this.pois.map(poi => ({ type: poi.type, latlng: poi.latlng }))
+        };
+        
+        const routeUrl = `${window.location.origin}/route-planner?data=${encodeURIComponent(JSON.stringify(routeData))}`;
+        
+        if (navigator.share) {
+            navigator.share({
+                title: 'BikeNode Route',
+                url: routeUrl
+            });
+        } else {
+            navigator.clipboard.writeText(routeUrl);
+            this.showNotification('Route URL copied to clipboard!', 'success');
+        }
+    }
+
+    exportRoute() {
+        if (this.waypoints.length < 2) {
+            this.showNotification('Please create a route to export', 'warning');
+            return;
+        }
+        
+        const routeName = prompt('Enter route name:', 'BikeNode Route') || 'BikeNode Route';
+        const currentDate = new Date().toISOString();
+        
+        // Create GPX content with full route coordinates
+        let gpx = `<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="BikeNode Route Planner" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>${routeName}</name>
+    <desc>Route created with BikeNode Route Planner</desc>
+    <time>${currentDate}</time>
+    <author>
+      <name>BikeNode</name>
+    </author>
+  </metadata>`;
+
+        // Add track with full route coordinates if available
+        if (this.currentRoute && this.currentRoute.coordinates && this.currentRoute.coordinates.length > 0) {
+            gpx += `
+  <trk>
+    <name>${routeName}</name>
+    <desc>Full route track following roads/trails</desc>
+    <trkseg>`;
+            
+            this.currentRoute.coordinates.forEach(coord => {
+                gpx += `
+      <trkpt lat="${coord.lat}" lon="${coord.lng}"></trkpt>`;
+            });
+            
+            gpx += `
+    </trkseg>
+  </trk>`;
+        } else {
+            // Fallback to waypoints only if no route calculated
+            gpx += `
+  <trk>
+    <name>${routeName}</name>
+    <desc>Waypoint track</desc>
+    <trkseg>`;
+            
+            this.waypoints.forEach(marker => {
+                const ll = marker.getLatLng();
+                gpx += `
+      <trkpt lat="${ll.lat}" lon="${ll.lng}"></trkpt>`;
+            });
+            
+            gpx += `
+    </trkseg>
+  </trk>`;
+        }
+        
+        // Add waypoints as route points for navigation
+        gpx += `
+  <rte>
+    <name>${routeName} - Waypoints</name>`;
+        
+        this.waypoints.forEach((marker, i) => {
+            const ll = marker.getLatLng();
+            gpx += `
+    <rtept lat="${ll.lat}" lon="${ll.lng}">
+      <name>Waypoint ${String.fromCharCode(65 + i)}</name>
+      <desc>Stop ${i + 1}</desc>
+    </rtept>`;
+        });
+        
+        gpx += `
+  </rte>`;
+        
+        // Add POIs as waypoints
+        if (this.pois.length > 0) {
+            this.pois.forEach((poi, i) => {
+                const poiNames = {
+                    gas: 'Gas Station',
+                    food: 'Food Stop',
+                    scenic: 'Scenic Viewpoint',
+                    mechanic: 'Bike Shop'
+                };
+                gpx += `
+  <wpt lat="${poi.latlng.lat}" lon="${poi.latlng.lng}">
+    <name>${poiNames[poi.type] || poi.type} ${i + 1}</name>
+    <desc>${poiNames[poi.type] || poi.type}</desc>
+    <type>${poi.type}</type>
+  </wpt>`;
+            });
+        }
+        
+        gpx += `
+</gpx>`;
+        
+        // Download GPX file
+        const fileName = `${routeName.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_route.gpx`;
+        const blob = new Blob([gpx], { type: 'application/gpx+xml' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        this.showNotification(`Route exported as ${fileName}!`, 'success');
+    }
+
+    recalculateRoute() {
+        if (this.waypoints.length >= 2) {
+            this.updateRoute();
+        }
+    }
+
+    loadUserLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    this.map.setView([latitude, longitude], 13);
+                    
+                    // Store user location for later use
+                    this.userLocation = L.latLng(latitude, longitude);
+                    
+                    // Add user location marker
+                    L.marker([latitude, longitude], {
+                        icon: L.divIcon({
+                            className: 'user-location-marker',
+                            html: '<div style="background: #007bff; width: 16px; height: 16px; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 10px rgba(0,123,255,0.5);"></div>',
+                            iconSize: [16, 16],
+                            iconAnchor: [8, 8]
+                        })
+                    }).addTo(this.map).bindPopup('Your Location');
+                },
+                (error) => {
+                    console.warn('Geolocation error:', error);
+                }
+            );
+        }
+    }
+
+    useMyLocationAsStart() {
+        if (this.userLocation) {
+            // Add user location as first waypoint
+            this.addWaypoint(this.userLocation);
+            this.showNotification('Added your location as starting point! Click the map to add your destination.', 'success');
+        } else {
+            // Get location and use it
+            if (navigator.geolocation) {
+                const button = document.getElementById('useMyLocation');
+                button.textContent = '📍 Getting location...';
+                button.disabled = true;
+                
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        const location = L.latLng(latitude, longitude);
+                        this.userLocation = location;
+                        this.map.setView([latitude, longitude], 13);
+                        this.addWaypoint(location);
+                        
+                        button.textContent = '📍 Start From My Location';
+                        button.disabled = false;
+                        
+                        this.showNotification('Added your location as starting point! Click the map to add your destination.', 'success');
+                    },
+                    (error) => {
+                        console.error('Geolocation error:', error);
+                        button.textContent = '📍 Start From My Location';
+                        button.disabled = false;
+                        this.showNotification('Could not get your location. Please click on the map to add a starting point.', 'warning');
+                    }
+                );
+            } else {
+                this.showNotification('Geolocation not supported. Please click on the map to add a starting point.', 'warning');
+            }
+        }
+    }
+
+    loadSavedRoutes() {
+        // Check URL for shared route data
+        const urlParams = new URLSearchParams(window.location.search);
+        const routeData = urlParams.get('data');
+        
+        if (routeData) {
+            try {
+                const route = JSON.parse(decodeURIComponent(routeData));
+                this.loadRoute(route);
+            } catch (error) {
+                console.error('Error loading shared route:', error);
+            }
+        }
+    }
+
+    loadRoute(routeData) {
+        this.clearRoute();
+        
+        // Load waypoints
+        if (routeData.waypoints) {
+            routeData.waypoints.forEach(latlng => {
+                this.addWaypoint(L.latLng(latlng.lat, latlng.lng));
+            });
+        }
+        
+        // Load POIs
+        if (routeData.pois) {
+            routeData.pois.forEach(poi => {
+                this.addPOI(L.latLng(poi.latlng.lat, poi.latlng.lng), poi.type);
+            });
+        }
+        
+        // Fit map to route
+        if (this.waypoints.length > 0) {
+            const group = new L.featureGroup(this.waypoints);
+            this.map.fitBounds(group.getBounds().pad(0.1));
+        }
+    }
+
+    makeRouteClickable() {
+        // Make the route line clickable to add waypoints - Strava-like feature
+        // This is handled by the routing control's addWaypoints: true option
+        console.log('Route is now clickable for adding waypoints');
+    }
+    
+    syncWaypoints(routingWaypoints) {
+        // Sync our custom waypoint markers with the routing control waypoints
+        // This ensures our lettered markers stay in sync when waypoints are added via route clicking
+        console.log('Syncing waypoints:', routingWaypoints);
+        
+        // Clear existing waypoint markers
+        this.waypoints.forEach(marker => this.map.removeLayer(marker));
+        this.waypoints = [];
+        
+        // Recreate waypoint markers for each routing waypoint
+        routingWaypoints.forEach((waypoint, index) => {
+            if (waypoint.latLng) {
+                this.addWaypointMarker(waypoint.latLng, index);
+            }
+        });
+    }
+    
+    addWaypointMarker(latlng, index) {
+        const letter = String.fromCharCode(65 + index);
+        
+        const marker = L.marker(latlng, {
+            draggable: true,
+            icon: L.divIcon({
+                className: 'waypoint-marker',
+                html: `<div style="background: var(--accent); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 3px solid white; box-shadow: 0 2px 8px rgba(88, 101, 242, 0.4); cursor: move;">${letter}</div>`,
+                iconSize: [30, 30],
+                iconAnchor: [15, 15]
+            })
+        }).addTo(this.map);
+
+        // Add drag event that updates the routing control
+        marker.on('drag', () => {
+            const newWaypoints = this.waypoints.map(m => m.getLatLng());
+            this.routingControl.setWaypoints(newWaypoints);
+        });
+
+        // Add popup with waypoint info
+        marker.bindPopup(`
+            <div style="text-align: center;">
+                <strong>Waypoint ${letter}</strong><br>
+                <button onclick="routePlanner.removeWaypointByIndex(${index})" style="margin-top: 8px; padding: 6px 12px; background: #ef4444; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">Remove</button>
+            </div>
+        `);
+
+        this.waypoints[index] = marker;
+        return marker;
+    }
+    
+    removeWaypointByIndex(index) {
+        // Remove waypoint by index and update routing
+        if (this.waypoints[index]) {
+            this.map.removeLayer(this.waypoints[index]);
+            this.waypoints.splice(index, 1);
+            
+            // Update routing control
+            const newWaypoints = this.waypoints.map(marker => marker.getLatLng());
+            this.routingControl.setWaypoints(newWaypoints);
+            
+            // Re-label remaining waypoints
+            this.relabelWaypoints();
+        }
+    }
+    
+    relabelWaypoints() {
+        // Update waypoint labels after removal
+        this.waypoints.forEach((marker, index) => {
+            const letter = String.fromCharCode(65 + index);
+            marker.setIcon(L.divIcon({
+                className: 'waypoint-marker',
+                html: `<div style="background: var(--accent); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 3px solid white; box-shadow: 0 2px 8px rgba(88, 101, 242, 0.4); cursor: move;">${letter}</div>`,
+                iconSize: [30, 30],
+                iconAnchor: [15, 15]
+            }));
+            
+            // Update popup content
+            marker.setPopupContent(`
+                <div style="text-align: center;">
+                    <strong>Waypoint ${letter}</strong><br>
+                    <button onclick="routePlanner.removeWaypointByIndex(${index})" style="margin-top: 8px; padding: 6px 12px; background: #ef4444; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px;">Remove</button>
+                </div>
+            `);
+        });
+    }
+
+    // Geocoding for address input
+    async geocodeAndAddWaypoint(address) {
+        if (!address.trim()) return;
+        
+        try {
+            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`);
+            const data = await response.json();
+            
+            if (data.length > 0) {
+                const result = data[0];
+                const latlng = L.latLng(result.lat, result.lon);
+                this.addWaypoint(latlng);
+                this.map.setView(latlng, 13);
+                document.getElementById('startPointInput').value = '';
+                this.showNotification(`Added waypoint: ${result.display_name}`, 'success');
+            } else {
+                this.showNotification('Location not found. Try a different address.', 'warning');
+            }
+        } catch (error) {
+            console.error('Geocoding error:', error);
+            this.showNotification('Error finding location', 'error');
+        }
+    }
+    
+    // Toggle manual mode
+    toggleManualMode(enabled) {
+        if (enabled) {
+            this.showNotification('Manual mode enabled - click route to add waypoints', 'info');
+            this.routingControl.options.addWaypoints = true;
+        } else {
+            this.routingControl.options.addWaypoints = false;
+        }
+    }
+    
+    // Toggle surface type display
+    toggleSurfaceDisplay(show) {
+        if (show && this.currentRoute) {
+            this.showSurfaceTypes();
+        } else if (this.surfaceOverlay) {
+            this.map.removeLayer(this.surfaceOverlay);
+        }
+    }
+    
+    // Show surface types on map
+    showSurfaceTypes() {
+        if (!this.currentRoute || !this.currentRoute.coordinates) return;
+        
+        // Create colored segments based on surface type
+        // This is a simplified version - real implementation would need actual surface data
+        const segments = [];
+        const colors = {
+            paved: '#10b981',
+            gravel: '#f59e0b',
+            trail: '#8b5cf6'
+        };
+        
+        // For demo purposes, randomly assign surface types to route segments
+        for (let i = 0; i < this.currentRoute.coordinates.length - 1; i += 10) {
+            const start = i;
+            const end = Math.min(i + 10, this.currentRoute.coordinates.length - 1);
+            const coords = this.currentRoute.coordinates.slice(start, end + 1).map(c => [c.lat, c.lng]);
+            
+            const surfaceType = ['paved', 'gravel', 'trail'][Math.floor(Math.random() * 3)];
+            const segment = L.polyline(coords, {
+                color: colors[surfaceType],
+                weight: 8,
+                opacity: 0.6
+            });
+            segments.push(segment);
+        }
+        
+        this.surfaceOverlay = L.layerGroup(segments).addTo(this.map);
+    }
+    
+    // Toggle distance markers
+    toggleDistanceMarkers(show) {
+        if (show && this.currentRoute) {
+            this.addDistanceMarkers();
+        } else {
+            this.distanceMarkers.forEach(marker => this.map.removeLayer(marker));
+            this.distanceMarkers = [];
+        }
+    }
+    
+    // Add distance markers along route
+    addDistanceMarkers() {
+        if (!this.currentRoute) return;
+        
+        const totalDistance = this.currentRoute.summary.totalDistance;
+        const markerInterval = 1609.34; // 1 mile in meters
+        
+        let accumulatedDistance = 0;
+        let mileCount = 1;
+        
+        for (let i = 1; i < this.currentRoute.coordinates.length; i++) {
+            const prevCoord = this.currentRoute.coordinates[i - 1];
+            const currCoord = this.currentRoute.coordinates[i];
+            
+            const segmentDistance = this.calculateDistance(
+                [prevCoord.lat, prevCoord.lng],
+                [currCoord.lat, currCoord.lng]
+            );
+            
+            accumulatedDistance += segmentDistance;
+            
+            if (accumulatedDistance >= markerInterval * mileCount) {
+                const marker = L.marker([currCoord.lat, currCoord.lng], {
+                    icon: L.divIcon({
+                        className: 'distance-marker',
+                        html: `<div style="background: white; color: #5865f2; padding: 4px 8px; border-radius: 12px; font-weight: bold; font-size: 12px; border: 2px solid #5865f2;">${mileCount} mi</div>`,
+                        iconSize: [50, 24],
+                        iconAnchor: [25, 12]
+                    })
+                }).addTo(this.map);
+                
+                this.distanceMarkers.push(marker);
+                mileCount++;
+            }
+        }
+    }
+    
+    // Calculate distance between two points
+    calculateDistance(latlng1, latlng2) {
+        const R = 6371000; // Earth's radius in meters
+        const lat1 = latlng1[0] * Math.PI / 180;
+        const lat2 = latlng2[0] * Math.PI / 180;
+        const deltaLat = (latlng2[0] - latlng1[0]) * Math.PI / 180;
+        const deltaLng = (latlng2[1] - latlng1[1]) * Math.PI / 180;
+        
+        const a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+                  Math.cos(lat1) * Math.cos(lat2) *
+                  Math.sin(deltaLng / 2) * Math.sin(deltaLng / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        
+        return R * c;
+    }
+    
+    // Toggle heatmap display
+    toggleHeatmaps(show) {
+        if (show) {
+            this.showHeatmap();
+        } else if (this.heatmapLayer) {
+            this.map.removeLayer(this.heatmapLayer);
+        }
+    }
+    
+    // Show popular routes heatmap
+    showHeatmap() {
+        // This would normally load actual heatmap data from Strava or similar
+        // For demo, create a simple overlay
+        const bounds = this.map.getBounds();
+        this.heatmapLayer = L.rectangle(bounds, {
+            color: '#ff6b6b',
+            weight: 0,
+            fillOpacity: 0.1,
+            interactive: false
+        }).addTo(this.map);
+        
+        this.showNotification('Showing popular routes heatmap', 'info');
+    }
+    
+    // Toggle segments display
+    toggleSegments(show) {
+        if (show) {
+            this.showSegments();
+        } else if (this.segmentsLayer) {
+            this.map.removeLayer(this.segmentsLayer);
+        }
+    }
+    
+    // Show Strava-like segments
+    showSegments() {
+        // Demo segments - would normally load from API
+        const demoSegments = [
+            { name: "Harbor Sprint", start: [37.8, -122.4], end: [37.81, -122.39], type: "sprint" },
+            { name: "Hilltop KOM", start: [37.82, -122.38], end: [37.83, -122.37], type: "climb" }
+        ];
+        
+        const segments = demoSegments.map(seg => {
+            return L.polyline([seg.start, seg.end], {
+                color: seg.type === 'sprint' ? '#00d4ff' : '#fc4c02',
+                weight: 6,
+                opacity: 0.7
+            }).bindPopup(`<strong>${seg.name}</strong><br>Type: ${seg.type}`);
+        });
+        
+        this.segmentsLayer = L.layerGroup(segments).addTo(this.map);
+        this.showNotification('Showing segments', 'info');
+    }
+    
+    // Load and display saved routes
+    loadSavedRoutes() {
+        const savedRoutes = JSON.parse(localStorage.getItem('bikenode_routes') || '[]');
+        this.savedRoutes = savedRoutes;
+        
+        const routesList = document.getElementById('savedRoutesList');
+        if (savedRoutes.length === 0) {
+            routesList.innerHTML = '<p class="no-routes">No saved routes yet</p>';
+        } else {
+            routesList.innerHTML = savedRoutes.slice(0, 3).map(route => `
+                <div class="saved-route-item" onclick="routePlanner.loadRoute(${route.id})">
+                    <strong>${route.name}</strong>
+                    <span>${(route.stats?.distance / 1609.34).toFixed(1)} mi</span>
+                </div>
+            `).join('');
+        }
+    }
+    
+    // Show all routes page
+    showAllRoutes() {
+        window.location.href = '/routes-gallery/';
+    }
+    
+    // Update route stats display
+    updateRouteStats(route) {
+        const distance = (route.summary.totalDistance / 1609.34).toFixed(1);
+        const timeInMinutes = Math.round(route.summary.totalTime / 60);
+        const hours = Math.floor(timeInMinutes / 60);
+        const minutes = timeInMinutes % 60;
+        
+        // Update distance display
+        document.getElementById('routeDistance').textContent = distance;
+        
+        // Update time (hidden in new UI, but keeping for compatibility)
+        // document.getElementById('routeTime').textContent = `${hours}h ${minutes}m`;
+        
+        // Calculate elevation with gain and loss
+        this.calculateElevation(route.coordinates);
+    }
+    
+    showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: var(--text-primary);
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            animation: slideIn 0.3s ease;
+        `;
+        notification.textContent = message;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }, 3000);
+    }
+}
+
+// Initialize route planner
+let routePlanner;
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing route planner...');
+    
+    // Check if Leaflet is loaded
+    if (typeof L === 'undefined') {
+        console.error('Leaflet not loaded!');
+        document.getElementById('routeMap').innerHTML = '<div style="padding: 40px; text-align: center; color: var(--text-secondary);">Error: Map library not loaded. Please refresh the page.</div>';
+        return;
+    }
+    
+    // Wait a bit for CSS to load
+    setTimeout(() => {
+        try {
+            routePlanner = new RoutePlanner();
+            routePlanner.init();
+        } catch (error) {
+            console.error('Error initializing route planner:', error);
+            document.getElementById('routeMap').innerHTML = '<div style="padding: 40px; text-align: center; color: var(--text-secondary);">Error initializing map. Please refresh the page.</div>';
+        }
+    }, 500);
+});
+</script>

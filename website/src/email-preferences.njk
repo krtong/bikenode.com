@@ -1,0 +1,486 @@
+---
+layout: dashboard.njk
+title: Email Preferences
+subtitle: Manage your email notifications
+breadcrumb:
+  - title: Settings
+    url: /account-settings/
+  - title: Email Preferences
+---
+
+<style>
+  .email-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .email-section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+
+  .section-header {
+    margin-bottom: 24px;
+  }
+
+  .section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .section-description {
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+
+  .email-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .email-option:last-child {
+    border-bottom: none;
+  }
+
+  .option-info {
+    flex: 1;
+    margin-right: 24px;
+  }
+
+  .option-title {
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .option-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .frequency-select {
+    min-width: 140px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: var(--text-primary);
+    cursor: pointer;
+  }
+
+  .digest-preview {
+    background: rgba(88, 101, 242, 0.1);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 20px;
+  }
+
+  .preview-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .preview-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--accent);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .preview-title {
+    font-weight: 600;
+  }
+
+  .preview-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .preview-content {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  .unsubscribe-section {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+  }
+
+  .unsubscribe-title {
+    color: #ef4444;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .unsubscribe-text {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .save-notification {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--accent);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px;
+    display: none;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .save-notification.show {
+    display: flex;
+    animation: slideIn 0.3s ease;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  .email-footer {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 32px;
+    text-align: center;
+  }
+
+  .footer-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+
+  .test-email-btn {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+  }
+
+  .test-email-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  @media (max-width: 768px) {
+    .email-option {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option-info {
+      margin-right: 0;
+    }
+
+    .frequency-select {
+      width: 100%;
+    }
+  }
+</style>
+
+<div class="email-container">
+  <!-- Activity Notifications -->
+  <div class="email-section">
+    <div class="section-header">
+      <h2 class="section-title">Activity Notifications</h2>
+      <p class="section-description">Get notified about your rides and achievements</p>
+    </div>
+
+    <div class="email-option">
+      <div class="option-info">
+        <div class="option-title">Weekly Summary</div>
+        <div class="option-description">Your weekly riding stats, achievements, and progress</div>
+      </div>
+      <select class="frequency-select" data-setting="weekly-summary">
+        <option value="enabled">Every Monday</option>
+        <option value="disabled">Disabled</option>
+      </select>
+    </div>
+
+    <div class="email-option">
+      <div class="option-info">
+        <div class="option-title">Monthly Progress Report</div>
+        <div class="option-description">Detailed analysis of your monthly performance and goals</div>
+      </div>
+      <select class="frequency-select" data-setting="monthly-report">
+        <option value="enabled">Enabled</option>
+        <option value="disabled">Disabled</option>
+      </select>
+    </div>
+
+    <div class="email-option">
+      <div class="option-info">
+        <div class="option-title">New Personal Records</div>
+        <div class="option-description">Celebrate when you set new PRs on segments or routes</div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" checked data-setting="pr-notifications">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="email-option">
+      <div class="option-info">
+        <div class="option-title">Achievement Unlocked</div>
+        <div class="option-description">Get notified when you unlock new achievements</div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" checked data-setting="achievement-notifications">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Social Notifications -->
+  <div class="email-section">
+    <div class="section-header">
+      <h2 class="section-title">Social Notifications</h2>
+      <p class="section-description">Stay connected with your cycling community</p>
+    </div>
+
+    <div class="email-option">
+      <div class="option-info">
+        <div class="option-title">Kudos & Comments</div>
+        <div class="option-description">When someone gives kudos or comments on your activities</div>
+      </div>
+      <select class="frequency-select" data-setting="social-interactions">
+        <option value="instant">Instant</option>
+        <option value="daily">Daily Digest</option>
+        <option value="weekly">Weekly Digest</option>
+        <option value="disabled">Disabled</option>
+      </select>
+    </div>
+
+    <div class="email-option">
+      <div class="option-info">
+        <div class="option-title">New Followers</div>
+        <div class="option-description">When someone starts following your activities</div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" checked data-setting="new-followers">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="email-option">
+      <div class="option-info">
+        <div class="option-title">Friend Activity Highlights</div>
+        <div class="option-description">Notable rides and achievements from people you follow</div>
+      </div>
+      <select class="frequency-select" data-setting="friend-activity">
+        <option value="weekly">Weekly</option>
+        <option value="monthly">Monthly</option>
+        <option value="disabled">Disabled</option>
+      </select>
+    </div>
+
+    <div class="email-option">
+      <div class="option-info">
+        <div class="option-title">Group Ride Invitations</div>
+        <div class="option-description">When you're invited to join a group ride</div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" checked data-setting="group-invites">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Community & Events -->
+  <div class="email-section">
+    <div class="section-header">
+      <h2 class="section-title">Community & Events</h2>
+      <p class="section-description">Updates from communities and upcoming events</p>
+    </div>
+
+    <div class="email-option">
+      <div class="option-info">
+        <div class="option-title">Community Updates</div>
+        <div class="option-description">News and announcements from communities you've joined</div>
+      </div>
+      <select class="frequency-select" data-setting="community-updates">
+        <option value="instant">Important Only</option>
+        <option value="daily">Daily Digest</option>
+        <option value="weekly">Weekly Digest</option>
+        <option value="disabled">Disabled</option>
+      </select>
+    </div>
+
+    <div class="email-option">
+      <div class="option-info">
+        <div class="option-title">Upcoming Events</div>
+        <div class="option-description">Reminders about events you're interested in</div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" checked data-setting="event-reminders">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="email-option">
+      <div class="option-info">
+        <div class="option-title">Challenge Updates</div>
+        <div class="option-description">Progress updates for challenges you've joined</div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" checked data-setting="challenge-updates">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Marketing & Product -->
+  <div class="email-section">
+    <div class="section-header">
+      <h2 class="section-title">Product Updates</h2>
+      <p class="section-description">Stay informed about BikeNode features and updates</p>
+    </div>
+
+    <div class="email-option">
+      <div class="option-info">
+        <div class="option-title">Product Newsletter</div>
+        <div class="option-description">New features, tips, and cycling content</div>
+      </div>
+      <select class="frequency-select" data-setting="newsletter">
+        <option value="monthly">Monthly</option>
+        <option value="quarterly">Quarterly</option>
+        <option value="disabled">Disabled</option>
+      </select>
+    </div>
+
+    <div class="email-option">
+      <div class="option-info">
+        <div class="option-title">Feature Announcements</div>
+        <div class="option-description">Be the first to know about new features</div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" checked data-setting="feature-announcements">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="email-option">
+      <div class="option-info">
+        <div class="option-title">Partner Offers</div>
+        <div class="option-description">Exclusive deals from cycling brands and partners</div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" data-setting="partner-offers">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="digest-preview">
+      <div class="preview-header">
+        <div class="preview-icon">📧</div>
+        <div>
+          <div class="preview-title">Sample Weekly Digest</div>
+          <div class="preview-subtitle">Here's what your email digest looks like</div>
+        </div>
+      </div>
+      <div class="preview-content">
+        Your weekly digest includes: riding stats (total miles, elevation, time), new achievements, segment PRs, upcoming group rides in your area, and highlights from riders you follow.
+      </div>
+    </div>
+  </div>
+
+  <!-- Unsubscribe -->
+  <div class="email-section">
+    <div class="unsubscribe-section">
+      <div class="unsubscribe-title">Unsubscribe from All Emails</div>
+      <div class="unsubscribe-text">
+        Stop receiving all email notifications from BikeNode. You can always re-enable them later.
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" data-setting="unsubscribe-all">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="email-footer">
+    <p class="footer-text">Your current email: user@example.com</p>
+    <button class="test-email-btn">Send Test Email</button>
+  </div>
+</div>
+
+<div class="save-notification" id="saveNotification">
+  <span>✓</span>
+  <span>Preferences saved</span>
+</div>
+
+<script>
+  // Auto-save preferences
+  function savePreference(setting, value) {
+    console.log(`Saving ${setting}: ${value}`);
+    
+    // Show notification
+    const notification = document.getElementById('saveNotification');
+    notification.classList.add('show');
+    
+    setTimeout(() => {
+      notification.classList.remove('show');
+    }, 3000);
+  }
+
+  // Handle select changes
+  document.querySelectorAll('.frequency-select').forEach(select => {
+    select.addEventListener('change', (e) => {
+      savePreference(e.target.dataset.setting, e.target.value);
+    });
+  });
+
+  // Handle toggle switches
+  document.querySelectorAll('input[type="checkbox"][data-setting]').forEach(toggle => {
+    toggle.addEventListener('change', (e) => {
+      savePreference(e.target.dataset.setting, e.target.checked);
+      
+      // Handle unsubscribe all
+      if (e.target.dataset.setting === 'unsubscribe-all' && e.target.checked) {
+        document.querySelectorAll('input[type="checkbox"]:not([data-setting="unsubscribe-all"])').forEach(t => {
+          t.checked = false;
+          t.disabled = true;
+        });
+        document.querySelectorAll('.frequency-select').forEach(s => {
+          s.value = 'disabled';
+          s.disabled = true;
+        });
+      } else if (e.target.dataset.setting === 'unsubscribe-all' && !e.target.checked) {
+        document.querySelectorAll('input[type="checkbox"], .frequency-select').forEach(el => {
+          el.disabled = false;
+        });
+      }
+    });
+  });
+
+  // Test email button
+  document.querySelector('.test-email-btn').addEventListener('click', () => {
+    alert('Test email sent to user@example.com');
+  });
+</script>

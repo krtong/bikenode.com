@@ -1,0 +1,576 @@
+---
+layout: dashboard.njk
+title: Enduro vs Trail bike - Which should I choose?
+subtitle: Mountain Bikes Forum Discussion
+breadcrumb:
+  - title: Forums
+    url: /forums/
+  - title: Mountain Bikes
+    url: /forums/mountain-bikes/
+  - title: Enduro vs Trail bike
+customCSS:
+  - "/assets/css/forums.css"
+  - "/assets/css/forum-thread.css"
+inlineJS: |
+  function replyToPost(postId) {
+    const replyForm = document.getElementById('reply-form');
+    const replyTo = document.getElementById('reply-to');
+    const postElement = document.querySelector(`[data-post="${postId}"]`);
+    const author = postElement.querySelector('.post-author').textContent;
+    
+    replyTo.textContent = `Replying to ${author}`;
+    replyForm.style.display = 'block';
+    replyForm.scrollIntoView({ behavior: 'smooth' });
+    
+    // Focus on textarea
+    document.getElementById('reply-content').focus();
+  }
+  
+  function quotePost(postId) {
+    const postElement = document.querySelector(`[data-post="${postId}"]`);
+    const author = postElement.querySelector('.post-author').textContent;
+    const content = postElement.querySelector('.post-content').textContent.trim();
+    const textarea = document.getElementById('reply-content');
+    
+    const quote = `[quote="${author}"]${content}[/quote]\n\n`;
+    textarea.value = quote + textarea.value;
+    
+    replyToPost(postId);
+  }
+  
+  function likePost(postId) {
+    const likeBtn = document.querySelector(`[data-post="${postId}"] .like-btn`);
+    const likeCount = likeBtn.querySelector('.like-count');
+    const currentCount = parseInt(likeCount.textContent);
+    const isLiked = likeBtn.classList.contains('liked');
+    
+    if (isLiked) {
+      likeBtn.classList.remove('liked');
+      likeCount.textContent = currentCount - 1;
+    } else {
+      likeBtn.classList.add('liked');
+      likeCount.textContent = currentCount + 1;
+    }
+  }
+  
+  function reportPost(postId) {
+    if (confirm('Report this post for violating community guidelines?')) {
+      console.log(`Reported post ${postId}`);
+    }
+  }
+  
+  function subscribeThread() {
+    const btn = document.getElementById('subscribe-btn');
+    const isSubscribed = btn.classList.contains('subscribed');
+    
+    if (isSubscribed) {
+      btn.classList.remove('subscribed');
+      btn.innerHTML = '<i class="icon">🔔</i> Subscribe';
+    } else {
+      btn.classList.add('subscribed');
+      btn.innerHTML = '<i class="icon">✓</i> Subscribed';
+    }
+  }
+  
+  function shareThread() {
+    if (navigator.share) {
+      navigator.share({
+        title: 'Enduro vs Trail bike - Which should I choose?',
+        url: window.location.href
+      });
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }
+  }
+  
+  function submitReply() {
+    const content = document.getElementById('reply-content').value.trim();
+    if (content) {
+      console.log('Submitting reply:', content);
+      // Add reply to thread
+      document.getElementById('reply-content').value = '';
+      document.getElementById('reply-form').style.display = 'none';
+    }
+  }
+  
+  function formatText(format) {
+    const textarea = document.getElementById('reply-content');
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selectedText = textarea.value.substring(start, end);
+    
+    let replacement = '';
+    switch(format) {
+      case 'bold':
+        replacement = `[b]${selectedText}[/b]`;
+        break;
+      case 'italic':
+        replacement = `[i]${selectedText}[/i]`;
+        break;
+      case 'link':
+        const url = prompt('Enter URL:');
+        if (url) replacement = `[url=${url}]${selectedText}[/url]`;
+        break;
+    }
+    
+    if (replacement) {
+      textarea.value = textarea.value.substring(0, start) + replacement + textarea.value.substring(end);
+      textarea.focus();
+    }
+  }
+  
+  function cancelReply() {
+    document.getElementById('reply-form').style.display = 'none';
+    document.getElementById('reply-content').value = '';
+  }
+---
+
+<div class="forum-thread-container">
+  <div class="thread-header">
+    <div class="thread-info">
+      <h1>{{ title }}</h1>
+      <div class="thread-meta">
+        <div class="thread-tags">
+          <span class="tag">bike-choice</span>
+          <span class="tag">enduro</span>
+          <span class="tag">trail</span>
+        </div>
+        <div class="thread-stats">
+          <span class="stat">
+            <i class="icon">👁</i>
+            892 views
+          </span>
+          <span class="stat">
+            <i class="icon">💬</i>
+            47 replies
+          </span>
+          <span class="stat">
+            <i class="icon">📅</i>
+            Started 3 hours ago
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="thread-actions">
+      <button id="subscribe-btn" class="btn btn-secondary" onclick="subscribeThread()">
+        <i class="icon">🔔</i>
+        Subscribe
+      </button>
+      <button class="btn btn-secondary" onclick="shareThread()">
+        <i class="icon">📤</i>
+        Share
+      </button>
+      <div class="dropdown">
+        <button class="btn btn-icon dropdown-toggle">⋮</button>
+        <div class="dropdown-menu">
+          <button onclick="reportPost('thread')">⚠️ Report Thread</button>
+          <button onclick="window.print()">🖨️ Print</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="thread-navigation">
+    <div class="nav-info">
+      <span>Showing posts 1-20 of 47</span>
+    </div>
+    <div class="nav-controls">
+      <button class="nav-btn" disabled>← Previous</button>
+      <div class="page-numbers">
+        <button class="page-number active">1</button>
+        <button class="page-number">2</button>
+        <button class="page-number">3</button>
+      </div>
+      <button class="nav-btn">Next →</button>
+    </div>
+  </div>
+
+  <div class="posts-container">
+    <!-- Original Post -->
+    <div class="post original-post" data-post="1">
+      <div class="post-sidebar">
+        <div class="user-info">
+          <img src="/assets/images/avatars/alex-rodriguez.jpg" alt="Alex Rodriguez" class="user-avatar">
+          <h4 class="post-author">Alex Rodriguez</h4>
+          <div class="user-badges">
+            <span class="badge active">Active Member</span>
+            <span class="badge posts">156 posts</span>
+          </div>
+          <div class="user-stats">
+            <span class="join-date">Joined: Oct 2023</span>
+            <span class="location">Location: San Diego, CA</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="post-content-area">
+        <div class="post-header">
+          <div class="post-number">#1</div>
+          <div class="post-time">3 hours ago</div>
+          <div class="post-actions">
+            <button class="action-btn like-btn" onclick="likePost('1')">
+              <i class="icon">👍</i>
+              <span class="like-count">12</span>
+            </button>
+            <button class="action-btn" onclick="replyToPost('1')">
+              <i class="icon">💬</i>
+              Reply
+            </button>
+            <button class="action-btn" onclick="quotePost('1')">
+              <i class="icon">📋</i>
+              Quote
+            </button>
+            <button class="action-btn" onclick="reportPost('1')">
+              <i class="icon">⚠️</i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="post-content">
+          <p>Hey everyone! I'm looking to upgrade from my hardtail and I'm completely torn between getting an enduro bike or a trail bike. I mainly ride XC trails right now but I really want to get into more technical stuff and maybe some light downhill.</p>
+          
+          <p>My current riding:</p>
+          <ul>
+            <li>70% XC trails and fire roads</li>
+            <li>20% technical singletrack</li>
+            <li>10% bike park (but want to do more)</li>
+          </ul>
+          
+          <p>I've been looking at bikes like:</p>
+          <ul>
+            <li><strong>Trail:</strong> Trek Fuel EX, Specialized Stumpjumper, Giant Trance</li>
+            <li><strong>Enduro:</strong> Santa Cruz Nomad, Yeti SB150, Transition Patrol</li>
+          </ul>
+          
+          <p>I know enduro bikes are more capable on gnarly descents, but are they too much bike for the majority of my riding? Trail bikes seem more versatile but will I outgrow the capability quickly?</p>
+          
+          <p>Budget is around $4-6k. Any advice would be hugely appreciated! 🚵‍♂️</p>
+        </div>
+        
+        <div class="post-footer">
+          <div class="post-signature">
+            <em>2019 Trek Marlin 7 → Looking to upgrade!</em>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reply 1 -->
+    <div class="post reply" data-post="2">
+      <div class="post-sidebar">
+        <div class="user-info">
+          <img src="/assets/images/avatars/mike-chen.jpg" alt="Mike Chen" class="user-avatar">
+          <h4 class="post-author">Mike Chen</h4>
+          <div class="user-badges">
+            <span class="badge expert">Trail Expert</span>
+            <span class="badge posts">247 posts</span>
+          </div>
+          <div class="user-stats">
+            <span class="join-date">Joined: Mar 2021</span>
+            <span class="location">Location: Bay Area, CA</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="post-content-area">
+        <div class="post-header">
+          <div class="post-number">#2</div>
+          <div class="post-time">2 hours ago</div>
+          <div class="post-actions">
+            <button class="action-btn like-btn liked" onclick="likePost('2')">
+              <i class="icon">👍</i>
+              <span class="like-count">8</span>
+            </button>
+            <button class="action-btn" onclick="replyToPost('2')">
+              <i class="icon">💬</i>
+              Reply
+            </button>
+            <button class="action-btn" onclick="quotePost('2')">
+              <i class="icon">📋</i>
+              Quote
+            </button>
+            <button class="action-btn" onclick="reportPost('2')">
+              <i class="icon">⚠️</i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="post-content">
+          <p>Based on your riding breakdown, I'd lean towards a <strong>trail bike</strong>. You're doing 70% XC which means you'll really appreciate the efficiency and climbing ability of a 130-140mm trail bike.</p>
+          
+          <p>The bikes you mentioned are all excellent choices. I've ridden the Fuel EX extensively and it's incredibly versatile - climbs like a hardtail but can handle serious descents when needed.</p>
+          
+          <blockquote>
+            <p><strong>Pro tip:</strong> Don't get caught up in "outgrowing" a trail bike. Modern 140mm bikes are shockingly capable. I've taken my Stumpjumper down double blacks that would have scared me on my old 160mm bike.</p>
+          </blockquote>
+          
+          <p>That said, if you're serious about getting into bike parks and DH, test ride both categories. The extra travel and geometry of an enduro bike does make a difference on steep, chunky terrain.</p>
+        </div>
+        
+        <div class="post-footer">
+          <div class="post-signature">
+            <em>2023 Specialized Stumpjumper Expert | 2021 Trek Fuel EX 8</em>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reply 2 -->
+    <div class="post reply" data-post="3">
+      <div class="post-sidebar">
+        <div class="user-info">
+          <img src="/assets/images/avatars/sarah-johnson.jpg" alt="Sarah Johnson" class="user-avatar">
+          <h4 class="post-author">Sarah Johnson</h4>
+          <div class="user-badges">
+            <span class="badge moderator">Moderator</span>
+            <span class="badge posts">189 posts</span>
+          </div>
+          <div class="user-stats">
+            <span class="join-date">Joined: Jan 2022</span>
+            <span class="location">Location: Colorado</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="post-content-area">
+        <div class="post-header">
+          <div class="post-number">#3</div>
+          <div class="post-time">1 hour ago</div>
+          <div class="post-actions">
+            <button class="action-btn like-btn" onclick="likePost('3')">
+              <i class="icon">👍</i>
+              <span class="like-count">15</span>
+            </button>
+            <button class="action-btn" onclick="replyToPost('3')">
+              <i class="icon">💬</i>
+              Reply
+            </button>
+            <button class="action-btn" onclick="quotePost('3')">
+              <i class="icon">📋</i>
+              Quote
+            </button>
+            <button class="action-btn" onclick="reportPost('3')">
+              <i class="icon">⚠️</i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="post-content">
+          <p>Great question! I went through this exact decision last year. Here's my take:</p>
+          
+          <p><strong>Trail bike advantages:</strong></p>
+          <ul>
+            <li>Better for climbing and XC riding (which is 70% of what you do)</li>
+            <li>More playful and nimble on technical singletrack</li>
+            <li>Generally lighter weight</li>
+            <li>Better value - more bike for your money in the trail category</li>
+          </ul>
+          
+          <p><strong>Enduro bike advantages:</strong></p>
+          <ul>
+            <li>More confidence-inspiring on steep, rough descents</li>
+            <li>Better for bike park and shuttle days</li>
+            <li>Longer geometry for stability at speed</li>
+            <li>Can handle bigger hits and jumps</li>
+          </ul>
+          
+          <p>Given your current riding mix, I'd say <strong>trail bike</strong>. You can always rent an enduro bike for bike park days until you decide if you want to get more serious about that type of riding.</p>
+          
+          <p>Also consider: a good trail bike will make you a better rider overall. The slightly less forgiving nature means you'll develop better technique.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reply 3 - Recent -->
+    <div class="post reply recent" data-post="47">
+      <div class="post-sidebar">
+        <div class="user-info">
+          <img src="/assets/images/avatars/trail-guru.jpg" alt="Trail Guru" class="user-avatar">
+          <h4 class="post-author">Trail Guru</h4>
+          <div class="user-badges">
+            <span class="badge verified">Verified Expert</span>
+            <span class="badge posts">1,247 posts</span>
+          </div>
+          <div class="user-stats">
+            <span class="join-date">Joined: Jun 2020</span>
+            <span class="location">Location: Whistler, BC</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="post-content-area">
+        <div class="post-header">
+          <div class="post-number">#47</div>
+          <div class="post-time">12 minutes ago</div>
+          <div class="post-actions">
+            <button class="action-btn like-btn" onclick="likePost('47')">
+              <i class="icon">👍</i>
+              <span class="like-count">3</span>
+            </button>
+            <button class="action-btn" onclick="replyToPost('47')">
+              <i class="icon">💬</i>
+              Reply
+            </button>
+            <button class="action-btn" onclick="quotePost('47')">
+              <i class="icon">📋</i>
+              Quote
+            </button>
+            <button class="action-btn" onclick="reportPost('47')">
+              <i class="icon">⚠️</i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="post-content">
+          <blockquote class="reply-quote">
+            <strong>Mike Chen wrote:</strong>
+            <p>Don't get caught up in "outgrowing" a trail bike. Modern 140mm bikes are shockingly capable.</p>
+          </blockquote>
+          
+          <p>Absolutely this! 👆</p>
+          
+          <p>I run a bike shop here in Whistler and see this question constantly. The reality is that most riders vastly overestimate how much bike they need. I've seen people on 170mm enduro bikes struggling on intermediate trails while others are sending it on 120mm bikes.</p>
+          
+          <p><strong>My recommendation:</strong> Go trail bike, specifically look at the <strong>Trek Fuel EX 8</strong> or <strong>Specialized Stumpjumper Alloy</strong>. Both are incredible value and will handle 95% of what you'll throw at them.</p>
+          
+          <p>Save the money and put it towards a good wheelset upgrade, dropper post, or just keep it for a bike park rental budget when you want to try bigger stuff.</p>
+          
+          <p>Also - don't overlook fit and feel. Test ride everything you can!</p>
+        </div>
+        
+        <div class="post-footer">
+          <div class="post-signature">
+            <em>Whistler Bike Co. | "Right bike, right rider, right trail"</em>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Reply Form -->
+  <div id="reply-form" class="reply-form-container" style="display: none;">
+    <div class="reply-form-header">
+      <h3>Quick Reply</h3>
+      <div id="reply-to" class="reply-to"></div>
+      <button class="cancel-reply" onclick="cancelReply()">×</button>
+    </div>
+    
+    <div class="reply-form">
+      <div class="formatting-toolbar">
+        <button class="format-btn" onclick="formatText('bold')" title="Bold">
+          <strong>B</strong>
+        </button>
+        <button class="format-btn" onclick="formatText('italic')" title="Italic">
+          <em>I</em>
+        </button>
+        <button class="format-btn" onclick="formatText('link')" title="Link">
+          🔗
+        </button>
+        <button class="format-btn" onclick="formatText('quote')" title="Quote">
+          💬
+        </button>
+      </div>
+      
+      <textarea id="reply-content" placeholder="Write your reply..." rows="6"></textarea>
+      
+      <div class="reply-actions">
+        <div class="reply-options">
+          <label>
+            <input type="checkbox" id="subscribe-replies">
+            Subscribe to replies
+          </label>
+        </div>
+        <div class="reply-buttons">
+          <button class="btn btn-secondary" onclick="cancelReply()">Cancel</button>
+          <button class="btn btn-primary" onclick="submitReply()">Post Reply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full Reply Button -->
+  <div class="thread-actions-bottom">
+    <button class="btn btn-primary btn-large" onclick="replyToPost('thread')">
+      <i class="icon">💬</i>
+      Reply to Thread
+    </button>
+    <button class="btn btn-secondary" onclick="window.location.href='/forums/mountain-bikes/'">
+      <i class="icon">←</i>
+      Back to Mountain Bikes
+    </button>
+  </div>
+
+  <div class="thread-navigation bottom">
+    <div class="nav-controls">
+      <button class="nav-btn" disabled>← Previous</button>
+      <div class="page-numbers">
+        <button class="page-number active">1</button>
+        <button class="page-number">2</button>
+        <button class="page-number">3</button>
+      </div>
+      <button class="nav-btn">Next →</button>
+    </div>
+  </div>
+</div>
+
+<div class="thread-sidebar">
+  <div class="sidebar-widget">
+    <h3>Thread Tools</h3>
+    <div class="thread-tools">
+      <button class="tool-btn" onclick="subscribeThread()">
+        <i class="icon">🔔</i>
+        Subscribe to Thread
+      </button>
+      <button class="tool-btn" onclick="shareThread()">
+        <i class="icon">📤</i>
+        Share Thread
+      </button>
+      <button class="tool-btn" onclick="window.print()">
+        <i class="icon">🖨️</i>
+        Print Thread
+      </button>
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+    <h3>Related Threads</h3>
+    <div class="related-threads">
+      <a href="/forums/mountain-bikes/suspension-setup/" class="related-thread">
+        <h4>Suspension setup for 160lb rider?</h4>
+        <span class="thread-stats">23 replies • 456 views</span>
+      </a>
+      <a href="/forums/mountain-bikes/wheel-upgrade/" class="related-thread">
+        <h4>Wheel upgrade worth it for XC racing?</h4>
+        <span class="thread-stats">8 replies • 167 views</span>
+      </a>
+      <a href="/forums/mountain-bikes/tubeless-tire-setup/" class="related-thread">
+        <h4>[SOLVED] Tubeless tire won't seal properly</h4>
+        <span class="thread-stats">12 replies • 234 views</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+    <h3>Forum Stats</h3>
+    <div class="forum-stats">
+      <div class="stat-item">
+        <span class="stat-label">Topics:</span>
+        <span class="stat-value">289</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Posts:</span>
+        <span class="stat-value">1,847</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Members:</span>
+        <span class="stat-value">456</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Online:</span>
+        <span class="stat-value">34</span>
+      </div>
+    </div>
+  </div>
+</div>
