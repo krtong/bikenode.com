@@ -14,6 +14,18 @@ WRONG_LOGOS=(
   "austin.png"       # Austin Quality food
   "ambassador.png"   # Aviation MBA newsletter
   "big.png"          # Generic BIG brand
+  "baker.png"        # Baker Furniture
+  "boom.png"         # Financial services
+  "alldays.png"      # Beauty/cosmetics
+  "alligator.png"    # Russian tech company
+  "allstate.png"     # Insurance company
+  "arco.png"         # Gas station/petroleum
+  "ace.png"          # ACE hardware
+  "adler.png"        # Adler fashion/clothing
+  "amazonas.png"     # Amazonas state/flag
+  "amc.png"          # AMC television network
+  "apc.png"          # American Power Conversion
+  "ariel.png"        # Cyrillic text, not British Ariel motorcycles
 )
 
 # Create backup directory

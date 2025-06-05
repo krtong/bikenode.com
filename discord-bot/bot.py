@@ -77,6 +77,9 @@ async def on_ready():
     try:
         synced = await bot.tree.sync()
         logger.info(f"Synced {len(synced)} slash commands")
+        # Log command details
+        for cmd in synced:
+            logger.info(f"Registered command: /{cmd.name} - {cmd.description}")
     except Exception as e:
         logger.error(f"Failed to sync commands: {e}")
 
