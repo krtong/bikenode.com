@@ -50,6 +50,24 @@ hierarchical_scraper.log
 !**/package.json
 !**/package-lock.json
 
+# Mock data and test data
+mock-data/
+mock_data/
+test-data/
+test_data/
+sample-data/
+sample_data/
+**/mock-data/
+**/mock_data/
+**/test-data/
+**/test_data/
+*.mock.json
+*.test.json
+*.sample.json
+*-mock.json
+*-test.json
+*-sample.json
+
 # Progress tracking
 hierarchical_progress.json
 
@@ -98,6 +116,16 @@ scrapers/downloads/
 scrapers/06_motorcycle_image_scrapers/
 **/downloads/
 **/images/
+
+# Logo and brand images
+logos/
+**/logos/
+assets/logos/
+assets/brands/
+**/assets/logos/
+**/assets/brands/
+profile/images/
+**/profile/images/
 
 # Large data directories
 products/

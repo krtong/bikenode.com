@@ -2,3 +2,46 @@ node_modules/
 _site/
 npm-debug.log*
 .DS_Store
+
+# Specs submission logs
+specs_submissions.log
+
+# Go binary
+bikenode-api
+
+# Environment files
+.env
+.env.local
+
+# Data and mock data
+data/
+mock-data/
+**/data/
+**/mock-data/
+*.mock.json
+*.test-data.json
+test-data/
+sample-data/
+
+# Images and media
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.svg
+*.ico
+images/
+assets/images/
+**/images/
+profile/images/
+assets/avatars/
+assets/bikes/
+assets/gear/
+
+# Temporary and cache files
+*.tmp
+*.cache
+.cache/
+tmp/
+temp/
