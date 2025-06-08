@@ -1,0 +1,190 @@
+---
+layout: dashboard.njk
+title: Specs Submissions
+description: Review user-submitted specification URLs
+eleventyExcludeFromCollections: true
+---
+
+<style>
+.specs-submissions-page {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.page-subtitle {
+    color: var(--text-secondary);
+}
+
+.submissions-container {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.no-submissions {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-secondary);
+}
+
+.submission-item {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.submission-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.submission-vehicle {
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: var(--text-primary);
+}
+
+.submission-date {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.submission-url {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.submission-url a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.submission-url a:hover {
+    text-decoration: underline;
+}
+
+.submission-notes {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.submission-meta {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.loading-message {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+}
+
+.error-message {
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    color: #ff6666;
+    margin-bottom: 1rem;
+}
+</style>
+
+<div class="specs-submissions-page">
+    <div class="page-header">
+        <h1 class="page-title">Specs Submissions</h1>
+        <p class="page-subtitle">Review user-submitted specification URLs for bikes with missing data</p>
+    </div>
+
+    <div class="submissions-container" id="submissions-container">
+        <div class="loading-message">Loading submissions...</div>
+    </div>
+</div>
+
+<script>
+async function loadSubmissions() {
+    const container = document.getElementById('submissions-container');
+    
+    try {
+        const response = await fetch('/api/specs-submissions/list');
+        
+        if (!response.ok) {
+            throw new Error('Failed to load submissions');
+        }
+        
+        const data = await response.json();
+        
+        if (!data.submissions || data.submissions.length === 0) {
+            container.innerHTML = '<div class="no-submissions">No submissions yet</div>';
+            return;
+        }
+        
+        container.innerHTML = data.submissions.map(submission => `
+            <div class="submission-item">
+                <div class="submission-header">
+                    <div class="submission-vehicle">
+                        ${submission.vehicle.category} - 
+                        ${submission.vehicle.brand} 
+                        ${submission.vehicle.year} 
+                        ${submission.vehicle.model} 
+                        ${submission.vehicle.variant}
+                    </div>
+                    <div class="submission-date">${new Date(submission.vehicle.timestamp).toLocaleString()}</div>
+                </div>
+                
+                <div class="submission-url">
+                    <strong>URL:</strong>
+                    <a href="${submission.url}" target="_blank" rel="noopener noreferrer">${submission.url}</a>
+                </div>
+                
+                ${submission.notes ? `
+                    <div class="submission-notes">
+                        <strong>Notes:</strong> ${submission.notes}
+                    </div>
+                ` : ''}
+                
+                <div class="submission-meta">
+                    User Agent: ${submission.userAgent}
+                </div>
+            </div>
+        `).join('');
+        
+    } catch (error) {
+        console.error('Error loading submissions:', error);
+        container.innerHTML = `
+            <div class="error-message">
+                Error loading submissions. The log file may not exist yet or there was a server error.
+            </div>
+            <div class="no-submissions">
+                Submissions are logged to specs_submissions.log on the server.
+            </div>
+        `;
+    }
+}
+
+// Load submissions on page load
+document.addEventListener('DOMContentLoaded', loadSubmissions);
+</script>

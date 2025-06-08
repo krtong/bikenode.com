@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced Garage Showcase</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="styles/profile.css">
+  <style>
+    body {
+      background: #0a0a0a;
+      padding: 2rem;
+    }
+    
+    .showcase-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .showcase-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .showcase-header h1 {
+      font-size: 3rem;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+    
+    .feature-highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .feature-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+    
+    .feature-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+    
+    .demo-section {
+      background: var(--card-bg);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .demo-section h2 {
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+    }
+    
+    .comparison-preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .compare-bike {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .compare-bike h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    
+    .compare-specs {
+      display: grid;
+      gap: 0.75rem;
+    }
+    
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .spec-label {
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    
+    .spec-value {
+      color: var(--text-primary);
+    }
+    
+    .spec-value.highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    
+    .maintenance-timeline {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .maintenance-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 0.5rem;
+      border-left: 3px solid var(--accent);
+    }
+    
+    .maintenance-icon {
+      font-size: 1.5rem;
+    }
+    
+    .maintenance-info {
+      flex: 1;
+    }
+    
+    .maintenance-bike {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .maintenance-task {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+    
+    .maintenance-date {
+      font-size: 0.875rem;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="showcase-container">
+    <div class="showcase-header">
+      <h1>Enhanced Garage Management</h1>
+      <p style="color: var(--text-secondary); font-size: 1.25rem;">
+        A complete redesign of the motorcycle garage experience
+      </p>
+    </div>
+    
+    <div class="feature-highlights">
+      <div class="feature-card">
+        <span class="feature-icon">📊</span>
+        <div class="feature-title">Rich Statistics</div>
+        <div class="feature-desc">Track value, mileage, and performance metrics</div>
+      </div>
+      
+      <div class="feature-card">
+        <span class="feature-icon">🔍</span>
+        <div class="feature-title">Smart Filtering</div>
+        <div class="feature-desc">Filter by type, brand, or custom categories</div>
+      </div>
+      
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <div class="feature-title">Quick Actions</div>
+        <div class="feature-desc">View, edit, and track stats with one click</div>
+      </div>
+      
+      <div class="feature-card">
+        <span class="feature-icon">🏍️</span>
+        <div class="feature-title">Multi-Select</div>
+        <div class="feature-desc">Compare multiple bikes side by side</div>
+      </div>
+      
+      <div class="feature-card">
+        <span class="feature-icon">📅</span>
+        <div class="feature-title">Service Tracking</div>
+        <div class="feature-desc">Never miss maintenance with smart reminders</div>
+      </div>
+      
+      <div class="feature-card">
+        <span class="feature-icon">❤️</span>
+        <div class="feature-title">Favorites</div>
+        <div class="feature-desc">Mark your favorite rides for quick access</div>
+      </div>
+    </div>
+    
+    <!-- Live Demo Section -->
+    <div class="demo-section">
+      <h2>Live Demo</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+        Experience the new garage interface with interactive features
+      </p>
+      
+      <!-- Embedded garage component -->
+      <div id="garage-tab" style="display: block;">
+        <div class="garage-header">
+          <div class="garage-title-section">
+            <h3>My Garage</h3>
+            <div class="garage-stats">
+              <span class="stat-item"><strong>4</strong> Bikes</span>
+              <span class="stat-divider">•</span>
+              <span class="stat-item"><strong>$102,994</strong> Total Value</span>
+              <span class="stat-divider">•</span>
+              <span class="stat-item"><strong>29,000</strong> Combined Miles</span>
+            </div>
+          </div>
+          <div class="garage-actions">
+            <div class="view-toggle">
+              <button class="view-btn active" data-view="grid">
+                <i class="icon">⊞</i>
+              </button>
+              <button class="view-btn" data-view="list">
+                <i class="icon">☰</i>
+              </button>
+            </div>
+            <select class="garage-filter">
+              <option value="all">All Bikes</option>
+              <option value="sport">Sport</option>
+              <option value="touring">Touring</option>
+              <option value="adventure">Adventure</option>
+            </select>
+            <button class="btn-primary add-bike-btn">
+              <i class="icon">➕</i>
+              Add Bike
+            </button>
+          </div>
+        </div>
+        
+        <div class="garage-container" data-view="grid" style="margin-bottom: 2rem;">
+          <!-- Sample bike cards will be loaded here -->
+        </div>
+      </div>
+    </div>
+    
+    <!-- Comparison Feature -->
+    <div class="demo-section">
+      <h2>Bike Comparison</h2>
+      <p style="color: var(--text-secondary);">
+        Select multiple bikes to compare specifications side by side
+      </p>
+      
+      <div class="comparison-preview">
+        <div class="compare-bike">
+          <h3>2025 Yamaha R1</h3>
+          <div class="compare-specs">
+            <div class="spec-row">
+              <span class="spec-label">Power</span>
+              <span class="spec-value">200 HP</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Weight</span>
+              <span class="spec-value">443 lbs</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Top Speed</span>
+              <span class="spec-value highlight">186 mph</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">0-60 mph</span>
+              <span class="spec-value">2.9s</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Value</span>
+              <span class="spec-value">$18,999</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="compare-bike">
+          <h3>2024 Ducati V4S</h3>
+          <div class="compare-specs">
+            <div class="spec-row">
+              <span class="spec-label">Power</span>
+              <span class="spec-value highlight">214 HP</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Weight</span>
+              <span class="spec-value highlight">430 lbs</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Top Speed</span>
+              <span class="spec-value">199 mph</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">0-60 mph</span>
+              <span class="spec-value highlight">2.6s</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Value</span>
+              <span class="spec-value">$32,500</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Service Tracking -->
+    <div class="demo-section">
+      <h2>Service Management</h2>
+      <p style="color: var(--text-secondary);">
+        Keep track of maintenance schedules across your entire fleet
+      </p>
+      
+      <div class="maintenance-timeline">
+        <div class="maintenance-item">
+          <span class="maintenance-icon">⚠️</span>
+          <div class="maintenance-info">
+            <div class="maintenance-bike">2023 Honda CBR1000RR</div>
+            <div class="maintenance-task">Oil change & filter replacement</div>
+          </div>
+          <div class="maintenance-date">Overdue by 2 weeks</div>
+        </div>
+        
+        <div class="maintenance-item">
+          <span class="maintenance-icon">📅</span>
+          <div class="maintenance-info">
+            <div class="maintenance-bike">2025 Yamaha R1</div>
+            <div class="maintenance-task">Chain adjustment & cleaning</div>
+          </div>
+          <div class="maintenance-date">Due in 2 weeks</div>
+        </div>
+        
+        <div class="maintenance-item">
+          <span class="maintenance-icon">✅</span>
+          <div class="maintenance-info">
+            <div class="maintenance-bike">2024 Ducati V4S</div>
+            <div class="maintenance-task">Valve clearance check</div>
+          </div>
+          <div class="maintenance-date">Completed 1 month ago</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Demo functionality
+    const demoGarage = {
+      bikes: [
+        {
+          id: 'demo-1',
+          year: 2025,
+          make: 'Yamaha',
+          model: 'YZF-R1',
+          type: 'sport',
+          image: '/assets/images/bikes/yamaha-r1.jpg',
+          nickname: 'Blue Thunder',
+          mileage: 3420,
+          value: 18999,
+          horsepower: 200,
+          nextService: '2025-05-01',
+          serviceDue: false,
+          isFavorite: true,
+          stats: {
+            rides: 89,
+            miles: 3420,
+            avgSpeed: 45,
+            topSpeed: 186
+          }
+        },
+        {
+          id: 'demo-2',
+          year: 2024,
+          make: 'Ducati',
+          model: 'Panigale V4S',
+          type: 'sport',
+          image: '/assets/images/bikes/ducati-v4.jpg',
+          nickname: 'Italian Stallion',
+          mileage: 1850,
+          value: 32500,
+          horsepower: 214,
+          nextService: '2025-04-15',
+          serviceDue: false,
+          isFavorite: false,
+          stats: {
+            rides: 42,
+            miles: 1850,
+            avgSpeed: 52,
+            topSpeed: 199
+          }
+        }
+      ]
+    };
+    
+    // Render demo bikes
+    function renderDemoBikes() {
+      const container = document.querySelector('.garage-container');
+      if (!container) return;
+      
+      container.innerHTML = demoGarage.bikes.map(bike => `
+        <div class="bike-card" data-bike-id="${bike.id}">
+          <div class="bike-selection-checkbox" onclick="alert('Selection feature in main app')"></div>
+          
+          ${bike.serviceDue ? '<div class="bike-status-badge service-due">Service Due</div>' : ''}
+          
+          <div class="bike-image-container">
+            <img src="${bike.image}" alt="${bike.year} ${bike.make} ${bike.model}" class="bike-thumbnail">
+            <div class="bike-quick-stats">
+              <div class="quick-stat-item">
+                <span class="quick-stat-value">${bike.mileage.toLocaleString()}</span>
+                <span class="quick-stat-label">Miles</span>
+              </div>
+              <div class="quick-stat-item">
+                <span class="quick-stat-value">${bike.horsepower}</span>
+                <span class="quick-stat-label">HP</span>
+              </div>
+              <div class="quick-stat-item">
+                <span class="quick-stat-value">${bike.stats.rides}</span>
+                <span class="quick-stat-label">Rides</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bike-details">
+            <div class="bike-header">
+              <div class="bike-title">
+                <h4>${bike.year} ${bike.make} ${bike.model}</h4>
+                <p class="bike-subtitle">${bike.nickname}</p>
+              </div>
+              <button class="bike-favorite ${bike.isFavorite ? 'is-favorite' : ''}" 
+                      onclick="this.classList.toggle('is-favorite')">
+                ${bike.isFavorite ? '❤️' : '🤍'}
+              </button>
+            </div>
+            
+            <div class="bike-info-grid">
+              <div class="info-item">
+                <span class="info-label">Value</span>
+                <span class="info-value">$${bike.value.toLocaleString()}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Next Service</span>
+                <span class="info-value">${new Date(bike.nextService).toLocaleDateString()}</span>
+              </div>
+            </div>
+            
+            <div class="bike-actions">
+              <button class="bike-action-btn" onclick="alert('View details in main app')">
+                <span>👁️</span> View
+              </button>
+              <button class="bike-action-btn" onclick="alert('Edit in main app')">
+                <span>✏️</span> Edit
+              </button>
+              <button class="bike-action-btn" onclick="alert('Stats in main app')">
+                <span>📊</span> Stats
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    // Initialize demo
+    renderDemoBikes();
+    
+    // View toggle demo
+    document.querySelectorAll('.view-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        const view = this.dataset.view;
+        document.querySelector('.garage-container').setAttribute('data-view', view);
+        
+        if (view === 'list') {
+          alert('List view available in main app');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

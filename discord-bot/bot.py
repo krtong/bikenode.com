@@ -46,8 +46,8 @@ def setup_ssl():
 # Call SSL setup - this sets up SSL globally
 setup_ssl()
 
-# Load environment variables
-load_dotenv()
+# Load environment variables from root directory
+load_dotenv(dotenv_path='../.env')
 
 # Load configuration from config.yaml
 with open('config/config.yaml', 'r') as config_file:

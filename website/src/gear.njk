@@ -1,0 +1,285 @@
+---
+layout: dashboard.njk
+title: Gear
+subtitle: Manage your riding apparel and clothing
+showContentHeader: false
+customCSS:
+  - /gear/styles/gear.css
+---
+
+<div class="gear-page">
+    <!-- Page Header -->
+    <div class="gear-header">
+        <div class="header-content">
+            <h1>Gear</h1>
+            <p class="subtitle">Track and manage your riding apparel collection</p>
+        </div>
+        <div class="header-actions">
+            <button class="btn-secondary" id="importGearBtn">
+                <span>📥</span>
+                Import
+            </button>
+            <button class="btn-primary" id="addGearBtn">
+                <span>➕</span>
+                Add Gear
+            </button>
+        </div>
+    </div>
+
+    <!-- Bike Type Tabs -->
+    <div class="bike-type-tabs">
+        <button class="bike-type-tab active" data-type="motorcycle">
+            <span class="tab-icon">🏍️</span>
+            <span class="tab-label">Motorcycle</span>
+        </button>
+        <button class="bike-type-tab" data-type="bicycle">
+            <span class="tab-icon">🚴</span>
+            <span class="tab-label">Bicycle</span>
+        </button>
+        <button class="bike-type-tab" data-type="ebike">
+            <span class="tab-icon">⚡</span>
+            <span class="tab-label">E-Bike</span>
+        </button>
+        <button class="bike-type-tab" data-type="scooter">
+            <span class="tab-icon">🛵</span>
+            <span class="tab-label">Scooter</span>
+        </button>
+    </div>
+
+    <!-- Gear Stats -->
+    <div class="gear-stats">
+        <div class="stat-card">
+            <div class="stat-icon">🏍️</div>
+            <div class="stat-content">
+                <div class="stat-value" id="totalGear">24</div>
+                <div class="stat-label">Total Items</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">💰</div>
+            <div class="stat-content">
+                <div class="stat-value" id="totalValue">$8,450</div>
+                <div class="stat-label">Total Value</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">🛡️</div>
+            <div class="stat-content">
+                <div class="stat-value" id="safetyRating">95%</div>
+                <div class="stat-label">Safety Coverage</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">📅</div>
+            <div class="stat-content">
+                <div class="stat-value" id="itemsDue">3</div>
+                <div class="stat-label">Due for Replacement</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gear Categories -->
+    <div class="gear-categories">
+        <button class="category-btn active" data-category="all">
+            <span class="category-icon">🎯</span>
+            <span class="category-label">All Gear</span>
+            <span class="category-count">24</span>
+        </button>
+        <button class="category-btn" data-category="helmets">
+            <span class="category-icon">🪖</span>
+            <span class="category-label">Helmets</span>
+            <span class="category-count">3</span>
+        </button>
+        <button class="category-btn" data-category="jackets">
+            <span class="category-icon">🧥</span>
+            <span class="category-label">Jackets</span>
+            <span class="category-count">4</span>
+        </button>
+        <button class="category-btn" data-category="gloves">
+            <span class="category-icon">🧤</span>
+            <span class="category-label">Gloves</span>
+            <span class="category-count">5</span>
+        </button>
+        <button class="category-btn" data-category="pants">
+            <span class="category-icon">👖</span>
+            <span class="category-label">Pants</span>
+            <span class="category-count">3</span>
+        </button>
+        <button class="category-btn" data-category="boots">
+            <span class="category-icon">🥾</span>
+            <span class="category-label">Boots</span>
+            <span class="category-count">4</span>
+        </button>
+        <button class="category-btn" data-category="accessories">
+            <span class="category-icon">🎒</span>
+            <span class="category-label">Accessories</span>
+            <span class="category-count">5</span>
+        </button>
+    </div>
+
+    <!-- Gear Filters and Actions -->
+    <div class="gear-controls">
+        <div class="search-filter">
+            <input type="text" class="search-input" placeholder="Search gear..." id="gearSearch">
+            <button class="filter-btn" id="advancedFilterBtn">
+                <span>🔧</span>
+                Filters
+            </button>
+        </div>
+        <div class="view-controls">
+            <div class="view-toggle">
+                <button class="view-btn active" data-view="grid">
+                    <span>⊞</span>
+                </button>
+                <button class="view-btn" data-view="list">
+                    <span>☰</span>
+                </button>
+            </div>
+            <select class="sort-select" id="sortGear">
+                <option value="recent">Recently Added</option>
+                <option value="name">Name</option>
+                <option value="brand">Brand</option>
+                <option value="price">Price</option>
+                <option value="usage">Most Used</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Gear Grid -->
+    <div class="gear-grid" id="gearGrid">
+        <!-- Helmet Item -->
+        <div class="gear-item" data-category="helmets">
+            <div class="gear-image">
+                <img src="/assets/images/gear/shoei-rf1400.jpg" alt="Shoei RF-1400">
+                <div class="gear-badges">
+                    <span class="badge primary">Primary</span>
+                    <span class="badge certified">ECE 22.06</span>
+                </div>
+            </div>
+            <div class="gear-details">
+                <h3 class="gear-name">Shoei RF-1400</h3>
+                <p class="gear-brand">Shoei</p>
+                <div class="gear-info">
+                    <span class="info-item">
+                        <span class="info-icon">📅</span>
+                        Purchased: Jan 2024
+                    </span>
+                    <span class="info-item">
+                        <span class="info-icon">🛣️</span>
+                        12,450 miles
+                    </span>
+                </div>
+                <div class="gear-price">$599</div>
+                <div class="gear-rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-text">Excellent</span>
+                </div>
+            </div>
+            <div class="gear-actions">
+                <button class="action-btn" title="Edit">
+                    <span>✏️</span>
+                </button>
+                <button class="action-btn" title="More">
+                    <span>⋯</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Jacket Item -->
+        <div class="gear-item" data-category="jackets">
+            <div class="gear-image">
+                <img src="/assets/images/gear/dainese-racing-3.jpg" alt="Dainese Racing 3 D-Air">
+                <div class="gear-badges">
+                    <span class="badge primary">Primary</span>
+                    <span class="badge tech">D-Air®</span>
+                </div>
+            </div>
+            <div class="gear-details">
+                <h3 class="gear-name">Racing 3 D-Air</h3>
+                <p class="gear-brand">Dainese</p>
+                <div class="gear-info">
+                    <span class="info-item">
+                        <span class="info-icon">📅</span>
+                        Purchased: Mar 2023
+                    </span>
+                    <span class="info-item">
+                        <span class="info-icon">🛣️</span>
+                        18,200 miles
+                    </span>
+                </div>
+                <div class="gear-price">$1,899</div>
+                <div class="gear-rating">
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-text">Outstanding</span>
+                </div>
+            </div>
+            <div class="gear-actions">
+                <button class="action-btn" title="Edit">
+                    <span>✏️</span>
+                </button>
+                <button class="action-btn" title="More">
+                    <span>⋯</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Gloves Item -->
+        <div class="gear-item" data-category="gloves">
+            <div class="gear-image">
+                <img src="/assets/images/gear/held-phantom-ii.jpg" alt="Held Phantom II">
+                <div class="gear-badges">
+                    <span class="badge track">Track</span>
+                </div>
+            </div>
+            <div class="gear-details">
+                <h3 class="gear-name">Phantom II</h3>
+                <p class="gear-brand">Held</p>
+                <div class="gear-info">
+                    <span class="info-item">
+                        <span class="info-icon">📅</span>
+                        Purchased: Jun 2023
+                    </span>
+                    <span class="info-item">
+                        <span class="info-icon">🛣️</span>
+                        8,350 miles
+                    </span>
+                </div>
+                <div class="gear-price">$289</div>
+                <div class="gear-rating">
+                    <span class="stars">★★★★☆</span>
+                    <span class="rating-text">Great</span>
+                </div>
+            </div>
+            <div class="gear-actions">
+                <button class="action-btn" title="Edit">
+                    <span>✏️</span>
+                </button>
+                <button class="action-btn" title="More">
+                    <span>⋯</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- More gear items would be dynamically loaded -->
+    </div>
+
+    <!-- Load More -->
+    <div class="load-more-container">
+        <button class="load-more-btn" id="loadMoreGear">Load More</button>
+    </div>
+</div>
+
+<!-- Add Gear Modal -->
+<div class="modal" id="addGearModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Add New Gear</h2>
+            <button class="modal-close" id="closeModal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <!-- Add gear form would go here -->
+        </div>
+    </div>
+</div>
+
+<script type="module" src="/gear/js/app.js"></script>

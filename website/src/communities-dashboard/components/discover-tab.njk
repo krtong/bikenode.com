@@ -1,0 +1,66 @@
+<!-- Discover Tab -->
+<div class="tab-content" id="discover">
+    <div class="discover-filters">
+        <div class="search-bar">
+            <input type="text" placeholder="Search communities..." class="search-input" id="discover-search">
+            <button class="search-btn">🔍</button>
+        </div>
+        <div class="category-filters">
+            <button class="category-btn active" data-category="all">All Categories</button>
+            <button class="category-btn" data-category="motorcycles">Motorcycles</button>
+            <button class="category-btn" data-category="bicycles">Bicycles</button>
+            <button class="category-btn" data-category="ebikes">E-Bikes</button>
+            <button class="category-btn" data-category="racing">Racing</button>
+            <button class="category-btn" data-category="touring">Touring</button>
+        </div>
+    </div>
+
+    <div class="discover-grid">
+        <!-- Discover cards will be populated here -->
+        {%- set discoverCommunities = [
+            {
+                avatar: "EB",
+                name: "E-Bike Enthusiasts",
+                memberCount: "287",
+                visibility: "Public",
+                description: "Electric bike community focusing on commuting, adventures, and the latest e-bike technology.",
+                tags: ["E-Bikes", "Commuting", "Technology"],
+                activityLevel: "high",
+                activityIcon: "🔥",
+                activityText: "Very Active",
+                memberGrowth: "+15 members this week",
+                slug: "e-bike-enthusiasts"
+            },
+            {
+                avatar: "RC",
+                name: "Road Cycling Pro",
+                memberCount: "1,089",
+                visibility: "Public",
+                description: "Professional road cycling community with training tips, race discussions, and equipment reviews.",
+                tags: ["Road Cycling", "Racing", "Training"],
+                activityLevel: "medium",
+                activityIcon: "⚡",
+                activityText: "Active",
+                memberGrowth: "+8 members this week",
+                slug: "road-cycling-pro"
+            },
+            {
+                avatar: "AD",
+                name: "Adventure Riders",
+                memberCount: "634",
+                visibility: "Public",
+                description: "Adventure motorcycle riders sharing epic journeys, gear advice, and planning expeditions worldwide.",
+                tags: ["Adventure", "Touring", "Off-Road"],
+                activityLevel: "high",
+                activityIcon: "🔥",
+                activityText: "Very Active",
+                memberGrowth: "+22 members this week",
+                slug: "adventure-riders"
+            }
+        ] -%}
+        
+        {% for community in discoverCommunities %}
+            {% include "./discover-card.njk" %}
+        {% endfor %}
+    </div>
+</div>

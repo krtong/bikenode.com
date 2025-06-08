@@ -1,0 +1,496 @@
+/* Activity Feed Styles */
+.activity-section {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.activity-title {
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.activity-icon {
+    width: 24px;
+    height: 24px;
+    color: #00d4ff;
+}
+
+.activity-filter {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.activity-filter:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+}
+
+/* Activity Timeline */
+.activity-timeline {
+    position: relative;
+    padding-left: 32px;
+}
+
+.activity-timeline::before {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 20px;
+    bottom: 20px;
+    width: 2px;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 212, 255, 0.3),
+        rgba(123, 47, 247, 0.3)
+    );
+}
+
+/* Activity Items */
+.activity-item {
+    position: relative;
+    margin-bottom: 24px;
+    animation: slideInLeft 0.5s ease;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.activity-item:last-child {
+    margin-bottom: 0;
+}
+
+.activity-marker {
+    position: absolute;
+    left: -27px;
+    top: 4px;
+    width: 24px;
+    height: 24px;
+    background: #0a0e27;
+    border: 2px solid rgba(0, 212, 255, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.activity-item.follow .activity-marker {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: #00d4ff;
+}
+
+.activity-item.ride .activity-marker {
+    background: rgba(0, 255, 136, 0.2);
+    border-color: #00ff88;
+}
+
+.activity-item.achievement .activity-marker {
+    background: rgba(123, 47, 247, 0.2);
+    border-color: #7b2ff7;
+}
+
+.activity-item.photo .activity-marker {
+    background: rgba(255, 193, 7, 0.2);
+    border-color: #ffc107;
+}
+
+.marker-icon {
+    width: 12px;
+    height: 12px;
+    color: white;
+}
+
+/* Activity Content */
+.activity-content {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.3s ease;
+}
+
+.activity-content:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(4px);
+}
+
+.activity-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.activity-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.activity-info {
+    flex: 1;
+}
+
+.activity-username {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.activity-username:hover {
+    color: #00d4ff;
+}
+
+.activity-time {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.activity-action {
+    margin-bottom: 12px;
+}
+
+.activity-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+}
+
+.activity-highlight {
+    color: #00d4ff;
+    font-weight: 500;
+}
+
+/* Activity Type-Specific Content */
+.ride-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+}
+
+.ride-stat {
+    text-align: center;
+}
+
+.ride-stat-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #00ff88;
+    display: block;
+}
+
+.ride-stat-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 2px;
+}
+
+.route-preview {
+    margin-top: 12px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.route-map {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.route-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.route-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+}
+
+.achievement-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, rgba(123, 47, 247, 0.2), rgba(0, 212, 255, 0.1));
+    border: 1px solid rgba(123, 47, 247, 0.3);
+    border-radius: 24px;
+    margin-top: 12px;
+}
+
+.badge-icon {
+    width: 24px;
+    height: 24px;
+    color: #7b2ff7;
+}
+
+.badge-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.badge-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+}
+
+.badge-tier {
+    font-size: 12px;
+    color: #7b2ff7;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.activity-photo {
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.activity-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.activity-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-count {
+    position: relative;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+}
+
+/* Activity Interactions */
+.activity-interactions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.interaction-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.interaction-btn:hover {
+    color: white;
+}
+
+.interaction-btn.active {
+    color: #00d4ff;
+}
+
+.interaction-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.interaction-count {
+    font-weight: 500;
+}
+
+/* Follow Suggestions in Activity */
+.follow-suggestion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    margin-top: 12px;
+}
+
+.suggestion-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.suggestion-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.suggestion-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.suggestion-name {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.suggestion-mutual {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.follow-quick-btn {
+    padding: 6px 16px;
+    background: linear-gradient(45deg, #00d4ff, #7b2ff7);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.follow-quick-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+}
+
+/* Load More */
+.load-more-activity {
+    text-align: center;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.load-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.load-more-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Empty State */
+.activity-empty {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-activity-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+    opacity: 0.2;
+}
+
+.empty-activity-text {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .activity-timeline {
+        padding-left: 24px;
+    }
+    
+    .activity-timeline::before {
+        left: 7px;
+    }
+    
+    .activity-marker {
+        left: -20px;
+        width: 20px;
+        height: 20px;
+    }
+    
+    .ride-summary {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .activity-interactions {
+        gap: 16px;
+    }
+}

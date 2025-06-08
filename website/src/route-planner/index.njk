@@ -1,0 +1,47 @@
+---
+layout: dashboard.njk
+title: Route Planner
+subtitle: Plan your next motorcycle adventure
+showContentHeader: false
+customCSS:
+  - /route-planner/styles/route-planner.css
+  - /route-planner/styles/components/elevation-profile.css
+  - /route-planner/styles/components/map-container.css
+  - /route-planner/styles/components/route-controls.css
+  - /route-planner/styles/components/route-sidebar.css
+  - /route-planner/styles/components/route-stats.css
+  - /route-planner/styles/components/waypoint-marker.css
+  - /route-planner/styles/components/poi-controls.css
+  - https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
+  - https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css
+---
+
+<div class="route-planner">
+    {% include "./components/route-sidebar.njk" %}
+    {% include "./components/map-container.njk" %}
+</div>
+
+<!-- Load Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+
+<!-- Load Route Planner Application -->
+<script type="module">
+    import RoutePlanner from '/route-planner/js/RoutePlanner.js';
+    
+    // Initialize the route planner when DOM is ready
+    document.addEventListener('DOMContentLoaded', async () => {
+        console.log('DOM loaded, initializing RoutePlanner...');
+        
+        try {
+            const routePlanner = new RoutePlanner();
+            await routePlanner.init();
+            
+            // Make it globally accessible
+            window.routePlanner = routePlanner;
+            console.log('RoutePlanner initialized and available as window.routePlanner');
+        } catch (error) {
+            console.error('Failed to initialize RoutePlanner:', error);
+        }
+    });
+</script>

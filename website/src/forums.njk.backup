@@ -1,0 +1,10 @@
+---
+layout: base.njk
+permalink: /forums/
+eleventyExcludeFromCollections: true
+---
+
+<script>
+  // Redirect to the new forums page
+  window.location.href = '/forums/';
+</script>

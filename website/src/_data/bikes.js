@@ -263,5 +263,110 @@ module.exports = [
             },
             weight: "22 lbs"
         }
+    },
+    {
+        id: "yamaha-yzf-r1-2023",
+        name: "2023 Yamaha YZF-R1",
+        type: "Sport Bike",
+        category: "motorcycle",
+        year: 2023,
+        make: "Yamaha",
+        model: "YZF-R1",
+        image: "/assets/images/bikenode_logo.png",
+        photos: 0,
+        records: 0,
+        communities: 1,
+        specs: {
+            engine: {
+                type: "4-stroke, liquid-cooled inline-4",
+                displacement: "998cc",
+                bore: "79.0mm",
+                stroke: "50.9mm",
+                compression: "13.0:1",
+                fuelSystem: "Fuel Injection with YCC-T and YCC-I",
+                valves: "DOHC, 4 valves per cylinder"
+            },
+            performance: {
+                power: "200 hp @ 13,500 rpm",
+                torque: "83 lb-ft @ 11,500 rpm",
+                topSpeed: "186 mph (electronically limited)",
+                acceleration: "0-60 mph in 2.8 seconds"
+            },
+            dimensions: {
+                length: "80.9 in",
+                width: "27.2 in",
+                height: "45.9 in",
+                seatHeight: "33.7 in",
+                wheelbase: "55.3 in",
+                groundClearance: "5.1 in"
+            },
+            weight: {
+                dry: "417 lbs",
+                wet: "443 lbs"
+            },
+            fuel: {
+                capacity: "4.5 gallons",
+                consumption: "35-40 mpg"
+            },
+            suspension: {
+                front: "KYB 43mm USD forks, fully adjustable",
+                rear: "KYB monoshock, fully adjustable"
+            },
+            brakes: {
+                front: "Dual 320mm discs, Brembo M50 calipers",
+                rear: "220mm disc, Brembo caliper"
+            },
+            wheels: {
+                front: "17 x 3.50 in",
+                rear: "17 x 6.00 in"
+            },
+            tires: {
+                front: "120/70-ZR17",
+                rear: "190/55-ZR17"
+            }
+        }
+    },
+    {
+        id: "trek-fuel-ex",
+        name: "Trek Fuel EX",
+        type: "Mountain Bike",
+        category: "bicycle",
+        year: 2022,
+        make: "Trek",
+        model: "Fuel EX",
+        image: "/assets/images/bikenode_logo.png",
+        photos: 5,
+        records: 3,
+        communities: 2,
+        specs: {
+            frame: {
+                material: "Alpha Platinum Aluminum",
+                size: "Large",
+                geometry: "Trail geometry",
+                color: "Radioactive Red"
+            },
+            drivetrain: {
+                gears: "12-speed",
+                shifters: "SRAM NX Eagle",
+                rearDerailleur: "SRAM NX Eagle",
+                cassette: "SRAM NX Eagle, 11-50T"
+            },
+            brakes: {
+                type: "Hydraulic disc",
+                front: "Shimano MT500",
+                rear: "Shimano MT500",
+                rotors: "180mm front, 160mm rear"
+            },
+            suspension: {
+                front: "RockShox 35 Gold RL, 140mm travel",
+                rear: "RockShox Deluxe Select, 130mm travel"
+            },
+            wheels: {
+                size: "29 inch",
+                rims: "Bontrager Line Comp 30",
+                tires: "Bontrager XR4 Team Issue 29x2.4"
+            },
+            weight: "32 lbs"
+        }
     }
 ];

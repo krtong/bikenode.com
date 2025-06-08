@@ -2,11 +2,6 @@
 <html lang="en">
 <head>
     {% include "head.njk" %}
-    {% if customCSS %}
-    {% for stylesheet in customCSS %}
-    <link rel="stylesheet" href="{{ stylesheet }}">
-    {% endfor %}
-    {% endif %}
 </head>
 <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
     {% include "background-canvas.njk" %}

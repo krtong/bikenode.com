@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Planner Debug Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        #map { 
+            height: 400px; 
+            margin: 20px 0;
+            border: 2px solid #333;
+        }
+        button { 
+            margin: 10px 5px;
+            padding: 10px 20px;
+            background: #4F46E5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #4338CA;
+        }
+        .log {
+            background: #222;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .log-entry {
+            margin: 5px 0;
+            padding: 5px;
+            border-left: 3px solid #4F46E5;
+            padding-left: 10px;
+        }
+        .error {
+            border-left-color: #EF4444;
+            color: #FCA5A5;
+        }
+        .success {
+            border-left-color: #10B981;
+            color: #6EE7B7;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+</head>
+<body>
+    <h1>Route Planner Debug Test</h1>
+    
+    <div id="map"></div>
+    
+    <div>
+        <button onclick="testBasicRouting()">Test Basic Routing</button>
+        <button onclick="testOSRMDirect()">Test OSRM Direct</button>
+        <button onclick="addTestWaypoints()">Add Test Waypoints</button>
+        <button onclick="clearAll()">Clear All</button>
+    </div>
+    
+    <div class="log" id="log"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+    
+    <script>
+        // Logger
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(message);
+        }
+
+        // Initialize map
+        let map, routingControl;
+        
+        map = L.map('map').setView([37.7749, -122.4194], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+        
+        log('Map initialized');
+
+        // Test basic Leaflet Routing Machine
+        function testBasicRouting() {
+            log('Testing basic Leaflet Routing Machine...');
+            
+            if (routingControl) {
+                map.removeControl(routingControl);
+            }
+            
+            try {
+                routingControl = L.Routing.control({
+                    waypoints: [
+                        L.latLng(37.7749, -122.4194),
+                        L.latLng(37.7849, -122.4094)
+                    ],
+                    router: L.Routing.osrmv1({
+                        serviceUrl: 'https://router.project-osrm.org/route/v1'
+                    }),
+                    lineOptions: {
+                        styles: [{ color: '#4F46E5', weight: 6, opacity: 0.8 }]
+                    }
+                }).addTo(map);
+                
+                routingControl.on('routesfound', function(e) {
+                    const routes = e.routes;
+                    log(`Route found! Distance: ${(routes[0].summary.totalDistance / 1000).toFixed(2)} km`, 'success');
+                });
+                
+                routingControl.on('routingerror', function(e) {
+                    log(`Routing error: ${e.error.message}`, 'error');
+                });
+                
+                log('Routing control added to map', 'success');
+            } catch (error) {
+                log(`Error creating routing control: ${error.message}`, 'error');
+            }
+        }
+
+        // Test OSRM direct
+        async function testOSRMDirect() {
+            log('Testing direct OSRM API call...');
+            
+            const start = [-122.4194, 37.7749];
+            const end = [-122.4094, 37.7849];
+            const url = `https://router.project-osrm.org/route/v1/driving/${start.join(',')};${end.join(',')}?overview=full&geometries=geojson`;
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.code === 'Ok') {
+                    log(`OSRM API working! Distance: ${(data.routes[0].distance / 1000).toFixed(2)} km`, 'success');
+                    
+                    // Draw the route
+                    const coordinates = data.routes[0].geometry.coordinates;
+                    const latlngs = coordinates.map(coord => [coord[1], coord[0]]);
+                    L.polyline(latlngs, { color: '#10B981', weight: 4 }).addTo(map);
+                } else {
+                    log(`OSRM API error: ${data.message}`, 'error');
+                }
+            } catch (error) {
+                log(`Network error: ${error.message}`, 'error');
+            }
+        }
+
+        // Add test waypoints
+        function addTestWaypoints() {
+            log('Adding test waypoints...');
+            
+            const waypoints = [
+                L.latLng(37.7749, -122.4194),
+                L.latLng(37.7849, -122.4094),
+                L.latLng(37.7949, -122.3994)
+            ];
+            
+            waypoints.forEach((wp, index) => {
+                const marker = L.marker(wp, {
+                    icon: L.divIcon({
+                        html: `<div style="background: #4F46E5; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">${String.fromCharCode(65 + index)}</div>`,
+                        className: '',
+                        iconSize: [24, 24]
+                    })
+                }).addTo(map);
+                
+                log(`Added waypoint ${String.fromCharCode(65 + index)} at ${wp.lat.toFixed(4)}, ${wp.lng.toFixed(4)}`);
+            });
+            
+            if (routingControl) {
+                routingControl.setWaypoints(waypoints);
+                log('Updated routing control with new waypoints', 'success');
+            }
+        }
+
+        // Clear all
+        function clearAll() {
+            if (routingControl) {
+                map.removeControl(routingControl);
+                routingControl = null;
+            }
+            
+            map.eachLayer(layer => {
+                if (layer instanceof L.Marker || layer instanceof L.Polyline) {
+                    map.removeLayer(layer);
+                }
+            });
+            
+            log('Cleared all routes and markers', 'success');
+        }
+        
+        // Test on load
+        window.addEventListener('load', () => {
+            log('Page loaded, ready for testing', 'success');
+        });
+    </script>
+</body>
+</html>

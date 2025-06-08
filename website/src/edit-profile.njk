@@ -1,11 +1,13 @@
 ---
-layout: dashboard.njk
+layout: dashboard
 title: Edit Profile
 subtitle: Update your profile information and settings
 breadcrumb:
   - title: Profile
     url: /profile/
   - title: Edit
+customCSS:
+  - /edit-profile/styles/edit-profile.css
 ---
 
 <div class="edit-profile-container">
@@ -150,6 +152,169 @@ breadcrumb:
             <input type="url" id="website" placeholder="https://your-website.com">
             <div class="field-help">Your personal or professional website</div>
           </div>
+        </div>
+      </div>
+
+      <!-- Body Measurements Section -->
+      <div class="profile-section">
+        <div class="section-header">
+          <h2 class="section-title">Body Measurements</h2>
+          <span class="section-badge">For gear sizing recommendations</span>
+        </div>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="userHeight">Height</label>
+            <div class="input-group">
+              <input type="number" id="userHeight" name="height" placeholder="6'2" or 188cm" step="0.1">
+              <select class="unit-select" id="heightUnit">
+                <option value="imperial">ft/in</option>
+                <option value="metric">cm</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="userWeight">Weight</label>
+            <div class="input-group">
+              <input type="number" id="userWeight" name="weight" placeholder="180" step="0.1">
+              <select class="unit-select" id="weightUnit">
+                <option value="lbs">lbs</option>
+                <option value="kg">kg</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="inseam">Inseam</label>
+            <div class="input-group">
+              <input type="number" id="inseam" name="inseam" placeholder="32" step="0.1">
+              <span class="unit-label">inches</span>
+            </div>
+            <div class="field-help">For bike frame sizing</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="armLength">Arm Length</label>
+            <div class="input-group">
+              <input type="number" id="armLength" name="armLength" placeholder="24" step="0.1">
+              <span class="unit-label">inches</span>
+            </div>
+            <div class="field-help">For reach calculations</div>
+          </div>
+        </div>
+        
+        <h3 class="subsection-title">Clothing Sizes</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="chestSize">Chest/Bust</label>
+            <div class="input-group">
+              <input type="number" id="chestSize" name="chestSize" placeholder="42" step="0.5">
+              <span class="unit-label">inches</span>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="waistSize">Waist</label>
+            <div class="input-group">
+              <input type="number" id="waistSize" name="waistSize" placeholder="32" step="0.5">
+              <span class="unit-label">inches</span>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="hipSize">Hips</label>
+            <div class="input-group">
+              <input type="number" id="hipSize" name="hipSize" placeholder="40" step="0.5">
+              <span class="unit-label">inches</span>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="neckSize">Neck</label>
+            <div class="input-group">
+              <input type="number" id="neckSize" name="neckSize" placeholder="16" step="0.5">
+              <span class="unit-label">inches</span>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="shoeSize">Shoe Size</label>
+            <div class="input-group">
+              <input type="text" id="shoeSize" name="shoeSize" placeholder="10.5">
+              <select class="unit-select" id="shoeSizeType">
+                <option value="us">US</option>
+                <option value="eu">EU</option>
+                <option value="uk">UK</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="gloveSize">Glove Size</label>
+            <select id="gloveSize" name="gloveSize">
+              <option value="">Select size</option>
+              <option value="xs">XS (6.5-7")</option>
+              <option value="s">S (7-7.5")</option>
+              <option value="m">M (7.5-8")</option>
+              <option value="l">L (8-9")</option>
+              <option value="xl">XL (9-10")</option>
+              <option value="xxl">XXL (10"+)</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="helmetSize">Helmet Size</label>
+            <div class="input-group">
+              <input type="number" id="helmetSize" name="helmetSize" placeholder="58" step="0.5">
+              <span class="unit-label">cm</span>
+            </div>
+            <div class="field-help">Head circumference</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="jerseySize">Typical Jersey Size</label>
+            <select id="jerseySize" name="jerseySize">
+              <option value="">Select size</option>
+              <option value="xs">XS</option>
+              <option value="s">S</option>
+              <option value="m">M</option>
+              <option value="l">L</option>
+              <option value="xl">XL</option>
+              <option value="xxl">XXL</option>
+              <option value="xxxl">XXXL</option>
+            </select>
+          </div>
+        </div>
+        
+        <h3 class="subsection-title">Build & Fit Preferences</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="buildType">Build Type</label>
+            <select id="buildType" name="buildType">
+              <option value="">Select build</option>
+              <option value="slim">Slim/Lean</option>
+              <option value="athletic">Athletic</option>
+              <option value="average">Average</option>
+              <option value="muscular">Muscular</option>
+              <option value="stocky">Stocky</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="fitPreference">Fit Preference</label>
+            <select id="fitPreference" name="fitPreference">
+              <option value="">Select preference</option>
+              <option value="race">Race/Aero (tight)</option>
+              <option value="performance">Performance (fitted)</option>
+              <option value="club">Club (regular)</option>
+              <option value="relaxed">Relaxed (loose)</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="measurement-note">
+          <p><strong>Note:</strong> These measurements help us recommend the right gear sizes and bike fit. All data is private by default.</p>
         </div>
       </div>
 
@@ -755,7 +920,9 @@ breadcrumb:
   </div>
 </div>
 
+<script src="/edit-profile/js/edit-profile.js"></script>
 <script>
+// Legacy inline script for immediate functionality
 // Tab functionality
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', function() {

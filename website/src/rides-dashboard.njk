@@ -2,517 +2,279 @@
 layout: dashboard.njk
 title: Rides Dashboard
 subtitle: Track your cycling progress and performance
+showContentHeader: false
+breadcrumb:
+  - title: Dashboard
+    url: /dashboard/
+  - title: Rides
+customCSS:
+  - /rides-dashboard/styles/rides-dashboard.css
 ---
 
-<style>
-  .rides-overview {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    margin-bottom: 32px;
-  }
-
-  .stat-card {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 24px;
-    text-align: center;
-    transition: all 0.2s ease;
-  }
-
-  .stat-card:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .stat-icon {
-    font-size: 32px;
-    margin-bottom: 12px;
-  }
-
-  .stat-value {
-    font-size: 32px;
-    font-weight: bold;
-    color: var(--accent);
-    margin-bottom: 8px;
-  }
-
-  .stat-label {
-    font-size: 14px;
-    color: var(--text-secondary);
-  }
-
-  .stat-change {
-    font-size: 12px;
-    margin-top: 8px;
-  }
-
-  .stat-change.positive {
-    color: #10b981;
-  }
-
-  .stat-change.negative {
-    color: #ef4444;
-  }
-
-  .dashboard-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 24px;
-  }
-
-  .chart-section {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 24px;
-  }
-
-  .chart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-
-  .chart-title {
-    font-size: 18px;
-    font-weight: 600;
-  }
-
-  .chart-controls {
-    display: flex;
-    gap: 8px;
-  }
-
-  .chart-btn {
-    padding: 6px 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 12px;
-  }
-
-  .chart-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  .chart-btn.active {
-    background: var(--accent);
-    border-color: var(--accent);
-  }
-
-  .chart-container {
-    height: 300px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-secondary);
-  }
-
-  .recent-rides {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 24px;
-  }
-
-  .rides-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-
-  .rides-title {
-    font-size: 18px;
-    font-weight: 600;
-  }
-
-  .ride-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .ride-item:last-child {
-    border-bottom: none;
-  }
-
-  .ride-info {
-    flex: 1;
-  }
-
-  .ride-name {
-    font-weight: 500;
-    margin-bottom: 4px;
-  }
-
-  .ride-date {
-    font-size: 12px;
-    color: var(--text-secondary);
-  }
-
-  .ride-stats {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-  }
-
-  .ride-distance {
-    font-weight: 600;
-    color: var(--accent);
-  }
-
-  .ride-time {
-    font-size: 14px;
-    color: var(--text-secondary);
-  }
-
-  .goals-section {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 24px;
-  }
-
-  .goal-item {
-    margin-bottom: 20px;
-  }
-
-  .goal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-
-  .goal-name {
-    font-weight: 500;
-  }
-
-  .goal-progress {
-    font-size: 14px;
-    color: var(--text-secondary);
-  }
-
-  .progress-bar {
-    height: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: var(--accent);
-    border-radius: 4px;
-    transition: width 0.3s ease;
-  }
-
-  .achievements-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 20px;
-  }
-
-  .achievement-card {
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 8px;
-    padding: 16px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .achievement-card:hover {
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .achievement-card.locked {
-    opacity: 0.5;
-  }
-
-  .achievement-icon {
-    font-size: 32px;
-    margin-bottom: 8px;
-  }
-
-  .achievement-name {
-    font-size: 12px;
-    font-weight: 500;
-  }
-
-  .stats-comparison {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin-top: 20px;
-  }
-
-  .comparison-item {
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 8px;
-    padding: 16px;
-    text-align: center;
-  }
-
-  .comparison-label {
-    font-size: 12px;
-    color: var(--text-secondary);
-    margin-bottom: 8px;
-  }
-
-  .comparison-value {
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--accent);
-  }
-
-  @media (max-width: 768px) {
-    .rides-overview {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .dashboard-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .achievements-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-</style>
-
-<div class="rides-overview">
-  <div class="stat-card">
-    <div class="stat-icon">🚴</div>
-    <div class="stat-value">1,234</div>
-    <div class="stat-label">Total Miles</div>
-    <div class="stat-change positive">↑ 12% this month</div>
+<div class="rides-dashboard">
+  <!-- Quick Actions Bar -->
+  <div class="quick-actions">
+    <a href="/record-ride/" class="action-button primary">
+      <i class="icon">🚴</i>
+      <span>Record New Ride</span>
+    </a>
+    <a href="/route-planner/" class="action-button">
+      <i class="icon">🗺️</i>
+      <span>Plan Route</span>
+    </a>
+    <a href="/import-ride/" class="action-button">
+      <i class="icon">📤</i>
+      <span>Import GPX</span>
+    </a>
+    <a href="/rides-calendar/" class="action-button">
+      <i class="icon">📅</i>
+      <span>Calendar View</span>
+    </a>
   </div>
-  
-  <div class="stat-card">
-    <div class="stat-icon">⏱️</div>
-    <div class="stat-value">52:34</div>
-    <div class="stat-label">Hours Ridden</div>
-    <div class="stat-change positive">↑ 8% this month</div>
-  </div>
-  
-  <div class="stat-card">
-    <div class="stat-icon">⛰️</div>
-    <div class="stat-value">45,678</div>
-    <div class="stat-label">Feet Climbed</div>
-    <div class="stat-change negative">↓ 5% this month</div>
-  </div>
-  
-  <div class="stat-card">
-    <div class="stat-icon">📅</div>
-    <div class="stat-value">89</div>
-    <div class="stat-label">Total Rides</div>
-    <div class="stat-change positive">↑ 15% this month</div>
-  </div>
-  
-  <div class="stat-card">
-    <div class="stat-icon">⚡</div>
-    <div class="stat-value">18.5</div>
-    <div class="stat-label">Avg Speed (mph)</div>
-    <div class="stat-change positive">↑ 0.5 mph</div>
-  </div>
-</div>
 
-<div class="dashboard-grid">
-  <div class="left-column">
-    <!-- Activity Chart -->
-    <div class="chart-section">
-      <div class="chart-header">
-        <h3 class="chart-title">Activity Overview</h3>
-        <div class="chart-controls">
-          <button class="chart-btn active">Week</button>
-          <button class="chart-btn">Month</button>
-          <button class="chart-btn">Year</button>
-        </div>
+  <!-- Hero Stats -->
+  <div class="hero-stats">
+    <div class="hero-stat-card">
+      <div class="stat-header">
+        <h3>This Week</h3>
+        <span class="trend positive">+15%</span>
       </div>
-      <div class="chart-container">
-        Activity Chart Visualization
+      <div class="stat-main">
+        <div class="stat-value">182.4</div>
+        <div class="stat-unit">miles</div>
+      </div>
+      <div class="stat-details">
+        <div class="detail-item">
+          <span class="detail-value">11:24:36</span>
+          <span class="detail-label">Time</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-value">8,432</span>
+          <span class="detail-label">Elevation</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-value">5</span>
+          <span class="detail-label">Rides</span>
+        </div>
       </div>
     </div>
 
-    <!-- Performance Trends -->
-    <div class="chart-section" style="margin-top: 24px;">
-      <div class="chart-header">
-        <h3 class="chart-title">Performance Trends</h3>
-        <div class="chart-controls">
-          <button class="chart-btn active">Speed</button>
-          <button class="chart-btn">Distance</button>
-          <button class="chart-btn">Elevation</button>
+    <div class="hero-stat-card">
+      <div class="stat-header">
+        <h3>This Month</h3>
+        <span class="trend positive">+8%</span>
+      </div>
+      <div class="stat-main">
+        <div class="stat-value">734.2</div>
+        <div class="stat-unit">miles</div>
+      </div>
+      <div class="stat-details">
+        <div class="detail-item">
+          <span class="detail-value">42:15:22</span>
+          <span class="detail-label">Time</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-value">32,150</span>
+          <span class="detail-label">Elevation</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-value">18</span>
+          <span class="detail-label">Rides</span>
         </div>
       </div>
-      <div class="chart-container">
-        Performance Chart Visualization
+    </div>
+
+    <div class="hero-stat-card">
+      <div class="stat-header">
+        <h3>All Time</h3>
+        <span class="badge">PRO</span>
       </div>
-      
-      <div class="stats-comparison">
-        <div class="comparison-item">
-          <div class="comparison-label">This Month</div>
-          <div class="comparison-value">19.2 mph</div>
+      <div class="stat-main">
+        <div class="stat-value">12.3K</div>
+        <div class="stat-unit">miles</div>
+      </div>
+      <div class="stat-details">
+        <div class="detail-item">
+          <span class="detail-value">652:48:19</span>
+          <span class="detail-label">Time</span>
         </div>
-        <div class="comparison-item">
-          <div class="comparison-label">Last Month</div>
-          <div class="comparison-value">18.7 mph</div>
+        <div class="detail-item">
+          <span class="detail-value">485K</span>
+          <span class="detail-label">Elevation</span>
         </div>
-        <div class="comparison-item">
-          <div class="comparison-label">Best Ever</div>
-          <div class="comparison-value">21.3 mph</div>
-        </div>
-        <div class="comparison-item">
-          <div class="comparison-label">Year Average</div>
-          <div class="comparison-value">18.5 mph</div>
+        <div class="detail-item">
+          <span class="detail-value">342</span>
+          <span class="detail-label">Rides</span>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="right-column">
-    <!-- Recent Rides -->
-    <div class="recent-rides">
-      <div class="rides-header">
-        <h3 class="rides-title">Recent Rides</h3>
-        <a href="/rides-history/" style="font-size: 14px; color: var(--accent);">View All</a>
-      </div>
-      
-      <div class="ride-item">
-        <div class="ride-info">
-          <div class="ride-name">Morning Century</div>
-          <div class="ride-date">Today, 6:30 AM</div>
+  <!-- Main Dashboard Content -->
+  <div class="dashboard-content">
+    <!-- Left Column -->
+    <div class="content-left">
+      <!-- Activity Chart -->
+      <div class="chart-card">
+        <div class="card-header">
+          <h3>Activity Overview</h3>
+          <div class="chart-controls">
+            <button class="control-btn active" data-range="week">Week</button>
+            <button class="control-btn" data-range="month">Month</button>
+            <button class="control-btn" data-range="year">Year</button>
+          </div>
         </div>
-        <div class="ride-stats">
-          <span class="ride-distance">102.3 mi</span>
-          <span class="ride-time">5:23:45</span>
+        <div class="chart-wrapper">
+          <canvas id="activityChart"></canvas>
         </div>
-      </div>
-      
-      <div class="ride-item">
-        <div class="ride-info">
-          <div class="ride-name">Trail Session</div>
-          <div class="ride-date">Yesterday, 5:00 PM</div>
-        </div>
-        <div class="ride-stats">
-          <span class="ride-distance">18.7 mi</span>
-          <span class="ride-time">2:15:30</span>
-        </div>
-      </div>
-      
-      <div class="ride-item">
-        <div class="ride-info">
-          <div class="ride-name">Commute</div>
-          <div class="ride-date">Jun 3, 7:45 AM</div>
-        </div>
-        <div class="ride-stats">
-          <span class="ride-distance">12.4 mi</span>
-          <span class="ride-time">0:45:12</span>
+        <div class="chart-legend">
+          <div class="legend-item">
+            <span class="legend-color" style="background: #3B82F6"></span>
+            <span>Distance</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-color" style="background: #10B981"></span>
+            <span>Elevation</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-color" style="background: #F59E0B"></span>
+            <span>Time</span>
+          </div>
         </div>
       </div>
-      
-      <div class="ride-item">
-        <div class="ride-info">
-          <div class="ride-name">Group Ride</div>
-          <div class="ride-date">Jun 2, 6:00 AM</div>
+
+      <!-- Recent Rides -->
+      <div class="rides-card">
+        <div class="card-header">
+          <h3>Recent Activities</h3>
+          <a href="/rides-history/" class="view-all">View All →</a>
         </div>
-        <div class="ride-stats">
-          <span class="ride-distance">45.8 mi</span>
-          <span class="ride-time">2:34:18</span>
+        <div class="rides-list" id="recentRides">
+          <!-- Rides will be populated here -->
         </div>
       </div>
     </div>
 
-    <!-- Goals & Achievements -->
-    <div class="goals-section" style="margin-top: 24px;">
-      <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 20px;">Monthly Goals</h3>
-      
-      <div class="goal-item">
-        <div class="goal-header">
-          <span class="goal-name">Distance Goal</span>
-          <span class="goal-progress">234 / 300 miles</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: 78%;"></div>
-        </div>
-      </div>
-      
-      <div class="goal-item">
-        <div class="goal-header">
-          <span class="goal-name">Climbing Goal</span>
-          <span class="goal-progress">8,432 / 10,000 ft</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: 84%;"></div>
-        </div>
-      </div>
-      
-      <div class="goal-item">
-        <div class="goal-header">
-          <span class="goal-name">Ride Streak</span>
-          <span class="goal-progress">5 / 7 days</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width: 71%;"></div>
+    <!-- Right Column -->
+    <div class="content-right">
+      <!-- Performance Metrics -->
+      <div class="metrics-card">
+        <h3>Performance Metrics</h3>
+        <div class="metrics-grid">
+          <div class="metric-item">
+            <div class="metric-icon">⚡</div>
+            <div class="metric-value">19.2</div>
+            <div class="metric-label">Avg Speed (mph)</div>
+            <div class="metric-trend positive">+0.5</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-icon">💪</div>
+            <div class="metric-value">185</div>
+            <div class="metric-label">Avg Power (W)</div>
+            <div class="metric-trend positive">+8</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-icon">❤️</div>
+            <div class="metric-value">142</div>
+            <div class="metric-label">Avg Heart Rate</div>
+            <div class="metric-trend neutral">±0</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-icon">🔥</div>
+            <div class="metric-value">8,234</div>
+            <div class="metric-label">Calories Burned</div>
+            <div class="metric-trend positive">+523</div>
+          </div>
         </div>
       </div>
 
-      <h3 style="font-size: 18px; font-weight: 600; margin-top: 24px; margin-bottom: 12px;">Recent Achievements</h3>
-      
-      <div class="achievements-grid">
-        <div class="achievement-card">
-          <div class="achievement-icon">🏆</div>
-          <div class="achievement-name">Century Rider</div>
+      <!-- Goals Progress -->
+      <div class="goals-card">
+        <div class="card-header">
+          <h3>Monthly Goals</h3>
+          <button class="edit-goals-btn">Edit</button>
         </div>
-        <div class="achievement-card">
-          <div class="achievement-icon">⛰️</div>
-          <div class="achievement-name">Mountain Goat</div>
+        <div class="goals-list">
+          <div class="goal-item">
+            <div class="goal-info">
+              <span class="goal-name">Distance</span>
+              <span class="goal-progress">734 / 1000 mi</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 73.4%"></div>
+            </div>
+          </div>
+          <div class="goal-item">
+            <div class="goal-info">
+              <span class="goal-name">Climbing</span>
+              <span class="goal-progress">32,150 / 40,000 ft</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 80.4%"></div>
+            </div>
+          </div>
+          <div class="goal-item">
+            <div class="goal-info">
+              <span class="goal-name">Time</span>
+              <span class="goal-progress">42.3 / 50 hrs</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 84.6%"></div>
+            </div>
+          </div>
+          <div class="goal-item">
+            <div class="goal-info">
+              <span class="goal-name">Ride Streak</span>
+              <span class="goal-progress">5 / 7 days</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill streak" style="width: 71.4%"></div>
+            </div>
+          </div>
         </div>
-        <div class="achievement-card">
-          <div class="achievement-icon">🔥</div>
-          <div class="achievement-name">5 Day Streak</div>
-        </div>
-        <div class="achievement-card locked">
-          <div class="achievement-icon">🏅</div>
-          <div class="achievement-name">Speed Demon</div>
-        </div>
-        <div class="achievement-card locked">
-          <div class="achievement-icon">📍</div>
-          <div class="achievement-name">Explorer</div>
-        </div>
-        <div class="achievement-card locked">
-          <div class="achievement-icon">👥</div>
-          <div class="achievement-name">Social Rider</div>
+      </div>
+
+      <!-- Personal Records -->
+      <div class="records-card">
+        <h3>Personal Records</h3>
+        <div class="records-grid">
+          <div class="record-item">
+            <div class="record-icon">🏆</div>
+            <div class="record-details">
+              <div class="record-value">112.4 mi</div>
+              <div class="record-label">Longest Ride</div>
+              <div class="record-date">May 15, 2025</div>
+            </div>
+          </div>
+          <div class="record-item">
+            <div class="record-icon">⛰️</div>
+            <div class="record-details">
+              <div class="record-value">8,432 ft</div>
+              <div class="record-label">Most Climbing</div>
+              <div class="record-date">Jun 2, 2025</div>
+            </div>
+          </div>
+          <div class="record-item">
+            <div class="record-icon">🚀</div>
+            <div class="record-details">
+              <div class="record-value">45.2 mph</div>
+              <div class="record-label">Max Speed</div>
+              <div class="record-date">Apr 28, 2025</div>
+            </div>
+          </div>
+          <div class="record-item new">
+            <div class="record-icon">💪</div>
+            <div class="record-details">
+              <div class="record-value">312 W</div>
+              <div class="record-label">20min Power</div>
+              <div class="record-date">Yesterday</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<script>
-  // Chart control buttons
-  document.querySelectorAll('.chart-controls').forEach(controls => {
-    controls.querySelectorAll('.chart-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        controls.querySelectorAll('.chart-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      });
-    });
-  });
-
-  // Achievement hover effect
-  document.querySelectorAll('.achievement-card').forEach(card => {
-    card.addEventListener('click', () => {
-      if (!card.classList.contains('locked')) {
-        alert('Achievement: ' + card.querySelector('.achievement-name').textContent);
-      }
-    });
-  });
-</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="module" src="/rides-dashboard/js/rides-dashboard.js"></script>

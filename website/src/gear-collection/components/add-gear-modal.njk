@@ -1,0 +1,224 @@
+<!-- Add Gear Modal -->
+<div class="modal" id="addGearModal">
+    <div class="modal-content large">
+        <div class="modal-header">
+            <h2>Add to Gear Collection</h2>
+            <button class="modal-close" onclick="gearApp.closeAddGearModal()">×</button>
+        </div>
+        
+        <div class="modal-body">
+            <form id="addGearForm">
+                <!-- Ownership Status -->
+                <div class="form-section">
+                    <div class="ownership-toggle">
+                        <label class="toggle-option">
+                            <input type="radio" name="ownership" value="owned" checked>
+                            <span class="toggle-label">I Own This</span>
+                        </label>
+                        <label class="toggle-option">
+                            <input type="radio" name="ownership" value="wishlist">
+                            <span class="toggle-label">Wishlist</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Category Selection -->
+                <div class="form-section">
+                    <h3>Category*</h3>
+                    <select id="gearCategory" name="category" class="form-select" required>
+                        <option value="">Select a category...</option>
+                        <optgroup label="Apparel">
+                            <option value="jerseys">Jerseys</option>
+                            <option value="bibs">Bibs & Shorts</option>
+                            <option value="jackets">Jackets</option>
+                            <option value="shoes">Shoes</option>
+                            <option value="socks">Socks</option>
+                            <option value="baselayers">Base Layers</option>
+                        </optgroup>
+                        <optgroup label="Protection">
+                            <option value="helmets">Helmets</option>
+                            <option value="gloves">Gloves</option>
+                            <option value="eyewear">Eyewear</option>
+                        </optgroup>
+                        <optgroup label="Bags & Storage">
+                            <option value="backpacks">Backpacks</option>
+                            <option value="frame-bags">Frame Bags</option>
+                            <option value="saddle-bags">Saddle Bags</option>
+                            <option value="bikepacking">Bikepacking Gear</option>
+                        </optgroup>
+                        <optgroup label="Tools & Maintenance">
+                            <option value="multitools">Multi-tools</option>
+                            <option value="pumps">Pumps</option>
+                            <option value="repair-kits">Repair Kits</option>
+                            <option value="cleaning">Cleaning Supplies</option>
+                        </optgroup>
+                        <optgroup label="Electronics">
+                            <option value="lights">Lights</option>
+                            <option value="computers">Bike Computers</option>
+                            <option value="cameras">Cameras</option>
+                            <option value="trainers">Smart Trainers</option>
+                            <option value="sensors">Sensors</option>
+                        </optgroup>
+                        <optgroup label="Nutrition">
+                            <option value="bottles">Bottles</option>
+                            <option value="hydration-packs">Hydration Packs</option>
+                            <option value="nutrition">Nutrition Products</option>
+                        </optgroup>
+                        <optgroup label="Other">
+                            <option value="locks">Locks</option>
+                            <option value="accessories">Accessories</option>
+                        </optgroup>
+                    </select>
+                </div>
+                
+                <!-- Basic Info -->
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="gearBrand">Brand*</label>
+                        <input type="text" id="gearBrand" name="brand" required 
+                               placeholder="e.g., Rapha, Garmin, Park Tool"
+                               list="popularBrands">
+                        <datalist id="popularBrands">
+                            <!-- Cycling Apparel -->
+                            <option value="Rapha">
+                            <option value="Castelli">
+                            <option value="Assos">
+                            <option value="Pearl Izumi">
+                            <option value="Gore Wear">
+                            <option value="Sportful">
+                            <option value="Pas Normal Studios">
+                            <option value="MAAP">
+                            <!-- Electronics -->
+                            <option value="Garmin">
+                            <option value="Wahoo">
+                            <option value="Hammerhead">
+                            <option value="Lezyne">
+                            <option value="Cateye">
+                            <!-- Tools -->
+                            <option value="Park Tool">
+                            <option value="Pedro's">
+                            <option value="Topeak">
+                            <option value="Crankbrothers">
+                            <!-- Bags -->
+                            <option value="Ortlieb">
+                            <option value="Chrome">
+                            <option value="Revelate">
+                            <option value="Apidura">
+                        </datalist>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gearModel">Model/Name*</label>
+                        <input type="text" id="gearModel" name="model" required 
+                               placeholder="e.g., Classic Jersey, Edge 840">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gearSize">Size</label>
+                        <input type="text" id="gearSize" name="size" 
+                               placeholder="e.g., Medium, 56cm, One Size">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gearColor">Color/Style</label>
+                        <input type="text" id="gearColor" name="color" 
+                               placeholder="e.g., Navy, Black/Red">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="purchaseDate">Purchase Date</label>
+                        <input type="date" id="purchaseDate" name="purchaseDate">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="purchasePrice">Price</label>
+                        <div class="input-group">
+                            <span class="input-prefix">$</span>
+                            <input type="number" id="purchasePrice" name="price" 
+                                   placeholder="0.00" step="0.01">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Opinion Section -->
+                <div class="form-section">
+                    <h3>Your Opinion</h3>
+                    <div class="form-group">
+                        <label>Rating</label>
+                        <div class="star-rating-input">
+                            <input type="radio" name="rating" value="5" id="star5">
+                            <label for="star5">★</label>
+                            <input type="radio" name="rating" value="4" id="star4">
+                            <label for="star4">★</label>
+                            <input type="radio" name="rating" value="3" id="star3" checked>
+                            <label for="star3">★</label>
+                            <input type="radio" name="rating" value="2" id="star2">
+                            <label for="star2">★</label>
+                            <input type="radio" name="rating" value="1" id="star1">
+                            <label for="star1">★</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="gearReview">Quick Review</label>
+                        <textarea id="gearReview" name="review" rows="3" 
+                                  placeholder="What do you think about this gear? Pros, cons, would you recommend it?"></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="tags" value="daily-driver">
+                            <span>Daily Driver</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="tags" value="race-day">
+                            <span>Race Day Only</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="tags" value="bad-weather">
+                            <span>Bad Weather</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="tags" value="favorite">
+                            <span>Favorite</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Photos -->
+                <div class="form-section">
+                    <h3>Photos</h3>
+                    <div class="photo-upload-zone" id="gearPhotoUpload">
+                        <div class="upload-prompt">
+                            <span class="upload-icon">📸</span>
+                            <p>Click or drag photos here</p>
+                            <p class="upload-hint">Up to 6 photos</p>
+                        </div>
+                        <input type="file" id="gearPhotoInput" accept="image/*" multiple hidden>
+                    </div>
+                    <div class="photo-preview-grid" id="gearPhotoPreview"></div>
+                </div>
+            </form>
+        </div>
+        
+        <div class="modal-footer">
+            <button class="btn-secondary" onclick="gearApp.closeAddGearModal()">Cancel</button>
+            <button class="btn-primary" onclick="gearApp.saveGear()">
+                <span>💾</span> Add to Collection
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Quick View Modal -->
+<div class="modal" id="quickViewModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="quickViewTitle">Gear Details</h2>
+            <button class="modal-close" onclick="gearApp.closeQuickView()">×</button>
+        </div>
+        <div class="modal-body" id="quickViewContent">
+            <!-- Content will be dynamically loaded -->
+        </div>
+    </div>
+</div>

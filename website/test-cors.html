@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test CORS</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test { margin: 20px 0; padding: 15px; border: 1px solid #ddd; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        pre { background: #f0f0f0; padding: 10px; overflow: auto; }
+    </style>
+</head>
+<body>
+    <h1>CORS Test for Add Bike Component</h1>
+    
+    <div class="test" id="test1">
+        <h3>Test 1: Direct API Call from localhost:8081</h3>
+        <button onclick="test1()">Run Test</button>
+        <pre id="output1"></pre>
+    </div>
+    
+    <div class="test" id="test2">
+        <h3>Test 2: Import and Run data-loader.js</h3>
+        <button onclick="test2()">Run Test</button>
+        <pre id="output2"></pre>
+    </div>
+    
+    <div class="test" id="test3">
+        <h3>Test 3: Check Console for Errors</h3>
+        <p>Open browser console (F12) to see detailed errors</p>
+    </div>
+
+    <script>
+        async function test1() {
+            const output = document.getElementById('output1');
+            try {
+                output.textContent = 'Fetching from http://localhost:8080/api/bicycles/manufacturers ...\n';
+                const response = await fetch('http://localhost:8080/api/bicycles/manufacturers');
+                const data = await response.json();
+                output.textContent += `Success! Status: ${response.status}\n`;
+                output.textContent += `Data: ${JSON.stringify(data, null, 2)}`;
+                document.getElementById('test1').classList.add('success');
+            } catch (error) {
+                output.textContent += `Error: ${error.message}\n`;
+                output.textContent += `Stack: ${error.stack}`;
+                document.getElementById('test1').classList.add('error');
+                console.error('Test 1 error:', error);
+            }
+        }
+        
+        async function test2() {
+            const output = document.getElementById('output2');
+            try {
+                output.textContent = 'Importing data-loader.js...\n';
+                const module = await import('/add-bike/js/data-loader.js');
+                output.textContent += 'Module imported successfully\n';
+                output.textContent += 'Calling loadVehicleData()...\n';
+                const data = await module.loadVehicleData();
+                output.textContent += `Success! Loaded ${data.brands.bicycle.length} bicycle brands\n`;
+                output.textContent += `Loaded ${data.brands.motorcycle.length} motorcycle brands`;
+                document.getElementById('test2').classList.add('success');
+            } catch (error) {
+                output.textContent += `Error: ${error.message}\n`;
+                output.textContent += `Stack: ${error.stack}`;
+                document.getElementById('test2').classList.add('error');
+                console.error('Test 2 error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

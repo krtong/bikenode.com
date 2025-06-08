@@ -1,0 +1,207 @@
+package main
+
+import (
+	"database/sql"
+	"fmt"
+	"log"
+	"strings"
+
+	_ "github.com/lib/pq"
+)
+
+func main() {
+	connStr := "host=localhost port=5432 user=postgres password=postgres dbname=bikenode sslmode=disable"
+	
+	db, err := sql.Open("postgres", connStr)
+	if err != nil {
+		log.Fatal("Failed to connect to database:", err)
+	}
+	defer db.Close()
+
+	fmt.Println("ADVANCED BIKE DATA QUERIES")
+	fmt.Println(strings.Repeat("=", 50))
+
+	// 1. Bikes by price range
+	fmt.Println("\n1. BIKES BY PRICE RANGE:")
+	fmt.Println(strings.Repeat("-", 30))
+	
+	priceRows, err := db.Query(`
+		SELECT 
+			CASE 
+				WHEN msrp < 1000 THEN 'Under $1,000'
+				WHEN msrp >= 1000 AND msrp < 2000 THEN '$1,000 - $1,999'
+				WHEN msrp >= 2000 AND msrp < 3000 THEN '$2,000 - $2,999'
+				WHEN msrp >= 3000 AND msrp < 5000 THEN '$3,000 - $4,999'
+				ELSE '$5,000+'
+			END as price_range,
+			COUNT(*) as count,
+			AVG(msrp) as avg_price
+		FROM bikes
+		WHERE msrp IS NOT NULL
+		GROUP BY price_range
+		ORDER BY MIN(msrp)
+	`)
+	if err != nil {
+		log.Printf("Error querying price ranges: %v", err)
+	} else {
+		defer priceRows.Close()
+		
+		for priceRows.Next() {
+			var priceRange string
+			var count int
+			var avgPrice float64
+			
+			err := priceRows.Scan(&priceRange, &count, &avgPrice)
+			if err != nil {
+				log.Printf("Error scanning row: %v", err)
+				continue
+			}
+			
+			fmt.Printf("%-20s: %3d bikes (avg: $%.0f)\n", priceRange, count, avgPrice)
+		}
+	}
+
+	// 2. Most popular bike families
+	fmt.Println("\n2. MOST POPULAR BIKE FAMILIES:")
+	fmt.Println(strings.Repeat("-", 30))
+	
+	familyRows, err := db.Query(`
+		SELECT 
+			bf.family_name,
+			m.name as manufacturer,
+			COUNT(b.id) as bike_count,
+			MIN(b.year) as first_year,
+			MAX(b.year) as latest_year
+		FROM bike_families bf
+		JOIN manufacturers m ON bf.manufacturer_id = m.id
+		JOIN bikes b ON bf.id = b.family_id
+		GROUP BY bf.family_name, m.name
+		HAVING COUNT(b.id) > 1
+		ORDER BY bike_count DESC
+		LIMIT 10
+	`)
+	if err != nil {
+		log.Printf("Error querying families: %v", err)
+	} else {
+		defer familyRows.Close()
+		
+		fmt.Printf("%-20s | %-20s | Count | Years\n", "Family", "Manufacturer")
+		fmt.Println(strings.Repeat("-", 60))
+		
+		for familyRows.Next() {
+			var familyName, manufacturer string
+			var count, firstYear, latestYear int
+			
+			err := familyRows.Scan(&familyName, &manufacturer, &count, &firstYear, &latestYear)
+			if err != nil {
+				log.Printf("Error scanning row: %v", err)
+				continue
+			}
+			
+			fmt.Printf("%-20s | %-20s | %5d | %d-%d\n", 
+				familyName, manufacturer, count, firstYear, latestYear)
+		}
+	}
+
+	// 3. E-bike statistics
+	fmt.Println("\n3. E-BIKE STATISTICS:")
+	fmt.Println(strings.Repeat("-", 30))
+	
+	var totalEbikes, avgEbikePrice int
+	err = db.QueryRow(`
+		SELECT COUNT(*), COALESCE(AVG(msrp)::int, 0)
+		FROM bikes
+		WHERE is_ebike = true
+	`).Scan(&totalEbikes, &avgEbikePrice)
+	
+	if err != nil {
+		log.Printf("Error querying e-bikes: %v", err)
+	} else {
+		fmt.Printf("Total e-bikes: %d\n", totalEbikes)
+		if avgEbikePrice > 0 {
+			fmt.Printf("Average e-bike price: $%d\n", avgEbikePrice)
+		}
+	}
+
+	// 4. Bikes by category
+	fmt.Println("\n4. BIKES BY CATEGORY:")
+	fmt.Println(strings.Repeat("-", 30))
+	
+	categoryRows, err := db.Query(`
+		SELECT 
+			COALESCE(category, 'Unknown') as category,
+			COUNT(*) as count
+		FROM bikes
+		GROUP BY category
+		ORDER BY count DESC
+		LIMIT 10
+	`)
+	if err != nil {
+		log.Printf("Error querying categories: %v", err)
+	} else {
+		defer categoryRows.Close()
+		
+		for categoryRows.Next() {
+			var category string
+			var count int
+			
+			err := categoryRows.Scan(&category, &count)
+			if err != nil {
+				log.Printf("Error scanning row: %v", err)
+				continue
+			}
+			
+			fmt.Printf("%-30s: %d bikes\n", category, count)
+		}
+	}
+
+	// 5. Latest bikes (2024-2025)
+	fmt.Println("\n5. LATEST BIKES (2024-2025):")
+	fmt.Println(strings.Repeat("-", 30))
+	
+	latestRows, err := db.Query(`
+		SELECT 
+			b.model,
+			m.name as manufacturer,
+			b.year,
+			b.msrp,
+			b.category
+		FROM bikes b
+		JOIN manufacturers m ON b.manufacturer_id = m.id
+		WHERE b.year >= 2024
+		ORDER BY b.year DESC, b.msrp DESC NULLS LAST
+		LIMIT 10
+	`)
+	if err != nil {
+		log.Printf("Error querying latest bikes: %v", err)
+	} else {
+		defer latestRows.Close()
+		
+		fmt.Printf("%-30s | %-15s | Year | Price\n", "Model", "Manufacturer")
+		fmt.Println(strings.Repeat("-", 70))
+		
+		for latestRows.Next() {
+			var model, manufacturer string
+			var year int
+			var msrp sql.NullInt32
+			var category sql.NullString
+			
+			err := latestRows.Scan(&model, &manufacturer, &year, &msrp, &category)
+			if err != nil {
+				log.Printf("Error scanning row: %v", err)
+				continue
+			}
+			
+			priceStr := "N/A"
+			if msrp.Valid {
+				priceStr = fmt.Sprintf("$%d", msrp.Int32)
+			}
+			
+			fmt.Printf("%-30s | %-15s | %4d | %s\n", 
+				model, manufacturer, year, priceStr)
+		}
+	}
+
+	fmt.Println("\n" + strings.Repeat("=", 50))
+	fmt.Println("Analysis complete!")
+}

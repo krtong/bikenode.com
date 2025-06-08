@@ -103,10 +103,16 @@ breadcrumb:
 <!-- Leaflet Heatmap Plugin -->
 <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
 
-<script>
+<script type="module">
+  // Import mock data
+  import { mockActivityPoints, mockHeatmapStats, generateMockHeatmapData } from './activity-heatmap/mockHeatmapData.js';
+  
   let map;
   let heatLayer;
   let currentIntensity = 0.7;
+
+  // Log that we're using mock data
+  console.log('Using mock heatmap data:', mockHeatmapStats);
 
   // Initialize map
   function initMap() {

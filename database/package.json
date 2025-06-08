@@ -1,0 +1,19 @@
+{
+  "name": "database",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate": "node migrations/migrate_jsonb_to_normalized.js",
+    "create-schema": "psql -d bikenode -f migrations/create_normalized_bike_schema.sql"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "pg": "^8.16.0"
+  }
+}

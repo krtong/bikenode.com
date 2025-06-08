@@ -5,14 +5,29 @@
 
 <link rel="icon" type="image/png" href="/assets/images/bikenode_logo.png">
 <link rel="stylesheet" href="/assets/css/index.css">
-{% if page.url.includes('/dashboard') or page.url.includes('/bot-management') or page.url.includes('/admin') or page.url.includes('/account') or page.url.includes('/notification') or page.url.includes('/analytics') or page.url.includes('/virtual-garage') or page.url.includes('/discord-dashboard') or page.url.includes('/communities-dashboard') or page.url.includes('/add-bike') or page.url.includes('/profile') or page.url.includes('/bike-details') or page.url.includes('/edit-bike') or page.url.includes('/bike-maintenance') or page.url.includes('/add-photos') or page.url.includes('/messaging-admin') or page.url.includes('/forum-management') or page.url.includes('/user-analytics') or page.url.includes('/report-management') or page.url.includes('/security-center') or page.url.includes('/system-health') or page.url.includes('/user-profile') or page.url.includes('/edit-profile') or page.url.includes('/routes-gallery') or page.url.includes('/route-details') or page.url.includes('/rides-dashboard') or page.url.includes('/record-ride') or page.url.includes('/create-route') or page.url.includes('/route-planner') or page.url.includes('/ride-details') or page.url.includes('/achievements') or page.url.includes('/following') or page.url.includes('/messages') or page.url.includes('/events') or page.url.includes('/activity-heatmap') %}
-<link rel="stylesheet" href="/assets/css/dashboard.css">
+{# Load CSS based on layout #}
+{% set layoutName = layout | replace('.njk', '') %}
+{% if layoutName and layoutStyles[layoutName] %}
+  {% for stylesheet in layoutStyles[layoutName] %}
+  <link rel="stylesheet" href="{{ stylesheet }}">
+  {% endfor %}
+{% endif %}
+
+{# Load custom CSS specified in page front matter #}
+{% if customCSS %}
+  {% for stylesheet in customCSS %}
+  <link rel="stylesheet" href="{{ stylesheet }}">
+  {% endfor %}
+{% endif %}
+
+{# Legacy URL-based CSS loading for backward compatibility #}
+{% if page.url.includes('/dashboard') or page.url.includes('/bot-management') or page.url.includes('/admin') or page.url.includes('/account') or page.url.includes('/notification') or page.url.includes('/analytics') or page.url.includes('/virtual-garage') or page.url.includes('/discord-dashboard') or page.url.includes('/communities-dashboard') or page.url.includes('/add-bike') or page.url.includes('/bike-details') or page.url.includes('/edit-bike') or page.url.includes('/bike-maintenance') or page.url.includes('/add-photos') or page.url.includes('/messaging-admin') or page.url.includes('/forum-management') or page.url.includes('/user-analytics') or page.url.includes('/report-management') or page.url.includes('/security-center') or page.url.includes('/system-health') or page.url.includes('/user-profile') or page.url.includes('/edit-profile') or page.url.includes('/routes-gallery') or page.url.includes('/route-details') or page.url.includes('/rides-dashboard') or page.url.includes('/record-ride') or page.url.includes('/create-route') or page.url.includes('/route-planner') or page.url.includes('/ride-details') or page.url.includes('/achievements') or page.url.includes('/following') or page.url.includes('/messages') or page.url.includes('/events') or page.url.includes('/activity-heatmap') or page.url.includes('/marketplace') or page.url.includes('/sell-item') or page.url.includes('/manage-listings') or page.url.includes('/listing-detail') or page.url.includes('/segments') or page.url.includes('/training-plans') or page.url.includes('/activity-feed') or page.url.includes('/forums') or page.url.includes('/forum-thread') or page.url.includes('/forum-category') or page.url.includes('/conversation') or page.url.includes('/community-create') or page.url.includes('/community-management') or page.url.includes('/community-settings') or page.url.includes('/community-tools') or page.url.includes('/moderation-queue') or page.url.includes('/server-settings') or page.url.includes('/server-moderation') or page.url.includes('/server-invite') or page.url.includes('/server-analytics') or page.url.includes('/user-management') or page.url.includes('/email-preferences') or page.url.includes('/privacy-settings') %}
+  {% if not (layout and layoutStyles[layout]) and not customCSS %}
+  <link rel="stylesheet" href="/assets/css/dashboard.css">
+  {% endif %}
 {% endif %}
 {% if page.url.includes('/docs') or page.url.includes('/blog') or page.url.includes('/about') or page.url.includes('/features') or page.url.includes('/community') or page.url.includes('/feedback') %}
 <link rel="stylesheet" href="/assets/css/docs.css">
-{% endif %}
-{% if page.url.includes('/profile') or page.url.includes('/user-profile') or page.url.includes('/edit-profile') %}
-<link rel="stylesheet" href="/assets/css/profile.css">
 {% endif %}
 {% if page.url.includes('/bike-details') or page.url.includes('/add-bike') or page.url.includes('/edit-bike') %}
 <link rel="stylesheet" href="/assets/css/bike-details.css">

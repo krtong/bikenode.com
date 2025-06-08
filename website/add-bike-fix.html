@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Bike Module Test</title>
+    <style>
+        body {
+            font-family: -apple-system, sans-serif;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        pre {
+            background: #2a2a2a;
+            padding: 10px;
+            border-radius: 4px;
+            overflow: auto;
+        }
+        .success { color: #44ff44; }
+        .error { color: #ff4444; }
+        .warning { color: #ffaa44; }
+    </style>
+</head>
+<body>
+    <h1>Add Bike Fix Instructions</h1>
+    
+    <h2>The Problem</h2>
+    <p>The add-bike page is using ES6 modules (<code>import/export</code>) which require:</p>
+    <ul>
+        <li>Files to be served with correct MIME type</li>
+        <li>Proper module syntax</li>
+        <li>No circular dependencies</li>
+    </ul>
+    
+    <h2>Quick Fix Applied</h2>
+    <p class="success">✓ The page is now using <code>app-debug.js</code> which doesn't use modules.</p>
+    <p>This should make the page functional again.</p>
+    
+    <h2>To Restore Module Version</h2>
+    <p>Edit <code>/website/src/add-bike.njk</code> and change:</p>
+    <pre>
+&lt;!-- &lt;script type="module" src="/add-bike/js/app.js"&gt;&lt;/script&gt; --&gt;
+&lt;script src="/add-bike/js/app-debug.js"&gt;&lt;/script&gt;
+    </pre>
+    <p>Back to:</p>
+    <pre>
+&lt;script type="module" src="/add-bike/js/app.js"&gt;&lt;/script&gt;
+    </pre>
+    
+    <h2>Current Status</h2>
+    <p>Visit <a href="http://localhost:8080/add-bike/" style="color: #4488ff;">http://localhost:8080/add-bike/</a> to see if it's working.</p>
+    
+    <h2>What You Should See</h2>
+    <ul>
+        <li>Two category options: Bicycle and Motorcycle</li>
+        <li>API status indicator showing green (🟢)</li>
+        <li>Clicking a category should load brand list</li>
+    </ul>
+    
+    <h2>If Still Blank</h2>
+    <ol>
+        <li>Open browser DevTools (F12)</li>
+        <li>Check Console tab for errors</li>
+        <li>Look for messages starting with [DEBUG]</li>
+        <li>Refresh the page with DevTools open</li>
+    </ol>
+    
+    <h2>Additional Debugging</h2>
+    <p>Run this in browser console on the add-bike page:</p>
+    <pre>
+// Check if elements exist
+console.log('menu-content:', document.getElementById('menu-content'));
+console.log('status-indicator:', document.querySelector('.status-indicator'));
+
+// Check if debug script loaded
+console.log('testModules function:', typeof window.testModules);
+    </pre>
+</body>
+</html>

@@ -1,0 +1,329 @@
+/* Brand-specific typography using closest matching web fonts */
+
+/* Import Google Fonts that match brand typefaces */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Oswald:wght@400;500;600;700&family=Black+Ops+One&family=Bungee&family=Russo+One&family=Space+Mono:wght@400;700&family=Fira+Sans:ital,wght@1,400;1,600;1,700&family=Anton&family=Bebas+Neue&display=swap');
+
+/* 
+ * Brand font mapping based on research:
+ * - Honda Gothic → Roboto
+ * - Yamaha Swiss 911 → Oswald
+ * - Harley-Davidson → Black Ops One
+ * - Trek Premier Shaded → Bungee
+ * - Specialized Serpentine → Russo One
+ * - Cannondale → Space Mono (actual font they use)
+ * - Giant forward-slanted → Fira Sans Italic
+ */
+
+/* Motorcycle Brands */
+
+/* Honda - Roboto matches Honda Gothic's clean geometry */
+.brand-name[data-brand="Honda"] {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: #CC0000;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+/* Yamaha Motor - Oswald for that compressed look */
+.brand-name[data-brand="Yamaha"] {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    color: #F30B16; /* Yamaha Motor red */
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+}
+
+/* Kawasaki - Actually uses Helvetica */
+.brand-name[data-brand="Kawasaki"] {
+    font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    color: #00A652;
+    text-transform: uppercase;
+}
+
+/* Suzuki - Actually uses Helvetica */
+.brand-name[data-brand="Suzuki"] {
+    font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    color: #003399;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+/* Harley-Davidson - Black Ops One for that bold American style */
+.brand-name[data-brand="Harley-Davidson"] {
+    font-family: 'Black Ops One', cursive;
+    font-weight: 400;
+    color: #FF6600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+}
+
+/* Ducati - Bebas Neue for bold impact */
+.brand-name[data-brand="Ducati"] {
+    font-family: 'Bebas Neue', cursive;
+    font-weight: 400;
+    color: #CC0000;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* BMW - Clean helvetica style */
+.brand-name[data-brand="BMW"] {
+    font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    color: #0066CC;
+    letter-spacing: 0.1em;
+}
+
+/* KTM - Anton for bold compressed look */
+.brand-name[data-brand="KTM"] {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    color: #FF6600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+/* Triumph - Roboto for clean modern look */
+.brand-name[data-brand="Triumph"] {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Royal Enfield - Classic serif feel with Roboto */
+.brand-name[data-brand="Royal Enfield"] {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    color: #C41E3A;
+    letter-spacing: 0.02em;
+}
+
+/* Bicycle Brands */
+
+/* Trek - Bungee for that dimensional look */
+.brand-name[data-brand="Trek"] {
+    font-family: 'Bungee', cursive;
+    font-weight: 400;
+    color: #CC0000;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+/* Specialized - Russo One for technical athletic look */
+.brand-name[data-brand="Specialized"] {
+    font-family: 'Russo One', sans-serif;
+    font-weight: 400;
+    color: #CD0000;
+    letter-spacing: 0.02em;
+    text-transform: lowercase;
+}
+
+/* Giant - Fira Sans italic for forward motion */
+.brand-name[data-brand="Giant"] {
+    font-family: 'Fira Sans', sans-serif;
+    font-style: italic;
+    font-weight: 700;
+    color: #0033A0;
+    text-transform: uppercase;
+    transform: skewX(-5deg);
+}
+
+/* Cannondale - Space Mono (their actual font) */
+.brand-name[data-brand="Cannondale"] {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    color: #00A652;
+    letter-spacing: -0.02em;
+    text-transform: lowercase;
+}
+
+/* Scott - Oswald for bold compressed */
+.brand-name[data-brand="Scott"] {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Santa Cruz - Russo One for California cool */
+.brand-name[data-brand="Santa Cruz"] {
+    font-family: 'Russo One', sans-serif;
+    font-weight: 400;
+    color: #FF6600;
+    letter-spacing: 0.01em;
+}
+
+/* Cervélo - Roboto light for minimalist tech */
+.brand-name[data-brand="Cervélo"],
+.brand-name[data-brand="Cervelo"] {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #000000;
+    letter-spacing: 0.05em;
+    text-transform: lowercase;
+}
+
+/* Pinarello - Fira Sans italic for Italian flair */
+.brand-name[data-brand="Pinarello"] {
+    font-family: 'Fira Sans', sans-serif;
+    font-style: italic;
+    font-weight: 600;
+    color: #000000;
+    letter-spacing: 0.02em;
+}
+
+/* Bianchi - Roboto with Celeste color */
+.brand-name[data-brand="Bianchi"] {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: #5DBCD2; /* Bianchi Celeste */
+    letter-spacing: 0.03em;
+}
+
+/* Canyon - Bebas Neue for modern minimalist */
+.brand-name[data-brand="Canyon"] {
+    font-family: 'Bebas Neue', cursive;
+    font-weight: 400;
+    color: #000000;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* Orbea - Roboto for clean modern */
+.brand-name[data-brand="Orbea"] {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: #FF6600;
+    letter-spacing: 0.01em;
+}
+
+/* Focus - Oswald for German precision */
+.brand-name[data-brand="Focus"] {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Cube - Anton for geometric boldness */
+.brand-name[data-brand="Cube"] {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    color: #0066CC;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Kona - Bungee for playful Hawaiian vibe */
+.brand-name[data-brand="Kona"] {
+    font-family: 'Bungee', cursive;
+    font-weight: 400;
+    color: #FF6600;
+    letter-spacing: 0.01em;
+}
+
+/* Yeti - Black Ops One for bold mountain style */
+.brand-name[data-brand="Yeti"] {
+    font-family: 'Black Ops One', cursive;
+    font-weight: 400;
+    color: #40E0D0;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Surly - Space Mono for industrial feel */
+.brand-name[data-brand="Surly"] {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* All-City - Oswald for urban boldness */
+.brand-name[data-brand="All-City"] {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    color: #000000;
+    letter-spacing: -0.01em;
+}
+
+/* Additional brands */
+
+/* Indian - Bebas Neue for American heritage */
+.brand-name[data-brand="Indian"] {
+    font-family: 'Bebas Neue', cursive;
+    font-weight: 400;
+    color: #8B0000;
+    letter-spacing: 0.05em;
+}
+
+/* Aprilia - Russo One for Italian racing */
+.brand-name[data-brand="Aprilia"] {
+    font-family: 'Russo One', sans-serif;
+    font-weight: 400;
+    color: #FF0000;
+    letter-spacing: 0.01em;
+}
+
+/* MV Agusta - Roboto light for Italian elegance */
+.brand-name[data-brand="MV Agusta"] {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #CC0000;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* Husqvarna - Oswald for Swedish strength */
+.brand-name[data-brand="Husqvarna"] {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    color: #003DA5;
+    letter-spacing: 0.02em;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    .brand-name[data-brand="BMW"],
+    .brand-name[data-brand="Giant"],
+    .brand-name[data-brand="Cube"] {
+        color: #4D94FF;
+    }
+    
+    .brand-name[data-brand="Scott"],
+    .brand-name[data-brand="Canyon"],
+    .brand-name[data-brand="Focus"],
+    .brand-name[data-brand="Surly"],
+    .brand-name[data-brand="All-City"],
+    .brand-name[data-brand="Cervélo"],
+    .brand-name[data-brand="Cervelo"],
+    .brand-name[data-brand="Pinarello"],
+    .brand-name[data-brand="Triumph"] {
+        color: #E0E0E0;
+    }
+}
+
+/* Add subtle hover effect */
+.brand-name[data-brand] {
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.brand-name[data-brand]:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* Fix for Giant's additional skew on hover */
+.brand-name[data-brand="Giant"]:hover {
+    transform: skewX(-5deg) scale(1.05);
+}

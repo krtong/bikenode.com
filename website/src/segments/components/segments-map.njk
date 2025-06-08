@@ -1,0 +1,43 @@
+<!-- Segments Map -->
+<div class="segments-map-section" id="segmentsMapSection">
+    <div class="map-header">
+        <h2>Segments Near You</h2>
+        <div class="map-controls">
+            <button class="map-control-btn" id="toggleHeatmapBtn">
+                <span class="icon">🔥</span>
+                Popularity Heatmap
+            </button>
+            <button class="map-control-btn" id="toggleMySegmentsBtn">
+                <span class="icon">⭐</span>
+                My Segments
+            </button>
+            <button class="map-control-btn active" id="toggleAllSegmentsBtn">
+                <span class="icon">📍</span>
+                All Segments
+            </button>
+        </div>
+    </div>
+    
+    <div class="map-container" id="segmentsMap">
+        <!-- Leaflet map will be initialized here -->
+    </div>
+    
+    <div class="map-legend">
+        <div class="legend-item">
+            <span class="legend-color" style="background: #ef4444;"></span>
+            <span>Climb (>3%)</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background: #3b82f6;"></span>
+            <span>Sprint (Flat)</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background: #10b981;"></span>
+            <span>Descent (<-3%)</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-color" style="background: #8b5cf6;"></span>
+            <span>Mixed</span>
+        </div>
+    </div>
+</div>

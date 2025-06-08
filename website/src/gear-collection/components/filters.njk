@@ -1,0 +1,67 @@
+<div class="gear-filters">
+    <div class="filter-row">
+        <div class="filter-section">
+            <h3>Filter by Brand</h3>
+            <div class="brand-filter" id="brandFilter">
+                <input type="text" placeholder="Search brands..." class="brand-search" id="brandSearch">
+                <div class="brand-list" id="brandList">
+                    <!-- Brands will be dynamically loaded -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="filter-section">
+            <h3>Sort By</h3>
+            <select id="sortBy" class="sort-select">
+                <option value="recent">Recently Added</option>
+                <option value="name">Name A-Z</option>
+                <option value="brand">Brand A-Z</option>
+                <option value="price-high">Price High to Low</option>
+                <option value="price-low">Price Low to High</option>
+                <option value="rating">Highest Rated</option>
+                <option value="most-used">Most Used</option>
+            </select>
+        </div>
+        
+        <div class="filter-section">
+            <h3>View Options</h3>
+            <div class="view-options">
+                <button class="view-btn active" data-view="grid" title="Grid View">
+                    <span>⊞</span>
+                </button>
+                <button class="view-btn" data-view="list" title="List View">
+                    <span>☰</span>
+                </button>
+                <button class="view-btn" data-view="compact" title="Compact View">
+                    <span>⋮⋮</span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="filter-section">
+            <h3>Quick Filters</h3>
+            <div class="quick-filters">
+                <label class="filter-checkbox">
+                    <input type="checkbox" id="filterFavorites">
+                    <span>Favorites Only</span>
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" id="filterInUse">
+                    <span>Currently In Use</span>
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" id="filterWishlist">
+                    <span>On Wishlist</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="active-filters" id="activeFilters" style="display: none;">
+        <h4>Active Filters:</h4>
+        <div class="filter-tags" id="filterTags">
+            <!-- Active filter tags will appear here -->
+        </div>
+        <button class="clear-filters" onclick="gearApp.clearAllFilters()">Clear All</button>
+    </div>
+</div>

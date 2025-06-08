@@ -1,0 +1,22 @@
+<!-- Map Container Component -->
+<div class="map-container">
+    <div class="map-controls">
+        <div class="map-style-selector">
+            <button class="map-style" data-style="street">Light</button>
+            <button class="map-style active" data-style="dark">Dark</button>
+            <button class="map-style" data-style="satellite">Satellite</button>
+            <button class="map-style" data-style="terrain">Terrain</button>
+        </div>
+        <div class="map-layers">
+            <button class="layer-toggle" data-layer="traffic">🚦 Traffic</button>
+            <button class="layer-toggle active" data-layer="curves">🌀 Twisty Roads</button>
+            <button class="layer-toggle" data-layer="elevation">⛰️ Elevation</button>
+        </div>
+    </div>
+    
+    <!-- Real OpenStreetMap Interface -->
+    <div class="map-display" id="routeMap"></div>
+
+    <!-- Elevation Profile -->
+    {% include "./elevation-profile.njk" %}
+</div>

@@ -1,0 +1,20 @@
+---
+layout: dashboard.njk
+title: Add New Bike (Debug)
+subtitle: Debug version with inline JavaScript
+showContentHeader: false
+breadcrumb:
+  - title: Virtual Garage
+    url: /virtual-garage-dashboard/
+  - title: Add New Bike (Debug)
+customCSS:
+  - /add-bike/styles/add-bike.css
+---
+
+<div class="vehicle-selection-container">
+    {% include "./add-bike/components/menu-panel.njk" %}
+    {% include "./add-bike/components/display-panel.njk" %}
+</div>
+
+<!-- Debug: Use inline script instead of modules -->
+<script src="/add-bike/js/app-debug.js"></script>

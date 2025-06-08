@@ -1,0 +1,33 @@
+<!-- Virtual Garage Tab -->
+<div class="tab-content" id="garage">
+    <div class="garage-content">
+        <!-- Bikes Grid -->
+        <div class="bikes-grid">
+            {% for bike in bikes %}
+            <div class="bike-card">
+                <div class="bike-image">
+                    <img src="{{ bike.image }}" alt="{{ bike.name }}">
+                    <div class="bike-overlay">
+                        <a href="/bike-details/{{ bike.id }}/" class="btn-secondary small">View Details</a>
+                        <button class="btn-secondary small">Edit</button>
+                    </div>
+                </div>
+                <div class="bike-info">
+                    <h3>{{ bike.name }}</h3>
+                    <p class="bike-type">{{ bike.type }}</p>
+                    <div class="bike-stats">
+                        <span class="stat">📸 {{ bike.photos }} photos</span>
+                        <span class="stat">🔧 {{ bike.records }} records</span>
+                        <span class="stat">👥 Shared with {{ bike.communities }} communities</span>
+                    </div>
+                    <div class="bike-actions">
+                        <a href="/bike-details/{{ bike.id }}/" class="action-link">View Details</a>
+                        <a href="/edit-bike/" class="action-link">Edit</a>
+                        <a href="/bike-maintenance/" class="action-link">Maintenance</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

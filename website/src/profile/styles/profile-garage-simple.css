@@ -1,0 +1,129 @@
+/* Simple Garage Grid Styles */
+.garage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.garage-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+.garage-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.garage-filter {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.garage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.bike-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.bike-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.bike-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.bike-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bike-info {
+  padding: 16px;
+}
+
+.bike-info h4 {
+  margin: 0 0 8px 0;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.bike-miles {
+  margin: 0 0 4px 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.bike-status {
+  margin: 0 0 12px 0;
+  color: var(--text-tertiary);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.bike-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.bike-actions button {
+  flex: 1;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bike-actions button:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .garage-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .garage-actions {
+    width: 100%;
+  }
+  
+  .garage-filter,
+  .add-bike-btn {
+    flex: 1;
+  }
+  
+  .garage-grid {
+    grid-template-columns: 1fr;
+  }
+}

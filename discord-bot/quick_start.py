@@ -9,7 +9,7 @@ import traceback
 from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv()
+load_dotenv(dotenv_path='../.env')
 
 async def test_bot():
     """Test if the bot can start up properly"""

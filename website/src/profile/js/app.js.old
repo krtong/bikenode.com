@@ -1,0 +1,24 @@
+// Main application entry point for profile page
+import { initializeTabs } from './tabs.js';
+import { initializeActionMenu } from './actions.js';
+import { initializeModals } from './modals.js';
+
+// Initialize profile features
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize tabs
+    initializeTabs();
+    
+    // Initialize action menu
+    initializeActionMenu();
+    
+    // Initialize modals
+    initializeModals();
+    
+    // Initialize status indicators
+    const statusIndicator = document.querySelector('.status-indicator');
+    if (statusIndicator) {
+        setInterval(() => {
+            statusIndicator.classList.toggle('pulse');
+        }, 2000);
+    }
+});

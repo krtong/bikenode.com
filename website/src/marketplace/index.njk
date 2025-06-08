@@ -1,0 +1,425 @@
+---
+layout: dashboard.njk
+title: BikeNode Classifieds
+subtitle: Buy and sell bikes, parts, and gear in your community
+description: Buy and sell motorcycles, bicycles, parts, and gear on BikeNode's trusted marketplace
+customCSS:
+  - /marketplace/styles/marketplace-craigslist.css
+customJS:
+  - /marketplace/js/marketplace-craigslist.js
+---
+
+<section class="classifieds-page">
+    <div class="classifieds-container">
+        <!-- Header -->
+        <header class="classifieds-header">
+            <h1>BikeNode Classifieds</h1>
+            <div class="header-actions">
+                <button class="btn-post" id="postListingBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    Post Listing
+                </button>
+                <a href="/virtual-garage" class="btn-link">My Garage</a>
+                <a href="/gear-collection" class="btn-link">My Gear</a>
+                <a href="/marketplace/my-listings" class="btn-link">My Listings</a>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <div class="classifieds-layout">
+            <!-- Categories Sidebar -->
+            <aside class="categories-sidebar">
+                <h2>Categories</h2>
+                <nav class="category-nav">
+                    <ul class="category-list">
+                        <li>
+                            <a href="#" data-category="all" class="category-link active">
+                                <span>All</span>
+                                <span class="count">1,247</span>
+                            </a>
+                        </li>
+                        <li class="category-group">
+                            <h3>Bikes</h3>
+                            <ul>
+                                <li>
+                                    <a href="#" data-category="road-bikes" class="category-link">
+                                        <span>Road Bikes</span>
+                                        <span class="count">234</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" data-category="mountain-bikes" class="category-link">
+                                        <span>Mountain Bikes</span>
+                                        <span class="count">189</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" data-category="gravel-bikes" class="category-link">
+                                        <span>Gravel/CX</span>
+                                        <span class="count">156</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" data-category="e-bikes" class="category-link">
+                                        <span>E-Bikes</span>
+                                        <span class="count">78</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" data-category="motorcycles" class="category-link">
+                                        <span>Motorcycles</span>
+                                        <span class="count">124</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="category-group">
+                            <h3>Parts & Components</h3>
+                            <ul>
+                                <li>
+                                    <a href="#" data-category="frames" class="category-link">
+                                        <span>Frames</span>
+                                        <span class="count">89</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" data-category="wheels" class="category-link">
+                                        <span>Wheels</span>
+                                        <span class="count">112</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" data-category="drivetrains" class="category-link">
+                                        <span>Drivetrains</span>
+                                        <span class="count">198</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" data-category="brakes" class="category-link">
+                                        <span>Brakes</span>
+                                        <span class="count">67</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="category-group">
+                            <h3>Gear & Apparel</h3>
+                            <ul>
+                                <li>
+                                    <a href="#" data-category="helmets" class="category-link">
+                                        <span>Helmets</span>
+                                        <span class="count">34</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" data-category="clothing" class="category-link">
+                                        <span>Clothing</span>
+                                        <span class="count">45</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" data-category="shoes" class="category-link">
+                                        <span>Shoes</span>
+                                        <span class="count">28</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" data-category="accessories" class="category-link">
+                                        <span>Accessories</span>
+                                        <span class="count">87</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="sidebar-filters">
+                    <h3>Filters</h3>
+                    
+                    <div class="filter-section">
+                        <label for="locationFilter">Location</label>
+                        <select id="locationFilter">
+                            <option value="">All Areas</option>
+                            <option value="5">Within 5 miles</option>
+                            <option value="10">Within 10 miles</option>
+                            <option value="25">Within 25 miles</option>
+                            <option value="50">Within 50 miles</option>
+                            <option value="100">Within 100 miles</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-section">
+                        <label>Price Range</label>
+                        <div class="price-inputs">
+                            <input type="number" id="minPrice" placeholder="$ Min">
+                            <span>-</span>
+                            <input type="number" id="maxPrice" placeholder="$ Max">
+                        </div>
+                        <button class="btn-apply">Apply</button>
+                    </div>
+
+                    <div class="filter-section">
+                        <label>Posted Within</label>
+                        <select id="dateFilter">
+                            <option value="">Any Time</option>
+                            <option value="1">Last 24 hours</option>
+                            <option value="3">Last 3 days</option>
+                            <option value="7">Last week</option>
+                            <option value="30">Last month</option>
+                        </select>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="listings-main">
+                <!-- Search and Controls -->
+                <div class="listings-controls">
+                    <div class="search-bar">
+                        <input type="search" placeholder="Search all listings..." id="searchInput">
+                        <button class="btn-search">Search</button>
+                    </div>
+                    <div class="view-options">
+                        <select id="sortBy">
+                            <option value="date">Newest first</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="distance">Distance: Nearest</option>
+                        </select>
+                        <div class="view-toggles">
+                            <button class="view-toggle active" data-view="list" title="List view">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="8" y1="6" x2="21" y2="6"></line>
+                                    <line x1="8" y1="12" x2="21" y2="12"></line>
+                                    <line x1="8" y1="18" x2="21" y2="18"></line>
+                                    <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                    <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                    <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                                </svg>
+                            </button>
+                            <button class="view-toggle" data-view="grid" title="Grid view">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="14" width="7" height="7"></rect>
+                                    <rect x="3" y="14" width="7" height="7"></rect>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Listings Container -->
+                <div class="listings-container list-view" id="listingsContainer">
+                    <!-- Sample Listings -->
+                    <article class="listing-item">
+                        <div class="listing-image">
+                            <img src="/assets/images/marketplace/trek-domane.jpg" alt="Trek Domane SL 7">
+                        </div>
+                        <div class="listing-info">
+                            <h3>
+                                <a href="/listing-detail/123">Trek Domane SL 7 - 2023 Road Bike (56cm)</a>
+                                <span class="price">$3,500</span>
+                            </h3>
+                            <div class="listing-meta">
+                                <span class="location">📍 San Francisco, CA</span>
+                                <span class="date">2 hours ago</span>
+                                <span class="condition">Like New</span>
+                            </div>
+                            <p class="listing-preview">
+                                Excellent condition, barely ridden. Full Ultegra Di2 groupset, carbon frame. 
+                                Includes original receipt and all documentation. Moving overseas, must sell.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="listing-item">
+                        <div class="listing-image">
+                            <img src="/assets/images/marketplace/wheelset.jpg" alt="Zipp 404 Wheelset">
+                        </div>
+                        <div class="listing-info">
+                            <h3>
+                                <a href="/listing-detail/124">Zipp 404 Firecrest Carbon Wheelset</a>
+                                <span class="price">$1,200</span>
+                            </h3>
+                            <div class="listing-meta">
+                                <span class="location">📍 Austin, TX</span>
+                                <span class="date">5 hours ago</span>
+                                <span class="condition">Good</span>
+                            </div>
+                            <p class="listing-preview">
+                                Tubeless ready, 700c clincher. Some cosmetic scratches but structurally perfect. 
+                                Shimano/SRAM freehub. Will ship at buyer's expense.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="listing-item featured">
+                        <div class="listing-image">
+                            <img src="/assets/images/marketplace/gravel-bike.jpg" alt="Specialized Diverge">
+                            <span class="badge featured">Featured</span>
+                        </div>
+                        <div class="listing-info">
+                            <h3>
+                                <a href="/listing-detail/125">Specialized Diverge Comp - Size 56 Gravel Bike</a>
+                                <span class="price">$2,800</span>
+                            </h3>
+                            <div class="listing-meta">
+                                <span class="location">📍 Portland, OR</span>
+                                <span class="date">1 day ago</span>
+                                <span class="condition">Like New</span>
+                                <span class="badge garage">From My Garage</span>
+                            </div>
+                            <p class="listing-preview">
+                                GRX 810 2x11 groupset, Future Shock 2.0, carbon fork. Set up tubeless with 38mm tires. 
+                                This bike is from my virtual garage - check out my full bike specs and history!
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="listing-item">
+                        <div class="listing-image">
+                            <img src="/assets/images/marketplace/mtb-full.jpg" alt="Santa Cruz Hightower">
+                        </div>
+                        <div class="listing-info">
+                            <h3>
+                                <a href="/listing-detail/126">Santa Cruz Hightower CC - Large MTB</a>
+                                <span class="price">$4,200</span>
+                            </h3>
+                            <div class="listing-meta">
+                                <span class="location">📍 Boulder, CO</span>
+                                <span class="date">2 days ago</span>
+                                <span class="condition">Good</span>
+                            </div>
+                            <p class="listing-preview">
+                                Carbon CC frame, 140mm rear/150mm front travel. XT build kit with some upgrades. 
+                                Trail ready, recently serviced. No crashes, single owner.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="listing-item">
+                        <div class="listing-image">
+                            <img src="/assets/images/marketplace/helmet.jpg" alt="POC Ventral">
+                        </div>
+                        <div class="listing-info">
+                            <h3>
+                                <a href="/listing-detail/127">POC Ventral Air SPIN Helmet - Medium</a>
+                                <span class="price">$150</span>
+                            </h3>
+                            <div class="listing-meta">
+                                <span class="location">📍 Seattle, WA</span>
+                                <span class="date">3 days ago</span>
+                                <span class="condition">Like New</span>
+                                <span class="badge gear">From My Gear</span>
+                            </div>
+                            <p class="listing-preview">
+                                Used only a handful of times. No crashes, perfect condition. Includes original box
+                                and extra padding kit. Uranium Black colorway.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="listing-item">
+                        <div class="listing-image">
+                            <img src="/assets/images/marketplace/yamaha-r6.jpg" alt="Yamaha R6">
+                        </div>
+                        <div class="listing-info">
+                            <h3>
+                                <a href="/listing-detail/128">2019 Yamaha YZF-R6 - 8k miles</a>
+                                <span class="price">$9,500</span>
+                            </h3>
+                            <div class="listing-meta">
+                                <span class="location">📍 Los Angeles, CA</span>
+                                <span class="date">4 days ago</span>
+                                <span class="condition">Excellent</span>
+                                <span class="badge garage">From My Garage</span>
+                            </div>
+                            <p class="listing-preview">
+                                Well maintained, all service records. Akrapovic exhaust, frame sliders, new tires. 
+                                Never tracked or dropped. Adult owned. Clean title in hand.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="listing-item">
+                        <div class="listing-image">
+                            <img src="/assets/images/marketplace/shimano-groupset.jpg" alt="Shimano Ultegra">
+                        </div>
+                        <div class="listing-info">
+                            <h3>
+                                <a href="/listing-detail/129">Shimano Ultegra R8000 Full Groupset</a>
+                                <span class="price">$800</span>
+                            </h3>
+                            <div class="listing-meta">
+                                <span class="location">📍 Chicago, IL</span>
+                                <span class="date">5 days ago</span>
+                                <span class="condition">Good</span>
+                            </div>
+                            <p class="listing-preview">
+                                Complete 2x11 mechanical groupset. Includes shifters, derailleurs, crankset (172.5mm), 
+                                cassette (11-28), chain, and brakes. Approx 2000 miles, works perfectly.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <a href="#" class="page-link">← Previous</a>
+                    <div class="page-numbers">
+                        <a href="#" class="page-link active">1</a>
+                        <a href="#" class="page-link">2</a>
+                        <a href="#" class="page-link">3</a>
+                        <span>...</span>
+                        <a href="#" class="page-link">63</a>
+                    </div>
+                    <a href="#" class="page-link">Next →</a>
+                </div>
+            </main>
+        </div>
+    </div>
+</section>
+
+<!-- Post Listing Modal -->
+<div class="modal" id="postListingModal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Create New Listing</h2>
+            <button class="modal-close" id="closeModal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <h3>What would you like to sell?</h3>
+            <div class="listing-options">
+                <button class="option-card" data-source="garage">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 7l7-4 7 4v10l-7 4-7-4V7z"/>
+                        <path d="M5 7l7 4 7-4"/>
+                        <path d="M12 11v10"/>
+                    </svg>
+                    <h4>From My Garage</h4>
+                    <p>Sell a bike from your virtual garage with all its specs and history</p>
+                </button>
+                <button class="option-card" data-source="gear">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/>
+                        <path d="M20.5 7.5L16 12l4.5 4.5M3.5 7.5L8 12l-4.5 4.5"/>
+                    </svg>
+                    <h4>From My Gear</h4>
+                    <p>Sell equipment from your gear collection</p>
+                </button>
+                <button class="option-card" data-source="new">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2v20M2 12h20"/>
+                    </svg>
+                    <h4>New Listing</h4>
+                    <p>Create a custom listing from scratch</p>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

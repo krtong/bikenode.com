@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test API Connection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #2a2a2a;
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        pre {
+            background: #111;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
+    </style>
+</head>
+<body>
+    <h1>API Connection Test</h1>
+    
+    <div class="test-section">
+        <h2>Test Results</h2>
+        <button onclick="testAll()">Run All Tests</button>
+        <pre id="results"></pre>
+    </div>
+
+    <script>
+        const resultsEl = document.getElementById('results');
+        
+        function log(message, type = 'info') {
+            const color = type === 'error' ? '#f87171' : type === 'success' ? '#4ade80' : '#94a3b8';
+            resultsEl.innerHTML += `<span style="color: ${color}">${message}</span>\n`;
+        }
+        
+        async function testAll() {
+            resultsEl.innerHTML = '';
+            
+            // Test 1: Direct health check
+            log('Test 1: Direct health check...');
+            try {
+                const response = await fetch('http://localhost:8080/api/health');
+                const data = await response.json();
+                log(`✓ Health check passed: ${JSON.stringify(data)}`, 'success');
+            } catch (error) {
+                log(`✗ Health check failed: ${error.message}`, 'error');
+                log(`Error details: ${error.stack}`, 'error');
+            }
+            
+            // Test 2: Motorcycle makes
+            log('\nTest 2: Motorcycle makes...');
+            try {
+                const response = await fetch('http://localhost:8080/api/motorcycles/makes');
+                const data = await response.json();
+                log(`✓ Motorcycle makes loaded: ${data.length} brands`, 'success');
+                log(`Sample: ${data.slice(0, 5).join(', ')}`, 'info');
+            } catch (error) {
+                log(`✗ Motorcycle makes failed: ${error.message}`, 'error');
+            }
+            
+            // Test 3: Bicycle manufacturers
+            log('\nTest 3: Bicycle manufacturers...');
+            try {
+                const response = await fetch('http://localhost:8080/api/bicycles/manufacturers');
+                const data = await response.json();
+                const count = data.manufacturers ? data.manufacturers.length : 0;
+                log(`✓ Bicycle manufacturers loaded: ${count} brands`, 'success');
+                if (data.manufacturers) {
+                    log(`Sample: ${data.manufacturers.slice(0, 5).join(', ')}`, 'info');
+                }
+            } catch (error) {
+                log(`✗ Bicycle manufacturers failed: ${error.message}`, 'error');
+            }
+            
+            // Test 4: Check if it's a CORS issue
+            log('\nTest 4: CORS headers check...');
+            try {
+                const response = await fetch('http://localhost:8080/api/health', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                log(`Response headers:`, 'info');
+                for (let [key, value] of response.headers) {
+                    if (key.toLowerCase().includes('cors') || key.toLowerCase().includes('access')) {
+                        log(`  ${key}: ${value}`, 'info');
+                    }
+                }
+            } catch (error) {
+                log(`✗ CORS check failed: ${error.message}`, 'error');
+            }
+        }
+        
+        // Auto-run tests
+        window.addEventListener('DOMContentLoaded', testAll);
+    </script>
+</body>
+</html>

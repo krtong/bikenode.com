@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Module Loading</title>
+</head>
+<body>
+    <h1>Module Loading Test</h1>
+    <div id="status">Testing...</div>
+    
+    <script type="module">
+        const status = document.getElementById('status');
+        
+        try {
+            // Test inline module
+            status.innerHTML += '<br>✅ Inline module works';
+            
+            // Test importing from add-bike
+            const module = await import('/add-bike/js/app.js');
+            status.innerHTML += '<br>✅ Can import app.js';
+            
+            // Test data loader
+            const dataLoader = await import('/add-bike/js/data-loader.js');
+            status.innerHTML += '<br>✅ Can import data-loader.js';
+            
+            // Test views
+            const views = await import('/add-bike/js/views.js');
+            status.innerHTML += '<br>✅ Can import views.js';
+            
+            status.innerHTML += '<br><br>✅ All modules load successfully!';
+            
+        } catch (error) {
+            status.innerHTML += `<br>❌ Error: ${error.message}`;
+            console.error('Module loading error:', error);
+        }
+    </script>
+    
+    <h2>Direct Test</h2>
+    <div id="menu-content" style="border: 1px solid #ccc; padding: 20px; margin: 20px 0;">
+        Menu content will appear here
+    </div>
+    
+    <div id="api-status" style="margin: 20px 0;">
+        API Status: <span class="status-indicator">⚪</span>
+    </div>
+    
+    <script type="module" src="/add-bike/js/app.js"></script>
+</body>
+</html>

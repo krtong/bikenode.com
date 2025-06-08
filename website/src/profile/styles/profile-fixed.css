@@ -1,0 +1,769 @@
+/* Enhanced Profile Page Styles - Fixed to match HTML structure */
+
+/* Main Profile Container */
+.profile-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Profile Header Section */
+.profile-header-section {
+    position: relative;
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.profile-header-section:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Cover Photo */
+.cover-photo {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7));
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.edit-cover-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+}
+
+.edit-cover-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: translateY(-2px);
+}
+
+/* Profile Info Container */
+.profile-info-container {
+    display: flex;
+    gap: 32px;
+    padding: 0 32px 32px 32px;
+    margin-top: -60px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Profile Avatar Section */
+.profile-avatar-section {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.profile-avatar {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--bg-primary);
+    background: var(--card-bg);
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.online-status {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    background: #10b981;
+    border-radius: 50%;
+    border: 3px solid var(--bg-primary);
+}
+
+.edit-avatar-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.edit-avatar-btn:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+/* Profile Details */
+.profile-details {
+    flex: 1;
+}
+
+.profile-name-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.profile-name {
+    color: var(--text-primary);
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.verification-badge,
+.premium-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: 14px;
+}
+
+.verification-badge {
+    background: #1d9bf0;
+    color: white;
+}
+
+.premium-badge {
+    background: linear-gradient(45deg, #ffd700, #ff8c00);
+    color: white;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.profile-username {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin: 0 0 8px 0;
+}
+
+.profile-tagline {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin: 0 0 16px 0;
+}
+
+.profile-meta-info {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.meta-item .icon {
+    font-size: 1rem;
+}
+
+.profile-link {
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.profile-link:hover {
+    opacity: 0.8;
+}
+
+/* Profile Actions */
+.profile-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.btn-primary,
+.btn-secondary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-icon {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-secondary);
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+/* Profile Stats Bar */
+.profile-stats-bar {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    padding: 24px;
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-x: auto;
+}
+
+.stat-card {
+    text-align: center;
+    min-width: 100px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+}
+
+.stat-value {
+    display: block;
+    color: var(--accent);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Profile Navigation Tabs */
+.profile-nav-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 32px;
+    padding: 8px;
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-x: auto;
+}
+
+.nav-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-tab:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.nav-tab.active {
+    background: var(--accent);
+    color: white;
+}
+
+.nav-tab .icon {
+    font-size: 1.2rem;
+}
+
+/* Profile Content Area */
+.profile-content {
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.tab-content {
+    display: none;
+    padding: 32px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Overview Tab Styles */
+.overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.about-card,
+.activity-card,
+.featured-bikes-card,
+.stats-overview-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.about-card {
+    grid-column: 1 / -1;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-header h3 {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.view-all {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: opacity 0.2s ease;
+}
+
+.view-all:hover {
+    opacity: 0.8;
+}
+
+.about-content p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.interests-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    background: rgba(88, 101, 242, 0.1);
+    color: var(--accent);
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Activity List */
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.activity-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.activity-icon {
+    font-size: 1.2rem;
+    margin-top: 2px;
+}
+
+.activity-details {
+    flex: 1;
+}
+
+.activity-text {
+    color: var(--text-secondary);
+    margin: 0 0 4px 0;
+    font-size: 0.9rem;
+}
+
+.activity-text strong {
+    color: var(--text-primary);
+}
+
+.activity-time {
+    color: var(--text-tertiary);
+    font-size: 0.8rem;
+}
+
+/* Featured Bikes Grid */
+.featured-bikes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.featured-bike {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.featured-bike:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.featured-bike .bike-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+.featured-bike .bike-info {
+    padding: 12px;
+}
+
+.featured-bike h4 {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    margin: 0 0 4px 0;
+}
+
+.featured-bike p {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-icon {
+    font-size: 1.5rem;
+}
+
+.stat-info {
+    flex: 1;
+}
+
+.stat-number {
+    color: var(--accent);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.stat-desc {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-info-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0 20px 20px 20px;
+    }
+    
+    .profile-avatar-section {
+        margin-top: -60px;
+    }
+    
+    .profile-meta-info {
+        justify-content: center;
+    }
+    
+    .profile-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .profile-stats-bar {
+        justify-content: space-between;
+        padding: 16px;
+    }
+    
+    .stat-card {
+        min-width: auto;
+    }
+    
+    .stat-value {
+        font-size: 1.4rem;
+    }
+    
+    .profile-nav-tabs {
+        padding: 4px;
+    }
+    
+    .nav-tab {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .nav-tab .icon {
+        font-size: 1rem;
+    }
+    
+    .nav-tab span {
+        display: none;
+    }
+    
+    .nav-tab.active span {
+        display: inline;
+    }
+    
+    .overview-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .featured-bikes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tab-content {
+        padding: 20px;
+    }
+}
+
+/* Garage Tab Styles */
+.garage-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.garage-title-section h3 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin: 0 0 8px 0;
+}
+
+.garage-stats {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.garage-stats strong {
+    color: var(--accent);
+}
+
+.stat-divider {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.garage-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.view-toggle {
+    display: flex;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.view-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.view-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.view-btn.active {
+    background: var(--accent);
+    color: white;
+}
+
+.garage-filter {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.add-bike-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Modal Styles */
+.gear-modal,
+.fit-modal,
+.gear-list-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    background: var(--card-bg);
+    margin: 5% auto;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h3 {
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 24px;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 24px;
+}

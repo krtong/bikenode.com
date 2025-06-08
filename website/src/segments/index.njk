@@ -1,0 +1,26 @@
+---
+layout: dashboard.njk
+title: Segments
+subtitle: Challenge yourself on popular local segments and compete for KOMs/QOMs
+showContentHeader: false
+customCSS:
+  - /segments/styles/segments.css
+  - https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
+---
+
+<div class="segments-container">
+    {% include "./components/segments-header.njk" %}
+    {% include "./components/segments-map.njk" %}
+    {% include "./components/segments-filters.njk" %}
+    {% include "./components/segments-list.njk" %}
+</div>
+
+<!-- Modals -->
+{% include "./components/segment-detail-modal.njk" %}
+{% include "./components/create-segment-modal.njk" %}
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Segments Application -->
+<script type="module" src="/segments/js/app.js"></script>

@@ -1,0 +1,164 @@
+---
+layout: docs
+title: BikeNode Advocacy
+customCSS:
+  - /assets/css/advocacy.css
+---
+
+<div class="advocacy-page">
+  <p class="content-subtitle">Data-Driven Safety & Insurance Innovation for Riders</p>
+  
+  <!-- Hero Section -->
+  <section class="advocacy-hero">
+    <div class="hero-content">
+      <h2 class="hero-title">The Lobby Group Wing of BikeNode</h2>
+      <p class="hero-description">
+        We collect data from bicyclists, motorcyclists and everyone in between (Sur Ron riders etc) 
+        tracking the reliability and quality of bikes, apparel, gear to feedback from riders for 
+        more road safety, insurance costs, and more. The plan is to eventually offer insurance to 
+        riders and even offer event insurance for rider-based events as we hope to become the 
+        epicenter for all safety data and can most accurately find the point between coverage and affordability.
+      </p>
+    </div>
+  </section>
+
+  <!-- Navigation Tabs -->
+  <nav class="advocacy-nav">
+    <div class="nav-container">
+      <button class="nav-tab active" data-tab="data-science">
+        <svg class="tab-icon" viewBox="0 0 24 24" width="20" height="20">
+          <path fill="none" stroke="currentColor" stroke-width="2" d="M3 13h2v8H3zm4-8h2v16H7zm4-2h2v18h-2zm4 4h2v14h-2zm4-2h2v16h-2z"/>
+        </svg>
+        Data Science
+      </button>
+      <button class="nav-tab" data-tab="safety-tracking">
+        <svg class="tab-icon" viewBox="0 0 24 24" width="20" height="20">
+          <path fill="none" stroke="currentColor" stroke-width="2" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        Safety Tracking
+      </button>
+      <button class="nav-tab" data-tab="quality-reliability">
+        <svg class="tab-icon" viewBox="0 0 24 24" width="20" height="20">
+          <path fill="none" stroke="currentColor" stroke-width="2" d="M9 11H3v2h6v-2zm0-4H3v2h6V7zm0 8H3v2h6v-2zm12-8l-4 4 4 4V7z"/>
+        </svg>
+        Quality & Reliability
+      </button>
+      <button class="nav-tab" data-tab="insurance-innovation">
+        <svg class="tab-icon" viewBox="0 0 24 24" width="20" height="20">
+          <path fill="none" stroke="currentColor" stroke-width="2" d="M19 8h-1V3H6v5H5c-1.66 0-3 1.34-3 3v6h4c0 1.1.9 2 2 2s2-.9 2-2h4c0 1.1.9 2 2 2s2-.9 2-2h4v-6c0-1.34-1.34-3-3-3z"/>
+        </svg>
+        Insurance Innovation
+      </button>
+      <button class="nav-tab" data-tab="community-impact">
+        <svg class="tab-icon" viewBox="0 0 24 24" width="20" height="20">
+          <path fill="none" stroke="currentColor" stroke-width="2" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+        Community Impact
+      </button>
+    </div>
+  </nav>
+
+  <!-- Tab Content -->
+  <div class="advocacy-content">
+    <!-- Data Science Tab -->
+    <section class="tab-content active" id="data-science-tab">
+      <div class="content-container">
+        <h2>Data Science</h2>
+        <p class="section-intro">
+          Explaining how we collect data from bicyclists, motorcyclists and everyone in between 
+          (Sur Ron riders etc) from tracking the reliability and quality of bikes, apparel, gear 
+          to feedback from riders for more road safety, insurance costs, and more.
+        </p>
+      </div>
+    </section>
+
+    <!-- Safety Tracking Tab -->
+    <section class="tab-content" id="safety-tracking-tab">
+      <div class="content-container">
+        <h2>Safety Tracking</h2>
+        <p class="section-intro">
+          Tracking data for more road safety from rider feedback and incident reports.
+        </p>
+      </div>
+    </section>
+
+    <!-- Quality & Reliability Tab -->
+    <section class="tab-content" id="quality-reliability-tab">
+      <div class="content-container">
+        <h2>Quality & Reliability</h2>
+        <p class="section-intro">
+          Tracking the reliability and quality of bikes, apparel, gear.
+        </p>
+      </div>
+    </section>
+
+    <!-- Insurance Innovation Tab -->
+    <section class="tab-content" id="insurance-innovation-tab">
+      <div class="content-container">
+        <h2>Insurance Innovation</h2>
+        <p class="section-intro">
+          The plan is to eventually offer insurance to riders and even offer event insurance 
+          for rider-based events as we hope to become the epicenter for all safety data 
+          and can most accurately find the point between coverage and affordability.
+        </p>
+      </div>
+    </section>
+
+    <!-- Community Impact Tab -->
+    <section class="tab-content" id="community-impact-tab">
+      <div class="content-container">
+        <h2>Community Impact</h2>
+        <p class="section-intro">
+          How our data collection and advocacy efforts impact the riding community.
+        </p>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+// Advocacy Page JavaScript
+document.addEventListener('DOMContentLoaded', () => {
+  // Tab Navigation
+  const tabButtons = document.querySelectorAll('.nav-tab');
+  const tabContents = document.querySelectorAll('.tab-content');
+  
+  // Handle tab switching
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const targetTab = button.dataset.tab;
+      
+      // Update active states for buttons
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      // Update active states for content
+      tabContents.forEach(content => content.classList.remove('active'));
+      const targetContent = document.getElementById(`${targetTab}-tab`);
+      if (targetContent) {
+        targetContent.classList.add('active');
+      }
+      
+      // Update URL hash without scrolling
+      history.replaceState(null, null, `#${targetTab}`);
+    });
+  });
+  
+  // Handle direct navigation via URL hash
+  const handleHashChange = () => {
+    const hash = window.location.hash.slice(1);
+    if (hash) {
+      const targetButton = document.querySelector(`[data-tab="${hash}"]`);
+      if (targetButton) {
+        targetButton.click();
+      }
+    }
+  };
+  
+  // Check for hash on page load
+  handleHashChange();
+  
+  // Listen for hash changes
+  window.addEventListener('hashchange', handleHashChange);
+});
+</script>

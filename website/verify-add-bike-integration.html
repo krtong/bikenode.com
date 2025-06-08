@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Add-Bike Integration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+        
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background: #0056b3;
+        }
+        
+        .spec-display {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .spec-card {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        .spec-label {
+            font-weight: bold;
+            color: #666;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        
+        .spec-value {
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .iframe-container {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Verify Add-Bike Motorcycle Specs Integration</h1>
+        
+        <div class="test-section">
+            <h2>Integration Status</h2>
+            <div id="status-results"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Quick Test - Honda Monkey 2022</h2>
+            <button onclick="testHondaMonkey()">Run Honda Monkey Test</button>
+            <div id="monkey-results"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Test Specific Motorcycle ID</h2>
+            <input type="text" id="motorcycle-id" placeholder="Enter motorcycle UUID" style="width: 400px; padding: 8px;">
+            <button onclick="testSpecificId()">Test</button>
+            <div id="specific-results"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Live Add-Bike Page</h2>
+            <p>The add-bike page is embedded below. Navigate to: Motorcycle → Honda → 2022 → Monkey 125</p>
+            <div class="iframe-container">
+                <iframe src="http://localhost:8081/add-bike/" id="add-bike-frame"></iframe>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Instructions for Testing</h2>
+            <ol>
+                <li>Click "Run Honda Monkey Test" above to verify the API is working</li>
+                <li>In the embedded add-bike page below, select:
+                    <ul>
+                        <li>Category: <strong>Motorcycle</strong></li>
+                        <li>Brand: <strong>Honda</strong></li>
+                        <li>Year: <strong>2022</strong> (or any year 2019-2025)</li>
+                        <li>Model: <strong>Monkey 125</strong></li>
+                    </ul>
+                </li>
+                <li>When you select the Monkey 125, you should see specifications appear</li>
+                <li>Look for:
+                    <ul>
+                        <li>✅ Full Specifications indicator</li>
+                        <li>Engine, Capacity, Power specifications</li>
+                        <li>Total of 27 specifications available</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080/api';
+        
+        // Check overall status
+        async function checkStatus() {
+            const statusDiv = document.getElementById('status-results');
+            statusDiv.innerHTML = '<div class="info">Checking integration status...</div>';
+            
+            try {
+                // Check API health
+                const healthResp = await fetch(`${API_BASE}/health`);
+                const health = await healthResp.json();
+                
+                statusDiv.innerHTML = `
+                    <div class="success">✅ API Server: Running</div>
+                    <div class="info">Total Motorcycles: ${health.motorcycles || 0}</div>
+                `;
+                
+                // Check Honda Monkey specifically
+                const monkeyResp = await fetch(`${API_BASE}/motorcycles/189c16c7-4b30-5cbb-965b-ce869d5903f0/specs`);
+                const monkeySpecs = await monkeyResp.json();
+                
+                if (monkeySpecs.hasSpecs) {
+                    statusDiv.innerHTML += '<div class="success">✅ Honda Monkey Specs: Available (Spec ID: ' + monkeySpecs.specId + ')</div>';
+                } else {
+                    statusDiv.innerHTML += '<div class="error">❌ Honda Monkey Specs: Not Available</div>';
+                }
+                
+                // Coverage info
+                statusDiv.innerHTML += '<div class="info">Coverage: 3,480 / 42,123 motorcycles (8.3%)</div>';
+                
+            } catch (error) {
+                statusDiv.innerHTML = '<div class="error">❌ Error checking status: ' + error.message + '</div>';
+            }
+        }
+        
+        // Test Honda Monkey
+        async function testHondaMonkey() {
+            const resultsDiv = document.getElementById('monkey-results');
+            resultsDiv.innerHTML = '<div class="info">Testing Honda Monkey 2022...</div>';
+            
+            try {
+                // Get Honda 2022 models
+                const modelsResp = await fetch(`${API_BASE}/motorcycles/models/Honda/2022`);
+                const models = await modelsResp.json();
+                
+                const monkey = models.find(m => m.model.includes('Monkey'));
+                if (!monkey) {
+                    resultsDiv.innerHTML = '<div class="error">❌ Honda Monkey not found in 2022 models</div>';
+                    return;
+                }
+                
+                resultsDiv.innerHTML = `<div class="success">✅ Found: ${monkey.year} ${monkey.make} ${monkey.model}</div>`;
+                resultsDiv.innerHTML += `<div class="info">ID: ${monkey.id}</div>`;
+                
+                // Get specs
+                const specsResp = await fetch(`${API_BASE}/motorcycles/${monkey.id}/specs`);
+                const specs = await specsResp.json();
+                
+                if (specs.hasSpecs) {
+                    resultsDiv.innerHTML += `<div class="success">✅ Specifications Available!</div>`;
+                    resultsDiv.innerHTML += `<div class="info">Spec ID: ${specs.specId}</div>`;
+                    resultsDiv.innerHTML += `<div class="info">Total Specs: ${Object.keys(specs.specifications).length}</div>`;
+                    
+                    // Display specs
+                    const specDisplay = document.createElement('div');
+                    specDisplay.className = 'spec-display';
+                    specDisplay.innerHTML = '<h3>Specifications:</h3>';
+                    
+                    const specGrid = document.createElement('div');
+                    specGrid.className = 'spec-grid';
+                    
+                    // Show key specs
+                    const keySpecs = ['Engine', 'Capacity', 'Max Power', 'Max Torque', 'Transmission', 'Seat Height', 'Wet Weight'];
+                    keySpecs.forEach(key => {
+                        if (specs.specifications[key]) {
+                            const card = document.createElement('div');
+                            card.className = 'spec-card';
+                            card.innerHTML = `
+                                <div class="spec-label">${key}</div>
+                                <div class="spec-value">${specs.specifications[key]}</div>
+                            `;
+                            specGrid.appendChild(card);
+                        }
+                    });
+                    
+                    specDisplay.appendChild(specGrid);
+                    resultsDiv.appendChild(specDisplay);
+                } else {
+                    resultsDiv.innerHTML += '<div class="error">❌ No specifications found</div>';
+                }
+                
+            } catch (error) {
+                resultsDiv.innerHTML = '<div class="error">❌ Error: ' + error.message + '</div>';
+            }
+        }
+        
+        // Test specific ID
+        async function testSpecificId() {
+            const id = document.getElementById('motorcycle-id').value.trim();
+            if (!id) {
+                alert('Please enter a motorcycle ID');
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('specific-results');
+            resultsDiv.innerHTML = '<div class="info">Testing motorcycle ID: ' + id + '</div>';
+            
+            try {
+                const specsResp = await fetch(`${API_BASE}/motorcycles/${id}/specs`);
+                const specs = await specsResp.json();
+                
+                if (specs.hasSpecs) {
+                    resultsDiv.innerHTML = '<div class="success">✅ Specifications found!</div>';
+                    resultsDiv.innerHTML += '<div class="info">Spec ID: ' + specs.specId + '</div>';
+                    resultsDiv.innerHTML += '<div class="info">Total specifications: ' + Object.keys(specs.specifications).length + '</div>';
+                } else {
+                    resultsDiv.innerHTML = '<div class="error">❌ ' + (specs.message || 'No specifications available') + '</div>';
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = '<div class="error">❌ Error: ' + error.message + '</div>';
+            }
+        }
+        
+        // Initialize
+        window.addEventListener('load', () => {
+            checkStatus();
+        });
+    </script>
+</body>
+</html>

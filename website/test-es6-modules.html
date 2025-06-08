@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ES6 Module Test</title>
+    <style>
+        body {
+            font-family: -apple-system, sans-serif;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        #output {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+        }
+        .success { color: #44ff44; }
+        .error { color: #ff4444; }
+    </style>
+</head>
+<body>
+    <h1>ES6 Module Loading Test</h1>
+    <div id="output">Testing...</div>
+
+    <script type="module">
+        const output = document.getElementById('output');
+        
+        function log(msg, type = 'info') {
+            output.innerHTML += `\n<span class="${type}">${msg}</span>`;
+        }
+        
+        output.innerHTML = 'Starting tests...';
+        
+        // Test 1: Basic module syntax
+        try {
+            log('\n1. Testing basic module import...', 'info');
+            const testModule = await import('/add-bike/js/navigation.js');
+            log('✓ navigation.js loaded successfully', 'success');
+            log(`  - Exports found: ${Object.keys(testModule).join(', ')}`, 'info');
+        } catch (e) {
+            log(`✗ Failed to load navigation.js: ${e.message}`, 'error');
+        }
+        
+        // Test 2: Import with dependencies
+        try {
+            log('\n2. Testing module with dependencies...', 'info');
+            const viewsModule = await import('/add-bike/js/views.js');
+            log('✓ views.js loaded successfully', 'success');
+            log(`  - Exports found: ${Object.keys(viewsModule).join(', ')}`, 'info');
+        } catch (e) {
+            log(`✗ Failed to load views.js: ${e.message}`, 'error');
+        }
+        
+        // Test 3: Check if all modules can load
+        const modules = [
+            '/add-bike/js/data-loader.js',
+            '/add-bike/js/menu-rendering.js',
+            '/add-bike/js/specs-display.js',
+            '/add-bike/js/actions.js',
+            '/add-bike/js/app.js'
+        ];
+        
+        log('\n3. Testing all modules...', 'info');
+        for (const mod of modules) {
+            try {
+                await import(mod);
+                log(`✓ ${mod}`, 'success');
+            } catch (e) {
+                log(`✗ ${mod}: ${e.message}`, 'error');
+            }
+        }
+        
+        // Test 4: Check DOM after app.js loads
+        log('\n4. Checking DOM state...', 'info');
+        setTimeout(() => {
+            const menuContent = document.getElementById('menu-content');
+            if (menuContent) {
+                log('✓ menu-content element exists', 'success');
+                log(`  - Content: ${menuContent.innerHTML.substring(0, 100)}...`, 'info');
+            } else {
+                log('✗ menu-content element not found', 'error');
+            }
+            
+            // Check for console errors
+            log('\n5. Check browser console for any additional errors', 'info');
+        }, 1000);
+    </script>
+</body>
+</html>

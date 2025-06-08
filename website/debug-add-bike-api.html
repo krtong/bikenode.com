@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Add Bike API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #2a2a2a;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .success {
+            background: #1a3a1a;
+            color: #4ade80;
+            border: 1px solid #4ade80;
+        }
+        .error {
+            background: #3a1a1a;
+            color: #f87171;
+            border: 1px solid #f87171;
+        }
+        pre {
+            background: #111;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add Bike API Debug</h1>
+    
+    <div class="test-section">
+        <h2>API Status</h2>
+        <button onclick="testAPI()">Test All APIs</button>
+        <div id="api-status"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Console Output</h2>
+        <pre id="console"></pre>
+    </div>
+
+    <script>
+        const consoleOutput = document.getElementById('console');
+        const apiStatus = document.getElementById('api-status');
+        
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const color = type === 'error' ? '#f87171' : type === 'success' ? '#4ade80' : '#94a3b8';
+            consoleOutput.innerHTML += `<span style="color: ${color}">[${timestamp}] ${message}</span>\n`;
+        }
+        
+        async function testAPI() {
+            apiStatus.innerHTML = '';
+            log('Starting API tests...');
+            
+            // Test health endpoint
+            try {
+                log('Testing health endpoint...');
+                const healthResp = await fetch('http://localhost:8080/api/health');
+                const healthData = await healthResp.json();
+                log(`✓ Health API: ${JSON.stringify(healthData)}`, 'success');
+                apiStatus.innerHTML += `<div class="status success">Health API: ${healthData.status} - ${healthData.motorcycles} motorcycles, ${healthData.bicycles} bicycles</div>`;
+            } catch (error) {
+                log(`✗ Health API Error: ${error.message}`, 'error');
+                apiStatus.innerHTML += `<div class="status error">Health API Error: ${error.message}</div>`;
+            }
+            
+            // Test motorcycle makes endpoint
+            try {
+                log('Testing motorcycle makes endpoint...');
+                const motorcycleResp = await fetch('http://localhost:8080/api/motorcycles/makes');
+                const motorcycleData = await motorcycleResp.json();
+                log(`✓ Motorcycle API: ${motorcycleData.length} brands found`, 'success');
+                log(`Sample brands: ${motorcycleData.slice(0, 5).join(', ')}`, 'info');
+                apiStatus.innerHTML += `<div class="status success">Motorcycle API: ${motorcycleData.length} brands found</div>`;
+            } catch (error) {
+                log(`✗ Motorcycle API Error: ${error.message}`, 'error');
+                apiStatus.innerHTML += `<div class="status error">Motorcycle API Error: ${error.message}</div>`;
+            }
+            
+            // Test bicycle manufacturers endpoint
+            try {
+                log('Testing bicycle manufacturers endpoint...');
+                const bicycleResp = await fetch('http://localhost:8080/api/bicycles/manufacturers');
+                const bicycleData = await bicycleResp.json();
+                const count = bicycleData.manufacturers ? bicycleData.manufacturers.length : 0;
+                log(`✓ Bicycle API: ${count} brands found`, 'success');
+                if (bicycleData.manufacturers) {
+                    log(`Sample brands: ${bicycleData.manufacturers.slice(0, 5).join(', ')}`, 'info');
+                }
+                apiStatus.innerHTML += `<div class="status success">Bicycle API: ${count} brands found</div>`;
+            } catch (error) {
+                log(`✗ Bicycle API Error: ${error.message}`, 'error');
+                apiStatus.innerHTML += `<div class="status error">Bicycle API Error: ${error.message}</div>`;
+            }
+            
+            // Test loading data like the app does
+            try {
+                log('\nTesting data loading as in app...');
+                const bikeData = {
+                    categories: [
+                        { 
+                            id: 'bicycle', 
+                            icon: '🚴', 
+                            title: 'Bicycle', 
+                            description: 'Traditional and electric bicycles',
+                            preview: { icon: '🚴', name: 'Bicycle', desc: 'Eco-friendly transportation and recreation' }
+                        },
+                        { 
+                            id: 'motorcycle', 
+                            icon: '🏍️', 
+                            title: 'Motorcycle', 
+                            description: 'Motorcycles and scooters',
+                            preview: { icon: '🏍️', name: 'Motorcycle', desc: 'High-performance road machines' }
+                        }
+                    ],
+                    brands: {
+                        bicycle: [],
+                        motorcycle: []
+                    }
+                };
+                
+                // Load motorcycle brands
+                const motorcycleResp = await fetch('http://localhost:8080/api/motorcycles/makes');
+                const motorcycleData = await motorcycleResp.json();
+                bikeData.brands.motorcycle = (motorcycleData || []).map(brand => ({
+                    id: brand.toLowerCase().replace(/[^a-z0-9]/g, ''),
+                    title: brand,
+                    description: `${brand} motorcycles`,
+                    preview: { icon: '🏍️', name: brand, desc: `Explore ${brand} motorcycles` }
+                }));
+                
+                log(`✓ Loaded ${bikeData.brands.motorcycle.length} motorcycle brands`, 'success');
+                
+                // Load bicycle brands
+                const bicycleResp = await fetch('http://localhost:8080/api/bicycles/manufacturers');
+                const bicycleData = await bicycleResp.json();
+                bikeData.brands.bicycle = (bicycleData.manufacturers || []).map(brand => ({
+                    id: brand.toLowerCase().replace(/[^a-z0-9]/g, ''),
+                    title: brand,
+                    description: `${brand} bicycles`,
+                    preview: { icon: '🚴', name: brand, desc: `Explore ${brand} bicycles` }
+                }));
+                
+                log(`✓ Loaded ${bikeData.brands.bicycle.length} bicycle brands`, 'success');
+                log(`\n✓ Complete bike data structure created successfully!`, 'success');
+                
+                apiStatus.innerHTML += `<div class="status success">Data loading simulation: Success!</div>`;
+                
+                // Show the data structure
+                log('\nBike data structure:', 'info');
+                log(JSON.stringify(bikeData, null, 2), 'info');
+                
+            } catch (error) {
+                log(`✗ Data loading error: ${error.message}`, 'error');
+                apiStatus.innerHTML += `<div class="status error">Data loading error: ${error.message}</div>`;
+            }
+        }
+        
+        // Auto-test on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            testAPI();
+        });
+    </script>
+</body>
+</html>

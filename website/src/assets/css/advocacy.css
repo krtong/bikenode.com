@@ -1,0 +1,190 @@
+/* Advocacy Page Styles */
+:root {
+  --primary: #00ffcc;
+  --surface: #1a1a1a;
+  --background: #0a0a0a;
+  --text: #ffffff;
+  --text-secondary: #a0a0a0;
+  --border: #2a2a2a;
+}
+
+.advocacy-page {
+  padding: 0;
+  background: var(--background);
+  color: var(--text);
+}
+
+/* Hero Section */
+.advocacy-hero {
+  background: var(--primary);
+  padding: 60px 0 40px;
+  margin: 0 0 32px 0;
+  border-radius: 8px;
+}
+
+.hero-content {
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.hero-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+  color: white;
+}
+
+.hero-subtitle {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.75rem;
+}
+
+.hero-description {
+  font-size: 0.975rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+}
+
+/* Navigation Tabs */
+.advocacy-nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  margin: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.nav-container {
+  max-width: 100%;
+  padding: 0 2rem;
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.nav-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem 1.5rem;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.nav-tab:hover {
+  color: var(--text);
+}
+
+.nav-tab.active {
+  color: var(--primary);
+}
+
+.nav-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transition: transform 0.2s;
+}
+
+.nav-tab.active::after {
+  transform: scaleX(1);
+}
+
+.tab-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Content Sections */
+.advocacy-content {
+  min-height: 400px;
+  padding: 0;
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content-container {
+  padding: 0;
+}
+
+.content-container h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.section-intro {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Remove all the unused styles */
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 1.75rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .nav-container {
+    padding: 0 1rem;
+  }
+  
+  .nav-tab {
+    padding: 1rem 0.75rem;
+    font-size: 0.875rem;
+  }
+  
+  .advocacy-content {
+    padding: 1.5rem;
+  }
+  
+  .tab-icon {
+    width: 18px;
+    height: 18px;
+  }
+}

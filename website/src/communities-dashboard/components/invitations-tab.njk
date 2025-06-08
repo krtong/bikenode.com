@@ -1,0 +1,34 @@
+<!-- Invitations Tab -->
+<div class="tab-content" id="invitations">
+    <div class="invitations-list">
+        <!-- Invitation cards will be populated here -->
+        {%- set invitations = [
+            {
+                avatar: "VT",
+                communityName: "Vintage Bike Collectors",
+                invitedBy: "ClassicRider",
+                timeAgo: "2 days ago",
+                message: "Hey! Saw your collection and thought you'd love this community. We discuss restoration, history, and share rare finds!",
+                memberCount: "156",
+                visibility: "Private",
+                tags: ["Vintage", "Restoration", "Collecting"],
+                slug: "vintage-bike-collectors"
+            },
+            {
+                avatar: "WR",
+                communityName: "Women Riders United",
+                invitedBy: "BikeQueen",
+                timeAgo: "5 days ago",
+                message: "Join our supportive community of women riders! We organize group rides, share safety tips, and support each other.",
+                memberCount: "489",
+                visibility: "Public",
+                tags: ["Women Riders", "Support", "Group Rides"],
+                slug: "women-riders-united"
+            }
+        ] -%}
+        
+        {% for invitation in invitations %}
+            {% include "./invitation-card.njk" %}
+        {% endfor %}
+    </div>
+</div>

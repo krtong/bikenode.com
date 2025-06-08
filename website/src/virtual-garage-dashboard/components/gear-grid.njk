@@ -1,0 +1,48 @@
+<div class="gear-grid" id="gearGrid">
+    <!-- Gear items will be loaded here -->
+    <div class="empty-state">
+        <div class="empty-icon">🛡️</div>
+        <h3>No gear in your vault yet</h3>
+        <p>Start building your gear collection by adding your protective equipment</p>
+        <button class="btn-primary" onclick="app.showAddGearModal()">
+            <span>➕</span> Add Your First Gear
+        </button>
+    </div>
+</div>
+
+<!-- Sample gear card template (hidden, for JS reference) -->
+<template id="gearCardTemplate">
+    <div class="gear-card">
+        <div class="gear-image">
+            <img src="" alt="">
+            <div class="gear-badge"></div>
+        </div>
+        <div class="gear-info">
+            <h3 class="gear-name"></h3>
+            <p class="gear-brand"></p>
+            <div class="gear-details">
+                <span class="gear-size"></span>
+                <span class="gear-protection"></span>
+            </div>
+            <div class="gear-stats">
+                <div class="stat">
+                    <span class="stat-label">Purchased</span>
+                    <span class="stat-value purchase-date"></span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Miles</span>
+                    <span class="stat-value miles-worn"></span>
+                </div>
+            </div>
+            <div class="gear-condition">
+                <span class="condition-badge"></span>
+                <span class="crash-tested hidden">Crash Tested ✓</span>
+            </div>
+        </div>
+        <div class="gear-actions">
+            <button class="action-btn" title="Edit">✏️</button>
+            <button class="action-btn" title="View Details">👁️</button>
+            <button class="action-btn" title="Add to Crash Report">📋</button>
+        </div>
+    </div>
+</template>

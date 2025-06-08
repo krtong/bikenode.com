@@ -33,7 +33,7 @@ def setup_ssl():
 setup_ssl()
 
 # Load environment variables
-load_dotenv()
+load_dotenv(dotenv_path='../.env')
 
 # Load configuration from config.yaml
 with open('config/config.yaml', 'r') as config_file:

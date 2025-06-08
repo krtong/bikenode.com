@@ -1,0 +1,143 @@
+<!-- Contact Modal -->
+<div class="modal contact-modal" id="contactModal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Contact Seller</h2>
+            <button class="modal-close" id="closeContactModal">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+            <div class="seller-summary">
+                <img src="/assets/images/user-avatar.jpg" alt="John Doe" class="seller-avatar">
+                <div class="seller-info">
+                    <h4>John Doe</h4>
+                    <div class="response-info">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        Typically responds within 2 hours
+                    </div>
+                </div>
+            </div>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="contactSubject">Subject</label>
+                    <input type="text" 
+                           id="contactSubject" 
+                           value="Inquiry about: 2023 Specialized Tarmac SL7 Expert" 
+                           readonly
+                           class="form-input">
+                </div>
+                
+                <div class="form-group">
+                    <label for="contactMessage">Message</label>
+                    <textarea id="contactMessage" 
+                              rows="6" 
+                              class="form-textarea"
+                              placeholder="Hi, I'm interested in your listing..."></textarea>
+                </div>
+                
+                <div class="quick-questions">
+                    <p class="quick-label">Quick Questions:</p>
+                    <div class="question-chips">
+                        <button type="button" class="chip" data-question="Is this still available?">
+                            Still available?
+                        </button>
+                        <button type="button" class="chip" data-question="Would you consider a lower price?">
+                            Negotiable?
+                        </button>
+                        <button type="button" class="chip" data-question="Can I see it this weekend?">
+                            Available to meet?
+                        </button>
+                        <button type="button" class="chip" data-question="Any issues or damage?">
+                            Any issues?
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="sharePhone">
+                        Share my phone number with the seller
+                    </label>
+                </div>
+            </form>
+        </div>
+        
+        <div class="modal-footer">
+            <button class="btn-secondary" id="cancelContact">Cancel</button>
+            <button class="btn-primary" id="sendMessage">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+                Send Message
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Make Offer Modal -->
+<div class="modal offer-modal" id="offerModal" style="display: none;">
+    <div class="modal-content modal-small">
+        <div class="modal-header">
+            <h2>Make an Offer</h2>
+            <button class="modal-close" id="closeOfferModal">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+            <div class="listing-summary">
+                <h4>2023 Specialized Tarmac SL7 Expert</h4>
+                <p class="asking-price">Asking Price: <strong>$4,500</strong></p>
+            </div>
+            
+            <form class="offer-form" id="offerForm">
+                <div class="form-group">
+                    <label for="offerAmount">Your Offer</label>
+                    <div class="price-input-wrapper">
+                        <span class="currency">$</span>
+                        <input type="number" 
+                               id="offerAmount" 
+                               class="form-input price-input"
+                               placeholder="0"
+                               min="1"
+                               max="4500">
+                    </div>
+                    <div class="offer-percentage" id="offerPercentage"></div>
+                </div>
+                
+                <div class="quick-offers">
+                    <button type="button" class="offer-chip" data-percentage="90">90% - $4,050</button>
+                    <button type="button" class="offer-chip" data-percentage="85">85% - $3,825</button>
+                    <button type="button" class="offer-chip" data-percentage="80">80% - $3,600</button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="offerMessage">Message (Optional)</label>
+                    <textarea id="offerMessage" 
+                              rows="3" 
+                              class="form-textarea"
+                              placeholder="Add a message to your offer..."></textarea>
+                </div>
+                
+                <div class="offer-terms">
+                    <p class="terms-text">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                        Offers are non-binding. The seller will review and may accept, decline, or counter.
+                    </p>
+                </div>
+            </form>
+        </div>
+        
+        <div class="modal-footer">
+            <button class="btn-secondary" id="cancelOffer">Cancel</button>
+            <button class="btn-primary" id="submitOffer">Submit Offer</button>
+        </div>
+    </div>
+</div>

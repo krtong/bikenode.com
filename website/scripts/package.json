@@ -1,0 +1,19 @@
+{
+  "name": "bikenode-image-generator",
+  "version": "1.0.0",
+  "description": "Generate profile page images for BikeNode",
+  "main": "generate-profile-images.js",
+  "scripts": {
+    "generate": "node generate-profile-images.js",
+    "generate:test": "node quick-image-generator.js"
+  },
+  "dependencies": {
+    "openai": "^4.0.0",
+    "axios": "^1.6.0",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

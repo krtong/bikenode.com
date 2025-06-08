@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Add Bike API</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .status { margin: 20px 0; padding: 10px; border: 1px solid #ccc; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        button { margin: 10px 0; padding: 10px 20px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Add Bike API Test</h1>
+    
+    <div id="api-status" class="status">API Status: Checking...</div>
+    
+    <button onclick="testMotorcycles()">Test Motorcycle Brands</button>
+    <button onclick="testBicycles()">Test Bicycle Brands</button>
+    <button onclick="testFullFlow()">Test Full Add-Bike Flow</button>
+    
+    <div id="results"></div>
+    
+    <script>
+        // Check API status
+        async function checkAPI() {
+            const statusDiv = document.getElementById('api-status');
+            try {
+                const response = await fetch('http://localhost:8080/api/health');
+                const data = await response.json();
+                statusDiv.className = 'status success';
+                statusDiv.innerHTML = `API Status: ✅ Healthy<br>Motorcycles: ${data.motorcycles}<br>Bicycles: ${data.bicycles}`;
+            } catch (error) {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = `API Status: ❌ Error - ${error.message}`;
+            }
+        }
+        
+        async function testMotorcycles() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<h2>Testing Motorcycle API...</h2>';
+            
+            try {
+                // Test motorcycle makes
+                const makesResp = await fetch('http://localhost:8080/api/motorcycles/makes');
+                const makes = await makesResp.json();
+                results.innerHTML += `<p>✅ Found ${makes.length} motorcycle brands</p>`;
+                results.innerHTML += `<p>First 5: ${makes.slice(0, 5).join(', ')}</p>`;
+                
+                // Test years for Honda
+                const yearsResp = await fetch('http://localhost:8080/api/motorcycles/years/Honda');
+                const years = await yearsResp.json();
+                results.innerHTML += `<p>✅ Honda has ${years.length} model years</p>`;
+                results.innerHTML += `<p>Recent years: ${years.slice(0, 5).join(', ')}</p>`;
+                
+                // Test models for Honda 2024
+                if (years.includes(2024)) {
+                    const modelsResp = await fetch('http://localhost:8080/api/motorcycles/models/Honda/2024');
+                    const models = await modelsResp.json();
+                    results.innerHTML += `<p>✅ Honda 2024 has ${models.length} models</p>`;
+                    if (models.length > 0) {
+                        results.innerHTML += `<p>First model: ${models[0].model}</p>`;
+                    }
+                }
+            } catch (error) {
+                results.innerHTML += `<p class="error">❌ Error: ${error.message}</p>`;
+            }
+        }
+        
+        async function testBicycles() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<h2>Testing Bicycle API...</h2>';
+            
+            try {
+                // Test bicycle manufacturers
+                const mfgResp = await fetch('http://localhost:8080/api/bicycles/manufacturers');
+                const data = await mfgResp.json();
+                const manufacturers = data.manufacturers || [];
+                results.innerHTML += `<p>✅ Found ${manufacturers.length} bicycle brands</p>`;
+                results.innerHTML += `<p>Brands: ${manufacturers.join(', ')}</p>`;
+                
+                // Test years for first brand
+                if (manufacturers.length > 0) {
+                    const brand = manufacturers[0];
+                    const yearsResp = await fetch(`http://localhost:8080/api/bicycles/years/${brand}`);
+                    const yearsData = await yearsResp.json();
+                    const years = yearsData.years || [];
+                    results.innerHTML += `<p>✅ ${brand} has ${years.length} model years</p>`;
+                }
+            } catch (error) {
+                results.innerHTML += `<p class="error">❌ Error: ${error.message}</p>`;
+            }
+        }
+        
+        async function testFullFlow() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<h2>Testing Full Add-Bike Flow...</h2>';
+            
+            // Import the actual data-loader
+            try {
+                const bikeData = {
+                    categories: [
+                        { id: 'bicycle', icon: '🚴', title: 'Bicycle', description: 'Traditional and electric bicycles' },
+                        { id: 'motorcycle', icon: '🏍️', title: 'Motorcycle', description: 'Motorcycles and scooters' }
+                    ],
+                    brands: { bicycle: [], motorcycle: [] },
+                    years: [],
+                    models: {}
+                };
+                
+                // Load motorcycle brands
+                const motorcycleResp = await fetch('http://localhost:8080/api/motorcycles/makes');
+                const motorcycleData = await motorcycleResp.json();
+                bikeData.brands.motorcycle = (motorcycleData || []).map(brand => ({
+                    id: brand.toLowerCase().replace(/[^a-z0-9]/g, ''),
+                    title: brand,
+                    description: `${brand} motorcycles`
+                }));
+                
+                // Load bicycle brands
+                const bicycleResp = await fetch('http://localhost:8080/api/bicycles/manufacturers');
+                const bicycleData = await bicycleResp.json();
+                bikeData.brands.bicycle = (bicycleData.manufacturers || []).map(brand => ({
+                    id: brand.toLowerCase().replace(/[^a-z0-9]/g, ''),
+                    title: brand,
+                    description: `${brand} bicycles`
+                }));
+                
+                results.innerHTML += `<h3>✅ Data loaded successfully!</h3>`;
+                results.innerHTML += `<p>Categories: ${bikeData.categories.length}</p>`;
+                results.innerHTML += `<p>Motorcycle brands: ${bikeData.brands.motorcycle.length}</p>`;
+                results.innerHTML += `<p>Bicycle brands: ${bikeData.brands.bicycle.length}</p>`;
+                results.innerHTML += `<h4>Flow:</h4>`;
+                results.innerHTML += `<ol>
+                    <li>User sees 2 categories: Bicycle and Motorcycle ✅</li>
+                    <li>User clicks a category</li>
+                    <li>User sees list of brands for that category</li>
+                    <li>User selects a brand</li>
+                    <li>User sees years for that brand</li>
+                    <li>User selects a year</li>
+                    <li>User sees models for that brand/year</li>
+                </ol>`;
+                
+            } catch (error) {
+                results.innerHTML += `<p class="error">❌ Error in flow: ${error.message}</p>`;
+            }
+        }
+        
+        // Check API on load
+        checkAPI();
+    </script>
+</body>
+</html>

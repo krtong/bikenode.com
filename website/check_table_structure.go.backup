@@ -1,0 +1,71 @@
+package main
+
+import (
+	"database/sql"
+	"fmt"
+	"log"
+
+	_ "github.com/lib/pq"
+)
+
+func main() {
+	connStr := "host=localhost port=5432 user=postgres password=postgres dbname=bikenode sslmode=disable"
+	
+	db, err := sql.Open("postgres", connStr)
+	if err != nil {
+		log.Fatal("Failed to connect to database:", err)
+	}
+	defer db.Close()
+
+	// Check bikes table
+	fmt.Println("Bikes table structure:")
+	showTableStructure(db, "bikes")
+	
+	fmt.Println("\n\nBike_families table structure:")
+	showTableStructure(db, "bike_families")
+	
+	fmt.Println("\n\nManufacturers table structure:")
+	showTableStructure(db, "manufacturers")
+}
+
+func showTableStructure(db *sql.DB, tableName string) {
+	query := `
+		SELECT 
+			column_name, 
+			data_type, 
+			is_nullable,
+			column_default
+		FROM information_schema.columns 
+		WHERE table_name = $1 
+		ORDER BY ordinal_position
+	`
+	
+	rows, err := db.Query(query, tableName)
+	if err != nil {
+		log.Printf("Failed to query columns for %s: %v", tableName, err)
+		return
+	}
+	defer rows.Close()
+
+	fmt.Println("==================================================")
+	fmt.Printf("%-20s | %-15s | %-10s | %s\n", "Column", "Type", "Nullable", "Default")
+	fmt.Println("----------------------------------------------------------------------")
+
+	for rows.Next() {
+		var columnName, dataType, isNullable string
+		var columnDefault sql.NullString
+
+		err := rows.Scan(&columnName, &dataType, &isNullable, &columnDefault)
+		if err != nil {
+			log.Printf("Error scanning row: %v", err)
+			continue
+		}
+
+		defaultStr := ""
+		if columnDefault.Valid {
+			defaultStr = columnDefault.String
+		}
+
+		fmt.Printf("%-20s | %-15s | %-10s | %s\n", columnName, dataType, isNullable, defaultStr)
+	}
+}

@@ -1,0 +1,753 @@
+---
+layout: dashboard
+title: Forum Moderation - BikeNode
+showContentHeader: false
+customCSS:
+  - /forums/styles/forums.css
+---
+
+<div class="moderation-container">
+    <div class="moderation-header">
+        <h1>Forum Moderation Dashboard</h1>
+        <div class="header-actions">
+            <button class="btn btn-secondary">Moderator Guidelines</button>
+            <button class="btn btn-primary">View Activity Log</button>
+        </div>
+    </div>
+
+    <!-- Moderation Stats -->
+    <div class="mod-stats">
+        <div class="stat-card">
+            <div class="stat-icon reports">
+                <i class="icon-flag"></i>
+            </div>
+            <div class="stat-content">
+                <h3>12</h3>
+                <p>Pending Reports</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon queue">
+                <i class="icon-clock"></i>
+            </div>
+            <div class="stat-content">
+                <h3>8</h3>
+                <p>In Queue</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon resolved">
+                <i class="icon-check"></i>
+            </div>
+            <div class="stat-content">
+                <h3>147</h3>
+                <p>Resolved Today</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon active">
+                <i class="icon-users"></i>
+            </div>
+            <div class="stat-content">
+                <h3>5</h3>
+                <p>Active Moderators</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Moderation Tabs -->
+    <div class="mod-tabs">
+        <button class="tab-btn active" data-tab="reports">Reported Content</button>
+        <button class="tab-btn" data-tab="queue">Moderation Queue</button>
+        <button class="tab-btn" data-tab="users">Problem Users</button>
+        <button class="tab-btn" data-tab="logs">Activity Logs</button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+        <!-- Reports Tab -->
+        <div class="tab-panel active" id="reports">
+            <div class="filter-bar">
+                <select class="filter-select">
+                    <option>All Reports</option>
+                    <option>Spam</option>
+                    <option>Harassment</option>
+                    <option>Inappropriate Content</option>
+                    <option>Off Topic</option>
+                </select>
+                <select class="filter-select">
+                    <option>Newest First</option>
+                    <option>Oldest First</option>
+                    <option>Most Reported</option>
+                </select>
+                <button class="btn-text">Bulk Actions</button>
+            </div>
+
+            <div class="report-list">
+                <!-- Report Item -->
+                <div class="report-item priority-high">
+                    <div class="report-header">
+                        <div class="report-info">
+                            <span class="report-type">Harassment</span>
+                            <span class="report-count">3 reports</span>
+                            <span class="report-time">15 minutes ago</span>
+                        </div>
+                        <div class="report-actions">
+                            <button class="btn-action" title="View Details"><i class="icon-eye"></i></button>
+                            <button class="btn-action" title="Approve"><i class="icon-check"></i></button>
+                            <button class="btn-action danger" title="Remove"><i class="icon-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="report-content">
+                        <div class="reported-post">
+                            <div class="post-meta">
+                                <img src="/assets/images/nerd_blank_profile.svg" alt="User" class="user-avatar">
+                                <div>
+                                    <a href="/profile/username" class="username">ProblematicUser</a>
+                                    <span class="post-time">in <a href="/forums/thread/bike-advice">Bike advice thread</a></span>
+                                </div>
+                            </div>
+                            <div class="post-excerpt">
+                                "This is a sample of reported content that violates community guidelines..."
+                            </div>
+                        </div>
+                        <div class="report-reasons">
+                            <p><strong>Reported by:</strong> User1, User2, User3</p>
+                            <p><strong>Reasons:</strong> Personal attacks, Inappropriate language</p>
+                        </div>
+                    </div>
+                    <div class="mod-actions">
+                        <button class="btn btn-warning">Warn User</button>
+                        <button class="btn btn-danger">Remove & Ban</button>
+                        <button class="btn btn-secondary">Dismiss Report</button>
+                        <button class="btn btn-text">Escalate to Admin</button>
+                    </div>
+                </div>
+
+                <!-- More report items -->
+                <div class="report-item">
+                    <div class="report-header">
+                        <div class="report-info">
+                            <span class="report-type">Spam</span>
+                            <span class="report-count">1 report</span>
+                            <span class="report-time">1 hour ago</span>
+                        </div>
+                        <div class="report-actions">
+                            <button class="btn-action" title="View Details"><i class="icon-eye"></i></button>
+                            <button class="btn-action" title="Approve"><i class="icon-check"></i></button>
+                            <button class="btn-action danger" title="Remove"><i class="icon-trash"></i></button>
+                        </div>
+                    </div>
+                    <div class="report-content collapsed">
+                        <div class="reported-post">
+                            <div class="post-meta">
+                                <img src="/assets/images/nerd_blank_profile.svg" alt="User" class="user-avatar">
+                                <div>
+                                    <a href="/profile/spammer" class="username">SpamAccount</a>
+                                    <span class="post-time">in <a href="/forums/thread/general">General discussion</a></span>
+                                </div>
+                            </div>
+                            <div class="post-excerpt">
+                                "Check out this amazing website for cheap bike parts..."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Queue Tab -->
+        <div class="tab-panel" id="queue">
+            <div class="queue-info">
+                <p>New posts from users with low reputation are held for review.</p>
+            </div>
+            
+            <div class="queue-list">
+                <div class="queue-item">
+                    <div class="queue-header">
+                        <img src="/assets/images/nerd_blank_profile.svg" alt="User" class="user-avatar">
+                        <div class="user-info">
+                            <a href="/profile/newuser" class="username">NewUser123</a>
+                            <span class="user-stats">New member • 0 posts</span>
+                        </div>
+                        <div class="queue-actions">
+                            <button class="btn btn-success">Approve</button>
+                            <button class="btn btn-danger">Reject</button>
+                        </div>
+                    </div>
+                    <div class="queue-content">
+                        <h4>First time bike buyer needs help</h4>
+                        <p>Hi everyone! I'm looking to buy my first road bike and have a budget of around $1500...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Users Tab -->
+        <div class="tab-panel" id="users">
+            <div class="user-filters">
+                <input type="text" placeholder="Search users..." class="search-input">
+                <select class="filter-select">
+                    <option>All Status</option>
+                    <option>Warned</option>
+                    <option>Suspended</option>
+                    <option>Banned</option>
+                </select>
+            </div>
+
+            <table class="users-table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Status</th>
+                        <th>Reports</th>
+                        <th>Warnings</th>
+                        <th>Joined</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="user-cell">
+                                <img src="/assets/images/nerd_blank_profile.svg" alt="User" class="user-avatar-small">
+                                <a href="/profile/username">ProblematicUser</a>
+                            </div>
+                        </td>
+                        <td><span class="status-badge warned">Warned</span></td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td>Jan 2024</td>
+                        <td>
+                            <button class="btn-action" title="View Profile"><i class="icon-user"></i></button>
+                            <button class="btn-action" title="Send Message"><i class="icon-message"></i></button>
+                            <button class="btn-action danger" title="Ban User"><i class="icon-ban"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Logs Tab -->
+        <div class="tab-panel" id="logs">
+            <div class="logs-filter">
+                <select class="filter-select">
+                    <option>All Actions</option>
+                    <option>Warnings</option>
+                    <option>Bans</option>
+                    <option>Post Removals</option>
+                    <option>Thread Locks</option>
+                </select>
+                <input type="date" class="date-input">
+            </div>
+
+            <div class="activity-log">
+                <div class="log-entry">
+                    <div class="log-icon warning">
+                        <i class="icon-alert"></i>
+                    </div>
+                    <div class="log-content">
+                        <p><strong>ModeratorName</strong> warned <a href="/profile/user">UserName</a></p>
+                        <p class="log-reason">Reason: Inappropriate language in thread</p>
+                        <span class="log-time">2 hours ago</span>
+                    </div>
+                </div>
+                
+                <div class="log-entry">
+                    <div class="log-icon remove">
+                        <i class="icon-trash"></i>
+                    </div>
+                    <div class="log-content">
+                        <p><strong>AnotherMod</strong> removed post by <a href="/profile/spammer">SpamAccount</a></p>
+                        <p class="log-reason">Reason: Spam - External links</p>
+                        <span class="log-time">4 hours ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.moderation-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.moderation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.header-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Stats Cards */
+.mod-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.stat-icon.reports {
+    background: #fee;
+    color: #dc3545;
+}
+
+.stat-icon.queue {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.stat-icon.resolved {
+    background: #d4edda;
+    color: #155724;
+}
+
+.stat-icon.active {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.stat-content h3 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.stat-content p {
+    margin: 0;
+    color: #666;
+}
+
+/* Tabs */
+.mod-tabs {
+    display: flex;
+    gap: 1rem;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 2rem;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #666;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.tab-btn.active {
+    color: #007bff;
+    border-bottom-color: #007bff;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+/* Filter Bar */
+.filter-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.filter-select {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    background: white;
+}
+
+/* Report Items */
+.report-item {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.report-item.priority-high {
+    border-left: 4px solid #dc3545;
+}
+
+.report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.report-info {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.report-type {
+    background: #dc3545;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.85rem;
+}
+
+.report-count {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.report-time {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.report-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-action {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.btn-action:hover {
+    background: #f8f9fa;
+}
+
+.btn-action.danger {
+    color: #dc3545;
+}
+
+.reported-post {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.post-meta {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.user-avatar-small {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.username {
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+}
+
+.post-excerpt {
+    color: #666;
+    font-style: italic;
+}
+
+.report-reasons {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.mod-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Queue */
+.queue-info {
+    background: #cce5ff;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.queue-item {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.queue-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.queue-header .user-info {
+    flex: 1;
+}
+
+.user-stats {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.queue-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Users Table */
+.user-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.search-input {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+}
+
+.users-table {
+    width: 100%;
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.users-table th {
+    background: #f8f9fa;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.users-table td {
+    padding: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.status-badge.warned {
+    background: #fff3cd;
+    color: #856404;
+}
+
+/* Activity Log */
+.logs-filter {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.date-input {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+}
+
+.activity-log {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.log-entry {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.log-entry:last-child {
+    border-bottom: none;
+}
+
+.log-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.log-icon.warning {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.log-icon.remove {
+    background: #fee;
+    color: #dc3545;
+}
+
+.log-content {
+    flex: 1;
+}
+
+.log-content p {
+    margin: 0.25rem 0;
+}
+
+.log-reason {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.log-time {
+    font-size: 0.85rem;
+    color: #999;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-warning {
+    background: #ffc107;
+    color: #212529;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-text {
+    background: none;
+    color: #007bff;
+    padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .moderation-container {
+        padding: 1rem;
+    }
+    
+    .mod-tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .filter-bar,
+    .mod-actions {
+        flex-wrap: wrap;
+    }
+    
+    .users-table {
+        font-size: 0.85rem;
+    }
+}
+</style>
+
+<script>
+// Tab switching
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const tabId = this.getAttribute('data-tab');
+        
+        // Update active tab button
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Update active tab panel
+        document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+    });
+});
+
+// Toggle report details
+document.querySelectorAll('.report-header').forEach(header => {
+    header.addEventListener('click', function(e) {
+        if (!e.target.closest('.report-actions')) {
+            const content = this.nextElementSibling;
+            content.classList.toggle('collapsed');
+        }
+    });
+});
+</script>

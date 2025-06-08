@@ -1,0 +1,68 @@
+<!-- Search and Filters -->
+<div class="marketplace-search">
+    <form id="marketplaceSearch" class="search-form">
+        <div class="search-bar">
+            <input 
+                type="search" 
+                name="q" 
+                placeholder="Search motorcycles, parts, gear..." 
+                class="search-input"
+            >
+            <button type="submit" class="search-button">Search</button>
+        </div>
+        
+        <div class="filters-row">
+            <select name="condition" class="filter-select">
+                <option value="">Any Condition</option>
+                <option value="new">New</option>
+                <option value="used-like-new">Used - Like New</option>
+                <option value="used-good">Used - Good</option>
+                <option value="used-fair">Used - Fair</option>
+            </select>
+            
+            <select name="location" class="filter-select">
+                <option value="">Any Location</option>
+                <option value="10">Within 10 miles</option>
+                <option value="25">Within 25 miles</option>
+                <option value="50">Within 50 miles</option>
+                <option value="100">Within 100 miles</option>
+                <option value="nationwide">Nationwide</option>
+            </select>
+            
+            <div class="price-range">
+                <input type="number" name="minPrice" placeholder="Min Price" min="0">
+                <span>-</span>
+                <input type="number" name="maxPrice" placeholder="Max Price" min="0">
+            </div>
+            
+            <button type="button" class="filter-toggle" id="moreFiltersBtn">
+                More Filters
+            </button>
+        </div>
+        
+        <!-- Extended Filters -->
+        <div class="extended-filters" id="extendedFilters" style="display: none;">
+            <div class="filters-grid">
+                <select name="brand" class="filter-select">
+                    <option value="">Any Brand</option>
+                    <option value="yamaha">Yamaha</option>
+                    <option value="honda">Honda</option>
+                    <option value="kawasaki">Kawasaki</option>
+                    <option value="harley-davidson">Harley-Davidson</option>
+                    <option value="trek">Trek</option>
+                    <option value="specialized">Specialized</option>
+                </select>
+                
+                <input type="number" name="yearFrom" placeholder="Year From" min="1900" max="2025">
+                <input type="number" name="yearTo" placeholder="Year To" min="1900" max="2025">
+                
+                <select name="seller" class="filter-select">
+                    <option value="">Any Seller</option>
+                    <option value="dealer">Dealers Only</option>
+                    <option value="private">Private Sellers</option>
+                    <option value="verified">Verified Sellers</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>

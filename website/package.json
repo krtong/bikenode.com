@@ -5,12 +5,22 @@
   "scripts": {
     "build": "eleventy",
     "serve": "eleventy --serve",
-    "dev": "eleventy --serve --watch",
+    "dev": "./run-dev.sh",
+    "dev-frontend": "eleventy --serve --watch",
+    "dev-backend": "go run main.go",
     "clean": "rm -rf _site"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1"
   },
-  "keywords": ["static-site", "eleventy", "bikenode"],
-  "author": "BikeNode Team"
+  "keywords": [
+    "static-site",
+    "eleventy",
+    "bikenode"
+  ],
+  "author": "BikeNode Team",
+  "dependencies": {
+    "lucide": "^0.513.0",
+    "pg": "^8.16.0"
+  }
 }
