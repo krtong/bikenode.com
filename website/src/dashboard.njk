@@ -1,14 +1,29 @@
 ---
-layout: dashboard.njk
-title: Dashboard
-subtitle: Overview of your BikeNode activity and communities
-customCSS:
-  - /dashboard/styles/dashboard.css
+permalink: /dashboard/
+eleventyComputed:
+  layout: "{{ dashboardConfig.version === 'v2' ? 'base' : 'dashboard' }}"
+  title: "{{ dashboardConfig.version === 'v2' ? 'Dashboard V2 - BikeNode' : 'Dashboard' }}"
+  subtitle: "{{ dashboardConfig.version === 'v2' ? '' : 'Overview of your BikeNode activity and communities' }}"
+  customCSS: 
+    - "{{ dashboardConfig.version === 'v2' ? '/dashboard-v2/styles/dashboard-v2.css' : '/dashboard/styles/dashboard.css' }}"
+    - "{{ dashboardConfig.version === 'v2' ? '/dashboard-v2/styles/responsive.css' : '' }}"
+    - "{{ dashboardConfig.version === 'v2' ? '/dashboard-v2/styles/debug.css' : '' }}"
+  customJS:
+    - "{{ dashboardConfig.version === 'v2' ? '/dashboard-v2/js/app.js' : '' }}"
+    - "{{ dashboardConfig.version === 'v2' ? '/dashboard-v2/js/navigation.js' : '' }}"
+    - "{{ dashboardConfig.version === 'v2' ? '/dashboard-v2/js/widgets.js' : '' }}"
+    - "{{ dashboardConfig.version === 'v2' ? '/dashboard-v2/js/real-time.js' : '' }}"
 ---
 
-<div class="dashboard-overview">
+{% if dashboardConfig.version === 'v2' %}
+  {# Include Dashboard V2 #}
+  {% include "./dashboard-v2/content.njk" %}
+{% else %}
+  {# Include Original Dashboard #}
+  <div class="dashboard-overview">
     {% include "./dashboard/components/stats-grid.njk" %}
     {% include "./dashboard/components/quick-actions.njk" %}
     {% include "./dashboard/components/recent-activity.njk" %}
     {% include "./dashboard/components/popular-destinations.njk" %}
-</div>
+  </div>
+{% endif %}

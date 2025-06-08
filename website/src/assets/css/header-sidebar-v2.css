@@ -1,0 +1,182 @@
+/* Additional styles for A/B test variant */
+/* These styles complement the inline styles in the components */
+
+/* Layout adjustments when using V2 components */
+.ab-test-variant .dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.ab-test-variant .dashboard-content {
+    flex: 1;
+    margin-left: 280px;
+    transition: margin-left 0.3s ease;
+}
+
+.ab-test-variant .dashboard-sidebar-v2.collapsed + .dashboard-content {
+    margin-left: 80px;
+}
+
+/* Header adjustments for variant */
+.ab-test-variant .main-header-v2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.ab-test-variant .dashboard-sidebar-v2 {
+    margin-top: 4rem;
+    height: calc(100vh - 4rem);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .ab-test-variant .dashboard-content {
+        margin-left: 0;
+    }
+    
+    .ab-test-variant .dashboard-sidebar-v2 {
+        position: fixed;
+        top: 4rem;
+        height: calc(100vh - 4rem);
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Dark mode support for V2 components */
+@media (prefers-color-scheme: dark) {
+    .ab-test-variant .dashboard-sidebar-v2 {
+        background: #1f2937;
+        border-right-color: #374151;
+    }
+    
+    .ab-test-variant .main-header-v2 {
+        background: rgba(31, 41, 55, 0.95);
+        border-bottom-color: rgba(55, 65, 81, 0.8);
+    }
+    
+    .ab-test-variant .nav-item,
+    .ab-test-variant .nav-link,
+    .ab-test-variant .dropdown-link {
+        color: #9ca3af;
+    }
+    
+    .ab-test-variant .nav-item:hover,
+    .ab-test-variant .nav-link:hover,
+    .ab-test-variant .dropdown-link:hover {
+        background-color: #374151;
+        color: #f3f4f6;
+    }
+    
+    .ab-test-variant .nav-item.active,
+    .ab-test-variant .nav-link.active {
+        background-color: #3b82f6;
+        color: white;
+    }
+    
+    .ab-test-variant .brand-text,
+    .ab-test-variant .user-name,
+    .ab-test-variant .dropdown-name {
+        color: #f3f4f6;
+    }
+    
+    .ab-test-variant .search-input {
+        background-color: #374151;
+        border-color: #4b5563;
+        color: #f3f4f6;
+    }
+    
+    .ab-test-variant .user-dropdown,
+    .ab-test-variant .mobile-nav {
+        background: #1f2937;
+        border-color: #374151;
+    }
+}
+
+/* Animation improvements */
+.ab-test-variant * {
+    scroll-behavior: smooth;
+}
+
+.ab-test-variant .nav-item,
+.ab-test-variant .nav-link,
+.ab-test-variant .action-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.ab-test-variant .nav-item::before,
+.ab-test-variant .nav-link::before,
+.ab-test-variant .action-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+}
+
+.ab-test-variant .nav-item:active::before,
+.ab-test-variant .nav-link:active::before,
+.ab-test-variant .action-button:active::before {
+    width: 100%;
+    height: 100%;
+}
+
+/* Focus styles for accessibility */
+.ab-test-variant .nav-item:focus-visible,
+.ab-test-variant .nav-link:focus-visible,
+.ab-test-variant .action-button:focus-visible,
+.ab-test-variant .dropdown-link:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Loading states */
+.ab-test-variant .search-form.loading .search-button {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Improved transitions */
+.ab-test-variant .user-dropdown,
+.ab-test-variant .mobile-nav {
+    animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Print styles */
+@media print {
+    .ab-test-variant .dashboard-sidebar-v2,
+    .ab-test-variant .main-header-v2 {
+        display: none;
+    }
+    
+    .ab-test-variant .dashboard-content {
+        margin: 0;
+    }
+}

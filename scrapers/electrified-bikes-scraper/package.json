@@ -1,0 +1,33 @@
+{
+  "name": "electrified-bikes-scraper",
+  "version": "1.0.0",
+  "description": "Scraper for electrified bike specifications",
+  "main": "index.js",
+  "scripts": {
+    "validate-sources": "node tools/source-validator.js",
+    "manual-research": "node tools/manual-researcher.js",
+    "scrape:segway": "node scrapers/segway-scraper.js",
+    "scrape:rawrr": "node scrapers/rawrr-scraper.js",
+    "scrape:eridepro": "node scrapers/eridepro-scraper.js",
+    "scrape:arctic": "node scrapers/arctic-leopard-scraper.js",
+    "scrape:revrides": "node scrapers/rev-rides-scraper.js",
+    "scrape:happyrun": "node scrapers/happyrun-scraper.js",
+    "scrape:review": "node scrapers/electric-bike-review-scraper.js",
+    "scrape:all": "node scrapers/run-all-scrapers.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ebike",
+    "scraper",
+    "sur-ron",
+    "talaria",
+    "specifications"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^22.8.2",
+    "cheerio": "^1.0.0-rc.12",
+    "pdf-parse": "^1.1.1"
+  }
+}

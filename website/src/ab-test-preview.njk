@@ -1,0 +1,246 @@
+---
+layout: base
+title: A/B Test Preview - Header & Sidebar Redesign
+---
+
+<style>
+    .preview-container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+    
+    .preview-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .preview-controls {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 2rem 0;
+    }
+    
+    .preview-button {
+        padding: 0.75rem 1.5rem;
+        border: 2px solid #3b82f6;
+        background: white;
+        color: #3b82f6;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .preview-button:hover {
+        background: #3b82f6;
+        color: white;
+    }
+    
+    .preview-button.active {
+        background: #3b82f6;
+        color: white;
+    }
+    
+    .preview-frame {
+        width: 100%;
+        height: 800px;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+    
+    .comparison-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .comparison-item {
+        text-align: center;
+    }
+    
+    .comparison-item h3 {
+        margin-bottom: 1rem;
+        color: #111827;
+    }
+    
+    .feature-list {
+        text-align: left;
+        margin: 2rem 0;
+        padding: 2rem;
+        background: #f9fafb;
+        border-radius: 0.5rem;
+    }
+    
+    .feature-list h2 {
+        margin-bottom: 1rem;
+        color: #111827;
+    }
+    
+    .feature-list ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .feature-list li {
+        padding: 0.5rem 0;
+        padding-left: 2rem;
+        position: relative;
+    }
+    
+    .feature-list li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: #10b981;
+        font-weight: bold;
+    }
+    
+    .metrics-section {
+        margin: 3rem 0;
+        padding: 2rem;
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+    }
+    
+    .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 1.5rem;
+    }
+    
+    .metric-card {
+        text-align: center;
+        padding: 1.5rem;
+        background: #f9fafb;
+        border-radius: 0.5rem;
+    }
+    
+    .metric-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #3b82f6;
+    }
+    
+    .metric-label {
+        color: #6b7280;
+        margin-top: 0.5rem;
+    }
+</style>
+
+<div class="preview-container">
+    <div class="preview-header">
+        <h1>A/B Test Preview: Header & Sidebar Redesign</h1>
+        <p>Compare the control (current) and variant (new) designs side by side</p>
+    </div>
+    
+    <div class="preview-controls">
+        <button class="preview-button active" data-variant="control">Control (Current Design)</button>
+        <button class="preview-button" data-variant="variant">Variant (New Design)</button>
+        <button class="preview-button" data-variant="compare">Side by Side</button>
+    </div>
+    
+    <div id="preview-content">
+        <!-- Content will be loaded here -->
+    </div>
+    
+    <div class="feature-list">
+        <h2>Key Improvements in V2 Design</h2>
+        <ul>
+            <li>Collapsible sidebar with persistent state</li>
+            <li>Integrated search in header for better accessibility</li>
+            <li>Grouped navigation items for cleaner organization</li>
+            <li>User profile section with quick actions</li>
+            <li>Modern visual design with smooth animations</li>
+            <li>Improved mobile responsiveness</li>
+            <li>Better notification system with count badges</li>
+            <li>Enhanced accessibility with ARIA attributes</li>
+            <li>Dark mode support</li>
+            <li>Faster navigation with tooltips in collapsed state</li>
+        </ul>
+    </div>
+    
+    <div class="metrics-section">
+        <h2>Expected Metrics to Track</h2>
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value">CTR</div>
+                <div class="metric-label">Click-through Rate</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">Time</div>
+                <div class="metric-label">Time on Page</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">Nav</div>
+                <div class="metric-label">Navigation Usage</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">Search</div>
+                <div class="metric-label">Search Engagement</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.preview-button');
+    const content = document.getElementById('preview-content');
+    
+    // Force specific variant for preview
+    function setPreviewVariant(variant) {
+        localStorage.setItem('ab_test_group_preview', variant);
+        
+        if (variant === 'compare') {
+            showComparison();
+        } else {
+            showSingleView(variant);
+        }
+    }
+    
+    function showSingleView(variant) {
+        content.innerHTML = `
+            <div class="preview-frame">
+                <iframe src="/dashboard/?preview=${variant}" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        `;
+    }
+    
+    function showComparison() {
+        content.innerHTML = `
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h3>Control (Current)</h3>
+                    <div class="preview-frame">
+                        <iframe src="/dashboard/?preview=control" width="100%" height="100%" frameborder="0"></iframe>
+                    </div>
+                </div>
+                <div class="comparison-item">
+                    <h3>Variant (New)</h3>
+                    <div class="preview-frame">
+                        <iframe src="/dashboard/?preview=variant" width="100%" height="100%" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    
+    // Button click handlers
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            buttons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            setPreviewVariant(this.dataset.variant);
+        });
+    });
+    
+    // Show control by default
+    setPreviewVariant('control');
+});
+</script>

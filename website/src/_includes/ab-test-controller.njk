@@ -1,0 +1,46 @@
+{# A/B Test Controller for Header and Sidebar #}
+{# This component manages which version to show based on user assignment #}
+
+<script>
+// A/B Test Controller
+(function() {
+    // Check if user has existing test assignment
+    let testGroup = localStorage.getItem('ab_test_group');
+    
+    // If no assignment, randomly assign to A or B
+    if (!testGroup) {
+        testGroup = Math.random() < 0.5 ? 'control' : 'variant';
+        localStorage.setItem('ab_test_group', testGroup);
+        
+        // Track the assignment (you would send this to your analytics)
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'ab_test_assigned', {
+                'test_name': 'header_sidebar_redesign',
+                'variant': testGroup
+            });
+        }
+    }
+    
+    // Add test group as a class to body for CSS targeting
+    document.documentElement.classList.add('ab-test-' + testGroup);
+    
+    // Expose test group globally
+    window.abTestGroup = testGroup;
+})();
+</script>
+
+{# Include appropriate header based on test group #}
+{% if abTestGroup == 'variant' %}
+    {% include "main-header-v2.njk" %}
+{% else %}
+    {% include "main-header.njk" %}
+{% endif %}
+
+{# Include appropriate sidebar based on test group and page layout #}
+{% if layout == 'dashboard' %}
+    {% if abTestGroup == 'variant' %}
+        {% include "dashboard-sidebar-v2.njk" %}
+    {% else %}
+        {% include "dashboard-sidebar.njk" %}
+    {% endif %}
+{% endif %}

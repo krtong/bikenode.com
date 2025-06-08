@@ -18,8 +18,8 @@ module.exports = function(eleventyConfig) {
   
   // Copy static assets
   eleventyConfig.addPassthroughCopy("assets");
-  eleventyConfig.addPassthroughCopy("src/docs");
   eleventyConfig.addPassthroughCopy("src/assets");
+  eleventyConfig.addPassthroughCopy("src/documentation/assets");
   
   // Copy component assets for pages with folder structure
   eleventyConfig.addPassthroughCopy("src/route-planner/js");
@@ -58,6 +58,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/achievements/js");
   eleventyConfig.addPassthroughCopy("src/achievements/styles");
   
+  eleventyConfig.addPassthroughCopy("src/gear/js");
+  eleventyConfig.addPassthroughCopy("src/gear/styles");
+  
   eleventyConfig.addPassthroughCopy("src/sell-item/js");
   eleventyConfig.addPassthroughCopy("src/sell-item/styles");
   
@@ -67,6 +70,11 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/following/js");
   eleventyConfig.addPassthroughCopy("src/following/styles");
   
+  // Dashboard V2 assets
+  eleventyConfig.addPassthroughCopy("src/dashboard-v2/js");
+  eleventyConfig.addPassthroughCopy("src/dashboard-v2/styles");
+  eleventyConfig.addPassthroughCopy("src/dashboard-v2/components");
+  
   eleventyConfig.addPassthroughCopy("src/profile/js");
   eleventyConfig.addPassthroughCopy("src/profile/styles");
   
@@ -75,6 +83,9 @@ module.exports = function(eleventyConfig) {
   
   eleventyConfig.addPassthroughCopy("src/gear-collection/js");
   eleventyConfig.addPassthroughCopy("src/gear-collection/styles");
+  
+  eleventyConfig.addPassthroughCopy("src/gear/js");
+  eleventyConfig.addPassthroughCopy("src/gear/styles");
   
   // Copy any additional static files
   eleventyConfig.addPassthroughCopy("*.ico");

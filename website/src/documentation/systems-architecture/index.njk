@@ -1,0 +1,1278 @@
+---
+layout: docs.njk
+title: Systems Architecture
+subtitle: Complete Database Schema - All Tables and Fields
+---
+
+<div class="database-schema">
+    <h2>Complete Database Schema</h2>
+    <p>All 45 tables with their fields and data types</p>
+
+    <!-- User & Auth Module -->
+    <div class="schema-module">
+        <h3>User & Auth Module (6 tables)</h3>
+        
+        <div class="table-group">
+            <h4>users</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>email</td><td>VARCHAR(255)</td><td>UNIQUE, NOT NULL</td></tr>
+                    <tr><td>username</td><td>VARCHAR(50)</td><td>UNIQUE, NOT NULL</td></tr>
+                    <tr><td>password_hash</td><td>VARCHAR(255)</td><td>NOT NULL</td></tr>
+                    <tr><td>profile_image</td><td>VARCHAR(500)</td><td></td></tr>
+                    <tr><td>bio</td><td>TEXT</td><td></td></tr>
+                    <tr><td>location</td><td>VARCHAR(255)</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td></tr>
+                    <tr><td>last_login</td><td>TIMESTAMP</td><td></td></tr>
+                    <tr><td>is_active</td><td>BOOLEAN</td><td>DEFAULT true</td></tr>
+                    <tr><td>email_verified</td><td>BOOLEAN</td><td>DEFAULT false</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>user_preferences</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>preference_key</td><td>VARCHAR(100)</td><td>NOT NULL</td></tr>
+                    <tr><td>preference_value</td><td>TEXT</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>user_stats</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>total_rides</td><td>INTEGER</td><td>DEFAULT 0</td></tr>
+                    <tr><td>total_distance</td><td>DECIMAL(10,2)</td><td>DEFAULT 0</td></tr>
+                    <tr><td>total_duration</td><td>INTEGER</td><td>DEFAULT 0</td></tr>
+                    <tr><td>total_elevation</td><td>DECIMAL(10,2)</td><td>DEFAULT 0</td></tr>
+                    <tr><td>longest_ride</td><td>DECIMAL(10,2)</td><td>DEFAULT 0</td></tr>
+                    <tr><td>fastest_speed</td><td>DECIMAL(5,2)</td><td>DEFAULT 0</td></tr>
+                    <tr><td>total_bikes</td><td>INTEGER</td><td>DEFAULT 0</td></tr>
+                    <tr><td>favorite_bike_id</td><td>UUID</td><td>FK → bikes.id</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>notifications</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>type</td><td>VARCHAR(50)</td><td>NOT NULL</td></tr>
+                    <tr><td>title</td><td>VARCHAR(255)</td><td>NOT NULL</td></tr>
+                    <tr><td>message</td><td>TEXT</td><td></td></tr>
+                    <tr><td>data</td><td>JSON</td><td></td></tr>
+                    <tr><td>read_at</td><td>TIMESTAMP</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>achievements</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>achievement_type</td><td>VARCHAR(50)</td><td>NOT NULL</td></tr>
+                    <tr><td>achievement_name</td><td>VARCHAR(255)</td><td>NOT NULL</td></tr>
+                    <tr><td>achievement_description</td><td>TEXT</td><td></td></tr>
+                    <tr><td>progress</td><td>INTEGER</td><td>DEFAULT 0</td></tr>
+                    <tr><td>target</td><td>INTEGER</td><td></td></tr>
+                    <tr><td>earned_at</td><td>TIMESTAMP</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>user_follows</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>follower_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>following_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Vehicle Management Module -->
+    <div class="schema-module">
+        <h3>Vehicle Management Module (6 tables)</h3>
+        
+        <div class="table-group">
+            <h4>bikes</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>type</td><td>VARCHAR(50)</td><td>CHECK IN ('road','mountain','hybrid','gravel','ebike','other')</td></tr>
+                    <tr><td>brand</td><td>VARCHAR(100)</td><td></td></tr>
+                    <tr><td>model</td><td>VARCHAR(100)</td><td></td></tr>
+                    <tr><td>year</td><td>INTEGER</td><td></td></tr>
+                    <tr><td>color</td><td>VARCHAR(50)</td><td></td></tr>
+                    <tr><td>frame_size</td><td>VARCHAR(20)</td><td></td></tr>
+                    <tr><td>wheel_size</td><td>VARCHAR(20)</td><td></td></tr>
+                    <tr><td>weight</td><td>DECIMAL(5,2)</td><td></td></tr>
+                    <tr><td>purchase_date</td><td>DATE</td><td></td></tr>
+                    <tr><td>purchase_price</td><td>DECIMAL(10,2)</td><td></td></tr>
+                    <tr><td>current_value</td><td>DECIMAL(10,2)</td><td></td></tr>
+                    <tr><td>odometer</td><td>DECIMAL(10,2)</td><td>DEFAULT 0</td></tr>
+                    <tr><td>is_primary</td><td>BOOLEAN</td><td>DEFAULT false</td></tr>
+                    <tr><td>is_public</td><td>BOOLEAN</td><td>DEFAULT true</td></tr>
+                    <tr><td>notes</td><td>TEXT</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>bike_specs</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>bike_id</td><td>UUID</td><td>FK → bikes.id</td></tr>
+                    <tr><td>spec_key</td><td>VARCHAR(100)</td><td>NOT NULL</td></tr>
+                    <tr><td>spec_value</td><td>TEXT</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>bike_photos</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>bike_id</td><td>UUID</td><td>FK → bikes.id</td></tr>
+                    <tr><td>photo_url</td><td>VARCHAR(500)</td><td>NOT NULL</td></tr>
+                    <tr><td>caption</td><td>VARCHAR(255)</td><td></td></tr>
+                    <tr><td>is_primary</td><td>BOOLEAN</td><td>DEFAULT false</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>gear_items</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>category</td><td>VARCHAR(50)</td><td>NOT NULL</td></tr>
+                    <tr><td>brand</td><td>VARCHAR(100)</td><td></td></tr>
+                    <tr><td>model</td><td>VARCHAR(100)</td><td></td></tr>
+                    <tr><td>size</td><td>VARCHAR(50)</td><td></td></tr>
+                    <tr><td>weight</td><td>DECIMAL(5,2)</td><td></td></tr>
+                    <tr><td>purchase_date</td><td>DATE</td><td></td></tr>
+                    <tr><td>purchase_price</td><td>DECIMAL(10,2)</td><td></td></tr>
+                    <tr><td>notes</td><td>TEXT</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>maintenance_records</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>bike_id</td><td>UUID</td><td>FK → bikes.id</td></tr>
+                    <tr><td>service_type</td><td>VARCHAR(100)</td><td>NOT NULL</td></tr>
+                    <tr><td>description</td><td>TEXT</td><td></td></tr>
+                    <tr><td>cost</td><td>DECIMAL(10,2)</td><td></td></tr>
+                    <tr><td>service_date</td><td>DATE</td><td>NOT NULL</td></tr>
+                    <tr><td>odometer_reading</td><td>DECIMAL(10,2)</td><td></td></tr>
+                    <tr><td>service_provider</td><td>VARCHAR(255)</td><td></td></tr>
+                    <tr><td>next_service_date</td><td>DATE</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>bike_fit_data</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>bike_id</td><td>UUID</td><td>FK → bikes.id</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>saddle_height</td><td>DECIMAL(5,2)</td><td></td></tr>
+                    <tr><td>saddle_setback</td><td>DECIMAL(5,2)</td><td></td></tr>
+                    <tr><td>handlebar_reach</td><td>DECIMAL(5,2)</td><td></td></tr>
+                    <tr><td>handlebar_drop</td><td>DECIMAL(5,2)</td><td></td></tr>
+                    <tr><td>stem_length</td><td>DECIMAL(5,2)</td><td></td></tr>
+                    <tr><td>stem_angle</td><td>DECIMAL(5,2)</td><td></td></tr>
+                    <tr><td>notes</td><td>TEXT</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Activity & Routes Module -->
+    <div class="schema-module">
+        <h3>Activity & Routes Module (6 tables)</h3>
+        
+        <div class="table-group">
+            <h4>rides</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>bike_id</td><td>UUID</td><td>FK → bikes.id</td></tr>
+                    <tr><td>route_id</td><td>UUID</td><td>FK → routes.id</td></tr>
+                    <tr><td>title</td><td>VARCHAR(255)</td><td>NOT NULL</td></tr>
+                    <tr><td>distance</td><td>DECIMAL(10,2)</td><td>NOT NULL</td></tr>
+                    <tr><td>duration</td><td>INTEGER</td><td>NOT NULL</td></tr>
+                    <tr><td>elevation_gain</td><td>DECIMAL(10,2)</td><td></td></tr>
+                    <tr><td>average_speed</td><td>DECIMAL(5,2)</td><td></td></tr>
+                    <tr><td>max_speed</td><td>DECIMAL(5,2)</td><td></td></tr>
+                    <tr><td>calories</td><td>INTEGER</td><td></td></tr>
+                    <tr><td>weather</td><td>JSON</td><td></td></tr>
+                    <tr><td>gpx_data</td><td>TEXT</td><td></td></tr>
+                    <tr><td>started_at</td><td>TIMESTAMP</td><td>NOT NULL</td></tr>
+                    <tr><td>ended_at</td><td>TIMESTAMP</td><td>NOT NULL</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>routes</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>name</td><td>VARCHAR(255)</td><td>NOT NULL</td></tr>
+                    <tr><td>description</td><td>TEXT</td><td></td></tr>
+                    <tr><td>distance</td><td>DECIMAL(10,2)</td><td>NOT NULL</td></tr>
+                    <tr><td>elevation_gain</td><td>DECIMAL(10,2)</td><td></td></tr>
+                    <tr><td>difficulty</td><td>VARCHAR(20)</td><td></td></tr>
+                    <tr><td>surface_type</td><td>VARCHAR(50)</td><td></td></tr>
+                    <tr><td>waypoints</td><td>JSON</td><td>NOT NULL</td></tr>
+                    <tr><td>is_public</td><td>BOOLEAN</td><td>DEFAULT false</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>segments</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>name</td><td>VARCHAR(255)</td><td>NOT NULL</td></tr>
+                    <tr><td>description</td><td>TEXT</td><td></td></tr>
+                    <tr><td>start_point</td><td>POINT</td><td>NOT NULL</td></tr>
+                    <tr><td>end_point</td><td>POINT</td><td>NOT NULL</td></tr>
+                    <tr><td>distance</td><td>DECIMAL(10,2)</td><td>NOT NULL</td></tr>
+                    <tr><td>elevation_gain</td><td>DECIMAL(10,2)</td><td></td></tr>
+                    <tr><td>average_grade</td><td>DECIMAL(5,2)</td><td></td></tr>
+                    <tr><td>segment_type</td><td>VARCHAR(50)</td><td></td></tr>
+                    <tr><td>created_by</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>segment_efforts</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>segment_id</td><td>UUID</td><td>FK → segments.id</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>ride_id</td><td>UUID</td><td>FK → rides.id</td></tr>
+                    <tr><td>elapsed_time</td><td>INTEGER</td><td>NOT NULL</td></tr>
+                    <tr><td>average_speed</td><td>DECIMAL(5,2)</td><td></td></tr>
+                    <tr><td>average_power</td><td>INTEGER</td><td></td></tr>
+                    <tr><td>pr_rank</td><td>INTEGER</td><td></td></tr>
+                    <tr><td>effort_date</td><td>TIMESTAMP</td><td>NOT NULL</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>ride_photos</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>ride_id</td><td>UUID</td><td>FK → rides.id</td></tr>
+                    <tr><td>photo_url</td><td>VARCHAR(500)</td><td>NOT NULL</td></tr>
+                    <tr><td>caption</td><td>VARCHAR(255)</td><td></td></tr>
+                    <tr><td>latitude</td><td>DECIMAL(10,8)</td><td></td></tr>
+                    <tr><td>longitude</td><td>DECIMAL(11,8)</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>activity_comments</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>ride_id</td><td>UUID</td><td>FK → rides.id</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>comment</td><td>TEXT</td><td>NOT NULL</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Marketplace Module -->
+    <div class="schema-module">
+        <h3>Marketplace Module (6 tables)</h3>
+        
+        <div class="table-group">
+            <h4>marketplace_listings</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>seller_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>item_type</td><td>VARCHAR(50)</td><td>CHECK IN ('bike','gear','part','accessory')</td></tr>
+                    <tr><td>bike_id</td><td>UUID</td><td>FK → bikes.id</td></tr>
+                    <tr><td>gear_id</td><td>UUID</td><td>FK → gear_items.id</td></tr>
+                    <tr><td>title</td><td>VARCHAR(255)</td><td>NOT NULL</td></tr>
+                    <tr><td>description</td><td>TEXT</td><td>NOT NULL</td></tr>
+                    <tr><td>price</td><td>DECIMAL(10,2)</td><td>NOT NULL</td></tr>
+                    <tr><td>currency</td><td>VARCHAR(3)</td><td>DEFAULT 'USD'</td></tr>
+                    <tr><td>condition</td><td>VARCHAR(50)</td><td></td></tr>
+                    <tr><td>location</td><td>VARCHAR(255)</td><td></td></tr>
+                    <tr><td>photos</td><td>JSON</td><td></td></tr>
+                    <tr><td>status</td><td>VARCHAR(20)</td><td>DEFAULT 'active'</td></tr>
+                    <tr><td>views</td><td>INTEGER</td><td>DEFAULT 0</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>marketplace_messages</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>listing_id</td><td>UUID</td><td>FK → marketplace_listings.id</td></tr>
+                    <tr><td>sender_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>recipient_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>message</td><td>TEXT</td><td>NOT NULL</td></tr>
+                    <tr><td>is_read</td><td>BOOLEAN</td><td>DEFAULT false</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>saved_searches</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>search_name</td><td>VARCHAR(255)</td><td>NOT NULL</td></tr>
+                    <tr><td>search_criteria</td><td>JSON</td><td>NOT NULL</td></tr>
+                    <tr><td>email_alerts</td><td>BOOLEAN</td><td>DEFAULT false</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>watchlist</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>listing_id</td><td>UUID</td><td>FK → marketplace_listings.id</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>transactions</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>listing_id</td><td>UUID</td><td>FK → marketplace_listings.id</td></tr>
+                    <tr><td>buyer_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>seller_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>amount</td><td>DECIMAL(10,2)</td><td>NOT NULL</td></tr>
+                    <tr><td>status</td><td>VARCHAR(50)</td><td>NOT NULL</td></tr>
+                    <tr><td>payment_method</td><td>VARCHAR(50)</td><td></td></tr>
+                    <tr><td>transaction_date</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>listing_reports</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>listing_id</td><td>UUID</td><td>FK → marketplace_listings.id</td></tr>
+                    <tr><td>reporter_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>reason</td><td>VARCHAR(100)</td><td>NOT NULL</td></tr>
+                    <tr><td>description</td><td>TEXT</td><td></td></tr>
+                    <tr><td>status</td><td>VARCHAR(50)</td><td>DEFAULT 'pending'</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                    <tr><td>resolved_at</td><td>TIMESTAMP</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Community & Social Module -->
+    <div class="schema-module">
+        <h3>Community & Social Module (6 tables)</h3>
+        
+        <div class="table-group">
+            <h4>communities</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>name</td><td>VARCHAR(255)</td><td>UNIQUE, NOT NULL</td></tr>
+                    <tr><td>description</td><td>TEXT</td><td></td></tr>
+                    <tr><td>type</td><td>VARCHAR(50)</td><td>NOT NULL</td></tr>
+                    <tr><td>avatar_url</td><td>VARCHAR(500)</td><td></td></tr>
+                    <tr><td>banner_url</td><td>VARCHAR(500)</td><td></td></tr>
+                    <tr><td>member_count</td><td>INTEGER</td><td>DEFAULT 0</td></tr>
+                    <tr><td>is_private</td><td>BOOLEAN</td><td>DEFAULT false</td></tr>
+                    <tr><td>created_by</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>community_members</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>community_id</td><td>UUID</td><td>FK → communities.id</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>role</td><td>VARCHAR(50)</td><td>DEFAULT 'member'</td></tr>
+                    <tr><td>joined_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>forum_posts</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>community_id</td><td>UUID</td><td>FK → communities.id</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>title</td><td>VARCHAR(255)</td><td>NOT NULL</td></tr>
+                    <tr><td>content</td><td>TEXT</td><td>NOT NULL</td></tr>
+                    <tr><td>is_pinned</td><td>BOOLEAN</td><td>DEFAULT false</td></tr>
+                    <tr><td>is_locked</td><td>BOOLEAN</td><td>DEFAULT false</td></tr>
+                    <tr><td>view_count</td><td>INTEGER</td><td>DEFAULT 0</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>forum_replies</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>post_id</td><td>UUID</td><td>FK → forum_posts.id</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>content</td><td>TEXT</td><td>NOT NULL</td></tr>
+                    <tr><td>is_accepted</td><td>BOOLEAN</td><td>DEFAULT false</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>direct_messages</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>sender_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>recipient_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>message</td><td>TEXT</td><td>NOT NULL</td></tr>
+                    <tr><td>is_read</td><td>BOOLEAN</td><td>DEFAULT false</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>activity_feed</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>activity_type</td><td>VARCHAR(50)</td><td>NOT NULL</td></tr>
+                    <tr><td>activity_data</td><td>JSON</td><td>NOT NULL</td></tr>
+                    <tr><td>visibility</td><td>VARCHAR(20)</td><td>DEFAULT 'public'</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Discord Integration Module -->
+    <div class="schema-module">
+        <h3>Discord Integration Module (4 tables)</h3>
+        
+        <div class="table-group">
+            <h4>discord_servers</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>discord_server_id</td><td>VARCHAR(100)</td><td>UNIQUE, NOT NULL</td></tr>
+                    <tr><td>server_name</td><td>VARCHAR(255)</td><td>NOT NULL</td></tr>
+                    <tr><td>community_id</td><td>UUID</td><td>FK → communities.id</td></tr>
+                    <tr><td>settings</td><td>JSON</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>discord_users</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>discord_user_id</td><td>VARCHAR(100)</td><td>UNIQUE, NOT NULL</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>discord_username</td><td>VARCHAR(255)</td><td>NOT NULL</td></tr>
+                    <tr><td>linked_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>discord_commands</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>server_id</td><td>UUID</td><td>FK → discord_servers.id</td></tr>
+                    <tr><td>command_name</td><td>VARCHAR(100)</td><td>NOT NULL</td></tr>
+                    <tr><td>enabled</td><td>BOOLEAN</td><td>DEFAULT true</td></tr>
+                    <tr><td>permissions</td><td>JSON</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>discord_activity_log</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>server_id</td><td>UUID</td><td>FK → discord_servers.id</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → discord_users.id</td></tr>
+                    <tr><td>command</td><td>VARCHAR(100)</td><td>NOT NULL</td></tr>
+                    <tr><td>parameters</td><td>JSON</td><td></td></tr>
+                    <tr><td>response</td><td>TEXT</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Events & Challenges Module -->
+    <div class="schema-module">
+        <h3>Events & Challenges Module (5 tables)</h3>
+        
+        <div class="table-group">
+            <h4>events</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>name</td><td>VARCHAR(255)</td><td>NOT NULL</td></tr>
+                    <tr><td>description</td><td>TEXT</td><td></td></tr>
+                    <tr><td>event_type</td><td>VARCHAR(50)</td><td>NOT NULL</td></tr>
+                    <tr><td>start_date</td><td>TIMESTAMP</td><td>NOT NULL</td></tr>
+                    <tr><td>end_date</td><td>TIMESTAMP</td><td>NOT NULL</td></tr>
+                    <tr><td>location</td><td>VARCHAR(255)</td><td></td></tr>
+                    <tr><td>route_id</td><td>UUID</td><td>FK → routes.id</td></tr>
+                    <tr><td>max_participants</td><td>INTEGER</td><td></td></tr>
+                    <tr><td>registration_fee</td><td>DECIMAL(10,2)</td><td></td></tr>
+                    <tr><td>created_by</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>event_participants</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>event_id</td><td>UUID</td><td>FK → events.id</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>status</td><td>VARCHAR(50)</td><td>DEFAULT 'registered'</td></tr>
+                    <tr><td>bib_number</td><td>VARCHAR(50)</td><td></td></tr>
+                    <tr><td>registered_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>challenges</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>name</td><td>VARCHAR(255)</td><td>NOT NULL</td></tr>
+                    <tr><td>description</td><td>TEXT</td><td></td></tr>
+                    <tr><td>challenge_type</td><td>VARCHAR(50)</td><td>NOT NULL</td></tr>
+                    <tr><td>target_value</td><td>DECIMAL(10,2)</td><td>NOT NULL</td></tr>
+                    <tr><td>target_unit</td><td>VARCHAR(20)</td><td>NOT NULL</td></tr>
+                    <tr><td>start_date</td><td>TIMESTAMP</td><td>NOT NULL</td></tr>
+                    <tr><td>end_date</td><td>TIMESTAMP</td><td>NOT NULL</td></tr>
+                    <tr><td>created_by</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>challenge_participants</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>challenge_id</td><td>UUID</td><td>FK → challenges.id</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>progress</td><td>DECIMAL(10,2)</td><td>DEFAULT 0</td></tr>
+                    <tr><td>completed_at</td><td>TIMESTAMP</td><td></td></tr>
+                    <tr><td>joined_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>leaderboards</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>leaderboard_type</td><td>VARCHAR(50)</td><td>NOT NULL</td></tr>
+                    <tr><td>period</td><td>VARCHAR(20)</td><td>NOT NULL</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>value</td><td>DECIMAL(10,2)</td><td>NOT NULL</td></tr>
+                    <tr><td>rank</td><td>INTEGER</td><td>NOT NULL</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Analytics & Reporting Module -->
+    <div class="schema-module">
+        <h3>Analytics & Reporting Module (5 tables)</h3>
+        
+        <div class="table-group">
+            <h4>analytics_events</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>event_type</td><td>VARCHAR(100)</td><td>NOT NULL</td></tr>
+                    <tr><td>event_data</td><td>JSON</td><td></td></tr>
+                    <tr><td>session_id</td><td>VARCHAR(255)</td><td></td></tr>
+                    <tr><td>ip_address</td><td>INET</td><td></td></tr>
+                    <tr><td>user_agent</td><td>TEXT</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>ride_analytics</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>period</td><td>VARCHAR(20)</td><td>NOT NULL</td></tr>
+                    <tr><td>total_rides</td><td>INTEGER</td><td>DEFAULT 0</td></tr>
+                    <tr><td>total_distance</td><td>DECIMAL(10,2)</td><td>DEFAULT 0</td></tr>
+                    <tr><td>total_duration</td><td>INTEGER</td><td>DEFAULT 0</td></tr>
+                    <tr><td>total_elevation</td><td>DECIMAL(10,2)</td><td>DEFAULT 0</td></tr>
+                    <tr><td>average_speed</td><td>DECIMAL(5,2)</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>performance_metrics</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>metric_type</td><td>VARCHAR(50)</td><td>NOT NULL</td></tr>
+                    <tr><td>value</td><td>DECIMAL(10,2)</td><td>NOT NULL</td></tr>
+                    <tr><td>unit</td><td>VARCHAR(20)</td><td>NOT NULL</td></tr>
+                    <tr><td>recorded_at</td><td>TIMESTAMP</td><td>NOT NULL</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>reports</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>report_type</td><td>VARCHAR(50)</td><td>NOT NULL</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>title</td><td>VARCHAR(255)</td><td>NOT NULL</td></tr>
+                    <tr><td>data</td><td>JSON</td><td>NOT NULL</td></tr>
+                    <tr><td>generated_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>system_logs</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>log_level</td><td>VARCHAR(20)</td><td>NOT NULL</td></tr>
+                    <tr><td>component</td><td>VARCHAR(100)</td><td>NOT NULL</td></tr>
+                    <tr><td>message</td><td>TEXT</td><td>NOT NULL</td></tr>
+                    <tr><td>context</td><td>JSON</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- System Support Module -->
+    <div class="schema-module">
+        <h3>System Support Module (5 tables)</h3>
+        
+        <div class="table-group">
+            <h4>support_tickets</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>subject</td><td>VARCHAR(255)</td><td>NOT NULL</td></tr>
+                    <tr><td>description</td><td>TEXT</td><td>NOT NULL</td></tr>
+                    <tr><td>category</td><td>VARCHAR(50)</td><td>NOT NULL</td></tr>
+                    <tr><td>priority</td><td>VARCHAR(20)</td><td>DEFAULT 'normal'</td></tr>
+                    <tr><td>status</td><td>VARCHAR(50)</td><td>DEFAULT 'open'</td></tr>
+                    <tr><td>assigned_to</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                    <tr><td>resolved_at</td><td>TIMESTAMP</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>feedback</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>feedback_type</td><td>VARCHAR(50)</td><td>NOT NULL</td></tr>
+                    <tr><td>subject</td><td>VARCHAR(255)</td><td>NOT NULL</td></tr>
+                    <tr><td>message</td><td>TEXT</td><td>NOT NULL</td></tr>
+                    <tr><td>rating</td><td>INTEGER</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>api_keys</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>user_id</td><td>UUID</td><td>FK → users.id</td></tr>
+                    <tr><td>key_hash</td><td>VARCHAR(255)</td><td>UNIQUE, NOT NULL</td></tr>
+                    <tr><td>name</td><td>VARCHAR(255)</td><td>NOT NULL</td></tr>
+                    <tr><td>permissions</td><td>JSON</td><td></td></tr>
+                    <tr><td>last_used</td><td>TIMESTAMP</td><td></td></tr>
+                    <tr><td>expires_at</td><td>TIMESTAMP</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>feature_flags</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>flag_name</td><td>VARCHAR(100)</td><td>UNIQUE, NOT NULL</td></tr>
+                    <tr><td>description</td><td>TEXT</td><td></td></tr>
+                    <tr><td>enabled</td><td>BOOLEAN</td><td>DEFAULT false</td></tr>
+                    <tr><td>rollout_percentage</td><td>INTEGER</td><td>DEFAULT 0</td></tr>
+                    <tr><td>user_whitelist</td><td>JSON</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-group">
+            <h4>system_settings</h4>
+            <table class="schema-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Constraints</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>id</td><td>UUID</td><td>PRIMARY KEY</td></tr>
+                    <tr><td>setting_key</td><td>VARCHAR(100)</td><td>UNIQUE, NOT NULL</td></tr>
+                    <tr><td>setting_value</td><td>TEXT</td><td></td></tr>
+                    <tr><td>setting_type</td><td>VARCHAR(50)</td><td>NOT NULL</td></tr>
+                    <tr><td>description</td><td>TEXT</td><td></td></tr>
+                    <tr><td>created_at</td><td>TIMESTAMP</td><td>DEFAULT NOW()</td></tr>
+                    <tr><td>updated_at</td><td>TIMESTAMP</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+.schema-module {
+    margin-bottom: 3rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.schema-module h3 {
+    color: var(--accent-blue);
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.table-group {
+    margin-bottom: 2rem;
+}
+
+.table-group h4 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-family: monospace;
+}
+
+.schema-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.schema-table thead {
+    background: var(--bg-secondary);
+}
+
+.schema-table th {
+    text-align: left;
+    padding: 12px 16px;
+    color: var(--text-primary);
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.schema-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+}
+
+.schema-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.schema-table td:first-child {
+    color: var(--accent-blue);
+    font-family: monospace;
+    font-weight: 500;
+}
+
+.schema-table td:nth-child(2) {
+    color: var(--accent-green);
+    font-family: monospace;
+}
+
+.schema-table td:nth-child(3) {
+    color: var(--accent-yellow);
+    font-size: 0.9rem;
+}
+</style>

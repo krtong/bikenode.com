@@ -1,0 +1,427 @@
+---
+layout: base
+title: A/B Test Dashboard - Header & Sidebar Redesign
+---
+
+<style>
+    .ab-dashboard {
+        max-width: 1400px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+    
+    .dashboard-header {
+        margin-bottom: 2rem;
+    }
+    
+    .dashboard-header h1 {
+        font-size: 2rem;
+        color: #111827;
+        margin-bottom: 0.5rem;
+    }
+    
+    .dashboard-header p {
+        color: #6b7280;
+    }
+    
+    .metrics-overview {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    .metric-card {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+    }
+    
+    .metric-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-bottom: 0.5rem;
+    }
+    
+    .metric-title {
+        font-size: 0.875rem;
+        color: #6b7280;
+        font-weight: 500;
+    }
+    
+    .metric-change {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-weight: 600;
+    }
+    
+    .metric-change.positive {
+        color: #10b981;
+        background: #d1fae5;
+    }
+    
+    .metric-change.negative {
+        color: #ef4444;
+        background: #fee2e2;
+    }
+    
+    .metric-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 0.5rem;
+    }
+    
+    .metric-comparison {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.875rem;
+    }
+    
+    .variant-stat {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+    
+    .variant-dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+    }
+    
+    .variant-dot.control {
+        background: #6b7280;
+    }
+    
+    .variant-dot.variant {
+        background: #3b82f6;
+    }
+    
+    .chart-section {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.75rem;
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .chart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    .chart-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #111827;
+    }
+    
+    .chart-controls {
+        display: flex;
+        gap: 0.5rem;
+    }
+    
+    .chart-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        border: 1px solid #e5e7eb;
+        background: white;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .chart-button:hover {
+        background: #f9fafb;
+    }
+    
+    .chart-button.active {
+        background: #3b82f6;
+        color: white;
+        border-color: #3b82f6;
+    }
+    
+    .chart-container {
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f9fafb;
+        border-radius: 0.5rem;
+        color: #6b7280;
+    }
+    
+    .users-table {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.75rem;
+        overflow: hidden;
+    }
+    
+    .table-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .table-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #111827;
+    }
+    
+    .table-wrapper {
+        overflow-x: auto;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    th {
+        text-align: left;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #6b7280;
+        background: #f9fafb;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    
+    td {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+        border-bottom: 1px solid #f3f4f6;
+    }
+    
+    .user-variant {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        border-radius: 9999px;
+    }
+    
+    .user-variant.control {
+        background: #e5e7eb;
+        color: #4b5563;
+    }
+    
+    .user-variant.variant {
+        background: #dbeafe;
+        color: #1e40af;
+    }
+    
+    .status-indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+    }
+    
+    .status-dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+    }
+    
+    .status-dot.active {
+        background: #10b981;
+    }
+    
+    .status-dot.inactive {
+        background: #6b7280;
+    }
+</style>
+
+<div class="ab-dashboard">
+    <div class="dashboard-header">
+        <h1>A/B Test Dashboard</h1>
+        <p>Header & Sidebar Redesign Test - Started January 6, 2025</p>
+    </div>
+    
+    <div class="metrics-overview">
+        <div class="metric-card">
+            <div class="metric-header">
+                <span class="metric-title">Total Users</span>
+            </div>
+            <div class="metric-value">24,562</div>
+            <div class="metric-comparison">
+                <span class="variant-stat">
+                    <span class="variant-dot control"></span>
+                    Control: 12,281 (50%)
+                </span>
+                <span class="variant-stat">
+                    <span class="variant-dot variant"></span>
+                    Variant: 12,281 (50%)
+                </span>
+            </div>
+        </div>
+        
+        <div class="metric-card">
+            <div class="metric-header">
+                <span class="metric-title">Avg. Session Duration</span>
+                <span class="metric-change positive">+12.3%</span>
+            </div>
+            <div class="metric-value">8:42</div>
+            <div class="metric-comparison">
+                <span class="variant-stat">
+                    <span class="variant-dot control"></span>
+                    Control: 7:45
+                </span>
+                <span class="variant-stat">
+                    <span class="variant-dot variant"></span>
+                    Variant: 9:39
+                </span>
+            </div>
+        </div>
+        
+        <div class="metric-card">
+            <div class="metric-header">
+                <span class="metric-title">Navigation Clicks</span>
+                <span class="metric-change positive">+18.7%</span>
+            </div>
+            <div class="metric-value">156,234</div>
+            <div class="metric-comparison">
+                <span class="variant-stat">
+                    <span class="variant-dot control"></span>
+                    Control: 5.4/user
+                </span>
+                <span class="variant-stat">
+                    <span class="variant-dot variant"></span>
+                    Variant: 6.4/user
+                </span>
+            </div>
+        </div>
+        
+        <div class="metric-card">
+            <div class="metric-header">
+                <span class="metric-title">Search Usage</span>
+                <span class="metric-change positive">+24.5%</span>
+            </div>
+            <div class="metric-value">8,234</div>
+            <div class="metric-comparison">
+                <span class="variant-stat">
+                    <span class="variant-dot control"></span>
+                    Control: 28.2%
+                </span>
+                <span class="variant-stat">
+                    <span class="variant-dot variant"></span>
+                    Variant: 35.1%
+                </span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="chart-section">
+        <div class="chart-header">
+            <h2 class="chart-title">Conversion Funnel</h2>
+            <div class="chart-controls">
+                <button class="chart-button active">7 Days</button>
+                <button class="chart-button">30 Days</button>
+                <button class="chart-button">All Time</button>
+            </div>
+        </div>
+        <div class="chart-container">
+            Chart visualization would go here
+        </div>
+    </div>
+    
+    <div class="chart-section">
+        <div class="chart-header">
+            <h2 class="chart-title">Feature Usage Comparison</h2>
+        </div>
+        <div class="chart-container">
+            Feature usage heatmap would go here
+        </div>
+    </div>
+    
+    <div class="users-table">
+        <div class="table-header">
+            <h2 class="table-title">Recent User Sessions</h2>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Variant</th>
+                        <th>Session Duration</th>
+                        <th>Pages Viewed</th>
+                        <th>Actions</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#12345</td>
+                        <td><span class="user-variant variant">Variant</span></td>
+                        <td>12:34</td>
+                        <td>8</td>
+                        <td>23</td>
+                        <td>
+                            <span class="status-indicator">
+                                <span class="status-dot active"></span>
+                                Active
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#12346</td>
+                        <td><span class="user-variant control">Control</span></td>
+                        <td>5:21</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>
+                            <span class="status-indicator">
+                                <span class="status-dot inactive"></span>
+                                Completed
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#12347</td>
+                        <td><span class="user-variant variant">Variant</span></td>
+                        <td>18:45</td>
+                        <td>12</td>
+                        <td>45</td>
+                        <td>
+                            <span class="status-indicator">
+                                <span class="status-dot active"></span>
+                                Active
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+// Simulate real-time updates
+document.addEventListener('DOMContentLoaded', function() {
+    // Update metrics periodically
+    setInterval(() => {
+        // Update total users
+        const totalUsers = document.querySelector('.metric-value');
+        const current = parseInt(totalUsers.textContent.replace(',', ''));
+        totalUsers.textContent = (current + Math.floor(Math.random() * 5)).toLocaleString();
+    }, 5000);
+    
+    // Handle chart control clicks
+    document.querySelectorAll('.chart-button').forEach(button => {
+        button.addEventListener('click', function() {
+            this.parentElement.querySelectorAll('.chart-button').forEach(b => {
+                b.classList.remove('active');
+            });
+            this.classList.add('active');
+        });
+    });
+});
+</script>

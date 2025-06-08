@@ -8,8 +8,7 @@ module.exports = {
     // Auth pages don't need dashboard.css
   ],
   docs: [
-    '/assets/css/docs.css',
-    '/assets/css/docs-layout.css'
+    '/documentation/assets/css/style.css'
   ],
   base: [
     // Base layout gets only the main CSS

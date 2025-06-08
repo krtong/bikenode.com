@@ -247,6 +247,11 @@ func main() {
 	apiRouter.HandleFunc("/elevation/profile", api.GetElevationProfile(db)).Methods("POST")
 	apiRouter.HandleFunc("/elevation/point", api.GetPointElevation(db)).Methods("POST")
 	apiRouter.HandleFunc("/elevation/climbs", api.AnalyzeClimbs(db)).Methods("POST")
+	
+	// Gear endpoints
+	apiRouter.HandleFunc("/gear/products", api.HandleGearProducts(db)).Methods("GET", "OPTIONS")
+	apiRouter.HandleFunc("/gear/categories", api.HandleGearCategories(db)).Methods("GET", "OPTIONS")
+	apiRouter.HandleFunc("/gear/brands", api.HandleGearBrands(db)).Methods("GET", "OPTIONS")
 	apiRouter.HandleFunc("/elevation/tiles", api.GetElevationTiles(db)).Methods("GET")
 
 	// Serve static files
@@ -863,7 +868,7 @@ func getElectrifiedModels(w http.ResponseWriter, r *http.Request) {
 	}
 	
 	brandModels, exists := models[brand]
-	if \!exists {
+	if !exists {
 		brandModels = []string{"Model 1", "Model 2"}
 	}
 	
