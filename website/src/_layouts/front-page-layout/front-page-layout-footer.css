@@ -1,0 +1,150 @@
+/* Front Page Layout Footer Styles */
+
+.front-page-layout-footer {
+    background: #111827;
+    color: #9ca3af;
+    padding: 64px 0 32px;
+    margin-top: 80px;
+}
+
+.front-page-layout-footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.front-page-layout-footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+}
+
+.front-page-layout-footer-brand-section {
+    grid-column: 1;
+}
+
+.front-page-layout-footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.front-page-layout-footer-logo {
+    color: #3b82f6;
+}
+
+.front-page-layout-footer-logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+}
+
+.front-page-layout-footer-tagline {
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.front-page-layout-footer-newsletter h4 {
+    color: white;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.front-page-layout-footer-newsletter-form {
+    display: flex;
+    gap: 8px;
+}
+
+.front-page-layout-footer-newsletter-input {
+    flex: 1;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+}
+
+.front-page-layout-footer-newsletter-input::placeholder {
+    color: #6b7280;
+}
+
+.front-page-layout-footer-newsletter-button {
+    padding: 10px 20px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.front-page-layout-footer-newsletter-button:hover {
+    background: #2563eb;
+}
+
+.front-page-layout-footer-column h4 {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+}
+
+.front-page-layout-footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.front-page-layout-footer-column li {
+    margin-bottom: 12px;
+}
+
+.front-page-layout-footer-column a {
+    color: #9ca3af;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.front-page-layout-footer-column a:hover {
+    color: white;
+}
+
+.front-page-layout-footer-bottom {
+    padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.front-page-layout-footer-social {
+    display: flex;
+    gap: 16px;
+}
+
+.front-page-layout-footer-social-link {
+    color: #6b7280;
+    transition: color 0.2s ease;
+}
+
+.front-page-layout-footer-social-link:hover {
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .front-page-layout-footer-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    
+    .front-page-layout-footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+}

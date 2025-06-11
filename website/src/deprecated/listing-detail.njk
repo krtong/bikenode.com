@@ -1,0 +1,397 @@
+---
+layout: front-page-layout/front-page-layout.njk
+title: 2023 Trek Fuel EX 8 - Excellent Condition
+subtitle: Mountain Bike for Sale
+customCSS:
+  - "/assets/css/marketplace.css"
+  - "/assets/css/listing-detail.css"
+inlineJS: |
+  let currentImageIndex = 0;
+  const images = [
+    '/assets/images/bikes/trek-fuel-ex-1.jpg',
+    '/assets/images/bikes/trek-fuel-ex-2.jpg',
+    '/assets/images/bikes/trek-fuel-ex-3.jpg',
+    '/assets/images/bikes/trek-fuel-ex-4.jpg',
+    '/assets/images/bikes/trek-fuel-ex-5.jpg'
+  ];
+  
+  function showImage(index) {
+    currentImageIndex = index;
+    document.getElementById('main-image').src = images[index];
+    
+    document.querySelectorAll('.thumbnail').forEach((thumb, i) => {
+      thumb.classList.toggle('active', i === index);
+    });
+  }
+  
+  function nextImage() {
+    const nextIndex = (currentImageIndex + 1) % images.length;
+    showImage(nextIndex);
+  }
+  
+  function prevImage() {
+    const prevIndex = (currentImageIndex - 1 + images.length) % images.length;
+    showImage(prevIndex);
+  }
+  
+  function openImageModal(index) {
+    showImage(index);
+    document.getElementById('image-modal').style.display = 'flex';
+  }
+  
+  function closeImageModal() {
+    document.getElementById('image-modal').style.display = 'none';
+  }
+  
+  function contactSeller() {
+    // Implementation for contacting seller
+    document.getElementById('contact-modal').style.display = 'flex';
+  }
+  
+  function closeContactModal() {
+    document.getElementById('contact-modal').style.display = 'none';
+  }
+  
+  function makeOffer() {
+    document.getElementById('offer-modal').style.display = 'flex';
+  }
+  
+  function closeOfferModal() {
+    document.getElementById('offer-modal').style.display = 'none';
+  }
+  
+  function addToWatchlist() {
+    const btn = document.getElementById('watchlist-btn');
+    const isWatching = btn.classList.contains('watching');
+    
+    if (isWatching) {
+      btn.classList.remove('watching');
+      btn.innerHTML = '<i class="icon">♡</i> Add to Watchlist';
+    } else {
+      btn.classList.add('watching');
+      btn.innerHTML = '<i class="icon">♥</i> Watching';
+    }
+  }
+  
+  function reportListing() {
+    if (confirm('Report this listing for violating community guidelines?')) {
+      console.log('Listing reported');
+    }
+  }
+  
+  function shareListing() {
+    if (navigator.share) {
+      navigator.share({
+        title: '2023 Trek Fuel EX 8 - Excellent Condition',
+        url: window.location.href
+      });
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }
+  }
+---
+
+<div class="listing-detail-container">
+  <!-- Image Gallery -->
+  <div class="image-gallery">
+    <div class="main-image-container">
+      <img id="main-image" src="/assets/images/bikes/trek-fuel-ex-1.jpg" alt="2023 Trek Fuel EX 8">
+      <button class="nav-btn prev" onclick="prevImage()">‹</button>
+      <button class="nav-btn next" onclick="nextImage()">›</button>
+      <button class="fullscreen-btn" onclick="openImageModal(currentImageIndex)">⛶</button>
+    </div>
+    
+    <div class="thumbnail-gallery">
+      <div class="thumbnail active" onclick="showImage(0)">
+        <img src="/assets/images/bikes/trek-fuel-ex-1.jpg" alt="Main view">
+      </div>
+      <div class="thumbnail" onclick="showImage(1)">
+        <img src="/assets/images/bikes/trek-fuel-ex-2.jpg" alt="Side view">
+      </div>
+      <div class="thumbnail" onclick="showImage(2)">
+        <img src="/assets/images/bikes/trek-fuel-ex-3.jpg" alt="Components">
+      </div>
+      <div class="thumbnail" onclick="showImage(3)">
+        <img src="/assets/images/bikes/trek-fuel-ex-4.jpg" alt="Drivetrain">
+      </div>
+      <div class="thumbnail" onclick="showImage(4)">
+        <img src="/assets/images/bikes/trek-fuel-ex-5.jpg" alt="Frame detail">
+      </div>
+    </div>
+  </div>
+
+  <!-- Listing Content -->
+  <div class="listing-content">
+    <div class="listing-header">
+      <div class="breadcrumb">
+        <a href="/marketplace/">Marketplace</a>
+        <span>›</span>
+        <a href="/marketplace/mountain-bikes/">Mountain Bikes</a>
+        <span>›</span>
+        <span>Trek Fuel EX 8</span>
+      </div>
+      
+      <h1 class="listing-title">2023 Trek Fuel EX 8 - Excellent Condition</h1>
+      
+      <div class="listing-meta">
+        <div class="price-section">
+          <span class="price">$2,400</span>
+          <span class="negotiable">OBO</span>
+        </div>
+        
+        <div class="listing-stats">
+          <span class="stat">
+            <i class="icon">👁</i>
+            47 views
+          </span>
+          <span class="stat">
+            <i class="icon">📅</i>
+            Posted 5 days ago
+          </span>
+          <span class="stat">
+            <i class="icon">📍</i>
+            San Francisco, CA
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button class="btn btn-primary" onclick="contactSeller()">
+        <i class="icon">💬</i>
+        Contact Seller
+      </button>
+      <button class="btn btn-secondary" onclick="makeOffer()">
+        <i class="icon">💰</i>
+        Make Offer
+      </button>
+      <button id="watchlist-btn" class="btn btn-outline" onclick="addToWatchlist()">
+        <i class="icon">♡</i>
+        Add to Watchlist
+      </button>
+      <button class="btn btn-icon" onclick="shareListing()">
+        <i class="icon">📤</i>
+      </button>
+    </div>
+
+    <!-- Bike Details -->
+    <div class="bike-details">
+      <h2>Specifications</h2>
+      <div class="details-grid">
+        <div class="detail-item">
+          <span class="detail-label">Brand</span>
+          <span class="detail-value">Trek</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Model</span>
+          <span class="detail-value">Fuel EX 8</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Year</span>
+          <span class="detail-value">2023</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Frame Size</span>
+          <span class="detail-value">Medium (18.5")</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Wheel Size</span>
+          <span class="detail-value">29"</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Suspension</span>
+          <span class="detail-value">Full Suspension</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Travel</span>
+          <span class="detail-value">130mm Front / 120mm Rear</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Drivetrain</span>
+          <span class="detail-value">SRAM GX Eagle 12-speed</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Brakes</span>
+          <span class="detail-value">SRAM Guide T</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Fork</span>
+          <span class="detail-value">RockShox Revelation RC</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Shock</span>
+          <span class="detail-value">RockShox Deluxe Select+</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Condition</span>
+          <span class="detail-value condition-excellent">Excellent</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="description-section">
+      <h2>Description</h2>
+      <div class="description-content">
+        <p>This 2023 Trek Fuel EX 8 is in excellent condition with minimal wear. I'm the original owner and have maintained it meticulously. The bike has approximately 500 miles on it, mostly trail riding in Marin County.</p>
+        
+        <h3>What's Included:</h3>
+        <ul>
+          <li>Complete bike as shown</li>
+          <li>Original Trek dropper post remote</li>
+          <li>Original pedals (Bontrager alloy)</li>
+          <li>All original documentation and warranties</li>
+          <li>Recent professional tune-up receipt</li>
+        </ul>
+        
+        <h3>Recent Maintenance:</h3>
+        <ul>
+          <li>Full suspension service (March 2024)</li>
+          <li>New chain and cassette (February 2024)</li>
+          <li>Brake bleeding and pad replacement</li>
+          <li>Tubeless tire setup with fresh sealant</li>
+        </ul>
+        
+        <h3>Reason for Selling:</h3>
+        <p>Upgrading to a carbon frame model. This bike has been fantastic but I want something lighter for racing.</p>
+        
+        <h3>Additional Notes:</h3>
+        <p>Willing to ship within the US for additional $150. Local pickup preferred in San Francisco Bay Area. Serious buyers only - no lowball offers please. Happy to answer any questions or provide additional photos.</p>
+      </div>
+    </div>
+
+    <!-- Seller Information -->
+    <div class="seller-section">
+      <h2>Seller Information</h2>
+      <div class="seller-card">
+        <div class="seller-avatar">
+          <img src="/assets/images/avatars/mike-chen.jpg" alt="Mike Chen">
+        </div>
+        <div class="seller-info">
+          <h3>Mike Chen</h3>
+          <div class="seller-stats">
+            <span class="rating">★★★★★ (4.9)</span>
+            <span class="reviews">23 reviews</span>
+            <span class="member-since">Member since 2021</span>
+          </div>
+          <p class="seller-bio">Avid mountain biker and bike enthusiast. Always honest about condition and quick to respond.</p>
+          <div class="verification-badges">
+            <span class="badge verified">✓ Phone Verified</span>
+            <span class="badge verified">✓ Email Verified</span>
+            <span class="badge verified">✓ ID Verified</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="seller-other-listings">
+        <h4>Other listings by Mike</h4>
+        <div class="other-listings">
+          <a href="/listing/specialized-helmet/" class="other-listing">
+            <img src="/assets/images/gear/specialized-helmet.jpg" alt="Specialized Helmet">
+            <span>Specialized Helmet - $80</span>
+          </a>
+          <a href="/listing/shimano-pedals/" class="other-listing">
+            <img src="/assets/images/parts/shimano-pedals.jpg" alt="Shimano Pedals">
+            <span>Shimano SPD Pedals - $45</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Safety Tips -->
+    <div class="safety-section">
+      <h2>🛡️ Safety Tips</h2>
+      <div class="safety-tips">
+        <ul>
+          <li>Meet in a public, well-lit location</li>
+          <li>Bring a friend when possible</li>
+          <li>Inspect the bike thoroughly before purchasing</li>
+          <li>Use secure payment methods</li>
+          <li>Trust your instincts</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Report/Help -->
+  <div class="listing-footer">
+    <button class="btn btn-link" onclick="reportListing()">
+      <i class="icon">⚠️</i>
+      Report this listing
+    </button>
+    <a href="/help/marketplace/" class="btn btn-link">
+      <i class="icon">❓</i>
+      Need help?
+    </a>
+  </div>
+</div>
+
+<!-- Image Modal -->
+<div id="image-modal" class="modal image-modal" onclick="closeImageModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeImageModal()">×</button>
+    <img id="modal-image" src="/assets/images/bikes/trek-fuel-ex-1.jpg" alt="Bike image">
+    <button class="modal-nav prev" onclick="prevImage()">‹</button>
+    <button class="modal-nav next" onclick="nextImage()">›</button>
+  </div>
+</div>
+
+<!-- Contact Modal -->
+<div id="contact-modal" class="modal" onclick="closeContactModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Contact Seller</h3>
+      <button class="modal-close" onclick="closeContactModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" rows="4" placeholder="Hi, I'm interested in your Trek Fuel EX 8. Is it still available?"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="contact-phone">Phone Number (optional)</label>
+          <input type="tel" id="contact-phone" placeholder="For faster communication">
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeContactModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Offer Modal -->
+<div id="offer-modal" class="modal" onclick="closeOfferModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Make an Offer</h3>
+      <button class="modal-close" onclick="closeOfferModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <form class="offer-form">
+        <div class="current-price">
+          <span>Asking Price: <strong>$2,400</strong></span>
+        </div>
+        <div class="form-group">
+          <label for="offer-amount">Your Offer</label>
+          <div class="price-input-group">
+            <span class="price-symbol">$</span>
+            <input type="number" id="offer-amount" placeholder="2,100" min="1" max="2400">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="offer-message">Message (optional)</label>
+          <textarea id="offer-message" rows="3" placeholder="Include any additional details about your offer..."></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeOfferModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit Offer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

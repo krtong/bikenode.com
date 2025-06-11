@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BikeNode Database Dependencies Matrix</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2rem;
+        }
+        
+        .header p {
+            margin: 0;
+            opacity: 0.9;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 800px;
+            padding: 20px;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            background: #ecf0f1;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .legend-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+        
+        .controls {
+            padding: 20px;
+            background: #f8f9fa;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #2980b9;
+        }
+        
+        button.active {
+            background: #2c3e50;
+        }
+        
+        .stats {
+            padding: 20px;
+            background: #34495e;
+            color: white;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .tooltip {
+            position: absolute;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>BikeNode Database Dependencies Matrix</h1>
+            <p>X-axis: Website Pages/Features | Y-axis: Database Tables | Dots: Dependencies</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number" style="color: #27ae60;">8</div>
+                <div class="stat-label">Pages Working</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" style="color: #e74c3c;">15</div>
+                <div class="stat-label">Pages Broken</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" style="color: #f39c12;">4</div>
+                <div class="stat-label">Pages Partial</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" style="color: #3498db;">189</div>
+                <div class="stat-label">Total Dependencies</div>
+            </div>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #27ae60;"></div>
+                <span>Table Exists - Page Works</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #e74c3c;"></div>
+                <span>Table Missing - Page Broken</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: #f39c12;"></div>
+                <span>Table Partial - Page Limited</span>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="showAll()" class="active">Show All</button>
+            <button onclick="showWorking()">Working Pages Only</button>
+            <button onclick="showBroken()">Broken Pages Only</button>
+            <button onclick="showCritical()">Critical Dependencies</button>
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="matrixChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Define pages (X-axis)
+        const pages = [
+            'Homepage', 'Login/Signup', 'User Profile', 'Edit Profile', 'Dashboard', 
+            'Virtual Garage', 'Add Bike', 'Bike Maintenance', 'Route Planner', 'Create Route',
+            'Rides Dashboard', 'Record Ride', 'Marketplace', 'Sell Item', 'Listing Detail',
+            'Messages', 'Forums', 'Forum Thread', 'Following', 'Activity Feed',
+            'Achievements', 'Events', 'Gear Collection', 'Admin Dashboard', 'Discord Bot',
+            'Search', 'Notifications'
+        ];
+
+        // Define tables (Y-axis) - ordered by implementation status
+        const tables = [
+            // Existing tables
+            'users', 'servers', 'server_configs', 'user_roles', 'motorcycles', 'ownerships',
+            'timeline_events', 'event_server_shares', 'user_server_visibility', 'motorcycle_specs',
+            'electrified_data', 'electrified_brands', 'manufacturers', 'bike_families', 'bikes',
+            'bike_components', 'bike_sizes', 'bike_geometry', 'bike_colors', 'bike_features',
+            'bike_images', 'bike_analysis',
+            
+            // Missing critical tables
+            'user_sessions', 'user_profiles', 'user_preferences', 'routes', 'rides', 
+            'marketplace_listings', 'marketplace_messages', 'notifications', 'media_uploads',
+            'audit_logs', 'security_events',
+            
+            // Missing feature tables
+            'oauth_connections', 'user_badges', 'user_statistics', 'dashboard_widgets',
+            'bike_maintenance', 'route_points_of_interest', 'ride_segments', 'ride_segment_efforts',
+            'user_follows', 'user_blocks', 'activity_feed', 'forum_categories', 'forum_topics',
+            'forum_posts', 'conversations', 'conversation_participants', 'messages', 'message_read_receipts',
+            'events', 'event_participants', 'recurring_events', 'achievements', 'user_achievements',
+            'achievement_progress', 'leaderboards', 'leaderboard_entries', 'gear_items',
+            'gear_usage_log', 'search_index', 'tags', 'entity_tags', 'saved_searches',
+            'trending_topics', 'rate_limits'
+        ];
+
+        // Define which tables exist
+        const existingTables = [
+            'users', 'servers', 'server_configs', 'user_roles', 'motorcycles', 'ownerships',
+            'timeline_events', 'event_server_shares', 'user_server_visibility', 'motorcycle_specs',
+            'electrified_data', 'electrified_brands', 'manufacturers', 'bike_families', 'bikes',
+            'bike_components', 'bike_sizes', 'bike_geometry', 'bike_colors', 'bike_features',
+            'bike_images', 'bike_analysis'
+        ];
+
+        // Define partially implemented tables
+        const partialTables = ['users', 'bikes', 'bike_components']; // Discord-focused but need web features
+
+        // Define page dependencies
+        const dependencies = {
+            'Homepage': ['users', 'bikes', 'routes', 'marketplace_listings'],
+            'Login/Signup': ['users', 'user_sessions', 'oauth_connections'],
+            'User Profile': ['users', 'user_profiles', 'user_statistics', 'user_badges', 'bikes', 'rides', 'achievements'],
+            'Edit Profile': ['users', 'user_profiles', 'user_preferences', 'media_uploads'],
+            'Dashboard': ['users', 'user_statistics', 'dashboard_widgets', 'activity_feed', 'notifications'],
+            'Virtual Garage': ['users', 'bikes', 'bike_components', 'bike_maintenance', 'media_uploads'],
+            'Add Bike': ['users', 'bikes', 'manufacturers', 'bike_families', 'media_uploads'],
+            'Bike Maintenance': ['users', 'bikes', 'bike_maintenance', 'bike_components'],
+            'Route Planner': ['users', 'routes', 'route_points_of_interest', 'saved_searches'],
+            'Create Route': ['users', 'routes', 'route_points_of_interest', 'media_uploads'],
+            'Rides Dashboard': ['users', 'rides', 'routes', 'bikes', 'ride_segments', 'user_statistics'],
+            'Record Ride': ['users', 'rides', 'routes', 'bikes', 'media_uploads'],
+            'Marketplace': ['users', 'marketplace_listings', 'media_uploads', 'search_index'],
+            'Sell Item': ['users', 'marketplace_listings', 'bikes', 'media_uploads'],
+            'Listing Detail': ['users', 'marketplace_listings', 'marketplace_messages', 'media_uploads'],
+            'Messages': ['users', 'conversations', 'conversation_participants', 'messages', 'message_read_receipts'],
+            'Forums': ['users', 'forum_categories', 'forum_topics', 'forum_posts'],
+            'Forum Thread': ['users', 'forum_topics', 'forum_posts', 'user_follows'],
+            'Following': ['users', 'user_follows', 'user_blocks', 'activity_feed'],
+            'Activity Feed': ['users', 'activity_feed', 'user_follows', 'rides', 'bikes'],
+            'Achievements': ['users', 'achievements', 'user_achievements', 'achievement_progress', 'leaderboards'],
+            'Events': ['users', 'events', 'event_participants', 'recurring_events'],
+            'Gear Collection': ['users', 'gear_items', 'gear_usage_log', 'rides'],
+            'Admin Dashboard': ['users', 'audit_logs', 'security_events', 'rate_limits', 'user_statistics'],
+            'Discord Bot': ['users', 'servers', 'server_configs', 'user_roles', 'motorcycles', 'ownerships', 'timeline_events'],
+            'Search': ['search_index', 'tags', 'entity_tags', 'saved_searches', 'trending_topics'],
+            'Notifications': ['users', 'notifications', 'user_preferences']
+        };
+
+        // Create chart data
+        let chartData = [];
+        let allData = [];
+
+        pages.forEach((page, pageIndex) => {
+            if (dependencies[page]) {
+                dependencies[page].forEach(table => {
+                    const tableIndex = tables.indexOf(table);
+                    if (tableIndex !== -1) {
+                        let color, status;
+                        if (existingTables.includes(table)) {
+                            if (partialTables.includes(table)) {
+                                color = '#f39c12'; // Orange for partial
+                                status = 'partial';
+                            } else {
+                                color = '#27ae60'; // Green for exists
+                                status = 'exists';
+                            }
+                        } else {
+                            color = '#e74c3c'; // Red for missing
+                            status = 'missing';
+                        }
+                        
+                        const dataPoint = {
+                            x: pageIndex,
+                            y: tableIndex,
+                            page: page,
+                            table: table,
+                            color: color,
+                            status: status
+                        };
+                        
+                        chartData.push(dataPoint);
+                        allData.push(dataPoint);
+                    }
+                });
+            }
+        });
+
+        // Chart configuration
+        const ctx = document.getElementById('matrixChart').getContext('2d');
+        
+        let chart = new Chart(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Page Dependencies',
+                    data: chartData,
+                    backgroundColor: function(context) {
+                        return context.parsed ? chartData[context.dataIndex]?.color : '#3498db';
+                    },
+                    borderColor: function(context) {
+                        return context.parsed ? chartData[context.dataIndex]?.color : '#3498db';
+                    },
+                    borderWidth: 2,
+                    pointRadius: 8,
+                    pointHoverRadius: 12
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        type: 'linear',
+                        position: 'bottom',
+                        min: -0.5,
+                        max: pages.length - 0.5,
+                        ticks: {
+                            stepSize: 1,
+                            callback: function(value) {
+                                return pages[Math.round(value)] || '';
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Website Pages/Features',
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        },
+                        grid: {
+                            display: true,
+                            color: '#ecf0f1'
+                        }
+                    },
+                    y: {
+                        type: 'linear',
+                        min: -0.5,
+                        max: tables.length - 0.5,
+                        ticks: {
+                            stepSize: 1,
+                            callback: function(value) {
+                                return tables[Math.round(value)] || '';
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Database Tables',
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        },
+                        grid: {
+                            display: true,
+                            color: '#ecf0f1'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(context) {
+                                const point = chartData[context[0].dataIndex];
+                                return `${point.page} → ${point.table}`;
+                            },
+                            label: function(context) {
+                                const point = chartData[context.dataIndex];
+                                const statusMap = {
+                                    'exists': 'Table exists - Feature works',
+                                    'partial': 'Table partial - Feature limited', 
+                                    'missing': 'Table missing - Feature broken'
+                                };
+                                return statusMap[point.status];
+                            }
+                        },
+                        backgroundColor: 'rgba(0,0,0,0.8)',
+                        titleColor: 'white',
+                        bodyColor: 'white',
+                        borderColor: '#3498db',
+                        borderWidth: 1
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'point'
+                },
+                onClick: function(event, elements) {
+                    if (elements.length > 0) {
+                        const point = chartData[elements[0].index];
+                        console.log(`Clicked: ${point.page} needs ${point.table} (${point.status})`);
+                    }
+                }
+            }
+        });
+
+        // Filter functions
+        function updateChart(newData) {
+            chart.data.datasets[0].data = newData;
+            chart.update();
+            chartData = newData;
+        }
+
+        function showAll() {
+            updateChart(allData);
+            document.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function showWorking() {
+            const workingData = allData.filter(point => point.status === 'exists');
+            updateChart(workingData);
+            document.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function showBroken() {
+            const brokenData = allData.filter(point => point.status === 'missing');
+            updateChart(brokenData);
+            document.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function showCritical() {
+            // Show tables needed by multiple pages
+            const tableCounts = {};
+            allData.forEach(point => {
+                if (point.status === 'missing') {
+                    tableCounts[point.table] = (tableCounts[point.table] || 0) + 1;
+                }
+            });
+            
+            const criticalTables = Object.keys(tableCounts).filter(table => tableCounts[table] >= 3);
+            const criticalData = allData.filter(point => 
+                point.status === 'missing' && criticalTables.includes(point.table)
+            );
+            
+            updateChart(criticalData);
+            document.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Initialize with all data
+        showAll();
+    </script>
+</body>
+</html>

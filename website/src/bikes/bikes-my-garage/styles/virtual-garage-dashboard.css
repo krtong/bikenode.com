@@ -1,0 +1,107 @@
+/* Custom styles for virtual garage that extend global components */
+
+/* Tab icon styling */
+.vg-tab-icon {
+    font-size: 1.2rem;
+}
+
+/* Position utilities not in global CSS - consider using global utilities */
+.vg-position-relative {
+    position: relative;
+}
+
+.vg-position-absolute {
+    position: absolute;
+}
+
+.vg-top-0 { top: 0; }
+.vg-start-0 { left: 0; }
+.vg-end-0 { right: 0; }
+.vg-bottom-0 { bottom: 0; }
+
+.vg-w-100 { width: 100%; }
+.vg-h-100 { height: 100%; }
+
+/* Flexbox alignment - consider using global utilities */
+.vg-align-items-center {
+    align-items: center;
+}
+
+.vg-justify-content-center {
+    justify-content: center;
+}
+
+/* Border dashed variant */
+.vg-border-dashed {
+    border-style: dashed !important;
+    border-width: 2px;
+}
+
+/* Crash Reports specific styles */
+.vg-crash-reports-section {
+    max-width: 800px;
+}
+
+.vg-info-card {
+    background: rgba(88, 101, 242, 0.1);
+    border: 1px solid rgba(88, 101, 242, 0.3);
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+
+.vg-report-severity {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.vg-report-severity.vg-minor {
+    background: rgba(46, 213, 115, 0.2);
+    color: #2ed573;
+}
+
+.vg-report-severity.vg-moderate {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+}
+
+.vg-report-severity.vg-serious {
+    background: rgba(255, 107, 0, 0.2);
+    color: #ff6b00;
+}
+
+.vg-report-severity.vg-severe {
+    background: rgba(255, 71, 87, 0.2);
+    color: #ff4757;
+}
+
+/* Maintenance specific styles */
+.vg-maintenance-schedule {
+    max-width: 1000px;
+}
+
+.vg-maintenance-item {
+    border-left: 4px solid transparent;
+}
+
+.vg-maintenance-item.vg-overdue {
+    border-left-color: #ef4444;
+}
+
+.vg-maintenance-item.vg-due-soon {
+    border-left-color: #f59e0b;
+}
+
+.vg-maintenance-item.vg-upcoming {
+    border-left-color: #10b981;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .vg-tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}

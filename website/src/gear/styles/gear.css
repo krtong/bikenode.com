@@ -1,5 +1,256 @@
 /* Gear Page Styles */
+:root {
+    --bg-primary: #0f0f0f;
+    --bg-secondary: #1a1a1a;
+    --bg-tertiary: #242424;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --text-tertiary: #707070;
+    --accent: #5865f2;
+    --accent-hover: #4752c4;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
 
+/* Page Container */
+.gear-page {
+    color: var(--text-primary);
+}
+
+/* Page content styles - header is handled by layout */
+.page-content-header {
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.page-subtitle {
+    margin: 0;
+    color: var(--text-secondary);
+}
+
+.page-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Bike Type Tabs */
+.bike-type-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    background: var(--glass-bg);
+    padding: 0.5rem;
+    border-radius: 12px;
+}
+
+.bike-type-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.bike-type-tab:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+}
+
+.bike-type-tab.active {
+    background: var(--accent);
+    color: white;
+}
+
+/* Stats Cards */
+.gear-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.stat-icon {
+    font-size: 2rem;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* Categories */
+.gear-categories {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.category-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.category-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+}
+
+.category-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.category-count {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.125rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+}
+
+/* Controls */
+.gear-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.search-filter {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+}
+
+.search-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.filter-btn {
+    padding: 0.75rem 1rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent);
+}
+
+.view-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.view-toggle {
+    display: flex;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.view-btn {
+    padding: 0.5rem 0.75rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.view-btn:hover {
+    color: var(--text-primary);
+}
+
+.view-btn.active {
+    background: var(--accent);
+    color: white;
+}
+
+.sort-select {
+    padding: 0.75rem 1rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a0a0a0' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+}
+
+/* Gear Grid */
 .gear-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -8,24 +259,25 @@
 }
 
 .gear-item {
-    background: white;
+    background: var(--bg-secondary);
+    border: 1px solid var(--glass-border);
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     overflow: hidden;
     transition: all 0.3s ease;
     position: relative;
 }
 
 .gear-item:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .gear-image {
     position: relative;
     width: 100%;
     height: 250px;
-    background: #f8f9fa;
+    background: var(--bg-tertiary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,122 +291,142 @@
     padding: 1rem;
 }
 
-.sale-badge {
+.gear-badges {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #dc2626;
-    color: white;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-.gear-info {
+.gear-details {
     padding: 1.5rem;
 }
 
-.gear-info h3 {
+.gear-name {
     font-size: 1.125rem;
     font-weight: 600;
-    color: #1f2937;
+    color: var(--text-primary);
     margin: 0 0 0.5rem 0;
     line-height: 1.4;
 }
 
-.gear-info .brand {
-    color: #6b7280;
+.gear-brand {
+    color: var(--text-secondary);
     font-size: 0.875rem;
     margin: 0 0 0.75rem 0;
 }
 
-.gear-info .price {
+.gear-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.gear-price {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #1f2937;
+    color: var(--text-primary);
     margin: 0 0 0.5rem 0;
 }
 
-.original-price {
-    text-decoration: line-through;
-    color: #9ca3af;
-    font-weight: 400;
-    font-size: 1rem;
+.gear-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.sale-price {
-    color: #dc2626;
-}
-
-.gear-info .rating {
+.stars {
     color: #f59e0b;
     font-size: 0.875rem;
-    margin: 0;
+}
+
+.rating-text {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* Gear Actions */
+.gear-actions {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0 1.5rem 1.5rem;
+}
+
+.action-btn {
+    padding: 0.5rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent);
 }
 
 /* Badge styles */
-.gear-item-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 10;
-    display: flex;
-    gap: 0.5rem;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.badge-sale,
-.badge-top-rated {
-    padding: 4px 12px;
-    border-radius: 20px;
+.badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 16px;
     font-size: 0.75rem;
     font-weight: 600;
 }
 
-.badge-sale {
-    background: #dc2626;
-    color: white;
+.badge.primary {
+    background: rgba(88, 101, 242, 0.2);
+    color: var(--accent);
 }
 
-.badge-top-rated {
-    background: #f59e0b;
-    color: white;
+.badge.certified {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
 }
 
-/* Feature tags */
-.gear-item-features {
-    margin-top: 0.75rem;
+.badge.tech {
+    background: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+}
+
+.badge.track {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+/* Load More */
+.load-more-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 3rem;
 }
 
-.feature-tag {
-    background: #e5e7eb;
-    color: #4b5563;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-}
-
-/* View details button */
-.btn-view-details {
-    width: 100%;
-    padding: 0.75rem;
-    background: var(--primary-color, #3b82f6);
-    color: white;
-    border: none;
+.load-more-btn {
+    padding: 0.75rem 2rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     border-radius: 8px;
-    font-weight: 600;
+    color: var(--text-primary);
+    font-weight: 500;
     cursor: pointer;
-    transition: background 0.2s;
-    margin-top: 1rem;
+    transition: all 0.2s;
 }
 
-.btn-view-details:hover {
-    background: var(--primary-hover, #2563eb);
+.load-more-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent);
 }
 
 /* Empty state */

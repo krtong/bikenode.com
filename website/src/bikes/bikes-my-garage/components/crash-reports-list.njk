@@ -1,0 +1,35 @@
+<!-- Crash Reports Section using global CSS components -->
+<div class="garage-crash-reports-section">
+    <div class="flex-between mb-4">
+        <div>
+            <h2 class="font-xl font-semibold">Crash Reports</h2>
+            <p class="text-secondary">Track your gear performance in real-world scenarios</p>
+        </div>
+        <button class="BN-Global-btn BN-Global-btn-primary" onclick="openAddCrashReportModal()">
+            <span>➕</span>
+            Add Report
+        </button>
+    </div>
+    
+    <!-- Info Card -->
+    <div class="garage-info-card mb-4">
+        <span>ℹ️</span>
+        <p>Your crash reports help other riders make informed gear decisions. All reports are anonymous.</p>
+    </div>
+    
+    <!-- Crash Reports List -->
+    <div id="crashReportsList">
+        <!-- Reports will be dynamically loaded here -->
+    </div>
+    
+    <!-- Empty State -->
+    <div class="text-center p-5 d-none" id="crashReportsEmpty">
+        <div class="mb-3" style="font-size: 4rem;">📋</div>
+        <h3 class="font-lg font-semibold text-primary mb-2">No crash reports yet</h3>
+        <p class="text-secondary mb-4">We hope you never need to add one, but if you do, your experience can help others</p>
+        <button class="BN-Global-btn BN-Global-btn-secondary" onclick="openAddCrashReportModal()">
+            <span>➕</span>
+            Add Your First Report
+        </button>
+    </div>
+</div>

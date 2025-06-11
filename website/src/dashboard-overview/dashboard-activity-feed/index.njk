@@ -1,0 +1,303 @@
+---
+layout: bikenode-main-layout-01/bikenode-main-layout-01.njk
+title: Activity Feed
+subtitle: See what your friends are up to
+customCSS:
+  - /routes/activity-feed/styles/activity-feed.css
+---
+
+
+<div class="feed-container">
+  <div class="feed-main">
+    <!-- Create Post -->
+    <div class="card">
+      <div class="create-post-header">
+        <div class="user-avatar">👤</div>
+        <div style="flex: 1;">
+          <textarea class="post-input" placeholder="Share your ride or thoughts..."></textarea>
+        </div>
+      </div>
+      <div class="post-actions">
+        <div class="post-options">
+          <button class="post-option">
+            <span>📸</span> Photo
+          </button>
+          <button class="post-option">
+            <span>🗺️</span> Route
+          </button>
+          <button class="post-option">
+            <span>🏆</span> Achievement
+          </button>
+        </div>
+        <button class="btn btn-primary">Post</button>
+      </div>
+    </div>
+
+    <!-- Activity Items -->
+    <div class="card">
+      <div class="activity-header">
+        <div class="activity-user">
+          <div class="user-avatar">SC</div>
+          <div class="activity-user-info">
+            <div class="activity-username">Sarah Chen</div>
+            <div class="activity-time">2 hours ago</div>
+          </div>
+        </div>
+        <button class="activity-menu">⋯</button>
+      </div>
+      
+      <div class="ride-summary">
+        <div class="ride-title">Morning Century Ride 🌅</div>
+        <div class="ride-stats">
+          <div class="ride-stat">
+            <div class="ride-stat-value">102.3</div>
+            <div class="ride-stat-label">miles</div>
+          </div>
+          <div class="ride-stat">
+            <div class="ride-stat-value">4:23:45</div>
+            <div class="ride-stat-label">time</div>
+          </div>
+          <div class="ride-stat">
+            <div class="ride-stat-value">3,420</div>
+            <div class="ride-stat-label">ft elevation</div>
+          </div>
+          <div class="ride-stat">
+            <div class="ride-stat-value">23.3</div>
+            <div class="ride-stat-label">avg mph</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="ride-map">Route Map Preview</div>
+      
+      <div class="activity-content">
+        Perfect weather for a century ride! Started early to beat the heat and caught an amazing sunrise over the mountains. Legs felt strong throughout, and the new bike performed flawlessly. 💪
+      </div>
+      
+      <div class="activity-actions">
+        <button class="activity-action">
+          <span>👍</span>
+          <span class="kudos-count">42 Kudos</span>
+        </button>
+        <button class="activity-action">
+          <span>💬</span>
+          <span>8 Comments</span>
+        </button>
+        <button class="activity-action">
+          <span>📤</span>
+          <span>Share</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="activity-header">
+        <div class="activity-user">
+          <div class="user-avatar">MJ</div>
+          <div class="activity-user-info">
+            <div class="activity-username">Mike Johnson</div>
+            <div class="activity-time">5 hours ago</div>
+          </div>
+        </div>
+        <button class="activity-menu">⋯</button>
+      </div>
+      
+      <div class="activity-content">
+        New bike day! 🎉 Finally got my dream gravel bike. Can't wait to hit the trails this weekend!
+      </div>
+      
+      <div class="activity-images">
+        <div class="activity-image single">Bike Photo</div>
+      </div>
+      
+      <div class="activity-actions">
+        <button class="activity-action active">
+          <span>👍</span>
+          <span class="kudos-count">127 Kudos</span>
+        </button>
+        <button class="activity-action">
+          <span>💬</span>
+          <span>23 Comments</span>
+        </button>
+        <button class="activity-action">
+          <span>📤</span>
+          <span>Share</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="activity-header">
+        <div class="activity-user">
+          <div class="user-avatar">EW</div>
+          <div class="activity-user-info">
+            <div class="activity-username">Emma Wilson</div>
+            <div class="activity-time">Yesterday</div>
+          </div>
+        </div>
+        <button class="activity-menu">⋯</button>
+      </div>
+      
+      <div class="ride-summary">
+        <div class="ride-title">Trail Shredding Session 🏔️</div>
+        <div class="ride-stats">
+          <div class="ride-stat">
+            <div class="ride-stat-value">18.7</div>
+            <div class="ride-stat-label">miles</div>
+          </div>
+          <div class="ride-stat">
+            <div class="ride-stat-value">2:15:30</div>
+            <div class="ride-stat-label">time</div>
+          </div>
+          <div class="ride-stat">
+            <div class="ride-stat-value">2,850</div>
+            <div class="ride-stat-label">ft elevation</div>
+          </div>
+          <div class="ride-stat">
+            <div class="ride-stat-value">8.3</div>
+            <div class="ride-stat-label">avg mph</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="activity-images">
+        <div class="activity-image">Trail Photo 1</div>
+        <div class="activity-image">Trail Photo 2</div>
+      </div>
+      
+      <div class="activity-content">
+        Epic day on the trails! Hit some new features and finally cleared that rock garden that's been challenging me all season. 🚵‍♀️
+      </div>
+      
+      <div class="activity-actions">
+        <button class="activity-action">
+          <span>👍</span>
+          <span class="kudos-count">89 Kudos</span>
+        </button>
+        <button class="activity-action">
+          <span>💬</span>
+          <span>15 Comments</span>
+        </button>
+        <button class="activity-action">
+          <span>📤</span>
+          <span>Share</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="load-more">
+      <button class="btn btn-secondary">Load More Activities</button>
+    </div>
+  </div>
+
+  <div class="feed-sidebar">
+    <!-- Active Challenges -->
+    <div class="card">
+      <h3 class="section-title">Active Challenges</h3>
+      
+      <div class="challenge-item">
+        <div class="challenge-icon">🏔️</div>
+        <div class="challenge-info">
+          <div class="challenge-name">Climbing Challenge</div>
+          <div class="challenge-progress">8,432 / 10,000 ft</div>
+        </div>
+      </div>
+      
+      <div class="challenge-item">
+        <div class="challenge-icon">📅</div>
+        <div class="challenge-info">
+          <div class="challenge-name">June Distance</div>
+          <div class="challenge-progress">234 / 300 miles</div>
+        </div>
+      </div>
+      
+      <div class="challenge-item">
+        <div class="challenge-icon">🔥</div>
+        <div class="challenge-info">
+          <div class="challenge-name">7-Day Streak</div>
+          <div class="challenge-progress">5 / 7 days</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Suggested Riders -->
+    <div class="card">
+      <h3 class="section-title">Suggested Riders</h3>
+      
+      <div class="suggested-rider">
+        <div class="user-avatar">JD</div>
+        <div class="suggested-rider-info">
+          <div class="suggested-rider-name">John Davis</div>
+          <div class="suggested-rider-mutual">12 mutual friends</div>
+        </div>
+        <button class="follow-btn">Follow</button>
+      </div>
+      
+      <div class="suggested-rider">
+        <div class="user-avatar">LP</div>
+        <div class="suggested-rider-info">
+          <div class="suggested-rider-name">Lisa Park</div>
+          <div class="suggested-rider-mutual">8 mutual friends</div>
+        </div>
+        <button class="follow-btn">Follow</button>
+      </div>
+      
+      <div class="suggested-rider">
+        <div class="user-avatar">RT</div>
+        <div class="suggested-rider-info">
+          <div class="suggested-rider-name">Ryan Thompson</div>
+          <div class="suggested-rider-mutual">5 mutual friends</div>
+        </div>
+        <button class="follow-btn">Follow</button>
+      </div>
+    </div>
+
+    <!-- Upcoming Events -->
+    <div class="card">
+      <h3 class="section-title">Upcoming Events</h3>
+      
+      <div class="challenge-item">
+        <div class="challenge-icon">🚴</div>
+        <div class="challenge-info">
+          <div class="challenge-name">Sunday Group Ride</div>
+          <div class="challenge-progress">Jun 9 • 23 attending</div>
+        </div>
+      </div>
+      
+      <div class="challenge-item">
+        <div class="challenge-icon">🏁</div>
+        <div class="challenge-info">
+          <div class="challenge-name">Local Crit Race</div>
+          <div class="challenge-progress">Jun 15 • Register now</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Kudos interaction
+  document.querySelectorAll('.activity-action').forEach(btn => {
+    if (btn.textContent.includes('Kudos')) {
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('active');
+        const kudosCount = btn.querySelector('.kudos-count');
+        const currentCount = parseInt(kudosCount.textContent);
+        if (btn.classList.contains('active')) {
+          kudosCount.textContent = `${currentCount + 1} Kudos`;
+        } else {
+          kudosCount.textContent = `${currentCount - 1} Kudos`;
+        }
+      });
+    }
+  });
+
+  // Post creation
+  document.querySelector('.btn-primary').addEventListener('click', () => {
+    const textarea = document.querySelector('.post-input');
+    if (textarea.value.trim()) {
+      alert('Post created!');
+      textarea.value = '';
+    }
+  });
+</script>

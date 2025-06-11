@@ -1,0 +1,434 @@
+/* Leaderboard Styles */
+.leaderboard {
+    padding: 20px;
+}
+
+.leaderboard-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.leaderboard-tab {
+    flex: 1;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.leaderboard-tab:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+}
+
+.leaderboard-tab.active {
+    background: rgba(251, 191, 36, 0.2);
+    border-color: rgba(251, 191, 36, 0.5);
+    color: #fbbf24;
+}
+
+.leaderboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.leaderboard-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.leaderboard-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.leaderboard-item.top-3 {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.leaderboard-item.current-user {
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.rank {
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.rank.gold {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: #0a0e27;
+}
+
+.rank.silver {
+    background: linear-gradient(135deg, #e5e7eb, #9ca3af);
+    color: #0a0e27;
+}
+
+.rank.bronze {
+    background: linear-gradient(135deg, #d97706, #92400e);
+    color: white;
+}
+
+.user-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.leaderboard-item.current-user .user-avatar {
+    border-color: rgba(251, 191, 36, 0.5);
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.user-stats {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.user-points {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fbbf24;
+}
+
+.leaderboard-separator {
+    text-align: center;
+    padding: 12px 0;
+    margin: 12px 0;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Upcoming Challenges */
+.upcoming-challenges {
+    padding: 20px;
+}
+
+.challenge-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.challenge-item {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.challenge-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.challenge-item.active {
+    background: rgba(251, 191, 36, 0.05);
+    border-color: rgba(251, 191, 36, 0.3);
+}
+
+.challenge-icon {
+    font-size: 32px;
+}
+
+.challenge-info {
+    flex: 1;
+}
+
+.challenge-info h4 {
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.challenge-info p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+}
+
+.challenge-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+
+.challenge-reward {
+    color: #fbbf24;
+    font-weight: 600;
+}
+
+.challenge-time {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Share Modal */
+.share-modal .modal-content {
+    max-width: 500px;
+}
+
+.share-preview {
+    margin-bottom: 24px;
+}
+
+.preview-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.preview-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.preview-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+}
+
+.preview-brand {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.preview-content {
+    padding: 24px;
+    text-align: center;
+}
+
+.preview-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+.preview-content h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.preview-content p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 16px;
+}
+
+.preview-stats {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.share-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.share-option {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.share-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.share-option.facebook:hover {
+    background: #1877f2;
+    border-color: #1877f2;
+}
+
+.share-option.twitter:hover {
+    background: #1da1f2;
+    border-color: #1da1f2;
+}
+
+.share-option.strava:hover {
+    background: #fc4c02;
+    border-color: #fc4c02;
+}
+
+.share-option.link:hover {
+    background: rgba(251, 191, 36, 0.2);
+    border-color: rgba(251, 191, 36, 0.5);
+}
+
+.share-message {
+    margin-bottom: 24px;
+}
+
+.share-message label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.share-message textarea {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    resize: vertical;
+}
+
+.share-message textarea:focus {
+    outline: none;
+    border-color: #fbbf24;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    background: #0a0e27;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow: hidden;
+    animation: modalSlideIn 0.3s ease;
+}
+
+.modal-content.modal-small {
+    max-width: 500px;
+}
+
+.modal-header {
+    padding: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.modal-close {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.modal-body {
+    padding: 24px;
+    overflow-y: auto;
+    max-height: calc(90vh - 140px);
+}
+
+.modal-footer {
+    padding: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

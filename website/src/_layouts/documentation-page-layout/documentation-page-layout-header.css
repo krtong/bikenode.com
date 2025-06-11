@@ -1,0 +1,51 @@
+/* Documentation Page Layout Header Styles */
+
+/* Header adjustments for docs */
+.documentation-page-layout-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(54, 57, 63, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 100;
+    height: 60px;
+}
+
+.documentation-page-layout-header .documentation-page-layout-header-content {
+    max-width: none;
+    padding: 0 24px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo Styling for Docs Header */
+.documentation-page-layout-header .documentation-page-layout-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.documentation-page-layout-header .documentation-page-layout-logo {
+    height: 36px;
+    width: auto;
+    transition: transform 0.2s ease;
+}
+
+.documentation-page-layout-header .documentation-page-layout-logo:hover {
+    transform: scale(1.05);
+}
+
+.documentation-page-layout-header .documentation-page-layout-nav-link.active {
+    color: var(--accent);
+}
+
+/* Mobile responsive styles from main layout */
+@media (max-width: 1024px) {
+    .documentation-page-layout-header .documentation-page-layout-nav-menu {
+        display: none;
+    }
+}

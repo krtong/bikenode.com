@@ -1,0 +1,289 @@
+/* Bike Selection Styles */
+
+.owned-bikes-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+.owned-bikes-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.owned-bikes-header h3 {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.owned-bikes-header p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.owned-bikes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.owned-bike-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.owned-bike-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-primary);
+    box-shadow: 0 4px 12px rgba(0, 255, 136, 0.1);
+}
+
+.bike-image {
+    width: 100%;
+    height: 150px;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bike-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bike-image .no-image {
+    font-size: 3rem;
+    opacity: 0.3;
+}
+
+.bike-info {
+    padding: 1rem;
+}
+
+.bike-info h4 {
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.bike-info p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.select-bike-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.select-bike-btn:hover {
+    background: var(--accent-secondary);
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 2rem;
+    font-style: italic;
+}
+
+.divider {
+    text-align: center;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.divider span {
+    background: var(--bg-secondary);
+    padding: 0 1rem;
+    position: relative;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Bike Selection Section */
+.bike-selection-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+.bike-selection-section h3 {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.selection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.selection-step {
+    display: flex;
+    flex-direction: column;
+}
+
+.selected-bike-card {
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid var(--accent-primary);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.selected-bike-card h3 {
+    color: var(--accent-primary);
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.selected-bike-card p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* VIN and Odometer specific styles */
+#vinGroup .form-input {
+    font-family: monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.input-with-unit {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.input-with-unit .form-input {
+    flex: 1;
+}
+
+.unit-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+/* Modifications Container */
+.specifications-container,
+#modificationsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.spec-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.spec-key,
+.spec-value {
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.btn-remove-spec {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.btn-remove-spec:hover {
+    background: rgba(255, 67, 54, 0.2);
+    border-color: rgba(255, 67, 54, 0.5);
+    color: #ff4336;
+}
+
+.btn-add-spec {
+    align-self: flex-start;
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-add-spec:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .owned-bikes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .selection-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .spec-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .spec-row .spec-key,
+    .spec-row .spec-value {
+        width: 100%;
+    }
+    
+    .spec-row .btn-remove-spec {
+        width: 100%;
+    }
+}

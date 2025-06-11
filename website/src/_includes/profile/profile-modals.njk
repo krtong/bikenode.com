@@ -1,0 +1,67 @@
+<!-- Enhanced Modals -->
+<div id="profileModal" class="BN-Global-modal-overlay" style="display: none;">
+    <div class="BN-Global-modal">
+        <div class="BN-Global-modal-header">
+            <h3 id="modalTitle">Modal Title</h3>
+            <button class="BN-Global-modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="BN-Global-modal-body" id="modalBody">
+            <!-- Dynamic content will be inserted here -->
+        </div>
+    </div>
+</div>
+
+<!-- Followers/Following Modal -->
+<div id="followersModal" class="BN-Global-modal-overlay" style="display: none;">
+    <div class="BN-Global-modal">
+        <div class="BN-Global-modal-header">
+            <h3 id="followersTitle">Followers</h3>
+            <button class="BN-Global-modal-close" onclick="closeFollowersModal()">&times;</button>
+        </div>
+        <div class="BN-Global-modal-body">
+            <div class="search-bar">
+                <input type="text" placeholder="Search users..." class="search-input">
+            </div>
+            <div class="users-list" id="usersList">
+                <!-- Dynamic user list will be populated here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Share Profile Modal -->
+<div id="shareModal" class="BN-Global-modal-overlay" style="display: none;">
+    <div class="BN-Global-modal">
+        <div class="BN-Global-modal-header">
+            <h3>Share Profile</h3>
+            <button class="BN-Global-modal-close" onclick="closeShareModal()">&times;</button>
+        </div>
+        <div class="BN-Global-modal-body">
+            <div class="share-options">
+                <button class="share-btn discord" onclick="shareToDiscord()">
+                    <span class="share-icon">💬</span>
+                    Share to Discord
+                </button>
+                <button class="share-btn twitter" onclick="shareToTwitter()">
+                    <span class="share-icon">🐦</span>
+                    Share to Twitter
+                </button>
+                <button class="share-btn copy" onclick="copyProfileLink()">
+                    <span class="share-icon">🔗</span>
+                    Copy Link
+                </button>
+                <button class="share-btn email" onclick="shareByEmail()">
+                    <span class="share-icon">📧</span>
+                    Share by Email
+                </button>
+            </div>
+            <div class="share-link">
+                <input type="text" value="https://bikenode.com/profile/krtong" readonly class="link-input">
+                <button class="copy-btn" onclick="copyToClipboard()">Copy</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notifications -->
+<div id="toastContainer" class="toast-container"></div>

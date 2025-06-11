@@ -1,0 +1,827 @@
+permalink: /bike-details/
+---
+
+<div class="bike-details-container">
+    <!-- Bike Header -->
+    <div class="bike-header">
+        <div class="bike-hero">
+            <div class="bike-hero-image">
+                <img src="{{ bike.image }}" alt="{{ bike.name }}" class="hero-image">
+                <div class="bike-badge">{{ bike.type }}</div>
+            </div>
+            
+            <div class="bike-hero-info">
+                <div class="dashboard-breadcrumb">
+                    <a href="/virtual-garage-dashboard/">Virtual Garage</a>
+                    <span class="breadcrumb-separator">></span>
+                    <span>{{ bike.name }}</span>
+                </div>
+                
+                <h1 class="bike-title">{{ bike.name }}</h1>
+                <p class="bike-subtitle">{{ bike.type }} • {{ bike.photos }} Photos • {{ bike.records }} Records</p>
+                
+                <div class="bike-actions-header">
+                    <button class="btn-primary">
+                        <span class="icon">✏️</span>
+                        Edit Bike
+                    </button>
+                    <a href="/add-photos/{{ bike.id }}/" class="btn-secondary">
+                        <span class="icon">📸</span>
+                        Add Photos
+                    </a>
+                    <button class="btn-secondary">
+                        <span class="icon">🔧</span>
+                        Add Maintenance
+                    </button>
+                    <div class="action-menu">
+                        <button class="btn-icon" onclick="toggleBikeActionMenu()">⋯</button>
+                        <div class="action-dropdown" id="bike-action-dropdown">
+                            <a href="#" class="dropdown-item">Share Bike</a>
+                            <a href="#" class="dropdown-item">Export Data</a>
+                            <a href="#" class="dropdown-item">Delete Bike</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bike Content -->
+    <div class="bike-content">
+        <!-- Navigation Tabs -->
+        <div class="bike-tabs">
+            <button class="bike-tab-btn active" data-tab="overview">Overview</button>
+            <button class="bike-tab-btn" data-tab="photos">Photos ({{ bike.photos }})</button>
+            <button class="bike-tab-btn" data-tab="maintenance">Maintenance ({{ bike.records }})</button>
+            <button class="bike-tab-btn" data-tab="specs">Specifications</button>
+            <button class="bike-tab-btn" data-tab="community">Community</button>
+        </div>
+
+        <!-- Overview Tab -->
+        <div class="bike-tab-content active" id="overview">
+            <div class="overview-grid">
+                <!-- Quick Stats -->
+                <div class="content-card">
+                    <h3>Quick Stats</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-icon">📸</span>
+                            <div class="stat-content">
+                                <span class="stat-number">{{ bike.photos }}</span>
+                                <span class="stat-label">Photos</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">🔧</span>
+                            <div class="stat-content">
+                                <span class="stat-number">{{ bike.records }}</span>
+                                <span class="stat-label">Maintenance Records</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">👥</span>
+                            <div class="stat-content">
+                                <span class="stat-number">{{ bike.communities }}</span>
+                                <span class="stat-label">Communities</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">📅</span>
+                            <div class="stat-content">
+                                <span class="stat-number">{% if bike.id == 1 %}2007{% elif bike.id == 2 %}2001{% elif bike.id == 3 %}2024{% elif bike.id == 4 %}2010{% else %}2005{% endif %}</span>
+                                <span class="stat-label">Model Year</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About This Bike -->
+                <div class="content-card">
+                    <h3>About This Bike</h3>
+                    {% if bike.id == 1 %}
+                    <p class="bike-description">
+                        My main track day weapon! This Tuono is the perfect balance of street comfort and track capability. 
+                        The V4 engine is absolutely intoxicating - nothing sounds better on the track. I've done suspension 
+                        work with Öhlins components and it handles like a dream at Thunderhill and Laguna Seca.
+                    </p>
+                    <div class="bike-features">
+                        <h4>Key Features</h4>
+                        <ul>
+                            <li>998cc V4 engine producing 139hp</li>
+                            <li>Öhlins suspension upgrade</li>
+                            <li>Track-focused setup</li>
+                            <li>Naked bike comfort with sport bike performance</li>
+                            <li>Perfect for Group A track days</li>
+                        </ul>
+                    </div>
+                    {% elif bike.id == 2 %}
+                    <p class="bike-description">
+                        My first real sport bike and what got me into track riding. This F4i has been incredibly reliable 
+                        and forgiving as I learned to push my limits. It's a great beginner track bike with modern features 
+                        like fuel injection but without the intimidating power of newer liter bikes.
+                    </p>
+                    <div class="bike-features">
+                        <h4>Key Features</h4>
+                        <ul>
+                            <li>599cc inline-4 engine</li>
+                            <li>Fuel injection system</li>
+                            <li>Perfect learning platform</li>
+                            <li>Reliable and easy to maintain</li>
+                            <li>Classic early 2000s sport bike design</li>
+                        </ul>
+                    </div>
+                    {% elif bike.id == 3 %}
+                    <p class="bike-description">
+                        My newest addition for commuting and recreational riding around the Bay Area. The electric assist 
+                        makes hills effortless and extends my riding range significantly. Perfect for exploring new trails 
+                        and getting around town without the car.
+                    </p>
+                    <div class="bike-features">
+                        <h4>Key Features</h4>
+                        <ul>
+                            <li>Electric motor assist</li>
+                            <li>Long range battery</li>
+                            <li>Versatile for road and light trails</li>
+                            <li>Integrated lights and fenders</li>
+                            <li>Great for Bay Area commuting</li>
+                        </ul>
+                    </div>
+                    {% elif bike.id == 4 %}
+                    <p class="bike-description">
+                        My reliable daily rider for many years. This hybrid has been perfect for commuting and casual rides 
+                        around the city. It's comfortable, efficient, and has handled everything I've thrown at it. 
+                        A true workhorse bicycle that just keeps going.
+                    </p>
+                    <div class="bike-features">
+                        <h4>Key Features</h4>
+                        <ul>
+                            <li>Reliable hybrid design</li>
+                            <li>Comfortable upright position</li>
+                            <li>Great for commuting</li>
+                            <li>Low maintenance</li>
+                            <li>Proven Trek quality</li>
+                        </ul>
+                    </div>
+                    {% else %}
+                    <p class="bike-description">
+                        A classic cyclocross bike from when I was experimenting with different cycling disciplines. 
+                        The geometry is perfect for both road riding and light off-road adventures. Bianchi's famous 
+                        celeste color and Italian craftsmanship make this a beautiful and functional machine.
+                    </p>
+                    <div class="bike-features">
+                        <h4>Key Features</h4>
+                        <ul>
+                            <li>Classic cyclocross geometry</li>
+                            <li>Bianchi celeste color</li>
+                            <li>Versatile for road and cyclocross</li>
+                            <li>Italian craftsmanship</li>
+                            <li>Lightweight aluminum frame</li>
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="content-card">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-feed">
+                        {% if bike.id == 1 %}
+                        <div class="activity-item">
+                            <div class="activity-icon">🔧</div>
+                            <div class="activity-content">
+                                <p><strong>Suspension setup</strong> - Dialed in Öhlins for next track day</p>
+                                <span class="activity-time">2 weeks ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🏁</div>
+                            <div class="activity-content">
+                                <p><strong>Track day</strong> - Laguna Seca, moved up to Group A</p>
+                                <span class="activity-time">3 weeks ago</span>
+                            </div>
+                        </div>
+                        {% elif bike.id == 2 %}
+                        <div class="activity-item">
+                            <div class="activity-icon">❓</div>
+                            <div class="activity-content">
+                                <p><strong>Troubleshooting</strong> - Error code 46 resolved</p>
+                                <span class="activity-time">1 week ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🔧</div>
+                            <div class="activity-content">
+                                <p><strong>Maintenance</strong> - Oil change and chain adjustment</p>
+                                <span class="activity-time">1 month ago</span>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="activity-item">
+                            <div class="activity-icon">🚴</div>
+                            <div class="activity-content">
+                                <p><strong>Last ride</strong> - 15 mile loop around the bay</p>
+                                <span class="activity-time">3 days ago</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Photos Tab -->
+        <div class="bike-tab-content" id="photos">
+            <div class="photos-section">
+                {% if bike.photos > 0 %}
+                <div class="photos-grid">
+                    {% if bike.id == 1 %}
+                        {% for photo in ['BAA64891-1650-46D4-BBD7-E80A7C1FE385_1_105_c.jpeg', '4876820D-6A68-47C5-B12E-1E0AEA8F0F14_1_105_c.jpeg', 'BF0FC511-90E4-4F61-852F-E48892D22336_1_105_c.jpeg', 'D496A872-0E92-4D2B-BCDE-6F0028FBCEE9_1_105_c.jpeg', '1B4A68E5-5D69-4A5D-A900-9FD59BA96193_1_105_c.jpeg', 'BF0FC511-90E4-4F61-852F-E48892D22336_1_105_c copy.jpeg'] %}
+                        <div class="photo-item">
+                            <img src="/assets/images/kevintong/tuono/{{ photo }}" alt="{{ bike.name }}" onclick="openPhotoModal(this.src)">
+                        </div>
+                        {% endfor %}
+                    {% elif bike.id == 2 %}
+                        {% for photo in ['07708AC7-556C-4B6A-8767-DE1A272C29C1_1_105_c.jpeg', '30068309-9811-4E2E-AB66-5EC1F0146907_1_105_c.jpeg', '6D0E930C-6252-4C7B-B325-2A2E1D18FA31_1_105_c.jpeg'] %}
+                        <div class="photo-item">
+                            <img src="/assets/images/kevintong/f4i/{{ photo }}" alt="{{ bike.name }}" onclick="openPhotoModal(this.src)">
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% else %}
+                <div class="no-photos">
+                    <div class="no-photos-icon">📸</div>
+                    <h3>No Photos Yet</h3>
+                    <p>Add some photos to showcase your {{ bike.name }}!</p>
+                    <a href="/add-photos/{{ bike.id }}/" class="btn-primary">
+                        <span class="icon">📸</span>
+                        Add Photos
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Maintenance Tab -->
+        <div class="bike-tab-content" id="maintenance">
+            <div class="maintenance-section">
+                <div class="maintenance-header">
+                    <h3>Maintenance Records</h3>
+                    <button class="btn-primary">
+                        <span class="icon">➕</span>
+                        Add Record
+                    </button>
+                </div>
+                
+                {% if bike.records > 0 %}
+                <div class="maintenance-list">
+                    {% if bike.id == 1 %}
+                    <div class="maintenance-item">
+                        <div class="maintenance-icon">🔧</div>
+                        <div class="maintenance-content">
+                            <h4>Öhlins Suspension Setup</h4>
+                            <p>Dialed in compression and rebound for track days. Perfect setup achieved.</p>
+                            <div class="maintenance-meta">
+                                <span class="maintenance-date">2 weeks ago</span>
+                                <span class="maintenance-cost">$150</span>
+                                <span class="maintenance-mileage">18,200 miles</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="maintenance-item">
+                        <div class="maintenance-icon">🛢️</div>
+                        <div class="maintenance-content">
+                            <h4>Oil Change & Filter</h4>
+                            <p>Regular oil change with Motul 5100 15W-50. New oil filter installed.</p>
+                            <div class="maintenance-meta">
+                                <span class="maintenance-date">1 month ago</span>
+                                <span class="maintenance-cost">$85</span>
+                                <span class="maintenance-mileage">18,100 miles</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% elif bike.id == 2 %}
+                    <div class="maintenance-item">
+                        <div class="maintenance-icon">⚡</div>
+                        <div class="maintenance-content">
+                            <h4>Error Code 46 Fix</h4>
+                            <p>Resolved error code 46 - turned out to be a loose sensor connection.</p>
+                            <div class="maintenance-meta">
+                                <span class="maintenance-date">1 week ago</span>
+                                <span class="maintenance-cost">$0</span>
+                                <span class="maintenance-mileage">24,500 miles</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="maintenance-item">
+                        <div class="maintenance-icon">🔧</div>
+                        <div class="maintenance-content">
+                            <h4>General Tune-up</h4>
+                            <p>Routine maintenance and adjustments to keep everything running smoothly.</p>
+                            <div class="maintenance-meta">
+                                <span class="maintenance-date">2 months ago</span>
+                                <span class="maintenance-cost">$75</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                {% else %}
+                <div class="no-maintenance">
+                    <div class="no-maintenance-icon">🔧</div>
+                    <h3>No Maintenance Records</h3>
+                    <p>Start tracking maintenance for your {{ bike.name }}!</p>
+                    <button class="btn-primary">
+                        <span class="icon">➕</span>
+                        Add First Record
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Specifications Tab -->
+        <div class="bike-tab-content" id="specs">
+            <div class="specs-section">
+                <div class="specs-grid">
+                    {% if bike.category == "motorcycle" %}
+                        <!-- Engine Specifications -->
+                        {% if bike.specs.engine %}
+                        <div class="spec-category">
+                            <h4>Engine</h4>
+                            <div class="spec-items">
+                                <div class="spec-item">
+                                    <span class="spec-label">Type</span>
+                                    <span class="spec-value">{{ bike.specs.engine.type }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Displacement</span>
+                                    <span class="spec-value">{{ bike.specs.engine.displacement }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Bore x Stroke</span>
+                                    <span class="spec-value">{{ bike.specs.engine.bore }} x {{ bike.specs.engine.stroke }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Compression</span>
+                                    <span class="spec-value">{{ bike.specs.engine.compression }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Fuel System</span>
+                                    <span class="spec-value">{{ bike.specs.engine.fuelSystem }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Valves</span>
+                                    <span class="spec-value">{{ bike.specs.engine.valves }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Performance Specifications -->
+                        {% if bike.specs.performance %}
+                        <div class="spec-category">
+                            <h4>Performance</h4>
+                            <div class="spec-items">
+                                <div class="spec-item">
+                                    <span class="spec-label">Max Power</span>
+                                    <span class="spec-value">{{ bike.specs.performance.power }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Max Torque</span>
+                                    <span class="spec-value">{{ bike.specs.performance.torque }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Top Speed</span>
+                                    <span class="spec-value">{{ bike.specs.performance.topSpeed }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Acceleration</span>
+                                    <span class="spec-value">{{ bike.specs.performance.acceleration }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Dimensions -->
+                        {% if bike.specs.dimensions %}
+                        <div class="spec-category">
+                            <h4>Dimensions</h4>
+                            <div class="spec-items">
+                                <div class="spec-item">
+                                    <span class="spec-label">Length</span>
+                                    <span class="spec-value">{{ bike.specs.dimensions.length }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Width</span>
+                                    <span class="spec-value">{{ bike.specs.dimensions.width }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Height</span>
+                                    <span class="spec-value">{{ bike.specs.dimensions.height }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Seat Height</span>
+                                    <span class="spec-value">{{ bike.specs.dimensions.seatHeight }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Wheelbase</span>
+                                    <span class="spec-value">{{ bike.specs.dimensions.wheelbase }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Ground Clearance</span>
+                                    <span class="spec-value">{{ bike.specs.dimensions.groundClearance }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Weight & Fuel -->
+                        <div class="spec-category">
+                            <h4>Weight & Fuel</h4>
+                            <div class="spec-items">
+                                {% if bike.specs.weight %}
+                                <div class="spec-item">
+                                    <span class="spec-label">Dry Weight</span>
+                                    <span class="spec-value">{{ bike.specs.weight.dry }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Wet Weight</span>
+                                    <span class="spec-value">{{ bike.specs.weight.wet }}</span>
+                                </div>
+                                {% endif %}
+                                {% if bike.specs.fuel %}
+                                <div class="spec-item">
+                                    <span class="spec-label">Fuel Capacity</span>
+                                    <span class="spec-value">{{ bike.specs.fuel.capacity }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Fuel Consumption</span>
+                                    <span class="spec-value">{{ bike.specs.fuel.consumption }}</span>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Suspension & Brakes -->
+                        {% if bike.specs.suspension or bike.specs.brakes %}
+                        <div class="spec-category">
+                            <h4>Suspension & Brakes</h4>
+                            <div class="spec-items">
+                                {% if bike.specs.suspension %}
+                                <div class="spec-item">
+                                    <span class="spec-label">Front Suspension</span>
+                                    <span class="spec-value">{{ bike.specs.suspension.front }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Rear Suspension</span>
+                                    <span class="spec-value">{{ bike.specs.suspension.rear }}</span>
+                                </div>
+                                {% endif %}
+                                {% if bike.specs.brakes %}
+                                <div class="spec-item">
+                                    <span class="spec-label">Front Brakes</span>
+                                    <span class="spec-value">{{ bike.specs.brakes.front }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Rear Brakes</span>
+                                    <span class="spec-value">{{ bike.specs.brakes.rear }}</span>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Wheels & Tires -->
+                        {% if bike.specs.wheels or bike.specs.tires %}
+                        <div class="spec-category">
+                            <h4>Wheels & Tires</h4>
+                            <div class="spec-items">
+                                {% if bike.specs.wheels %}
+                                <div class="spec-item">
+                                    <span class="spec-label">Front Wheel</span>
+                                    <span class="spec-value">{{ bike.specs.wheels.front }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Rear Wheel</span>
+                                    <span class="spec-value">{{ bike.specs.wheels.rear }}</span>
+                                </div>
+                                {% endif %}
+                                {% if bike.specs.tires %}
+                                <div class="spec-item">
+                                    <span class="spec-label">Front Tire</span>
+                                    <span class="spec-value">{{ bike.specs.tires.front }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Rear Tire</span>
+                                    <span class="spec-value">{{ bike.specs.tires.rear }}</span>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                    {% else %}
+                        <!-- Bicycle Specifications -->
+                        {% if bike.specs.frame %}
+                        <div class="spec-category">
+                            <h4>Frame</h4>
+                            <div class="spec-items">
+                                <div class="spec-item">
+                                    <span class="spec-label">Material</span>
+                                    <span class="spec-value">{{ bike.specs.frame.material }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Size</span>
+                                    <span class="spec-value">{{ bike.specs.frame.size }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Geometry</span>
+                                    <span class="spec-value">{{ bike.specs.frame.geometry }}</span>
+                                </div>
+                                {% if bike.specs.frame.color %}
+                                <div class="spec-item">
+                                    <span class="spec-label">Color</span>
+                                    <span class="spec-value">{{ bike.specs.frame.color }}</span>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if bike.specs.motor %}
+                        <div class="spec-category">
+                            <h4>Motor & Battery</h4>
+                            <div class="spec-items">
+                                <div class="spec-item">
+                                    <span class="spec-label">Motor</span>
+                                    <span class="spec-value">{{ bike.specs.motor.type }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Power</span>
+                                    <span class="spec-value">{{ bike.specs.motor.power }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Torque</span>
+                                    <span class="spec-value">{{ bike.specs.motor.torque }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Battery</span>
+                                    <span class="spec-value">{{ bike.specs.motor.battery }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if bike.specs.drivetrain %}
+                        <div class="spec-category">
+                            <h4>Drivetrain</h4>
+                            <div class="spec-items">
+                                <div class="spec-item">
+                                    <span class="spec-label">Gears</span>
+                                    <span class="spec-value">{{ bike.specs.drivetrain.gears }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Shifters</span>
+                                    <span class="spec-value">{{ bike.specs.drivetrain.shifters }}</span>
+                                </div>
+                                {% if bike.specs.drivetrain.derailleur %}
+                                <div class="spec-item">
+                                    <span class="spec-label">Rear Derailleur</span>
+                                    <span class="spec-value">{{ bike.specs.drivetrain.derailleur }}</span>
+                                </div>
+                                {% endif %}
+                                {% if bike.specs.drivetrain.rearDerailleur %}
+                                <div class="spec-item">
+                                    <span class="spec-label">Rear Derailleur</span>
+                                    <span class="spec-value">{{ bike.specs.drivetrain.rearDerailleur }}</span>
+                                </div>
+                                {% endif %}
+                                {% if bike.specs.drivetrain.cassette %}
+                                <div class="spec-item">
+                                    <span class="spec-label">Cassette</span>
+                                    <span class="spec-value">{{ bike.specs.drivetrain.cassette }}</span>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if bike.specs.brakes %}
+                        <div class="spec-category">
+                            <h4>Brakes</h4>
+                            <div class="spec-items">
+                                <div class="spec-item">
+                                    <span class="spec-label">Type</span>
+                                    <span class="spec-value">{{ bike.specs.brakes.type }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Front</span>
+                                    <span class="spec-value">{{ bike.specs.brakes.front }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Rear</span>
+                                    <span class="spec-value">{{ bike.specs.brakes.rear }}</span>
+                                </div>
+                                {% if bike.specs.brakes.rotors %}
+                                <div class="spec-item">
+                                    <span class="spec-label">Rotors</span>
+                                    <span class="spec-value">{{ bike.specs.brakes.rotors }}</span>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if bike.specs.wheels %}
+                        <div class="spec-category">
+                            <h4>Wheels</h4>
+                            <div class="spec-items">
+                                <div class="spec-item">
+                                    <span class="spec-label">Size</span>
+                                    <span class="spec-value">{{ bike.specs.wheels.size }}</span>
+                                </div>
+                                {% if bike.specs.wheels.rims %}
+                                <div class="spec-item">
+                                    <span class="spec-label">Rims</span>
+                                    <span class="spec-value">{{ bike.specs.wheels.rims }}</span>
+                                </div>
+                                {% endif %}
+                                <div class="spec-item">
+                                    <span class="spec-label">Tires</span>
+                                    <span class="spec-value">{{ bike.specs.wheels.tires }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if bike.specs.range %}
+                        <div class="spec-category">
+                            <h4>Range & Charging</h4>
+                            <div class="spec-items">
+                                <div class="spec-item">
+                                    <span class="spec-label">Eco Mode</span>
+                                    <span class="spec-value">{{ bike.specs.range.eco }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Turbo Mode</span>
+                                    <span class="spec-value">{{ bike.specs.range.turbo }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Charging Time</span>
+                                    <span class="spec-value">{{ bike.specs.range.charging }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <div class="spec-category">
+                            <h4>General</h4>
+                            <div class="spec-items">
+                                <div class="spec-item">
+                                    <span class="spec-label">Weight</span>
+                                    <span class="spec-value">{{ bike.specs.weight }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Year</span>
+                                    <span class="spec-value">{{ bike.year }}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Category</span>
+                                    <span class="spec-value">{{ bike.type }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Community Tab -->
+        <div class="bike-tab-content" id="community">
+            <div class="community-section">
+                <h3>Shared Communities</h3>
+                <div class="communities-list">
+                    {% if bike.communities >= 3 %}
+                    <div class="community-item">
+                        <div class="community-icon">🏍️</div>
+                        <div class="community-details">
+                            <h4>Sport Bike Riders</h4>
+                            <p>1,234 members • Very Active</p>
+                        </div>
+                        <div class="community-role admin">Shared</div>
+                    </div>
+                    <div class="community-item">
+                        <div class="community-icon">🏁</div>
+                        <div class="community-details">
+                            <h4>Track Day Warriors</h4>
+                            <p>567 members • Active</p>
+                        </div>
+                        <div class="community-role member">Shared</div>
+                    </div>
+                    <div class="community-item">
+                        <div class="community-icon">🛣️</div>
+                        <div class="community-details">
+                            <h4>Bay Area Riders</h4>
+                            <p>892 members • Very Active</p>
+                        </div>
+                        <div class="community-role member">Shared</div>
+                    </div>
+                    {% elif bike.communities >= 2 %}
+                    <div class="community-item">
+                        <div class="community-icon">🏍️</div>
+                        <div class="community-details">
+                            <h4>Sport Bike Riders</h4>
+                            <p>1,234 members • Very Active</p>
+                        </div>
+                        <div class="community-role member">Shared</div>
+                    </div>
+                    <div class="community-item">
+                        <div class="community-icon">🛣️</div>
+                        <div class="community-details">
+                            <h4>Bay Area Riders</h4>
+                            <p>892 members • Very Active</p>
+                        </div>
+                        <div class="community-role member">Shared</div>
+                    </div>
+                    {% else %}
+                    <div class="community-item">
+                        <div class="community-icon">🚴</div>
+                        <div class="community-details">
+                            <h4>Bay Area Cyclists</h4>
+                            <p>456 members • Active</p>
+                        </div>
+                        <div class="community-role member">Shared</div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Photo Modal -->
+<div id="photo-modal" class="photo-modal" onclick="closePhotoModal()">
+    <div class="photo-modal-content">
+        <span class="photo-modal-close">&times;</span>
+        <img id="modal-image" src="" alt="Bike Photo">
+    </div>
+</div>
+
+<script>
+// Tab functionality
+document.querySelectorAll('.bike-tab-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const tabId = this.dataset.tab;
+        
+        // Remove active class from all tabs and content
+        document.querySelectorAll('.bike-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.bike-tab-content').forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        this.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+    });
+});
+
+// Action menu toggle
+function toggleBikeActionMenu() {
+    const dropdown = document.getElementById('bike-action-dropdown');
+    dropdown.classList.toggle('active');
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+    const actionMenu = document.querySelector('.action-menu');
+    const dropdown = document.getElementById('bike-action-dropdown');
+    
+    if (actionMenu && !actionMenu.contains(e.target)) {
+        dropdown.classList.remove('active');
+    }
+});
+
+// Photo modal functionality
+function openPhotoModal(src) {
+    const modal = document.getElementById('photo-modal');
+    const modalImg = document.getElementById('modal-image');
+    modal.style.display = 'block';
+    modalImg.src = src;
+}
+
+function closePhotoModal() {
+    document.getElementById('photo-modal').style.display = 'none';
+}
+
+// Mock button functionality (excluding links)
+document.querySelectorAll('button.btn-primary, button.btn-secondary, .dropdown-item').forEach(btn => {
+    // Skip if it's a link (anchor tag)
+    if (btn.tagName === 'A' && btn.href) return;
+    
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const action = this.textContent.trim();
+        alert(`${action} functionality would be implemented here!`);
+    });
+});
+</script>

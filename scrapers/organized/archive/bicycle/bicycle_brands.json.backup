@@ -1,0 +1,3380 @@
+{
+  "brand_id": "airborne",
+  "brand_name": "Airborne Bicycles",
+  "wikipedia_url": null,
+  "linkedin_url": null,
+
+  "logo": {
+    "logo_url": null,
+    "icon_url": "https://airbornebicycles.com/favicon.ico"                      //  [oai_citation:0‡Airborne Bicycles](https://airbornebicycles.com/?srsltid=AfmBOorHxnoUPRfUlaMVbdtMf9t8_gSKiv8DLJqNXx_7ILwJ-8kLy1gw&utm_source=chatgpt.com)
+  },
+
+  "description": "Airborne Bicycles is an American direct-to-consumer bicycle brand founded in 1997, focusing on offering high-value bikes including hardtails, full-suspension, dirt jumpers, and balance bikes.",  //  [oai_citation:1‡Airborne Bicycles](https://airbornebicycles.com/?srsltid=AfmBOorHxnoUPRfUlaMVbdtMf9t8_gSKiv8DLJqNXx_7ILwJ-8kLy1gw&utm_source=chatgpt.com) [oai_citation:2‡BikeBiz](https://bikebiz.com/airborne-goes-public-with-trade-plans/?utm_source=chatgpt.com)
+
+  "founders": [
+    "Jamie Raddin"                                                               //  [oai_citation:3‡LinkedIn](https://www.linkedin.com/in/jamesdesigner?utm_source=chatgpt.com)
+  ],
+  "founding": {
+    "year": 1997,                                                                 //  [oai_citation:4‡Airborne Bicycles](https://airbornebicycles.com/?srsltid=AfmBOorHxnoUPRfUlaMVbdtMf9t8_gSKiv8DLJqNXx_7ILwJ-8kLy1gw&utm_source=chatgpt.com)
+    "full_date": null,                                                            // exact month/day not publicly available  
+    "location": {
+      "city": "Dayton",                                                           //  [oai_citation:5‡Airborne Bicycles](https://airbornebicycles.com/pages/about?srsltid=AfmBOorl6Q_7y4t2Up2XQAlO7OvtbavAj0LJyhUH0kUbUTBFoT6FMogR&utm_source=chatgpt.com)
+      "state_province": "Ohio",                                                   //  [oai_citation:6‡Airborne Bicycles](https://airbornebicycles.com/pages/about?srsltid=AfmBOorl6Q_7y4t2Up2XQAlO7OvtbavAj0LJyhUH0kUbUTBFoT6FMogR&utm_source=chatgpt.com)
+      "country": "USA"                                                            //  [oai_citation:7‡Airborne Bicycles](https://airbornebicycles.com/pages/about?srsltid=AfmBOorl6Q_7y4t2Up2XQAlO7OvtbavAj0LJyhUH0kUbUTBFoT6FMogR&utm_source=chatgpt.com)
+    }
+  },
+
+  "history": "Launched in 1997 as one of the first direct-to-consumer bike companies, Airborne began with titanium frames and value-focused offerings. Over time, it expanded its lineup to include mountain bikes (Plague 27.5, HobGoblin 29er), dirt jumpers (Cro-Hawk, Skyhawk), and introduced the Plague 27.5 in 2020. Airborne remains based in Dayton, Ohio.",  //  [oai_citation:8‡Airborne Bicycles](https://airbornebicycles.com/?srsltid=AfmBOorHxnoUPRfUlaMVbdtMf9t8_gSKiv8DLJqNXx_7ILwJ-8kLy1gw&utm_source=chatgpt.com) [oai_citation:9‡MemeXpress](https://mxmemoxpress.com/?m=43332514&utm_source=chatgpt.com) [oai_citation:10‡BikeBiz](https://bikebiz.com/airborne-goes-public-with-trade-plans/?utm_source=chatgpt.com)
+
+  "parent_company": null,
+  "subsidiaries": [],
+
+  "headquarters": {
+    "address": null,                                                             // no specific street address publicly listed  
+    "city": "Dayton",                                                             //  [oai_citation:11‡Airborne Bicycles](https://airbornebicycles.com/pages/about?srsltid=AfmBOorl6Q_7y4t2Up2XQAlO7OvtbavAj0LJyhUH0kUbUTBFoT6FMogR&utm_source=chatgpt.com)
+    "state_province": "Ohio",                                                     //  [oai_citation:12‡Airborne Bicycles](https://airbornebicycles.com/pages/about?srsltid=AfmBOorl6Q_7y4t2Up2XQAlO7OvtbavAj0LJyhUH0kUbUTBFoT6FMogR&utm_source=chatgpt.com)
+    "country": "USA"                                                              //  [oai_citation:13‡Airborne Bicycles](https://airbornebicycles.com/pages/about?srsltid=AfmBOorl6Q_7y4t2Up2XQAlO7OvtbavAj0LJyhUH0kUbUTBFoT6FMogR&utm_source=chatgpt.com)
+  },
+
+  "headquarters_image_url": null,                                                 // no public HQ photo found
+
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+
+  "employee_headcount": {
+    "number": null,                                                              // not publicly disclosed  
+    "as_of": null
+  },
+
+  "annual_revenue": {
+    "amount": null,                                                              // not publicly disclosed  
+    "currency": null,
+    "as_of": null
+  },
+
+  "industry": "Bicycle Manufacturing",                                           //  [oai_citation:14‡Airborne Bicycles](https://airbornebicycles.com/?srsltid=AfmBOorHxnoUPRfUlaMVbdtMf9t8_gSKiv8DLJqNXx_7ILwJ-8kLy1gw&utm_source=chatgpt.com) [oai_citation:15‡BikeBiz](https://bikebiz.com/airborne-goes-public-with-trade-plans/?utm_source=chatgpt.com)
+  "industry_refined": "Direct-to-Consumer Bicycles",
+  "industry_subcategory": "Mountain Bikes & BMX",
+
+  "famous_models": [
+    "Cro-Hawk",                                                                   //  [oai_citation:16‡MemeXpress](https://mxmemoxpress.com/?m=43332514&utm_source=chatgpt.com) [oai_citation:17‡Airborne Bicycles](https://airbornebicycles.com/collections/bikes?srsltid=AfmBOor18zQ62zE5oyNSbShBU8ptogG4ZeGjiTZFUdoIWU6zMsdFvj4z&utm_source=chatgpt.com)
+    "Plague 27.5",                                                                //  [oai_citation:18‡MemeXpress](https://mxmemoxpress.com/?m=43332514&utm_source=chatgpt.com) [oai_citation:19‡Airborne Bicycles](https://airbornebicycles.com/collections/bikes?srsltid=AfmBOor18zQ62zE5oyNSbShBU8ptogG4ZeGjiTZFUdoIWU6zMsdFvj4z&utm_source=chatgpt.com)
+    "Skyhawk DJ 26",                                                              //  [oai_citation:20‡MemeXpress](https://mxmemoxpress.com/?m=43332314&utm_source=chatgpt.com)
+    "HobGoblin 29er"                                                              //  [oai_citation:21‡MTBR](https://www.mtbr.com/threads/review-airborne-hobgoblin-29er.1169019/?utm_source=chatgpt.com)
+  ],
+
+  "brand_hero_image_url": null,                                                   // no standalone hero banner located
+
+  "flagship_models": [
+    {
+      "name": "Cro-Hawk",
+      "year": null,                                                               // exact inaugural year not publicly specified  
+      "image_url": null,                                                          // no direct image URL found  
+      "hero_image_url": null                                                      // no official hero image located
+    },
+    {
+      "name": "Plague 27.5",
+      "year": 2020,                                                               //  [oai_citation:22‡MemeXpress](https://mxmemoxpress.com/?m=43332514&utm_source=chatgpt.com)
+      "image_url": "turn1image0",                                                  // 2020 Airborne Plague 27.5 photo (side view) 
+      "hero_image_url": "turn1image1"                                              // 2020 Airborne Plague 27.5 action shot 
+    },
+    {
+      "name": "Skyhawk DJ 26",
+      "year": 2021,                                                               // approximate release year  
+      "image_url": null,                                                          // no direct image URL found  
+      "hero_image_url": null                                                      // no official hero image located
+    },
+    {
+      "name": "HobGoblin 29er",
+      "year": 2013,                                                               // estimated from review date (~2013)  [oai_citation:23‡MTBR](https://www.mtbr.com/threads/review-airborne-hobgoblin-29er.1169019/?utm_source=chatgpt.com)
+      "image_url": null,                                                          // no direct image URL found  
+      "hero_image_url": null                                                      // no official hero image located
+    }
+  ],
+
+  "website": "https://airbornebicycles.com",                                      //  [oai_citation:24‡Airborne Bicycles](https://airbornebicycles.com/?srsltid=AfmBOorcUavLGHZPA5_mPjzdFZuW-HHLO2x2V3oxJrs10uoLxSGEPHIt&utm_source=chatgpt.com)
+
+  "social_media": {
+    "facebook": null,                                                            // no official Facebook page found
+    "twitter": null,                                                             // no official Twitter account found
+    "instagram": null,                                                           // no official Instagram account found
+    "linkedin": null,                                                            // no corporate LinkedIn beyond founder’s profile  
+    "youtube": null,                                                             // no official YouTube channel found
+    "pinterest": null                                                            // no official Pinterest presence found
+  },
+
+  "additional_notes": null                                                        // no further public notes
+}, 
+{
+  "brand_id": "airborne",
+  "brand_name": "Airborne Bicycles",
+  "wikipedia_url": null,
+  "linkedin_url": "https://www.linkedin.com/company/airborne-bicycles",           //  [oai_citation:0‡LinkedIn](https://www.linkedin.com/company/airborne-bicycles?utm_source=chatgpt.com)
+
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/A/airborne-bicycles-logo-5239E60740-seeklogo.com.png",  //  [oai_citation:1‡Seeklogo](https://seeklogo.com/vector-logo/5239/airborne-bicycles?utm_source=chatgpt.com)
+    "icon_url": "https://airbornebicycles.com/favicon.ico"                          //  [oai_citation:2‡Airborne Bicycles](https://airbornebicycles.com/pages/about?srsltid=AfmBOooRiwECFPGq-IeLWEegB4Iiyn6WWbSaVVpfEmPq_YGvwdrpQW-C&utm_source=chatgpt.com)
+  },
+
+  "description": "Airborne Bicycles is an American direct-to-consumer bicycle brand founded in 1997, focusing on offering high-value bikes including hardtails, full-suspension, dirt jumpers, and balance bikes.",  //  [oai_citation:3‡Airborne Bicycles](https://airbornebicycles.com/pages/about?srsltid=AfmBOooRiwECFPGq-IeLWEegB4Iiyn6WWbSaVVpfEmPq_YGvwdrpQW-C&utm_source=chatgpt.com) [oai_citation:4‡Wikipedia](https://en.wikipedia.org/wiki/Folding_bicycle?utm_source=chatgpt.com)
+
+  "founders": [
+    "Jamie Raddin"                                                                 //  [oai_citation:5‡Brands of the World](https://www.brandsoftheworld.com/logo/airborne-bicycles?utm_source=chatgpt.com)
+  ],
+  "founding": {
+    "year": 1997,                                                                 //  [oai_citation:6‡Airborne Bicycles](https://airbornebicycles.com/pages/about?srsltid=AfmBOooRiwECFPGq-IeLWEegB4Iiyn6WWbSaVVpfEmPq_YGvwdrpQW-C&utm_source=chatgpt.com)
+    "full_date": null,
+    "location": {
+      "city": "Dayton",                                                            //  [oai_citation:7‡Facebook](https://www.facebook.com/airbornebicycleco/?utm_source=chatgpt.com) [oai_citation:8‡Airborne Bicycles](https://airbornebicycles.com/pages/about?srsltid=AfmBOopju-H8C6igQ56Ws5Fxlm_RLIxGG5s-cJAE0eByEqY37uXf4I6v&utm_source=chatgpt.com)
+      "state_province": "Ohio",                                                    //  [oai_citation:9‡Facebook](https://www.facebook.com/airbornebicycleco/?utm_source=chatgpt.com) [oai_citation:10‡Airborne Bicycles](https://airbornebicycles.com/pages/about?srsltid=AfmBOopju-H8C6igQ56Ws5Fxlm_RLIxGG5s-cJAE0eByEqY37uXf4I6v&utm_source=chatgpt.com)
+      "country": "USA"                                                             //  [oai_citation:11‡Facebook](https://www.facebook.com/airbornebicycleco/?utm_source=chatgpt.com) [oai_citation:12‡Airborne Bicycles](https://airbornebicycles.com/pages/about?srsltid=AfmBOopju-H8C6igQ56Ws5Fxlm_RLIxGG5s-cJAE0eByEqY37uXf4I6v&utm_source=chatgpt.com)
+    }
+  },
+
+  "history": "Launched in 1997 as one of the first direct-to-consumer bike companies, Airborne began with titanium frames and value-focused offerings. Over time, it expanded its lineup to include mountain bikes (Plague 27.5, HobGoblin 29er), dirt jumpers (Cro-Hawk, Skyhawk), and introduced the Plague 27.5 in 2020. Airborne remains based in Dayton, Ohio.",  //  [oai_citation:13‡Airborne Bicycles](https://airbornebicycles.com/pages/about?srsltid=AfmBOooRiwECFPGq-IeLWEegB4Iiyn6WWbSaVVpfEmPq_YGvwdrpQW-C&utm_source=chatgpt.com) [oai_citation:14‡Americancycle](https://americancycle.com/airborne-bicycles/?srsltid=AfmBOorVTdnVG62bGNfwwh0-onv7y27arMuWOgrDrr6_ETLy-Yqu6-iV&utm_source=chatgpt.com) [oai_citation:15‡Wikipedia](https://en.wikipedia.org/wiki/Folding_bicycle?utm_source=chatgpt.com)
+
+  "parent_company": null,
+  "subsidiaries": [],
+
+  "headquarters": {
+    "address": "Dayton, Ohio, USA",                                                //  [oai_citation:16‡6sense](https://6sense.com/company/airborne-bicycles/5ba52f0f7c86667c1a32edce?utm_source=chatgpt.com)
+    "city": "Dayton",                                                              //  [oai_citation:17‡6sense](https://6sense.com/company/airborne-bicycles/5ba52f0f7c86667c1a32edce?utm_source=chatgpt.com)
+    "state_province": "Ohio",                                                      //  [oai_citation:18‡6sense](https://6sense.com/company/airborne-bicycles/5ba52f0f7c86667c1a32edce?utm_source=chatgpt.com)
+    "country": "USA"                                                               //  [oai_citation:19‡6sense](https://6sense.com/company/airborne-bicycles/5ba52f0f7c86667c1a32edce?utm_source=chatgpt.com)
+  },
+
+  "headquarters_image_url": null,                                                 // No public HQ photo located
+
+  "company_type": "private",                                                      //  [oai_citation:20‡LinkedIn](https://www.linkedin.com/company/airborne-bicycles?utm_source=chatgpt.com)
+  "stock_exchange": null,
+  "stock_symbol": null,
+
+  "employee_headcount": {
+    "number": 125,                                                                // Mid‐point of LinkedIn “51–200 employees”  [oai_citation:21‡LinkedIn](https://www.linkedin.com/company/airborne-bicycles?utm_source=chatgpt.com)
+    "as_of": "2025-06-02"
+  },
+
+  "annual_revenue": {
+    "amount": null,                                                               // Not publicly disclosed
+    "currency": null,
+    "as_of": null
+  },
+
+  "industry": "Bicycle Manufacturing",                                            //  [oai_citation:22‡Airborne Bicycles](https://airbornebicycles.com/pages/about?srsltid=AfmBOooRiwECFPGq-IeLWEegB4Iiyn6WWbSaVVpfEmPq_YGvwdrpQW-C&utm_source=chatgpt.com) [oai_citation:23‡Wikipedia](https://en.wikipedia.org/wiki/Folding_bicycle?utm_source=chatgpt.com)
+  "industry_refined": "Sporting Goods Manufacturing",                              //  [oai_citation:24‡LinkedIn](https://www.linkedin.com/company/airborne-bicycles?utm_source=chatgpt.com)
+  "industry_subcategory": "Mountain Bikes & BMX",
+
+  "famous_models": [
+    "Cro-Hawk",                                                                    //  [oai_citation:25‡Americancycle](https://americancycle.com/airborne-bicycles/?srsltid=AfmBOorVTdnVG62bGNfwwh0-onv7y27arMuWOgrDrr6_ETLy-Yqu6-iV&utm_source=chatgpt.com) [oai_citation:26‡Instagram](https://www.instagram.com/airbornebicycles/?hl=en&utm_source=chatgpt.com)
+    "Plague 27.5",                                                                 //  [oai_citation:27‡Americancycle](https://americancycle.com/airborne-bicycles/?srsltid=AfmBOorVTdnVG62bGNfwwh0-onv7y27arMuWOgrDrr6_ETLy-Yqu6-iV&utm_source=chatgpt.com) [oai_citation:28‡Instagram](https://www.instagram.com/airbornebicycles/?hl=en&utm_source=chatgpt.com)
+    "Skyhawk DJ 26",                                                               //  [oai_citation:29‡eBay](https://www.ebay.com/b/Airborne-Bikes/177831/bn_5818408?utm_source=chatgpt.com)
+    "HobGoblin 29er"                                                               //  [oai_citation:30‡System Cycle](https://www.systemcycle.com/collections/airborne-bicycles?utm_source=chatgpt.com)
+  ],
+
+  "brand_hero_image_url": null,                                                   // No standalone hero banner identified
+
+  "flagship_models": [
+    {
+      "name": "Cro-Hawk",
+      "year": 2020,                                                                //  [oai_citation:31‡Americancycle](https://americancycle.com/airborne-bicycles/?srsltid=AfmBOorVTdnVG62bGNfwwh0-onv7y27arMuWOgrDrr6_ETLy-Yqu6-iV&utm_source=chatgpt.com)
+      "image_url": "https://mtbdatabase.com/bikes/2020/airborne/cro-hawk/2020-airborne-cro-hawk-dj-26/",   // Image on MTBdatabase 
+      "hero_image_url": "https://www.vitalmtb.com/product/guide/Bikes%2C3/Airborne/Cro-Hawk-DJ-26%2C27415" // Alternate angle on Vital MTB 
+    },
+    {
+      "name": "Plague 27.5",
+      "year": 2020,                                                                //  [oai_citation:32‡Americancycle](https://americancycle.com/airborne-bicycles/?srsltid=AfmBOorVTdnVG62bGNfwwh0-onv7y27arMuWOgrDrr6_ETLy-Yqu6-iV&utm_source=chatgpt.com)
+      "image_url": "https://mtbdatabase.com/bikes/2020/airborne/plague/2020-airborne-plague-27-5/",       // Side view on MTBdatabase 
+      "hero_image_url": "https://airbornebicycles.com/blogs/news/tagged/plague-27-5"                   // Action shot on official blog 
+    },
+    {
+      "name": "Skyhawk DJ 26",
+      "year": 2021,                                                                // Approximate release year (2021)  [oai_citation:33‡eBay](https://www.ebay.com/b/Airborne-Bikes/177831/bn_5818408?utm_source=chatgpt.com)
+      "image_url": null,                                                           // No direct product-page URL found
+      "hero_image_url": null                                                       // No official hero image located
+    },
+    {
+      "name": "HobGoblin 29er",
+      "year": 2013,                                                                // Estimated from review (~2013)  [oai_citation:34‡System Cycle](https://www.systemcycle.com/collections/airborne-bicycles?utm_source=chatgpt.com)
+      "image_url": null,                                                           // No direct product-page URL found
+      "hero_image_url": null                                                       // No official hero image located
+    }
+  ],
+
+  "website": "https://airbornebicycles.com",                                      //  [oai_citation:35‡Airborne Bicycles](https://airbornebicycles.com/?srsltid=AfmBOoo7KFTqAyYnwsYdvGHuEFyGGHWP4aT2D37YNP9Cw8bnX7nBBkOX&utm_source=chatgpt.com)
+
+  "social_media": {
+    "facebook": "https://www.facebook.com/airbornebicycleco/",                    //  [oai_citation:36‡Facebook](https://www.facebook.com/airbornebicycleco/?utm_source=chatgpt.com)
+    "twitter": null,
+    "instagram": "https://www.instagram.com/airbornebicycles/",                   //  [oai_citation:37‡Instagram](https://www.instagram.com/airbornebicycles/?hl=en&utm_source=chatgpt.com)
+    "linkedin": "https://www.linkedin.com/company/airborne-bicycles",             //  [oai_citation:38‡LinkedIn](https://www.linkedin.com/company/airborne-bicycles?utm_source=chatgpt.com)
+    "youtube": null,
+    "pinterest": null
+  },
+
+  "additional_notes": null                                                       // No further public notes
+}, 
+{
+  "brand_id": "airdrop",
+  "brand_name": "Airdrop Bikes",
+  "wikipedia_url": null,
+  "linkedin_url": null,
+
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/A/airdrop-bikes-logo-0DDC0D90A7-seeklogo.com.png",  //  [oai_citation:0‡Instagram](https://www.instagram.com/airdropbikes/?hl=en&utm_source=chatgpt.com)
+    "icon_url": "https://airdropbikes.com/favicon.ico"                                             //  [oai_citation:1‡Airdrop Bikes Limited](https://www.airdropbikes.com/pages/airdrop-fade?srsltid=AfmBOoq3J9swXDdK_Jo0SMcmdeVUZoJObY_EGAgsvfl4OMvw36yYudoe&utm_source=chatgpt.com)
+  },
+
+  "description": "Airdrop Bikes is an independent British mountain bike brand based in Sheffield, designing and hand-assembling trail and enduro frames built to order.",  //  [oai_citation:2‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOoqgejNwqjP43xA3KC1tecgcs9zdh4bKsYZJ_w1fdZkE7bNgH08a&utm_source=chatgpt.com)
+
+  "founders": [
+    "Ed Brazier"                                                                                   //  [oai_citation:3‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us/blogs/news/video-edit-v3-dream-build?utm_source=chatgpt.com)
+  ],
+  "founding": {
+    "year": 2015,                                                                                  // Founded “>5 years ago” per About page implying circa 2015  [oai_citation:4‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us/blogs/news/video-edit-v3-dream-build?utm_source=chatgpt.com)
+    "full_date": null,                                                                             // Exact day/month not publicly listed
+    "location": {
+      "city": "Sheffield",                                                                         //  [oai_citation:5‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOoqgejNwqjP43xA3KC1tecgcs9zdh4bKsYZJ_w1fdZkE7bNgH08a&utm_source=chatgpt.com)
+      "state_province": null,                                                                      // UK brands typically skip state/province
+      "country": "United Kingdom"                                                                  //  [oai_citation:6‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOoqgejNwqjP43xA3KC1tecgcs9zdh4bKsYZJ_w1fdZkE7bNgH08a&utm_source=chatgpt.com)
+    }
+  },
+
+  "history": "Founded by former web/graphic designer Ed Brazier around 2015, Airdrop began as a rider-owned British mountain bike brand focused on Dirt Jump, Enduro, and Downhill frames. Hand-assembled in Sheffield with frames manufactured in Taiwan, they released the Fade (2020), Edit (trail/enduro), and Slacker (DH) lines, shipping worldwide.",  //  [oai_citation:7‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us/blogs/news/video-edit-v3-dream-build?utm_source=chatgpt.com) [oai_citation:8‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOoqgejNwqjP43xA3KC1tecgcs9zdh4bKsYZJ_w1fdZkE7bNgH08a&utm_source=chatgpt.com) [oai_citation:9‡Gnarrative](https://www.gnarrative.com/tales/jamescrossland?utm_source=chatgpt.com)
+
+  "parent_company": null,
+  "subsidiaries": [],
+
+  "headquarters": {
+    "address": "Epic House, 18 Darnall Road, Sheffield S9 5AB, United Kingdom",                     //  [oai_citation:10‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOoqgejNwqjP43xA3KC1tecgcs9zdh4bKsYZJ_w1fdZkE7bNgH08a&utm_source=chatgpt.com)
+    "city": "Sheffield",                                                                            //  [oai_citation:11‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOoqgejNwqjP43xA3KC1tecgcs9zdh4bKsYZJ_w1fdZkE7bNgH08a&utm_source=chatgpt.com)
+    "state_province": null,
+    "country": "United Kingdom"                                                                     //  [oai_citation:12‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOoqgejNwqjP43xA3KC1tecgcs9zdh4bKsYZJ_w1fdZkE7bNgH08a&utm_source=chatgpt.com)
+  },
+
+  "headquarters_image_url": null,                                                                   // No publicly available HQ photo found
+
+  "company_type": "private",                                                                        //  [oai_citation:13‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOoqgejNwqjP43xA3KC1tecgcs9zdh4bKsYZJ_w1fdZkE7bNgH08a&utm_source=chatgpt.com)
+  "stock_exchange": null,
+  "stock_symbol": null,
+
+  "employee_headcount": {
+    "number": 3,                                                                                    // “Being a brand of just x3 staff”  [oai_citation:14‡Gnarrative](https://www.gnarrative.com/tales/jamescrossland?utm_source=chatgpt.com)
+    "as_of": "2025-06-02"
+  },
+
+  "annual_revenue": {
+    "amount": null,                                                                                // Not publicly disclosed
+    "currency": null,
+    "as_of": null
+  },
+
+  "industry": "Bicycle Manufacturing",                                                              //  [oai_citation:15‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOoqgejNwqjP43xA3KC1tecgcs9zdh4bKsYZJ_w1fdZkE7bNgH08a&utm_source=chatgpt.com)
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Mountain Bikes",
+
+  "famous_models": [
+    "Fade",                                                                                         //  [oai_citation:16‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOoqgejNwqjP43xA3KC1tecgcs9zdh4bKsYZJ_w1fdZkE7bNgH08a&utm_source=chatgpt.com)
+    "Edit",                                                                                         //  [oai_citation:17‡Pinkbike](https://www.pinkbike.com/news/review-the-airdrop-edit-mx-is-practical-and-potent-at-a-palatable-price.html?utm_source=chatgpt.com)
+    "Slacker"                                                                                       //  [oai_citation:18‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOoqgejNwqjP43xA3KC1tecgcs9zdh4bKsYZJ_w1fdZkE7bNgH08a&utm_source=chatgpt.com)
+  ],
+
+  "brand_hero_image_url": null,                                                                     // No standalone hero banner located
+
+  "flagship_models": [
+    {
+      "name": "Fade",
+      "year": 2020,                                                                                 //  [oai_citation:19‡Airdrop Bikes Limited](https://www.airdropbikes.com/pages/airdrop-fade?srsltid=AfmBOoq3J9swXDdK_Jo0SMcmdeVUZoJObY_EGAgsvfl4OMvw36yYudoe&utm_source=chatgpt.com) [oai_citation:20‡Vital MTB](https://www.vitalmtb.com/tags/airdrop_brand?utm_source=chatgpt.com)
+      "image_url": "https://mtbdatabase.com/bikes/2020/airdrop/fade/2020-airdrop-fade-luxe/",       // 2020 Airdrop Fade Luxe – side view 
+      "hero_image_url": "https://www.vitalmtb.com/product/guide/Bikes%2C3/Airdrop/Fade-Luxe%2C29950" // 2020 Fade Luxe action shot 
+    },
+    {
+      "name": "Edit MX",
+      "year": 2022,                                                                                // Estimated from Vital MTB launch “1.5 years ago” (2023–2025)  [oai_citation:21‡Bicycle](https://bicycle.app/gb-gb/shop/brands/airdrop/frame-material/magnesium?utm_source=chatgpt.com)
+      "image_url": "https://www.vitalmtb.com/product/guide/Bikes%2C3/Airdrop/Edit-MX%2C29538",      // Vital MTB Edit MX guide image  [oai_citation:22‡Pinkbike](https://www.pinkbike.com/news/review-the-airdrop-edit-mx-is-practical-and-potent-at-a-palatable-price.html?utm_source=chatgpt.com)
+      "hero_image_url": null                                                                       // No official hero image located
+    },
+    {
+      "name": "Slacker",
+      "year": 2021,                                                                                // Estimated based on “They don't make DH bikes like this any more. But we do” implying post-2020 release  [oai_citation:23‡Airdrop Bikes Limited](https://www.airdropbikes.com/pages/airdrop-fade?srsltid=AfmBOoq3J9swXDdK_Jo0SMcmdeVUZoJObY_EGAgsvfl4OMvw36yYudoe&utm_source=chatgpt.com)
+      "image_url": null,                                                                           // No direct product-page URL found
+      "hero_image_url": null                                                                       // No official hero image located
+    }
+  ],
+
+  "website": "https://airdropbikes.com",                                                            //  [oai_citation:24‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOoqgejNwqjP43xA3KC1tecgcs9zdh4bKsYZJ_w1fdZkE7bNgH08a&utm_source=chatgpt.com)
+
+  "social_media": {
+    "facebook": "https://www.facebook.com/airdropbikes/",                                          //  [oai_citation:25‡Facebook](https://www.facebook.com/airdropbikes/?utm_source=chatgpt.com)
+    "twitter": null,
+    "instagram": "https://www.instagram.com/airdropbikes/",                                       //  [oai_citation:26‡Instagram](https://www.instagram.com/airdropbikes/?hl=en&utm_source=chatgpt.com)
+    "linkedin": null,
+    "youtube": null,
+    "pinterest": null
+  },
+
+  "additional_notes": null                                                                         // No further public notes
+}, 
+{
+  "brand_id": "allcity",
+  "brand_name": "All-City",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/All-City_Bicycles",
+  "linkedin_url": null,
+  "logo": {
+    "logo_url": "https://en.wikipedia.org/wiki/File:All-City_Bicycles_logo.png",
+    "icon_url": "https://allcitycycles.com/favicon.ico"
+  },
+  "description": "All-City Cycles is an American bicycle manufacturer and brand based in Minneapolis, Minnesota, founded in 2008 as a subsidiary of Quality Bicycle Products, specializing in steel frames for fixed-gear, cyclocross, and road cycling.",
+  "founders": [
+    "Quality Bicycle Products"
+  ],
+  "founding": {
+    "year": 2008,
+    "full_date": null,
+    "location": {
+      "city": "Minneapolis",
+      "state_province": "Minnesota",
+      "country": "USA"
+    }
+  },
+  "history": "Founded in 2008 by Quality Bicycle Products, All-City Cycles initially focused on fixed-gear and single-speed urban bicycles, later expanding into cyclocross and gravel categories. Known for its steel frames and distinctive designs, All-City developed a cult following with models like the Space Horse (2011) and Nature Cross (2018). In 2023, QBP announced All-City’s discontinuation after the 2024 season.",
+  "parent_company": "Quality Bicycle Products",
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "6400 W. 105th Street, Minneapolis, MN 55438",
+    "city": "Minneapolis",
+    "state_province": "Minnesota",
+    "country": "USA"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": null,
+    "as_of": null
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Steel Frame Bicycles",
+  "famous_models": [
+    "Space Horse",
+    "Nature Cross",
+    "Thunderdome"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Space Horse",
+      "year": 2011,
+      "image_url": "https://allcitycycles.com/bikes/archive/space_horse_orange",
+      "hero_image_url": "https://bicycle-guider.com/all-city-space-horse-review/"
+    },
+    {
+      "name": "Nature Cross",
+      "year": 2018,
+      "image_url": "https://allcitycycles.com/bikes/archive/nature_cross_single_speed_propane_flame",
+      "hero_image_url": "https://allcitycycles.com/blog/nature_cross_single_speed_new_color_coming_at_ya_fast"
+    },
+    {
+      "name": "Thunderdome",
+      "year": 2014,
+      "image_url": "https://allcitycycles.com/bikes/thunderdome",
+      "hero_image_url": "https://bikeindex.org/bikes/34700"
+    }
+  ],
+  "website": "https://allcitycycles.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/AllCityCycles/",
+    "twitter": null,
+    "instagram": null,
+    "linkedin": null,
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Quality Bicycle Products announced in August 2023 that All-City Cycles would be discontinued after the 2024 season.",
+  "closing": {
+    "announcement_date": "2023-08",
+    "planned_closure_year": 2024,
+    "status": "discontinued",
+    "reason": "Low sales and overlapping product lines with sister brands led QBP to phase out All-City to streamline its portfolio."
+  }
+}, 
+{
+  "brand_id": "airdrop",
+  "brand_name": "Airdrop Bikes",
+  "wikipedia_url": null,
+  "linkedin_url": null,
+
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/A/airdrop-bikes-logo-0DDC0D90A7-seeklogo.com.png",  //  [oai_citation:0‡Pinkbike](https://www.pinkbike.com/news/review-the-airdrop-edit-mx-is-practical-and-potent-at-a-palatable-price.html?utm_source=chatgpt.com)
+    "icon_url": "https://airdropbikes.com/favicon.ico"                                             //  [oai_citation:1‡LinkedIn](https://uk.linkedin.com/in/gee-milner-bb299296?utm_source=chatgpt.com)
+  },
+
+  "description": "Airdrop Bikes is an independent British mountain bike brand based in Sheffield, designing and hand-assembling trail and enduro frames built to order.",  //  [oai_citation:2‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOoq7-QbtAdfMga521tegy93nU55jm2r10znWwcQhnGjKQLwBO0ZE&utm_source=chatgpt.com) [oai_citation:3‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOopvo-OC1sRik256A46PjR6ocQe_Y1w7s2S62S8oQBqJV5gAPg8E&utm_source=chatgpt.com)
+
+  "founders": [
+    "Ed Brazier"                                                                                   //  [oai_citation:4‡Company Check](https://companycheck.co.uk/company/09218092/AIRDROP-BIKES-LIMITED?utm_source=chatgpt.com)
+  ],
+  "founding": {
+    "year": 2015,                                                                                  // Estimated from “>5 years ago” on About page  [oai_citation:5‡Company Check](https://companycheck.co.uk/company/09218092/AIRDROP-BIKES-LIMITED?utm_source=chatgpt.com)
+    "full_date": null,                                                                             // Exact day/month not publicly listed
+    "location": {
+      "city": "Sheffield",                                                                         //  [oai_citation:6‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOopvo-OC1sRik256A46PjR6ocQe_Y1w7s2S62S8oQBqJV5gAPg8E&utm_source=chatgpt.com)
+      "state_province": "England",                                                                 //  [oai_citation:7‡GOV.UK](https://find-and-update.company-information.service.gov.uk/company/09218092?utm_source=chatgpt.com)
+      "country": "United Kingdom"                                                                  //  [oai_citation:8‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOopvo-OC1sRik256A46PjR6ocQe_Y1w7s2S62S8oQBqJV5gAPg8E&utm_source=chatgpt.com)
+    }
+  },
+
+  "history": "Founded by former web/graphic designer Ed Brazier around 2015, Airdrop began as a rider-owned British mountain bike brand focused on Dirt Jump, Enduro, and Downhill frames. Hand-assembled in Sheffield with frames manufactured in Taiwan, they released the Fade (2020), Edit (trail/enduro), and Slacker (DH) lines, shipping worldwide.",  //  [oai_citation:9‡Company Check](https://companycheck.co.uk/company/09218092/AIRDROP-BIKES-LIMITED?utm_source=chatgpt.com) [oai_citation:10‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOoq7-QbtAdfMga521tegy93nU55jm2r10znWwcQhnGjKQLwBO0ZE&utm_source=chatgpt.com) [oai_citation:11‡Wikipedia](https://en.wikipedia.org/wiki/Try_Again_%28Aaliyah_song%29?utm_source=chatgpt.com)
+
+  "parent_company": null,
+  "subsidiaries": [],
+
+  "headquarters": {
+    "address": "Epic House, 18 Darnall Road, Sheffield, England, S9 5AB, United Kingdom",         //  [oai_citation:12‡GOV.UK](https://find-and-update.company-information.service.gov.uk/company/09218092?utm_source=chatgpt.com)
+    "city": "Sheffield",                                                                            //  [oai_citation:13‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOopvo-OC1sRik256A46PjR6ocQe_Y1w7s2S62S8oQBqJV5gAPg8E&utm_source=chatgpt.com)
+    "state_province": "England",                                                                     //  [oai_citation:14‡GOV.UK](https://find-and-update.company-information.service.gov.uk/company/09218092?utm_source=chatgpt.com)
+    "country": "United Kingdom"                                                                      //  [oai_citation:15‡GOV.UK](https://find-and-update.company-information.service.gov.uk/company/09218092?utm_source=chatgpt.com)
+  },
+
+  "headquarters_image_url": null,                                                                   // No publicly available HQ photo found
+
+  "company_type": "private",                                                                        //  [oai_citation:16‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOopvo-OC1sRik256A46PjR6ocQe_Y1w7s2S62S8oQBqJV5gAPg8E&utm_source=chatgpt.com)
+  "stock_exchange": null,
+  "stock_symbol": null,
+
+  "employee_headcount": {
+    "number": 3,                                                                                    // “Being a brand of just x3 staff”  [oai_citation:17‡Wikipedia](https://en.wikipedia.org/wiki/Try_Again_%28Aaliyah_song%29?utm_source=chatgpt.com)
+    "as_of": "2025-06-02"
+  },
+
+  "annual_revenue": {
+    "amount": null,                                                                                // Not publicly disclosed
+    "currency": null,
+    "as_of": null
+  },
+
+  "industry": "Bicycle Manufacturing",                                                              //  [oai_citation:18‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOopvo-OC1sRik256A46PjR6ocQe_Y1w7s2S62S8oQBqJV5gAPg8E&utm_source=chatgpt.com) [oai_citation:19‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOoq7-QbtAdfMga521tegy93nU55jm2r10znWwcQhnGjKQLwBO0ZE&utm_source=chatgpt.com)
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Mountain Bikes",
+
+  "famous_models": [
+    "Fade",                                                                                         //  [oai_citation:20‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOopvo-OC1sRik256A46PjR6ocQe_Y1w7s2S62S8oQBqJV5gAPg8E&utm_source=chatgpt.com)
+    "Edit MX",                                                                                      //  [oai_citation:21‡Airdrop Bikes Limited](https://www.airdropbikes.com/collections/airdrop-edit?srsltid=AfmBOooZVuJfdV3_P5429UnirquM61FdhBTyTU6OQpnPBWX_ZOpobF-8&utm_source=chatgpt.com)
+    "Slacker"                                                                                       //  [oai_citation:22‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOopvo-OC1sRik256A46PjR6ocQe_Y1w7s2S62S8oQBqJV5gAPg8E&utm_source=chatgpt.com)
+  ],
+
+  "brand_hero_image_url": null,                                                                     // No standalone hero banner identified
+
+  "flagship_models": [
+    {
+      "name": "Fade",
+      "year": 2020,                                                                                 //  [oai_citation:23‡Wikipedia](https://en.wikipedia.org/wiki/Try_Again_%28Aaliyah_song%29?utm_source=chatgpt.com) [oai_citation:24‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOoq7-QbtAdfMga521tegy93nU55jm2r10znWwcQhnGjKQLwBO0ZE&utm_source=chatgpt.com)
+      "image_url": "turn4image0",                                                                   // 2020 Airdrop Fade Luxe photo (side view) 
+      "hero_image_url": "turn4image1"                                                               // 2020 Airdrop Fade (black) action shot 
+    },
+    {
+      "name": "Edit MX",
+      "year": 2022,                                                                                // Estimated launch (2022) per edit-mx first look  [oai_citation:25‡Airdrop Bikes Limited](https://www.airdropbikes.com/collections/airdrop-edit?srsltid=AfmBOooZVuJfdV3_P5429UnirquM61FdhBTyTU6OQpnPBWX_ZOpobF-8&utm_source=chatgpt.com)
+      "image_url": "turn5image0",                                                                   // 2022 Airdrop Edit V4 Öhlins LTD Edition (side shot) 
+      "hero_image_url": "turn5image1"                                                               // Edit MX first look (off-road shot) 
+    },
+    {
+      "name": "Slacker",
+      "year": 2021,                                                                                // Estimated release (2021) per “Slacker” page  [oai_citation:26‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOopvo-OC1sRik256A46PjR6ocQe_Y1w7s2S62S8oQBqJV5gAPg8E&utm_source=chatgpt.com)
+      "image_url": "turn1image2",                                                                   // Airdrop Slacker Works 27.5" photo 
+      "hero_image_url": "turn1image1"                                                               // Airdrop home page action shot including Slacker 
+    }
+  ],
+
+  "website": "https://airdropbikes.com",                                                            //  [oai_citation:27‡Airdrop Bikes Limited](https://www.airdropbikes.com/en-us?srsltid=AfmBOopvo-OC1sRik256A46PjR6ocQe_Y1w7s2S62S8oQBqJV5gAPg8E&utm_source=chatgpt.com)
+
+  "social_media": {
+    "facebook": "https://www.facebook.com/airdropbikes/",                                           //  [oai_citation:28‡Facebook](https://www.facebook.com/airdropbikes/?utm_source=chatgpt.com)
+    "twitter": null,
+    "instagram": "https://www.instagram.com/airdropbikes/",                                         //  [oai_citation:29‡Instagram](https://www.instagram.com/airdropbikes/p/DHwUpflMa5h/?hl=en&locale=Tulis%2Bcerita%2Buntuk%2Bmenghasilkan%2Buang%2Bsecara%2Bonline%E3%80%90777ONE.IN%E3%80%91.ijbd&utm_source=chatgpt.com)
+    "linkedin": null,
+    "youtube": null,
+    "pinterest": null
+  },
+
+  "additional_notes": null                                                                         // No further public notes
+}, 
+{
+  "brand_id": "alchemy",
+  "brand_name": "Alchemy Bikes",
+  "wikipedia_url": null,
+  "linkedin_url": "https://www.linkedin.com/company/alchemy-bikes",
+  "logo": {
+    "logo_url": "https://www.vhv.rs/viewpic/hRbbTmw_alchemy-bicycles-logo-hd-png-download/",
+    "icon_url": "https://alchemybikes.com/favicon.ico"
+  },
+  "description": "Alchemy Bikes is a direct-to-consumer, high-end bicycle manufacturer founded in 2008 that handcrafts carbon, titanium, and stainless-steel frames in Golden, Colorado, offering lifetime warranties and 30-day \"love it or return it\" guarantees.",
+  "founders": [
+    "Ryan Cannizzaro",
+    "Matt Maczuzak"
+  ],
+  "founding": {
+    "year": 2008,
+    "full_date": null,
+    "location": {
+      "city": "Austin",
+      "state_province": "Texas",
+      "country": "USA"
+    }
+  },
+  "history": "Founded in Austin, Texas in 2008 by Ryan Cannizzaro (joined by Matt Maczuzak), Alchemy moved to Denver in 2012 under parent Ethic Industries. They set up an experience center and in-house carbon/titanium manufacturing facility in Golden, Colorado, pioneering U.S.–built high-end bikes.",
+  "parent_company": "Ethic Industries",
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "7700 Cherry Creek South Drive, Unit 101, Denver, CO 80016, USA",
+    "city": "Denver",
+    "state_province": "Colorado",
+    "country": "USA"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 30,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Sporting Goods",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "High-End Bicycles",
+  "famous_models": [
+    "Arktos",
+    "Lycos"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Arktos",
+      "year": 2021,
+      "image_url": "https://www.nsmb.com/articles/alchemy-bikes-launch-new-2021-arktos/",
+      "hero_image_url": "https://www.sicklines.com/2021/03/02/2021-alchemy-arktos-29-and-mixed-wheel-29-27-5-released/"
+    }
+  ],
+  "website": "https://alchemybikes.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/alchemybikes/",
+    "twitter": null,
+    "instagram": null,
+    "linkedin": "https://www.linkedin.com/company/alchemy-bikes",
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Alchemy offers a lifetime warranty and a 30-day \"love it or return it\" guarantee. Their experience center in Golden, CO, features CNC, welding, and painting in-house, ensuring tight quality control. Ethic Industries was formed in 2012 to support their U.S. manufacturing."
+}, 
+{
+  "brand_id": "allcity",
+  "brand_name": "All-City",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/All-City_Bicycles",
+  "linkedin_url": null,
+  "logo": {
+    "logo_url": "https://en.wikipedia.org/wiki/File:All-City_Bicycles_logo.png",
+    "icon_url": "https://allcitycycles.com/favicon.ico"
+  },
+  "description": "All-City Cycles is an American bicycle manufacturer and brand based in Minneapolis, Minnesota, founded in 2008 as a subsidiary of Quality Bicycle Products, specializing in steel frames for fixed-gear, cyclocross, and road cycling.",
+  "founders": [
+    "Quality Bicycle Products"
+  ],
+  "founding": {
+    "year": 2008,
+    "full_date": null,
+    "location": {
+      "city": "Minneapolis",
+      "state_province": "Minnesota",
+      "country": "USA"
+    }
+  },
+  "history": "Founded in 2008 by Quality Bicycle Products, All-City Cycles initially focused on fixed-gear and single-speed urban bicycles, later expanding into cyclocross and gravel categories. Known for its steel frames and distinctive designs, All-City developed a cult following with models like the Space Horse (2011) and Nature Cross (2018). In 2023, QBP announced All-City’s discontinuation after the 2024 season.",
+  "parent_company": "Quality Bicycle Products",
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "6400 W. 105th Street, Minneapolis, MN 55438",
+    "city": "Minneapolis",
+    "state_province": "Minnesota",
+    "country": "USA"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": null,
+    "as_of": null
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Steel Frame Bicycles",
+  "famous_models": [
+    "Space Horse",
+    "Nature Cross",
+    "Thunderdome"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Space Horse",
+      "year": 2011,
+      "image_url": "https://allcitycycles.com/bikes/archive/space_horse_orange",
+      "hero_image_url": "https://bicycle-guider.com/all-city-space-horse-review/"
+    },
+    {
+      "name": "Nature Cross",
+      "year": 2018,
+      "image_url": "https://allcitycycles.com/bikes/archive/nature_cross_single_speed_propane_flame",
+      "hero_image_url": "https://allcitycycles.com/blog/nature_cross_single_speed_new_color_coming_at_ya_fast"
+    },
+    {
+      "name": "Thunderdome",
+      "year": 2014,
+      "image_url": "https://allcitycycles.com/bikes/thunderdome",
+      "hero_image_url": "https://bikeindex.org/bikes/34700"
+    }
+  ],
+  "website": "https://allcitycycles.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/AllCityCycles/",
+    "twitter": null,
+    "instagram": null,
+    "linkedin": null,
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Quality Bicycle Products announced in August 2023 that All-City Cycles would be discontinued after the 2024 season.",
+  "closing": {
+    "announcement_date": "2023-08",
+    "planned_closure_year": 2024,
+    "status": "discontinued",
+    "reason": "Low sales and overlapping product lines with sister brands led QBP to phase out All-City to streamline its portfolio."
+  }
+}, 
+{
+  "brand_id": "allied",
+  "brand_name": "Allied Cycle Works",
+  "wikipedia_url": null,
+  "linkedin_url": "https://www.linkedin.com/company/allied-cycle-works",
+  "logo": {
+    "logo_url": null,
+    "icon_url": "https://alliedcycleworks.com/favicon.ico"
+  },
+  "description": "Allied Cycle Works is an American bicycle manufacturer based in Bentonville, Arkansas, designing and producing high-performance carbon gravel, mountain, and road bikes with a focus on domestic manufacturing and bespoke customization.",
+  "founders": [
+    "Tony Karklins",
+    "Doug Zell"
+  ],
+  "founding": {
+    "year": 2016,
+    "full_date": null,
+    "location": {
+      "city": "Rogers",
+      "state_province": "Arkansas",
+      "country": "USA"
+    }
+  },
+  "history": "Founded in 2016 by Tony Karklins and Doug Zell under HIA Velo, Allied Cycle Works originally manufactured frames in Rogers, Arkansas. Backed by Walton family investors through RZC Investments, they focused on U.S.-built bikes until 2025, when they shifted carbon layup overseas while retaining QC, painting, and assembly in Bentonville.",
+  "parent_company": "HIA Velo",
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "401 SE D Street, Bentonville, AR 72712, USA",
+    "city": "Bentonville",
+    "state_province": "Arkansas",
+    "country": "USA"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 30,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Sporting Goods Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Carbon Fiber Gravel & Mountain Bikes",
+  "famous_models": [
+    "ABLE",
+    "BC40",
+    "Duet"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "ABLE",
+      "year": 2019,
+      "image_url": null,
+      "hero_image_url": null
+    },
+    {
+      "name": "BC40",
+      "year": 2025,
+      "image_url": null,
+      "hero_image_url": null
+    },
+    {
+      "name": "Duet",
+      "year": 2017,
+      "image_url": null,
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://alliedcycleworks.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/alliedcycleworks/",
+    "twitter": null,
+    "instagram": null,
+    "linkedin": "https://www.linkedin.com/company/allied-cycle-works",
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Backed by Walton family investors through RZC Investments, Allied produced approximately 1,000 frames per year as of 2019. In 2025, they moved carbon layup to Asia to scale production while maintaining final assembly in Bentonville."
+}, 
+{
+  "brand_id": "alutech",
+  "brand_name": "Alutech Cycles",
+  "wikipedia_url": null,
+  "linkedin_url": null,
+  "logo": {
+    "logo_url": "turn1image0",
+    "icon_url": "https://alutech-cycles.com/favicon.ico"
+  },
+  "description": "Alutech Cycles is a Germany-based bicycle manufacturer specializing in high-performance Enduro, Downhill, and free-ride mountain bikes, many of which are built to order.",
+  "founders": [
+    "Jürgen Schlender"
+  ],
+  "founding": {
+    "year": 2000,
+    "full_date": null,
+    "location": {
+      "city": null,
+      "state_province": null,
+      "country": "Germany"
+    }
+  },
+  "history": "Owner and CEO Jürgen Schlender founded Alutech Cycles around the early 2000s, handcrafting frames in Ascheffel, Germany. The company focuses on progressive, individually welded aluminum frames for gravity-oriented riding. In 2018, Alutech introduced the Fanes e-MTB prototype using Shimano’s internal battery. By 2024, they expanded their range with models like the Pelmo all-mountain bike, leveraging local manufacturing and CNC technology to produce lightweight, bespoke frames.",
+  "parent_company": null,
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "Ascheffel, Germany",
+    "city": "Ascheffel",
+    "state_province": null,
+    "country": "Germany"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 5,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Mountain Bikes",
+  "famous_models": [
+    "Fanes",
+    "Pelmo",
+    "eFanes",
+    "Armaggedon"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Fanes",
+      "year": 2018,
+      "image_url": "turn2image0",
+      "hero_image_url": "turn2image3"
+    },
+    {
+      "name": "Pelmo",
+      "year": 2024,
+      "image_url": "turn3image0",
+      "hero_image_url": null
+    },
+    {
+      "name": "eFanes",
+      "year": 2022,
+      "image_url": "turn4image0",
+      "hero_image_url": null
+    },
+    {
+      "name": "Armaggedon",
+      "year": 2020,
+      "image_url": null,
+      "hero_image_url": "https://singletrackworld.com/2020/03/the-alutech-armaggedon-is-the-grimmest-donut-weve-ever-seen/"
+    }
+  ],
+  "website": "https://alutech-cycles.com",
+  "social_media": {
+    "facebook": null,
+    "twitter": null,
+    "instagram": "https://www.instagram.com/alutechcycles/",
+    "linkedin": null,
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Since its founding, Alutech has prioritized hand-welded aluminum frames in Germany. In early 2024, they collaborated with Protolabs Network to produce a one-piece CNC-milled motor bridge for an e-MTB, reducing weight by 500 grams."
+}, 
+{
+  "brand_id": "amego",
+  "brand_name": "Amego Electric Vehicles",
+  "wikipedia_url": null,
+  "linkedin_url": "https://ca.linkedin.com/company/amego-electric-vehicles-inc-",
+  "logo": {
+    "logo_url": "turn1image0",
+    "icon_url": "https://amegoev.com/favicon.ico"
+  },
+  "description": "Amego Electric Vehicles is Canada’s largest electric bicycle retailer and OEM, founded in 2010 in Toronto, offering a wide range of e-bikes and expert service across multiple locations.",
+  "founders": [
+    "Virginia Block"
+  ],
+  "founding": {
+    "year": 2010,
+    "full_date": null,
+    "location": {
+      "city": "Toronto",
+      "state_province": "Ontario",
+      "country": "Canada"
+    }
+  },
+  "history": "Founded in 2010 by Virginia Block, Amego grew from a single downtown Toronto showroom to Canada’s most trusted e-bike dealer, with three retail locations (Downtown Toronto, Mid-Town Toronto, Calgary) and a large warehouse. Over the years, Amego has expanded into food-delivery e-bikes, city/commuting models, and high-end performance e-bikes, becoming a leader in the Canadian electric bike movement.",
+  "parent_company": null,
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "533 Richmond St. W. #203, Toronto, ON M5V 3Y1, Canada",
+    "city": "Toronto",
+    "state_province": "Ontario",
+    "country": "Canada"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 30,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Automotive",
+  "industry_refined": "Electric Bicycle Retail & OEM",
+  "industry_subcategory": "Electric Bicycles",
+  "famous_models": [
+    "Amego Infinite Step-Thru",
+    "Amego Infinite Hybrid",
+    "Amego Infinity Pro"
+  ],
+  "brand_hero_image_url": "turn1image2",
+  "flagship_models": [
+    {
+      "name": "Amego Infinite Step-Thru",
+      "year": 2019,
+      "image_url": "turn2image0",
+      "hero_image_url": "turn2image1"
+    }
+  ],
+  "website": "https://amegoev.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/AmegoEV/",
+    "twitter": null,
+    "instagram": null,
+    "linkedin": "https://ca.linkedin.com/company/amego-electric-vehicles-inc-",
+    "youtube": "https://www.youtube.com/user/amegoev",
+    "pinterest": null
+  },
+  "additional_notes": "Amego is known for its strong focus on customer service, offering a ’Limitless’ experience with financing, price matching, and a wide selection of top e-bike brands. They also specialize in food-delivery e-bikes and accessories for urban riders."
+}, 
+{
+  "brand_id": "amflow",
+  "brand_name": "Amflow",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Amflow",
+  "linkedin_url": null,
+  "logo": {
+    "logo_url": null,
+    "icon_url": "https://amflowbikes.com/favicon.ico"
+  },
+  "description": "Amflow is a brand specializing in electric bike motor systems, owned by DJI Avinox, recognized for its adaptive Avinox Drive System designed for high-performance electric mountain bikes.", 
+  "founders": [
+    "DJI Avinox"
+  ],
+  "founding": {
+    "year": 2025,
+    "full_date": null,
+    "location": {
+      "city": null,
+      "state_province": null,
+      "country": "China"
+    }
+  },
+  "history": "Launched in 2025 by DJI Avinox to develop advanced motor systems for the e-bike market, Amflow introduced its first product, the Amflow PL Carbon motor. In 2023, the Amflow brand and website were rolled out to showcase the ultra-light, full-power PL series eMTBs. The company collaborates closely with DJI’s Avinox division to integrate cutting-edge motor technology into a seamless frame design, creating a new benchmark for eMTBs.",
+  "parent_company": "DJI Avinox",
+  "subsidiaries": [],
+  "headquarters": {
+    "address": null,
+    "city": null,
+    "state_province": null,
+    "country": "China"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": null,
+    "as_of": null
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Electric Bicycle Manufacturing",
+  "industry_refined": "Electric Bicycle Motor Systems",
+  "industry_subcategory": "eMTB Motor Systems",
+  "famous_models": [
+    "Amflow PL Carbon"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Amflow PL Carbon",
+      "year": 2025,
+      "image_url": "https://www.amflowbikes.com/ca/pl-carbon",
+      "hero_image_url": "https://flowmountainbike.com/tests/amflow-pl-carbon-review-dji-avinox-2025/"
+    }
+  ],
+  "website": "https://www.amflowbikes.com",
+  "social_media": {
+    "facebook": null,
+    "twitter": null,
+    "instagram": "https://www.instagram.com/amflowbikes/",
+    "linkedin": null,
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "The Amflow PL series features the DJI Avinox Drive System delivering up to 120 Nm of torque and 1,000 W peak power in Boost mode. The PL Carbon frame weighs only 2.27 kg, making it one of the lightest full-power eMTBs. TÜV SÜD and TÜV Rheinland certified, Amflow operates through a global dealer network in China, Germany, the UK, and Australia."
+}, 
+{
+  "brand_id": "ancheer",
+  "brand_name": "Ancheer",
+  "wikipedia_url": null,
+  "linkedin_url": null,
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/A/ancheer-logo-7CC022B6C0-seeklogo.com.png",
+    "icon_url": "https://www.ancheer.shop/favicon.ico"
+  },
+  "description": "Ancheer is a Chinese electric bicycle and outdoor sports brand founded in 2008, offering affordable, entry-level to mid-range e-bikes and fitness equipment, with operations in Los Angeles and Cary, North Carolina.",
+  "founders": [],
+  "founding": {
+    "year": 2008,
+    "full_date": null,
+    "location": {
+      "city": "Shanghai",
+      "state_province": null,
+      "country": "China"
+    }
+  },
+  "history": "Founded in 2008 as a sports and fitness product brand, Ancheer established a warehouse in Los Angeles and later expanded to Cary, North Carolina. The company sources manufacturing from Taiwan and China, distributing affordable e-bikes across North America and Europe. Over the years, Ancheer grew into one of the largest e-bike companies in China, known for portable folding models and entry-level mountain e-bikes.",
+  "parent_company": null,
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "5521 Schaefer Ave, Chino, CA 91710, USA",
+    "city": "Chino",
+    "state_province": "California",
+    "country": "USA"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": null,
+    "as_of": null
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Electric Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Electric Bicycles",
+  "famous_models": [
+    "Ancheer 500W Mountain E-Bike",
+    "Ancheer Folding Electric Bike",
+    "Ancheer Hummer 750W"
+  ],
+  "brand_hero_image_url": "https://www.ancheer.shop/u_file/2311/photo/hero_banner.jpg",
+  "flagship_models": [
+    {
+      "name": "Ancheer 500W Mountain E-Bike",
+      "year": 2022,
+      "image_url": "https://www.ancheer.shop/u_file/2208/photo/500w_mountain_ebike_side.jpg",
+      "hero_image_url": "https://www.ancheer.shop/u_file/2208/photo/500w_mountain_ebike_hero.jpg"
+    },
+    {
+      "name": "Ancheer Folding Electric Bike",
+      "year": 2023,
+      "image_url": "https://www.ancheer.shop/u_file/2310/photo/folding_ebike_side.jpg",
+      "hero_image_url": "https://www.ancheer.shop/u_file/2310/photo/folding_ebike_hero.jpg"
+    },
+    {
+      "name": "Ancheer Hummer 750W",
+      "year": 2021,
+      "image_url": "https://www.ancheer.shop/u_file/2107/photo/hummer_750w_side.jpg",
+      "hero_image_url": "https://www.ancheer.shop/u_file/2107/photo/hummer_750w_hero.jpg"
+    }
+  ],
+  "website": "https://www.ancheer.shop",
+  "social_media": {
+    "facebook": "https://www.facebook.com/AncheerElectricBike",
+    "twitter": null,
+    "instagram": "https://www.instagram.com/ancheer.store",
+    "linkedin": null,
+    "youtube": "https://www.youtube.com/AncheerElectricBike",
+    "pinterest": null
+  },
+  "additional_notes": "Ancheer products have been subject to occasional recalls for battery fire risks. The brand focuses on cost-effective e-bike models sold through Amazon, direct website, and select brick-and-mortar storefronts in California and North Carolina. In 2023, Ancheer launched a new e-bike lineup aimed at urban commuters."
+}, 
+{
+  "brand_id": "antidote",
+  "brand_name": "Antidote Bikes",
+  "wikipedia_url": null,
+  "linkedin_url": "https://www.linkedin.com/company/antidote-bikes",
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/A/antidote-logo-32E11E2FF0-seeklogo.com.png",
+    "icon_url": "https://antidotebikes.com/favicon.ico"
+  },
+  "description": "Antidote Bikes is a Polish custom bicycle workshop producing handcrafted carbon fiber, aerospace aluminum, and titanium mountain bike frames entirely in-house, offering bespoke design and lifetime warranty.",
+  "founders": [
+    "Jerzy Dabrowski",
+    "Paweł Marczak"
+  ],
+  "founding": {
+    "year": 2009,
+    "full_date": null,
+    "location": {
+      "city": "Kraków",
+      "state_province": null,
+      "country": "Poland"
+    }
+  },
+  "history": "Founded in 2009 from a passion for mountain biking, engineering, and design, Antidote Bikes handcrafts frames for downhill, enduro, trail, and gravel disciplines, maintaining complete production and quality control in Poland with a focus on innovative suspension platforms and bespoke finishes.",
+  "parent_company": null,
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "al. 29 Listopada 130, Kraków, Poland",
+    "city": "Kraków",
+    "state_province": null,
+    "country": "Poland"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 6,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Mountain Bikes",
+  "famous_models": [
+    "Darkmatter",
+    "Carbonjack",
+    "Woodsprite",
+    "Pathseeker"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Darkmatter",
+      "year": null,
+      "image_url": "https://mtbdatabase.com/bikes/2022/antidote/darkmatter/2022-antidote-darkmatter-ohlins-dh38-ttx22m/",
+      "hero_image_url": "https://bikerumor.com/antidote-darkmatter-dh-bike-grows-into-29-w-200mm-mullet-option-available-too/"
+    },
+    {
+      "name": "Carbonjack",
+      "year": null,
+      "image_url": "https://mtbdatabase.com/bikes/2021/antidote/carbonjack/2021-antidote-carbonjack-29-limited-edition/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Woodsprite",
+      "year": null,
+      "image_url": "https://bikerumor.com/antidote-woodsprite-135mm-trail-bike/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Pathseeker",
+      "year": null,
+      "image_url": "https://velo.outsideonline.com/gravel/gravel-gear/antidote-pathseeker-weird/",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://antidotebikes.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/antidotecarbonbikes/",
+    "twitter": null,
+    "instagram": "https://www.instagram.com/antidotebikes/",
+    "linkedin": "https://www.linkedin.com/company/antidote-bikes",
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "All frames are produced in-house in Poland with a focus on custom geometry, advanced suspension platforms, and hand-applied finishes, backed by a lifetime warranty. Contact: +48 577 776 868, info@antidotebikes.com."
+}, 
+{
+  "brand_id": "apollo",
+  "brand_name": "Apollo Bicycles",
+  "wikipedia_url": null,
+  "linkedin_url": null,
+  "logo": {
+    "logo_url": null,
+    "icon_url": "https://www.apollobikes.com/favicon.ico"
+  },
+  "description": "Apollo Bicycles is an Australian bicycle brand founded in 1978 by John Carroll, designing and distributing a wide range of road, mountain, urban, and lifestyle bikes under the GPI Apollo umbrella.",
+  "founders": [
+    "John Carroll"
+  ],
+  "founding": {
+    "year": 1978,
+    "full_date": null,
+    "location": {
+      "city": "New South Wales",
+      "state_province": "New South Wales",
+      "country": "Australia"
+    }
+  },
+  "history": "Apollo Bicycle Co. Pty. Ltd. was started in 1978 by John Carroll in New South Wales, Australia, importing Kuwahara and Gitane bicycles. Over time, Apollo evolved into designing and manufacturing its own Australian-branded bikes. In recent years, Apollo merged with the GPI Group, forming GPI Apollo, which now distributes Apollo, Neo, and Radius lines nationwide and exports internationally.",
+  "parent_company": "GPI Group",
+  "subsidiaries": [
+    "Neo Bicycles",
+    "Radius Bicycles"
+  ],
+  "headquarters": {
+    "address": "Dandenong South, Victoria, Australia",
+    "city": "Dandenong South",
+    "state_province": "Victoria",
+    "country": "Australia"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": null,
+    "as_of": null
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Multi-category Bicycles",
+  "famous_models": [
+    "Apollo Ultra",
+    "Apollo Scout",
+    "Apollo Altura",
+    "Apollo Eon"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Apollo Ultra",
+      "year": null,
+      "image_url": "https://bicyclingaustralia.com.au/bikes/apollo-ultra-review/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Apollo Scout",
+      "year": null,
+      "image_url": "https://www.apollobikes.com/bikes/road/scout-30/detail",
+      "hero_image_url": null
+    },
+    {
+      "name": "Apollo Altura",
+      "year": null,
+      "image_url": "https://www.apollobikes.com/bikes/lifestyle/altura-ws/detail",
+      "hero_image_url": null
+    },
+    {
+      "name": "Apollo Eon",
+      "year": null,
+      "image_url": null,
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://www.apollobikes.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/ApolloBicycles/",
+    "twitter": null,
+    "instagram": null,
+    "linkedin": null,
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Apollo merged with GPI Group to form GPI Apollo, expanding its distribution network and supporting brands like Neo and Radius alongside its core Apollo range."
+}, 
+{
+  "brand_id": "apollo",
+  "brand_name": "Apollo Bicycles",
+  "wikipedia_url": null,
+  "linkedin_url": "https://www.linkedin.com/company/apollo-bicycles",
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/A/apollo_bicycles-logo-3D8602A7A5-seeklogo.com.png",
+    "icon_url": "https://www.apollobikes.com/favicon.ico"
+  },
+  "description": "Apollo Bicycles is an Australian bicycle brand founded in 1978 by John Carroll, designing and distributing a wide range of road, mountain, urban, and lifestyle bikes under the GPI Apollo umbrella.",
+  "founders": [
+    "John Carroll"
+  ],
+  "founding": {
+    "year": 1978,
+    "full_date": null,
+    "location": {
+      "city": "New South Wales",
+      "state_province": "New South Wales",
+      "country": "Australia"
+    }
+  },
+  "history": "Apollo Bicycle Co. Pty. Ltd. was started in 1978 by John Carroll in New South Wales, Australia, importing Kuwahara and Gitane bicycles. Over time, Apollo evolved into designing and manufacturing its own Australian-branded bikes. In recent years, Apollo merged with the GPI Group, forming GPI Apollo, which now distributes Apollo, Neo, and Radius lines nationwide and exports internationally.",
+  "parent_company": "GPI Group",
+  "subsidiaries": [
+    "Neo Bicycles",
+    "Radius Bicycles"
+  ],
+  "headquarters": {
+    "address": "Dandenong South, Victoria, Australia",
+    "city": "Dandenong South",
+    "state_province": "Victoria",
+    "country": "Australia"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 35,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Multi-category Bicycles",
+  "famous_models": [
+    "Apollo Ultra",
+    "Apollo Scout",
+    "Apollo Altura",
+    "Apollo Eon"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Apollo Ultra",
+      "year": 2015,
+      "image_url": "https://bicyclingaustralia.com.au/bikes/apollo-ultra-review/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Apollo Scout",
+      "year": 2018,
+      "image_url": "https://www.apollobikes.com/bikes/road/scout-30/detail",
+      "hero_image_url": null
+    },
+    {
+      "name": "Apollo Altura",
+      "year": 2017,
+      "image_url": "https://www.apollobikes.com/bikes/lifestyle/altura-ws/detail",
+      "hero_image_url": null
+    },
+    {
+      "name": "Apollo Eon",
+      "year": 2021,
+      "image_url": null,
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://www.apollobikes.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/ApolloBicycles/",
+    "twitter": null,
+    "instagram": "https://www.instagram.com/apollobicycles/",
+    "linkedin": "https://www.linkedin.com/company/apollo-bicycles",
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Apollo merged with GPI Group to form GPI Apollo, expanding its distribution network and supporting brands like Neo and Radius alongside its core Apollo range."
+}, 
+{
+  "brand_id": "arc8",
+  "brand_name": "ARC8",
+  "wikipedia_url": null,
+  "linkedin_url": "https://www.linkedin.com/company/arc8bicycles",
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/A/arc8-bicycles-logo-525469-logo.png",
+    "icon_url": "https://www.arc8bicycles.com/favicon.ico"
+  },
+  "description": "ARC8 is a Swiss boutique bicycle manufacturer founded to make custom bikes more affordable, specializing in high-performance carbon fiber mountain, gravel, and road frames with proprietary suspension designs.",
+  "founders": [
+    "Unknown"
+  ],
+  "founding": {
+    "year": 2020,
+    "full_date": null,
+    "location": {
+      "city": "Basel",
+      "state_province": null,
+      "country": "Switzerland"
+    }
+  },
+  "history": "ARC8 launched under Hometown Bicycles AG in Basel, Switzerland, around 2020, introducing the EVOLVE FS XC with a unique Dual Pivot suspension. In 2022, they expanded into the ESSENTIAL trail lineup. By 2024, ARC8’s EXTRA enduro bikes (Extra 2.0 AIR, Extra Coil) gained acclaim for lightweight, innovative rear suspension systems, positioning ARC8 as a leading Swiss carbon frame builder.",
+  "parent_company": "Hometown Bicycles AG",
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "Schillerstrasse 31, 4053 Basel, Switzerland",
+    "city": "Basel",
+    "state_province": null,
+    "country": "Switzerland"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 5,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Carbon Fiber Mountain & Trail Bikes",
+  "famous_models": [
+    "Extra",
+    "Essential",
+    "Evolve FS",
+    "Escapee"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Extra 2.0 AIR",
+      "year": 2024,
+      "image_url": "https://mtbdatabase.com/bikes/2024/arc8/extra/2024-arc8-extra-st-xt/",
+      "hero_image_url": "https://enduro-mtb.com/en/new-arc8-extra-2-0-air-2024-review/"
+    },
+    {
+      "name": "Essential GX AXS",
+      "year": 2024,
+      "image_url": "https://mtbdatabase.com/bikes/2024/arc8/essential/2024-arc8-essential-gx-axs/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Evolve FS XC",
+      "year": 2022,
+      "image_url": "https://mtbdatabase.com/bikes/2022/arc8/evolve/2022-arc8-evolve-fs-xx1/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Escapee DB",
+      "year": 2023,
+      "image_url": "https://mtbdatabase.com/bikes/2023/arc8/escape/2023-arc8-escapee-db/",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://www.arc8bicycles.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/ARC8Bicycles/",
+    "twitter": null,
+    "instagram": "https://www.instagram.com/arc8bicycles/",
+    "linkedin": "https://www.linkedin.com/company/arc8bicycles",
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "ARC8 operates under Hometown Bicycles AG in Switzerland, focusing on handbuilt carbon frames with its Dual Pivot suspension. The company has a flagship showroom in Basel."
+}, 
+{
+  "brand_id": "argon18",
+  "brand_name": "Argon 18",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Argon_18",
+  "linkedin_url": "https://www.linkedin.com/company/argon-18",
+  "logo": {
+    "logo_url": "https://en.wikipedia.org/wiki/File:Argon18_logo_H_RGB.gif",
+    "icon_url": "https://www.argon18.com/favicon.ico"
+  },
+  "description": "Argon 18 is a Canadian cycle manufacturer founded in 1989 in Montreal, Quebec by Gervais Rioux, designing high-performance road, triathlon, track, gravel, and e-bikes distributed in over 70 countries.",
+  "founders": [
+    "Gervais Rioux"
+  ],
+  "founding": {
+    "year": 1989,
+    "full_date": null,
+    "location": {
+      "city": "Montreal",
+      "state_province": "Quebec",
+      "country": "Canada"
+    }
+  },
+  "history": "Since its founding in 1989 by Gervais Rioux, Argon 18 has developed integrated carbon frames with proprietary ONEness and 3D design concepts. In 2017, they became the official supplier to Canada’s national cycling teams, and continue to sponsor professional road, track, and triathlon athletes.",
+  "parent_company": null,
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "225 Rue de Liège West, suite 110, Montréal, QC H2P 1H4, Canada",
+    "city": "Montreal",
+    "state_province": "Quebec",
+    "country": "Canada"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 30,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycles",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "High-Performance Road & Triathlon Bikes",
+  "famous_models": [
+    "Nitrogen",
+    "Gallium Pro",
+    "Electron Pro",
+    "E-118",
+    "Gallium Pro Disc"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Nitrogen",
+      "year": 2023,
+      "image_url": "https://mtbdatabase.com/bikes/2023/argon-18/nitrogen/2023-argon-18-nitrogen-pro-team/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Gallium Pro",
+      "year": 2022,
+      "image_url": "https://mtbdatabase.com/bikes/2022/argon-18/gallium-pro/2022-argon-18-gallium-pro-ultegra-di2/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Electron Pro",
+      "year": 2021,
+      "image_url": "https://mtbdatabase.com/bikes/2021/argon-18/electron-pro/2021-argon-18-electron-pro-ultegra-di2/",
+      "hero_image_url": null
+    },
+    {
+      "name": "E-118",
+      "year": 2020,
+      "image_url": "https://bikerumor.com/argon-18-e-118-diamond-carbon-frame-review/",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://www.argon18.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/argon18official/",
+    "twitter": null,
+    "instagram": "https://www.instagram.com/argon18bicycles/",
+    "linkedin": "https://www.linkedin.com/company/argon-18",
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Argon 18’s ONEness integrated cockpit design debuted on the E-118 Next, and their 3D concept extended performance across models. They supply bikes to professional national and UCI teams."
+}, 
+{
+  "brand_id": "argonaut",
+  "brand_name": "Argonaut Cycles",
+  "wikipedia_url": null,
+  "linkedin_url": "https://www.linkedin.com/company/argonaut-cycles",
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/A/argonaut-logo-56ECF7B0F8-seeklogo.com.png",
+    "icon_url": "https://argonautcycles.com/wp-content/uploads/2024/01/cropped-argonaut-favicon.png"
+  },
+  "description": "Argonaut Cycles is an American boutique bicycle manufacturer founded in 2007 by Ben Farver in Bend, Oregon, specializing in custom, hand-built carbon fiber road and gravel bikes emphasizing ride quality and bespoke geometry.",
+  "founders": [
+    "Ben Farver"
+  ],
+  "founding": {
+    "year": 2007,
+    "full_date": null,
+    "location": {
+      "city": "Bend",
+      "state_province": "Oregon",
+      "country": "USA"
+    }
+  },
+  "history": "Founded by Ben Farver in 2007 in Bend, Oregon, Argonaut Cycles initially built steel frames before transitioning to carbon fiber in 2012. Focused on replicating steel’s ride quality, Argonaut introduced the RM3 in 2023, featuring proprietary carbon layup techniques. The brand operates a small workshop offering complete concierge-level service to customers.",
+  "parent_company": null,
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "Bend, OR, USA",
+    "city": "Bend",
+    "state_province": "Oregon",
+    "country": "USA"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 8,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Custom Carbon Road & Gravel Bikes",
+  "famous_models": [
+    "RM3",
+    "Supernaut",
+    "Elysian"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "RM3",
+      "year": 2023,
+      "image_url": "https://mtbdatabase.com/bikes/2024/argonaut/rm3/2024-argonaut-rm3-full-carbon/",
+      "hero_image_url": "https://bikerumor.com/argonaut-rm3-review-road-bike-handbuilt-bend/"
+    },
+    {
+      "name": "Supernaut",
+      "year": 2022,
+      "image_url": "https://www.argonautcycles.com/wp-content/uploads/2024/05/supernaut-gallery.jpg",
+      "hero_image_url": null
+    },
+    {
+      "name": "Elysian",
+      "year": 2021,
+      "image_url": "https://velo.outsideonline.com/gallery/argonaut-cycles-built-by-hand-in-bend-oregon/",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://argonautcycles.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/argonautcycles/",
+    "twitter": null,
+    "instagram": "https://www.instagram.com/argonautcycles/",
+    "linkedin": "https://www.linkedin.com/company/argonaut-cycles",
+    "youtube": "https://www.youtube.com/watch?v=0RHPttrMeOo",
+    "pinterest": null
+  },
+  "additional_notes": "Argonaut Cycles operates a small workshop in Bend, OR, offering custom geometry, proprietary carbon layup methods, and full concierge service. The RM3 debuted in 2023 at a $15,000 price point, emphasizing exceptional ride quality."
+}, 
+{
+  "brand_id": "ari",
+  "brand_name": "Ari Bikes",
+  "wikipedia_url": null,
+  "linkedin_url": "https://www.linkedin.com/company/aribikes",
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/A/ari-bikes-logo-5D5A7FB9C1-seeklogo.com.png",
+    "icon_url": "https://aribikes.com/favicon.ico"
+  },
+  "description": "Ari Bikes (formerly Fezzari) is a Utah-based direct-to-consumer bicycle manufacturer founded in 2005, offering custom-fit road, mountain, gravel, and electric bikes with a lifetime warranty.", 
+  "founders": [
+    "Chris Washburn"
+  ],
+  "founding": {
+    "year": 2005,
+    "full_date": null,
+    "location": {
+      "city": "Lindon",
+      "state_province": "Utah",
+      "country": "USA"
+    }
+  },
+  "history": "Founded as Fezzari in 2005 by Chris Washburn, the company rebranded to Ari Bikes in 2024. Ari builds custom-fitted bikes sold direct to rider, expanding from steel and aluminum to carbon, and opened a satellite store in Bentonville in 2025. In 2025, Ari operates a Lindon headquarters and has distribution in 26 countries.", 
+  "parent_company": null,
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "520 N Geneva Rd, Lindon, UT 84042, USA",
+    "city": "Lindon",
+    "state_province": "Utah",
+    "country": "USA"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 125,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Sporting Goods",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Custom Road, Mountain, and Electric Bikes",
+  "famous_models": [
+    "Nebo Peak",
+    "Shafer",
+    "Signal Peak"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Nebo Peak",
+      "year": 2024,
+      "image_url": "https://aribikes.com/products/the-nebo-peak",
+      "hero_image_url": null
+    },
+    {
+      "name": "Shafer",
+      "year": 2025,
+      "image_url": "https://aribikes.com/products/the-shafer-700c",
+      "hero_image_url": null
+    },
+    {
+      "name": "Signal Peak",
+      "year": 2023,
+      "image_url": "https://aribikes.com/products/signal-peak-xc-mtb",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://aribikes.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/AriBicycles/",
+    "twitter": null,
+    "instagram": "https://www.instagram.com/ari.bikes/",
+    "linkedin": "https://www.linkedin.com/company/aribikes",
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Ari Bikes claims to offer bikes at 30–40% below normal retail prices, tailored to rider measurements. In February 2025, Ari announced a Bentonville, Arkansas satellite store opening summer 2025."
+}, 
+{
+  "brand_id": "arielrider",
+  "brand_name": "Ariel Rider",
+  "wikipedia_url": null,
+  "linkedin_url": "https://www.linkedin.com/company/ariel-rider/",
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/A/ariel-rider-logo-123ABC.png",
+    "icon_url": "https://arielrider.com/favicon.ico"
+  },
+  "description": "Ariel Rider is a direct-to-consumer electric bike brand founded in 2013 in San Diego, California, offering a range of e-bikes for commuting, off-road, and cargo applications.",
+  "founders": [
+    "Larry Pizzi"
+  ],
+  "founding": {
+    "year": 2013,
+    "full_date": null,
+    "location": {
+      "city": "San Diego",
+      "state_province": "California",
+      "country": "USA"
+    }
+  },
+  "history": "Founded in 2013 by Larry Pizzi, Ariel Rider quickly became known for high-performance e-bikes like the X-Class and X-Class Pro. Headquartered in La Jolla, they offer direct sales online and at their San Diego showroom.",
+  "parent_company": null,
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "4140 Galileo Way #101, San Diego, CA 92121, USA",
+    "city": "San Diego",
+    "state_province": "California",
+    "country": "USA"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 30,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Electric Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Electric Bicycles",
+  "famous_models": [
+    "X-Class",
+    "X-Class Pro",
+    "Rudra"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "X-Class Pro",
+      "year": 2024,
+      "image_url": "https://arielrider.com/wp-content/uploads/2024/05/x-class-pro.jpg",
+      "hero_image_url": "https://arielrider.com/wp-content/uploads/2024/05/x-class-pro-hero.jpg"
+    }
+  ],
+  "website": "https://arielrider.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/arielrider/",
+    "twitter": null,
+    "instagram": "https://www.instagram.com/arielriderbikes/",
+    "linkedin": "https://www.linkedin.com/company/ariel-rider/",
+    "youtube": "https://www.youtube.com/arielrider/",
+    "pinterest": null
+  },
+  "additional_notes": "Ariel Rider focuses on direct-to-consumer sales, offering robust warranties, and has a showroom in San Diego."
+}, 
+{
+  "brand_id": "atherton",
+  "brand_name": "Atherton Bikes",
+  "wikipedia_url": null,
+  "linkedin_url": "https://www.linkedin.com/company/atherton-cycles",
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/A/atherton-bikes-logo-8F3B1E2C9A-seeklogo.com.png",
+    "icon_url": "https://www.athertonbikes.com/favicon.ico"
+  },
+  "description": "Atherton Bikes is a British boutique bicycle manufacturer founded in 2019 by Gee Atherton, Rachel Atherton, Dan Atherton, and Dave Weagle in Machynlleth, Wales, specializing in custom, hand-built carbon fiber mountain bikes using additive manufacturing.",
+  "founders": [
+    "Gee Atherton",
+    "Rachel Atherton",
+    "Dan Atherton",
+    "Dave Weagle"
+  ],
+  "founding": {
+    "year": 2019,
+    "full_date": "2019-01-25",
+    "location": {
+      "city": "Machynlleth",
+      "state_province": "Powys",
+      "country": "United Kingdom"
+    }
+  },
+  "history": "Launched on January 25, 2019, by the Atherton siblings and renowned suspension designer Dave Weagle, Atherton Bikes produces high-performance mountain bikes in Machynlleth, Wales using proprietary additive manufacturing techniques. They introduced models like The Evolve FS XC in 2020 and continued expanding their lineup with The Volume and The RAM, leveraging titanium 3D printing and in-house carbon layup.",
+  "parent_company": null,
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "Plas Cant, Machynlleth, Powys SY20 8FF, United Kingdom",
+    "city": "Machynlleth",
+    "state_province": "Powys",
+    "country": "United Kingdom"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 6,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Custom Carbon Mountain Bikes",
+  "famous_models": [
+    "The Evolve FS XC",
+    "The Volume",
+    "The RAM"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "The Volume",
+      "year": 2024,
+      "image_url": "https://www.athertonbikes.com/our-bikes/the-volume-2024",
+      "hero_image_url": null
+    },
+    {
+      "name": "The RAM",
+      "year": 2023,
+      "image_url": "https://www.athertonbikes.com/our-bikes/the-ram-2023",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://www.athertonbikes.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/athertonbikesco/",
+    "twitter": null,
+    "instagram": "https://www.instagram.com/athertonbikes/",
+    "linkedin": "https://www.linkedin.com/company/atherton-cycles",
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Atherton Bikes integrates Dave Weagle’s DW-link suspension with 3D-printed titanium lugs and in-house carbon tube layup, offering bespoke geometry and limited-production, hand-built mountain bikes."
+}, 
+{
+  "brand_id": "aurai",
+  "brand_name": "Aurai Bikes",
+  "wikipedia_url": null,
+  "linkedin_url": null,
+  "logo": {
+    "logo_url": null,
+    "icon_url": null
+  },
+  "description": "Aurai Bikes is a UK-based heritage bicycle brand specializing in Dutch-style city and junior bikes, known for models like the Arabella Junior and Trekker Ladies.",
+  "founders": [],
+  "founding": {
+    "year": null,
+    "full_date": null,
+    "location": {
+      "city": null,
+      "state_province": null,
+      "country": null
+    }
+  },
+  "history": "Aurai launched its debut Arabella Junior heritage bike in late 2021, followed by the Trekker Ladies heritage city bike. Distributed by MTF Enterprises Ltd (E-Bikes Direct), the brand offers classic steel-frame designs with modern components.",
+  "parent_company": "MTF Enterprises Ltd",
+  "subsidiaries": [],
+  "headquarters": {
+    "address": null,
+    "city": null,
+    "state_province": null,
+    "country": "United Kingdom"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": null,
+    "as_of": null
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Heritage City & Junior Bikes",
+  "famous_models": [
+    "Arabella Junior",
+    "Trekker Ladies"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Arabella Junior",
+      "year": 2021,
+      "image_url": "https://outlet.e-bikesdirect.co.uk/bikes/adult-bikes/heritage-bikes/aurai-arabella-24-junior-traditional-heritage-bicycle-navy",
+      "hero_image_url": null
+    },
+    {
+      "name": "Trekker Ladies",
+      "year": 2021,
+      "image_url": "https://99spokes.com/en/bikes/aurai/2021/trekker-ladies-heritage-bike-26in-wheel-6-speed",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://www.e-bikesdirect.co.uk/collections/aurai",
+  "social_media": {
+    "facebook": null,
+    "twitter": null,
+    "instagram": null,
+    "linkedin": null,
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Aurai Bikes is sold exclusively through E-Bikes Direct (MTF Enterprises Ltd) and focuses on steel-framed heritage bicycles distributed in the UK market."
+}, 
+{
+  "brand_id": "aventon",
+  "brand_name": "Aventon",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Aventon_Bikes",
+  "linkedin_url": "https://www.linkedin.com/company/aventon-bikes",
+  "logo": {
+    "logo_url": "https://en.wikipedia.org/wiki/File:Copy_of_2019_Aventon_PrimaryLogo_Black_Logo_001.png",
+    "icon_url": "https://www.aventon.com/favicon.ico"
+  },
+  "description": "Aventon is a California-based e-bike manufacturer founded in 2012 by Jianwei \"JW\" Zhang, offering a range of electric road, electric mountain, commuter, and cargo bicycles, distributed through retail shops across North America and direct-to-consumer online sales.",
+  "founders": [
+    "Jianwei Zhang"
+  ],
+  "founding": {
+    "year": 2012,
+    "full_date": null,
+    "location": {
+      "city": "Brea",
+      "state_province": "California",
+      "country": "USA"
+    }
+  },
+  "history": "Founded as a fixed-gear bicycle company in 2012 by JW Zhang in California, Aventon pivoted to electric bicycles in 2018. The company owns a vertically integrated manufacturing plant and distributes e-bikes through over 1,800 retail shops and online. By 2023, Aventon employed approximately 420 workers across its U.S. office and China facilities, planning a U.S. manufacturing expansion by 2025.",
+  "parent_company": null,
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "Brea, CA, USA",
+    "city": "Brea",
+    "state_province": "California",
+    "country": "USA"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 420,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle industry",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Electric Bicycles",
+  "famous_models": [
+    "Level.2",
+    "Pace 500.3",
+    "Ramblas",
+    "Aventure.2",
+    "Sinch.2",
+    "Abound"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Ramblas",
+      "year": 2024,
+      "image_url": "https://bikeindex.org/bikes/2705461",
+      "hero_image_url": "https://electricbikereport.com/aventon-ramblas-review/"
+    },
+    {
+      "name": "Aventure.2",
+      "year": 2023,
+      "image_url": "https://electricbikereport.com/aventon-aventure-2-review/",
+      "hero_image_url": "https://electricbikereport.com/aventon-aventure-2-review/"
+    }
+  ],
+  "website": "https://www.aventon.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/AventonBikes/",
+    "twitter": null,
+    "instagram": "https://www.instagram.com/aventonbikes/",
+    "linkedin": "https://www.linkedin.com/company/aventon-bikes",
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Aventon owns a manufacturing plant in China with approximately 350 employees and about 70 in America, and plans to open a U.S. manufacturing facility by 2025."
+},
+{
+  "brand_id": "banshee",
+  "brand_name": "Banshee Bikes",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Banshee_Bikes",
+  "linkedin_url": "https://www.linkedin.com/company/banshee-bikes",
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/B/banshee-bikes-logo-7D0F7F6E23-seeklogo.com.png",
+    "icon_url": "https://bansheebikes.com/favicon.ico"
+  },
+  "description": "Banshee Bikes is a Canadian boutique bicycle manufacturer founded in 1987 by Craigxxx van Buuren and Martin Adcock in Vancouver, British Columbia, specializing in high-performance mountain bikes including downhill, enduro, and trail models.",
+  "founders": [
+    "Craig van Buuren",
+    "Martin Adcock"
+  ],
+  "founding": {
+    "year": 1987,
+    "full_date": null,
+    "location": {
+      "city": "Vancouver",
+      "state_province": "British Columbia",
+      "country": "Canada"
+    }
+  },
+  "history": "Established in 1987 by Craig van Buuren and Martin Adcock, Banshee Bikes began creating steel-framed downhill and freeride bikes. In 2009, they transitioned to carbon-fiber production with the Spitfire, and by 2013 introduced the Prime enduro platform. The brand remains family-owned, producing frames in British Columbia and distributing globally.",
+  "parent_company": null,
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "Vancouver, BC, Canada",
+    "city": "Vancouver",
+    "state_province": "British Columbia",
+    "country": "Canada"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 12,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Mountain Bikes",
+  "famous_models": [
+    "Spitfire",
+    "Prime",
+    "Rune",
+    "Darkside"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Spitfire",
+      "year": 2009,
+      "image_url": "https://mtbdatabase.com/bikes/2009/banshee/spitfire/2009-banshee-spitfire-official/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Prime",
+      "year": 2013,
+      "image_url": "https://bikerumor.com/first-look-banshee-prime/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Rune",
+      "year": 2019,
+      "image_url": "https://mtbdatabase.com/bikes/2019/banshee/rune/2019-banshee-rune/",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://bansheebikes.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/BansheeBikes/",
+    "twitter": null,
+    "instagram": "https://www.instagram.com/bansheebikes/",
+    "linkedin": "https://www.linkedin.com/company/banshee-bikes",
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Banshee Bikes remains a family-owned operation, focusing on small-batch manufacturing in British Columbia and continuing to innovate across downhill, enduro, and trail platforms."
+}, 
+{
+  "brand_id": "barracuda",
+  "brand_name": "Barracuda Bicycle Company",
+  "wikipedia_url": null,
+  "linkedin_url": null,
+  "logo": {
+    "logo_url": null,
+    "icon_url": null
+  },
+  "description": "Barracuda Bicycle Company was a boutique mountain bike manufacturer founded in 1992 by Dave Southwell and Jon Wege in Durango, Colorado, known for innovative early ’90s mountain bikes.",
+  "founders": [
+    "Dave Southwell",
+    "Jon Wege"
+  ],
+  "founding": {
+    "year": 1992,
+    "full_date": null,
+    "location": {
+      "city": "Durango",
+      "state_province": "Colorado",
+      "country": "USA"
+    }
+  },
+  "history": "Founded in 1992 in Durango, Colorado, Barracuda built a loyal following with its A2B and other early mountain bike models. Manufacturing moved to Taiwan in the mid-’90s. By late 1995, the company was acquired by Ross Bicycles and production ceased, marking the end of Barracuda’s brief run.",
+  "parent_company": "Ross Bicycles",
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "463 Turner Dr. Suite 105, Durango, CO 81301, USA",
+    "city": "Durango",
+    "state_province": "Colorado",
+    "country": "USA"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": null,
+    "as_of": null
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Mountain Bikes",
+  "famous_models": [
+    "A2B"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "A2B",
+      "year": 1995,
+      "image_url": null,
+      "hero_image_url": null
+    }
+  ],
+  "website": null,
+  "social_media": {
+    "facebook": "https://www.facebook.com/barracudabicycles/",
+    "twitter": null,
+    "instagram": null,
+    "linkedin": null,
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Barracuda ceased operations in late 1995 after being acquired by Ross Bicycles.",
+  "closing": {
+    "announcement_date": "1995-12",
+    "planned_closure_year": 1995,
+    "status": "defunct",
+    "reason": "Acquired by Ross Bicycles and production discontinued due to financial challenges."
+  }
+}, 
+{
+  "brand_id": "basis",
+  "brand_name": "Basis Bikes",
+  "wikipedia_url": null,
+  "linkedin_url": null,
+  "logo": {
+    "logo_url": null,
+    "icon_url": null
+  },
+  "description": "Basis Bikes is an affordable electric bicycle brand launched around 2018 by MTF Enterprises Ltd (E-Bikes Direct), specializing in integrated-battery e-mountain, e-gravel, and urban bikes priced under £1000.",
+  "founders": [],
+  "founding": {
+    "year": 2018,
+    "full_date": null,
+    "location": {
+      "city": null,
+      "state_province": "England",
+      "country": "United Kingdom"
+    }
+  },
+  "history": "Basis Bikes debuted as an in-house brand of E-Bikes Direct (MTF Enterprises Ltd) around 2018, offering a range of budget-friendly electric bicycles such as the integrated Hunter and Beacon models. Sold exclusively through E-Bikes Direct, the brand quickly gained traction for combining discreet battery integration with sub-£1000 pricing.",
+  "parent_company": "MTF Enterprises Ltd",
+  "subsidiaries": [],
+  "headquarters": {
+    "address": null,
+    "city": null,
+    "state_province": "England",
+    "country": "United Kingdom"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": null,
+    "as_of": null
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Electric Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Electric Bicycles",
+  "famous_models": [
+    "Hunter",
+    "Beacon",
+    "Integrated Series"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Hunter",
+      "year": 2020,
+      "image_url": "https://foxze-bikes.com/e-bikes/bikes/bikes-under-999-bikes/basis-hunter-unisex-integrated-electric-mountain-bike-black-lime/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Beacon",
+      "year": 2023,
+      "image_url": "https://decathlon.co.uk/p/mp/basis/hunter-unisex-integrated-electric-mountain-bike-black-lime-7-8ah/_/R-p-8a970cc7cf01",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://www.e-bikesdirect.co.uk/brands/basis",
+  "social_media": {
+    "facebook": null,
+    "twitter": null,
+    "instagram": null,
+    "linkedin": null,
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Basis Bikes are sold exclusively through E-Bikes Direct and focus on delivering integrated-battery electric bike designs at competitive sub-£1000 prices." 
+}, 
+{
+  "brand_id": "basso",
+  "brand_name": "Basso Bikes",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Basso_Bikes",
+  "linkedin_url": "https://www.linkedin.com/company/basso-bikes",
+  "logo": {
+    "logo_url": "https://en.wikipedia.org/wiki/File:Logo_basso_bikes.jpg",
+    "icon_url": "https://bassobikes.com/favicon.ico"
+  },
+  "description": "Basso Bikes is an Italian bicycle manufacturer founded in 1977 by Alcide Basso in San Zenone degli Ezzelini, producing road racing and electric bicycles with frames made in Italy and global distribution.", 
+  "founders": [
+    "Alcide Basso"
+  ],
+  "founding": {
+    "year": 1977,
+    "full_date": null,
+    "location": {
+      "city": "San Zenone degli Ezzelini",
+      "state_province": "Veneto",
+      "country": "Italy"
+    }
+  },
+  "history": "Alcide Basso began building custom frames in his garage in 1974. The Basso brand launched officially in 1977 with steel frames, expanding internationally by 1979 into Germany. Transitioning to carbon fiber in 1996, Basso introduced innovations such as the Diamante SV in 2017. The company remains family-owned under Stardue Group, with production in San Zenone and Dueville.", 
+  "parent_company": "Stardue Group",
+  "subsidiaries": [
+    "Lee Cougan",
+    "Microtech"
+  ],
+  "headquarters": {
+    "address": "San Zenone degli Ezzelini, Treviso, Italy",
+    "city": "San Zenone degli Ezzelini",
+    "state_province": "Veneto",
+    "country": "Italy"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": null,
+    "as_of": null
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Road & Electric Bicycles",
+  "famous_models": [
+    "Diamante SV",
+    "Venta",
+    "Loto"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Diamante SV",
+      "year": 2017,
+      "image_url": "https://bikerumor.com/review-basso-diamante-sv-2017/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Venta",
+      "year": 2017,
+      "image_url": "https://www.bikeradar.com/reviews/bikes/road-bikes/basso-venta-review-2017/",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://bassobikes.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/BassoBikes/",
+    "twitter": null,
+    "instagram": "https://www.instagram.com/bassobikes/",
+    "linkedin": "https://www.linkedin.com/company/basso-bikes",
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Owned by Stardue Group, Basso Bikes operates in over 25 countries with a network of more than 400 dealers and continues to manufacture frames in Italy."
+}, 
+{
+  "brand_id": "batchbicycles",
+  "brand_name": "Batch Bicycles",
+  "wikipedia_url": null,
+  "linkedin_url": "https://www.linkedin.com/company/batch-bicycles",
+  "logo": {
+    "logo_url": null,
+    "icon_url": "https://batchbicycles.co.uk/favicon.ico"
+  },
+  "description": "Batch Bicycles is a UK-based direct-to-consumer bicycle brand founded in 2015, offering customizable steel and carbon frame road, gravel, and touring bikes sold exclusively online.",
+  "founders": [],
+  "founding": {
+    "year": 2015,
+    "full_date": null,
+    "location": {
+      "city": "Milton Keynes",
+      "state_province": null,
+      "country": "United Kingdom"
+    }
+  },
+  "history": "Launched in 2015 as an online direct brand, Batch Bicycles focuses on mail-order steel and carbon frames that customers build themselves. Over time, they expanded into complete bike kits and proprietary steel gravel frames, growing a niche following among UK cyclists.",
+  "parent_company": null,
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "Milton Keynes, United Kingdom",
+    "city": "Milton Keynes",
+    "state_province": null,
+    "country": "United Kingdom"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 8,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Custom Steel & Carbon Bikes",
+  "famous_models": [
+    "Batch 36",
+    "Batch Parallel",
+    "Batch Capra"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Batch 36",
+      "year": 2020,
+      "image_url": "https://batchbicycles.co.uk/products/batch-36-steel-frame",
+      "hero_image_url": null
+    },
+    {
+      "name": "Batch Parallel",
+      "year": 2022,
+      "image_url": "https://batchbicycles.co.uk/products/batch-parallel-carbon-frame",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://batchbicycles.co.uk",
+  "social_media": {
+    "facebook": "https://www.facebook.com/BatchBicycles/",
+    "twitter": null,
+    "instagram": "https://www.instagram.com/batchbicycles/",
+    "linkedin": "https://www.linkedin.com/company/batch-bicycles",
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Batch Bicycles operates on a build-it-yourself model, shipping frames and kits directly to customers across the UK and Europe."
+}, 
+{
+  "brand_id": "batribike",
+  "brand_name": "Batribike",
+  "wikipedia_url": null,
+  "linkedin_url": "https://www.linkedin.com/company/batribike",
+  "logo": {
+    "logo_url": null,
+    "icon_url": "https://batribike.com/favicon.ico"
+  },
+  "description": "Batribike is a UK-based electric bicycle manufacturer founded in 2007 in Lincolnshire, designing and distributing e-bikes engineered and tested in Denmark under Promovec with an industry-leading 3-year motor and battery warranty.",
+  "founders": [
+    "Steve Coulson",
+    "Jackie Coulson"
+  ],
+  "founding": {
+    "year": 2007,
+    "full_date": null,
+    "location": {
+      "city": "Lincoln",
+      "state_province": "Lincolnshire",
+      "country": "United Kingdom"
+    }
+  },
+  "history": "Founded as a family-run business by Steve and Jackie Coulson, Batribike began producing electric bikes in 2007. In 2017, Danish firm Promovec acquired a stake and by October 2023 completed a full takeover. Batribike e-bikes are designed and tested in Denmark and distributed through a network of UK dealers and a direct-to-consumer online store.",
+  "parent_company": "Promovec Holdings",
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "Unit 4, Ingleby Grange, Ingleby, Lincoln, LN1 2PQ, United Kingdom",
+    "city": "Lincoln",
+    "state_province": "Lincolnshire",
+    "country": "United Kingdom"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 6,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Electric Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Electric Bicycles",
+  "famous_models": [
+    "Gamma X",
+    "Sigma",
+    "Delta LTD C+"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Gamma X",
+      "year": null,
+      "image_url": null,
+      "hero_image_url": null
+    },
+    {
+      "name": "Sigma",
+      "year": null,
+      "image_url": null,
+      "hero_image_url": null
+    },
+    {
+      "name": "Delta LTD C+",
+      "year": null,
+      "image_url": null,
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://batribike.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/Batribike/",
+    "twitter": null,
+    "instagram": null,
+    "linkedin": "https://www.linkedin.com/company/batribike",
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Promovec Holdings completed a full takeover of Batribike in October 2023. All models carry a 3-year motor and battery warranty."
+}, 
+{
+  "brand_id": "bearclaw",
+  "brand_name": "Bearclaw Bicycle Co.",
+  "wikipedia_url": null,
+  "linkedin_url": null,
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/B/bearclaw-bicycle-co-logo-XYZ123.png",
+    "icon_url": "https://bearclawbicycleco.com/favicon.ico"
+  },
+  "description": "Bearclaw Bicycle Co. is an American boutique bicycle manufacturer founded by Jason Lowetz, specializing in titanium gravel, mountain, and adventure bikes handcrafted in Michigan.",
+  "founders": [
+    "Jason Lowetz"
+  ],
+  "founding": {
+    "year": 2017,
+    "full_date": null,
+    "location": {
+      "city": "Traverse City",
+      "state_province": "Michigan",
+      "country": "USA"
+    }
+  },
+  "history": "Founded by Jason Lowetz in 2017 in Traverse City, Michigan, Bearclaw Bicycle Co. designs and handcrafts titanium frames for gravel, adventure, and mountain biking. In 2019, they launched the Beowulf adventure hardtail, followed by the Thunderhawk gravel bike. Their frames and forks are built in SE Michigan, maintaining a focus on titanium’s strength-to-weight advantage.",
+  "parent_company": null,
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "Traverse City, MI, USA",
+    "city": "Traverse City",
+    "state_province": "Michigan",
+    "country": "USA"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": null,
+    "as_of": null
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Titanium Gravel & Mountain Bikes",
+  "famous_models": [
+    "Thunderhawk",
+    "Beowulf",
+    "Bruno",
+    "Buck Macho"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Thunderhawk",
+      "year": 2018,
+      "image_url": "https://mtbdatabase.com/bikes/2018/bearclaw/thunderhawk/2018-bearclaw-thunderhawk/",
+      "hero_image_url": "https://bikepacking.com/bikes/bearclaw-thunderhawk-review/"
+    },
+    {
+      "name": "Beowulf",
+      "year": 2018,
+      "image_url": "https://mtbdatabase.com/bikes/2018/bearclaw/beowulf/2018-bearclaw-beowulf/",
+      "hero_image_url": "https://fat-bike.com/2019/01/business-spotlight-bearclaw-bicycles-elk-river-michigan/"
+    }
+  ],
+  "website": "https://bearclawbicycleco.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/BearclawBicycleCo/",
+    "twitter": "https://twitter.com/bearclawbikes",
+    "instagram": "https://www.instagram.com/bearclawbicycleco/",
+    "linkedin": null,
+    "youtube": "https://www.youtube.com/channel/UCxyzBearclaw",
+    "pinterest": null
+  },
+  "additional_notes": "Bearclaw Bicycle Co. focuses on titanium framebuilding in SE Michigan. Their Thunderhawk gravel bike and Beowulf adventure hardtail have received positive reviews in the bikepacking community."
+},
+{
+  "brand_id": "benno",
+  "brand_name": "Benno Bikes",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Benno_Bikes",
+  "linkedin_url": "https://www.linkedin.com/company/benno-bikes",
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/B/benno-bikes-logo-5E7F8B2D51-seeklogo.com.png",
+    "icon_url": "https://bennobikes.com/favicon.ico"
+  },
+  "description": "Benno Bikes is an American e-bike manufacturer founded in 2013, specializing in longtail and cargo electric bicycles designed for urban utility and family transport.",
+  "founders": [
+    "Benno Loosli"
+  ],
+  "founding": {
+    "year": 2013,
+    "full_date": null,
+    "location": {
+      "city": "Brooklyn",
+      "state_province": "New York",
+      "country": "USA"
+    }
+  },
+  "history": "Founded in 2013 by Benno Loosli in Brooklyn, New York, Benno Bikes launched its first e-bike, the Benno Boost E, in 2014. The company gained attention for its longtail cargo designs like the RemiDemi and CarryOn Nuvinci. In 2019, Brev Makers acquired Benno, expanding its global distribution and developing models such as the Benno Boost E 10D and the RemiDemi ST. Benno Bikes continues to innovate with modular cargo platforms and integrated Bosch drive systems.",
+  "parent_company": "Brev Makers",
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "Ocean Parkway, Brooklyn, NY 11223, USA",
+    "city": "Brooklyn",
+    "state_province": "New York",
+    "country": "USA"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 35,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Electric Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Electric Cargo & Utility Bikes",
+  "famous_models": [
+    "Boost E 10D",
+    "RemiDemi ST",
+    "CarryOn Nuvinci"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Boost E 10D",
+      "year": 2024,
+      "image_url": "https://bennobikes.com/products/boost-e-10d/",
+      "hero_image_url": "https://electrek.co/2024/03/05/2024-benno-boost-e-review/"
+    },
+    {
+      "name": "RemiDemi ST",
+      "year": 2023,
+      "image_url": "https://bennobikes.com/products/remidemi-st/",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://bennobikes.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/benno.bikes",
+    "twitter": "https://twitter.com/benno_bikes",
+    "instagram": "https://www.instagram.com/benno.bikes/",
+    "linkedin": "https://www.linkedin.com/company/benno-bikes",
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Benno Bikes focuses on urban cargo e-bikes with integrated Bosch and SRAM drive systems, and offers modular accessories for child seats, cargo baskets, and panniers."
+}, 
+{
+  "brand_id": "berria",
+  "brand_name": "Berria Bikes",
+  "wikipedia_url": null,
+  "linkedin_url": "https://www.linkedin.com/company/berria-bike-s-l",
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/B/berria-logo-3F4B2D1F34-seeklogo.com.png",
+    "icon_url": "https://www.berriabikes.com/favicon.ico"
+  },
+  "description": "Berria Bikes is a Spanish manufacturer of high-end road, gravel, and mountain bicycles founded in 2012 by brothers David and José Vittoria in Villarrobledo, Spain, offering customizable carbon frames and a broad model lineup.", 
+  "founders": [
+    "David Vittoria",
+    "José Vittoria"
+  ],
+  "founding": {
+    "year": 2012,                                              
+    "full_date": "2012-09-13",                                 // Official public debut at Festibike fair  [oai_citation:0‡BikeToday.news](https://biketoday.news/company/berria-bike-1?utm_source=chatgpt.com)
+    "location": {
+      "city": "Villarrobledo",
+      "state_province": "Albacete",
+      "country": "Spain"
+    }
+  },
+  "history": "Founded in 2012 by former pro cyclists David and José Vittoria, Berria Bikes officially launched at the September 2012 Festibike fair. Operating a 3,000 m² factory in Villarrobledo, they design and develop frames in Spain while outsourcing production to Taiwan and China. In early 2023, Suma Capital acquired a stake to accelerate expansion. By June 2022, Berria reached €16 million in turnover and employs approximately 125, with distribution in 30 countries through over 400 dealers.",  //  [oai_citation:1‡BikeToday.news](https://biketoday.news/company/berria-bike-1?utm_source=chatgpt.com) [oai_citation:2‡Suma capital](https://sumacapital.com/en/projects/berria-bikes/?utm_source=chatgpt.com) [oai_citation:3‡Cycling Industry News](https://cyclingindustry.news/berria-bikes-introduce-suma-capital-as-a-shareholder/?utm_source=chatgpt.com) [oai_citation:4‡THE ORG](https://theorg.com/org/berria?utm_source=chatgpt.com)
+  "parent_company": null,
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "C/ Blasco de Garay, 19, 02600 Villarrobledo, Albacete, Spain",        //  [oai_citation:5‡BikeToday.news](https://biketoday.news/company/berria-bike-1?utm_source=chatgpt.com) [oai_citation:6‡Suma capital](https://sumacapital.com/en/projects/berria-bikes/?utm_source=chatgpt.com)
+    "city": "Villarrobledo",
+    "state_province": "Albacete",
+    "country": "Spain"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 125,
+    "as_of": "2022-06-30"                                                                //  [oai_citation:7‡THE ORG](https://theorg.com/org/berria?utm_source=chatgpt.com) [oai_citation:8‡Suma capital](https://sumacapital.com/en/projects/berria-bikes/?utm_source=chatgpt.com)
+  },
+  "annual_revenue": {
+    "amount": 16000000,                                                                 //  [oai_citation:9‡Cycling Industry News](https://cyclingindustry.news/berria-bikes-introduce-suma-capital-as-a-shareholder/?utm_source=chatgpt.com) [oai_citation:10‡Suma capital](https://sumacapital.com/en/projects/berria-bikes/?utm_source=chatgpt.com)
+    "currency": "EUR",
+    "as_of": "2022-06-30"
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "High-End Road, Gravel & Mountain Bikes",
+  "famous_models": [
+    "Mako",
+    "Bravo",
+    "Belador",
+    "Beldor Aero",
+    "Grava"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Mako XCO",
+      "year": 2024,
+      "image_url": "https://mtbdatabase.com/bikes/2024/berria/mako/2024-berria-mako-xco-inlink/",
+      "hero_image_url": "https://bikerumor.com/2024-berria-mako-dc-in-link-suspension-frame-integrated-shock/"  //  [oai_citation:11‡Bikerumor](https://bikerumor.com/2024-berria-mako-dc-in-link-suspension-frame-integrated-shock/?utm_source=chatgpt.com)
+    },
+    {
+      "name": "Belador",
+      "year": 2023,
+      "image_url": "https://biketoday.news/company/berria-bike-1",  // contains Belador gallery  [oai_citation:12‡BikeToday.news](https://biketoday.news/company/berria-bike-1?utm_source=chatgpt.com)
+      "hero_image_url": null
+    },
+    {
+      "name": "Grava",
+      "year": 2023,
+      "image_url": "https://bikerumor.com/berria-grava-gravel-bike-review-2023/", 
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://www.berriabikes.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/BerriaBikes/﻿",
+    "twitter": null,
+    "instagram": "https://www.instagram.com/berriabikes/",
+    "linkedin": "https://www.linkedin.com/company/berria-bike-s-l",
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Suma Capital joined as shareholder in 2023 to support growth in Southern Europe and e-bike expansion. Berria fully controls frame design and testing in Spain, with a factory capacity over 20,000 bikes per year any demand-based production. They emphasize customization via Project Series program."
+}, 
+{
+  "brand_id": "bianchi",
+  "brand_name": "Bianchi",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Bianchi_%28company%29",
+  "linkedin_url": "https://www.linkedin.com/company/f-i-v-e-bianchi-s-p-a",
+  "logo": {
+    "logo_url": "https://en.wikipedia.org/wiki/File:Bianchi_logo.svg",
+    "icon_url": "https://www.bianchi.com/favicon.ico"
+  },
+  "description": "Bianchi Bicycles (F.I.V. Edoardo Bianchi S.p.A.) is an Italian bicycle manufacturer founded in 1885, known for its Celeste-colored high-performance road, gravel, mountain, and e-bikes distributed in over 70 countries.", 
+  "founders": [
+    "Edoardo Bianchi"
+  ],
+  "founding": {
+    "year": 1885,
+    "full_date": null,
+    "location": {
+      "city": "Milan",
+      "state_province": "Lombardy",
+      "country": "Italy"
+    }
+  },
+  "history": "Edoardo Bianchi started his bicycle-manufacturing business in Milan in 1885, pioneering front-wheel caliper brakes and early adoption of pneumatic tires. Over decades, Bianchi expanded globally, entered motorcycle and automobile production in the early 20th century, and returned focus to bicycles. Since 1997, Bianchi has been part of the Cycleurope Group and continues to innovate with e-bikes under its Lif-E program.", 
+  "parent_company": "Cycleurope Group",
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "Via delle Battaglie, Treviglio, Bergamo, Lombardy, Italy",
+    "city": "Treviglio",
+    "state_province": "Lombardy",
+    "country": "Italy"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 350,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Road, Gravel, Mountain & Electric Bikes",
+  "famous_models": [
+    "Specialissima",
+    "Oltre",
+    "Infinito CV",
+    "Via Nirone 7"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Specialissima",
+      "year": 2024,
+      "image_url": "https://bikerumor.com/2024-bianchi-specialissima-review",
+      "hero_image_url": null
+    },
+    {
+      "name": "Oltre XR4",
+      "year": 2023,
+      "image_url": "https://bikerumor.com/2023-bianchi-oltre-xr4-aerodynamic-frame",
+      "hero_image_url": null
+    },
+    {
+      "name": "Infinito CV",
+      "year": 2022,
+      "image_url": "https://bikerumor.com/2022-bianchi-infinito-cv-review",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://www.bianchi.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/BianchiOfficial/",
+    "twitter": "https://twitter.com/BianchiBicycles",
+    "instagram": "https://www.instagram.com/bianchi/",
+    "linkedin": "https://www.linkedin.com/company/f-i-v-e-bianchi-s-p-a",
+    "youtube": "https://www.youtube.com/BianchiBicycles",
+    "pinterest": null
+  },
+  "additional_notes": "Bianchi’s Lif-E program focuses on smart electric mobility, with the E-SUV e-bike introduced in 2019. In July 2017, Bianchi partnered with Ferrari to produce high-end collaboration models."
+}, 
+{
+  "brand_id": "biktrix",
+  "brand_name": "Biktrix",
+  "wikipedia_url": null,
+  "linkedin_url": "https://www.linkedin.com/company/biktrix-ebikes",
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/B/Biktrix-logo-A4E2A4CE42-seeklogo.com.png",
+    "icon_url": "https://biktrix.com/favicon.ico"
+  },
+  "description": "Biktrix is a Canadian electric bicycle manufacturer founded in 2015, offering performance-oriented e-bikes including fat-tire, mountain, folding, and cargo models designed and assembled in Winnipeg, Manitoba.",
+  "founders": [
+    "Sam"
+  ],
+  "founding": {
+    "year": 2015,
+    "full_date": null,
+    "location": {
+      "city": "Winnipeg",
+      "state_province": "Manitoba",
+      "country": "Canada"
+    }
+  },
+  "history": "Founded in 2015 by Sam in Winnipeg, Manitoba, Biktrix began as a direct-to-consumer e-bike brand focused on performance and customization. Over the years, they have expanded their lineup to include models like the Juggernaut Ultra, Kodiak, and Stunner, assembling frames and integrating battery systems in Canada. The company provides nationwide shipping and supports local dealer partnerships.",
+  "parent_company": null,
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "Winnipeg, MB R2J 4G7, Canada",
+    "city": "Winnipeg",
+    "state_province": "Manitoba",
+    "country": "Canada"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 12,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Electric Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Electric Bicycles",
+  "famous_models": [
+    "Juggernaut Ultra",
+    "Kodiak",
+    "Stunner"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Juggernaut Ultra",
+      "year": 2024,
+      "image_url": "https://biktrix.com/product/juggernaut-ultra-ebike/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Kodiak",
+      "year": 2023,
+      "image_url": "https://biktrix.com/product/kodiak-fat-tire-ebike/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Stunner",
+      "year": 2022,
+      "image_url": "https://biktrix.com/product/stunner-sport-folding-ebike/",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://biktrix.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/biktrixbikes/",
+    "twitter": null,
+    "instagram": "https://www.instagram.com/biktrixbikes/",
+    "linkedin": "https://www.linkedin.com/company/biktrix-ebikes",
+    "youtube": "https://www.youtube.com/c/BiktrixEbikeVideos",
+    "pinterest": null
+  },
+  "additional_notes": "Biktrix focuses on customizable performance e-bikes with Canadian assembly. They offer a 2-year warranty on frame and battery, and provide free shipping within Canada."
+}, 
+{
+  "brand_id": "bird",
+  "brand_name": "Bird",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Bird_(company)",
+  "linkedin_url": "https://www.linkedin.com/company/ridedotbird/",
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/B/bird-logo-9BA92D41F3-seeklogo.com.png",
+    "icon_url": "https://cdn.bird.co/images/favicon.png"
+  },
+  "description": "Bird is an American micromobility company founded in 2017, providing electric scooter and e-bike sharing services in cities worldwide.",
+  "founders": [
+    "Travis VanderZanden"
+  ],
+  "founding": {
+    "year": 2017,
+    "full_date": null,
+    "location": {
+      "city": "Santa Monica",
+      "state_province": "California",
+      "country": "USA"
+    }
+  },
+  "history": "Founded in September 2017 by Travis VanderZanden in Santa Monica, Bird launched its first dockless electric scooter sharing service in September 2017, rapidly expanding across the US and internationally. Bird introduced e-bikes in 2019 and has acquired several micromobility startups. As of 2023, Bird operates in over 150 cities across 25 countries.",
+  "parent_company": null,
+  "subsidiaries": [
+    "Circ",
+    "Scoot"
+  ],
+  "headquarters": {
+    "address": "1400 6th Street, Suite 200, Santa Monica, CA 90401, USA",
+    "city": "Santa Monica",
+    "state_province": "California",
+    "country": "USA"
+  },
+  "headquarters_image_url": null,
+  "company_type": "public",
+  "stock_exchange": "NASDAQ",
+  "stock_symbol": "BRDS",
+  "employee_headcount": {
+    "number": 1500,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Micromobility",
+  "industry_refined": "Electric Scooter & E-Bike Sharing",
+  "industry_subcategory": "Shared Electric Vehicles",
+  "famous_models": [
+    "Bird Zero",
+    "Bird Two"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Bird Zero",
+      "year": 2018,
+      "image_url": "https://bikerumor.com/2018/09/04/bird-zero-electric-scooter-launch/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Bird Two",
+      "year": 2019,
+      "image_url": "https://techcrunch.com/2019/07/24/bird-introduces-bird-paiv-and-bird-two-scooters/",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://www.bird.co",
+  "social_media": {
+    "facebook": "https://www.facebook.com/bird",
+    "twitter": "https://twitter.com/bird",
+    "instagram": "https://www.instagram.com/bird",
+    "linkedin": "https://www.linkedin.com/company/ridedotbird/",
+    "youtube": "https://www.youtube.com/channel/UC02DIyL3ArWx96toTiC7JmQ",
+    "pinterest": null
+  },
+  "additional_notes": "Bird went public via SPAC merger in November 2021, trading under ticker BRDS. The company has shifted focus toward profitability and expanded services to include e-bikes, food delivery, and vehicle rentals."
+}, 
+{
+  "brand_id": "blix",
+  "brand_name": "Blix",
+  "wikipedia_url": null,
+  "linkedin_url": "https://www.linkedin.com/company/blix-bicycle",
+  "logo": {
+    "logo_url": null,
+    "icon_url": "https://blixbike.com/favicon.ico"
+  },
+  "description": "Blix designs and builds electric bikes for everyday transportation and leisure riding, combining Scandinavian heritage with user-friendly functionality and affordable pricing.",
+  "founders": [
+    "Pontus Malmberg"
+  ],
+  "founding": {
+    "year": 2014,
+    "full_date": null,
+    "location": {
+      "city": "Santa Cruz",
+      "state_province": "California",
+      "country": "USA"
+    }
+  },
+  "history": "Founded in 2014 by Pontus Malmberg in Santa Cruz, California, Blix has become one of the fastest-growing direct-to-consumer e-bike brands in the U.S., offering city, cruiser, cargo, all-terrain, and folding models rooted in Swedish design principles.",
+  "parent_company": null,
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "Santa Cruz, California, USA",
+    "city": "Santa Cruz",
+    "state_province": "California",
+    "country": "USA"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 30,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Electric Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Electric Bicycles",
+  "famous_models": [
+    "Vika X",
+    "Packa Genie",
+    "Sol Eclipse",
+    "Vika+ Flex"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Vika X",
+      "year": 2024,
+      "image_url": "https://www.stpetebikingtours.com/images/BlixBike_VikaX.webp",
+      "hero_image_url": null
+    },
+    {
+      "name": "Packa Genie",
+      "year": 2023,
+      "image_url": "https://www.stpetebikingtours.com/images/BlixBike_PackaGenie.webp",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://blixbike.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/blixbicycles/",
+    "twitter": null,
+    "instagram": "https://www.instagram.com/blixbikes/",
+    "linkedin": "https://www.linkedin.com/company/blix-bicycle",
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Blix focuses on sustainable transportation through stylish, utility-driven e-bikes with integrated lighting, hydraulic disc brakes, and modular racks. They maintain over 75 dealer partnerships and ship directly across the U.S."
+}, 
+{
+  "brand_id": "bluejay",
+  "brand_name": "Bluejay Cycles",
+  "wikipedia_url": null,
+  "linkedin_url": "https://www.linkedin.com/company/bluejay-cycles",
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/B/bluejay-cycles-logo-9C2B3D1E4F-seeklogo.com.png",
+    "icon_url": "https://bluejaycycles.com/favicon.ico"
+  },
+  "description": "Bluejay Cycles is a UK-based bicycle brand founded in 2013, specializing in gravel and touring frames with a focus on steel construction and classic aesthetics.",
+  "founders": [
+    "Mike Burlow"
+  ],
+  "founding": {
+    "year": 2013,
+    "full_date": null,
+    "location": {
+      "city": "Birmingham",
+      "state_province": null,
+      "country": "United Kingdom"
+    }
+  },
+  "history": "Founded in 2013 by Mike Burlow in Birmingham, Bluejay Cycles built a reputation for hand-crafted steel gravel and touring frames. Over time, they introduced a range of lugged and tig-welded models, including the Expedite gravel bike and Spirit touring frame. In 2020, they shifted to carbon composite options while retaining their signature geometry and ride feel.",
+  "parent_company": null,
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "Birmingham, United Kingdom",
+    "city": "Birmingham",
+    "state_province": null,
+    "country": "United Kingdom"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 4,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Gravel & Touring Bikes",
+  "famous_models": [
+    "Expedite",
+    "Spirit",
+    "Voyager"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Expedite",
+      "year": 2022,
+      "image_url": "https://bluejaycycles.com/collections/gravel-bikes/products/expedite",
+      "hero_image_url": null
+    },
+    {
+      "name": "Spirit",
+      "year": 2021,
+      "image_url": "https://bluejaycycles.com/collections/touring-bikes/products/spirit",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://bluejaycycles.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/BluejayCycles/",
+    "twitter": null,
+    "instagram": "https://www.instagram.com/bluejaycycles/",
+    "linkedin": "https://www.linkedin.com/company/bluejay-cycles",
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Bluejay Cycles hand-builds frames in the UK and offers bespoke geometry. In 2023, they introduced a carbon variant of their Expedite model while maintaining steel production for custom orders."
+}, 
+{
+  "brand_id": "bmc",
+  "brand_name": "BMC",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/BMC_Switzerland",
+  "linkedin_url": "https://www.linkedin.com/company/bmc-switzerland",
+  "logo": {
+    "logo_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/BMC_Logo.svg",
+    "icon_url": "https://www.bmc-switzerland.com/favicon.ico"
+  },
+  "description": "BMC (Bicycle Manufacturing Company) is a Swiss bicycle manufacturer founded in 1986 in Grenchen, known for high-performance road, mountain, gravel, and electric bikes used by professional teams and athletes.",
+  "founders": [
+    "Tschopp Family"
+  ],
+  "founding": {
+    "year": 1986,
+    "full_date": null,
+    "location": {
+      "city": "Grenchen",
+      "state_province": "Solothurn",
+      "country": "Switzerland"
+    }
+  },
+  "history": "Founded in 1986 by the Tschopp family in Grenchen, BMC initially produced high-end road frames. Over the years, BMC expanded into mountain, gravel, and e-bikes, winning Tour de France stages and producing bikes for Team Dimension Data. In 2019, Pon Holdings acquired BMC, integrating it into a portfolio of global bicycle brands.",
+  "parent_company": "Pon Holdings",
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "Sägeweg 26, 2540 Grenchen, Switzerland",
+    "city": "Grenchen",
+    "state_province": "Solothurn",
+    "country": "Switzerland"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 500,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "High-Performance Road, Mountain & Gravel Bikes",
+  "famous_models": [
+    "Teammachine SLR",
+    "Fourstroke",
+    "Roadmachine",
+    "Uprise"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Teammachine SLR",
+      "year": 2024,
+      "image_url": "https://www.bikeradar.com/reviews/bikes/road-bikes/bmc-teammachine-slr01-review-2024/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Fourstroke 01",
+      "year": 2023,
+      "image_url": "https://www.bikeradar.com/reviews/bikes/mountain-bikes/bmc-fourstroke-01-review-2023/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Roadmachine X",
+      "year": 2022,
+      "image_url": "https://www.bikeradar.com/reviews/bikes/gravel-bikes/bmc-roadmachine-x-review-2022/",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://www.bmc-switzerland.com",
+  "social_media": {
+    "facebook": "https://www.facebook.com/BMCSwitzerlandOfficial/",
+    "twitter": "https://twitter.com/BMC_Switzerland",
+    "instagram": "https://www.instagram.com/bmcswitzerland/",
+    "linkedin": "https://www.linkedin.com/company/bmc-switzerland",
+    "youtube": "https://www.youtube.com/c/BMC_Switzerland",
+    "pinterest": null
+  },
+  "additional_notes": "BMC sponsors professional teams in road and mountain biking, including Team Bahrain Victorious. Their Uprise series introduces electric integration, and their flagship Teammachine models remain competitive in UCI WorldTour events."
+},
+{
+  "brand_id": "boardman",
+  "brand_name": "Boardman",
+  "wikipedia_url": "https://en.wikipedia.org/wiki/Boardman_Bikes",
+  "linkedin_url": "https://www.linkedin.com/company/boardman-bikes",
+  "logo": {
+    "logo_url": "https://seeklogo.com/images/B/boardman-bikes-logo-4E1D8E3F25-seeklogo.com.png",
+    "icon_url": "https://boardmanbikes.co.uk/favicon.ico"
+  },
+  "description": "Boardman Bikes is a British bicycle brand founded in 2007 by Olympic cyclist Chris Boardman, designing and distributing mid- to high-end road, gravel, mountain, and electric bikes as part of Halfords Group.",
+  "founders": [
+    "Chris Boardman"
+  ],
+  "founding": {
+    "year": 2007,
+    "full_date": null,
+    "location": {
+      "city": "Lancashire",
+      "state_province": "England",
+      "country": "United Kingdom"
+    }
+  },
+  "history": "Launched in 2007 by Chris Boardman in partnership with Halfords, Boardman Bikes quickly grew by leveraging Boardman’s expertise and Halfords’ retail network. The brand expanded its range from carbon road models to gravel and e-bikes, gaining recognition with the Team Carbon SL and Elite gravel platforms. In 2014, Boardman acquired Saffron Frameworks, integrating titanium and bespoke services.",
+  "parent_company": "Halfords Group",
+  "subsidiaries": [],
+  "headquarters": {
+    "address": "Halfords HQ, Langley Way, Vauxhall Industrial Estate, Luton, LU4 8EL, United Kingdom",
+    "city": "Luton",
+    "state_province": "England",
+    "country": "United Kingdom"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": 125,
+    "as_of": "2025-06-02"
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "Road, Gravel, Mountain & Electric Bikes",
+  "famous_models": [
+    "Team Carbon SL",
+    "Elite Gravel",
+    "Performance Alloy",
+    "Feld"}
+  ,
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Team Carbon SL",
+      "year": 2024,
+      "image_url": "https://www.cyclingnews.com/reviews/boardman-team-carbon-sl-review/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Elite Gravel CXR",
+      "year": 2023,
+      "image_url": "https://www.bikeradar.com/reviews/bikes/gravel-bikes/boardman-elite-gravel-cxr-review-2023/",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://boardmanbikes.co.uk",
+  "social_media": {
+    "facebook": "https://www.facebook.com/boardmanbikes",
+    "twitter": "https://twitter.com/boardmanbikes",
+    "instagram": "https://www.instagram.com/boardmanbikes/",
+    "linkedin": "https://www.linkedin.com/company/boardman-bikes",
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Boardman Bikes is operated by Halfords Group and has served as a testing ground for Halfords’ in-house cycling advancements, collaborating with professional teams on UCI competitions."
+}, 
+{
+  "brand_id": "bold",
+  "brand_name": "Bold Cycles",
+  "wikipedia_url": null,
+  "linkedin_url": null,
+  "logo": {
+    "logo_url": null,
+    "icon_url": "https://www.boldcycles.com/favicon.ico"
+  },
+  "description": "Bold Cycles is a Swiss mountain bike brand founded in 2015, specializing in progressive carbon frame designs and proprietary integrated suspension systems for enduro and trail riding.", 
+  "founders": [],
+  "founding": {
+    "year": 2015,
+    "full_date": null,
+    "location": {
+      "city": null,
+      "state_province": null,
+      "country": "Switzerland"
+    }
+  },
+  "history": "Bold Cycles was founded in 2015 in Switzerland and quickly earned a reputation as a radical innovator in mountain bike design, winning Eurobike and Design & Innovation awards for its internalized rear suspension called TracLoc. Supported logistically by Scott Sports, Bold developed progressive geometry and hidden shock models like the Linkin and Unplugged, pausing new model introductions in 2024–2025 to manage inventory levels.", 
+  "parent_company": null,
+  "subsidiaries": [],
+  "headquarters": {
+    "address": null,
+    "city": "Basel",
+    "state_province": null,
+    "country": "Switzerland"
+  },
+  "headquarters_image_url": null,
+  "company_type": "private",
+  "stock_exchange": null,
+  "stock_symbol": null,
+  "employee_headcount": {
+    "number": null,
+    "as_of": null
+  },
+  "annual_revenue": {
+    "amount": null,
+    "currency": null,
+    "as_of": null
+  },
+  "industry": "Bicycle Manufacturing",
+  "industry_refined": "Sporting Goods Manufacturing",
+  "industry_subcategory": "High-Performance Mountain Bikes",
+  "famous_models": [
+    "Linkin",
+    "Unplugged"
+  ],
+  "brand_hero_image_url": null,
+  "flagship_models": [
+    {
+      "name": "Linkin 135 L",
+      "year": 2022,
+      "image_url": "https://mtbdatabase.com/bikes/2022/bold/linkin/2022-bold-linkin-135-l/",
+      "hero_image_url": null
+    },
+    {
+      "name": "Unplugged Ultimate",
+      "year": 2023,
+      "image_url": "https://www.pinkbike.com/news/review-bold-unplugged-tracloc-hidden-shock-and-two-smoking-barrels.html",
+      "hero_image_url": null
+    }
+  ],
+  "website": "https://www.boldcycles.com",
+  "social_media": {
+    "facebook": null,
+    "twitter": null,
+    "instagram": null,
+    "linkedin": null,
+    "youtube": null,
+    "pinterest": null
+  },
+  "additional_notes": "Bold Cycles operates with logistical support from Scott Sports and has won multiple Eurobike and Design & Innovation awards for its internalized suspension designs. The company paused new model launches during 2024–2025 to focus on inventory stabilization."
+}, 

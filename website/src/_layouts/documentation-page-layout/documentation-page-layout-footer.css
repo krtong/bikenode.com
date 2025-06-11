@@ -1,0 +1,106 @@
+/* Documentation Page Layout Footer Styles */
+
+.documentation-page-layout-footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 60px;
+    padding: 48px 0 24px;
+}
+
+.documentation-page-layout-footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.documentation-page-layout-footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px;
+    margin-bottom: 48px;
+}
+
+.documentation-page-layout-footer-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.documentation-page-layout-footer-title {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 16px 0;
+}
+
+.documentation-page-layout-footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.documentation-page-layout-footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.documentation-page-layout-footer-link:hover {
+    color: var(--accent);
+}
+
+.documentation-page-layout-footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.documentation-page-layout-footer-copyright {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin: 0;
+}
+
+.documentation-page-layout-footer-update {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin: 0;
+    opacity: 0.7;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .documentation-page-layout-footer-container {
+        padding: 0 24px;
+    }
+
+    .documentation-page-layout-footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .documentation-page-layout-footer {
+        padding: 32px 0 16px;
+    }
+
+    .documentation-page-layout-footer-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-bottom: 32px;
+    }
+
+    .documentation-page-layout-footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+}

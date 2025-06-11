@@ -1,0 +1,296 @@
+<style>
+  .front-page-layout-footer-container {
+    background-color: #111827;
+    color: #9ca3af;
+    padding: 4rem 0 2rem;
+    margin-top: 5rem;
+  }
+
+  .front-page-layout-footer-wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .front-page-layout-footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .front-page-layout-footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .front-page-layout-footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .front-page-layout-footer-logo-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #3b82f6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .front-page-layout-footer-tagline {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #9ca3af;
+    max-width: 300px;
+  }
+
+  .front-page-layout-footer-newsletter {
+    margin-top: 1.5rem;
+  }
+
+  .front-page-layout-footer-newsletter-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.75rem;
+  }
+
+  .front-page-layout-footer-newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 320px;
+  }
+
+  .front-page-layout-footer-newsletter-input {
+    flex: 1;
+    padding: 0.625rem 1rem;
+    background-color: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 6px;
+    color: white;
+    font-size: 0.875rem;
+  }
+
+  .front-page-layout-footer-newsletter-input::placeholder {
+    color: #6b7280;
+  }
+
+  .front-page-layout-footer-newsletter-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+  }
+
+  .front-page-layout-footer-newsletter-btn {
+    padding: 0.625rem 1.25rem;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .front-page-layout-footer-newsletter-btn:hover {
+    background-color: #2563eb;
+  }
+
+  .front-page-layout-footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .front-page-layout-footer-column-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .front-page-layout-footer-link {
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+  }
+
+  .front-page-layout-footer-link:hover {
+    color: white;
+  }
+
+  .front-page-layout-footer-divider {
+    border: none;
+    border-top: 1px solid #374151;
+    margin: 2rem 0;
+  }
+
+  .front-page-layout-footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .front-page-layout-footer-copyright {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  .front-page-layout-footer-social {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .front-page-layout-footer-social-link {
+    width: 40px;
+    height: 40px;
+    background-color: #1f2937;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .front-page-layout-footer-social-link:hover {
+    background-color: #374151;
+    color: white;
+  }
+
+  /* Responsive styles */
+  @media (max-width: 1024px) {
+    .front-page-layout-footer-content {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .front-page-layout-footer-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .front-page-layout-footer-bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>
+
+<footer class="front-page-layout-footer-container">
+  <div class="front-page-layout-footer-wrapper">
+    <div class="front-page-layout-footer-content">
+      <div class="front-page-layout-footer-brand">
+        <a href="/" class="front-page-layout-footer-logo">
+          <div class="front-page-layout-footer-logo-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7V12C2 16.5 4.5 20.74 8.5 22.5L12 24L15.5 22.5C19.5 20.74 22 16.5 22 12V7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          BikeNode
+        </a>
+        <p class="front-page-layout-footer-tagline">
+          Your complete cycling companion. Track rides, manage your garage, connect with riders, and discover new adventures.
+        </p>
+        
+        <div class="front-page-layout-footer-newsletter">
+          <h4 class="front-page-layout-footer-newsletter-title">Stay in the loop</h4>
+          <form class="front-page-layout-footer-newsletter-form">
+            <input 
+              type="email" 
+              placeholder="Enter your email" 
+              class="front-page-layout-footer-newsletter-input"
+              required
+            />
+            <button type="submit" class="front-page-layout-footer-newsletter-btn">
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="front-page-layout-footer-column">
+        <h3 class="front-page-layout-footer-column-title">Product</h3>
+        <a href="/features" class="front-page-layout-footer-link">Features</a>
+        <a href="/pricing" class="front-page-layout-footer-link">Pricing</a>
+        <a href="/marketplace" class="front-page-layout-footer-link">Marketplace</a>
+        <a href="/rides" class="front-page-layout-footer-link">Route Planner</a>
+        <a href="/virtual-garage" class="front-page-layout-footer-link">Virtual Garage</a>
+      </div>
+
+      <div class="front-page-layout-footer-column">
+        <h3 class="front-page-layout-footer-column-title">Company</h3>
+        <a href="/about" class="front-page-layout-footer-link">About Us</a>
+        <a href="/documentation/docs-careers-page" class="front-page-layout-footer-link">Careers</a>
+        <a href="/documentation/docs-press-page" class="front-page-layout-footer-link">Press</a>
+        <a href="/blog" class="front-page-layout-footer-link">Blog</a>
+        <a href="/documentation/docs-contact-page" class="front-page-layout-footer-link">Contact</a>
+      </div>
+
+      <div class="front-page-layout-footer-column">
+        <h3 class="front-page-layout-footer-column-title">Resources</h3>
+        <a href="/documentation/docs-home-page" class="front-page-layout-footer-link">Documentation</a>
+        <a href="/documentation/docs-api-reference" class="front-page-layout-footer-link">API Reference</a>
+        <a href="/documentation/docs-support-center" class="front-page-layout-footer-link">Support</a>
+        <a href="/documentation/docs-command-help-guide" class="front-page-layout-footer-link">Discord Bot</a>
+        <a href="/community" class="front-page-layout-footer-link">Community</a>
+      </div>
+
+      <div class="front-page-layout-footer-column">
+        <h3 class="front-page-layout-footer-column-title">Legal</h3>
+        <a href="/documentation/docs-privacy-policy" class="front-page-layout-footer-link">Privacy Policy</a>
+        <a href="/documentation/docs-terms-service" class="front-page-layout-footer-link">Terms of Service</a>
+        <a href="/documentation/docs-community-guidelines" class="front-page-layout-footer-link">Community Guidelines</a>
+        <a href="/cookies" class="front-page-layout-footer-link">Cookie Policy</a>
+      </div>
+    </div>
+
+    <hr class="front-page-layout-footer-divider" />
+
+    <div class="front-page-layout-footer-bottom">
+      <p class="front-page-layout-footer-copyright">
+        © 2025 BikeNode. All rights reserved.
+      </p>
+
+      <div class="front-page-layout-footer-social">
+        <a href="https://twitter.com/bikenode" class="front-page-layout-footer-social-link" aria-label="Twitter">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23 3C22.0424 3.67548 20.9821 4.19211 19.86 4.53C19.2577 3.83751 18.4573 3.34669 17.567 3.12393C16.6767 2.90116 15.7395 2.95719 14.8821 3.28445C14.0247 3.61171 13.2884 4.1944 12.773 4.95372C12.2575 5.71303 11.9877 6.61234 12 7.53V8.53C10.2426 8.57557 8.50127 8.18581 6.93101 7.39545C5.36074 6.60508 4.01032 5.43864 3 4C3 4 -1 13 8 17C5.94053 18.398 3.48716 19.0989 1 19C10 24 21 19 21 7.5C20.9991 7.22145 20.9723 6.94359 20.92 6.67C21.9406 5.66349 22.6608 4.39271 23 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://facebook.com/bikenode" class="front-page-layout-footer-social-link" aria-label="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://instagram.com/bikenode" class="front-page-layout-footer-social-link" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 11.37C16.1234 12.2022 15.9813 13.0522 15.5938 13.799C15.2063 14.5458 14.5932 15.1514 13.8416 15.5297C13.0901 15.9079 12.2385 16.0396 11.4078 15.9059C10.5771 15.7723 9.80977 15.3801 9.21485 14.7852C8.61993 14.1902 8.22774 13.4229 8.09408 12.5922C7.96042 11.7615 8.09208 10.9099 8.47034 10.1584C8.8486 9.40685 9.4542 8.79374 10.201 8.40624C10.9478 8.01874 11.7978 7.87658 12.63 8C13.4789 8.12588 14.2649 8.52146 14.8717 9.1283C15.4785 9.73515 15.8741 10.5211 16 11.37Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M17.5 6.5H17.51" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="https://discord.gg/bikenode" class="front-page-layout-footer-social-link" aria-label="Discord">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

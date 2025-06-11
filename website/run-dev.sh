@@ -15,7 +15,7 @@ if lsof -Pi :8080 -sTCP:LISTEN -t >/dev/null ; then
 else
     # Start the Go API server in the background
     echo "Starting Go API server on port 8080..."
-    cd /Users/kevintong/Documents/Code/bikenode.com/website
+    cd /Users/kevintong/Documents/Code/bikenode.com/website/api-server
     go run main.go &
     GO_PID=$!
     

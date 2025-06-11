@@ -1,0 +1,62 @@
+<section class="card p-4">
+  <div class="section-header">
+    <h2 class="section-title">Basic Information</h2>
+    <p class="section-description">This information will be displayed on your public profile</p>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label" for="firstName">First Name</label>
+      <input type="text" class="form-control" id="firstName" name="firstName" value="Kevin" required>
+      <span class="field-error" id="firstNameError"></span>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label" for="lastName">Last Name</label>
+      <input type="text" class="form-control" id="lastName" name="lastName" value="Tong" required>
+      <span class="field-error" id="lastNameError"></span>
+    </div>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label" for="displayName">Display Name</label>
+      <input type="text" class="form-control" id="displayName" name="displayName" value="Kevin Tong" placeholder="How your name appears">
+      <span class="field-help">Leave empty to use "First Last"</span>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label" for="username">Username</label>
+      <div class="input-with-prefix">
+        <span class="input-prefix">@</span>
+        <input type="text" class="form-control" id="username" name="username" value="krtong" pattern="[a-zA-Z0-9_-]{3,20}" required>
+        <span class="availability-indicator" id="usernameAvailable"></span>
+      </div>
+      <span class="field-help">bikenode.com/@krtong</span>
+      <span class="field-error" id="usernameError"></span>
+    </div>
+  </div>
+    
+  <div class="form-group">
+    <label class="form-label" for="bio">Bio</label>
+    <textarea class="form-control" id="bio" name="bio" rows="4" maxlength="500" placeholder="Tell us about yourself...">Bay Area motorcycle & bicycle enthusiast focused on track days and technical riding. Software engineer by day, track junkie by weekend. Always learning something new about suspension setup, tire compounds, or finding that perfect apex. Member of AMA and Redwood Road (RWR).</textarea>
+    <div class="d-flex justify-content-between mt-1">
+      <span class="field-help">Markdown supported</span>
+      <span class="character-counter" id="bioCharCount">368 / 500</span>
+    </div>
+  </div>
+  
+  <div class="form-row">
+    <div class="form-group">
+      <label class="form-label" for="location">Location</label>
+      <input type="text" class="form-control" id="location" name="location" value="San Francisco Bay Area, CA" placeholder="City, State">
+      <span class="field-help">Your general location</span>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label" for="website">Website</label>
+      <input type="url" class="form-control" id="website" name="website" placeholder="https://your-website.com">
+      <span class="field-help">Your personal or business website</span>
+    </div>
+  </div>
+</section>

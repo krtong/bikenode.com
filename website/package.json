@@ -1,26 +1,25 @@
 {
   "name": "bikenode-website",
   "version": "1.0.0",
-  "description": "BikeNode static website with 11ty",
+  "description": "BikeNode website built with Eleventy",
   "scripts": {
-    "build": "eleventy",
-    "serve": "eleventy --serve",
     "dev": "./run-dev.sh",
-    "dev-frontend": "eleventy --serve --watch",
-    "dev-backend": "go run main.go",
-    "clean": "rm -rf _site"
+    "dev-frontend": "eleventy --serve --port=8081",
+    "dev-api": "cd api-server && go run main.go",
+    "build": "eleventy",
+    "build-api": "cd api-server && go build -o ../bikenode-api",
+    "clean": "rm -rf _site",
+    "clean-all": "rm -rf _site bikenode-api"
   },
-  "devDependencies": {
-    "@11ty/eleventy": "^2.0.1"
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "glob": "^11.0.2"
   },
   "keywords": [
-    "static-site",
+    "bikenode",
     "eleventy",
-    "bikenode"
+    "static-site"
   ],
-  "author": "BikeNode Team",
-  "dependencies": {
-    "lucide": "^0.513.0",
-    "pg": "^8.16.0"
-  }
+  "author": "BikeNode",
+  "license": "ISC"
 }

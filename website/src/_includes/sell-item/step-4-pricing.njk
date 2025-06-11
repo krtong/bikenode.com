@@ -1,0 +1,95 @@
+<!-- Step 4: Pricing & Delivery -->
+<div class="form-step" data-step="4">
+    <div class="step-header">
+        <h2>Set your price and delivery options</h2>
+        <p>Choose competitive pricing and flexible delivery to attract more buyers</p>
+    </div>
+    
+    <div class="pricing-section">
+        <div class="form-group">
+            <label for="price" class="form-label">Asking Price*</label>
+            <div class="price-input-wrapper">
+                <span class="currency-symbol">$</span>
+                <input type="number" id="price" name="price" class="form-input price-input" 
+                       placeholder="0.00" step="0.01" min="0" required>
+            </div>
+            <small class="form-hint">Research similar items to price competitively</small>
+        </div>
+        
+        <div class="price-options">
+            <label class="checkbox-label">
+                <input type="checkbox" name="negotiable" id="negotiable">
+                <span>Price is negotiable</span>
+            </label>
+            
+            <label class="checkbox-label">
+                <input type="checkbox" name="acceptOffers" id="acceptOffers">
+                <span>Accept offers from buyers</span>
+            </label>
+        </div>
+        
+        <!-- Price Suggestion -->
+        <div class="price-suggestion" id="priceSuggestion" style="display: none;">
+            <h4>💡 Price Suggestion</h4>
+            <p>Based on similar listings, items like yours typically sell for:</p>
+            <div class="suggested-range">
+                <span class="min-price">$800</span>
+                <span class="separator">-</span>
+                <span class="max-price">$1,200</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="delivery-section">
+        <h3>Delivery Options</h3>
+        
+        <div class="delivery-options">
+            <label class="delivery-option">
+                <input type="checkbox" name="localPickup" id="localPickup" checked>
+                <div class="option-content">
+                    <h4>Local Pickup</h4>
+                    <p>Buyer picks up in person</p>
+                </div>
+            </label>
+            
+            <label class="delivery-option">
+                <input type="checkbox" name="shipping" id="shipping">
+                <div class="option-content">
+                    <h4>Shipping Available</h4>
+                    <p>You'll ship to buyer</p>
+                </div>
+            </label>
+        </div>
+        
+        <!-- Shipping Details -->
+        <div class="shipping-details" id="shippingDetails" style="display: none;">
+            <div class="form-group">
+                <label for="shippingCost" class="form-label">Shipping Cost</label>
+                <select id="shippingCost" name="shippingCost" class="form-select">
+                    <option value="buyer">Buyer pays shipping</option>
+                    <option value="included">Free shipping (included in price)</option>
+                    <option value="flat">Flat rate shipping</option>
+                </select>
+            </div>
+            
+            <div class="form-group" id="flatRateGroup" style="display: none;">
+                <label for="flatRate" class="form-label">Flat Rate Amount</label>
+                <div class="price-input-wrapper">
+                    <span class="currency-symbol">$</span>
+                    <input type="number" id="flatRate" name="flatRate" class="form-input" 
+                           placeholder="0.00" step="0.01" min="0">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="location-section">
+        <h3>Item Location</h3>
+        <div class="form-group">
+            <label for="location" class="form-label">City or ZIP Code*</label>
+            <input type="text" id="location" name="location" class="form-input" 
+                   placeholder="e.g., San Francisco, CA or 94102" required>
+            <small class="form-hint">Helps buyers find items near them</small>
+        </div>
+    </div>
+</div>

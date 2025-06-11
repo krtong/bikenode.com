@@ -1,0 +1,34 @@
+<!-- Specs Panel -->
+<div class="specs-panel" id="specs-panel">
+    <div class="specs-header">
+        <div class="specs-title" id="specs-title">Vehicle Specifications</div>
+        <button class="close-button" onclick="closeSpecs()">✕ Close</button>
+    </div>
+    
+    <div class="specs-content">
+        <div class="spec-grid" id="spec-grid">
+            <!-- Specs will be populated here -->
+        </div>
+
+        <!-- Missing specs notice -->
+        <div class="missing-specs-notice" id="missing-specs-notice" style="display: none;">
+            <div class="notice-content">
+                <p class="notice-text">Some specifications are missing for this bike.</p>
+                <button class="submit-specs-btn" onclick="openSubmitSpecsModal()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    Submit Specs URL
+                </button>
+            </div>
+        </div>
+
+        <div class="action-grid">
+            <button class="action-button primary" onclick="addToGarage()">Add to Garage</button>
+            <button class="action-button" onclick="findComparisons()">Compare</button>
+            <button class="action-button" onclick="viewReviews()">Reviews</button>
+            <button class="action-button" onclick="viewGallery()">Gallery</button>
+            <button class="action-button" onclick="customize()">Customize</button>
+        </div>
+    </div>
+</div>

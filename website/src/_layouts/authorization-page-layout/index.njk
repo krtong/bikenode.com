@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if title %}{{ title }} - BikeNode{% else %}BikeNode{% endif %}</title>
+    <meta name="description" content="{% if description %}{{ description }}{% else %}BikeNode - The ultimate platform for bike enthusiasts to connect, share, and discover.{% endif %}">
+    
+    <link rel="icon" type="image/png" href="/assets/images/bikenode_logo.png">
+    <!-- Self-contained CSS for authorization-page-layout -->
+    <link rel="stylesheet" href="/_layouts/authorization-page-layout/authorization-page-layout.css">
+    
+    {# Load custom CSS specified in page front matter #}
+    {% if customCSS %}
+      {% for stylesheet in customCSS %}
+      <link rel="stylesheet" href="{{ stylesheet }}">
+      {% endfor %}
+    {% endif %}
+</head>
+<body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
+    <!-- Background Animation Canvas -->
+    <canvas id="authorization-page-layout-background-canvas"></canvas>
+    
+    <!-- Auth Container -->
+    <div class="authorization-page-layout-auth-container">
+        <div class="authorization-page-layout-auth-card">
+            <div class="authorization-page-layout-auth-header">
+                <a href="/" class="authorization-page-layout-logo-link">
+                    <img src="/assets/images/bikenode_logo.png" alt="BikeNode" class="authorization-page-layout-auth-logo">
+                </a>
+                <h1>{{ authTitle or title }}</h1>
+                <p>{{ authSubtitle or subtitle }}</p>
+            </div>
+
+            {{ content | safe }}
+
+            <div class="authorization-page-layout-auth-footer">
+                <p>{{ footerText | safe }}</p>
+                <div class="authorization-page-layout-auth-links">
+                    <a href="/docs-terms-service/">Terms</a>
+                    <a href="/docs-privacy-policy/">Privacy</a>
+                    <a href="/docs-support-center/">Help</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/_layouts/authorization-page-layout/authorization-page-layout-background-animation.js"></script>
+    {% if customJS %}
+    {% for script in customJS %}
+    <script src="{{ script }}"></script>
+    {% endfor %}
+    {% endif %}
+    {% if inlineJS %}
+    <script>
+    {{ inlineJS | safe }}
+    </script>
+    {% endif %}
+</body>
+</html>

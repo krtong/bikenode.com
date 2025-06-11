@@ -1,0 +1,307 @@
+---
+layout: bikenode-main-layout-01/bikenode-main-layout-01.njk
+title: Equipment
+subtitle: Track your tools, accessories, and riding equipment
+showContentHeader: false
+customCSS:
+  - /equipment/styles/equipment.css
+---
+
+<div class="safety-equipment-page">
+    <!-- Page Header -->
+    <div class="equipment-header">
+        <div class="header-content">
+            <h1>Equipment</h1>
+            <p class="subtitle">Manage your tools, accessories, and riding equipment</p>
+        </div>
+        <div class="header-actions">
+            <button class="btn-secondary" id="checklistBtn">
+                <span>📋</span>
+                Safety Checklist
+            </button>
+            <button class="btn-primary" id="addEquipmentBtn">
+                <span>➕</span>
+                Add Equipment
+            </button>
+        </div>
+    </div>
+
+    <!-- Bike Type Tabs -->
+    <div class="bike-type-tabs">
+        <button class="bike-type-tab active" data-type="motorcycle">
+            <span class="tab-icon">🏍️</span>
+            <span class="tab-label">Motorcycle</span>
+        </button>
+        <button class="bike-type-tab" data-type="bicycle">
+            <span class="tab-icon">🚴</span>
+            <span class="tab-label">Bicycle</span>
+        </button>
+        <button class="bike-type-tab" data-type="ebike">
+            <span class="tab-icon">⚡</span>
+            <span class="tab-label">E-Bike</span>
+        </button>
+        <button class="bike-type-tab" data-type="scooter">
+            <span class="tab-icon">🛵</span>
+            <span class="tab-label">Scooter</span>
+        </button>
+    </div>
+
+    <!-- Safety Score Overview -->
+    <div class="safety-overview">
+        <div class="safety-score-card">
+            <div class="score-visual">
+                <div class="score-circle">
+                    <span class="score-value">92%</span>
+                    <span class="score-label">Safety Score</span>
+                </div>
+            </div>
+            <div class="score-details">
+                <h3>Your Safety Preparedness</h3>
+                <p>You're well-equipped for most riding scenarios. Consider adding a few more items for complete coverage.</p>
+                <div class="improvement-suggestions">
+                    <span class="suggestion">🔦 Add emergency beacon</span>
+                    <span class="suggestion">🩹 Update first aid kit</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Equipment Categories -->
+    <div class="equipment-categories">
+        <div class="category-card active" data-category="emergency">
+            <div class="category-icon">🚨</div>
+            <div class="category-info">
+                <h4>Emergency</h4>
+                <p>8 items</p>
+            </div>
+        </div>
+        <div class="category-card" data-category="tools">
+            <div class="category-icon">🔧</div>
+            <div class="category-info">
+                <h4>Tools</h4>
+                <p>12 items</p>
+            </div>
+        </div>
+        <div class="category-card" data-category="medical">
+            <div class="category-icon">🏥</div>
+            <div class="category-info">
+                <h4>Medical</h4>
+                <p>15 items</p>
+            </div>
+        </div>
+        <div class="category-card" data-category="visibility">
+            <div class="category-icon">🔦</div>
+            <div class="category-info">
+                <h4>Visibility</h4>
+                <p>6 items</p>
+            </div>
+        </div>
+        <div class="category-card" data-category="communication">
+            <div class="category-icon">📡</div>
+            <div class="category-info">
+                <h4>Communication</h4>
+                <p>4 items</p>
+            </div>
+        </div>
+        <div class="category-card" data-category="weather">
+            <div class="category-icon">🌧️</div>
+            <div class="category-info">
+                <h4>Weather</h4>
+                <p>7 items</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Equipment Kits -->
+    <div class="equipment-kits">
+        <h2>Equipment Kits</h2>
+        <div class="kits-grid">
+            <!-- Touring Kit -->
+            <div class="kit-card">
+                <div class="kit-header">
+                    <h3>Touring Kit</h3>
+                    <span class="kit-status complete">Complete</span>
+                </div>
+                <div class="kit-content">
+                    <div class="kit-items">
+                        <span class="item">✓ Tool kit</span>
+                        <span class="item">✓ First aid kit</span>
+                        <span class="item">✓ Rain gear</span>
+                        <span class="item">✓ Emergency beacon</span>
+                        <span class="item">✓ Spare parts</span>
+                    </div>
+                    <div class="kit-stats">
+                        <span class="stat">15 items</span>
+                        <span class="stat">2.5 kg</span>
+                    </div>
+                </div>
+                <button class="kit-action-btn">View Details</button>
+            </div>
+
+            <!-- Track Day Kit -->
+            <div class="kit-card">
+                <div class="kit-header">
+                    <h3>Track Day Kit</h3>
+                    <span class="kit-status partial">Partial</span>
+                </div>
+                <div class="kit-content">
+                    <div class="kit-items">
+                        <span class="item">✓ Tire pressure gauge</span>
+                        <span class="item">✓ Tire warmers</span>
+                        <span class="item">✓ Tool set</span>
+                        <span class="item missing">✗ Spare levers</span>
+                        <span class="item">✓ Chain lube</span>
+                    </div>
+                    <div class="kit-stats">
+                        <span class="stat">12 items</span>
+                        <span class="stat">8.2 kg</span>
+                    </div>
+                </div>
+                <button class="kit-action-btn">View Details</button>
+            </div>
+
+            <!-- Emergency Kit -->
+            <div class="kit-card">
+                <div class="kit-header">
+                    <h3>Emergency Kit</h3>
+                    <span class="kit-status complete">Complete</span>
+                </div>
+                <div class="kit-content">
+                    <div class="kit-items">
+                        <span class="item">✓ First aid supplies</span>
+                        <span class="item">✓ Emergency blanket</span>
+                        <span class="item">✓ Flares</span>
+                        <span class="item">✓ Emergency contact card</span>
+                        <span class="item">✓ Multi-tool</span>
+                    </div>
+                    <div class="kit-stats">
+                        <span class="stat">18 items</span>
+                        <span class="stat">1.8 kg</span>
+                    </div>
+                </div>
+                <button class="kit-action-btn">View Details</button>
+            </div>
+
+            <!-- Add New Kit -->
+            <div class="kit-card add-new">
+                <button class="add-kit-btn">
+                    <span class="add-icon">➕</span>
+                    <span>Create New Kit</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Equipment List -->
+    <div class="equipment-list-section">
+        <div class="list-header">
+            <h2>All Equipment</h2>
+            <div class="list-controls">
+                <input type="text" class="search-input" placeholder="Search equipment...">
+                <select class="filter-select">
+                    <option value="all">All Categories</option>
+                    <option value="emergency">Emergency</option>
+                    <option value="tools">Tools</option>
+                    <option value="medical">Medical</option>
+                    <option value="visibility">Visibility</option>
+                    <option value="communication">Communication</option>
+                    <option value="weather">Weather</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="equipment-list">
+            <!-- Equipment Item -->
+            <div class="equipment-item" data-category="tools">
+                <div class="item-icon">🔧</div>
+                <div class="item-details">
+                    <h4>Professional Tool Kit</h4>
+                    <p>Motion Pro - Complete motorcycle tool set</p>
+                    <div class="item-meta">
+                        <span class="meta-item">Added: Jan 2024</span>
+                        <span class="meta-item">Location: Garage</span>
+                        <span class="meta-item">Status: Available</span>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <button class="action-btn edit">Edit</button>
+                    <button class="action-btn check">Check</button>
+                </div>
+            </div>
+
+            <!-- Equipment Item -->
+            <div class="equipment-item" data-category="medical">
+                <div class="item-icon">🏥</div>
+                <div class="item-details">
+                    <h4>Advanced First Aid Kit</h4>
+                    <p>Adventure Medical Kits - Motorcycle specific</p>
+                    <div class="item-meta">
+                        <span class="meta-item">Added: Mar 2023</span>
+                        <span class="meta-item">Location: Top Case</span>
+                        <span class="meta-item">Expires: Dec 2024</span>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <button class="action-btn edit">Edit</button>
+                    <button class="action-btn check">Check</button>
+                </div>
+            </div>
+
+            <!-- Equipment Item -->
+            <div class="equipment-item" data-category="communication">
+                <div class="item-icon">📡</div>
+                <div class="item-details">
+                    <h4>Cardo Packtalk Bold</h4>
+                    <p>Bluetooth communication system</p>
+                    <div class="item-meta">
+                        <span class="meta-item">Added: Jun 2023</span>
+                        <span class="meta-item">Location: Helmet</span>
+                        <span class="meta-item">Battery: Good</span>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <button class="action-btn edit">Edit</button>
+                    <button class="action-btn check">Check</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Maintenance Reminders -->
+    <div class="maintenance-reminders">
+        <h2>Maintenance & Expiry Reminders</h2>
+        <div class="reminders-list">
+            <div class="reminder-item warning">
+                <div class="reminder-icon">⚠️</div>
+                <div class="reminder-content">
+                    <h4>First Aid Kit Medication</h4>
+                    <p>Several medications expire in 2 months</p>
+                </div>
+                <button class="reminder-action">Review</button>
+            </div>
+            <div class="reminder-item">
+                <div class="reminder-icon">🔋</div>
+                <div class="reminder-content">
+                    <h4>Emergency Beacon Battery</h4>
+                    <p>Due for replacement in 6 months</p>
+                </div>
+                <button class="reminder-action">Schedule</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Equipment Modal -->
+<div class="modal" id="addEquipmentModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Add New Equipment</h2>
+            <button class="modal-close" id="closeModal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <!-- Add equipment form would go here -->
+        </div>
+    </div>
+</div>
+
+<script type="module" src="/equipment/js/app.js"></script>

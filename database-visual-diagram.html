@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BikeNode Database Visual Diagram</title>
+    <script src="https://cdn.jsdelivr.net/npm/vis-network@9.1.2/standalone/umd/vis-network.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+        }
+        
+        #mynetwork {
+            width: 100%;
+            height: 100vh;
+            border: 1px solid #ddd;
+            background: white;
+        }
+        
+        .legend {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .legend h3 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .legend-box {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+        
+        .stats {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        .stats h3 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+        }
+        
+        .stat-item {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .stat-number {
+            font-weight: bold;
+            font-size: 24px;
+        }
+        
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 5px;
+            font-size: 14px;
+        }
+        
+        button:hover {
+            background: #2980b9;
+        }
+        
+        button.active {
+            background: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div id="mynetwork"></div>
+    
+    <div class="legend">
+        <h3>Legend</h3>
+        <div class="legend-item">
+            <div class="legend-box" style="background: #27ae60;"></div>
+            <span>Exists in Database</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-box" style="background: #e74c3c;"></div>
+            <span>Needs to be Created</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-box" style="background: #f39c12;"></div>
+            <span>Partially Implemented</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-box" style="background: #9b59b6;"></div>
+            <span>Feature Groups</span>
+        </div>
+    </div>
+    
+    <div class="stats">
+        <h3>Database Status</h3>
+        <div class="stat-item">
+            <div class="stat-number" style="color: #27ae60;">22</div>
+            <div>Tables Exist</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" style="color: #e74c3c;">54</div>
+            <div>Tables Needed</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" style="color: #3498db;">76</div>
+            <div>Total Tables</div>
+        </div>
+    </div>
+    
+    <div class="controls">
+        <button onclick="showAll()" class="active">Show All</button>
+        <button onclick="showExisting()">Show Existing Only</button>
+        <button onclick="showNeeded()">Show Needed Only</button>
+        <button onclick="resetView()">Reset View</button>
+    </div>
+
+    <script>
+        // Create nodes
+        var nodes = new vis.DataSet([
+            // Feature Groups (Purple)
+            {id: 'auth_group', label: 'Authentication\n& Users', color: '#9b59b6', shape: 'box', font: {color: 'white', size: 16}, size: 40, group: 'feature'},
+            {id: 'discord_group', label: 'Discord Bot\nIntegration', color: '#9b59b6', shape: 'box', font: {color: 'white', size: 16}, size: 40, group: 'feature'},
+            {id: 'vehicle_group', label: 'Vehicle\nSpecifications', color: '#9b59b6', shape: 'box', font: {color: 'white', size: 16}, size: 40, group: 'feature'},
+            {id: 'profile_group', label: 'User Profiles\n& Settings', color: '#9b59b6', shape: 'box', font: {color: 'white', size: 16}, size: 40, group: 'feature'},
+            {id: 'garage_group', label: 'Virtual Garage', color: '#9b59b6', shape: 'box', font: {color: 'white', size: 16}, size: 40, group: 'feature'},
+            {id: 'routes_group', label: 'Routes &\nRides', color: '#9b59b6', shape: 'box', font: {color: 'white', size: 16}, size: 40, group: 'feature'},
+            {id: 'marketplace_group', label: 'Marketplace', color: '#9b59b6', shape: 'box', font: {color: 'white', size: 16}, size: 40, group: 'feature'},
+            {id: 'social_group', label: 'Social &\nCommunity', color: '#9b59b6', shape: 'box', font: {color: 'white', size: 16}, size: 40, group: 'feature'},
+            {id: 'admin_group', label: 'Admin &\nSecurity', color: '#9b59b6', shape: 'box', font: {color: 'white', size: 16}, size: 40, group: 'feature'},
+            
+            // Existing Tables (Green)
+            // Discord Tables
+            {id: 'users', label: 'users', color: '#f39c12', shape: 'ellipse', group: 'existing', title: 'Partially implemented - needs web auth fields'},
+            {id: 'servers', label: 'servers', color: '#27ae60', shape: 'ellipse', group: 'existing'},
+            {id: 'server_configs', label: 'server_configs', color: '#27ae60', shape: 'ellipse', group: 'existing'},
+            {id: 'user_roles', label: 'user_roles', color: '#27ae60', shape: 'ellipse', group: 'existing'},
+            {id: 'ownerships', label: 'ownerships', color: '#27ae60', shape: 'ellipse', group: 'existing'},
+            {id: 'timeline_events', label: 'timeline_events', color: '#27ae60', shape: 'ellipse', group: 'existing'},
+            {id: 'event_server_shares', label: 'event_server_shares', color: '#27ae60', shape: 'ellipse', group: 'existing'},
+            {id: 'user_server_visibility', label: 'user_server_visibility', color: '#27ae60', shape: 'ellipse', group: 'existing'},
+            
+            // Vehicle Tables
+            {id: 'motorcycles', label: 'motorcycles', color: '#27ae60', shape: 'ellipse', group: 'existing'},
+            {id: 'motorcycle_specs', label: 'motorcycle_specs', color: '#27ae60', shape: 'ellipse', group: 'existing'},
+            {id: 'electrified_data', label: 'electrified_data', color: '#27ae60', shape: 'ellipse', group: 'existing'},
+            {id: 'electrified_brands', label: 'electrified_brands', color: '#27ae60', shape: 'ellipse', group: 'existing'},
+            {id: 'manufacturers', label: 'manufacturers', color: '#27ae60', shape: 'ellipse', group: 'existing'},
+            {id: 'bike_families', label: 'bike_families', color: '#27ae60', shape: 'ellipse', group: 'existing'},
+            {id: 'bikes', label: 'bikes', color: '#f39c12', shape: 'ellipse', group: 'existing', title: 'Exists for specs, needs user bike version'},
+            {id: 'bike_components', label: 'bike_components', color: '#f39c12', shape: 'ellipse', group: 'existing', title: 'Exists for specs, needs user component tracking'},
+            {id: 'bike_sizes', label: 'bike_sizes', color: '#27ae60', shape: 'ellipse', group: 'existing'},
+            {id: 'bike_geometry', label: 'bike_geometry', color: '#27ae60', shape: 'ellipse', group: 'existing'},
+            {id: 'bike_colors', label: 'bike_colors', color: '#27ae60', shape: 'ellipse', group: 'existing'},
+            {id: 'bike_features', label: 'bike_features', color: '#27ae60', shape: 'ellipse', group: 'existing'},
+            {id: 'bike_images', label: 'bike_images', color: '#27ae60', shape: 'ellipse', group: 'existing'},
+            
+            // Needed Tables (Red)
+            // Authentication
+            {id: 'user_sessions', label: 'user_sessions', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'oauth_connections', label: 'oauth_connections', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            
+            // Profile Tables
+            {id: 'user_profiles', label: 'user_profiles', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'user_badges', label: 'user_badges', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'user_statistics', label: 'user_statistics', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'user_preferences', label: 'user_preferences', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'dashboard_widgets', label: 'dashboard_widgets', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            
+            // Garage Tables
+            {id: 'user_bikes', label: 'user_bikes', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'bike_maintenance', label: 'bike_maintenance', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            
+            // Routes & Rides
+            {id: 'routes', label: 'routes', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'route_points_of_interest', label: 'route_points_of_interest', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'rides', label: 'rides', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'ride_segments', label: 'ride_segments', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'ride_segment_efforts', label: 'ride_segment_efforts', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            
+            // Marketplace
+            {id: 'marketplace_listings', label: 'marketplace_listings', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'marketplace_messages', label: 'marketplace_messages', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            
+            // Social
+            {id: 'user_follows', label: 'user_follows', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'user_blocks', label: 'user_blocks', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'activity_feed', label: 'activity_feed', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'forum_categories', label: 'forum_categories', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'forum_topics', label: 'forum_topics', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'forum_posts', label: 'forum_posts', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'conversations', label: 'conversations', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'messages', label: 'messages', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            
+            // Admin
+            {id: 'audit_logs', label: 'audit_logs', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'security_events', label: 'security_events', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'rate_limits', label: 'rate_limits', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            
+            // Supporting
+            {id: 'notifications', label: 'notifications', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+            {id: 'media_uploads', label: 'media_uploads', color: '#e74c3c', shape: 'ellipse', group: 'needed', font: {color: 'white'}},
+        ]);
+
+        // Create edges
+        var edges = new vis.DataSet([
+            // Connect feature groups to their tables
+            // Discord connections
+            {from: 'discord_group', to: 'users', color: '#95a5a6'},
+            {from: 'discord_group', to: 'servers', color: '#95a5a6'},
+            {from: 'discord_group', to: 'server_configs', color: '#95a5a6'},
+            {from: 'discord_group', to: 'user_roles', color: '#95a5a6'},
+            {from: 'discord_group', to: 'ownerships', color: '#95a5a6'},
+            {from: 'discord_group', to: 'timeline_events', color: '#95a5a6'},
+            {from: 'discord_group', to: 'event_server_shares', color: '#95a5a6'},
+            {from: 'discord_group', to: 'user_server_visibility', color: '#95a5a6'},
+            
+            // Vehicle connections
+            {from: 'vehicle_group', to: 'motorcycles', color: '#95a5a6'},
+            {from: 'vehicle_group', to: 'motorcycle_specs', color: '#95a5a6'},
+            {from: 'vehicle_group', to: 'electrified_data', color: '#95a5a6'},
+            {from: 'vehicle_group', to: 'electrified_brands', color: '#95a5a6'},
+            {from: 'vehicle_group', to: 'manufacturers', color: '#95a5a6'},
+            {from: 'vehicle_group', to: 'bike_families', color: '#95a5a6'},
+            {from: 'vehicle_group', to: 'bikes', color: '#95a5a6'},
+            {from: 'vehicle_group', to: 'bike_components', color: '#95a5a6'},
+            {from: 'vehicle_group', to: 'bike_sizes', color: '#95a5a6'},
+            {from: 'vehicle_group', to: 'bike_geometry', color: '#95a5a6'},
+            {from: 'vehicle_group', to: 'bike_colors', color: '#95a5a6'},
+            {from: 'vehicle_group', to: 'bike_features', color: '#95a5a6'},
+            {from: 'vehicle_group', to: 'bike_images', color: '#95a5a6'},
+            
+            // Auth connections
+            {from: 'auth_group', to: 'users', color: '#95a5a6'},
+            {from: 'auth_group', to: 'user_sessions', color: '#95a5a6', dashes: true},
+            {from: 'auth_group', to: 'oauth_connections', color: '#95a5a6', dashes: true},
+            
+            // Profile connections
+            {from: 'profile_group', to: 'user_profiles', color: '#95a5a6', dashes: true},
+            {from: 'profile_group', to: 'user_badges', color: '#95a5a6', dashes: true},
+            {from: 'profile_group', to: 'user_statistics', color: '#95a5a6', dashes: true},
+            {from: 'profile_group', to: 'user_preferences', color: '#95a5a6', dashes: true},
+            {from: 'profile_group', to: 'dashboard_widgets', color: '#95a5a6', dashes: true},
+            
+            // Garage connections
+            {from: 'garage_group', to: 'user_bikes', color: '#95a5a6', dashes: true},
+            {from: 'garage_group', to: 'bike_maintenance', color: '#95a5a6', dashes: true},
+            
+            // Routes connections
+            {from: 'routes_group', to: 'routes', color: '#95a5a6', dashes: true},
+            {from: 'routes_group', to: 'route_points_of_interest', color: '#95a5a6', dashes: true},
+            {from: 'routes_group', to: 'rides', color: '#95a5a6', dashes: true},
+            {from: 'routes_group', to: 'ride_segments', color: '#95a5a6', dashes: true},
+            {from: 'routes_group', to: 'ride_segment_efforts', color: '#95a5a6', dashes: true},
+            
+            // Marketplace connections
+            {from: 'marketplace_group', to: 'marketplace_listings', color: '#95a5a6', dashes: true},
+            {from: 'marketplace_group', to: 'marketplace_messages', color: '#95a5a6', dashes: true},
+            
+            // Social connections
+            {from: 'social_group', to: 'user_follows', color: '#95a5a6', dashes: true},
+            {from: 'social_group', to: 'user_blocks', color: '#95a5a6', dashes: true},
+            {from: 'social_group', to: 'activity_feed', color: '#95a5a6', dashes: true},
+            {from: 'social_group', to: 'forum_categories', color: '#95a5a6', dashes: true},
+            {from: 'social_group', to: 'forum_topics', color: '#95a5a6', dashes: true},
+            {from: 'social_group', to: 'forum_posts', color: '#95a5a6', dashes: true},
+            {from: 'social_group', to: 'conversations', color: '#95a5a6', dashes: true},
+            {from: 'social_group', to: 'messages', color: '#95a5a6', dashes: true},
+            
+            // Admin connections
+            {from: 'admin_group', to: 'audit_logs', color: '#95a5a6', dashes: true},
+            {from: 'admin_group', to: 'security_events', color: '#95a5a6', dashes: true},
+            {from: 'admin_group', to: 'rate_limits', color: '#95a5a6', dashes: true},
+            
+            // Cross-table relationships
+            {from: 'users', to: 'user_profiles', color: '#3498db', dashes: true, width: 2},
+            {from: 'users', to: 'user_bikes', color: '#3498db', dashes: true, width: 2},
+            {from: 'users', to: 'rides', color: '#3498db', dashes: true, width: 2},
+            {from: 'users', to: 'routes', color: '#3498db', dashes: true, width: 2},
+            {from: 'bikes', to: 'user_bikes', color: '#3498db', dashes: true, width: 2},
+            {from: 'routes', to: 'rides', color: '#3498db', dashes: true, width: 2},
+        ]);
+
+        // Create network
+        var container = document.getElementById('mynetwork');
+        var data = {
+            nodes: nodes,
+            edges: edges
+        };
+        
+        var options = {
+            layout: {
+                improvedLayout: true,
+                hierarchical: false
+            },
+            physics: {
+                enabled: true,
+                barnesHut: {
+                    gravitationalConstant: -2000,
+                    centralGravity: 0.3,
+                    springLength: 200,
+                    springConstant: 0.04,
+                    damping: 0.09
+                },
+                stabilization: {
+                    iterations: 1000
+                }
+            },
+            nodes: {
+                borderWidth: 2,
+                borderWidthSelected: 4,
+                font: {
+                    size: 14
+                }
+            },
+            edges: {
+                width: 1,
+                smooth: {
+                    type: 'continuous'
+                }
+            },
+            interaction: {
+                hover: true,
+                tooltipDelay: 100
+            }
+        };
+        
+        var network = new vis.Network(container, data, options);
+        
+        // Control functions
+        function showAll() {
+            nodes.update(nodes.get().map(node => ({id: node.id, hidden: false})));
+            edges.update(edges.get().map(edge => ({id: edge.id, hidden: false})));
+            document.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        
+        function showExisting() {
+            nodes.update(nodes.get().map(node => ({
+                id: node.id, 
+                hidden: node.group === 'needed'
+            })));
+            edges.update(edges.get().map(edge => {
+                var fromNode = nodes.get(edge.from);
+                var toNode = nodes.get(edge.to);
+                return {
+                    id: edge.id,
+                    hidden: fromNode.group === 'needed' || toNode.group === 'needed'
+                };
+            }));
+            document.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        
+        function showNeeded() {
+            nodes.update(nodes.get().map(node => ({
+                id: node.id, 
+                hidden: node.group === 'existing' && node.color !== '#f39c12'
+            })));
+            document.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        
+        function resetView() {
+            network.fit();
+        }
+        
+        // Add double-click event to focus on connected nodes
+        network.on("doubleClick", function(params) {
+            if (params.nodes.length > 0) {
+                var nodeId = params.nodes[0];
+                var connectedNodes = network.getConnectedNodes(nodeId);
+                connectedNodes.push(nodeId);
+                network.selectNodes(connectedNodes);
+                network.fit({
+                    nodes: connectedNodes,
+                    animation: true
+                });
+            }
+        });
+    </script>
+</body>
+</html>

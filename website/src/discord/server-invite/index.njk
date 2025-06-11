@@ -1,0 +1,1032 @@
+---
+layout: bikenode-main-layout-01/bikenode-main-layout-01.njk
+title: Server Invite Management
+subtitle: Create and manage Discord server invitation links
+---
+
+<div class="invite-content">
+    <!-- Current Server Info -->
+    <div class="server-info-section">
+        <div class="server-header">
+            <div class="server-icon-large">SB</div>
+            <div class="server-details">
+                <h2>Sport Bike Riders</h2>
+                <p>1,234 members • Owner permissions</p>
+                <div class="server-tags">
+                    <span class="tag">Motorcycles</span>
+                    <span class="tag">Sport Bikes</span>
+                    <span class="tag">Community</span>
+                </div>
+            </div>
+            <div class="server-status">
+                <span class="status-indicator online"></span>
+                <span>Bot Active</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Invite Generator -->
+    <div class="quick-invite-section">
+        <div class="section-header">
+            <h3>Quick Invite Generator</h3>
+            <p>Generate instant invite links for your server</p>
+        </div>
+        
+        <div class="invite-generator">
+            <div class="generator-form">
+                <div class="form-group">
+                    <label>Expiration</label>
+                    <select id="inviteExpiration" class="form-select">
+                        <option value="30m">30 minutes</option>
+                        <option value="1h">1 hour</option>
+                        <option value="6h">6 hours</option>
+                        <option value="12h">12 hours</option>
+                        <option value="1d" selected>1 day</option>
+                        <option value="7d">7 days</option>
+                        <option value="30d">30 days</option>
+                        <option value="never">Never expire</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Max Uses</label>
+                    <select id="inviteMaxUses" class="form-select">
+                        <option value="1">1 use</option>
+                        <option value="5">5 uses</option>
+                        <option value="10">10 uses</option>
+                        <option value="25">25 uses</option>
+                        <option value="50">50 uses</option>
+                        <option value="100">100 uses</option>
+                        <option value="unlimited" selected>Unlimited</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Channel</label>
+                    <select id="inviteChannel" class="form-select">
+                        <option value="general">#general</option>
+                        <option value="welcome">#welcome</option>
+                        <option value="new-members">#new-members</option>
+                        <option value="sport-bikes">#sport-bikes</option>
+                        <option value="garage-showcase">#garage-showcase</option>
+                    </select>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="grantTempMembership" checked>
+                        <span class="checkmark"></span>
+                        Grant temporary membership
+                    </label>
+                    <small>Allow users to see channels before accepting rules</small>
+                </div>
+            </div>
+            
+            <button class="btn-primary generate-btn" onclick="generateInvite()">
+                <span class="btn-icon">🔗</span>
+                Generate Invite Link
+            </button>
+        </div>
+        
+        <div class="generated-invite" id="generatedInvite" style="display: none;">
+            <div class="invite-display">
+                <div class="invite-url">
+                    <input type="text" id="inviteUrl" readonly>
+                    <button class="copy-btn" onclick="copyInvite()">Copy</button>
+                </div>
+                <div class="invite-details">
+                    <span>Expires: <strong id="inviteExpiry">Tomorrow at 3:45 PM</strong></span>
+                    <span>Max uses: <strong id="inviteUses">Unlimited</strong></span>
+                    <span>Channel: <strong id="inviteChannelName">#general</strong></span>
+                </div>
+            </div>
+            <div class="invite-actions">
+                <button class="btn-secondary" onclick="shareInvite()">Share Link</button>
+                <button class="btn-secondary" onclick="previewInvite()">Preview</button>
+                <button class="btn-danger" onclick="revokeInvite()">Revoke</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Invites -->
+    <div class="active-invites-section">
+        <div class="section-header">
+            <h3>Active Invite Links</h3>
+            <div class="invite-stats">
+                <span class="stat">7 Active</span>
+                <span class="stat">23 Total Uses Today</span>
+            </div>
+        </div>
+        
+        <div class="invites-table">
+            <div class="table-header">
+                <div class="col-invite">Invite Code</div>
+                <div class="col-channel">Channel</div>
+                <div class="col-uses">Uses</div>
+                <div class="col-expires">Expires</div>
+                <div class="col-created">Created</div>
+                <div class="col-actions">Actions</div>
+            </div>
+            
+            <div class="invite-row">
+                <div class="col-invite">
+                    <code class="invite-code">JMCPCcnth4</code>
+                    <button class="copy-mini" onclick="copyToClipboard('https://discord.gg/JMCPCcnth4')">📋</button>
+                </div>
+                <div class="col-channel">
+                    <span class="channel-tag">#welcome</span>
+                </div>
+                <div class="col-uses">
+                    <div class="usage-bar">
+                        <div class="usage-fill" style="width: 60%"></div>
+                        <span class="usage-text">6/10</span>
+                    </div>
+                </div>
+                <div class="col-expires">
+                    <span class="expires-soon">Tomorrow</span>
+                </div>
+                <div class="col-created">
+                    <span>2 hours ago</span>
+                    <small>by @RiderAdmin</small>
+                </div>
+                <div class="col-actions">
+                    <button class="btn-icon-small" onclick="editInvite('JMCPCcnth4')" title="Edit">✏️</button>
+                    <button class="btn-icon-small" onclick="viewStats('JMCPCcnth4')" title="Stats">📊</button>
+                    <button class="btn-icon-small danger" onclick="revokeInvite('JMCPCcnth4')" title="Revoke">🗑️</button>
+                </div>
+            </div>
+            
+            <div class="invite-row">
+                <div class="col-invite">
+                    <code class="invite-code">BikeNode99</code>
+                    <button class="copy-mini" onclick="copyToClipboard('https://discord.gg/BikeNode99')">📋</button>
+                </div>
+                <div class="col-channel">
+                    <span class="channel-tag">#general</span>
+                </div>
+                <div class="col-uses">
+                    <div class="usage-bar">
+                        <div class="usage-fill unlimited"></div>
+                        <span class="usage-text">15/∞</span>
+                    </div>
+                </div>
+                <div class="col-expires">
+                    <span class="never-expires">Never</span>
+                </div>
+                <div class="col-created">
+                    <span>1 day ago</span>
+                    <small>by @ModeratorUser</small>
+                </div>
+                <div class="col-actions">
+                    <button class="btn-icon-small" onclick="editInvite('BikeNode99')" title="Edit">✏️</button>
+                    <button class="btn-icon-small" onclick="viewStats('BikeNode99')" title="Stats">📊</button>
+                    <button class="btn-icon-small danger" onclick="revokeInvite('BikeNode99')" title="Revoke">🗑️</button>
+                </div>
+            </div>
+            
+            <div class="invite-row">
+                <div class="col-invite">
+                    <code class="invite-code">SportRiders</code>
+                    <button class="copy-mini" onclick="copyToClipboard('https://discord.gg/SportRiders')">📋</button>
+                </div>
+                <div class="col-channel">
+                    <span class="channel-tag">#new-members</span>
+                </div>
+                <div class="col-uses">
+                    <div class="usage-bar">
+                        <div class="usage-fill" style="width: 20%"></div>
+                        <span class="usage-text">1/5</span>
+                    </div>
+                </div>
+                <div class="col-expires">
+                    <span>3 days</span>
+                </div>
+                <div class="col-created">
+                    <span>5 hours ago</span>
+                    <small>by @EventOrganizer</small>
+                </div>
+                <div class="col-actions">
+                    <button class="btn-icon-small" onclick="editInvite('SportRiders')" title="Edit">✏️</button>
+                    <button class="btn-icon-small" onclick="viewStats('SportRiders')" title="Stats">📊</button>
+                    <button class="btn-icon-small danger" onclick="revokeInvite('SportRiders')" title="Revoke">🗑️</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Invite Analytics -->
+    <div class="analytics-section">
+        <div class="section-header">
+            <h3>Invite Analytics</h3>
+            <div class="time-range-picker">
+                <select class="form-select small">
+                    <option>Last 7 days</option>
+                    <option>Last 30 days</option>
+                    <option>Last 90 days</option>
+                    <option>All time</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="analytics-grid">
+            <div class="analytics-card">
+                <div class="metric-header">
+                    <h4>Total Invites</h4>
+                    <span class="metric-icon">🔗</span>
+                </div>
+                <div class="metric-value">47</div>
+                <div class="metric-change positive">+12% vs last week</div>
+            </div>
+            
+            <div class="analytics-card">
+                <div class="metric-header">
+                    <h4>New Members</h4>
+                    <span class="metric-icon">👥</span>
+                </div>
+                <div class="metric-value">34</div>
+                <div class="metric-change positive">+8% vs last week</div>
+            </div>
+            
+            <div class="analytics-card">
+                <div class="metric-header">
+                    <h4>Conversion Rate</h4>
+                    <span class="metric-icon">📈</span>
+                </div>
+                <div class="metric-value">72%</div>
+                <div class="metric-change neutral">Same as last week</div>
+            </div>
+            
+            <div class="analytics-card">
+                <div class="metric-header">
+                    <h4>Top Inviter</h4>
+                    <span class="metric-icon">🏆</span>
+                </div>
+                <div class="metric-value">@RiderAdmin</div>
+                <div class="metric-change">15 successful invites</div>
+            </div>
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="inviteChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <!-- Invite Templates -->
+    <div class="templates-section">
+        <div class="section-header">
+            <h3>Invite Templates</h3>
+            <p>Pre-configured invite settings for common scenarios</p>
+        </div>
+        
+        <div class="templates-grid">
+            <div class="template-card">
+                <div class="template-header">
+                    <h4>Event Invite</h4>
+                    <span class="template-badge">Popular</span>
+                </div>
+                <div class="template-settings">
+                    <div class="setting">Expires: 24 hours</div>
+                    <div class="setting">Max uses: 50</div>
+                    <div class="setting">Channel: #events</div>
+                </div>
+                <button class="btn-secondary" onclick="useTemplate('event')">Use Template</button>
+            </div>
+            
+            <div class="template-card">
+                <div class="template-header">
+                    <h4>Friend Invite</h4>
+                </div>
+                <div class="template-settings">
+                    <div class="setting">Expires: Never</div>
+                    <div class="setting">Max uses: 5</div>
+                    <div class="setting">Channel: #welcome</div>
+                </div>
+                <button class="btn-secondary" onclick="useTemplate('friend')">Use Template</button>
+            </div>
+            
+            <div class="template-card">
+                <div class="template-header">
+                    <h4>Community Share</h4>
+                </div>
+                <div class="template-settings">
+                    <div class="setting">Expires: 7 days</div>
+                    <div class="setting">Max uses: Unlimited</div>
+                    <div class="setting">Channel: #general</div>
+                </div>
+                <button class="btn-secondary" onclick="useTemplate('community')">Use Template</button>
+            </div>
+            
+            <div class="template-card">
+                <div class="template-header">
+                    <h4>Temporary Access</h4>
+                </div>
+                <div class="template-settings">
+                    <div class="setting">Expires: 1 hour</div>
+                    <div class="setting">Max uses: 1</div>
+                    <div class="setting">Channel: #welcome</div>
+                </div>
+                <button class="btn-secondary" onclick="useTemplate('temporary')">Use Template</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Generate invite functionality
+function generateInvite() {
+    const btn = document.querySelector('.generate-btn');
+    const original = btn.innerHTML;
+    
+    btn.innerHTML = '<span class="btn-icon">⏳</span>Generating...';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+        const inviteCode = 'BN' + Math.random().toString(36).substr(2, 6).toUpperCase();
+        const inviteUrl = `https://discord.gg/${inviteCode}`;
+        
+        document.getElementById('inviteUrl').value = inviteUrl;
+        document.getElementById('generatedInvite').style.display = 'block';
+        
+        btn.innerHTML = original;
+        btn.disabled = false;
+        
+        // Scroll to generated invite
+        document.getElementById('generatedInvite').scrollIntoView({ behavior: 'smooth' });
+    }, 1500);
+}
+
+// Copy invite to clipboard
+function copyInvite() {
+    const inviteUrl = document.getElementById('inviteUrl');
+    inviteUrl.select();
+    document.execCommand('copy');
+    
+    const copyBtn = document.querySelector('.copy-btn');
+    const original = copyBtn.textContent;
+    copyBtn.textContent = 'Copied!';
+    setTimeout(() => {
+        copyBtn.textContent = original;
+    }, 2000);
+}
+
+// Copy to clipboard helper
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        // Show brief feedback
+        console.log('Copied to clipboard');
+    });
+}
+
+// Share invite
+function shareInvite() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'Join Sport Bike Riders Discord',
+            text: 'Join our motorcycle community on Discord!',
+            url: document.getElementById('inviteUrl').value
+        });
+    } else {
+        copyInvite();
+    }
+}
+
+// Preview invite
+function previewInvite() {
+    window.open(document.getElementById('inviteUrl').value, '_blank');
+}
+
+// Revoke invite
+function revokeInvite(code) {
+    if (confirm(`Are you sure you want to revoke invite ${code || 'this invite'}?`)) {
+        if (code) {
+            // Remove from table
+            event.target.closest('.invite-row').remove();
+        } else {
+            // Hide generated invite
+            document.getElementById('generatedInvite').style.display = 'none';
+        }
+    }
+}
+
+// Edit invite
+function editInvite(code) {
+    alert(`Edit invite ${code} - feature coming soon`);
+}
+
+// View invite stats
+function viewStats(code) {
+    alert(`View detailed stats for invite ${code} - feature coming soon`);
+}
+
+// Use template
+function useTemplate(type) {
+    const templates = {
+        event: { expiry: '1d', uses: '50', channel: 'events' },
+        friend: { expiry: 'never', uses: '5', channel: 'welcome' },
+        community: { expiry: '7d', uses: 'unlimited', channel: 'general' },
+        temporary: { expiry: '1h', uses: '1', channel: 'welcome' }
+    };
+    
+    const template = templates[type];
+    if (template) {
+        document.getElementById('inviteExpiration').value = template.expiry;
+        document.getElementById('inviteMaxUses').value = template.uses;
+        document.getElementById('inviteChannel').value = template.channel;
+        
+        // Scroll to generator
+        document.querySelector('.invite-generator').scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// Simple chart placeholder (in a real app, you'd use Chart.js or similar)
+window.addEventListener('load', () => {
+    const canvas = document.getElementById('inviteChart');
+    const ctx = canvas.getContext('2d');
+    
+    // Simple line chart simulation
+    ctx.strokeStyle = '#5865f2';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(50, 150);
+    ctx.lineTo(100, 120);
+    ctx.lineTo(150, 140);
+    ctx.lineTo(200, 100);
+    ctx.lineTo(250, 110);
+    ctx.lineTo(300, 80);
+    ctx.lineTo(350, 90);
+    ctx.stroke();
+    
+    // Add some data points
+    ctx.fillStyle = '#5865f2';
+    [50, 100, 150, 200, 250, 300, 350].forEach((x, i) => {
+        const y = [150, 120, 140, 100, 110, 80, 90][i];
+        ctx.beginPath();
+        ctx.arc(x, y, 4, 0, 2 * Math.PI);
+        ctx.fill();
+    });
+});
+</script>
+
+<style>
+.invite-content {
+    max-width: 1200px;
+}
+
+.server-info-section {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+}
+
+.server-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.server-icon-large {
+    width: 80px;
+    height: 80px;
+    background: var(--accent);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.server-details {
+    flex: 1;
+}
+
+.server-details h2 {
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    font-size: 1.5rem;
+}
+
+.server-details p {
+    color: var(--text-secondary);
+    margin: 0 0 12px 0;
+}
+
+.server-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: rgba(88, 101, 242, 0.1);
+    color: var(--accent);
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.server-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.status-indicator.online {
+    background: #10b981;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 24px;
+}
+
+.section-header h3 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.section-header p {
+    color: var(--text-secondary);
+    margin: 4px 0 0 0;
+    font-size: 0.9rem;
+}
+
+.invite-stats {
+    display: flex;
+    gap: 16px;
+}
+
+.stat {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.quick-invite-section,
+.active-invites-section,
+.analytics-section,
+.templates-section {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+}
+
+.invite-generator {
+    display: flex;
+    gap: 24px;
+    align-items: flex-end;
+    margin-bottom: 24px;
+}
+
+.generator-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    flex: 1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.form-select {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.form-select.small {
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+.checkbox-group {
+    grid-column: 1 / -1;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.checkbox-label input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    position: relative;
+}
+
+.checkbox-label input:checked + .checkmark {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.checkbox-label input:checked + .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: -2px;
+    left: 2px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.checkbox-label small {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.generate-btn {
+    white-space: nowrap;
+    padding: 12px 24px;
+}
+
+.generated-invite {
+    background: rgba(88, 101, 242, 0.05);
+    border: 1px solid rgba(88, 101, 242, 0.2);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.invite-display {
+    margin-bottom: 16px;
+}
+
+.invite-url {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.invite-url input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+}
+
+.copy-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.invite-details {
+    display: flex;
+    gap: 24px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+}
+
+.invite-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.invites-table {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr 1fr;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.invite-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr 1fr;
+    gap: 16px;
+    padding: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    align-items: center;
+}
+
+.invite-row:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.col-invite {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.invite-code {
+    background: rgba(88, 101, 242, 0.1);
+    color: var(--accent);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+.copy-mini {
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.copy-mini:hover {
+    opacity: 1;
+}
+
+.channel-tag {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+}
+
+.usage-bar {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.usage-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.usage-fill.unlimited {
+    background: #10b981;
+    width: 100%;
+}
+
+.usage-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.expires-soon {
+    color: #f59e0b;
+    font-weight: 500;
+}
+
+.never-expires {
+    color: #10b981;
+    font-weight: 500;
+}
+
+.col-created small {
+    display: block;
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+
+.col-actions {
+    display: flex;
+    gap: 4px;
+}
+
+.btn-icon-small {
+    background: none;
+    border: none;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.2s;
+}
+
+.btn-icon-small:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-icon-small.danger:hover {
+    background: rgba(220, 38, 38, 0.2);
+    color: #dc2626;
+}
+
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.analytics-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.metric-header h4 {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.metric-icon {
+    font-size: 1.2rem;
+}
+
+.metric-value {
+    color: var(--text-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.metric-change {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.metric-change.positive {
+    color: #10b981;
+}
+
+.metric-change.negative {
+    color: #ef4444;
+}
+
+.metric-change.neutral {
+    color: var(--text-secondary);
+}
+
+.chart-container {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+
+.templates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.template-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.template-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.template-header h4 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1rem;
+}
+
+.template-badge {
+    background: #10b981;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.template-settings {
+    margin-bottom: 16px;
+}
+
+.setting {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+}
+
+@media (max-width: 768px) {
+    .server-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+    
+    .invite-generator {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .generator-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .table-header,
+    .invite-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .col-invite,
+    .col-channel,
+    .col-uses,
+    .col-expires,
+    .col-created,
+    .col-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .col-invite::before { content: "Invite: "; }
+    .col-channel::before { content: "Channel: "; }
+    .col-uses::before { content: "Uses: "; }
+    .col-expires::before { content: "Expires: "; }
+    .col-created::before { content: "Created: "; }
+    .col-actions::before { content: "Actions: "; }
+    
+    .analytics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .templates-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>

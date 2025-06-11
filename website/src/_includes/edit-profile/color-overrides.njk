@@ -1,0 +1,21 @@
+<!-- Force override blue accent colors -->
+<style>
+  :root {
+    --accent: #6b7280 !important;
+    --accent-hover: #4b5563 !important;
+    --gradient-accent: linear-gradient(135deg, #6b7280 0%, #4b5563 100%) !important;
+  }
+  
+  /* Specific overrides for social icons */
+  .social-icon.twitter {
+    background: #475569 !important;
+  }
+  
+  /* Override any blue that might come from index.css */
+  [style*="#5865f2"],
+  [style*="#1DA1F2"],
+  [style*="#3b82f6"] {
+    background: #6b7280 !important;
+    color: #f1f5f9 !important;
+  }
+</style>

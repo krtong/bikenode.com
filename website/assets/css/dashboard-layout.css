@@ -1,0 +1,424 @@
+/* Dashboard Layout Specific Styles - Isolated with unique class names */
+
+/* Dashboard Sidebar Styles */
+.dashboard-sidebar {
+    width: 280px;
+    background: var(--bg-secondary);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    position: fixed;
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    z-index: 50;
+    transition: transform var(--transition-base);
+}
+
+/* Custom scrollbar for dashboard sidebar */
+.dashboard-sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.dashboard-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dashboard-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.dashboard-sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.dashboard-sidebar-nav {
+    padding: 32px 0;
+}
+
+.dashboard-sidebar-section {
+    margin-bottom: 32px;
+    padding: 0 24px;
+}
+
+.dashboard-sidebar-section h3 {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+    padding-left: 8px;
+}
+
+.dashboard-sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 12px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-sidebar-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--gradient-accent);
+    transform: translateX(-100%);
+    transition: transform var(--transition-base);
+}
+
+.dashboard-sidebar-link:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(4px);
+}
+
+.dashboard-sidebar-link:hover::before {
+    transform: translateX(0);
+}
+
+.dashboard-sidebar-link.dashboard-sidebar-active {
+    color: var(--accent);
+    background: rgba(88, 101, 242, 0.1);
+}
+
+.dashboard-sidebar-link.dashboard-sidebar-active::before {
+    transform: translateX(0);
+}
+
+.dashboard-sidebar-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Main Sidebar Styles (sidebar-v2) */
+.main-sidebar {
+    width: 280px;
+    background: var(--bg-secondary);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    position: fixed;
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+    z-index: 50;
+}
+
+.main-sidebar-nav {
+    padding: 32px 0;
+}
+
+.main-sidebar-section {
+    margin-bottom: 32px;
+    padding: 0 24px;
+}
+
+.main-sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 12px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.main-sidebar-link:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(4px);
+}
+
+.main-sidebar-link.main-sidebar-active {
+    color: var(--accent);
+    background: rgba(88, 101, 242, 0.1);
+}
+
+.main-sidebar-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.main-sidebar-bottom {
+    margin-top: auto;
+    padding-bottom: 1rem;
+}
+
+/* Main Header Styles */
+.main-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1100px;
+    width: 100%;
+    padding: 24px;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.main-header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.main-header-brand {
+    display: flex;
+    align-items: center;
+}
+
+.main-header-logo {
+    height: 40px;
+    width: auto;
+}
+
+.main-header-mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.main-header-hamburger-line {
+    width: 24px;
+    height: 2px;
+    background-color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.main-header-menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.main-header-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.main-header-link:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.main-header-link.main-header-active {
+    color: var(--accent);
+    background: rgba(88, 101, 242, 0.1);
+}
+
+.main-header-btn-primary {
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+.main-header-btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(88, 101, 242, 0.3);
+}
+
+.main-header-mobile-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Mobile Responsive Styles for Main Header */
+@media (max-width: 768px) {
+    .main-header-mobile-toggle {
+        display: flex;
+    }
+    
+    .main-header-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 280px;
+        background-color: var(--bg-secondary);
+        flex-direction: column;
+        padding: 80px 24px 24px;
+        gap: 8px;
+        transition: right 0.3s ease;
+        z-index: 999;
+    }
+    
+    .main-header-menu.main-header-active {
+        right: 0;
+    }
+    
+    .main-header-mobile-overlay.main-header-active {
+        display: block;
+        opacity: 1;
+    }
+    
+    .main-header-mobile-toggle.main-header-active .main-header-hamburger-line:first-child {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .main-header-mobile-toggle.main-header-active .main-header-hamburger-line:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .main-header-mobile-toggle.main-header-active .main-header-hamburger-line:last-child {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+}
+
+/* Docs Header Styles (header-v2) */
+.docs-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(54, 57, 63, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 100;
+    height: 60px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.docs-header-content {
+    max-width: none;
+    padding: 0 24px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.docs-header-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.docs-header-logo {
+    height: 36px;
+    width: auto;
+    transition: transform 0.2s ease;
+}
+
+.docs-header-logo:hover {
+    transform: scale(1.05);
+}
+
+.docs-header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.docs-header-menu {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* These styles are already defined in header-v2.njk inline styles, 
+   but included here for completeness */
+.docs-header-search {
+    display: flex;
+    align-items: center;
+    background: var(--bg-primary);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 0 1rem;
+    width: 400px;
+}
+
+.docs-header-search-input {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    flex: 1;
+    padding: 0.5rem;
+    outline: none;
+}
+
+.docs-header-search-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.docs-header-search-button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+.docs-header-icon-link {
+    color: var(--text-secondary);
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.docs-header-icon-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.docs-header-avatar-link {
+    display: block;
+}
+
+.docs-header-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Dashboard Header styles moved to /dashboard/dashboard-header/dashboard-header.css */

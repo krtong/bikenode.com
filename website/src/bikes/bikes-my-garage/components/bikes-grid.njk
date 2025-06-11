@@ -1,0 +1,30 @@
+<!-- Bikes Grid using global CSS components -->
+<div class="card-grid card-grid-3" id="bikesGrid">
+    <!-- Bike cards will be dynamically loaded here -->
+    
+    <!-- Add New Bike Card -->
+    <div class="card add-bike-card">
+        <a href="/add-bike-v2/" class="add-bike-link">
+            <div class="add-bike-icon">➕</div>
+            <h3 class="font-lg font-semibold text-primary mb-2">Add New Bike</h3>
+            <p class="text-secondary">Click to add a bike to your garage</p>
+        </a>
+    </div>
+</div>
+
+<!-- Loading State -->
+<div class="text-center p-5 d-none" id="loadingState">
+    <div class="mb-3" style="font-size: 2rem;">⏳</div>
+    <p class="text-secondary mt-2">Loading your bikes...</p>
+</div>
+
+<!-- Empty State -->
+<div class="text-center p-5 d-none" id="emptyState">
+    <div class="mb-3" style="font-size: 4rem;">🏍️</div>
+    <h3 class="font-xl font-semibold text-primary mb-2">No bikes yet</h3>
+    <p class="text-secondary mb-4">Start building your virtual garage by adding your first bike</p>
+    <a href="/add-bike-v2/" class="btn btn-primary">
+        <span>➕</span>
+        Add Your First Bike
+    </a>
+</div>

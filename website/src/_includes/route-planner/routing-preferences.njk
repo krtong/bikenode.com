@@ -1,0 +1,53 @@
+<!-- Routing Preferences Component -->
+<div class="routing-preferences">
+    <h4>Routing preferences</h4>
+    
+    <div class="ride-type-section">
+        <label>Ride</label>
+        <select id="rideType" class="BN-Global-form-control">
+            <option value="popular">Follow most popular</option>
+            <option value="scenic">Scenic route</option>
+            <option value="direct">Most direct</option>
+            <option value="trails">Bike trails/paths</option>
+        </select>
+    </div>
+
+    <div class="elevation-preference">
+        <label>Elevation <span class="bike-only" style="color: var(--accent); font-size: 0.8em; display: none;">✓</span></label>
+        <select id="elevationPref" class="BN-Global-form-control">
+            <option value="any">Any elevation</option>
+            <option value="flat">Minimize elevation</option>
+            <option value="hilly">Maximize elevation</option>
+        </select>
+    </div>
+
+    <div class="surface-preference">
+        <label>Surface type <span class="bike-only" style="color: var(--accent); font-size: 0.8em; display: none;">✓</span></label>
+        <select id="surfacePref" class="BN-Global-form-control">
+            <option value="any">Any surface type</option>
+            <option value="paved">Paved roads only</option>
+            <option value="gravel">Include gravel</option>
+            <option value="trails">Include trails</option>
+        </select>
+    </div>
+
+    <div class="mode-toggle">
+        <label class="BN-Global-toggle-item" title="Limited support: Requires custom routing server">
+            <input type="checkbox" id="avoidHighways">
+            <span class="toggle-slider"></span>
+            Avoid highways <span style="color: var(--text-secondary); font-size: 0.8em;">*</span>
+        </label>
+        <label class="BN-Global-toggle-item">
+            <input type="checkbox" id="manualMode">
+            <span class="toggle-slider"></span>
+            Manual mode
+        </label>
+    </div>
+    <p style="font-size: 0.75rem; color: var(--text-secondary); margin: 8px 0 0 0; line-height: 1.4;">
+        * Highway avoidance requires a custom OSRM server with modified Lua profiles. 
+        The public routing server doesn't support this feature.
+    </p>
+</div>
+
+<!-- Include MTB-specific preferences when bicycle mode is active -->
+{% include "route-planner/mtb-preferences.njk" %}

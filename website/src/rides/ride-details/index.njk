@@ -1,0 +1,696 @@
+---
+layout: bikenode-main-layout-01/bikenode-main-layout-01.njk
+title: Morning Century Ride
+subtitle: June 5, 2024 • 6:30 AM
+breadcrumb:
+  - title: Activities
+    url: /rides-dashboard/
+  - title: Morning Century Ride
+showContentHeader: false
+---
+
+<style>
+  .ride-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+
+  .ride-title-section {
+    flex: 1;
+  }
+
+  .ride-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+
+  .ride-meta {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    color: var(--text-secondary);
+  }
+
+  .ride-actions {
+    display: flex;
+    gap: 12px;
+  }
+
+  .ride-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+  }
+
+  .ride-main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .map-section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .ride-map {
+    height: 400px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 18px;
+  }
+
+  .map-controls {
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .stat-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .stat-icon {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .stat-value {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .analysis-section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .chart-container {
+    height: 250px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+  }
+
+  .chart-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .chart-tab {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+  }
+
+  .chart-tab:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .chart-tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .segments-section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .segment-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 16px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .segment-item:last-child {
+    border-bottom: none;
+  }
+
+  .segment-position {
+    width: 32px;
+    font-weight: bold;
+    color: var(--text-secondary);
+  }
+
+  .segment-position.pr {
+    color: #10b981;
+  }
+
+  .segment-name {
+    font-weight: 500;
+  }
+
+  .segment-time {
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .segment-compare {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .ride-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .sidebar-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .weather-info {
+    display: grid;
+    gap: 12px;
+  }
+
+  .weather-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .weather-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+  }
+
+  .weather-value {
+    font-weight: 500;
+  }
+
+  .gear-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .gear-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .gear-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(88, 101, 242, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .gear-info {
+    flex: 1;
+  }
+
+  .gear-name {
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .gear-distance {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .photos-section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .photos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .photo-item {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .photo-item:hover {
+    transform: scale(1.05);
+  }
+
+  .add-photo {
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .social-section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .social-stats {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .social-stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .social-stat:hover {
+    color: var(--accent);
+  }
+
+  .social-stat.active {
+    color: var(--accent);
+  }
+
+  .kudos-list {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .kudos-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .kudos-more {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .ride-details-header {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .ride-content {
+      grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .photos-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+<div class="ride-details-header">
+  <div class="ride-title-section">
+    <h1 class="ride-title">Morning Century Ride 🌅</h1>
+    <div class="ride-meta">
+      <span>📅 June 5, 2024</span>
+      <span>•</span>
+      <span>⏰ 6:30 AM - 11:54 AM</span>
+      <span>•</span>
+      <span>📍 San Francisco, CA</span>
+    </div>
+  </div>
+  
+  <div class="ride-actions">
+    <button class="btn-secondary">
+      <span>✏️</span> Edit
+    </button>
+    <button class="btn-secondary">
+      <span>📤</span> Share
+    </button>
+  </div>
+</div>
+
+<div class="ride-content">
+  <div class="ride-main">
+    <!-- Map Section -->
+    <div class="map-section">
+      <div class="ride-map">
+        Ride Route Visualization
+      </div>
+      <div class="map-controls">
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-secondary">Map</button>
+          <button class="btn-secondary">Satellite</button>
+          <button class="btn-secondary">3D</button>
+        </div>
+        <button class="btn-secondary">
+          <span>📥</span> Export GPX
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">📏</div>
+        <div class="stat-value">102.3</div>
+        <div class="stat-label">Miles</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon">⛰️</div>
+        <div class="stat-value">3,420</div>
+        <div class="stat-label">Feet Climbed</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon">⏱️</div>
+        <div class="stat-value">5:23:45</div>
+        <div class="stat-label">Moving Time</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon">⚡</div>
+        <div class="stat-value">19.0</div>
+        <div class="stat-label">Avg Speed (mph)</div>
+      </div>
+    </div>
+
+    <!-- Analysis Section -->
+    <div class="analysis-section">
+      <h2 class="section-title">Performance Analysis</h2>
+      
+      <div class="chart-tabs">
+        <button class="chart-tab active">Speed</button>
+        <button class="chart-tab">Elevation</button>
+        <button class="chart-tab">Heart Rate</button>
+        <button class="chart-tab">Power</button>
+      </div>
+      
+      <div class="chart-container">
+        Speed Chart Visualization
+      </div>
+      
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px;">
+        <div style="text-align: center;">
+          <div style="font-size: 20px; font-weight: bold; color: var(--accent);">28.7</div>
+          <div style="font-size: 12px; color: var(--text-secondary);">Max Speed (mph)</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 20px; font-weight: bold; color: var(--accent);">152</div>
+          <div style="font-size: 12px; color: var(--text-secondary);">Avg Heart Rate</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 20px; font-weight: bold; color: var(--accent);">2,847</div>
+          <div style="font-size: 12px; color: var(--text-secondary);">Calories Burned</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Segments Section -->
+    <div class="segments-section">
+      <h2 class="section-title">Segments</h2>
+      
+      <div class="segment-item">
+        <div class="segment-position pr">PR</div>
+        <div class="segment-name">Hawk Hill Climb</div>
+        <div class="segment-time">7:41</div>
+        <div class="segment-compare">-12s</div>
+      </div>
+      
+      <div class="segment-item">
+        <div class="segment-position">2nd</div>
+        <div class="segment-name">Marina Sprint</div>
+        <div class="segment-time">1:38</div>
+        <div class="segment-compare">+3s</div>
+      </div>
+      
+      <div class="segment-item">
+        <div class="segment-position">147</div>
+        <div class="segment-name">Paradise Loop KOM</div>
+        <div class="segment-time">14:52</div>
+        <div class="segment-compare">+2:07</div>
+      </div>
+      
+      <div class="segment-item">
+        <div class="segment-position pr">PR</div>
+        <div class="segment-name">GG Bridge North</div>
+        <div class="segment-time">3:24</div>
+        <div class="segment-compare">-8s</div>
+      </div>
+    </div>
+
+    <!-- Photos Section -->
+    <div class="photos-section">
+      <h2 class="section-title">Photos</h2>
+      
+      <div class="photos-grid">
+        <div class="photo-item">Photo 1</div>
+        <div class="photo-item">Photo 2</div>
+        <div class="photo-item">Photo 3</div>
+        <div class="photo-item">Photo 4</div>
+        <div class="photo-item add-photo">
+          <span>+ Add Photo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Section -->
+    <div class="social-section">
+      <h2 class="section-title">Activity & Comments</h2>
+      
+      <div class="social-stats">
+        <button class="social-stat active">
+          <span>👍</span>
+          <span style="font-weight: 600;">42 Kudos</span>
+        </button>
+        <div class="social-stat">
+          <span>💬</span>
+          <span>8 Comments</span>
+        </div>
+      </div>
+      
+      <div class="kudos-list">
+        <div class="kudos-avatar">SC</div>
+        <div class="kudos-avatar">MJ</div>
+        <div class="kudos-avatar">EW</div>
+        <div class="kudos-avatar">AR</div>
+        <div class="kudos-avatar">LP</div>
+        <div class="kudos-more">+37</div>
+      </div>
+      
+      <div style="margin-bottom: 20px;">
+        <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">
+          Perfect weather for a century ride! Started early to beat the heat and caught an amazing sunrise over the mountains. Legs felt strong throughout, and the new bike performed flawlessly. 💪
+        </p>
+      </div>
+      
+      <div style="display: flex; gap: 12px;">
+        <input type="text" placeholder="Add a comment..." style="flex: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px;">
+        <button class="btn-primary">Post</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ride-sidebar">
+    <!-- Weather Card -->
+    <div class="sidebar-card">
+      <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Weather Conditions</h3>
+      
+      <div class="weather-info">
+        <div class="weather-row">
+          <div class="weather-label">
+            <span>🌡️</span>
+            <span>Temperature</span>
+          </div>
+          <div class="weather-value">68°F → 82°F</div>
+        </div>
+        
+        <div class="weather-row">
+          <div class="weather-label">
+            <span>💨</span>
+            <span>Wind</span>
+          </div>
+          <div class="weather-value">8 mph NW</div>
+        </div>
+        
+        <div class="weather-row">
+          <div class="weather-label">
+            <span>💧</span>
+            <span>Humidity</span>
+          </div>
+          <div class="weather-value">45%</div>
+        </div>
+        
+        <div class="weather-row">
+          <div class="weather-label">
+            <span>☀️</span>
+            <span>Conditions</span>
+          </div>
+          <div class="weather-value">Clear</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gear Used -->
+    <div class="sidebar-card">
+      <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Gear Used</h3>
+      
+      <div class="gear-item">
+        <div class="gear-icon">🚴</div>
+        <div class="gear-info">
+          <div class="gear-name">Canyon Ultimate CF SLX</div>
+          <div class="gear-distance">2,345 miles</div>
+        </div>
+      </div>
+      
+      <div class="gear-item">
+        <div class="gear-icon">👟</div>
+        <div class="gear-info">
+          <div class="gear-name">Shimano RC9</div>
+          <div class="gear-distance">1,234 miles</div>
+        </div>
+      </div>
+      
+      <div class="gear-item">
+        <div class="gear-icon">⚙️</div>
+        <div class="gear-info">
+          <div class="gear-name">Garmin Edge 840</div>
+          <div class="gear-distance">567 activities</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Training Impact -->
+    <div class="sidebar-card">
+      <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Training Impact</h3>
+      
+      <div style="text-align: center; margin-bottom: 16px;">
+        <div style="font-size: 48px; font-weight: bold; color: var(--accent);">+5</div>
+        <div style="font-size: 14px; color: var(--text-secondary);">Fitness Points</div>
+      </div>
+      
+      <div style="display: grid; gap: 12px;">
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: var(--text-secondary);">Training Load</span>
+          <span style="font-weight: 500;">High</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: var(--text-secondary);">Recovery Time</span>
+          <span style="font-weight: 500;">48 hours</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: var(--text-secondary);">Effort</span>
+          <span style="font-weight: 500;">285 (Hard)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Chart tab switching
+  document.querySelectorAll('.chart-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.chart-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+
+  // Social stat toggle
+  document.querySelectorAll('.social-stat').forEach(stat => {
+    stat.addEventListener('click', () => {
+      document.querySelectorAll('.social-stat').forEach(s => s.classList.remove('active'));
+      stat.classList.add('active');
+    });
+  });
+
+  // Photo upload
+  document.querySelector('.add-photo').addEventListener('click', () => {
+    alert('Photo upload dialog would open');
+  });
+
+  // Gear click
+  document.querySelectorAll('.gear-item').forEach(item => {
+    item.addEventListener('click', () => {
+      window.location.href = '/bike-details/1/';
+    });
+  });
+</script>

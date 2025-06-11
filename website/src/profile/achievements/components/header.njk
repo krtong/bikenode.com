@@ -1,0 +1,42 @@
+<!-- Achievements Header -->
+<div class="achievements-header">
+    <div class="header-content">
+        <h1 class="page-title">
+            <span class="title-icon">🏆</span>
+            Achievements
+        </h1>
+        <p class="page-subtitle">Track your progress, unlock challenges, and earn rewards</p>
+    </div>
+    
+    <div class="header-actions">
+        <button type="button" class="btn-icon" id="achievementSearch" title="Search achievements">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+        </button>
+        
+        <button type="button" class="btn-icon" id="achievementNotifications" title="Achievement notifications">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="notification-badge">3</span>
+        </button>
+    </div>
+</div>
+
+<!-- Search Panel (Hidden by default) -->
+<div class="search-panel" id="searchPanel" style="display: none;">
+    <div class="search-input-wrapper">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <input type="search" 
+               placeholder="Search achievements..." 
+               class="search-input"
+               id="achievementSearchInput">
+        <button type="button" class="search-close" id="closeSearch">×</button>
+    </div>
+</div>

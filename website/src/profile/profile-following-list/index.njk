@@ -1,0 +1,257 @@
+---
+layout: bikenode-main-layout-01/bikenode-main-layout-01
+title: Following - BikeNode
+---
+
+<link rel="stylesheet" href="/profile/profile-following-list/profile-following-list.css">
+
+<div class="profile-following-list-container">
+    <!-- Page Header -->
+    <div class="profile-following-list-header">
+        <div class="profile-following-list-title-section">
+            <h1 class="profile-following-list-title">Following</h1>
+            <p class="profile-following-list-subtitle">Manage the people you follow on BikeNode</p>
+        </div>
+        <div class="profile-following-list-actions">
+            <input type="text" class="profile-following-list-search" placeholder="Search following...">
+            <button class="BN-Global-btn BN-Global-btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="8.5" cy="7" r="4"></circle>
+                    <path d="M20 8v6"></path>
+                    <path d="M23 11h-6"></path>
+                </svg>
+                Find Friends
+            </button>
+        </div>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="profile-following-list-stats">
+        <div class="profile-following-list-stat">
+            <span class="profile-following-list-stat-value">287</span>
+            <span class="profile-following-list-stat-label">Following</span>
+        </div>
+        <div class="profile-following-list-stat">
+            <span class="profile-following-list-stat-value">1,243</span>
+            <span class="profile-following-list-stat-label">Followers</span>
+        </div>
+        <div class="profile-following-list-stat">
+            <span class="profile-following-list-stat-value">45</span>
+            <span class="profile-following-list-stat-label">Mutual Friends</span>
+        </div>
+        <div class="profile-following-list-stat">
+            <span class="profile-following-list-stat-value">12</span>
+            <span class="profile-following-list-stat-label">Riding Buddies</span>
+        </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="profile-following-list-filters">
+        <button class="profile-following-list-filter-btn active" data-filter="all">All Following</button>
+        <button class="profile-following-list-filter-btn" data-filter="recent">Recently Followed</button>
+        <button class="profile-following-list-filter-btn" data-filter="active">Most Active</button>
+        <button class="profile-following-list-filter-btn" data-filter="mutual">Mutual Following</button>
+        <button class="profile-following-list-filter-btn" data-filter="riding">Riding Buddies</button>
+    </div>
+
+    <!-- Following Grid -->
+    <div class="profile-following-list-grid">
+        <!-- User Card 1 -->
+        <div class="profile-following-list-card">
+            <div class="profile-following-list-card-header">
+                <div class="profile-following-list-avatar">
+                    <img src="/assets/images/profile1.jpg" alt="User Avatar">
+                    <span class="profile-following-list-online-indicator active"></span>
+                </div>
+                <button class="profile-following-list-more-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="1"></circle>
+                        <circle cx="12" cy="5" r="1"></circle>
+                        <circle cx="12" cy="19" r="1"></circle>
+                    </svg>
+                </button>
+            </div>
+            <div class="profile-following-list-card-info">
+                <h3 class="profile-following-list-name">Sarah Johnson</h3>
+                <p class="profile-following-list-username">@sarahjrides</p>
+                <p class="profile-following-list-bio">Mountain biker & trail enthusiast. Love exploring new routes!</p>
+                <div class="profile-following-list-stats-row">
+                    <span class="profile-following-list-mini-stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="5.5" cy="17.5" r="3.5"></circle>
+                            <circle cx="18.5" cy="17.5" r="3.5"></circle>
+                            <path d="M12 17.5V14l-3-3 4-3 2 3h2"></path>
+                        </svg>
+                        345 rides
+                    </span>
+                    <span class="profile-following-list-mini-stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="8.5" cy="7" r="4"></circle>
+                        </svg>
+                        2.1k followers
+                    </span>
+                </div>
+                <div class="profile-following-list-tags">
+                    <span class="profile-following-list-tag mutual">Mutual</span>
+                    <span class="profile-following-list-tag riding-buddy">Riding Buddy</span>
+                </div>
+            </div>
+            <div class="profile-following-list-card-actions">
+                <button class="profile-following-list-action-btn following">Following</button>
+                <button class="profile-following-list-message-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- User Card 2 -->
+        <div class="profile-following-list-card">
+            <div class="profile-following-list-card-header">
+                <div class="profile-following-list-avatar">
+                    <img src="/assets/images/profile2.jpg" alt="User Avatar">
+                    <span class="profile-following-list-online-indicator"></span>
+                </div>
+                <button class="profile-following-list-more-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="1"></circle>
+                        <circle cx="12" cy="5" r="1"></circle>
+                        <circle cx="12" cy="19" r="1"></circle>
+                    </svg>
+                </button>
+            </div>
+            <div class="profile-following-list-card-info">
+                <h3 class="profile-following-list-name">Mike Chen</h3>
+                <p class="profile-following-list-username">@mikerides</p>
+                <p class="profile-following-list-bio">Road cycling enthusiast. Century rides are my thing!</p>
+                <div class="profile-following-list-stats-row">
+                    <span class="profile-following-list-mini-stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="5.5" cy="17.5" r="3.5"></circle>
+                            <circle cx="18.5" cy="17.5" r="3.5"></circle>
+                            <path d="M12 17.5V14l-3-3 4-3 2 3h2"></path>
+                        </svg>
+                        892 rides
+                    </span>
+                    <span class="profile-following-list-mini-stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="8.5" cy="7" r="4"></circle>
+                        </svg>
+                        567 followers
+                    </span>
+                </div>
+                <div class="profile-following-list-tags">
+                    <span class="profile-following-list-tag nearby">Nearby</span>
+                </div>
+            </div>
+            <div class="profile-following-list-card-actions">
+                <button class="profile-following-list-action-btn following">Following</button>
+                <button class="profile-following-list-message-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- User Card 3 -->
+        <div class="profile-following-list-card">
+            <div class="profile-following-list-card-header">
+                <div class="profile-following-list-avatar">
+                    <img src="/assets/images/profile3.jpg" alt="User Avatar">
+                    <span class="profile-following-list-online-indicator active"></span>
+                </div>
+                <button class="profile-following-list-more-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="1"></circle>
+                        <circle cx="12" cy="5" r="1"></circle>
+                        <circle cx="12" cy="19" r="1"></circle>
+                    </svg>
+                </button>
+            </div>
+            <div class="profile-following-list-card-info">
+                <h3 class="profile-following-list-name">Emma Wilson</h3>
+                <p class="profile-following-list-username">@emmawheels</p>
+                <p class="profile-following-list-bio">Gravel grinding and bikepacking adventures 🚴‍♀️</p>
+                <div class="profile-following-list-stats-row">
+                    <span class="profile-following-list-mini-stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="5.5" cy="17.5" r="3.5"></circle>
+                            <circle cx="18.5" cy="17.5" r="3.5"></circle>
+                            <path d="M12 17.5V14l-3-3 4-3 2 3h2"></path>
+                        </svg>
+                        623 rides
+                    </span>
+                    <span class="profile-following-list-mini-stat">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="8.5" cy="7" r="4"></circle>
+                        </svg>
+                        3.4k followers
+                    </span>
+                </div>
+                <div class="profile-following-list-tags">
+                    <span class="profile-following-list-tag mutual">Mutual</span>
+                    <span class="profile-following-list-tag verified">Verified</span>
+                </div>
+            </div>
+            <div class="profile-following-list-card-actions">
+                <button class="profile-following-list-action-btn following">Following</button>
+                <button class="profile-following-list-message-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Additional user cards would be dynamically generated -->
+    </div>
+
+    <!-- Load More -->
+    <div class="profile-following-list-load-more">
+        <button class="BN-Global-btn BN-Global-btn-secondary">
+            Load More
+        </button>
+    </div>
+</div>
+
+<script>
+// Filter functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.profile-following-list-filter-btn');
+    const searchInput = document.querySelector('.profile-following-list-search');
+    
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            // Filter logic would go here
+        });
+    });
+
+    // Search functionality
+    searchInput.addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        // Search logic would go here
+    });
+
+    // Following/Unfollow toggle
+    const followBtns = document.querySelectorAll('.profile-following-list-action-btn');
+    followBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (this.classList.contains('following')) {
+                this.classList.remove('following');
+                this.textContent = 'Follow';
+            } else {
+                this.classList.add('following');
+                this.textContent = 'Following';
+            }
+        });
+    });
+});
+</script>

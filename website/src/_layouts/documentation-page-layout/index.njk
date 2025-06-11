@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "documentation-page-layout/documentation-page-layout-head.njk" %}
+</head>
+<body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
+    <!-- Background Animation Canvas -->
+    <canvas id="documentation-page-layout-background-canvas"></canvas>
+    
+    {% include "documentation-page-layout/documentation-page-layout-header.njk" %}
+    
+    <!-- Docs Layout -->
+    <div class="documentation-page-layout-docs-layout">
+        {% include "documentation-page-layout/documentation-page-layout-sidebar.njk" %}
+        
+        <!-- Main Content -->
+        <main class="documentation-page-layout-docs-content">
+            <div class="documentation-page-layout-content-header">
+                <h1>{{ title }}</h1>
+                {% if subtitle %}
+                <p class="documentation-page-layout-content-subtitle">{{ subtitle }}</p>
+                {% endif %}
+            </div>
+            
+            {{ content | safe }}
+        </main>
+    </div>
+    
+    {% include "documentation-page-layout/documentation-page-layout-footer.njk" %}
+    
+    <script src="/_layouts/documentation-page-layout/documentation-page-layout-background-animation.js"></script>
+    {% if customJS %}
+    {% for script in customJS %}
+    <script src="{{ script }}"></script>
+    {% endfor %}
+    {% endif %}
+    {% if inlineJS %}
+    <script>
+    {{ inlineJS | safe }}
+    </script>
+    {% endif %}
+</body>
+</html>

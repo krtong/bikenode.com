@@ -1,0 +1,328 @@
+---
+layout: bikenode-main-layout-01/bikenode-main-layout-01
+title: Achievements - BikeNode
+---
+
+<link rel="stylesheet" href="/profile/profile-achievements-list/styles/profile-achievements-list.css">
+
+<div class="profile-achievements-list-container">
+    <!-- Page Header -->
+    <div class="profile-achievements-list-header">
+        <div class="profile-achievements-list-header-content">
+            <h1 class="profile-achievements-list-title">
+                <span class="profile-achievements-list-title-icon">🏆</span>
+                My Achievements
+            </h1>
+            <p class="profile-achievements-list-subtitle">Track your cycling accomplishments and unlock new challenges</p>
+        </div>
+        <div class="profile-achievements-list-header-actions">
+            <button class="BN-Global-btn BN-Global-btn-secondary" id="profileAchievementsFilterBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
+                Filter
+            </button>
+            <button class="BN-Global-btn BN-Global-btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                </svg>
+                Share Progress
+            </button>
+        </div>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="profile-achievements-list-stats">
+        <div class="BN-Global-card profile-achievements-list-stat-card">
+            <div class="profile-achievements-list-stat-value">47</div>
+            <div class="profile-achievements-list-stat-label">Total Achievements</div>
+            <div class="profile-achievements-list-stat-change">+3 this month</div>
+        </div>
+        <div class="BN-Global-card profile-achievements-list-stat-card">
+            <div class="profile-achievements-list-stat-value">1,250</div>
+            <div class="profile-achievements-list-stat-label">Total Points</div>
+            <div class="profile-achievements-list-stat-change">+150 this week</div>
+        </div>
+        <div class="BN-Global-card profile-achievements-list-stat-card">
+            <div class="profile-achievements-list-stat-value">15%</div>
+            <div class="profile-achievements-list-stat-label">Completion Rate</div>
+            <div class="profile-achievements-list-stat-change">Top 10% of riders</div>
+        </div>
+        <div class="BN-Global-card profile-achievements-list-stat-card">
+            <div class="profile-achievements-list-stat-value">12</div>
+            <div class="profile-achievements-list-stat-label">Current Streak</div>
+            <div class="profile-achievements-list-stat-change">Days active</div>
+        </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="profile-achievements-list-tabs">
+        <button class="profile-achievements-list-tab active" data-filter="all">
+            All Achievements
+            <span class="profile-achievements-list-tab-count">312</span>
+        </button>
+        <button class="profile-achievements-list-tab" data-filter="unlocked">
+            Unlocked
+            <span class="profile-achievements-list-tab-count">47</span>
+        </button>
+        <button class="profile-achievements-list-tab" data-filter="progress">
+            In Progress
+            <span class="profile-achievements-list-tab-count">8</span>
+        </button>
+        <button class="profile-achievements-list-tab" data-filter="locked">
+            Locked
+            <span class="profile-achievements-list-tab-count">257</span>
+        </button>
+    </div>
+
+    <!-- Featured Achievement -->
+    <div class="profile-achievements-list-featured BN-Global-card">
+        <div class="profile-achievements-list-featured-badge">Featured Challenge</div>
+        <div class="profile-achievements-list-featured-content">
+            <div class="profile-achievements-list-featured-icon">🌟</div>
+            <div class="profile-achievements-list-featured-info">
+                <h3 class="profile-achievements-list-featured-title">Weekend Warrior</h3>
+                <p class="profile-achievements-list-featured-desc">Complete 50km this weekend to unlock this special achievement</p>
+                <div class="profile-achievements-list-featured-progress">
+                    <div class="profile-achievements-list-progress-header">
+                        <span>Progress</span>
+                        <span>32km / 50km</span>
+                    </div>
+                    <div class="profile-achievements-list-progress-bar">
+                        <div class="profile-achievements-list-progress-fill" style="width: 64%;"></div>
+                    </div>
+                </div>
+                <div class="profile-achievements-list-featured-timer">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>2 days remaining</span>
+                </div>
+            </div>
+            <button class="BN-Global-btn BN-Global-btn-primary">View Details</button>
+        </div>
+    </div>
+
+    <!-- Achievements Grid -->
+    <div class="profile-achievements-list-grid">
+        <!-- Unlocked Legendary Achievement -->
+        <div class="profile-achievements-list-card unlocked legendary" data-tier="legendary" data-status="unlocked">
+            <div class="profile-achievements-list-card-glow"></div>
+            <div class="profile-achievements-list-card-content">
+                <div class="profile-achievements-list-tier">Legendary</div>
+                <div class="profile-achievements-list-icon">
+                    <div class="profile-achievements-list-icon-wrapper">🏆</div>
+                </div>
+                <h3 class="profile-achievements-list-name">Century Rider</h3>
+                <p class="profile-achievements-list-description">Complete a 100-mile ride in a single activity</p>
+                
+                <div class="profile-achievements-list-stats">
+                    <div class="profile-achievements-list-stat">
+                        <span class="profile-achievements-list-stat-label">Points</span>
+                        <span class="profile-achievements-list-stat-value">50</span>
+                    </div>
+                    <div class="profile-achievements-list-stat">
+                        <span class="profile-achievements-list-stat-label">Rarity</span>
+                        <span class="profile-achievements-list-stat-value">12%</span>
+                    </div>
+                </div>
+                
+                <div class="profile-achievements-list-footer">
+                    <div class="profile-achievements-list-unlock-date">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span>Jun 5, 2024</span>
+                    </div>
+                    <button class="profile-achievements-list-btn-share" title="Share achievement">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unlocked Epic Achievement -->
+        <div class="profile-achievements-list-card unlocked epic" data-tier="epic" data-status="unlocked">
+            <div class="profile-achievements-list-card-content">
+                <div class="profile-achievements-list-tier">Epic</div>
+                <div class="profile-achievements-list-icon">
+                    <div class="profile-achievements-list-icon-wrapper">⛰️</div>
+                </div>
+                <h3 class="profile-achievements-list-name">Mountain Goat</h3>
+                <p class="profile-achievements-list-description">Climb 10,000 feet in a single ride</p>
+                
+                <div class="profile-achievements-list-stats">
+                    <div class="profile-achievements-list-stat">
+                        <span class="profile-achievements-list-stat-label">Points</span>
+                        <span class="profile-achievements-list-stat-value">40</span>
+                    </div>
+                    <div class="profile-achievements-list-stat">
+                        <span class="profile-achievements-list-stat-label">Rarity</span>
+                        <span class="profile-achievements-list-stat-value">8%</span>
+                    </div>
+                </div>
+                
+                <div class="profile-achievements-list-footer">
+                    <div class="profile-achievements-list-unlock-date">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span>May 15, 2024</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- In Progress Rare Achievement -->
+        <div class="profile-achievements-list-card progress rare" data-tier="rare" data-status="progress">
+            <div class="profile-achievements-list-card-content">
+                <div class="profile-achievements-list-tier">Rare</div>
+                <div class="profile-achievements-list-icon">
+                    <div class="profile-achievements-list-icon-wrapper">🔥</div>
+                </div>
+                <h3 class="profile-achievements-list-name">Consistency King</h3>
+                <p class="profile-achievements-list-description">Ride every day for 30 days straight</p>
+                
+                <div class="profile-achievements-list-progress">
+                    <div class="profile-achievements-list-progress-header">
+                        <span class="profile-achievements-list-progress-label">Progress</span>
+                        <span class="profile-achievements-list-progress-value">24/30 days</span>
+                    </div>
+                    <div class="profile-achievements-list-progress-bar">
+                        <div class="profile-achievements-list-progress-fill" style="width: 80%;"></div>
+                    </div>
+                    <div class="profile-achievements-list-progress-hint">6 days to go!</div>
+                </div>
+                
+                <div class="profile-achievements-list-stats">
+                    <div class="profile-achievements-list-stat">
+                        <span class="profile-achievements-list-stat-label">Points</span>
+                        <span class="profile-achievements-list-stat-value">30</span>
+                    </div>
+                    <div class="profile-achievements-list-stat">
+                        <span class="profile-achievements-list-stat-label">Rarity</span>
+                        <span class="profile-achievements-list-stat-value">5%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- In Progress Common Achievement -->
+        <div class="profile-achievements-list-card progress common" data-tier="common" data-status="progress">
+            <div class="profile-achievements-list-card-content">
+                <div class="profile-achievements-list-tier">Common</div>
+                <div class="profile-achievements-list-icon">
+                    <div class="profile-achievements-list-icon-wrapper">📍</div>
+                </div>
+                <h3 class="profile-achievements-list-name">Explorer</h3>
+                <p class="profile-achievements-list-description">Ride in 10 different cities</p>
+                
+                <div class="profile-achievements-list-progress">
+                    <div class="profile-achievements-list-progress-header">
+                        <span class="profile-achievements-list-progress-label">Progress</span>
+                        <span class="profile-achievements-list-progress-value">7/10 cities</span>
+                    </div>
+                    <div class="profile-achievements-list-progress-bar">
+                        <div class="profile-achievements-list-progress-fill" style="width: 70%;"></div>
+                    </div>
+                </div>
+                
+                <div class="profile-achievements-list-stats">
+                    <div class="profile-achievements-list-stat">
+                        <span class="profile-achievements-list-stat-label">Points</span>
+                        <span class="profile-achievements-list-stat-value">15</span>
+                    </div>
+                    <div class="profile-achievements-list-stat">
+                        <span class="profile-achievements-list-stat-label">Rarity</span>
+                        <span class="profile-achievements-list-stat-value">45%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Locked Epic Achievement -->
+        <div class="profile-achievements-list-card locked epic" data-tier="epic" data-status="locked">
+            <div class="profile-achievements-list-card-content">
+                <div class="profile-achievements-list-lock-overlay">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </div>
+                <div class="profile-achievements-list-tier">Epic</div>
+                <div class="profile-achievements-list-icon">
+                    <div class="profile-achievements-list-icon-wrapper">⚡</div>
+                </div>
+                <h3 class="profile-achievements-list-name">Speed Demon</h3>
+                <p class="profile-achievements-list-description">Average over 30 mph for a 20+ mile ride</p>
+                
+                <div class="profile-achievements-list-unlock-requirement">
+                    <span class="profile-achievements-list-requirement-label">Unlock requirement:</span>
+                    <span class="profile-achievements-list-requirement-text">Complete "Need for Speed" achievement first</span>
+                </div>
+                
+                <div class="profile-achievements-list-stats">
+                    <div class="profile-achievements-list-stat">
+                        <span class="profile-achievements-list-stat-label">Points</span>
+                        <span class="profile-achievements-list-stat-value">40</span>
+                    </div>
+                    <div class="profile-achievements-list-stat">
+                        <span class="profile-achievements-list-stat-label">Rarity</span>
+                        <span class="profile-achievements-list-stat-value">3%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Secret Achievement -->
+        <div class="profile-achievements-list-card locked legendary secret" data-tier="legendary" data-status="locked">
+            <div class="profile-achievements-list-card-content">
+                <div class="profile-achievements-list-lock-overlay">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </div>
+                <div class="profile-achievements-list-tier">Secret</div>
+                <div class="profile-achievements-list-icon">
+                    <div class="profile-achievements-list-icon-wrapper">❓</div>
+                </div>
+                <h3 class="profile-achievements-list-name">Hidden Achievement</h3>
+                <p class="profile-achievements-list-description">Complete secret requirements to unlock</p>
+                
+                <div class="profile-achievements-list-stats">
+                    <div class="profile-achievements-list-stat">
+                        <span class="profile-achievements-list-stat-label">Points</span>
+                        <span class="profile-achievements-list-stat-value">???</span>
+                    </div>
+                    <div class="profile-achievements-list-stat">
+                        <span class="profile-achievements-list-stat-label">Rarity</span>
+                        <span class="profile-achievements-list-stat-value">0.1%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load More -->
+    <div class="profile-achievements-list-load-more">
+        <button class="BN-Global-btn BN-Global-btn-secondary">
+            Load More Achievements
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<script src="/profile/profile-achievements-list/js/profile-achievements-list.js"></script>

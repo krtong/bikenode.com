@@ -1,0 +1,21 @@
+---
+layout: bikenode-main-layout-01/bikenode-main-layout-01.njk
+title: Communities
+subtitle: Discover and connect with bike communities worldwide
+showContentHeader: false
+customCSS:
+  - /communities-dashboard/styles/communities-dashboard.css
+---
+
+{% include "communities-dashboard/content-header.njk" %}
+
+<div class="communities-content">
+    {% include "communities-dashboard/community-stats.njk" %}
+    {% include "communities-dashboard/community-tabs.njk" %}
+    
+    {% include "communities-dashboard/my-communities-tab.njk" %}
+    {% include "communities-dashboard/discover-tab.njk" %}
+    {% include "communities-dashboard/invitations-tab.njk" %}
+</div>
+
+<script type="module" src="/communities-dashboard/js/app.js"></script>

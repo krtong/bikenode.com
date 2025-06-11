@@ -1,0 +1,633 @@
+---
+layout: bikenode-main-layout-01/bikenode-main-layout-01.njk
+title: Community Tools
+subtitle: Powerful tools to grow and manage your bike community
+breadcrumb:
+  - { title: "Dashboard", url: "/dashboard/" }
+  - { title: "Communities", url: "/communities-dashboard/" }
+  - { title: "Tools" }
+---
+
+<div class="community-tools">
+    <!-- Overview Stats -->
+    <div class="tools-overview">
+        <h2>Community Health</h2>
+        <div class="overview-grid">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-content">
+                    <h3>1,234</h3>
+                    <p>Total Members</p>
+                    <span class="stat-change positive">+15 this week</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">💬</div>
+                <div class="stat-content">
+                    <h3>89%</h3>
+                    <p>Engagement Rate</p>
+                    <span class="stat-change positive">+5% this month</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📈</div>
+                <div class="stat-content">
+                    <h3>456</h3>
+                    <p>Active This Week</p>
+                    <span class="stat-change neutral">No change</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-content">
+                    <h3>92%</h3>
+                    <p>Retention Rate</p>
+                    <span class="stat-change positive">+3% this month</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Management Tools -->
+    <div class="tools-section">
+        <h2>Management Tools</h2>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-icon">👑</div>
+                    <h3>Member Management</h3>
+                </div>
+                <p>Manage member roles, permissions, and community status</p>
+                <div class="tool-stats">
+                    <span>1,234 members</span>
+                    <span>•</span>
+                    <span>5 pending requests</span>
+                </div>
+                <div class="tool-actions">
+                    <button class="btn-primary small" onclick="openMemberManagement()">Manage Members</button>
+                    <button class="btn-secondary small" onclick="viewPendingRequests()">View Requests</button>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-icon">🔧</div>
+                    <h3>Role Configuration</h3>
+                </div>
+                <p>Set up and customize community roles and permissions</p>
+                <div class="tool-stats">
+                    <span>8 active roles</span>
+                    <span>•</span>
+                    <span>Auto-assignment enabled</span>
+                </div>
+                <div class="tool-actions">
+                    <button class="btn-primary small" onclick="configureRoles()">Configure Roles</button>
+                    <button class="btn-secondary small" onclick="viewRoleAnalytics()">View Analytics</button>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-icon">📊</div>
+                    <h3>Analytics Dashboard</h3>
+                </div>
+                <p>Track community growth, engagement, and member activity</p>
+                <div class="tool-stats">
+                    <span>Real-time data</span>
+                    <span>•</span>
+                    <span>Weekly reports</span>
+                </div>
+                <div class="tool-actions">
+                    <button class="btn-primary small" onclick="openAnalytics()">View Dashboard</button>
+                    <button class="btn-secondary small" onclick="exportReport()">Export Report</button>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-icon">🛡️</div>
+                    <h3>Moderation Queue</h3>
+                </div>
+                <p>Review flagged content and manage community safety</p>
+                <div class="tool-stats">
+                    <span>3 items pending</span>
+                    <span>•</span>
+                    <span>Auto-moderation active</span>
+                </div>
+                <div class="tool-actions">
+                    <button class="btn-primary small" onclick="openModerationQueue()">Review Queue</button>
+                    <button class="btn-secondary small" onclick="configureModerationRules()">Configure Rules</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Engagement Tools -->
+    <div class="tools-section">
+        <h2>Engagement Tools</h2>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-icon">📅</div>
+                    <h3>Event Management</h3>
+                </div>
+                <p>Create and manage community events, rides, and meetups</p>
+                <div class="tool-stats">
+                    <span>3 upcoming events</span>
+                    <span>•</span>
+                    <span>89 attendees</span>
+                </div>
+                <div class="tool-actions">
+                    <button class="btn-primary small" onclick="createEvent()">Create Event</button>
+                    <button class="btn-secondary small" onclick="manageEvents()">Manage Events</button>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-icon">🏆</div>
+                    <h3>Achievement System</h3>
+                </div>
+                <p>Set up badges and rewards to encourage participation</p>
+                <div class="tool-stats">
+                    <span>12 active badges</span>
+                    <span>•</span>
+                    <span>234 awarded this month</span>
+                </div>
+                <div class="tool-actions">
+                    <button class="btn-primary small" onclick="manageAchievements()">Manage Badges</button>
+                    <button class="btn-secondary small" onclick="createBadge()">Create Badge</button>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-icon">📢</div>
+                    <h3>Announcements</h3>
+                </div>
+                <p>Send important updates and news to your community</p>
+                <div class="tool-stats">
+                    <span>Last sent 3 days ago</span>
+                    <span>•</span>
+                    <span>98% delivery rate</span>
+                </div>
+                <div class="tool-actions">
+                    <button class="btn-primary small" onclick="createAnnouncement()">Send Announcement</button>
+                    <button class="btn-secondary small" onclick="viewAnnouncementHistory()">View History</button>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-icon">🎮</div>
+                    <h3>Gamification</h3>
+                </div>
+                <p>Add leaderboards, challenges, and competitions</p>
+                <div class="tool-stats">
+                    <span>5 active challenges</span>
+                    <span>•</span>
+                    <span>Weekly leaderboard</span>
+                </div>
+                <div class="tool-actions">
+                    <button class="btn-primary small" onclick="createChallenge()">Create Challenge</button>
+                    <button class="btn-secondary small" onclick="viewLeaderboard()">View Leaderboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Integration Tools -->
+    <div class="tools-section">
+        <h2>Integration & Automation</h2>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-icon">🤖</div>
+                    <h3>Discord Bot</h3>
+                </div>
+                <p>Integrate with Discord for seamless community management</p>
+                <div class="tool-stats">
+                    <span>Connected to 2 servers</span>
+                    <span>•</span>
+                    <span>Auto-roles enabled</span>
+                </div>
+                <div class="tool-actions">
+                    <a href="/bot-management/" class="btn-primary small">Manage Bot</a>
+                    <button class="btn-secondary small" onclick="addToNewServer()">Add to Server</button>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-icon">🔗</div>
+                    <h3>Social Media</h3>
+                </div>
+                <p>Connect social media accounts for cross-platform posting</p>
+                <div class="tool-stats">
+                    <span>Instagram connected</span>
+                    <span>•</span>
+                    <span>Auto-posting disabled</span>
+                </div>
+                <div class="tool-actions">
+                    <button class="btn-primary small" onclick="manageSocialMedia()">Manage Accounts</button>
+                    <button class="btn-secondary small" onclick="connectNewAccount()">Connect Account</button>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-icon">📊</div>
+                    <h3>API & Webhooks</h3>
+                </div>
+                <p>Set up automated workflows and custom integrations</p>
+                <div class="tool-stats">
+                    <span>3 active webhooks</span>
+                    <span>•</span>
+                    <span>API access enabled</span>
+                </div>
+                <div class="tool-actions">
+                    <button class="btn-primary small" onclick="manageAPI()">Manage API</button>
+                    <button class="btn-secondary small" onclick="createWebhook()">Create Webhook</button>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-header">
+                    <div class="tool-icon">📱</div>
+                    <h3>Mobile App</h3>
+                </div>
+                <p>Configure push notifications and mobile-specific features</p>
+                <div class="tool-stats">
+                    <span>67% mobile users</span>
+                    <span>•</span>
+                    <span>Push notifications enabled</span>
+                </div>
+                <div class="tool-actions">
+                    <button class="btn-primary small" onclick="configureMobile()">Configure Mobile</button>
+                    <button class="btn-secondary small" onclick="testNotifications()">Test Notifications</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions-section">
+        <h2>Quick Actions</h2>
+        <div class="quick-actions-grid">
+            <button class="quick-action" onclick="bulkInviteMembers()">
+                <span class="action-icon">📧</span>
+                <span>Bulk Invite</span>
+            </button>
+            <button class="quick-action" onclick="exportMemberList()">
+                <span class="action-icon">📁</span>
+                <span>Export Members</span>
+            </button>
+            <button class="quick-action" onclick="schedulePost()">
+                <span class="action-icon">⏰</span>
+                <span>Schedule Post</span>
+            </button>
+            <button class="quick-action" onclick="createPoll()">
+                <span class="action-icon">📊</span>
+                <span>Create Poll</span>
+            </button>
+            <button class="quick-action" onclick="sendWelcomeMessage()">
+                <span class="action-icon">👋</span>
+                <span>Welcome Message</span>
+            </button>
+            <button class="quick-action" onclick="generateInviteLink()">
+                <span class="action-icon">🔗</span>
+                <span>Invite Link</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+.community-tools {
+    max-width: 1200px;
+}
+
+.tools-overview {
+    margin-bottom: 40px;
+}
+
+.tools-overview h2 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.stat-icon {
+    font-size: 2rem;
+    background: rgba(88, 101, 242, 0.1);
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.stat-content h3 {
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.stat-content p {
+    color: var(--text-secondary);
+    margin: 0 0 4px 0;
+    font-size: 0.9rem;
+}
+
+.stat-change {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.stat-change.positive {
+    color: #10b981;
+}
+
+.stat-change.negative {
+    color: #ef4444;
+}
+
+.stat-change.neutral {
+    color: var(--text-secondary);
+}
+
+.tools-section {
+    margin-bottom: 40px;
+}
+
+.tools-section h2 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.tool-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.2s ease;
+}
+
+.tool-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.tool-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.tool-icon {
+    font-size: 1.5rem;
+    background: rgba(88, 101, 242, 0.1);
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.tool-header h3 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.tool-card p {
+    color: var(--text-secondary);
+    margin: 0 0 12px 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.tool-stats {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-bottom: 16px;
+}
+
+.tool-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-primary.small,
+.btn-secondary.small {
+    padding: 8px 16px;
+    font-size: 13px;
+}
+
+.quick-actions-section {
+    background: rgba(88, 101, 242, 0.05);
+    border: 1px solid rgba(88, 101, 242, 0.2);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.quick-actions-section h2 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+.quick-action {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.quick-action:hover {
+    background: rgba(88, 101, 242, 0.1);
+    border-color: var(--accent);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+
+.action-icon {
+    font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .overview-grid,
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+    
+    .tool-actions {
+        flex-direction: column;
+    }
+}
+</style>
+
+<script>
+// Tool action handlers
+function openMemberManagement() {
+    alert('Opening member management interface...');
+}
+
+function viewPendingRequests() {
+    alert('Showing 5 pending member requests...');
+}
+
+function configureRoles() {
+    alert('Opening role configuration panel...');
+}
+
+function viewRoleAnalytics() {
+    alert('Loading role assignment analytics...');
+}
+
+function openAnalytics() {
+    window.location.href = '/analytics-dashboard/';
+}
+
+function exportReport() {
+    alert('Generating community analytics report...');
+}
+
+function openModerationQueue() {
+    window.location.href = '/moderation-queue/';
+}
+
+function configureModerationRules() {
+    alert('Opening moderation rules configuration...');
+}
+
+function createEvent() {
+    alert('Opening event creation form...');
+}
+
+function manageEvents() {
+    alert('Loading event management dashboard...');
+}
+
+function manageAchievements() {
+    alert('Opening achievement system management...');
+}
+
+function createBadge() {
+    alert('Opening badge creation wizard...');
+}
+
+function createAnnouncement() {
+    alert('Opening announcement composer...');
+}
+
+function viewAnnouncementHistory() {
+    alert('Loading announcement history...');
+}
+
+function createChallenge() {
+    alert('Opening challenge creation form...');
+}
+
+function viewLeaderboard() {
+    alert('Loading community leaderboard...');
+}
+
+function addToNewServer() {
+    alert('Opening Discord server invitation...');
+}
+
+function manageSocialMedia() {
+    alert('Opening social media management panel...');
+}
+
+function connectNewAccount() {
+    alert('Opening social media connection wizard...');
+}
+
+function manageAPI() {
+    alert('Opening API management dashboard...');
+}
+
+function createWebhook() {
+    alert('Opening webhook creation form...');
+}
+
+function configureMobile() {
+    alert('Opening mobile app configuration...');
+}
+
+function testNotifications() {
+    alert('Sending test push notification...');
+}
+
+// Quick actions
+function bulkInviteMembers() {
+    alert('Opening bulk member invitation tool...');
+}
+
+function exportMemberList() {
+    alert('Generating member list export...');
+}
+
+function schedulePost() {
+    alert('Opening post scheduler...');
+}
+
+function createPoll() {
+    alert('Opening poll creation form...');
+}
+
+function sendWelcomeMessage() {
+    alert('Opening welcome message template...');
+}
+
+function generateInviteLink() {
+    const link = 'https://bikenode.com/invite/sport-bike-riders';
+    prompt('Community invite link (click to copy):', link);
+}
+</script>

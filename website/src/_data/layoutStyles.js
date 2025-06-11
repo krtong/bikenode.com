@@ -1,16 +1,25 @@
 // Define which CSS files should be loaded for each layout
 module.exports = {
   // Map layouts to their required CSS files
+  'bikenode-main-layout-01': [
+    '/assets/css/bikenode-main-layout-01.css',
+    '/assets/css/bikenode-main-layout-01-sidebar.css',
+    '/assets/css/bikenode-main-layout-01-header.css'
+  ],
   dashboard: [
-    '/assets/css/dashboard.css'
+    '/assets/css/bikenode-dashboard-layout-structure.css',
+    '/assets/css/bikenode-dashboard-page-styles.css'
+  ],
+  app: [
+    // Legacy - to be removed after migration
   ],
   auth: [
-    // Auth pages don't need dashboard.css
+    '/auth/auth.css'
   ],
   docs: [
-    '/documentation/assets/css/style.css'
+    '/assets/css/bikenode-documentation-page-styles.css'
   ],
-  base: [
-    // Base layout gets only the main CSS
+  main: [
+    // Main layout for marketing pages gets only the global CSS
   ]
 };

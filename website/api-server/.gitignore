@@ -1,0 +1,24 @@
+# Binaries
+bikenode-api
+*.exe
+
+# Go build cache
+*.test
+*.out
+
+# Dependency directories
+vendor/
+
+# Environment files
+.env
+.env.local
+
+# Log files
+*.log
+
+# IDE files
+.idea/
+.vscode/
+
+# OS files
+.DS_Store

@@ -1,0 +1,236 @@
+---
+layout: bikenode-main-layout-01/bikenode-main-layout-01.njk
+pagination:
+  data: routes
+  size: 1
+  alias: route
+permalink: "/route-details/{{ pagination.pageNumber + 1 }}/"
+title: "{{ route.title }}"
+subtitle: "by {{ route.author }}"
+breadcrumb:
+  - title: Routes
+    url: /routes-gallery/
+  - title: "{{ route.title }}"
+showContentHeader: false
+---
+
+
+<div class="route-details-header">
+  <div class="route-title-section">
+    <h1 class="route-title">{{ route.title }}</h1>
+    <div class="route-meta">
+      <div class="route-author">
+        <div class="author-avatar">{{ route.author | truncate(2, true, '') | upper }}</div>
+        <span>{{ route.author }}</span>
+      </div>
+      <span>•</span>
+      <span>Created {{ route.createdAgo }}</span>
+      <span>•</span>
+      <span>{{ route.saves }} saves</span>
+    </div>
+  </div>
+  
+  <div class="route-actions">
+    <button class="btn-secondary">
+      <span>💾</span> Save Route
+    </button>
+    <button class="btn-primary">
+      <span>🚴</span> Ride Route
+    </button>
+  </div>
+</div>
+
+<div class="route-content">
+  <div class="route-main">
+    <div class="route-map-section">
+      <div class="route-map">
+        Interactive Route Map
+      </div>
+      <div class="map-controls">
+        <div class="map-style-toggle">
+          <button class="style-btn active">Map</button>
+          <button class="style-btn">Satellite</button>
+          <button class="style-btn">Terrain</button>
+        </div>
+        <button class="btn-secondary">
+          <span>📥</span> Export GPX
+        </button>
+      </div>
+    </div>
+
+    <div class="elevation-profile">
+      <h3 class="elevation-title">Elevation Profile</h3>
+      <div class="elevation-chart">
+        Elevation Chart Visualization
+      </div>
+      <div class="elevation-stats">
+        <div class="elevation-stat">
+          <div class="elevation-stat-value">{{ route.elevation }} ft</div>
+          <div class="elevation-stat-label">Total Gain</div>
+        </div>
+        <div class="elevation-stat">
+          <div class="elevation-stat-value">850 ft</div>
+          <div class="elevation-stat-label">Max Elevation</div>
+        </div>
+        <div class="elevation-stat">
+          <div class="elevation-stat-value">{{ route.avgGrade }}%</div>
+          <div class="elevation-stat-label">Avg Grade</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="route-comments">
+      <div class="comments-header">
+        <h3 class="comments-title">Comments (8)</h3>
+      </div>
+      
+      <div class="comment-item">
+        <div class="comment-avatar">MJ</div>
+        <div class="comment-content">
+          <div class="comment-header">
+            <span class="comment-author">Mike Johnson</span>
+            <span class="comment-time">3 days ago</span>
+          </div>
+          <p class="comment-text">
+            Great route! The coastal views are absolutely stunning. Just a heads up - there's construction on mile 45-47, so you might need to take the detour through the residential area.
+          </p>
+        </div>
+      </div>
+      
+      <div class="comment-item">
+        <div class="comment-avatar">EW</div>
+        <div class="comment-content">
+          <div class="comment-header">
+            <span class="comment-author">Emma Wilson</span>
+            <span class="comment-time">1 week ago</span>
+          </div>
+          <p class="comment-text">
+            Perfect century route for beginners! The elevation is manageable and there are plenty of spots to refill water. I'd recommend starting early to avoid the afternoon headwinds.
+          </p>
+        </div>
+      </div>
+      
+      <div class="comment-form">
+        <div class="comment-avatar">👤</div>
+        <textarea class="comment-input" placeholder="Add a comment..." rows="3"></textarea>
+        <button class="btn-primary">Post</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="route-sidebar">
+    <div class="route-stats-card">
+      <h3 style="margin-bottom: 16px;">Route Details</h3>
+      <div class="stats-grid">
+        <div class="stat-row">
+          <div class="stat-label">
+            <span>📏</span> Distance
+          </div>
+          <div class="stat-value">{{ route.distance }} miles</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-label">
+            <span>⬆️</span> Elevation Gain
+          </div>
+          <div class="stat-value">{{ route.elevation }} ft</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-label">
+            <span>⏱️</span> Est. Moving Time
+          </div>
+          <div class="stat-value">{{ route.movingTime }}</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-label">
+            <span>🎯</span> Difficulty
+          </div>
+          <div class="stat-value">{{ route.difficulty }}</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-label">
+            <span>🚴</span> Route Type
+          </div>
+          <div class="stat-value">{{ route.type }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="route-description">
+      <h3 class="description-title">Description</h3>
+      <p class="description-text">
+        {{ route.description }}
+      </p>
+      {% if route.description2 %}
+      <p class="description-text" style="margin-top: 12px;">
+        {{ route.description2 }}
+      </p>
+      {% endif %}
+      <div class="route-tags">
+        {% for tag in route.tags %}
+        <span class="route-tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="route-waypoints">
+      <h3 class="waypoints-title">Key Waypoints</h3>
+      
+      <div class="waypoint-item">
+        <div class="waypoint-marker">A</div>
+        <div class="waypoint-info">
+          <div class="waypoint-name">Start - City Park</div>
+          <div class="waypoint-address">123 Main St, Downtown</div>
+        </div>
+      </div>
+      
+      <div class="waypoint-item">
+        <div class="waypoint-marker">1</div>
+        <div class="waypoint-info">
+          <div class="waypoint-name">Coastal Cafe</div>
+          <div class="waypoint-address">Mile 25 - Rest stop</div>
+        </div>
+      </div>
+      
+      <div class="waypoint-item">
+        <div class="waypoint-marker">2</div>
+        <div class="waypoint-info">
+          <div class="waypoint-name">Vista Point</div>
+          <div class="waypoint-address">Mile 50 - Photo opportunity</div>
+        </div>
+      </div>
+      
+      <div class="waypoint-item">
+        <div class="waypoint-marker">B</div>
+        <div class="waypoint-info">
+          <div class="waypoint-name">Finish - City Park</div>
+          <div class="waypoint-address">123 Main St, Downtown</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Map style toggle
+  document.querySelectorAll('.style-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.style-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Save route button
+  document.querySelector('.btn-secondary').addEventListener('click', function() {
+    this.innerHTML = '<span>✓</span> Saved';
+    this.style.background = 'var(--accent)';
+  });
+
+  // Comment submission
+  document.querySelector('.comment-form button').addEventListener('click', () => {
+    const textarea = document.querySelector('.comment-input');
+    if (textarea.value.trim()) {
+      alert('Comment posted!');
+      textarea.value = '';
+    }
+  });
+</script>

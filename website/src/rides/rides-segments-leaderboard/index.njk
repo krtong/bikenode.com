@@ -1,0 +1,26 @@
+---
+layout: bikenode-main-layout-01/bikenode-main-layout-01.njk
+title: Segments
+subtitle: Challenge yourself on popular local segments and compete for KOMs/QOMs
+showContentHeader: false
+customCSS:
+  - /segments/styles/segments.css
+  - https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
+---
+
+<div class="segments-container">
+    {% include "segments/segments-header.njk" %}
+    {% include "segments/segments-map.njk" %}
+    {% include "segments/segments-filters.njk" %}
+    {% include "segments/segments-list.njk" %}
+</div>
+
+<!-- Modals -->
+{% include "segments/segment-detail-modal.njk" %}
+{% include "segments/create-segment-modal.njk" %}
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Segments Application -->
+<script type="module" src="/segments/js/app.js"></script>

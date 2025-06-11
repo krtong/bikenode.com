@@ -1,0 +1,18 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% if title %}{{ title }} - BikeNode{% else %}BikeNode{% endif %}</title>
+<meta name="description" content="{% if description %}{{ description }}{% else %}BikeNode - The ultimate platform for bike enthusiasts to connect, share, and discover.{% endif %}">
+
+<link rel="icon" type="image/png" href="/assets/images/bikenode_logo.png">
+<!-- Self-contained CSS for bikenode-main-layout-01 -->
+<link rel="stylesheet" href="/_layouts/bikenode-main-layout-01/bikenode-main-layout-01.css">
+<link rel="stylesheet" href="/_layouts/bikenode-main-layout-01/bikenode-main-layout-01-header.css">
+<link rel="stylesheet" href="/_layouts/bikenode-main-layout-01/bikenode-main-layout-01-sidebar.css">
+<link rel="stylesheet" href="/_layouts/bikenode-main-layout-01/bikenode-main-layout-01-footer.css">
+
+{# Load custom CSS specified in page front matter #}
+{% if customCSS %}
+  {% for stylesheet in customCSS %}
+  <link rel="stylesheet" href="{{ stylesheet }}">
+  {% endfor %}
+{% endif %}

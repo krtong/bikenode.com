@@ -3,6 +3,7 @@
 class DashboardApp {
   constructor() {
     this.state = {
+      theme: localStorage.getItem('theme') || 'light',
       sidebarCollapsed: localStorage.getItem('sidebarCollapsed') === 'true',
       notifications: [],
       recentActivities: [],
@@ -13,9 +14,14 @@ class DashboardApp {
   }
 
   init() {
+    this.setupTheme();
     this.setupEventListeners();
     this.initializeComponents();
     this.loadUserData();
+  }
+
+  setupTheme() {
+    document.documentElement.setAttribute('data-theme', this.state.theme);
   }
 
   setupEventListeners() {
@@ -51,6 +57,13 @@ class DashboardApp {
       sidebar?.classList.add('collapsed');
     }
 
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle?.addEventListener('click', () => {
+      this.state.theme = this.state.theme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', this.state.theme);
+      localStorage.setItem('theme', this.state.theme);
+    });
 
     // User menu toggle
     const userMenuToggle = document.getElementById('userMenuToggle');

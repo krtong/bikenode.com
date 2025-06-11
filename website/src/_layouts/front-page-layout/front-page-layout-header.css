@@ -1,0 +1,106 @@
+/* Front Page Layout Header Styles */
+
+.front-page-layout-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 0;
+}
+
+.front-page-layout-header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.front-page-layout-header-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.front-page-layout-header-logo {
+    color: #3b82f6;
+}
+
+.front-page-layout-header-logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.front-page-layout-header-nav {
+    display: flex;
+    gap: 32px;
+}
+
+.front-page-layout-header-nav-link {
+    text-decoration: none;
+    color: #6b7280;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.front-page-layout-header-nav-link:hover {
+    color: #111827;
+}
+
+.front-page-layout-header-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.front-page-layout-header-login {
+    text-decoration: none;
+    color: #6b7280;
+    font-weight: 500;
+    padding: 8px 16px;
+    transition: color 0.2s ease;
+}
+
+.front-page-layout-header-login:hover {
+    color: #111827;
+}
+
+.front-page-layout-header-signup {
+    text-decoration: none;
+    background: #3b82f6;
+    color: white;
+    font-weight: 500;
+    padding: 8px 20px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.front-page-layout-header-signup:hover {
+    background: #2563eb;
+}
+
+.front-page-layout-header-mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .front-page-layout-header-nav,
+    .front-page-layout-header-actions {
+        display: none;
+    }
+    
+    .front-page-layout-header-mobile-toggle {
+        display: block;
+    }
+}

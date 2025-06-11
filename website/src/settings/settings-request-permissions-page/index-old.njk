@@ -1,0 +1,1350 @@
+---
+layout: main.njk
+title: Bot Permissions Setup
+subtitle: Configure Discord permissions for BikeNode bot functionality
+active: discord-bot
+---
+
+<section class="permissions-hero">
+    <div class="hero-content">
+        <h1>Bot Permissions Setup</h1>
+        <p>Configure the necessary Discord permissions for BikeNode bot to function properly in your server</p>
+        <div class="setup-status">
+            <div class="status-indicator warning"></div>
+            <span>Some permissions are missing</span>
+        </div>
+    </div>
+</section>
+
+<section class="permissions-content">
+    <!-- Server Selection -->
+    <div class="server-selection">
+        <h2>Select Your Discord Server</h2>
+        <p>Choose the server where you want to configure permissions</p>
+        
+        <div class="servers-grid">
+            <div class="server-card selected" onclick="selectServer('sportbike')">
+                <div class="server-icon">SB</div>
+                <div class="server-info">
+                    <h3>Sport Bike Riders</h3>
+                    <p>1,234 members • Owner</p>
+                    <div class="permission-status">
+                        <span class="status-badge warning">Incomplete</span>
+                        <span class="permissions-count">6/10 permissions</span>
+                    </div>
+                </div>
+                <div class="selection-indicator">✓</div>
+            </div>
+
+            <div class="server-card" onclick="selectServer('mtb')">
+                <div class="server-icon">MT</div>
+                <div class="server-info">
+                    <h3>Mountain Bike Central</h3>
+                    <p>856 members • Admin</p>
+                    <div class="permission-status">
+                        <span class="status-badge success">Complete</span>
+                        <span class="permissions-count">10/10 permissions</span>
+                    </div>
+                </div>
+                <div class="selection-indicator">○</div>
+            </div>
+
+            <div class="server-card" onclick="selectServer('cruiser')">
+                <div class="server-icon">CR</div>
+                <div class="server-info">
+                    <h3>Cruiser Nation</h3>
+                    <p>432 members • Moderator</p>
+                    <div class="permission-status">
+                        <span class="status-badge error">Missing</span>
+                        <span class="permissions-count">3/10 permissions</span>
+                    </div>
+                </div>
+                <div class="selection-indicator">○</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Permission Categories -->
+    <div class="permissions-setup" id="permissionsSetup">
+        <h2>Required Permissions for Sport Bike Riders</h2>
+        <p>The following permissions are needed for BikeNode bot to function properly</p>
+
+        <!-- Essential Permissions -->
+        <div class="permission-category">
+            <div class="category-header">
+                <div class="category-info">
+                    <h3>Essential Permissions</h3>
+                    <p>Required for basic bot functionality</p>
+                </div>
+                <div class="category-status">
+                    <span class="progress-text">4/5 granted</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="permissions-list">
+                <div class="permission-item granted">
+                    <div class="permission-icon">✅</div>
+                    <div class="permission-details">
+                        <h4>Send Messages</h4>
+                        <p>Allows the bot to respond to commands and send notifications</p>
+                    </div>
+                    <div class="permission-status">
+                        <span class="status-text granted">Granted</span>
+                    </div>
+                </div>
+
+                <div class="permission-item granted">
+                    <div class="permission-icon">✅</div>
+                    <div class="permission-details">
+                        <h4>Read Message History</h4>
+                        <p>Required for the bot to read and respond to messages</p>
+                    </div>
+                    <div class="permission-status">
+                        <span class="status-text granted">Granted</span>
+                    </div>
+                </div>
+
+                <div class="permission-item granted">
+                    <div class="permission-icon">✅</div>
+                    <div class="permission-details">
+                        <h4>Use Slash Commands</h4>
+                        <p>Enables Discord's modern slash command interface</p>
+                    </div>
+                    <div class="permission-status">
+                        <span class="status-text granted">Granted</span>
+                    </div>
+                </div>
+
+                <div class="permission-item granted">
+                    <div class="permission-icon">✅</div>
+                    <div class="permission-details">
+                        <h4>Embed Links</h4>
+                        <p>Allows rich formatting for bike comparisons and garage displays</p>
+                    </div>
+                    <div class="permission-status">
+                        <span class="status-text granted">Granted</span>
+                    </div>
+                </div>
+
+                <div class="permission-item missing">
+                    <div class="permission-icon">❌</div>
+                    <div class="permission-details">
+                        <h4>Add Reactions</h4>
+                        <p>Used for interactive features and confirmation prompts</p>
+                    </div>
+                    <div class="permission-status">
+                        <span class="status-text missing">Missing</span>
+                        <button class="btn-grant" onclick="requestPermission('add_reactions')">Grant</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Role Management Permissions -->
+        <div class="permission-category">
+            <div class="category-header">
+                <div class="category-info">
+                    <h3>Role Management</h3>
+                    <p>Required for auto-role assignment features</p>
+                </div>
+                <div class="category-status">
+                    <span class="progress-text">1/2 granted</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 50%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="permissions-list">
+                <div class="permission-item granted">
+                    <div class="permission-icon">✅</div>
+                    <div class="permission-details">
+                        <h4>Manage Roles</h4>
+                        <p>Allows automatic role assignment based on user's garage</p>
+                    </div>
+                    <div class="permission-status">
+                        <span class="status-text granted">Granted</span>
+                    </div>
+                </div>
+
+                <div class="permission-item missing">
+                    <div class="permission-icon">❌</div>
+                    <div class="permission-details">
+                        <h4>Create Roles</h4>
+                        <p>Automatically create new roles for bike makes and models</p>
+                    </div>
+                    <div class="permission-status">
+                        <span class="status-text missing">Missing</span>
+                        <button class="btn-grant" onclick="requestPermission('create_roles')">Grant</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Moderation Permissions -->
+        <div class="permission-category">
+            <div class="category-header">
+                <div class="category-info">
+                    <h3>Moderation Features</h3>
+                    <p>Optional permissions for enhanced community management</p>
+                </div>
+                <div class="category-status">
+                    <span class="progress-text">0/3 granted</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="permissions-list">
+                <div class="permission-item missing optional">
+                    <div class="permission-icon">❌</div>
+                    <div class="permission-details">
+                        <h4>Manage Messages</h4>
+                        <p>Delete inappropriate messages and manage bulk cleanup</p>
+                        <span class="optional-badge">Optional</span>
+                    </div>
+                    <div class="permission-status">
+                        <span class="status-text missing">Missing</span>
+                        <button class="btn-grant" onclick="requestPermission('manage_messages')">Grant</button>
+                    </div>
+                </div>
+
+                <div class="permission-item missing optional">
+                    <div class="permission-icon">❌</div>
+                    <div class="permission-details">
+                        <h4>Timeout Members</h4>
+                        <p>Temporarily timeout users for rule violations</p>
+                        <span class="optional-badge">Optional</span>
+                    </div>
+                    <div class="permission-status">
+                        <span class="status-text missing">Missing</span>
+                        <button class="btn-grant" onclick="requestPermission('timeout_members')">Grant</button>
+                    </div>
+                </div>
+
+                <div class="permission-item missing optional">
+                    <div class="permission-icon">❌</div>
+                    <div class="permission-details">
+                        <h4>Kick Members</h4>
+                        <p>Remove disruptive users from the server</p>
+                        <span class="optional-badge">Optional</span>
+                    </div>
+                    <div class="permission-status">
+                        <span class="status-text missing">Missing</span>
+                        <button class="btn-grant" onclick="requestPermission('kick_members')">Grant</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Permission Explanations -->
+    <div class="permissions-explanation">
+        <h2>Why These Permissions Are Needed</h2>
+        
+        <div class="explanation-grid">
+            <div class="explanation-card">
+                <div class="explanation-icon">💬</div>
+                <h3>Communication</h3>
+                <p>Send Messages and Read Message History permissions allow the bot to respond to your commands and provide helpful information about bikes and your garage.</p>
+            </div>
+            
+            <div class="explanation-card">
+                <div class="explanation-icon">🎭</div>
+                <h3>Auto-Roles</h3>
+                <p>Manage Roles permission enables automatic role assignment based on your bike collection, creating a more organized and engaging community.</p>
+            </div>
+            
+            <div class="explanation-card">
+                <div class="explanation-icon">🛡️</div>
+                <h3>Community Safety</h3>
+                <p>Moderation permissions help maintain a positive environment by allowing automated spam detection and community management features.</p>
+            </div>
+            
+            <div class="explanation-card">
+                <div class="explanation-icon">🎨</div>
+                <h3>Rich Content</h3>
+                <p>Embed Links and Add Reactions permissions enable beautiful bike comparisons, interactive features, and enhanced user experience.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Setup Methods -->
+    <div class="setup-methods">
+        <h2>Permission Setup Methods</h2>
+        
+        <div class="methods-tabs">
+            <button class="method-tab active" onclick="showMethod('automatic')" data-method="automatic">
+                <span>🚀</span> Automatic Setup
+            </button>
+            <button class="method-tab" onclick="showMethod('manual')" data-method="manual">
+                <span>⚙️</span> Manual Setup
+            </button>
+            <button class="method-tab" onclick="showMethod('invite')" data-method="invite">
+                <span>🔗</span> Re-invite Bot
+            </button>
+        </div>
+
+        <!-- Automatic Setup -->
+        <div class="method-content active" id="automatic-method">
+            <div class="method-header">
+                <h3>Automatic Permission Setup</h3>
+                <p>The easiest way to grant permissions - we'll guide you through Discord's interface</p>
+            </div>
+            
+            <div class="auto-setup-steps">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Request Permissions</h4>
+                        <p>Click the button below to generate a permission request for your server administrators</p>
+                        <button class="btn-primary" onclick="generatePermissionRequest()">
+                            <span>📨</span>
+                            Generate Permission Request
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Share With Admins</h4>
+                        <p>Send the generated message to your server administrators or post it in an admin channel</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Wait for Approval</h4>
+                        <p>Once permissions are granted, the bot will automatically detect and enable new features</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manual Setup -->
+        <div class="method-content" id="manual-method">
+            <div class="method-header">
+                <h3>Manual Permission Setup</h3>
+                <p>Step-by-step instructions for server administrators to grant permissions manually</p>
+            </div>
+            
+            <div class="manual-steps">
+                <div class="manual-step">
+                    <h4>Step 1: Open Server Settings</h4>
+                    <p>Right-click on your server name and select "Server Settings"</p>
+                    <div class="step-image-placeholder">🖼️ Server Settings Screenshot</div>
+                </div>
+                
+                <div class="manual-step">
+                    <h4>Step 2: Navigate to Roles</h4>
+                    <p>In the left sidebar, click on "Roles" to manage server roles</p>
+                    <div class="step-image-placeholder">🖼️ Roles Section Screenshot</div>
+                </div>
+                
+                <div class="manual-step">
+                    <h4>Step 3: Find BikeNode Bot Role</h4>
+                    <p>Look for the BikeNode bot role in the roles list and click on it</p>
+                    <div class="step-image-placeholder">🖼️ Bot Role Screenshot</div>
+                </div>
+                
+                <div class="manual-step">
+                    <h4>Step 4: Grant Permissions</h4>
+                    <p>Enable the following permissions by checking the boxes:</p>
+                    <ul class="permissions-checklist">
+                        <li>✅ Send Messages</li>
+                        <li>✅ Read Message History</li>
+                        <li>✅ Use Slash Commands</li>
+                        <li>✅ Embed Links</li>
+                        <li>✅ Add Reactions</li>
+                        <li>✅ Manage Roles</li>
+                        <li>⚠️ Manage Messages (optional)</li>
+                        <li>⚠️ Timeout Members (optional)</li>
+                    </ul>
+                </div>
+                
+                <div class="manual-step">
+                    <h4>Step 5: Save Changes</h4>
+                    <p>Click "Save Changes" at the bottom of the permissions page</p>
+                    <div class="step-image-placeholder">🖼️ Save Changes Screenshot</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Re-invite Bot -->
+        <div class="method-content" id="invite-method">
+            <div class="method-header">
+                <h3>Re-invite Bot with Permissions</h3>
+                <p>Remove and re-add the bot with all necessary permissions pre-selected</p>
+            </div>
+            
+            <div class="reinvite-warning">
+                <div class="warning-icon">⚠️</div>
+                <div class="warning-content">
+                    <h4>Important Notice</h4>
+                    <p>Re-inviting the bot will reset all server-specific settings. Your garage data will be preserved, but you'll need to reconfigure welcome messages, auto-roles, and other server settings.</p>
+                </div>
+            </div>
+            
+            <div class="reinvite-steps">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Remove Current Bot</h4>
+                        <p>Go to Server Settings → Members, find BikeNode bot, and click "Kick"</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Use New Invite Link</h4>
+                        <p>Click the button below to generate a new invite link with all permissions</p>
+                        <button class="btn-primary" onclick="generateInviteLink()">
+                            <span>🔗</span>
+                            Generate New Invite Link
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Complete Setup</h4>
+                        <p>Follow the Discord authorization flow to add the bot with full permissions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help & Support -->
+    <div class="help-section">
+        <h2>Need Help?</h2>
+        <div class="help-options">
+            <div class="help-card">
+                <div class="help-icon">💬</div>
+                <h3>Live Chat Support</h3>
+                <p>Get instant help from our support team</p>
+                <button class="btn-secondary" onclick="openLiveChat()">Start Chat</button>
+            </div>
+            
+            <div class="help-card">
+                <div class="help-icon">📚</div>
+                <h3>Setup Documentation</h3>
+                <p>Detailed guides and troubleshooting</p>
+                <a href="/bot-setup-guide/" class="btn-secondary">View Docs</a>
+            </div>
+            
+            <div class="help-card">
+                <div class="help-icon">🎥</div>
+                <h3>Video Tutorial</h3>
+                <p>Watch a step-by-step setup video</p>
+                <button class="btn-secondary" onclick="openVideoTutorial()">Watch Video</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+let selectedServer = 'sportbike';
+
+// Server selection
+function selectServer(serverId) {
+    // Update visual selection
+    document.querySelectorAll('.server-card').forEach(card => {
+        card.classList.remove('selected');
+    });
+    event.currentTarget.classList.add('selected');
+    
+    // Update selection indicators
+    document.querySelectorAll('.selection-indicator').forEach(indicator => {
+        indicator.textContent = '○';
+    });
+    event.currentTarget.querySelector('.selection-indicator').textContent = '✓';
+    
+    selectedServer = serverId;
+    updatePermissionsDisplay(serverId);
+}
+
+// Update permissions display based on server
+function updatePermissionsDisplay(serverId) {
+    const serverNames = {
+        'sportbike': 'Sport Bike Riders',
+        'mtb': 'Mountain Bike Central',
+        'cruiser': 'Cruiser Nation'
+    };
+    
+    const title = document.querySelector('#permissionsSetup h2');
+    title.textContent = `Required Permissions for ${serverNames[serverId]}`;
+    
+    // You could add server-specific permission states here
+}
+
+// Method switching
+function showMethod(methodName) {
+    // Update tabs
+    document.querySelectorAll('.method-tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    document.querySelector(`[data-method="${methodName}"]`).classList.add('active');
+    
+    // Update content
+    document.querySelectorAll('.method-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    document.getElementById(`${methodName}-method`).classList.add('active');
+}
+
+// Permission actions
+function requestPermission(permissionType) {
+    const button = event.target;
+    const original = button.textContent;
+    
+    button.textContent = 'Requesting...';
+    button.disabled = true;
+    
+    setTimeout(() => {
+        button.textContent = 'Requested';
+        button.style.background = '#10b981';
+        
+        // Show notification
+        showNotification('Permission request sent to server administrators', 'success');
+        
+        setTimeout(() => {
+            button.textContent = original;
+            button.disabled = false;
+            button.style.background = '';
+        }, 3000);
+    }, 1500);
+}
+
+// Automatic setup functions
+function generatePermissionRequest() {
+    const message = `🤖 **BikeNode Bot Permission Request**
+
+Hello server administrators! The BikeNode bot needs additional permissions to provide the best experience for our motorcycle/bicycle community.
+
+**Missing Permissions:**
+• Add Reactions - For interactive features
+• Create Roles - For automatic role creation
+• Manage Messages - For moderation (optional)
+• Timeout Members - For community management (optional)
+
+**How to Grant:**
+1. Go to Server Settings → Roles
+2. Find "BikeNode" role
+3. Enable the permissions listed above
+4. Save changes
+
+The bot will automatically detect and enable new features once permissions are granted.
+
+Need help? Visit: https://bikenode.com/bot-setup-guide/
+
+Thank you! 🏍️`;
+
+    // Copy to clipboard
+    navigator.clipboard.writeText(message).then(() => {
+        showNotification('Permission request message copied to clipboard!', 'success');
+    });
+    
+    // Also show in a modal for easy viewing
+    showPermissionRequestModal(message);
+}
+
+function generateInviteLink() {
+    const inviteUrl = 'https://discord.com/api/oauth2/authorize?client_id=123456789&permissions=8192&scope=bot%20applications.commands';
+    
+    window.open(inviteUrl, '_blank');
+    showNotification('Opening Discord authorization page...', 'info');
+}
+
+// Modal functions
+function showPermissionRequestModal(message) {
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Permission Request Message</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <textarea readonly class="request-message">${message}</textarea>
+                <div class="modal-actions">
+                    <button class="btn-primary" onclick="copyMessage()">Copy Message</button>
+                    <button class="btn-secondary" onclick="closeModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Add event listeners
+    modal.querySelector('.modal-close').onclick = () => closeModal();
+    modal.querySelector('.modal-overlay').onclick = (e) => {
+        if (e.target === modal) closeModal();
+    };
+    
+    window.currentModal = modal;
+}
+
+function closeModal() {
+    if (window.currentModal) {
+        document.body.removeChild(window.currentModal);
+        window.currentModal = null;
+    }
+}
+
+function copyMessage() {
+    const textarea = document.querySelector('.request-message');
+    textarea.select();
+    document.execCommand('copy');
+    showNotification('Message copied to clipboard!', 'success');
+}
+
+// Help functions
+function openLiveChat() {
+    alert('Live chat support - feature coming soon');
+}
+
+function openVideoTutorial() {
+    alert('Video tutorial - feature coming soon');
+}
+
+// Notification system
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 100);
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 4000);
+}
+</script>
+
+<style>
+.permissions-hero {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, rgba(88, 101, 242, 0.1) 100%);
+    padding: 60px 0;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hero-content h1 {
+    color: var(--text-primary);
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+
+.hero-content p {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    margin-bottom: 24px;
+}
+
+.setup-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.status-indicator.warning {
+    background: #f59e0b;
+}
+
+.permissions-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.permissions-content h2 {
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+}
+
+.permissions-content > p {
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+}
+
+.server-selection {
+    margin-bottom: 48px;
+}
+
+.servers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.server-card {
+    background: var(--card-bg);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.server-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.server-card.selected {
+    border-color: var(--accent);
+    background: rgba(88, 101, 242, 0.05);
+}
+
+.server-card .server-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--accent);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+}
+
+.server-info h3 {
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    font-size: 1.1rem;
+}
+
+.server-info p {
+    color: var(--text-secondary);
+    margin: 0 0 12px 0;
+    font-size: 0.9rem;
+}
+
+.permission-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-badge.success {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+}
+
+.status-badge.warning {
+    background: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+}
+
+.status-badge.error {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.permissions-count {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.selection-indicator {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    color: var(--accent);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.permissions-setup {
+    margin-bottom: 48px;
+}
+
+.permission-category {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.category-info h3 {
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    font-size: 1.2rem;
+}
+
+.category-info p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.category-status {
+    text-align: right;
+}
+
+.progress-text {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.progress-bar {
+    width: 120px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.permissions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.permission-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.permission-item.granted {
+    border-color: rgba(16, 185, 129, 0.3);
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.permission-item.missing {
+    border-color: rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.permission-item.optional {
+    opacity: 0.8;
+}
+
+.permission-icon {
+    font-size: 1.2rem;
+}
+
+.permission-details {
+    flex: 1;
+}
+
+.permission-details h4 {
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    font-size: 1rem;
+}
+
+.permission-details p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.optional-badge {
+    background: rgba(139, 92, 246, 0.2);
+    color: #8b5cf6;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 4px;
+    display: inline-block;
+}
+
+.permission-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.status-text {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.status-text.granted {
+    color: #10b981;
+}
+
+.status-text.missing {
+    color: #ef4444;
+}
+
+.btn-grant {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+.btn-grant:hover {
+    background: rgba(88, 101, 242, 0.8);
+}
+
+.permissions-explanation,
+.setup-methods,
+.help-section {
+    margin-bottom: 48px;
+}
+
+.explanation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+.explanation-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+}
+
+.explanation-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+}
+
+.explanation-card h3 {
+    color: var(--text-primary);
+    margin: 0 0 12px 0;
+    font-size: 1.1rem;
+}
+
+.explanation-card p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.methods-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 24px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 6px;
+}
+
+.method-tab {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    flex: 1;
+    justify-content: center;
+}
+
+.method-tab:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.method-tab.active {
+    background: var(--accent);
+    color: white;
+}
+
+.method-content {
+    display: none;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 32px;
+}
+
+.method-content.active {
+    display: block;
+}
+
+.method-header h3 {
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    font-size: 1.3rem;
+}
+
+.method-header p {
+    color: var(--text-secondary);
+    margin: 0 0 24px 0;
+    font-size: 1rem;
+}
+
+.auto-setup-steps,
+.reinvite-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.step-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.step-number {
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h4 {
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+}
+
+.step-content p {
+    color: var(--text-secondary);
+    margin: 0 0 12px 0;
+    line-height: 1.5;
+}
+
+.manual-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.manual-step h4 {
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+}
+
+.manual-step p {
+    color: var(--text-secondary);
+    margin: 0 0 12px 0;
+}
+
+.step-image-placeholder {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.permissions-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0 0;
+}
+
+.permissions-checklist li {
+    color: var(--text-secondary);
+    padding: 4px 0;
+    font-size: 0.9rem;
+}
+
+.reinvite-warning {
+    display: flex;
+    gap: 16px;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.warning-icon {
+    font-size: 1.5rem;
+    color: #f59e0b;
+    flex-shrink: 0;
+}
+
+.warning-content h4 {
+    color: #f59e0b;
+    margin: 0 0 8px 0;
+    font-size: 1rem;
+}
+
+.warning-content p {
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.help-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+.help-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+}
+
+.help-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+}
+
+.help-card h3 {
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+}
+
+.help-card p {
+    color: var(--text-secondary);
+    margin: 0 0 16px 0;
+    font-size: 0.9rem;
+}
+
+.help-card .btn-secondary {
+    width: 100%;
+}
+
+/* Modal styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow: hidden;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h3 {
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.request-message {
+    width: 100%;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 16px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    resize: vertical;
+    margin-bottom: 16px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+/* Notification styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    z-index: 1001;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.notification.success {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.notification.info {
+    background: rgba(88, 101, 242, 0.1);
+    color: var(--accent);
+    border: 1px solid rgba(88, 101, 242, 0.3);
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .servers-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .category-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .permission-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .permission-status {
+        align-items: flex-start;
+    }
+    
+    .explanation-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .methods-tabs {
+        flex-direction: column;
+    }
+    
+    .step-item {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .step-number {
+        align-self: flex-start;
+    }
+    
+    .help-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 20px;
+    }
+}
+</style>

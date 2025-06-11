@@ -1,0 +1,35 @@
+{
+  "name": "revzilla-scraper-v2",
+  "version": "2.0.0",
+  "description": "Advanced web scraper for RevZilla motorcycle gear",
+  "main": "revzilla_scraper_v3.js",
+  "type": "module",
+  "scripts": {
+    "start": "node revzilla_scraper_v3.js",
+    "test": "node test_scraper_v3.js",
+    "test:complete": "node test_complete_system.js",
+    "mock": "node revzilla_scraper_v3.js --mock --max-pages 2",
+    "scrape:helmets": "node revzilla_scraper_v3.js --category motorcycle-helmets --max-pages 5",
+    "scrape:all": "node revzilla_scraper_v3.js --max-pages 10"
+  },
+  "keywords": [
+    "web-scraper",
+    "revzilla",
+    "motorcycle",
+    "ecommerce",
+    "puppeteer"
+  ],
+  "author": "bikenode.com",
+  "license": "PRIVATE",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12",
+    "puppeteer": "^21.6.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.55.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

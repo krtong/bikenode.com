@@ -1,0 +1,277 @@
+/* Exact Brand Logo Fonts - Using system fonts that match logos exactly */
+
+/* 
+ * These are the EXACT fonts used in brand logos or the closest system equivalents.
+ * Based on research of actual logo typefaces and available replicas.
+ */
+
+/* Motorcycle Brands */
+
+/* Honda - The logo uses a custom version of Eurostile/Microgramma */
+.brand-name[data-brand="Honda"] {
+    font-family: Eurostile, 'Eurostile Extended', Microgramma, 'Arial Black', sans-serif;
+    font-weight: 900;
+    color: #CC0000;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Yamaha Motor - Uses Swiss 911 Extra Compressed */
+.brand-name[data-brand="Yamaha"] {
+    font-family: 'Swiss 911 XCm BT', 'Swiss911 UCm BT', Impact, 'Arial Black', sans-serif;
+    font-weight: 900;
+    font-stretch: ultra-condensed;
+    color: #F30B16;
+    text-transform: uppercase;
+    letter-spacing: -0.08em;
+    transform: scaleX(0.7); /* Compress if Swiss 911 not available */
+}
+
+/* Kawasaki - Actually uses Helvetica Bold */
+.brand-name[data-brand="Kawasaki"] {
+    font-family: 'Helvetica Neue Bold', 'Helvetica Bold', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    color: #00A652;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+/* Suzuki - Uses Helvetica Bold */
+.brand-name[data-brand="Suzuki"] {
+    font-family: 'Helvetica Neue Bold', 'Helvetica Bold', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    color: #003399;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+}
+
+/* Harley-Davidson - Uses Block Gothic RR Bold ExtraCond */
+.brand-name[data-brand="Harley-Davidson"] {
+    font-family: 'Block Gothic RR Bold ExtraCond', Impact, 'Arial Black', sans-serif;
+    font-weight: 900;
+    color: #FF6600;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+}
+
+/* Ducati - Uses custom Ducati font by Dalton Maag */
+.brand-name[data-brand="Ducati"] {
+    font-family: 'Ducati Font', 'Arial Black', sans-serif;
+    font-weight: 900;
+    color: #CC0000;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+/* BMW - Uses BMW Helvetica (modified Helvetica) */
+.brand-name[data-brand="BMW"] {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    color: #0066CC;
+    text-transform: uppercase;
+    letter-spacing: 0.15em; /* BMW uses wide spacing */
+}
+
+/* KTM - Uses Klavika Bold */
+.brand-name[data-brand="KTM"] {
+    font-family: Klavika, 'Arial Black', sans-serif;
+    font-weight: 900;
+    color: #FF6600;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+}
+
+/* Triumph - Uses custom serif */
+.brand-name[data-brand="Triumph"] {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* Royal Enfield - Uses custom serif */
+.brand-name[data-brand="Royal Enfield"] {
+    font-family: Baskerville, 'Times New Roman', serif;
+    font-weight: bold;
+    color: #C41E3A;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Aprilia - Uses Aprilia Racing font */
+.brand-name[data-brand="Aprilia"] {
+    font-family: 'Arial Black', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    color: #FF0000;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+
+/* MV Agusta - Uses custom elegant font */
+.brand-name[data-brand="MV Agusta"] {
+    font-family: 'Helvetica Neue Light', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    color: #CC0000;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Bicycle Brands */
+
+/* Trek - Uses custom bold sans-serif */
+.brand-name[data-brand="Trek"] {
+    font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
+    font-weight: 900;
+    color: #CC0000;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+}
+
+/* Specialized - Uses custom italic font */
+.brand-name[data-brand="Specialized"] {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    color: #CD0000;
+    text-transform: lowercase;
+    letter-spacing: -0.02em;
+}
+
+/* Giant - Uses custom forward-slanted bold */
+.brand-name[data-brand="Giant"] {
+    font-family: 'Arial Black', sans-serif;
+    font-weight: 900;
+    color: #0033A0;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    font-style: italic;
+    transform: skewX(-12deg);
+}
+
+/* Cannondale - Uses custom geometric font */
+.brand-name[data-brand="Cannondale"] {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    color: #00A652;
+    text-transform: lowercase;
+    letter-spacing: -0.03em;
+}
+
+/* Scott - Uses custom ultra-bold */
+.brand-name[data-brand="Scott"] {
+    font-family: 'Arial Black', sans-serif;
+    font-weight: 900;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* Santa Cruz - Uses custom rounded font */
+.brand-name[data-brand="Santa Cruz"] {
+    font-family: 'Arial Rounded MT Bold', 'VAG Rounded', Arial, sans-serif;
+    font-weight: bold;
+    color: #FF6600;
+    letter-spacing: 0.01em;
+}
+
+/* Cervélo - Uses custom light font */
+.brand-name[data-brand="Cervélo"],
+.brand-name[data-brand="Cervelo"] {
+    font-family: 'Helvetica Neue Light', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    color: #000000;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+}
+
+/* Pinarello - Uses custom italic serif */
+.brand-name[data-brand="Pinarello"] {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-style: italic;
+    color: #000000;
+    letter-spacing: 0.02em;
+}
+
+/* Bianchi - Uses classic serif with Celeste */
+.brand-name[data-brand="Bianchi"] {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: #5DBCD2; /* Bianchi Celeste */
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Canyon - Uses ultra-light modern font */
+.brand-name[data-brand="Canyon"] {
+    font-family: 'Helvetica Neue UltraLight', 'Helvetica Neue Thin', Helvetica, Arial, sans-serif;
+    font-weight: 200;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+/* Orbea - Uses custom bold */
+.brand-name[data-brand="Orbea"] {
+    font-family: 'Arial Black', sans-serif;
+    font-weight: 900;
+    color: #FF6600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+/* Focus - Uses geometric bold */
+.brand-name[data-brand="Focus"] {
+    font-family: 'Arial Black', sans-serif;
+    font-weight: 900;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Cube - Uses custom geometric font */
+.brand-name[data-brand="Cube"] {
+    font-family: Futura, 'Century Gothic', Arial, sans-serif;
+    font-weight: bold;
+    color: #0066CC;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* Additional CSS for exact rendering */
+
+/* Remove anti-aliasing for sharper logos */
+.brand-name[data-brand] {
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: auto;
+    text-rendering: optimizeLegibility;
+}
+
+/* Specific adjustments for condensed fonts */
+.brand-name[data-brand="Yamaha"],
+.brand-name[data-brand="Harley-Davidson"] {
+    font-stretch: ultra-condensed;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    .brand-name[data-brand="BMW"],
+    .brand-name[data-brand="Giant"],
+    .brand-name[data-brand="Cube"] {
+        color: #4D94FF;
+    }
+    
+    .brand-name[data-brand="Scott"],
+    .brand-name[data-brand="Canyon"],
+    .brand-name[data-brand="Focus"],
+    .brand-name[data-brand="Cervélo"],
+    .brand-name[data-brand="Cervelo"],
+    .brand-name[data-brand="Pinarello"],
+    .brand-name[data-brand="Triumph"] {
+        color: #E0E0E0;
+    }
+}

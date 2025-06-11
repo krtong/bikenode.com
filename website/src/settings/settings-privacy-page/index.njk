@@ -1,0 +1,540 @@
+---
+layout: bikenode-main-layout-01/bikenode-main-layout-01.njk
+title: Privacy Settings
+subtitle: Control your data and visibility
+breadcrumb:
+  - title: Settings
+    url: /account-settings/
+  - title: Privacy
+---
+
+<style>
+  .privacy-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .privacy-section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+
+  .section-header {
+    margin-bottom: 24px;
+  }
+
+  .section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .section-description {
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+
+  .privacy-setting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .privacy-setting:last-child {
+    border-bottom: none;
+  }
+
+  .setting-info {
+    flex: 1;
+    margin-right: 24px;
+  }
+
+  .setting-title {
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .setting-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .setting-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .privacy-select {
+    min-width: 140px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: var(--text-primary);
+  }
+
+  .privacy-zones {
+    margin-top: 20px;
+  }
+
+  .zone-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+
+  .zone-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(88, 101, 242, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .zone-info {
+    flex: 1;
+  }
+
+  .zone-name {
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .zone-address {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .zone-remove {
+    background: none;
+    border: 1px solid rgba(239, 68, 68, 0.5);
+    color: #ef4444;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+  }
+
+  .zone-remove:hover {
+    background: rgba(239, 68, 68, 0.1);
+  }
+
+  .add-zone-btn {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .add-zone-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .blocked-users {
+    margin-top: 20px;
+  }
+
+  .user-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  .user-info {
+    flex: 1;
+  }
+
+  .user-name {
+    font-weight: 500;
+  }
+
+  .user-username {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .unblock-btn {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+
+  .unblock-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .data-section {
+    display: grid;
+    gap: 16px;
+  }
+
+  .data-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+  }
+
+  .data-info {
+    flex: 1;
+  }
+
+  .data-title {
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .data-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .data-action {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .data-action:hover {
+    background: var(--accent-hover);
+  }
+
+  .data-action.danger {
+    background: #ef4444;
+  }
+
+  .data-action.danger:hover {
+    background: #dc2626;
+  }
+
+  .warning-box {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 20px;
+  }
+
+  .warning-title {
+    color: #ef4444;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .warning-text {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .privacy-setting {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .setting-info {
+      margin-right: 0;
+    }
+
+    .setting-control {
+      width: 100%;
+      justify-content: flex-end;
+    }
+  }
+</style>
+
+<div class="privacy-container">
+  <!-- Profile Privacy -->
+  <div class="privacy-section">
+    <div class="section-header">
+      <h2 class="section-title">Profile Privacy</h2>
+      <p class="section-description">Control who can see your profile and activities</p>
+    </div>
+
+    <div class="privacy-setting">
+      <div class="setting-info">
+        <div class="setting-title">Profile Visibility</div>
+        <div class="setting-description">Choose who can view your profile page</div>
+      </div>
+      <div class="setting-control">
+        <select class="privacy-select">
+          <option>Everyone</option>
+          <option>Followers Only</option>
+          <option>No One</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="privacy-setting">
+      <div class="setting-info">
+        <div class="setting-title">Activity Visibility</div>
+        <div class="setting-description">Control who can see your rides and activities</div>
+      </div>
+      <div class="setting-control">
+        <select class="privacy-select">
+          <option>Everyone</option>
+          <option>Followers Only</option>
+          <option>Only Me</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="privacy-setting">
+      <div class="setting-info">
+        <div class="setting-title">Show on Leaderboards</div>
+        <div class="setting-description">Appear in segment leaderboards and challenges</div>
+      </div>
+      <div class="setting-control">
+        <label class="toggle-switch">
+          <input type="checkbox" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="privacy-setting">
+      <div class="setting-info">
+        <div class="setting-title">Group Activities</div>
+        <div class="setting-description">Show when you join group rides</div>
+      </div>
+      <div class="setting-control">
+        <label class="toggle-switch">
+          <input type="checkbox" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Location Privacy -->
+  <div class="privacy-section">
+    <div class="section-header">
+      <h2 class="section-title">Location Privacy</h2>
+      <p class="section-description">Protect your home and private locations</p>
+    </div>
+
+    <div class="privacy-setting">
+      <div class="setting-info">
+        <div class="setting-title">Hide Start/End Location</div>
+        <div class="setting-description">Hide the first and last 500m of your activities</div>
+      </div>
+      <div class="setting-control">
+        <label class="toggle-switch">
+          <input type="checkbox" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="privacy-zones">
+      <h3 style="font-size: 16px; margin-bottom: 12px;">Privacy Zones</h3>
+      <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 16px;">
+        Activities starting or ending in these areas will have those portions hidden
+      </p>
+
+      <div class="zone-item">
+        <div class="zone-icon">🏠</div>
+        <div class="zone-info">
+          <div class="zone-name">Home</div>
+          <div class="zone-address">123 Main St, Anytown, CA • 1km radius</div>
+        </div>
+        <button class="zone-remove">Remove</button>
+      </div>
+
+      <div class="zone-item">
+        <div class="zone-icon">🏢</div>
+        <div class="zone-info">
+          <div class="zone-name">Work</div>
+          <div class="zone-address">456 Office Blvd, Anytown, CA • 500m radius</div>
+        </div>
+        <button class="zone-remove">Remove</button>
+      </div>
+
+      <button class="add-zone-btn">
+        <span>➕</span> Add Privacy Zone
+      </button>
+    </div>
+  </div>
+
+  <!-- Social Privacy -->
+  <div class="privacy-section">
+    <div class="section-header">
+      <h2 class="section-title">Social Privacy</h2>
+      <p class="section-description">Manage your social interactions</p>
+    </div>
+
+    <div class="privacy-setting">
+      <div class="setting-info">
+        <div class="setting-title">Follow Requests</div>
+        <div class="setting-description">Approve followers before they can see your activities</div>
+      </div>
+      <div class="setting-control">
+        <label class="toggle-switch">
+          <input type="checkbox">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="privacy-setting">
+      <div class="setting-info">
+        <div class="setting-title">Allow Comments</div>
+        <div class="setting-description">Let others comment on your activities</div>
+      </div>
+      <div class="setting-control">
+        <select class="privacy-select">
+          <option>Everyone</option>
+          <option>Followers Only</option>
+          <option>No One</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="privacy-setting">
+      <div class="setting-info">
+        <div class="setting-title">Tag Permissions</div>
+        <div class="setting-description">Control who can tag you in activities and photos</div>
+      </div>
+      <div class="setting-control">
+        <select class="privacy-select">
+          <option>Everyone</option>
+          <option>Followers Only</option>
+          <option>No One</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="blocked-users">
+      <h3 style="font-size: 16px; margin-bottom: 12px;">Blocked Users</h3>
+      
+      <div class="user-item">
+        <div class="user-avatar">JD</div>
+        <div class="user-info">
+          <div class="user-name">John Doe</div>
+          <div class="user-username">@johndoe</div>
+        </div>
+        <button class="unblock-btn">Unblock</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data & Export -->
+  <div class="privacy-section">
+    <div class="section-header">
+      <h2 class="section-title">Data Management</h2>
+      <p class="section-description">Control your data and account</p>
+    </div>
+
+    <div class="data-section">
+      <div class="data-item">
+        <div class="data-info">
+          <div class="data-title">Export Your Data</div>
+          <div class="data-description">Download all your activities, routes, and profile data</div>
+        </div>
+        <button class="data-action">Request Export</button>
+      </div>
+
+      <div class="data-item">
+        <div class="data-info">
+          <div class="data-title">Delete All Activities</div>
+          <div class="data-description">Permanently remove all your ride data</div>
+        </div>
+        <button class="data-action danger">Delete Activities</button>
+      </div>
+
+      <div class="data-item">
+        <div class="data-info">
+          <div class="data-title">Delete Account</div>
+          <div class="data-description">Permanently delete your account and all data</div>
+        </div>
+        <button class="data-action danger">Delete Account</button>
+      </div>
+    </div>
+
+    <div class="warning-box">
+      <div class="warning-title">⚠️ Warning</div>
+      <div class="warning-text">
+        Deleting your account or activities is permanent and cannot be undone. Make sure to export your data before taking any destructive actions.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Privacy zone removal
+  document.querySelectorAll('.zone-remove').forEach(btn => {
+    btn.addEventListener('click', function() {
+      if (confirm('Remove this privacy zone?')) {
+        this.closest('.zone-item').remove();
+      }
+    });
+  });
+
+  // Unblock user
+  document.querySelectorAll('.unblock-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      if (confirm('Unblock this user?')) {
+        this.closest('.user-item').remove();
+      }
+    });
+  });
+
+  // Data actions
+  document.querySelectorAll('.data-action').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const action = this.textContent;
+      if (this.classList.contains('danger')) {
+        if (confirm(`Are you sure you want to ${action.toLowerCase()}? This cannot be undone.`)) {
+          alert(`${action} request submitted`);
+        }
+      } else {
+        alert(`${action} request submitted`);
+      }
+    });
+  });
+</script>

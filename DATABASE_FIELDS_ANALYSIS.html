@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BikeNode Database Schema Analysis</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .summary-card h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .status-section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .status-legend {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .status-implemented {
+            background: #27ae60;
+            color: white;
+        }
+
+        .status-not-implemented {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .status-partial {
+            background: #f39c12;
+            color: white;
+        }
+
+        .priority-critical {
+            background: #c0392b;
+            color: white;
+        }
+
+        .priority-high {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .priority-medium {
+            background: #f39c12;
+            color: white;
+        }
+
+        .priority-low {
+            background: #95a5a6;
+            color: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #34495e;
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .table-section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .table-section h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+
+        .table-section h3 {
+            color: #34495e;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .schema-block {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+        }
+
+        .implementation-note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .implementation-note strong {
+            color: #856404;
+        }
+
+        .nav-menu {
+            background: white;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            color: #3498db;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .nav-menu a:hover {
+            background: #ecf0f1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            table {
+                font-size: 0.875rem;
+            }
+            
+            th, td {
+                padding: 0.5rem;
+            }
+        }
+
+        @media print {
+            .nav-menu {
+                display: none;
+            }
+            
+            .table-section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BikeNode Database Schema Analysis</h1>
+            <p class="subtitle">Comprehensive database structure with implementation status and migration priorities</p>
+        </header>
+
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#summary">Summary</a></li>
+                <li><a href="#current-state">Current State</a></li>
+                <li><a href="#implementation-status">Implementation Status</a></li>
+                <li><a href="#migration-roadmap">Migration Roadmap</a></li>
+                <li><a href="#schema-details">Schema Details</a></li>
+            </ul>
+        </nav>
+
+        <div id="summary" class="summary-grid">
+            <div class="summary-card">
+                <h3>Total Tables</h3>
+                <div class="summary-number">76</div>
+                <p>Comprehensive schema design</p>
+            </div>
+            <div class="summary-card">
+                <h3>Implemented</h3>
+                <div class="summary-number" style="color: #27ae60;">22</div>
+                <p>Currently in database</p>
+            </div>
+            <div class="summary-card">
+                <h3>Not Implemented</h3>
+                <div class="summary-number" style="color: #e74c3c;">54</div>
+                <p>Needed for full features</p>
+            </div>
+            <div class="summary-card">
+                <h3>Critical Priority</h3>
+                <div class="summary-number" style="color: #c0392b;">18</div>
+                <p>Essential for MVP</p>
+            </div>
+        </div>
+
+        <section id="current-state" class="status-section">
+            <h2>Current Database State</h2>
+            <p>The BikeNode database currently consists of three main components:</p>
+            
+            <h3>1. Discord Bot Tables (Implemented)</h3>
+            <ul>
+                <li>User management for Discord integration</li>
+                <li>Server configuration and roles</li>
+                <li>Motorcycle ownership tracking</li>
+                <li>Timeline events and sharing</li>
+            </ul>
+
+            <h3>2. Vehicle Specification Tables (Implemented)</h3>
+            <ul>
+                <li>Motorcycle specifications (JSONB-based)</li>
+                <li>Electrified bikes (e-bikes and electric motorcycles)</li>
+                <li>Bicycle specifications (normalized schema from 99spokes)</li>
+            </ul>
+
+            <h3>3. Missing Web Application Tables (Not Implemented)</h3>
+            <ul>
+                <li>Web authentication and user profiles</li>
+                <li>Virtual garage and maintenance tracking</li>
+                <li>Route planning and ride tracking</li>
+                <li>Marketplace and community features</li>
+                <li>Achievements and gamification</li>
+                <li>Direct messaging and notifications</li>
+            </ul>
+        </section>
+
+        <section id="implementation-status" class="status-section">
+            <h2>Implementation Status Overview</h2>
+            
+            <div class="status-legend">
+                <div class="legend-item">
+                    <span class="status-badge status-implemented">✅ Implemented</span>
+                    <span>Table exists in current database</span>
+                </div>
+                <div class="legend-item">
+                    <span class="status-badge status-not-implemented">❌ Not Implemented</span>
+                    <span>Table needs to be created</span>
+                </div>
+                <div class="legend-item">
+                    <span class="status-badge priority-critical">Critical</span>
+                    <span>Essential for MVP</span>
+                </div>
+                <div class="legend-item">
+                    <span class="status-badge priority-high">High</span>
+                    <span>Core features</span>
+                </div>
+                <div class="legend-item">
+                    <span class="status-badge priority-medium">Medium</span>
+                    <span>Enhanced features</span>
+                </div>
+                <div class="legend-item">
+                    <span class="status-badge priority-low">Low</span>
+                    <span>Nice to have</span>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature Area</th>
+                        <th>Table Name</th>
+                        <th>Status</th>
+                        <th>Priority</th>
+                        <th>Justification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Authentication Tables -->
+                    <tr>
+                        <td rowspan="3">Authentication</td>
+                        <td>users</td>
+                        <td><span class="status-badge status-implemented">✅ Implemented</span></td>
+                        <td><span class="status-badge priority-critical">Critical</span></td>
+                        <td>Core user authentication - currently Discord-only, needs web auth fields</td>
+                    </tr>
+                    <tr>
+                        <td>user_sessions</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-critical">Critical</span></td>
+                        <td>Required for web session management and security</td>
+                    </tr>
+                    <tr>
+                        <td>oauth_connections</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-high">High</span></td>
+                        <td>Enables Strava, Google, and other OAuth integrations</td>
+                    </tr>
+
+                    <!-- Profile Tables -->
+                    <tr>
+                        <td rowspan="3">User Profiles</td>
+                        <td>user_profiles</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-critical">Critical</span></td>
+                        <td>Extended user information for web profiles</td>
+                    </tr>
+                    <tr>
+                        <td>user_badges</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-medium">Medium</span></td>
+                        <td>User recognition and verification system</td>
+                    </tr>
+                    <tr>
+                        <td>user_statistics</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-high">High</span></td>
+                        <td>Aggregated stats for user dashboards</td>
+                    </tr>
+
+                    <!-- Dashboard Tables -->
+                    <tr>
+                        <td rowspan="2">Dashboard</td>
+                        <td>user_preferences</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-high">High</span></td>
+                        <td>User settings and customization</td>
+                    </tr>
+                    <tr>
+                        <td>dashboard_widgets</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-low">Low</span></td>
+                        <td>Custom dashboard layouts</td>
+                    </tr>
+
+                    <!-- Virtual Garage Tables -->
+                    <tr>
+                        <td rowspan="3">Virtual Garage</td>
+                        <td>bikes</td>
+                        <td><span class="status-badge status-implemented">✅ Implemented</span></td>
+                        <td><span class="status-badge priority-critical">Critical</span></td>
+                        <td>Core bike data - exists for bicycles, needs web version for user bikes</td>
+                    </tr>
+                    <tr>
+                        <td>bike_components</td>
+                        <td><span class="status-badge status-implemented">✅ Implemented</span></td>
+                        <td><span class="status-badge priority-high">High</span></td>
+                        <td>Component tracking - exists for specs, needs user component tracking</td>
+                    </tr>
+                    <tr>
+                        <td>bike_maintenance</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-high">High</span></td>
+                        <td>Service history and maintenance scheduling</td>
+                    </tr>
+
+                    <!-- Route Planning Tables -->
+                    <tr>
+                        <td rowspan="2">Route Planning</td>
+                        <td>routes</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-critical">Critical</span></td>
+                        <td>Essential for route planner feature</td>
+                    </tr>
+                    <tr>
+                        <td>route_points_of_interest</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-medium">Medium</span></td>
+                        <td>Enhanced route planning with POIs</td>
+                    </tr>
+
+                    <!-- Marketplace Tables -->
+                    <tr>
+                        <td rowspan="2">Marketplace</td>
+                        <td>marketplace_listings</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-critical">Critical</span></td>
+                        <td>Core marketplace functionality</td>
+                    </tr>
+                    <tr>
+                        <td>marketplace_messages</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-critical">Critical</span></td>
+                        <td>Buyer-seller communication</td>
+                    </tr>
+
+                    <!-- Community Tables -->
+                    <tr>
+                        <td rowspan="3">Community Forums</td>
+                        <td>forum_categories</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-high">High</span></td>
+                        <td>Forum organization structure</td>
+                    </tr>
+                    <tr>
+                        <td>forum_topics</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-high">High</span></td>
+                        <td>Discussion threads</td>
+                    </tr>
+                    <tr>
+                        <td>forum_posts</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-high">High</span></td>
+                        <td>User posts and replies</td>
+                    </tr>
+
+                    <!-- Social Features -->
+                    <tr>
+                        <td rowspan="3">Social Features</td>
+                        <td>user_follows</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-high">High</span></td>
+                        <td>Following system for social features</td>
+                    </tr>
+                    <tr>
+                        <td>user_blocks</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-medium">Medium</span></td>
+                        <td>User safety and privacy</td>
+                    </tr>
+                    <tr>
+                        <td>activity_feed</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-high">High</span></td>
+                        <td>Social activity tracking</td>
+                    </tr>
+
+                    <!-- Rides & Activities -->
+                    <tr>
+                        <td rowspan="3">Rides & Activities</td>
+                        <td>rides</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-critical">Critical</span></td>
+                        <td>Core ride tracking functionality</td>
+                    </tr>
+                    <tr>
+                        <td>ride_segments</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-medium">Medium</span></td>
+                        <td>Strava-like segment tracking</td>
+                    </tr>
+                    <tr>
+                        <td>ride_segment_efforts</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-medium">Medium</span></td>
+                        <td>Segment leaderboards</td>
+                    </tr>
+
+                    <!-- Achievements -->
+                    <tr>
+                        <td rowspan="4">Achievements</td>
+                        <td>achievements</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-medium">Medium</span></td>
+                        <td>Gamification system</td>
+                    </tr>
+                    <tr>
+                        <td>user_achievements</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-medium">Medium</span></td>
+                        <td>User achievement tracking</td>
+                    </tr>
+                    <tr>
+                        <td>achievement_progress</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-low">Low</span></td>
+                        <td>Progress tracking for achievements</td>
+                    </tr>
+                    <tr>
+                        <td>leaderboards</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-medium">Medium</span></td>
+                        <td>Competitive features</td>
+                    </tr>
+
+                    <!-- Messaging -->
+                    <tr>
+                        <td rowspan="3">Messaging</td>
+                        <td>conversations</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-high">High</span></td>
+                        <td>Direct messaging system</td>
+                    </tr>
+                    <tr>
+                        <td>messages</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-high">High</span></td>
+                        <td>Message storage</td>
+                    </tr>
+                    <tr>
+                        <td>message_read_receipts</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-low">Low</span></td>
+                        <td>Read status tracking</td>
+                    </tr>
+
+                    <!-- Admin & Security -->
+                    <tr>
+                        <td rowspan="3">Admin & Security</td>
+                        <td>audit_logs</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-critical">Critical</span></td>
+                        <td>Security and compliance tracking</td>
+                    </tr>
+                    <tr>
+                        <td>security_events</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-critical">Critical</span></td>
+                        <td>Security monitoring</td>
+                    </tr>
+                    <tr>
+                        <td>rate_limits</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-high">High</span></td>
+                        <td>API and action rate limiting</td>
+                    </tr>
+
+                    <!-- Supporting Tables -->
+                    <tr>
+                        <td rowspan="2">Supporting</td>
+                        <td>notifications</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-critical">Critical</span></td>
+                        <td>User notification system</td>
+                    </tr>
+                    <tr>
+                        <td>media_uploads</td>
+                        <td><span class="status-badge status-not-implemented">❌ Not Implemented</span></td>
+                        <td><span class="status-badge priority-critical">Critical</span></td>
+                        <td>File and image management</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="migration-roadmap" class="status-section">
+            <h2>Migration Roadmap</h2>
+            <p>Recommended phased approach for implementing missing tables:</p>
+
+            <div class="table-section">
+                <h3>Phase 1: Core Web Application (Weeks 1-2)</h3>
+                <p><strong>Goal:</strong> Enable basic web authentication and user profiles</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order</th>
+                            <th>Table</th>
+                            <th>Dependencies</th>
+                            <th>Estimated Effort</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>user_sessions</td>
+                            <td>users (exists)</td>
+                            <td>2 hours</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>user_profiles</td>
+                            <td>users</td>
+                            <td>3 hours</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>user_preferences</td>
+                            <td>users</td>
+                            <td>2 hours</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>media_uploads</td>
+                            <td>users</td>
+                            <td>3 hours</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>notifications</td>
+                            <td>users</td>
+                            <td>2 hours</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-section">
+                <h3>Phase 2: Core Features (Weeks 3-4)</h3>
+                <p><strong>Goal:</strong> Enable virtual garage, routes, and rides</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order</th>
+                            <th>Table</th>
+                            <th>Dependencies</th>
+                            <th>Estimated Effort</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>6</td>
+                            <td>bikes (web version)</td>
+                            <td>users, media_uploads</td>
+                            <td>4 hours</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>bike_maintenance</td>
+                            <td>bikes</td>
+                            <td>3 hours</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>routes</td>
+                            <td>users</td>
+                            <td>4 hours</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>rides</td>
+                            <td>users, bikes, routes</td>
+                            <td>5 hours</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>user_statistics</td>
+                            <td>users, rides</td>
+                            <td>3 hours</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-section">
+                <h3>Phase 3: Social & Marketplace (Weeks 5-6)</h3>
+                <p><strong>Goal:</strong> Enable marketplace and social features</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order</th>
+                            <th>Table</th>
+                            <th>Dependencies</th>
+                            <th>Estimated Effort</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>11</td>
+                            <td>marketplace_listings</td>
+                            <td>users, media_uploads</td>
+                            <td>4 hours</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>marketplace_messages</td>
+                            <td>marketplace_listings</td>
+                            <td>3 hours</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>user_follows</td>
+                            <td>users</td>
+                            <td>2 hours</td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>activity_feed</td>
+                            <td>users</td>
+                            <td>3 hours</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>conversations</td>
+                            <td>users</td>
+                            <td>3 hours</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>messages</td>
+                            <td>conversations</td>
+                            <td>3 hours</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-section">
+                <h3>Phase 4: Community & Admin (Weeks 7-8)</h3>
+                <p><strong>Goal:</strong> Enable forums and admin tools</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order</th>
+                            <th>Table</th>
+                            <th>Dependencies</th>
+                            <th>Estimated Effort</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>17</td>
+                            <td>forum_categories</td>
+                            <td>None</td>
+                            <td>2 hours</td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td>forum_topics</td>
+                            <td>forum_categories, users</td>
+                            <td>3 hours</td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td>forum_posts</td>
+                            <td>forum_topics</td>
+                            <td>3 hours</td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>audit_logs</td>
+                            <td>users</td>
+                            <td>2 hours</td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td>security_events</td>
+                            <td>users</td>
+                            <td>2 hours</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="schema-details" class="table-section">
+            <h2>Detailed Schema Definitions</h2>
+            <p>Complete SQL definitions for all tables, organized by feature area.</p>
+
+            <h3>Authentication Tables</h3>
+            
+            <h4>users table (Core authentication)</h4>
+            <div class="implementation-note">
+                <strong>Status:</strong> ✅ Partially Implemented - Current implementation is Discord-focused. Needs web authentication fields.
+            </div>
+            <div class="schema-block">
+CREATE TABLE users (
+    id BIGSERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    email_verified BOOLEAN DEFAULT FALSE,
+    email_verification_token VARCHAR(255),
+    email_verified_at TIMESTAMP,
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW(),
+    last_login_at TIMESTAMP,
+    login_count INTEGER DEFAULT 0,
+    failed_login_attempts INTEGER DEFAULT 0,
+    locked_until TIMESTAMP,
+    password_reset_token VARCHAR(255),
+    password_reset_expires TIMESTAMP,
+    two_factor_enabled BOOLEAN DEFAULT FALSE,
+    two_factor_secret VARCHAR(255),
+    backup_codes TEXT[]
+);
+            </div>
+
+            <h4>user_sessions table</h4>
+            <div class="implementation-note">
+                <strong>Status:</strong> ❌ Not Implemented - Critical for web session management
+            </div>
+            <div class="schema-block">
+CREATE TABLE user_sessions (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT REFERENCES users(id) ON DELETE CASCADE,
+    session_token VARCHAR(255) UNIQUE NOT NULL,
+    refresh_token VARCHAR(255) UNIQUE,
+    device_fingerprint VARCHAR(255),
+    device_name VARCHAR(100),
+    device_type VARCHAR(50), -- mobile, desktop, tablet
+    browser VARCHAR(100),
+    os VARCHAR(100),
+    ip_address INET,
+    country_code VARCHAR(2),
+    city VARCHAR(100),
+    is_current BOOLEAN DEFAULT FALSE,
+    expires_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    last_used_at TIMESTAMP DEFAULT NOW()
+);
+            </div>
+
+            <h4>oauth_connections table</h4>
+            <div class="implementation-note">
+                <strong>Status:</strong> ❌ Not Implemented - Needed for Strava, Google, and other OAuth providers
+            </div>
+            <div class="schema-block">
+CREATE TABLE oauth_connections (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT REFERENCES users(id) ON DELETE CASCADE,
+    provider VARCHAR(50) NOT NULL, -- discord, strava, google
+    provider_user_id VARCHAR(255) NOT NULL,
+    access_token TEXT,
+    refresh_token TEXT,
+    expires_at TIMESTAMP,
+    scope TEXT,
+    profile_data JSONB,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW(),
+    UNIQUE(provider, provider_user_id)
+);
+            </div>
+
+            <h3>Profile Tables</h3>
+            
+            <h4>user_profiles table</h4>
+            <div class="implementation-note">
+                <strong>Status:</strong> ❌ Not Implemented - Essential for user profile pages
+            </div>
+            <div class="schema-block">
+CREATE TABLE user_profiles (
+    user_id BIGINT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+    display_name VARCHAR(100),
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    avatar_url VARCHAR(500),
+    cover_photo_url VARCHAR(500),
+    tagline VARCHAR(200),
+    bio TEXT,
+    location VARCHAR(200),
+    timezone VARCHAR(100),
+    birth_date DATE,
+    gender VARCHAR(20),
+    website_url VARCHAR(500),
+    
+    -- Social links
+    strava_username VARCHAR(100),
+    instagram_username VARCHAR(100),
+    discord_username VARCHAR(100),
+    twitter_username VARCHAR(100),
+    youtube_channel VARCHAR(100),
+    
+    -- Profile settings
+    is_public BOOLEAN DEFAULT TRUE,
+    show_email BOOLEAN DEFAULT FALSE,
+    show_location BOOLEAN DEFAULT TRUE,
+    show_birth_date BOOLEAN DEFAULT FALSE,
+    allow_friend_requests BOOLEAN DEFAULT TRUE,
+    allow_messages BOOLEAN DEFAULT TRUE,
+    
+    -- Verification status
+    is_verified BOOLEAN DEFAULT FALSE,
+    is_premium BOOLEAN DEFAULT FALSE,
+    verification_date TIMESTAMP,
+    premium_expires_at TIMESTAMP,
+    
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+            </div>
+
+            <h4>user_statistics table</h4>
+            <div class="implementation-note">
+                <strong>Status:</strong> ❌ Not Implemented - Needed for dashboard statistics
+            </div>
+            <div class="schema-block">
+CREATE TABLE user_statistics (
+    user_id BIGINT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+    
+    -- Bike stats
+    total_bikes INTEGER DEFAULT 0,
+    active_bikes INTEGER DEFAULT 0,
+    bikes_added_this_year INTEGER DEFAULT 0,
+    
+    -- Ride stats
+    total_rides INTEGER DEFAULT 0,
+    total_distance_miles DECIMAL(10,2) DEFAULT 0,
+    total_distance_km DECIMAL(10,2) DEFAULT 0,
+    total_elevation_feet INTEGER DEFAULT 0,
+    total_elevation_meters INTEGER DEFAULT 0,
+    total_time_minutes INTEGER DEFAULT 0,
+    
+    -- Social stats
+    followers_count INTEGER DEFAULT 0,
+    following_count INTEGER DEFAULT 0,
+    friends_count INTEGER DEFAULT 0,
+    followers_this_week INTEGER DEFAULT 0,
+    following_this_week INTEGER DEFAULT 0,
+    
+    -- Content stats
+    posts_count INTEGER DEFAULT 0,
+    posts_this_month INTEGER DEFAULT 0,
+    comments_count INTEGER DEFAULT 0,
+    kudos_received INTEGER DEFAULT 0,
+    kudos_given INTEGER DEFAULT 0,
+    
+    -- Community stats
+    communities_count INTEGER DEFAULT 0,
+    community_posts INTEGER DEFAULT 0,
+    reputation_score INTEGER DEFAULT 0,
+    
+    -- Achievement stats
+    achievements_count INTEGER DEFAULT 0,
+    new_achievements INTEGER DEFAULT 0,
+    achievement_points INTEGER DEFAULT 0,
+    
+    -- Calculated at different intervals
+    last_calculated_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+            </div>
+
+            <h3>Virtual Garage Tables</h3>
+            
+            <h4>bikes table (User bikes)</h4>
+            <div class="implementation-note">
+                <strong>Status:</strong> ⚠️ Partial - Exists for bicycle specs, needs user bike tracking version
+            </div>
+            <div class="schema-block">
+CREATE TABLE bikes (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT REFERENCES users(id) ON DELETE CASCADE,
+    
+    -- Basic information
+    name VARCHAR(200) NOT NULL,
+    make VARCHAR(100),
+    model VARCHAR(100),
+    year INTEGER,
+    bike_type VARCHAR(50), -- road, mountain, hybrid, electric, motorcycle
+    category VARCHAR(50), -- sport, touring, commuter, etc
+    
+    -- Specifications (JSONB for flexibility)
+    specifications JSONB,
+    
+    -- Status and tracking
+    status VARCHAR(20) DEFAULT 'active', -- active, sold, stolen, maintenance
+    purchase_date DATE,
+    purchase_price DECIMAL(10,2),
+    current_value DECIMAL(10,2),
+    odometer_miles DECIMAL(10,2) DEFAULT 0,
+    odometer_km DECIMAL(10,2) DEFAULT 0,
+    
+    -- Media
+    primary_image_url VARCHAR(500),
+    images JSONB, -- array of image URLs with metadata
+    
+    -- Location and storage
+    storage_location VARCHAR(200),
+    insurance_policy VARCHAR(100),
+    insurance_value DECIMAL(10,2),
+    
+    -- Sharing and privacy
+    is_public BOOLEAN DEFAULT TRUE,
+    shared_with_communities BIGINT[],
+    
+    -- Metadata
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW(),
+    deleted_at TIMESTAMP -- soft delete
+);
+            </div>
+
+            <h4>bike_maintenance table</h4>
+            <div class="implementation-note">
+                <strong>Status:</strong> ❌ Not Implemented - Critical for maintenance tracking feature
+            </div>
+            <div class="schema-block">
+CREATE TABLE bike_maintenance (
+    id BIGSERIAL PRIMARY KEY,
+    bike_id BIGINT REFERENCES bikes(id) ON DELETE CASCADE,
+    component_id BIGINT REFERENCES bike_components(id) ON DELETE SET NULL,
+    
+    -- Maintenance details
+    maintenance_type VARCHAR(50) NOT NULL, -- service, repair, upgrade, cleaning
+    title VARCHAR(200) NOT NULL,
+    description TEXT,
+    
+    -- Service information
+    service_date DATE NOT NULL,
+    performed_by VARCHAR(100), -- shop name or "self"
+    labor_cost DECIMAL(8,2) DEFAULT 0,
+    parts_cost DECIMAL(8,2) DEFAULT 0,
+    total_cost DECIMAL(8,2) DEFAULT 0,
+    
+    -- Tracking
+    odometer_at_service DECIMAL(10,2),
+    next_service_miles DECIMAL(10,2),
+    next_service_date DATE,
+    
+    -- Documentation
+    notes TEXT,
+    images JSONB, -- before/after photos
+    receipt_image_url VARCHAR(500),
+    warranty_info TEXT,
+    
+    -- Status and scheduling
+    status VARCHAR(20) DEFAULT 'completed', -- scheduled, in_progress, completed, cancelled
+    reminder_sent BOOLEAN DEFAULT FALSE,
+    
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+            </div>
+
+            <h3>Route Planning Tables</h3>
+            
+            <h4>routes table</h4>
+            <div class="implementation-note">
+                <strong>Status:</strong> ❌ Not Implemented - Essential for route planner feature
+            </div>
+            <div class="schema-block">
+CREATE TABLE routes (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT REFERENCES users(id) ON DELETE CASCADE,
+    
+    -- Basic route information
+    name VARCHAR(200) NOT NULL,
+    description TEXT,
+    route_type VARCHAR(50), -- road, mountain, gravel, mixed
+    difficulty VARCHAR(20), -- easy, moderate, hard, expert
+    
+    -- Geographic data
+    start_latitude DECIMAL(10, 6),
+    start_longitude DECIMAL(10, 6),
+    end_latitude DECIMAL(10, 6),
+    end_longitude DECIMAL(10, 6),
+    waypoints JSONB, -- array of {lat, lng, name, type}
+    route_geometry JSONB, -- full route polyline
+    
+    -- Route statistics
+    distance_miles DECIMAL(8,2),
+    distance_km DECIMAL(8,2),
+    elevation_gain_feet INTEGER,
+    elevation_gain_meters INTEGER,
+    elevation_loss_feet INTEGER,
+    elevation_loss_meters INTEGER,
+    estimated_time_minutes INTEGER,
+    max_elevation_feet INTEGER,
+    min_elevation_feet INTEGER,
+    
+    -- Surface analysis
+    surface_paved_percent DECIMAL(5,2),
+    surface_gravel_percent DECIMAL(5,2),
+    surface_dirt_percent DECIMAL(5,2),
+    surface_unknown_percent DECIMAL(5,2),
+    
+    -- Route preferences
+    avoid_highways BOOLEAN DEFAULT FALSE,
+    avoid_tolls BOOLEAN DEFAULT FALSE,
+    prefer_bike_paths BOOLEAN DEFAULT TRUE,
+    routing_engine VARCHAR(50), -- osrm, graphhopper, valhalla
+    
+    -- Sharing and privacy
+    is_public BOOLEAN DEFAULT TRUE,
+    is_featured BOOLEAN DEFAULT FALSE,
+    privacy_level VARCHAR(20) DEFAULT 'public', -- public, friends, private
+    
+    -- Engagement
+    views_count INTEGER DEFAULT 0,
+    likes_count INTEGER DEFAULT 0,
+    saves_count INTEGER DEFAULT 0,
+    downloads_count INTEGER DEFAULT 0,
+    
+    -- Import/Export
+    gpx_file_url VARCHAR(500),
+    original_filename VARCHAR(255),
+    
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+            </div>
+
+            <h3>Marketplace Tables</h3>
+            
+            <h4>marketplace_listings table</h4>
+            <div class="implementation-note">
+                <strong>Status:</strong> ❌ Not Implemented - Core marketplace functionality
+            </div>
+            <div class="schema-block">
+CREATE TABLE marketplace_listings (
+    id BIGSERIAL PRIMARY KEY,
+    seller_id BIGINT REFERENCES users(id) ON DELETE CASCADE,
+    
+    -- Listing basics
+    title VARCHAR(200) NOT NULL,
+    description TEXT,
+    category VARCHAR(50) NOT NULL, -- bike, parts, gear, accessories
+    subcategory VARCHAR(50),
+    condition VARCHAR(20), -- new, excellent, good, fair, poor
+    
+    -- Item details
+    make VARCHAR(100),
+    model VARCHAR(100),
+    year INTEGER,
+    size VARCHAR(50),
+    color VARCHAR(50),
+    specifications JSONB,
+    
+    -- Pricing
+    price DECIMAL(10,2) NOT NULL,
+    currency VARCHAR(3) DEFAULT 'USD',
+    price_type VARCHAR(20) DEFAULT 'fixed', -- fixed, negotiable, auction
+    original_price DECIMAL(10,2),
+    is_price_firm BOOLEAN DEFAULT FALSE,
+    accepts_trades BOOLEAN DEFAULT FALSE,
+    
+    -- Location
+    location_city VARCHAR(100),
+    location_state VARCHAR(100),
+    location_country VARCHAR(100),
+    postal_code VARCHAR(20),
+    latitude DECIMAL(10, 6),
+    longitude DECIMAL(10, 6),
+    pickup_only BOOLEAN DEFAULT FALSE,
+    shipping_available BOOLEAN DEFAULT TRUE,
+    shipping_cost DECIMAL(8,2),
+    
+    -- Media
+    images JSONB NOT NULL, -- at least one image required
+    video_url VARCHAR(500),
+    
+    -- Listing status
+    status VARCHAR(20) DEFAULT 'active', -- draft, active, sold, expired, removed
+    is_featured BOOLEAN DEFAULT FALSE,
+    boost_expires_at TIMESTAMP,
+    
+    -- Engagement tracking
+    views_count INTEGER DEFAULT 0,
+    watchers_count INTEGER DEFAULT 0,
+    inquiries_count INTEGER DEFAULT 0,
+    
+    -- Safety and verification
+    bike_id BIGINT REFERENCES bikes(id), -- if selling from garage
+    verification_status VARCHAR(20) DEFAULT 'unverified', -- unverified, pending, verified
+    verification_notes TEXT,
+    
+    -- Timing
+    posted_at TIMESTAMP DEFAULT NOW(),
+    expires_at TIMESTAMP,
+    sold_at TIMESTAMP,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+            </div>
+
+            <h3>Rides & Activities Tables</h3>
+            
+            <h4>rides table</h4>
+            <div class="implementation-note">
+                <strong>Status:</strong> ❌ Not Implemented - Core functionality for ride tracking
+            </div>
+            <div class="schema-block">
+CREATE TABLE rides (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT REFERENCES users(id) ON DELETE CASCADE,
+    bike_id BIGINT REFERENCES bikes(id) ON DELETE SET NULL,
+    route_id BIGINT REFERENCES routes(id) ON DELETE SET NULL,
+    
+    -- Ride basic info
+    title VARCHAR(200) NOT NULL,
+    description TEXT,
+    ride_type VARCHAR(50), -- training, commute, leisure, race, group
+    
+    -- Timing
+    started_at TIMESTAMP NOT NULL,
+    finished_at TIMESTAMP,
+    duration_seconds INTEGER,
+    moving_time_seconds INTEGER,
+    
+    -- Distance and location
+    distance_miles DECIMAL(8,2),
+    distance_km DECIMAL(8,2),
+    start_latitude DECIMAL(10, 6),
+    start_longitude DECIMAL(10, 6),
+    end_latitude DECIMAL(10, 6),
+    end_longitude DECIMAL(10, 6),
+    
+    -- Elevation
+    elevation_gain_feet INTEGER,
+    elevation_gain_meters INTEGER,
+    elevation_loss_feet INTEGER,
+    elevation_loss_meters INTEGER,
+    max_elevation_feet INTEGER,
+    min_elevation_feet INTEGER,
+    
+    -- Performance metrics
+    average_speed_mph DECIMAL(5,2),
+    average_speed_kmh DECIMAL(5,2),
+    max_speed_mph DECIMAL(5,2),
+    max_speed_kmh DECIMAL(5,2),
+    average_power_watts INTEGER,
+    max_power_watts INTEGER,
+    normalized_power INTEGER,
+    average_heart_rate INTEGER,
+    max_heart_rate INTEGER,
+    calories_burned INTEGER,
+    
+    -- GPS and tracking data
+    gps_track_data JSONB, -- full GPS track points
+    has_gps_data BOOLEAN DEFAULT FALSE,
+    track_file_url VARCHAR(500),
+    
+    -- Weather
+    weather_condition VARCHAR(50),
+    temperature_f INTEGER,
+    temperature_c INTEGER,
+    humidity_percent INTEGER,
+    wind_speed_mph DECIMAL(4,1),
+    
+    -- Social and sharing
+    is_public BOOLEAN DEFAULT TRUE,
+    kudos_count INTEGER DEFAULT 0,
+    comments_count INTEGER DEFAULT 0,
+    
+    -- Import/sync information
+    source VARCHAR(50), -- manual, strava, garmin, wahoo
+    external_id VARCHAR(100),
+    imported_at TIMESTAMP,
+    
+    -- Media
+    photos JSONB,
+    
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+            </div>
+
+            <h3>Additional Tables</h3>
+            <p>The complete schema includes many more tables for:</p>
+            <ul>
+                <li>Community Forums (categories, topics, posts)</li>
+                <li>Social Features (follows, blocks, activity feed)</li>
+                <li>Direct Messaging (conversations, messages)</li>
+                <li>Events & Calendar (events, participants, recurring)</li>
+                <li>Achievements & Gamification (achievements, progress, leaderboards)</li>
+                <li>Admin & Security (audit logs, security events, rate limits)</li>
+                <li>Search & Discovery (search index, tags, trending)</li>
+                <li>Gear Collection (gear items, usage logs)</li>
+                <li>Supporting Tables (notifications, media uploads)</li>
+            </ul>
+
+            <div class="implementation-note">
+                <strong>Note:</strong> Full schema definitions for all 76 tables are available in the original DATABASE_FIELDS_ANALYSIS.md document. This HTML version focuses on the most critical tables for implementation.
+            </div>
+        </section>
+
+        <section class="status-section">
+            <h2>Performance Considerations</h2>
+            
+            <h3>Essential Indexes</h3>
+            <div class="schema-block">
+-- User lookups
+CREATE INDEX idx_users_username ON users(username);
+CREATE INDEX idx_users_email ON users(email);
+CREATE INDEX idx_users_active ON users(is_active);
+
+-- Profile and social
+CREATE INDEX idx_user_follows_follower ON user_follows(follower_id);
+CREATE INDEX idx_user_follows_following ON user_follows(following_id);
+CREATE INDEX idx_activity_feed_user_public ON activity_feed(user_id, is_public, created_at);
+
+-- Content indexes
+CREATE INDEX idx_bikes_user_status ON bikes(user_id, status);
+CREATE INDEX idx_rides_user_date ON rides(user_id, started_at);
+CREATE INDEX idx_routes_public_featured ON routes(is_public, is_featured);
+CREATE INDEX idx_marketplace_status_location ON marketplace_listings(status, location_city, location_state);
+
+-- Forum indexes
+CREATE INDEX idx_forum_topics_category_active ON forum_topics(category_id, last_activity_at);
+CREATE INDEX idx_forum_posts_topic ON forum_posts(topic_id, created_at);
+
+-- Performance and monitoring
+CREATE INDEX idx_audit_logs_user_date ON audit_logs(user_id, created_at);
+CREATE INDEX idx_security_events_severity ON security_events(severity, created_at);
+            </div>
+
+            <h3>Database Size Estimations (per 10,000 users)</h3>
+            <ul>
+                <li><strong>User data:</strong> ~50MB (profiles, preferences, sessions)</li>
+                <li><strong>Bikes & Components:</strong> ~200MB (assuming 3 bikes/user with photos)</li>
+                <li><strong>Rides & GPS data:</strong> ~5GB (100 rides/user with GPS tracks)</li>
+                <li><strong>Routes:</strong> ~500MB (10 routes/user)</li>
+                <li><strong>Forum posts:</strong> ~1GB (100 posts/user average)</li>
+                <li><strong>Messages:</strong> ~2GB (1000 messages/user)</li>
+                <li><strong>Media uploads:</strong> ~50GB (photos, avatars, attachments)</li>
+                <li><strong>Total:</strong> ~60GB per 10,000 active users</li>
+            </ul>
+
+            <h3>Performance Recommendations</h3>
+            <ol>
+                <li><strong>Partition large tables</strong> by date (rides, messages, activity_feed)</li>
+                <li><strong>Archive old data</strong> after 2 years to separate tables</li>
+                <li><strong>Use read replicas</strong> for heavy read operations</li>
+                <li><strong>Cache frequently accessed data</strong> (user profiles, statistics)</li>
+                <li><strong>Implement connection pooling</strong> for optimal resource usage</li>
+            </ol>
+        </section>
+
+        <section class="status-section">
+            <h2>Next Steps</h2>
+            
+            <h3>Immediate Actions (Week 1)</h3>
+            <ol>
+                <li>Create migration files for Phase 1 tables</li>
+                <li>Update user table to support web authentication</li>
+                <li>Implement user_sessions for secure web access</li>
+                <li>Create user_profiles for extended user information</li>
+                <li>Set up media_uploads for file management</li>
+            </ol>
+
+            <h3>Short Term (Weeks 2-4)</h3>
+            <ol>
+                <li>Implement core feature tables (garage, routes, rides)</li>
+                <li>Set up marketplace infrastructure</li>
+                <li>Create social feature tables</li>
+                <li>Implement notification system</li>
+            </ol>
+
+            <h3>Medium Term (Weeks 5-8)</h3>
+            <ol>
+                <li>Complete community forum implementation</li>
+                <li>Set up admin and moderation tools</li>
+                <li>Implement achievements and gamification</li>
+                <li>Add search and discovery features</li>
+            </ol>
+
+            <h3>Long Term Considerations</h3>
+            <ul>
+                <li>Plan for data archival strategy</li>
+                <li>Implement read replica configuration</li>
+                <li>Set up monitoring and alerting</li>
+                <li>Create backup and disaster recovery procedures</li>
+                <li>Plan for horizontal scaling needs</li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>

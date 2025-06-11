@@ -1,0 +1,46 @@
+<!-- Maintenance Schedule Section using global CSS components -->
+<div class="maintenance-schedule">
+    <div class="flex-between mb-4">
+        <div>
+            <h2 class="font-xl font-semibold">Maintenance Schedule</h2>
+            <p class="text-secondary">Keep your bikes in top condition</p>
+        </div>
+        <button class="btn btn-primary" onclick="openAddMaintenanceModal()">
+            <span>➕</span>
+            Schedule Maintenance
+        </button>
+    </div>
+    
+    <!-- Maintenance Filters -->
+    <div class="card mb-4">
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-maintenance-filter="all">All Tasks</button>
+            <button class="filter-btn" data-maintenance-filter="overdue">
+                <span class="badge badge-danger">Overdue</span>
+            </button>
+            <button class="filter-btn" data-maintenance-filter="due-soon">
+                <span class="badge badge-warning">Due Soon</span>
+            </button>
+            <button class="filter-btn" data-maintenance-filter="upcoming">
+                <span class="badge badge-success">Upcoming</span>
+            </button>
+            <button class="filter-btn" data-maintenance-filter="completed">Completed</button>
+        </div>
+    </div>
+    
+    <!-- Maintenance List -->
+    <div class="list" id="maintenanceList">
+        <!-- Maintenance items will be dynamically loaded here -->
+    </div>
+    
+    <!-- Empty State -->
+    <div class="text-center p-5 d-none" id="maintenanceEmpty">
+        <div class="mb-3" style="font-size: 4rem;">🔧</div>
+        <h3 class="font-lg font-semibold text-primary mb-2">No maintenance scheduled</h3>
+        <p class="text-secondary mb-4">Keep your bikes running smoothly by scheduling regular maintenance</p>
+        <button class="btn btn-secondary" onclick="openAddMaintenanceModal()">
+            <span>➕</span>
+            Schedule Your First Task
+        </button>
+    </div>
+</div>

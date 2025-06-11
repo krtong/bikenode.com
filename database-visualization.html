@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BikeNode Database Visualization</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        .database-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .database-section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .database-section h2 {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+        }
+
+        .exists {
+            border-top: 5px solid #27ae60;
+        }
+
+        .exists h2 {
+            color: #27ae60;
+            border-bottom-color: #27ae60;
+        }
+
+        .needed {
+            border-top: 5px solid #e74c3c;
+        }
+
+        .needed h2 {
+            color: #e74c3c;
+            border-bottom-color: #e74c3c;
+        }
+
+        .table-group {
+            margin-bottom: 25px;
+        }
+
+        .table-group h3 {
+            color: #34495e;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            background: #ecf0f1;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+
+        .table-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-left: 20px;
+        }
+
+        .table-item {
+            background: #f8f9fa;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+            font-size: 0.9em;
+        }
+
+        .exists .table-item {
+            border-left-color: #27ae60;
+        }
+
+        .needed .table-item {
+            border-left-color: #e74c3c;
+        }
+
+        .summary {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .summary-item {
+            padding: 20px;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+
+        .summary-number {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .summary-label {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-box {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+        }
+
+        .critical-tables {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .critical-tables h3 {
+            color: #856404;
+            margin-bottom: 15px;
+        }
+
+        .critical-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+        }
+
+        .critical-item {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border-left: 4px solid #f39c12;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .priority-badge {
+            background: #e74c3c;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        @media (max-width: 1024px) {
+            .database-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .table-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BikeNode Database Visualization</h1>
+        <p class="subtitle">Current Database Tables vs Required Tables</p>
+
+        <div class="summary">
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="summary-number" style="color: #27ae60;">22</div>
+                    <div class="summary-label">Tables Currently Exist</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-number" style="color: #e74c3c;">54</div>
+                    <div class="summary-label">Tables Need to be Created</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-number" style="color: #3498db;">76</div>
+                    <div class="summary-label">Total Tables Required</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-number" style="color: #f39c12;">29%</div>
+                    <div class="summary-label">Implementation Progress</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-box" style="background: #27ae60;"></div>
+                <span><strong>Green:</strong> Tables that currently exist in the database</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background: #e74c3c;"></div>
+                <span><strong>Red:</strong> Tables that need to be created</span>
+            </div>
+        </div>
+
+        <div class="critical-tables">
+            <h3>🚨 Critical Tables Needed for Basic Functionality</h3>
+            <div class="critical-list">
+                <div class="critical-item">
+                    <span>user_sessions</span>
+                    <span class="priority-badge">Web Auth</span>
+                </div>
+                <div class="critical-item">
+                    <span>user_profiles</span>
+                    <span class="priority-badge">Profiles</span>
+                </div>
+                <div class="critical-item">
+                    <span>routes</span>
+                    <span class="priority-badge">Route Planner</span>
+                </div>
+                <div class="critical-item">
+                    <span>rides</span>
+                    <span class="priority-badge">Ride Tracking</span>
+                </div>
+                <div class="critical-item">
+                    <span>marketplace_listings</span>
+                    <span class="priority-badge">Marketplace</span>
+                </div>
+                <div class="critical-item">
+                    <span>notifications</span>
+                    <span class="priority-badge">User Alerts</span>
+                </div>
+                <div class="critical-item">
+                    <span>media_uploads</span>
+                    <span class="priority-badge">Images</span>
+                </div>
+                <div class="critical-item">
+                    <span>audit_logs</span>
+                    <span class="priority-badge">Security</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="database-grid">
+            <div class="database-section exists">
+                <h2>✅ Tables That Currently Exist (22)</h2>
+                
+                <div class="table-group">
+                    <h3>Discord Bot Tables (9)</h3>
+                    <div class="table-list">
+                        <div class="table-item">users</div>
+                        <div class="table-item">servers</div>
+                        <div class="table-item">server_configs</div>
+                        <div class="table-item">user_roles</div>
+                        <div class="table-item">motorcycles</div>
+                        <div class="table-item">ownerships</div>
+                        <div class="table-item">timeline_events</div>
+                        <div class="table-item">event_server_shares</div>
+                        <div class="table-item">user_server_visibility</div>
+                    </div>
+                </div>
+
+                <div class="table-group">
+                    <h3>Motorcycle/E-Bike Tables (4)</h3>
+                    <div class="table-list">
+                        <div class="table-item">motorcycle_specs</div>
+                        <div class="table-item">electrified_data</div>
+                        <div class="table-item">electrified_brands</div>
+                        <div class="table-item">motorcycles (enhanced)</div>
+                    </div>
+                </div>
+
+                <div class="table-group">
+                    <h3>Bicycle Specification Tables (9)</h3>
+                    <div class="table-list">
+                        <div class="table-item">manufacturers</div>
+                        <div class="table-item">bike_families</div>
+                        <div class="table-item">bikes</div>
+                        <div class="table-item">bike_components</div>
+                        <div class="table-item">bike_sizes</div>
+                        <div class="table-item">bike_geometry</div>
+                        <div class="table-item">bike_colors</div>
+                        <div class="table-item">bike_features</div>
+                        <div class="table-item">bike_images</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="database-section needed">
+                <h2>❌ Tables That Need to Be Created (54)</h2>
+                
+                <div class="table-group">
+                    <h3>Web Authentication & Sessions (3)</h3>
+                    <div class="table-list">
+                        <div class="table-item">user_sessions</div>
+                        <div class="table-item">oauth_connections</div>
+                        <div class="table-item">password_resets</div>
+                    </div>
+                </div>
+
+                <div class="table-group">
+                    <h3>User Profiles & Settings (5)</h3>
+                    <div class="table-list">
+                        <div class="table-item">user_profiles</div>
+                        <div class="table-item">user_badges</div>
+                        <div class="table-item">user_statistics</div>
+                        <div class="table-item">user_preferences</div>
+                        <div class="table-item">dashboard_widgets</div>
+                    </div>
+                </div>
+
+                <div class="table-group">
+                    <h3>Virtual Garage (3)</h3>
+                    <div class="table-list">
+                        <div class="table-item">user_bikes</div>
+                        <div class="table-item">bike_maintenance</div>
+                        <div class="table-item">user_bike_components</div>
+                    </div>
+                </div>
+
+                <div class="table-group">
+                    <h3>Route Planning (2)</h3>
+                    <div class="table-list">
+                        <div class="table-item">routes</div>
+                        <div class="table-item">route_points_of_interest</div>
+                    </div>
+                </div>
+
+                <div class="table-group">
+                    <h3>Rides & Activities (3)</h3>
+                    <div class="table-list">
+                        <div class="table-item">rides</div>
+                        <div class="table-item">ride_segments</div>
+                        <div class="table-item">ride_segment_efforts</div>
+                    </div>
+                </div>
+
+                <div class="table-group">
+                    <h3>Marketplace (4)</h3>
+                    <div class="table-list">
+                        <div class="table-item">marketplace_listings</div>
+                        <div class="table-item">marketplace_messages</div>
+                        <div class="table-item">marketplace_watchlist</div>
+                        <div class="table-item">marketplace_offers</div>
+                    </div>
+                </div>
+
+                <div class="table-group">
+                    <h3>Community Forums (3)</h3>
+                    <div class="table-list">
+                        <div class="table-item">forum_categories</div>
+                        <div class="table-item">forum_topics</div>
+                        <div class="table-item">forum_posts</div>
+                    </div>
+                </div>
+
+                <div class="table-group">
+                    <h3>Social Features (3)</h3>
+                    <div class="table-list">
+                        <div class="table-item">user_follows</div>
+                        <div class="table-item">user_blocks</div>
+                        <div class="table-item">activity_feed</div>
+                    </div>
+                </div>
+
+                <div class="table-group">
+                    <h3>Direct Messaging (4)</h3>
+                    <div class="table-list">
+                        <div class="table-item">conversations</div>
+                        <div class="table-item">conversation_participants</div>
+                        <div class="table-item">messages</div>
+                        <div class="table-item">message_read_receipts</div>
+                    </div>
+                </div>
+
+                <div class="table-group">
+                    <h3>Events & Calendar (3)</h3>
+                    <div class="table-list">
+                        <div class="table-item">events</div>
+                        <div class="table-item">event_participants</div>
+                        <div class="table-item">recurring_events</div>
+                    </div>
+                </div>
+
+                <div class="table-group">
+                    <h3>Achievements & Gamification (5)</h3>
+                    <div class="table-list">
+                        <div class="table-item">achievements</div>
+                        <div class="table-item">user_achievements</div>
+                        <div class="table-item">achievement_progress</div>
+                        <div class="table-item">leaderboards</div>
+                        <div class="table-item">leaderboard_entries</div>
+                    </div>
+                </div>
+
+                <div class="table-group">
+                    <h3>Admin & Security (3)</h3>
+                    <div class="table-list">
+                        <div class="table-item">audit_logs</div>
+                        <div class="table-item">security_events</div>
+                        <div class="table-item">rate_limits</div>
+                    </div>
+                </div>
+
+                <div class="table-group">
+                    <h3>Gear Collection (2)</h3>
+                    <div class="table-list">
+                        <div class="table-item">gear_items</div>
+                        <div class="table-item">gear_usage_log</div>
+                    </div>
+                </div>
+
+                <div class="table-group">
+                    <h3>Search & Discovery (5)</h3>
+                    <div class="table-list">
+                        <div class="table-item">search_index</div>
+                        <div class="table-item">tags</div>
+                        <div class="table-item">entity_tags</div>
+                        <div class="table-item">saved_searches</div>
+                        <div class="table-item">trending_topics</div>
+                    </div>
+                </div>
+
+                <div class="table-group">
+                    <h3>Supporting Tables (2)</h3>
+                    <div class="table-list">
+                        <div class="table-item">notifications</div>
+                        <div class="table-item">media_uploads</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary" style="margin-top: 40px;">
+            <h3 style="margin-bottom: 20px;">What This Means</h3>
+            <p style="margin-bottom: 15px;"><strong>Current State:</strong> The database is currently set up primarily for the Discord bot functionality and vehicle specifications (motorcycles, e-bikes, and bicycles). This represents about 29% of the total database needs.</p>
+            
+            <p style="margin-bottom: 15px;"><strong>What's Missing:</strong> The web application features that users see on the website (profiles, garage, routes, marketplace, forums, etc.) don't have their required database tables yet. This is why these features can't actually save or retrieve data.</p>
+            
+            <p><strong>Next Steps:</strong> The red tables need to be created through database migrations to enable the web features. The most critical ones are user sessions (for login), user profiles (for profile pages), routes (for the route planner), and marketplace listings (for buying/selling).</p>
+        </div>
+    </div>
+</body>
+</html>

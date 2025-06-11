@@ -10,12 +10,5 @@ module.exports = {
     realTimeUpdates: true,
     advancedWidgets: true,
     newNavigation: true
-  },
-  
-  // A/B testing configuration
-  abTesting: {
-    enabled: false,
-    percentage: 50, // Percentage of users to show v2
-    cookieName: 'dashboard_version'
   }
 };

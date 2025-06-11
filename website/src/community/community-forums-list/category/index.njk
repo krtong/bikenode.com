@@ -1,0 +1,566 @@
+---
+layout: bikenode-main-layout-01/bikenode-main-layout-01.njk
+title: Mountain Bikes
+subtitle: Mountain bike discussions, reviews, and recommendations
+breadcrumb:
+  - title: Forums
+    url: /forums/
+  - title: Mountain Bikes
+customCSS:
+  - "/assets/css/forums.css"
+  - "/assets/css/forum-category.css"
+inlineJS: |
+  function sortTopics(sortBy) {
+    const topics = document.querySelectorAll('.topic-item');
+    const sortButtons = document.querySelectorAll('.sort-btn');
+    
+    sortButtons.forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`[data-sort="${sortBy}"]`).classList.add('active');
+    
+    const topicsArray = Array.from(topics);
+    const topicsContainer = document.querySelector('.topics-list');
+    
+    topicsArray.sort((a, b) => {
+      switch(sortBy) {
+        case 'newest':
+          return new Date(b.dataset.created) - new Date(a.dataset.created);
+        case 'oldest':
+          return new Date(a.dataset.created) - new Date(b.dataset.created);
+        case 'popular':
+          return parseInt(b.dataset.replies) - parseInt(a.dataset.replies);
+        case 'views':
+          return parseInt(b.dataset.views) - parseInt(a.dataset.views);
+        default:
+          return 0;
+      }
+    });
+    
+    topicsContainer.innerHTML = '';
+    topicsArray.forEach(topic => topicsContainer.appendChild(topic));
+  }
+  
+  function filterTopics(filter) {
+    const topics = document.querySelectorAll('.topic-item');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`[data-filter="${filter}"]`).classList.add('active');
+    
+    topics.forEach(topic => {
+      if (filter === 'all' || topic.dataset.filter === filter) {
+        topic.style.display = 'block';
+      } else {
+        topic.style.display = 'none';
+      }
+    });
+  }
+  
+  function searchTopics() {
+    const searchTerm = document.getElementById('topic-search').value.toLowerCase();
+    const topics = document.querySelectorAll('.topic-item');
+    
+    topics.forEach(topic => {
+      const title = topic.querySelector('.topic-title').textContent.toLowerCase();
+      const content = topic.querySelector('.topic-preview')?.textContent.toLowerCase() || '';
+      
+      if (title.includes(searchTerm) || content.includes(searchTerm)) {
+        topic.style.display = 'block';
+      } else {
+        topic.style.display = 'none';
+      }
+    });
+  }
+  
+  function createNewTopic() {
+    window.location.href = '/forums/mountain-bikes/new-topic/';
+  }
+  
+  function followCategory() {
+    const btn = document.getElementById('follow-btn');
+    const isFollowing = btn.classList.contains('following');
+    
+    if (isFollowing) {
+      btn.classList.remove('following');
+      btn.innerHTML = '<i class="icon">👁</i> Follow';
+    } else {
+      btn.classList.add('following');
+      btn.innerHTML = '<i class="icon">✓</i> Following';
+    }
+  }
+  
+  function subscribeTopic(topicId) {
+    const btn = document.querySelector(`[data-topic="${topicId}"] .subscribe-btn`);
+    const isSubscribed = btn.classList.contains('subscribed');
+    
+    if (isSubscribed) {
+      btn.classList.remove('subscribed');
+      btn.textContent = 'Subscribe';
+    } else {
+      btn.classList.add('subscribed');
+      btn.textContent = 'Subscribed';
+    }
+  }
+---
+
+<div class="forum-category-container">
+  <div class="category-header">
+    <div class="category-info">
+      <div class="category-icon">
+        <i class="icon">🏔️</i>
+      </div>
+      <div class="category-details">
+        <h1>{{ title }}</h1>
+        <p class="category-description">{{ subtitle }}</p>
+        <div class="category-stats">
+          <span class="stat">
+            <i class="icon">📝</i>
+            289 topics
+          </span>
+          <span class="stat">
+            <i class="icon">💬</i>
+            1,847 posts
+          </span>
+          <span class="stat">
+            <i class="icon">👥</i>
+            456 members
+          </span>
+          <span class="stat">
+            <i class="icon">📈</i>
+            34 active today
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="category-actions">
+      <button id="follow-btn" class="BN-Global-btn BN-Global-btn-secondary" onclick="followCategory()">
+        <i class="icon">👁</i>
+        Follow
+      </button>
+      <button class="BN-Global-btn BN-Global-btn-primary" onclick="createNewTopic()">
+        <i class="icon">+</i>
+        New Topic
+      </button>
+    </div>
+  </div>
+
+  <div class="category-nav">
+    <div class="category-tabs">
+      <button class="BN-Global-tab-btn active" data-view="topics">Topics</button>
+      <button class="BN-Global-tab-btn" data-view="popular">Popular This Week</button>
+      <button class="BN-Global-tab-btn" data-view="rules">Rules & Guidelines</button>
+    </div>
+    
+    <div class="category-moderators">
+      <span class="moderators-label">Moderators:</span>
+      <div class="moderator-list">
+        <img src="/assets/images/avatars/mod-sarah.jpg" alt="Sarah" title="Sarah - Trail Expert">
+        <img src="/assets/images/avatars/mod-alex.jpg" alt="Alex" title="Alex - Technical Guru">
+        <img src="/assets/images/avatars/mod-mike.jpg" alt="Mike" title="Mike - Community Manager">
+      </div>
+    </div>
+  </div>
+
+  <div class="topics-controls">
+    <div class="search-bar">
+      <input type="text" id="topic-search" placeholder="Search topics..." onkeyup="searchTopics()">
+      <button class="search-btn">
+        <i class="icon">🔍</i>
+      </button>
+    </div>
+    
+    <div class="topic-filters">
+      <button class="BN-Global-filter-btn active" data-filter="all" onclick="filterTopics('all')">
+        All
+      </button>
+      <button class="BN-Global-filter-btn" data-filter="pinned" onclick="filterTopics('pinned')">
+        Pinned
+      </button>
+      <button class="BN-Global-filter-btn" data-filter="unanswered" onclick="filterTopics('unanswered')">
+        Unanswered
+      </button>
+      <button class="BN-Global-filter-btn" data-filter="hot" onclick="filterTopics('hot')">
+        Hot
+      </button>
+    </div>
+    
+    <div class="sort-controls">
+      <span class="sort-label">Sort by:</span>
+      <button class="BN-Global-sort-btn active" data-sort="newest" onclick="sortTopics('newest')">Newest</button>
+      <button class="BN-Global-sort-btn" data-sort="popular" onclick="sortTopics('popular')">Most Replies</button>
+      <button class="BN-Global-sort-btn" data-sort="views" onclick="sortTopics('views')">Most Views</button>
+    </div>
+  </div>
+
+  <div class="topics-section">
+    <!-- Pinned Topics -->
+    <div class="pinned-topics">
+      <h3>📌 Pinned Topics</h3>
+      
+      <div class="topic-item pinned" data-filter="pinned" data-created="2024-01-01" data-replies="156" data-views="2847">
+        <div class="topic-status">
+          <i class="icon pinned">📌</i>
+          <i class="icon locked">🔒</i>
+        </div>
+        
+        <div class="topic-content">
+          <h4 class="topic-title">
+            <a href="/forums/mountain-bikes/welcome-guide/">Mountain Biking Welcome Guide & FAQ</a>
+          </h4>
+          <p class="topic-preview">Essential information for new mountain bikers including gear recommendations, trail etiquette, and safety tips...</p>
+          <div class="topic-tags">
+            <span class="BN-Global-tag">guide</span>
+            <span class="BN-Global-tag">faq</span>
+            <span class="BN-Global-tag">beginners</span>
+          </div>
+        </div>
+        
+        <div class="topic-stats">
+          <div class="stat-item">
+            <span class="stat-value">156</span>
+            <span class="stat-label">replies</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">2.8k</span>
+            <span class="stat-label">views</span>
+          </div>
+        </div>
+        
+        <div class="topic-last-post">
+          <img src="/assets/images/avatars/sarah-johnson.jpg" alt="Sarah Johnson" class="BN-Global-user-avatar">
+          <div class="last-post-info">
+            <a href="/forums/mountain-bikes/welcome-guide/#post-156" class="last-post-link">
+              Latest reply
+            </a>
+            <span class="last-post-time">2 days ago</span>
+            <span class="last-post-author">by Sarah Johnson</span>
+          </div>
+        </div>
+        
+        <div class="topic-actions">
+          <button class="BN-Global-subscribe-btn" onclick="subscribeTopic('welcome-guide')">Subscribe</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Regular Topics -->
+    <div class="topics-list">
+      <!-- Hot Topic -->
+      <div class="topic-item hot" data-filter="hot" data-created="2024-01-18" data-replies="47" data-views="892">
+        <div class="topic-status">
+          <i class="icon hot">🔥</i>
+        </div>
+        
+        <div class="topic-content">
+          <h4 class="topic-title">
+            <a href="/forums/mountain-bikes/enduro-vs-trail/">Enduro vs Trail bike - Which should I choose?</a>
+          </h4>
+          <p class="topic-preview">Looking to upgrade from my hardtail and torn between an enduro and trail bike. Mainly ride XC but want to get into more technical stuff...</p>
+          <div class="topic-tags">
+            <span class="BN-Global-tag">bike-choice</span>
+            <span class="BN-Global-tag">enduro</span>
+            <span class="BN-Global-tag">trail</span>
+          </div>
+          <div class="topic-meta">
+            <span class="topic-author">Started by <a href="/profile/alex-rodriguez/">Alex Rodriguez</a></span>
+            <span class="topic-created">3 hours ago</span>
+          </div>
+        </div>
+        
+        <div class="topic-stats">
+          <div class="stat-item">
+            <span class="stat-value">47</span>
+            <span class="stat-label">replies</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">892</span>
+            <span class="stat-label">views</span>
+          </div>
+        </div>
+        
+        <div class="topic-last-post">
+          <img src="/assets/images/avatars/mike-chen.jpg" alt="Mike Chen" class="BN-Global-user-avatar">
+          <div class="last-post-info">
+            <a href="/forums/mountain-bikes/enduro-vs-trail/#post-47" class="last-post-link">
+              Re: Enduro vs Trail bike
+            </a>
+            <span class="last-post-time">12 minutes ago</span>
+            <span class="last-post-author">by Mike Chen</span>
+          </div>
+        </div>
+        
+        <div class="topic-actions">
+          <button class="BN-Global-subscribe-btn" onclick="subscribeTopic('enduro-vs-trail')">Subscribe</button>
+        </div>
+      </div>
+
+      <!-- Regular Topic -->
+      <div class="topic-item" data-filter="all" data-created="2024-01-17" data-replies="23" data-views="456">
+        <div class="topic-status">
+          <i class="icon new">🆕</i>
+        </div>
+        
+        <div class="topic-content">
+          <h4 class="topic-title">
+            <a href="/forums/mountain-bikes/suspension-setup/">Suspension setup for 160lb rider?</a>
+          </h4>
+          <p class="topic-preview">Just got a new Trek Fuel EX and trying to dial in the suspension. Any recommendations for air pressure and rebound settings?</p>
+          <div class="topic-tags">
+            <span class="BN-Global-tag">suspension</span>
+            <span class="BN-Global-tag">setup</span>
+            <span class="BN-Global-tag">trek</span>
+          </div>
+          <div class="topic-meta">
+            <span class="topic-author">Started by <a href="/profile/emily-white/">Emily White</a></span>
+            <span class="topic-created">1 day ago</span>
+          </div>
+        </div>
+        
+        <div class="topic-stats">
+          <div class="stat-item">
+            <span class="stat-value">23</span>
+            <span class="stat-label">replies</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">456</span>
+            <span class="stat-label">views</span>
+          </div>
+        </div>
+        
+        <div class="topic-last-post">
+          <img src="/assets/images/avatars/tech-expert.jpg" alt="Trail Tech" class="BN-Global-user-avatar">
+          <div class="last-post-info">
+            <a href="/forums/mountain-bikes/suspension-setup/#post-23" class="last-post-link">
+              Re: Suspension setup
+            </a>
+            <span class="last-post-time">3 hours ago</span>
+            <span class="last-post-author">by Trail Tech</span>
+          </div>
+        </div>
+        
+        <div class="topic-actions">
+          <button class="BN-Global-subscribe-btn" onclick="subscribeTopic('suspension-setup')">Subscribe</button>
+        </div>
+      </div>
+
+      <!-- Unanswered Topic -->
+      <div class="topic-item unanswered" data-filter="unanswered" data-created="2024-01-17" data-replies="0" data-views="78">
+        <div class="topic-status">
+          <i class="icon unanswered">❓</i>
+        </div>
+        
+        <div class="topic-content">
+          <h4 class="topic-title">
+            <a href="/forums/mountain-bikes/chain-drop-issue/">Chain drop issue with new derailleur</a>
+          </h4>
+          <p class="topic-preview">Recently upgraded to SRAM GX and experiencing chain drops on technical climbs. Chain line looks good, wondering if it's a B-tension issue?</p>
+          <div class="topic-tags">
+            <span class="BN-Global-tag">drivetrain</span>
+            <span class="BN-Global-tag">sram</span>
+            <span class="BN-Global-tag">help-needed</span>
+          </div>
+          <div class="topic-meta">
+            <span class="topic-author">Started by <a href="/profile/david-kim/">David Kim</a></span>
+            <span class="topic-created">6 hours ago</span>
+          </div>
+        </div>
+        
+        <div class="topic-stats">
+          <div class="stat-item">
+            <span class="stat-value">0</span>
+            <span class="stat-label">replies</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">78</span>
+            <span class="stat-label">views</span>
+          </div>
+        </div>
+        
+        <div class="topic-last-post">
+          <div class="no-replies">
+            <span class="no-replies-text">No replies yet</span>
+            <span class="help-encourage">Be the first to help!</span>
+          </div>
+        </div>
+        
+        <div class="topic-actions">
+          <button class="BN-Global-subscribe-btn" onclick="subscribeTopic('chain-drop-issue')">Subscribe</button>
+        </div>
+      </div>
+
+      <!-- Solved Topic -->
+      <div class="topic-item solved" data-filter="all" data-created="2024-01-16" data-replies="12" data-views="234">
+        <div class="topic-status">
+          <i class="icon solved">✅</i>
+        </div>
+        
+        <div class="topic-content">
+          <h4 class="topic-title">
+            <a href="/forums/mountain-bikes/tubeless-tire-setup/">[SOLVED] Tubeless tire won't seal properly</a>
+          </h4>
+          <p class="topic-preview">Had issues getting my tubeless tires to seal but found the solution. Sharing for others who might have the same problem...</p>
+          <div class="topic-tags">
+            <span class="BN-Global-tag">tubeless</span>
+            <span class="BN-Global-tag">tires</span>
+            <span class="BN-Global-tag">solved</span>
+          </div>
+          <div class="topic-meta">
+            <span class="topic-author">Started by <a href="/profile/lisa-brown/">Lisa Brown</a></span>
+            <span class="topic-created">2 days ago</span>
+          </div>
+        </div>
+        
+        <div class="topic-stats">
+          <div class="stat-item">
+            <span class="stat-value">12</span>
+            <span class="stat-label">replies</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">234</span>
+            <span class="stat-label">views</span>
+          </div>
+        </div>
+        
+        <div class="topic-last-post">
+          <img src="/assets/images/avatars/lisa-brown.jpg" alt="Lisa Brown" class="BN-Global-user-avatar">
+          <div class="last-post-info">
+            <a href="/forums/mountain-bikes/tubeless-tire-setup/#post-12" class="last-post-link">
+              Re: Solution found!
+            </a>
+            <span class="last-post-time">1 day ago</span>
+            <span class="last-post-author">by Lisa Brown</span>
+          </div>
+        </div>
+        
+        <div class="topic-actions">
+          <button class="BN-Global-subscribe-btn subscribed" onclick="subscribeTopic('tubeless-tire-setup')">Subscribed</button>
+        </div>
+      </div>
+
+      <!-- More topics... -->
+      <div class="topic-item" data-filter="all" data-created="2024-01-15" data-replies="8" data-views="167">
+        <div class="topic-status">
+          <i class="icon normal">💬</i>
+        </div>
+        
+        <div class="topic-content">
+          <h4 class="topic-title">
+            <a href="/forums/mountain-bikes/wheel-upgrade/">Wheel upgrade worth it for XC racing?</a>
+          </h4>
+          <p class="topic-preview">Currently running stock wheels on my hardtail and considering an upgrade for racing. What's the biggest performance gain?</p>
+          <div class="topic-tags">
+            <span class="BN-Global-tag">wheels</span>
+            <span class="BN-Global-tag">racing</span>
+            <span class="BN-Global-tag">upgrade</span>
+          </div>
+          <div class="topic-meta">
+            <span class="topic-author">Started by <a href="/profile/race-rider/">Race Rider</a></span>
+            <span class="topic-created">3 days ago</span>
+          </div>
+        </div>
+        
+        <div class="topic-stats">
+          <div class="stat-item">
+            <span class="stat-value">8</span>
+            <span class="stat-label">replies</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">167</span>
+            <span class="stat-label">views</span>
+          </div>
+        </div>
+        
+        <div class="topic-last-post">
+          <img src="/assets/images/avatars/wheel-expert.jpg" alt="Wheel Expert" class="BN-Global-user-avatar">
+          <div class="last-post-info">
+            <a href="/forums/mountain-bikes/wheel-upgrade/#post-8" class="last-post-link">
+              Re: Weight vs stiffness
+            </a>
+            <span class="last-post-time">2 days ago</span>
+            <span class="last-post-author">by Wheel Expert</span>
+          </div>
+        </div>
+        
+        <div class="topic-actions">
+          <button class="BN-Global-subscribe-btn" onclick="subscribeTopic('wheel-upgrade')">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <button class="BN-Global-pagination-btn" disabled>← Previous</button>
+    <div class="pagination-numbers">
+      <button class="BN-Global-pagination-number active">1</button>
+      <button class="BN-Global-pagination-number">2</button>
+      <button class="BN-Global-pagination-number">3</button>
+      <span class="pagination-dots">...</span>
+      <button class="BN-Global-pagination-number">12</button>
+    </div>
+    <button class="BN-Global-pagination-btn">Next →</button>
+  </div>
+</div>
+
+<div class="forum-sidebar">
+  <div class="sidebar-widget">
+    <h3>Category Stats</h3>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="stat-number">289</span>
+        <span class="stat-label">Total Topics</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">1,847</span>
+        <span class="stat-label">Total Posts</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">456</span>
+        <span class="stat-label">Members</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">34</span>
+        <span class="stat-label">Active Today</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+    <h3>Related Categories</h3>
+    <div class="related-categories">
+      <a href="/forums/maintenance-repair/" class="related-category">
+        <i class="icon">🔧</i>
+        Maintenance & Repair
+      </a>
+      <a href="/forums/gear-accessories/" class="related-category">
+        <i class="icon">🎒</i>
+        Gear & Accessories
+      </a>
+      <a href="/forums/trail-reports/" class="related-category">
+        <i class="icon">🥾</i>
+        Trail Reports
+      </a>
+    </div>
+  </div>
+
+  <div class="sidebar-widget">
+    <h3>Top Contributors</h3>
+    <div class="contributors">
+      <div class="contributor">
+        <img src="/assets/images/avatars/trail-tech.jpg" alt="Trail Tech">
+        <div class="contributor-info">
+          <h4>Trail Tech</h4>
+          <span class="contributor-posts">67 helpful posts</span>
+          <span class="BN-Global-contributor-badge expert">Expert</span>
+        </div>
+      </div>
+      <div class="contributor">
+        <img src="/assets/images/avatars/mike-chen.jpg" alt="Mike Chen">
+        <div class="contributor-info">
+          <h4>Mike Chen</h4>
+          <span class="contributor-posts">43 helpful posts</span>
+          <span class="BN-Global-contributor-badge active">Active</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

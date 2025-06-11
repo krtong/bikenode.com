@@ -1,0 +1,347 @@
+/* ===================================
+   Activity Feed Page Styles
+   =================================== */
+
+/* Feed Layout */
+.activity-feed-container {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.activity-feed-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Create Post Section */
+.activity-create-post-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.activity-user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: white;
+}
+
+.activity-post-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+    resize: none;
+    min-height: 60px;
+    color: var(--text-primary);
+}
+
+.activity-post-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.activity-post-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.activity-post-options {
+    display: flex;
+    gap: 16px;
+}
+
+.activity-post-option {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+}
+
+.activity-post-option:hover {
+    color: var(--accent);
+}
+
+/* Activity Cards */
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.activity-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.activity-user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-username {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.activity-time {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.activity-menu {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.activity-menu:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Ride Summary */
+.ride-summary {
+    background: rgba(88, 101, 242, 0.1);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+}
+
+.ride-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.ride-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.ride-stat {
+    text-align: center;
+}
+
+.ride-stat-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.ride-stat-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* Map Placeholder */
+.ride-map {
+    height: 200px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border-radius: 8px;
+    margin: 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+}
+
+/* Activity Content */
+.activity-content {
+    margin: 16px 0;
+    line-height: 1.6;
+}
+
+.activity-images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin: 16px 0;
+}
+
+.activity-image {
+    height: 200px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.activity-image.single {
+    grid-column: 1 / -1;
+    height: 300px;
+}
+
+/* Activity Actions */
+.activity-actions {
+    display: flex;
+    gap: 24px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.activity-action {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+}
+
+.activity-action:hover {
+    color: var(--accent);
+}
+
+.activity-action.activity-active {
+    color: var(--accent);
+}
+
+.kudos-count {
+    font-weight: 500;
+}
+
+/* Feed Sidebar */
+.activity-feed-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.activity-section-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+/* Challenge Items */
+.activity-challenge-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.activity-challenge-item:last-child {
+    margin-bottom: 0;
+}
+
+.activity-challenge-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(88, 101, 242, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.activity-challenge-info {
+    flex: 1;
+}
+
+.activity-challenge-name {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.activity-challenge-progress {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Suggested Riders */
+.activity-suggested-rider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.activity-suggested-rider:last-child {
+    margin-bottom: 0;
+}
+
+.activity-suggested-rider-info {
+    flex: 1;
+}
+
+.activity-suggested-rider-name {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.activity-suggested-rider-mutual {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.activity-follow-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.activity-follow-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+/* Load More */
+.activity-load-more {
+    text-align: center;
+    margin-top: 24px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .activity-feed-container {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-feed-sidebar {
+        display: none;
+    }
+
+    .ride-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

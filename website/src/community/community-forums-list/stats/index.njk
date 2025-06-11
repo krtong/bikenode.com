@@ -1,0 +1,688 @@
+---
+layout: bikenode-main-layout-01/bikenode-main-layout-01.njk
+title: Forum Statistics - BikeNode
+showContentHeader: false
+customCSS:
+  - /forums/styles/forums.css
+---
+
+<div class="forum-stats-container">
+    <div class="stats-header">
+        <h1>Forum Statistics & Analytics</h1>
+        <div class="date-filter">
+            <select class="period-select">
+                <option value="week">Last 7 days</option>
+                <option value="month" selected>Last 30 days</option>
+                <option value="quarter">Last 3 months</option>
+                <option value="year">Last year</option>
+                <option value="all">All time</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Key Metrics -->
+    <div class="key-metrics">
+        <div class="metric-card">
+            <div class="metric-icon users">
+                <i class="icon-users"></i>
+            </div>
+            <div class="metric-content">
+                <h3>Total Members</h3>
+                <p class="metric-value">24,891</p>
+                <span class="metric-change positive">+12.3% from last month</span>
+            </div>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric-icon posts">
+                <i class="icon-message"></i>
+            </div>
+            <div class="metric-content">
+                <h3>Total Posts</h3>
+                <p class="metric-value">342,567</p>
+                <span class="metric-change positive">+8.7% from last month</span>
+            </div>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric-icon threads">
+                <i class="icon-threads"></i>
+            </div>
+            <div class="metric-content">
+                <h3>Total Threads</h3>
+                <p class="metric-value">45,123</p>
+                <span class="metric-change positive">+5.2% from last month</span>
+            </div>
+        </div>
+
+        <div class="metric-card">
+            <div class="metric-icon active">
+                <i class="icon-activity"></i>
+            </div>
+            <div class="metric-content">
+                <h3>Daily Active Users</h3>
+                <p class="metric-value">3,247</p>
+                <span class="metric-change negative">-2.1% from last month</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <!-- Activity Chart -->
+        <div class="stats-card full-width">
+            <h2>Forum Activity Over Time</h2>
+            <div class="chart-container">
+                <canvas id="activityChart"></canvas>
+            </div>
+            <div class="chart-legend">
+                <span class="legend-item posts"><span class="legend-color"></span> Posts</span>
+                <span class="legend-item threads"><span class="legend-color"></span> New Threads</span>
+                <span class="legend-item users"><span class="legend-color"></span> Active Users</span>
+            </div>
+        </div>
+
+        <!-- Top Categories -->
+        <div class="stats-card">
+            <h2>Most Active Categories</h2>
+            <div class="category-list">
+                <div class="category-item">
+                    <div class="category-info">
+                        <span class="category-rank">1</span>
+                        <a href="/forums/category/general/">General Discussion</a>
+                    </div>
+                    <div class="category-stats">
+                        <span class="post-count">45,234 posts</span>
+                        <div class="activity-bar">
+                            <div class="activity-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-info">
+                        <span class="category-rank">2</span>
+                        <a href="/forums/category/maintenance/">Maintenance & Repair</a>
+                    </div>
+                    <div class="category-stats">
+                        <span class="post-count">38,912 posts</span>
+                        <div class="activity-bar">
+                            <div class="activity-fill" style="width: 86%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-info">
+                        <span class="category-rank">3</span>
+                        <a href="/forums/category/touring/">Touring & Adventure</a>
+                    </div>
+                    <div class="category-stats">
+                        <span class="post-count">34,567 posts</span>
+                        <div class="activity-bar">
+                            <div class="activity-fill" style="width: 76%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-info">
+                        <span class="category-rank">4</span>
+                        <a href="/forums/category/road/">Road Bikes</a>
+                    </div>
+                    <div class="category-stats">
+                        <span class="post-count">29,123 posts</span>
+                        <div class="activity-bar">
+                            <div class="activity-fill" style="width: 64%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-item">
+                    <div class="category-info">
+                        <span class="category-rank">5</span>
+                        <a href="/forums/category/mountain/">Mountain Bikes</a>
+                    </div>
+                    <div class="category-stats">
+                        <span class="post-count">27,891 posts</span>
+                        <div class="activity-bar">
+                            <div class="activity-fill" style="width: 62%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Contributors -->
+        <div class="stats-card">
+            <h2>Top Contributors This Month</h2>
+            <div class="contributor-list">
+                <div class="contributor-item">
+                    <span class="contributor-rank">1</span>
+                    <img src="/assets/images/nerd_blank_profile.svg" alt="User" class="contributor-avatar">
+                    <div class="contributor-info">
+                        <a href="/forums/user/bikepackerpro">BikepackerPro</a>
+                        <span class="contribution-count">342 posts</span>
+                    </div>
+                    <span class="contributor-badge gold">🥇</span>
+                </div>
+
+                <div class="contributor-item">
+                    <span class="contributor-rank">2</span>
+                    <img src="/assets/images/nerd_blank_profile.svg" alt="User" class="contributor-avatar">
+                    <div class="contributor-info">
+                        <a href="/forums/user/touringenthusiast">TouringEnthusiast</a>
+                        <span class="contribution-count">287 posts</span>
+                    </div>
+                    <span class="contributor-badge silver">🥈</span>
+                </div>
+
+                <div class="contributor-item">
+                    <span class="contributor-rank">3</span>
+                    <img src="/assets/images/nerd_blank_profile.svg" alt="User" class="contributor-avatar">
+                    <div class="contributor-info">
+                        <a href="/forums/user/gearhead">GearHead</a>
+                        <span class="contribution-count">234 posts</span>
+                    </div>
+                    <span class="contributor-badge bronze">🥉</span>
+                </div>
+
+                <div class="contributor-item">
+                    <span class="contributor-rank">4</span>
+                    <img src="/assets/images/nerd_blank_profile.svg" alt="User" class="contributor-avatar">
+                    <div class="contributor-info">
+                        <a href="/forums/user/mechanicmike">MechanicMike</a>
+                        <span class="contribution-count">198 posts</span>
+                    </div>
+                </div>
+
+                <div class="contributor-item">
+                    <span class="contributor-rank">5</span>
+                    <img src="/assets/images/nerd_blank_profile.svg" alt="User" class="contributor-avatar">
+                    <div class="contributor-info">
+                        <a href="/forums/user/roadwarrior">RoadWarrior</a>
+                        <span class="contribution-count">176 posts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popular Topics -->
+        <div class="stats-card">
+            <h2>Trending Topics</h2>
+            <div class="topic-cloud">
+                <span class="topic large">winter-riding</span>
+                <span class="topic medium">bike-maintenance</span>
+                <span class="topic large">gravel-bikes</span>
+                <span class="topic small">tubeless-setup</span>
+                <span class="topic medium">bike-fit</span>
+                <span class="topic large">gear-reviews</span>
+                <span class="topic small">nutrition</span>
+                <span class="topic medium">route-planning</span>
+                <span class="topic small">bike-security</span>
+                <span class="topic medium">commuting</span>
+            </div>
+        </div>
+
+        <!-- Engagement Stats -->
+        <div class="stats-card">
+            <h2>Engagement Metrics</h2>
+            <div class="engagement-stats">
+                <div class="engagement-item">
+                    <span class="engagement-label">Average Posts per User</span>
+                    <span class="engagement-value">13.8</span>
+                </div>
+                <div class="engagement-item">
+                    <span class="engagement-label">Average Thread Length</span>
+                    <span class="engagement-value">7.6 replies</span>
+                </div>
+                <div class="engagement-item">
+                    <span class="engagement-label">Response Time</span>
+                    <span class="engagement-value">2.3 hours</span>
+                </div>
+                <div class="engagement-item">
+                    <span class="engagement-label">Solution Rate</span>
+                    <span class="engagement-value">78%</span>
+                </div>
+                <div class="engagement-item">
+                    <span class="engagement-label">User Retention</span>
+                    <span class="engagement-value">84%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Peak Hours -->
+        <div class="stats-card">
+            <h2>Peak Activity Hours (UTC)</h2>
+            <div class="heatmap">
+                <div class="heatmap-days">
+                    <span>Mon</span>
+                    <span>Tue</span>
+                    <span>Wed</span>
+                    <span>Thu</span>
+                    <span>Fri</span>
+                    <span>Sat</span>
+                    <span>Sun</span>
+                </div>
+                <div class="heatmap-grid">
+                    <!-- Simplified heatmap representation -->
+                    <div class="heatmap-row">
+                        <div class="heatmap-cell" data-level="1"></div>
+                        <div class="heatmap-cell" data-level="2"></div>
+                        <div class="heatmap-cell" data-level="2"></div>
+                        <div class="heatmap-cell" data-level="1"></div>
+                        <div class="heatmap-cell" data-level="1"></div>
+                        <div class="heatmap-cell" data-level="3"></div>
+                        <div class="heatmap-cell" data-level="4"></div>
+                    </div>
+                    <div class="heatmap-row">
+                        <div class="heatmap-cell" data-level="2"></div>
+                        <div class="heatmap-cell" data-level="3"></div>
+                        <div class="heatmap-cell" data-level="3"></div>
+                        <div class="heatmap-cell" data-level="2"></div>
+                        <div class="heatmap-cell" data-level="2"></div>
+                        <div class="heatmap-cell" data-level="4"></div>
+                        <div class="heatmap-cell" data-level="4"></div>
+                    </div>
+                </div>
+                <div class="heatmap-legend">
+                    <span>Less</span>
+                    <div class="legend-scale">
+                        <div class="legend-cell" data-level="0"></div>
+                        <div class="legend-cell" data-level="1"></div>
+                        <div class="legend-cell" data-level="2"></div>
+                        <div class="legend-cell" data-level="3"></div>
+                        <div class="legend-cell" data-level="4"></div>
+                    </div>
+                    <span>More</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.forum-stats-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.period-select {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    background: white;
+    font-size: 1rem;
+}
+
+/* Key Metrics */
+.key-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.metric-card {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.metric-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.metric-icon.users { background: #e3f2fd; color: #1976d2; }
+.metric-icon.posts { background: #f3e5f5; color: #7b1fa2; }
+.metric-icon.threads { background: #e8f5e9; color: #388e3c; }
+.metric-icon.active { background: #fff3e0; color: #f57c00; }
+
+.metric-content h3 {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.metric-value {
+    margin: 0.25rem 0;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.metric-change {
+    font-size: 0.85rem;
+}
+
+.metric-change.positive { color: #4caf50; }
+.metric-change.negative { color: #f44336; }
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+}
+
+.stats-card {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.stats-card.full-width {
+    grid-column: 1 / -1;
+}
+
+.stats-card h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+/* Chart */
+.chart-container {
+    height: 300px;
+    margin-bottom: 1rem;
+    background: #f8f9fa;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+}
+
+.chart-legend {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.legend-item.posts .legend-color { background: #7b1fa2; }
+.legend-item.threads .legend-color { background: #388e3c; }
+.legend-item.users .legend-color { background: #1976d2; }
+
+/* Category List */
+.category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.category-item:last-child {
+    border-bottom: none;
+}
+
+.category-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.category-rank {
+    width: 30px;
+    height: 30px;
+    background: #f8f9fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #666;
+}
+
+.category-info a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.category-stats {
+    text-align: right;
+}
+
+.post-count {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 0.25rem;
+}
+
+.activity-bar {
+    width: 100px;
+    height: 4px;
+    background: #eee;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.activity-fill {
+    height: 100%;
+    background: #007bff;
+}
+
+/* Contributors */
+.contributor-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.contributor-item:last-child {
+    border-bottom: none;
+}
+
+.contributor-rank {
+    width: 30px;
+    text-align: center;
+    font-weight: 600;
+    color: #666;
+}
+
+.contributor-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.contributor-info {
+    flex: 1;
+}
+
+.contributor-info a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contribution-count {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.contributor-badge {
+    font-size: 1.5rem;
+}
+
+/* Topic Cloud */
+.topic-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.topic {
+    background: #e9ecef;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    color: #495057;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.topic:hover {
+    background: #007bff;
+    color: white;
+}
+
+.topic.small { font-size: 0.85rem; }
+.topic.medium { font-size: 1rem; }
+.topic.large { font-size: 1.15rem; font-weight: 500; }
+
+/* Engagement Stats */
+.engagement-stats {
+    display: grid;
+    gap: 1rem;
+}
+
+.engagement-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 0.25rem;
+}
+
+.engagement-label {
+    color: #666;
+}
+
+.engagement-value {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Heatmap */
+.heatmap-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    color: #666;
+    text-align: center;
+}
+
+.heatmap-grid {
+    display: grid;
+    gap: 3px;
+}
+
+.heatmap-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+}
+
+.heatmap-cell,
+.legend-cell {
+    aspect-ratio: 1;
+    background: #eee;
+    border-radius: 2px;
+}
+
+.heatmap-cell[data-level="1"],
+.legend-cell[data-level="1"] { background: #c6e48b; }
+
+.heatmap-cell[data-level="2"],
+.legend-cell[data-level="2"] { background: #7bc96f; }
+
+.heatmap-cell[data-level="3"],
+.legend-cell[data-level="3"] { background: #239a3b; }
+
+.heatmap-cell[data-level="4"],
+.legend-cell[data-level="4"] { background: #196127; }
+
+.heatmap-legend {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.legend-scale {
+    display: flex;
+    gap: 3px;
+}
+
+.legend-cell {
+    width: 12px;
+    height: 12px;
+}
+
+@media (max-width: 768px) {
+    .forum-stats-container {
+        padding: 1rem;
+    }
+    
+    .stats-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .key-metrics {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<script>
+// Simulate chart initialization
+document.addEventListener('DOMContentLoaded', function() {
+    const chartContainer = document.querySelector('.chart-container');
+    if (chartContainer) {
+        chartContainer.innerHTML = '<p>Activity chart visualization would go here</p>';
+    }
+});
+
+// Period selector change handler
+document.querySelector('.period-select').addEventListener('change', function(e) {
+    // In a real app, this would refresh the data
+    console.log('Period changed to:', e.target.value);
+});
+</script>
