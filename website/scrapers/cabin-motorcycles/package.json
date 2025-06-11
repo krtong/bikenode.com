@@ -1,0 +1,36 @@
+{
+  "name": "cabin-motorcycles-scraper",
+  "version": "1.0.0",
+  "description": "Web scrapers for cabin motorcycles including Peraves, BMW C1, Honda Gyro Canopy, and others",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "scrape:peraves": "node peraves/index.js",
+    "scrape:bmw": "node bmw/index.js",
+    "scrape:honda": "node honda/index.js",
+    "scrape:lit": "node lit-motors/index.js",
+    "scrape:all": "node index.js --all"
+  },
+  "keywords": [
+    "cabin motorcycle",
+    "enclosed motorcycle",
+    "peraves",
+    "monotracer",
+    "ecomobile",
+    "bmw c1",
+    "honda gyro canopy"
+  ],
+  "author": "BikeNode",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "puppeteer": "^21.0.0",
+    "pg": "^8.11.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "jest": "^29.7.0"
+  }
+}
