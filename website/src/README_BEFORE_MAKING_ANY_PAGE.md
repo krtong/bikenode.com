@@ -1,22 +1,20 @@
 Hi claude, it is extremely important that you read this entire document before making any new page for the bikenode website. \
-  This document will explain how to make a new page, what css to use, and how to structure the folder for that page. \
+  This document will explain how to make a new page and how to structure the folder for that page. \
   If you do not follow these instructions, it will cause problems later on when we try to integrate your page into the website.
 
+  IMPORTANT: Also read SELF_CONTAINED_ARCHITECTURE.md for the complete architecture guidelines.
+
   INSTRUCTIONS:
-  1. DO NOT create any new css files unless ABSOLUTELY necessary. \
-  2. DO NOT create any new js files unless ABSOLUTELY necessary. \
-  3. DO NOT create any new images unless ABSOLUTELY necessary. \
-  4. DO NOT create any new assets unless ABSOLUTELY necessary. \
-  5. DO NOT create any new folders unless ABSOLUTELY necessary.
-  6.  study the existing bn-global css to learn what css already exists. \
-  7. use either the documentation layout OR the bikenode-main-layout-01. \
-  8. DO NOT create any css for the sidebar or header. \
-  9. if you ABSOLUTELY NEED to make your own css becuase what you need isnt in BN-global, then make sure to create a css file INSIDE the folder for that page and name all classes and id's after that specific 
-  page. \
-  10. keep all images, js, and whatever other assets that are specific to that page INSIDE that page's folder, always keep any name scheme highly speciifc to that page and name everything you can after that specific page.
-  11. NEVER USE ANY GENERIC CLASS NAMES, ID'S, FILE NAMES, FOLDER NAMES, METHODS. 
-  12. UNLESS EXPLICITLY STATED, DO NOT MODIFY OR CREATE ANY FIELDS OR TABLES IN THE POSTGRESQL DATABASE. IF YOU NEED DATA TO POPULATE YOUR PAGE, USE EXISTING TABLES AND FIELDS, OR IF YOU ABSOLUTELY NEED TO, CREATE A JSON FILE INSIDE THE PAGE'S FOLDER. 
-  13. DOUBLE CHECK FOR EXISTING FILES AND FOLDERS BEFORE CREATING NEW ONES. THEY MAY NOT BE THE EXACT NAME YOU THOUGHT THEY WERE> 
+  1. Every page must be completely self-contained in its own folder.
+  2. Create CSS files INSIDE the folder for that page.
+  3. Name all classes, IDs, file names, and functions with the page-specific prefix (e.g., profile-my-page-header).
+  4. Keep all images, js, and whatever other assets that are specific to that page INSIDE that page's folder.
+  5. NEVER USE ANY GENERIC CLASS NAMES, ID'S, FILE NAMES, FOLDER NAMES, METHODS.
+  6. Use either the documentation-page-layout OR the bikenode-main-layout-01.
+  7. DO NOT create any css for the sidebar or header - these are part of the layout.
+  8. UNLESS EXPLICITLY STATED, DO NOT MODIFY OR CREATE ANY FIELDS OR TABLES IN THE POSTGRESQL DATABASE. IF YOU NEED DATA TO POPULATE YOUR PAGE, USE EXISTING TABLES AND FIELDS, OR IF YOU ABSOLUTELY NEED TO, CREATE A JSON FILE INSIDE THE PAGE'S FOLDER.
+  9. DOUBLE CHECK FOR EXISTING FILES AND FOLDERS BEFORE CREATING NEW ONES. THEY MAY NOT BE THE EXACT NAME YOU THOUGHT THEY WERE.
+  10. NO shared components - copy what you need into your page folder and rename with page-specific prefix.
 
   FOLDER STRUCTURE:
   /Dashboard-Overview/

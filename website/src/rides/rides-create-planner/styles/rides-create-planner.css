@@ -1,135 +1,170 @@
-/* Route Planner Main Styles */
-.route-planner {
-    display: grid;
-    grid-template-columns: 380px 1fr;
-    height: calc(100vh - 124px); /* 60px header + 64px padding (32px top + 32px bottom) */
-    min-height: 600px;
-    gap: 0;
-    background: var(--bg-primary);
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    margin: 0;
-    width: 100%;
+/* Rides Create Planner Styles */
+.rides-create-planner {
+    display: flex;
+    height: calc(100vh - 80px);
     position: relative;
-    z-index: 1;
 }
 
-/* Ensure route planner content stays within bounds */
-.dashboard-content .route-planner {
-    max-width: 100%;
+/* Sidebar Styles */
+.rides-create-planner-sidebar {
+    width: 350px;
+    background: white;
+    border-right: 1px solid #e5e7eb;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.rides-create-planner-sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.rides-create-planner-sidebar-title {
+    font-size: 1.25rem;
+    font-weight: 600;
     margin: 0;
+}
+
+.rides-create-planner-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #6b7280;
+    display: none;
+}
+
+.rides-create-planner-route-form {
+    padding: 1.5rem;
+}
+
+.rides-create-planner-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.rides-create-planner-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.rides-create-planner-input {
     width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
 }
 
-/* Import component styles */
-@import './components/route-sidebar.css';
-@import './components/map-container.css';
-@import './components/elevation-profile.css';
-@import './components/route-controls.css';
-@import './components/route-stats.css';
-
-/* Animations */
-@keyframes slideIn {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+.rides-create-planner-route-types {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
 }
 
-@keyframes slideOut {
-    from {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateX(100%);
-        opacity: 0;
-    }
+.rides-create-planner-route-type {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
-/* Notification Styles */
-.route-notification {
-    animation: slideIn 0.3s ease;
+.rides-create-planner-route-type:hover {
+    border-color: #3b82f6;
 }
 
-.route-notification-success {
-    border-color: #10b981 !important;
+.rides-create-planner-route-type-active {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
 }
 
-.route-notification-warning {
-    border-color: #f59e0b !important;
+.rides-create-planner-route-type-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
 }
 
-.route-notification-error {
-    border-color: #ef4444 !important;
+/* Map Container Styles */
+.rides-create-planner-map-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-.route-notification-info {
-    border-color: #3b82f6 !important;
+.rides-create-planner-map {
+    flex: 1;
+    position: relative;
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .route-planner {
-        grid-template-columns: 1fr;
-        height: auto;
-    }
-    
-    .route-sidebar {
-        position: fixed;
-        left: -100%;
-        top: 0;
-        width: 100%;
-        max-width: 400px;
-        height: 100vh;
-        z-index: 1000;
-        transition: left 0.3s ease;
-    }
-    
-    .route-sidebar.mobile-open {
-        left: 0;
-    }
-    
-    .route-map-container {
-        height: 60vh;
-        min-height: 400px;
-    }
-    
-    .route-mobile-menu-toggle {
-        display: block;
-        position: absolute;
-        top: 16px;
-        left: 16px;
-        z-index: 1001;
-        background: var(--card-bg);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        padding: 8px 12px;
-        color: var(--text-primary);
-        cursor: pointer;
-    }
+.rides-create-planner-map-controls {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-@media (max-width: 768px) {
-    .route-sidebar {
-        max-width: 100%;
-    }
-    
-    .route-map-container {
-        height: 50vh;
-    }
-    
-    .route-elevation-profile {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        right: auto;
-        margin-top: 16px;
-        width: 100%;
-    }
+.rides-create-planner-map-tools {
+    display: flex;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.rides-create-planner-map-tool {
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rides-create-planner-map-tool-active {
+    background: #3b82f6;
+    color: white;
+}
+
+/* Additional styles for other components */
+.rides-create-planner-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.rides-create-planner-btn-primary {
+    background: #3b82f6;
+    color: white;
+    border: none;
+}
+
+.rides-create-planner-btn-primary:hover {
+    background: #2563eb;
+}
+
+.rides-create-planner-btn-secondary {
+    background: white;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.rides-create-planner-btn-secondary:hover {
+    background: #f3f4f6;
 }

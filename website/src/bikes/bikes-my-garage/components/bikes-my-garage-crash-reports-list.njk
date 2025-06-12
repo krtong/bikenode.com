@@ -1,0 +1,60 @@
+<div class="bikes-my-garage-crash-reports">
+    <div class="bikes-my-garage-crash-header">
+        <h2 class="bikes-my-garage-crash-title">Crash Reports</h2>
+        <button class="bikes-my-garage-btn bikes-my-garage-btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Report New Incident
+        </button>
+    </div>
+    
+    <!-- Empty state -->
+    <div class="bikes-my-garage-crash-empty">
+        <svg class="bikes-my-garage-crash-empty-icon" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+        </svg>
+        <h3 class="bikes-my-garage-crash-empty-title">No crash reports</h3>
+        <p class="bikes-my-garage-crash-empty-text">
+            We hope it stays this way! If you do have an incident, 
+            documenting it here helps with insurance claims and recovery.
+        </p>
+    </div>
+    
+    <!-- Example crash report (hidden by default) -->
+    <div class="bikes-my-garage-crash-list bikes-my-garage-hidden">
+        <div class="bikes-my-garage-crash-item">
+            <div class="bikes-my-garage-crash-date">
+                <div class="bikes-my-garage-crash-day">15</div>
+                <div class="bikes-my-garage-crash-month">Mar</div>
+            </div>
+            <div class="bikes-my-garage-crash-details">
+                <h4 class="bikes-my-garage-crash-bike">Trek Domane SL 7</h4>
+                <p class="bikes-my-garage-crash-location">Main St & 5th Ave, Downtown</p>
+                <div class="bikes-my-garage-crash-tags">
+                    <span class="bikes-my-garage-crash-tag bikes-my-garage-tag-minor">Minor Damage</span>
+                    <span class="bikes-my-garage-crash-tag">Insurance Filed</span>
+                </div>
+            </div>
+            <div class="bikes-my-garage-crash-actions">
+                <button class="bikes-my-garage-action-btn" title="View report">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                </button>
+                <button class="bikes-my-garage-action-btn" title="Download PDF">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

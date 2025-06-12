@@ -1,33 +1,35 @@
 ---
-layout: authorization-page-layout/authorization-page-layout
+layout: authorization-page-layout
 title: Login - BikeNode
 ---
 
 <div class="auth-login-page-container">
-    <div class="BN-Global-card">
-        <h1 class="BN-Global-font-2xl BN-Global-font-bold BN-Global-text-primary BN-Global-mb-2">Welcome Back</h1>
-        <p class="BN-Global-text-secondary BN-Global-mb-4">Sign in to your BikeNode account</p>
+    <div class="auth-login-page-card">
+        <h1 class="auth-login-page-title">Welcome Back</h1>
+        <p class="auth-login-page-subtitle">Sign in to your BikeNode account</p>
         
         <form class="auth-login-page-form">
-            <div class="BN-Global-form-group">
-                <label class="BN-Global-form-label">Email</label>
-                <input type="email" class="BN-Global-form-input" placeholder="you@example.com">
+            <div class="auth-login-page-form-group">
+                <label class="auth-login-page-form-label">Email</label>
+                <input type="email" class="auth-login-page-form-input" placeholder="you@example.com">
             </div>
             
-            <div class="BN-Global-form-group">
-                <label class="BN-Global-form-label">Password</label>
-                <input type="password" class="BN-Global-form-input" placeholder="••••••••">
+            <div class="auth-login-page-form-group">
+                <label class="auth-login-page-form-label">Password</label>
+                <input type="password" class="auth-login-page-form-input" placeholder="••••••••">
             </div>
             
-            <button type="submit" class="BN-Global-btn BN-Global-btn-primary BN-Global-btn-block">Sign In</button>
+            <button type="submit" class="auth-login-page-submit-button">Sign In</button>
         </form>
         
-        <div class="BN-Global-text-center BN-Global-mt-3">
-            <a href="/auth-forgot-password/" class="BN-Global-text-accent">Forgot password?</a>
+        <div class="auth-login-page-links">
+            <a href="/auth-forgot-password/" class="auth-login-page-forgot-link">Forgot password?</a>
         </div>
         
-        <div class="BN-Global-text-center BN-Global-mt-3">
-            <p class="BN-Global-text-secondary">Don't have an account? <a href="/auth-signup-page/" class="BN-Global-text-accent">Sign up</a></p>
+        <div class="auth-login-page-signup-prompt">
+            <p class="auth-login-page-signup-text">Don't have an account? <a href="/auth-signup-page/" class="auth-login-page-signup-link">Sign up</a></p>
         </div>
     </div>
 </div>
+
+<link rel="stylesheet" href="./styles/auth-login-page.css">

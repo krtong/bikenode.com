@@ -1,0 +1,78 @@
+<div class="rides-segments-leaderboard-modal" id="rides-segments-leaderboard-detail-modal">
+    <div class="rides-segments-leaderboard-modal-overlay"></div>
+    <div class="rides-segments-leaderboard-modal-content">
+        <div class="rides-segments-leaderboard-modal-header">
+            <h2 class="rides-segments-leaderboard-modal-title">Segment Details</h2>
+            <button class="rides-segments-leaderboard-modal-close" aria-label="Close modal">×</button>
+        </div>
+        
+        <div class="rides-segments-leaderboard-modal-body">
+            <div class="rides-segments-leaderboard-detail-section">
+                <h3 class="rides-segments-leaderboard-section-title" id="rides-segments-leaderboard-detail-name">Hawk Hill Climb</h3>
+                <div class="rides-segments-leaderboard-detail-stats">
+                    <div class="rides-segments-leaderboard-detail-stat">
+                        <span class="rides-segments-leaderboard-detail-label">Distance</span>
+                        <span class="rides-segments-leaderboard-detail-value" id="rides-segments-leaderboard-detail-distance">2.8 km</span>
+                    </div>
+                    <div class="rides-segments-leaderboard-detail-stat">
+                        <span class="rides-segments-leaderboard-detail-label">Elevation Gain</span>
+                        <span class="rides-segments-leaderboard-detail-value" id="rides-segments-leaderboard-detail-elevation">184 m</span>
+                    </div>
+                    <div class="rides-segments-leaderboard-detail-stat">
+                        <span class="rides-segments-leaderboard-detail-label">Average Grade</span>
+                        <span class="rides-segments-leaderboard-detail-value" id="rides-segments-leaderboard-detail-grade">6.6%</span>
+                    </div>
+                    <div class="rides-segments-leaderboard-detail-stat">
+                        <span class="rides-segments-leaderboard-detail-label">Total Attempts</span>
+                        <span class="rides-segments-leaderboard-detail-value" id="rides-segments-leaderboard-detail-attempts">1,247</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rides-segments-leaderboard-detail-section">
+                <h3 class="rides-segments-leaderboard-section-title">Elevation Profile</h3>
+                <div class="rides-segments-leaderboard-elevation-chart" id="rides-segments-leaderboard-elevation-chart">
+                    <!-- Chart will be rendered here -->
+                </div>
+            </div>
+            
+            <div class="rides-segments-leaderboard-detail-section">
+                <h3 class="rides-segments-leaderboard-section-title">Top 10 Leaderboard</h3>
+                <div class="rides-segments-leaderboard-full-leaderboard" id="rides-segments-leaderboard-full-leaderboard">
+                    <!-- Leaderboard entries will be loaded here -->
+                </div>
+            </div>
+            
+            <div class="rides-segments-leaderboard-detail-section">
+                <h3 class="rides-segments-leaderboard-section-title">Your Performance</h3>
+                <div class="rides-segments-leaderboard-personal-stats">
+                    <div class="rides-segments-leaderboard-personal-stat">
+                        <span class="rides-segments-leaderboard-personal-label">Best Time</span>
+                        <span class="rides-segments-leaderboard-personal-value">8:34</span>
+                    </div>
+                    <div class="rides-segments-leaderboard-personal-stat">
+                        <span class="rides-segments-leaderboard-personal-label">Rank</span>
+                        <span class="rides-segments-leaderboard-personal-value">127 / 1,247</span>
+                    </div>
+                    <div class="rides-segments-leaderboard-personal-stat">
+                        <span class="rides-segments-leaderboard-personal-label">Attempts</span>
+                        <span class="rides-segments-leaderboard-personal-value">12</span>
+                    </div>
+                    <div class="rides-segments-leaderboard-personal-stat">
+                        <span class="rides-segments-leaderboard-personal-label">Last Attempt</span>
+                        <span class="rides-segments-leaderboard-personal-value">2 days ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="rides-segments-leaderboard-modal-footer">
+            <button class="rides-segments-leaderboard-btn rides-segments-leaderboard-btn-secondary" id="rides-segments-leaderboard-view-on-map">
+                View on Map
+            </button>
+            <button class="rides-segments-leaderboard-btn rides-segments-leaderboard-btn-primary" id="rides-segments-leaderboard-ride-segment">
+                Ride This Segment
+            </button>
+        </div>
+    </div>
+</div>

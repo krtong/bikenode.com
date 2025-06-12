@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"bikenode.com/api"
+	"bikenode.com/middleware"
 	"github.com/google/uuid"
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
@@ -194,12 +195,85 @@ func main() {
 	}
 	defer db.Close()
 
+	// Initialize cache middleware
+	cacheConfig := &middleware.CacheConfig{
+		RedisAddr:      os.Getenv("REDIS_ADDR"),
+		RedisPassword:  os.Getenv("REDIS_PASSWORD"),
+		RedisDB:        0,
+		DefaultTTL:     5 * time.Minute,
+		MaxMemoryItems: 1000,
+		MemoryTTL:      5 * time.Minute,
+		EndpointTTLs: map[string]time.Duration{
+			"/api/cabin-motorcycles":        5 * time.Minute,  // List endpoints
+			"/api/cabin-motorcycles/makes":  5 * time.Minute,
+			"/api/cabin-motorcycles/stats":  30 * time.Minute, // Stats endpoint
+			"/api/cabin-motorcycles/search": 1 * time.Minute,  // Search endpoint
+			"/api/cabin-motorcycles/*":      10 * time.Minute, // Detail endpoints
+		},
+	}
+	
+	// Use default Redis address if not specified
+	if cacheConfig.RedisAddr == "" {
+		cacheConfig.RedisAddr = "localhost:6379"
+	}
+	
+	cacheMiddleware := middleware.NewCacheMiddleware(cacheConfig)
+
+	// Initialize rate limiter with custom configuration
+	rateLimitConfig := &middleware.RateLimitConfig{
+		RequestsPerMinute: 60,  // Default: 60 requests per minute
+		BurstCapacity:     10,  // Allow burst of 10 requests
+		CleanupInterval:   5 * time.Minute,
+		ExemptIPs: []string{
+			"127.0.0.1",
+			"::1",
+			// Add any internal service IPs here
+		},
+		EndpointLimits: map[string]middleware.EndpointLimit{
+			// Cabin motorcycle endpoints with specific limits
+			"/api/cabin-motorcycles/search": {
+				RequestsPerMinute: 30,  // Lower limit for search
+				BurstCapacity:     5,
+			},
+			"/api/cabin-motorcycles": {
+				RequestsPerMinute: 120, // Higher limit for listing
+				BurstCapacity:     20,
+			},
+			"/api/cabin-motorcycles/stats": {
+				RequestsPerMinute: 60,
+				BurstCapacity:     10,
+			},
+			// Specs submission endpoint with strict limit
+			"/api/specs-submissions": {
+				RequestsPerMinute: 10,  // Prevent spam submissions
+				BurstCapacity:     2,
+			},
+			// Other motorcycle endpoints
+			"/api/motorcycles/*": {
+				RequestsPerMinute: 100,
+				BurstCapacity:     15,
+			},
+			// Bicycle endpoints
+			"/api/bicycles/*": {
+				RequestsPerMinute: 100,
+				BurstCapacity:     15,
+			},
+			// Electrified endpoints
+			"/api/electrified/*": {
+				RequestsPerMinute: 100,
+				BurstCapacity:     15,
+			},
+		},
+	}
+	
+	rateLimiter := middleware.NewRateLimiter(rateLimitConfig)
 
 	// Initialize router
 	router := mux.NewRouter()
 
-	// API routes
+	// API routes with rate limiting
 	apiRouter := router.PathPrefix("/api").Subrouter()
+	apiRouter.Use(rateLimiter.RateLimitMiddleware)
 	
 	// Existing routes
 	apiRouter.HandleFunc("/motorcycles/models/{make}/{year}", getMotorcycleModels).Methods("GET")
@@ -253,6 +327,14 @@ func main() {
 	apiRouter.HandleFunc("/gear/categories", api.HandleGearCategories(db)).Methods("GET", "OPTIONS")
 	apiRouter.HandleFunc("/gear/brands", api.HandleGearBrands(db)).Methods("GET", "OPTIONS")
 	apiRouter.HandleFunc("/elevation/tiles", api.GetElevationTiles(db)).Methods("GET")
+	
+	// Cabin motorcycle endpoints with caching
+	// Note: Order matters - more specific routes should come before generic ones
+	apiRouter.Handle("/cabin-motorcycles/makes", cacheMiddleware.CacheHandler(api.GetCabinMotorcycleMakes(db))).Methods("GET")
+	apiRouter.Handle("/cabin-motorcycles/stats", cacheMiddleware.CacheHandler(api.GetCabinMotorcycleStats(db))).Methods("GET")
+	apiRouter.Handle("/cabin-motorcycles/search", cacheMiddleware.CacheHandler(api.SearchCabinMotorcycles(db))).Methods("GET")
+	apiRouter.Handle("/cabin-motorcycles/{id}", cacheMiddleware.CacheHandler(api.GetCabinMotorcycleDetails(db))).Methods("GET")
+	apiRouter.Handle("/cabin-motorcycles", cacheMiddleware.CacheHandler(api.GetCabinMotorcycles(db))).Methods("GET")
 
 	// Serve static files
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./")))

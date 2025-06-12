@@ -1,0 +1,53 @@
+{
+  "name": "cabin-motorcycles-scraper",
+  "version": "1.0.0",
+  "description": "Web scrapers for cabin motorcycles including Peraves, BMW C1, Honda Gyro Canopy, and others",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "analyze": "node analyze-websites.js",
+    "test:adaptive": "node test-adaptive-scraping.js",
+    "test:navigation": "node test-peraves-navigation.js",
+    "test:bmw": "node test-bmw-scraping.js",
+    "test:honda": "node test-honda-scraping.js",
+    "scrape:peraves": "node peraves/index.js",
+    "scrape:peraves:adaptive": "node -e \"require('./peraves/adaptive-scraper').scrapePeravesAdaptive().then(r => console.log(JSON.stringify(r, null, 2)))\"",
+    "scrape:peraves:full": "node -e \"require('./peraves/full-scraper').scrapePeravesFull({navigate: true, debug: true}).then(r => console.log(JSON.stringify(r.models, null, 2)))\"",
+    "scrape:bmw": "node bmw/index.js",
+    "scrape:bmw:full": "node -e \"require('./bmw/full-scraper').scrapeBMWFull({debug: true}).then(r => console.log(JSON.stringify(r.models, null, 2)))\"",
+    "scrape:honda": "node honda/index.js",
+    "scrape:honda:full": "node -e \"require('./honda/full-scraper').scrapeHondaFull({debug: true}).then(r => console.log(JSON.stringify(r.models, null, 2)))\"",
+    "scrape:lit": "node lit-motors/index.js",
+    "scrape:all": "node index.js --all",
+    "test": "cd tests && jest",
+    "test:unit": "cd tests && jest unit/",
+    "test:integration": "cd tests && jest integration/",
+    "test:coverage": "cd tests && jest --coverage",
+    "test:watch": "cd tests && jest --watch",
+    "test:verbose": "DEBUG_TESTS=1 cd tests && jest --verbose",
+    "test:ci": "cd tests && jest unit/ --ci --coverage"
+  },
+  "keywords": [
+    "cabin motorcycle",
+    "enclosed motorcycle",
+    "peraves",
+    "monotracer",
+    "ecomobile",
+    "bmw c1",
+    "honda gyro canopy"
+  ],
+  "author": "BikeNode",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "puppeteer": "^21.0.0",
+    "pg": "^8.11.0",
+    "dotenv": "^16.3.1",
+    "iconv-lite": "^0.6.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "jest": "^29.7.0"
+  }
+}

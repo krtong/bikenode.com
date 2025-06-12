@@ -1,0 +1,78 @@
+/* Authentication Verify Email Page Styles */
+
+.auth-verify-email-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.auth-verify-email-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 2.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.auth-verify-email-icon {
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+
+.auth-verify-email-icon svg {
+    color: #f97316;
+}
+
+.auth-verify-email-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.auth-verify-email-subtitle {
+    color: #6b7280;
+    margin-bottom: 2rem;
+}
+
+.auth-verify-email-help-text {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+}
+
+.auth-verify-email-resend-button {
+    background-color: white;
+    color: #374151;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+
+.auth-verify-email-resend-button:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.auth-verify-email-back-link {
+    margin-top: 2rem;
+}
+
+.auth-verify-email-link {
+    color: #f97316;
+    text-decoration: none;
+    font-size: 0.875rem;
+}
+
+.auth-verify-email-link:hover {
+    text-decoration: underline;
+}

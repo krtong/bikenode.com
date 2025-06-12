@@ -1,0 +1,107 @@
+name: Cabin Motorcycles Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'scrapers/cabin-motorcycles/**'
+      - '.github/workflows/test.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'scrapers/cabin-motorcycles/**'
+
+defaults:
+  run:
+    working-directory: scrapers/cabin-motorcycles
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x, 20.x]
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: test_user
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: bikenode_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: scrapers/cabin-motorcycles/package-lock.json
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Create test database schema
+      env:
+        PGPASSWORD: test_password
+      run: |
+        psql -h localhost -U test_user -d bikenode_test -f ../../database/migrations/create_scraping_logs_table.sql
+        psql -h localhost -U test_user -d bikenode_test -f ../../database/migrations/add_cabin_motorcycles.sql
+    
+    - name: Run unit tests
+      run: npm run test:unit
+    
+    - name: Run integration tests
+      env:
+        NODE_ENV: test
+        DATABASE_URL: postgresql://test_user:test_password@localhost:5432/bikenode_test
+        TEST_DATABASE_URL: postgresql://test_user:test_password@localhost:5432/bikenode_test
+      run: npm run test:integration
+    
+    - name: Generate coverage report
+      env:
+        NODE_ENV: test
+        DATABASE_URL: postgresql://test_user:test_password@localhost:5432/bikenode_test
+        TEST_DATABASE_URL: postgresql://test_user:test_password@localhost:5432/bikenode_test
+      run: npm run test:coverage
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        directory: ./scrapers/cabin-motorcycles/tests/coverage
+        flags: cabin-motorcycles
+        name: cabin-motorcycles-${{ matrix.node-version }}
+    
+    - name: Archive test results
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results-${{ matrix.node-version }}
+        path: scrapers/cabin-motorcycles/tests/coverage
+
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run ESLint
+      run: npx eslint . --ext .js

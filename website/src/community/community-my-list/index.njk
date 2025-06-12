@@ -1,21 +1,73 @@
 ---
-layout: bikenode-main-layout-01/bikenode-main-layout-01
+layout: bikenode-main-layout-01
 title: Communities
 subtitle: Discover and connect with bike communities worldwide
 showContentHeader: false
-customCSS:
-  - /communities-dashboard/styles/communities-dashboard.css
 ---
 
-{% include "communities-dashboard/content-header.njk" %}
-
-<div class="communities-content">
-    {% include "communities-dashboard/community-stats.njk" %}
-    {% include "communities-dashboard/community-tabs.njk" %}
-    
-    {% include "communities-dashboard/my-communities-tab.njk" %}
-    {% include "communities-dashboard/discover-tab.njk" %}
-    {% include "communities-dashboard/invitations-tab.njk" %}
+<div class="community-my-list-content-header">
+    <h1 class="community-my-list-page-title">{{ title }}</h1>
+    <p class="community-my-list-page-subtitle">{{ subtitle }}</p>
 </div>
 
-<script type="module" src="/communities-dashboard/js/app.js"></script>
+<div class="community-my-list-content">
+    <!-- Stats Grid -->
+    <div class="community-my-list-stats-grid">
+        <div class="community-my-list-stat-card">
+            <div class="community-my-list-stat-value">12</div>
+            <div class="community-my-list-stat-label">Communities Joined</div>
+        </div>
+        <div class="community-my-list-stat-card">
+            <div class="community-my-list-stat-value">3</div>
+            <div class="community-my-list-stat-label">Communities Managed</div>
+        </div>
+        <div class="community-my-list-stat-card">
+            <div class="community-my-list-stat-value">45</div>
+            <div class="community-my-list-stat-label">Active Discussions</div>
+        </div>
+        <div class="community-my-list-stat-card">
+            <div class="community-my-list-stat-value">2</div>
+            <div class="community-my-list-stat-label">Pending Invites</div>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="community-my-list-tabs">
+        <button class="community-my-list-tab-btn community-my-list-tab-active" data-tab="my-communities">
+            My Communities
+        </button>
+        <button class="community-my-list-tab-btn" data-tab="discover">
+            Discover
+        </button>
+        <button class="community-my-list-tab-btn" data-tab="invitations">
+            Invitations <span class="community-my-list-badge">2</span>
+        </button>
+    </div>
+    
+    <!-- My Communities Tab Content -->
+    <div class="community-my-list-tab-content" id="community-my-list-my-communities-tab">
+        <div class="community-my-list-grid">
+            <!-- Community cards would go here -->
+        </div>
+    </div>
+
+    <!-- Discover Tab Content -->
+    <div class="community-my-list-tab-content community-my-list-hidden" id="community-my-list-discover-tab">
+        <div class="community-my-list-search-bar">
+            <input type="text" class="community-my-list-search-input" placeholder="Search communities...">
+        </div>
+        <div class="community-my-list-grid">
+            <!-- Discover community cards would go here -->
+        </div>
+    </div>
+
+    <!-- Invitations Tab Content -->
+    <div class="community-my-list-tab-content community-my-list-hidden" id="community-my-list-invitations-tab">
+        <div class="community-my-list-invitations-list">
+            <!-- Invitation items would go here -->
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="./styles/community-my-list.css">
+<script type="module" src="./js/community-my-list.js"></script>

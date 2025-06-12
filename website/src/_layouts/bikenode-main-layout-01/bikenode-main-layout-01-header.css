@@ -28,6 +28,16 @@
     gap: 2rem;
 }
 
+/* Header Container (extracted from inline) */
+.bikenode-main-layout-01-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 100%;
+    max-width: 100%;
+}
+
 /* Navigation Brand Section */
 .bikenode-main-layout-01-header-nav-brand {
     display: flex;
@@ -163,4 +173,220 @@
     .bikenode-main-layout-01-header {
         height: 60px;
     }
+}
+
+/* ===================================
+   Additional styles extracted from header.njk
+   =================================== */
+
+/* Logo Link */
+.bikenode-main-layout-01-header-logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+/* Logo Icon */
+.bikenode-main-layout-01-header-logo-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--accent);
+}
+
+/* Logo Text */
+.bikenode-main-layout-01-header-logo-text {
+    color: var(--text-primary);
+}
+
+/* Navigation List */
+.bikenode-main-layout-01-header-nav-list {
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation Item */
+.bikenode-main-layout-01-header-nav-item {
+    display: flex;
+}
+
+/* Navigation Link Icon */
+.bikenode-main-layout-01-header-nav-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+}
+
+/* Navigation Link Active State */
+.bikenode-main-layout-01-header-nav-link-active {
+    background: rgba(88, 101, 242, 0.1);
+    color: var(--accent);
+}
+
+/* User Buttons */
+.bikenode-main-layout-01-header-user-button {
+    position: relative;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+}
+
+.bikenode-main-layout-01-header-user-button:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+/* User Icon */
+.bikenode-main-layout-01-header-user-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Notification Badge */
+.bikenode-main-layout-01-header-user-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.125rem 0.375rem;
+    border-radius: 9999px;
+    min-width: 18px;
+    text-align: center;
+}
+
+/* User Dropdown */
+.bikenode-main-layout-01-header-user-dropdown {
+    position: relative;
+}
+
+/* Dropdown Trigger */
+.bikenode-main-layout-01-header-user-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+}
+
+.bikenode-main-layout-01-header-user-dropdown-trigger:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* User Avatar in Dropdown */
+.bikenode-main-layout-01-header-user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Dropdown Arrow */
+.bikenode-main-layout-01-header-user-dropdown-arrow {
+    width: 12px;
+    height: 12px;
+    color: var(--text-secondary);
+    transition: transform 0.2s ease;
+}
+
+.bikenode-main-layout-01-header-user-dropdown-trigger[aria-expanded="true"] .bikenode-main-layout-01-header-user-dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.bikenode-main-layout-01-header-user-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    min-width: 200px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+}
+
+.bikenode-main-layout-01-header-user-dropdown-menu[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Dropdown Header */
+.bikenode-main-layout-01-header-user-dropdown-header {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bikenode-main-layout-01-header-user-dropdown-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.bikenode-main-layout-01-header-user-dropdown-email {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Dropdown Divider */
+.bikenode-main-layout-01-header-user-dropdown-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0.5rem 0;
+}
+
+/* Dropdown Item */
+.bikenode-main-layout-01-header-user-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition-fast);
+    font-size: 0.875rem;
+}
+
+.bikenode-main-layout-01-header-user-dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+/* Dropdown Icon */
+.bikenode-main-layout-01-header-user-dropdown-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* Danger Item */
+.bikenode-main-layout-01-header-user-dropdown-item-danger {
+    color: #ef4444;
+}
+
+.bikenode-main-layout-01-header-user-dropdown-item-danger:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
 }

@@ -1,0 +1,112 @@
+<div class="rides-create-planner-sidebar">
+    <div class="rides-create-planner-sidebar-header">
+        <h2 class="rides-create-planner-sidebar-title">Route Planner</h2>
+        <button class="rides-create-planner-close-btn" aria-label="Close sidebar">×</button>
+    </div>
+
+    <div class="rides-create-planner-route-form">
+        <!-- Route Name -->
+        <div class="rides-create-planner-form-group">
+            <label for="rides-create-planner-route-name" class="rides-create-planner-label">Route Name</label>
+            <input type="text" id="rides-create-planner-route-name" class="rides-create-planner-input" placeholder="Morning Mountain Loop">
+        </div>
+
+        <!-- Route Type -->
+        <div class="rides-create-planner-form-group">
+            <label class="rides-create-planner-label">Route Type</label>
+            <div class="rides-create-planner-route-types">
+                <button class="rides-create-planner-route-type rides-create-planner-route-type-active" data-type="road">
+                    <span class="rides-create-planner-route-type-icon">🚴</span>
+                    <span>Road</span>
+                </button>
+                <button class="rides-create-planner-route-type" data-type="gravel">
+                    <span class="rides-create-planner-route-type-icon">🏔️</span>
+                    <span>Gravel</span>
+                </button>
+                <button class="rides-create-planner-route-type" data-type="mtb">
+                    <span class="rides-create-planner-route-type-icon">🚵</span>
+                    <span>MTB</span>
+                </button>
+                <button class="rides-create-planner-route-type" data-type="touring">
+                    <span class="rides-create-planner-route-type-icon">🏕️</span>
+                    <span>Touring</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Waypoints -->
+        <div class="rides-create-planner-form-group">
+            <label class="rides-create-planner-label">Waypoints</label>
+            <div class="rides-create-planner-waypoints" id="rides-create-planner-waypoints-list">
+                <div class="rides-create-planner-waypoint">
+                    <span class="rides-create-planner-waypoint-marker">A</span>
+                    <input type="text" class="rides-create-planner-waypoint-input" placeholder="Start location">
+                    <button class="rides-create-planner-waypoint-remove" aria-label="Remove waypoint">×</button>
+                </div>
+                <div class="rides-create-planner-waypoint">
+                    <span class="rides-create-planner-waypoint-marker">B</span>
+                    <input type="text" class="rides-create-planner-waypoint-input" placeholder="End location">
+                    <button class="rides-create-planner-waypoint-remove" aria-label="Remove waypoint">×</button>
+                </div>
+            </div>
+            <button class="rides-create-planner-add-waypoint" id="rides-create-planner-add-waypoint">
+                + Add Waypoint
+            </button>
+        </div>
+
+        <!-- Route Options -->
+        <div class="rides-create-planner-form-group">
+            <label class="rides-create-planner-label">Route Options</label>
+            <div class="rides-create-planner-options">
+                <label class="rides-create-planner-checkbox">
+                    <input type="checkbox" id="rides-create-planner-avoid-highways">
+                    <span>Avoid highways</span>
+                </label>
+                <label class="rides-create-planner-checkbox">
+                    <input type="checkbox" id="rides-create-planner-prefer-scenic">
+                    <span>Prefer scenic routes</span>
+                </label>
+                <label class="rides-create-planner-checkbox">
+                    <input type="checkbox" id="rides-create-planner-round-trip">
+                    <span>Make it a round trip</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Elevation Profile -->
+        <div class="rides-create-planner-form-group">
+            <label class="rides-create-planner-label">Elevation Profile</label>
+            <div class="rides-create-planner-elevation-profile" id="rides-create-planner-elevation-chart">
+                <div class="rides-create-planner-elevation-placeholder">
+                    Route elevation will appear here
+                </div>
+            </div>
+        </div>
+
+        <!-- Route Stats -->
+        <div class="rides-create-planner-route-stats">
+            <div class="rides-create-planner-stat">
+                <span class="rides-create-planner-stat-label">Distance</span>
+                <span class="rides-create-planner-stat-value" id="rides-create-planner-distance">0 mi</span>
+            </div>
+            <div class="rides-create-planner-stat">
+                <span class="rides-create-planner-stat-label">Elevation</span>
+                <span class="rides-create-planner-stat-value" id="rides-create-planner-elevation">0 ft</span>
+            </div>
+            <div class="rides-create-planner-stat">
+                <span class="rides-create-planner-stat-label">Est. Time</span>
+                <span class="rides-create-planner-stat-value" id="rides-create-planner-time">0:00</span>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="rides-create-planner-actions">
+            <button class="rides-create-planner-btn rides-create-planner-btn-secondary" id="rides-create-planner-clear">
+                Clear Route
+            </button>
+            <button class="rides-create-planner-btn rides-create-planner-btn-primary" id="rides-create-planner-save">
+                Save Route
+            </button>
+        </div>
+    </div>
+</div>

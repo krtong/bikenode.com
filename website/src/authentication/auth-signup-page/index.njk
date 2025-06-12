@@ -1,39 +1,41 @@
 ---
-layout: authorization-page-layout/authorization-page-layout
+layout: authorization-page-layout
 title: Sign Up - BikeNode
 ---
 
 <div class="auth-signup-page-container">
-    <div class="BN-Global-card">
-        <h1 class="BN-Global-font-2xl BN-Global-font-bold BN-Global-text-primary BN-Global-mb-2">Join BikeNode</h1>
-        <p class="BN-Global-text-secondary BN-Global-mb-4">Create your account and start tracking your rides</p>
+    <div class="auth-signup-page-card">
+        <h1 class="auth-signup-page-title">Join BikeNode</h1>
+        <p class="auth-signup-page-subtitle">Create your account and start tracking your rides</p>
         
         <form class="auth-signup-page-form">
-            <div class="BN-Global-form-group">
-                <label class="BN-Global-form-label">Name</label>
-                <input type="text" class="BN-Global-form-input" placeholder="John Doe">
+            <div class="auth-signup-page-form-group">
+                <label class="auth-signup-page-form-label">Name</label>
+                <input type="text" class="auth-signup-page-form-input" placeholder="John Doe">
             </div>
             
-            <div class="BN-Global-form-group">
-                <label class="BN-Global-form-label">Email</label>
-                <input type="email" class="BN-Global-form-input" placeholder="you@example.com">
+            <div class="auth-signup-page-form-group">
+                <label class="auth-signup-page-form-label">Email</label>
+                <input type="email" class="auth-signup-page-form-input" placeholder="you@example.com">
             </div>
             
-            <div class="BN-Global-form-group">
-                <label class="BN-Global-form-label">Password</label>
-                <input type="password" class="BN-Global-form-input" placeholder="••••••••">
+            <div class="auth-signup-page-form-group">
+                <label class="auth-signup-page-form-label">Password</label>
+                <input type="password" class="auth-signup-page-form-input" placeholder="••••••••">
             </div>
             
-            <div class="BN-Global-form-group">
-                <label class="BN-Global-form-label">Confirm Password</label>
-                <input type="password" class="BN-Global-form-input" placeholder="••••••••">
+            <div class="auth-signup-page-form-group">
+                <label class="auth-signup-page-form-label">Confirm Password</label>
+                <input type="password" class="auth-signup-page-form-input" placeholder="••••••••">
             </div>
             
-            <button type="submit" class="BN-Global-btn BN-Global-btn-primary BN-Global-btn-block">Create Account</button>
+            <button type="submit" class="auth-signup-page-submit-button">Create Account</button>
         </form>
         
-        <div class="BN-Global-text-center BN-Global-mt-3">
-            <p class="BN-Global-text-secondary">Already have an account? <a href="/auth-login-page/" class="BN-Global-text-accent">Sign in</a></p>
+        <div class="auth-signup-page-signin-prompt">
+            <p class="auth-signup-page-signin-text">Already have an account? <a href="/auth-login-page/" class="auth-signup-page-signin-link">Sign in</a></p>
         </div>
     </div>
 </div>
+
+<link rel="stylesheet" href="./styles/auth-signup-page.css">

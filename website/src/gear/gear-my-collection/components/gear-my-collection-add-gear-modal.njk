@@ -1,0 +1,159 @@
+<div class="gear-my-collection-modal" id="gear-my-collection-add-modal">
+    <div class="gear-my-collection-modal-overlay"></div>
+    <div class="gear-my-collection-modal-content">
+        <div class="gear-my-collection-modal-header">
+            <h2 class="gear-my-collection-modal-title">Add New Gear</h2>
+            <button class="gear-my-collection-modal-close" aria-label="Close modal">×</button>
+        </div>
+        
+        <form class="gear-my-collection-modal-form" id="gear-my-collection-add-form">
+            <div class="gear-my-collection-form-group">
+                <label class="gear-my-collection-form-label" for="gear-my-collection-category-select">
+                    Category *
+                </label>
+                <select id="gear-my-collection-category-select" class="gear-my-collection-form-select" required>
+                    <option value="">Select category</option>
+                    <option value="helmets">Helmets</option>
+                    <option value="apparel">Apparel</option>
+                    <option value="shoes">Shoes</option>
+                    <option value="accessories">Accessories</option>
+                    <option value="components">Components</option>
+                    <option value="tools">Tools</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="gear-my-collection-form-row">
+                <div class="gear-my-collection-form-group">
+                    <label class="gear-my-collection-form-label" for="gear-my-collection-brand-input">
+                        Brand *
+                    </label>
+                    <input type="text" 
+                           id="gear-my-collection-brand-input" 
+                           class="gear-my-collection-form-input"
+                           placeholder="e.g., Specialized"
+                           required>
+                </div>
+                
+                <div class="gear-my-collection-form-group">
+                    <label class="gear-my-collection-form-label" for="gear-my-collection-model-input">
+                        Model *
+                    </label>
+                    <input type="text" 
+                           id="gear-my-collection-model-input" 
+                           class="gear-my-collection-form-input"
+                           placeholder="e.g., S-Works Evade"
+                           required>
+                </div>
+            </div>
+            
+            <div class="gear-my-collection-form-row">
+                <div class="gear-my-collection-form-group">
+                    <label class="gear-my-collection-form-label" for="gear-my-collection-size-input">
+                        Size
+                    </label>
+                    <input type="text" 
+                           id="gear-my-collection-size-input" 
+                           class="gear-my-collection-form-input"
+                           placeholder="e.g., Medium, 44, L">
+                </div>
+                
+                <div class="gear-my-collection-form-group">
+                    <label class="gear-my-collection-form-label" for="gear-my-collection-color-input">
+                        Color
+                    </label>
+                    <input type="text" 
+                           id="gear-my-collection-color-input" 
+                           class="gear-my-collection-form-input"
+                           placeholder="e.g., Black/Red">
+                </div>
+            </div>
+            
+            <div class="gear-my-collection-form-row">
+                <div class="gear-my-collection-form-group">
+                    <label class="gear-my-collection-form-label" for="gear-my-collection-purchase-date">
+                        Purchase Date
+                    </label>
+                    <input type="date" 
+                           id="gear-my-collection-purchase-date" 
+                           class="gear-my-collection-form-input">
+                </div>
+                
+                <div class="gear-my-collection-form-group">
+                    <label class="gear-my-collection-form-label" for="gear-my-collection-price-input">
+                        Price
+                    </label>
+                    <input type="number" 
+                           id="gear-my-collection-price-input" 
+                           class="gear-my-collection-form-input"
+                           placeholder="0.00"
+                           step="0.01">
+                </div>
+            </div>
+            
+            <div class="gear-my-collection-form-group">
+                <label class="gear-my-collection-form-label">
+                    Assigned Bikes
+                </label>
+                <div class="gear-my-collection-bike-checkboxes">
+                    <label class="gear-my-collection-checkbox">
+                        <input type="checkbox" value="trek-domane">
+                        <span>Trek Domane SL 7</span>
+                    </label>
+                    <label class="gear-my-collection-checkbox">
+                        <input type="checkbox" value="specialized-stumpjumper">
+                        <span>Specialized Stumpjumper</span>
+                    </label>
+                    <label class="gear-my-collection-checkbox">
+                        <input type="checkbox" value="canyon-grail">
+                        <span>Canyon Grail CF SL 8</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="gear-my-collection-form-group">
+                <label class="gear-my-collection-form-label" for="gear-my-collection-notes-textarea">
+                    Notes
+                </label>
+                <textarea id="gear-my-collection-notes-textarea" 
+                          class="gear-my-collection-form-textarea"
+                          rows="3"
+                          placeholder="Any additional notes about this gear..."></textarea>
+            </div>
+            
+            <div class="gear-my-collection-form-group">
+                <label class="gear-my-collection-form-label">
+                    Photo
+                </label>
+                <div class="gear-my-collection-photo-upload">
+                    <input type="file" 
+                           id="gear-my-collection-photo-input" 
+                           class="gear-my-collection-photo-input"
+                           accept="image/*">
+                    <label for="gear-my-collection-photo-input" class="gear-my-collection-photo-label">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                        <span>Click to upload or drag and drop</span>
+                    </label>
+                </div>
+            </div>
+        </form>
+        
+        <div class="gear-my-collection-modal-footer">
+            <button type="button" 
+                    class="gear-my-collection-btn gear-my-collection-btn-secondary" 
+                    id="gear-my-collection-cancel-add">
+                Cancel
+            </button>
+            <button type="submit" 
+                    form="gear-my-collection-add-form"
+                    class="gear-my-collection-btn gear-my-collection-btn-primary" 
+                    id="gear-my-collection-save-gear">
+                Add Gear
+            </button>
+        </div>
+    </div>
+</div>

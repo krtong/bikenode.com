@@ -1,5 +1,5 @@
 ---
-layout: bikenode-main-layout-01/bikenode-main-layout-01
+layout: bikenode-main-layout-01
 title: Gear Collection
 subtitle: Organize and track all your cycling and motorcycling gear
 showContentHeader: false
@@ -7,14 +7,16 @@ breadcrumb:
   - title: Dashboard
     url: /dashboard/
   - title: Gear Collection
-customCSS:
-  - /gear-collection/styles/gear-collection.css
 ---
 
-{% include "gear-collection/header.njk" %}
-{% include "gear-collection/categories.njk" %}
-{% include "gear-collection/filters.njk" %}
-{% include "gear-collection/gear-grid.njk" %}
-{% include "gear-collection/add-gear-modal.njk" %}
+<link rel="stylesheet" href="./styles/gear-my-collection.css">
 
-<script type="module" src="/gear-collection/js/app.js"></script>
+<div class="gear-my-collection-page">
+    {% include "./components/gear-my-collection-header.njk" %}
+    {% include "./components/gear-my-collection-categories.njk" %}
+    {% include "./components/gear-my-collection-filters.njk" %}
+    {% include "./components/gear-my-collection-gear-grid.njk" %}
+    {% include "./components/gear-my-collection-add-gear-modal.njk" %}
+</div>
+
+<script src="./js/gear-my-collection.js"></script>

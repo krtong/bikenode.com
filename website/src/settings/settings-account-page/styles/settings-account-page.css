@@ -1,8 +1,8 @@
-.settings-content {
+.settings-account-page-content {
     max-width: 800px;
 }
 
-.settings-tabs {
+.settings-account-page-tabs {
     display: flex;
     gap: 8px;
     margin-bottom: 32px;
@@ -10,7 +10,7 @@
     overflow-x: auto;
 }
 
-.settings-tab-btn {
+.settings-account-page-tab-btn {
     background: transparent;
     border: none;
     color: var(--text-secondary);
@@ -23,26 +23,26 @@
     white-space: nowrap;
 }
 
-.settings-tab-btn:hover {
+.settings-account-page-tab-btn:hover {
     color: var(--text-primary);
     background: rgba(255, 255, 255, 0.05);
 }
 
-.settings-tab-btn.active {
+.settings-account-page-tab-btn.settings-account-page-active {
     color: var(--accent);
     background: rgba(88, 101, 242, 0.1);
     border-bottom: 2px solid var(--accent);
 }
 
-.settings-tab-content {
+.settings-account-page-tab-content {
     display: none;
 }
 
-.settings-tab-content.active {
+.settings-account-page-tab-content.settings-account-page-active {
     display: block;
 }
 
-.settings-section {
+.settings-account-page-section {
     background: var(--card-bg);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
@@ -50,14 +50,14 @@
     margin-bottom: 24px;
 }
 
-.settings-section h2 {
+.settings-account-page-section h2 {
     color: var(--text-primary);
     margin: 0 0 24px 0;
     font-size: 1.25rem;
     font-weight: 600;
 }
 
-.settings-profile-header {
+.settings-account-page-profile-header {
     display: flex;
     align-items: center;
     gap: 24px;
@@ -66,18 +66,18 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.settings-profile-avatar {
+.settings-account-page-profile-avatar {
     position: relative;
 }
 
-.settings-profile-avatar img {
+.settings-account-page-profile-avatar img {
     width: 80px;
     height: 80px;
     border-radius: 50%;
     border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-.settings-avatar-upload {
+.settings-account-page-avatar-upload {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -91,46 +91,46 @@
     font-size: 12px;
 }
 
-.settings-profile-info h3 {
+.settings-account-page-profile-info h3 {
     color: var(--text-primary);
     margin: 0 0 8px 0;
     font-size: 1.2rem;
 }
 
-.settings-profile-info p {
+.settings-account-page-profile-info p {
     color: var(--text-secondary);
     margin: 0 0 4px 0;
     font-size: 0.9rem;
 }
 
-.settings-form {
+.settings-account-page-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.settings-form-grid {
+.settings-account-page-form-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
 }
 
-.settings-form-group {
+.settings-account-page-form-group {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.settings-form-group label {
+.settings-account-page-form-group label {
     color: var(--text-primary);
     font-weight: 500;
     font-size: 14px;
 }
 
-.settings-form-group input,
-.settings-form-group textarea,
-.settings-privacy-select,
-.settings-preference-select {
+.settings-account-page-form-group input,
+.settings-account-page-form-group textarea,
+.settings-account-page-privacy-select,
+.settings-account-page-preference-select {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--text-primary);
@@ -140,21 +140,21 @@
     transition: all 0.2s ease;
 }
 
-.settings-form-group input:focus,
-.settings-form-group textarea:focus {
+.settings-account-page-form-group input:focus,
+.settings-account-page-form-group textarea:focus {
     outline: none;
     border-color: var(--accent);
     background: rgba(255, 255, 255, 0.08);
 }
 
-.settings-form-group small {
+.settings-account-page-form-group small {
     color: var(--text-secondary);
     font-size: 12px;
 }
 
-.settings-security-option,
-.settings-privacy-option,
-.settings-preference-option {
+.settings-account-page-security-option,
+.settings-account-page-privacy-option,
+.settings-account-page-preference-option {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -162,43 +162,49 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.settings-security-option:last-child,
-.settings-privacy-option:last-child,
-.settings-preference-option:last-child {
+.settings-account-page-security-option:last-child,
+.settings-account-page-privacy-option:last-child,
+.settings-account-page-preference-option:last-child {
     border-bottom: none;
 }
 
-.settings-option-info h3 {
+.settings-account-page-option-info h3 {
     color: var(--text-primary);
     margin: 0 0 4px 0;
     font-size: 1rem;
 }
 
-.settings-option-info p {
+.settings-account-page-option-info p {
     color: var(--text-secondary);
     margin: 0;
     font-size: 0.9rem;
 }
 
-.settings-security-status {
+.settings-account-page-option-action {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.settings-account-page-security-status {
     padding: 4px 12px;
     border-radius: 12px;
     font-size: 12px;
     font-weight: 500;
 }
 
-.settings-security-status.disabled {
+.settings-account-page-security-status.settings-account-page-disabled {
     background: rgba(239, 68, 68, 0.1);
     color: #f87171;
 }
 
-.settings-session-list {
+.settings-account-page-session-list {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-.settings-session-item {
+.settings-account-page-session-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -207,25 +213,25 @@
     border-radius: 8px;
 }
 
-.settings-session-info h4 {
+.settings-account-page-session-info h4 {
     color: var(--text-primary);
     margin: 0 0 4px 0;
     font-size: 0.9rem;
 }
 
-.settings-session-info p {
+.settings-account-page-session-info p {
     color: var(--text-secondary);
     margin: 0 0 2px 0;
     font-size: 0.8rem;
 }
 
-.settings-session-info small {
+.settings-account-page-session-info small {
     color: var(--text-secondary);
     font-size: 0.7rem;
     opacity: 0.7;
 }
 
-.settings-session-current {
+.settings-account-page-session-current {
     background: rgba(16, 185, 129, 0.1);
     color: #10b981;
     padding: 4px 12px;
@@ -234,7 +240,7 @@
     font-weight: 500;
 }
 
-.settings-service-item {
+.settings-account-page-service-item {
     display: flex;
     align-items: center;
     gap: 16px;
@@ -242,11 +248,11 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.settings-service-item:last-child {
+.settings-account-page-service-item:last-child {
     border-bottom: none;
 }
 
-.settings-service-icon {
+.settings-account-page-service-icon {
     width: 48px;
     height: 48px;
     background: rgba(255, 255, 255, 0.05);
@@ -257,52 +263,56 @@
     font-size: 1.5rem;
 }
 
-.settings-service-info {
+.settings-account-page-service-info {
     flex: 1;
 }
 
-.settings-service-info h3 {
+.settings-account-page-service-info h3 {
     color: var(--text-primary);
     margin: 0 0 4px 0;
     font-size: 1rem;
 }
 
-.settings-service-info p {
+.settings-account-page-service-info p {
     color: var(--text-secondary);
     margin: 0 0 8px 0;
     font-size: 0.9rem;
 }
 
-.settings-service-status {
+.settings-account-page-service-status {
     font-size: 12px;
     font-weight: 500;
     padding: 2px 8px;
     border-radius: 8px;
 }
 
-.settings-service-status.connected {
+.settings-account-page-service-status.settings-account-page-connected {
     background: rgba(16, 185, 129, 0.1);
     color: #10b981;
 }
 
-.settings-service-status.disconnected {
+.settings-account-page-service-status.settings-account-page-disconnected {
     background: rgba(107, 114, 128, 0.1);
     color: #9ca3af;
 }
 
-.settings-toggle-switch {
+.settings-account-page-service-toggle {
+    display: flex;
+}
+
+.settings-account-page-toggle-switch {
     position: relative;
     width: 44px;
     height: 24px;
 }
 
-.settings-toggle-switch input {
+.settings-account-page-toggle-switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-.settings-slider {
+.settings-account-page-slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -314,7 +324,7 @@
     border-radius: 24px;
 }
 
-.settings-slider:before {
+.settings-account-page-slider:before {
     position: absolute;
     content: "";
     height: 18px;
@@ -326,39 +336,39 @@
     border-radius: 50%;
 }
 
-input:checked + .settings-slider {
+input:checked + .settings-account-page-slider {
     background-color: var(--accent);
 }
 
-input:checked + .settings-slider:before {
+input:checked + .settings-account-page-slider:before {
     transform: translateX(20px);
 }
 
-.btn-danger.small {
+.settings-account-page-btn-small {
     padding: 6px 12px;
     font-size: 12px;
 }
 
 @media (max-width: 768px) {
-    .settings-form-grid {
+    .settings-account-page-form-grid {
         grid-template-columns: 1fr;
     }
     
-    .settings-security-option,
-    .settings-privacy-option,
-    .settings-preference-option {
+    .settings-account-page-security-option,
+    .settings-account-page-privacy-option,
+    .settings-account-page-preference-option {
         flex-direction: column;
         align-items: flex-start;
         gap: 12px;
     }
     
-    .settings-session-item {
+    .settings-account-page-session-item {
         flex-direction: column;
         align-items: flex-start;
         gap: 12px;
     }
     
-    .settings-service-item {
+    .settings-account-page-service-item {
         flex-wrap: wrap;
     }
 }

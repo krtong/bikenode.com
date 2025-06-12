@@ -737,3 +737,341 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Additional Gear My Collection Page Styles from inline CSS */
+.gear-my-collection-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Header Styles */
+.gear-my-collection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.gear-my-collection-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.gear-my-collection-subtitle {
+    color: #6b7280;
+    margin: 0.25rem 0 0;
+}
+
+.gear-my-collection-header-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Button Styles */
+.gear-my-collection-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+}
+
+.gear-my-collection-btn-primary {
+    background: #3b82f6;
+    color: white;
+}
+
+.gear-my-collection-btn-primary:hover {
+    background: #2563eb;
+}
+
+.gear-my-collection-btn-secondary {
+    background: white;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.gear-my-collection-btn-secondary:hover {
+    background: #f3f4f6;
+}
+
+/* Categories */
+.gear-my-collection-categories {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+
+.gear-my-collection-category {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.gear-my-collection-category:hover {
+    border-color: #3b82f6;
+}
+
+.gear-my-collection-category-active {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}
+
+.gear-my-collection-category-icon {
+    font-size: 1.25rem;
+}
+
+.gear-my-collection-category-count {
+    background: rgba(0,0,0,0.1);
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+}
+
+/* Filters */
+.gear-my-collection-filters {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.gear-my-collection-filters-left {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex: 1;
+}
+
+.gear-my-collection-filters-right {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.gear-my-collection-search {
+    position: relative;
+    flex: 1;
+    max-width: 300px;
+}
+
+.gear-my-collection-search-input {
+    width: 100%;
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+}
+
+.gear-my-collection-search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+}
+
+.gear-my-collection-filter-select {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    background: white;
+}
+
+/* Grid */
+.gear-my-collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.gear-my-collection-item {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.2s;
+}
+
+.gear-my-collection-item:hover {
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.gear-my-collection-item-image {
+    position: relative;
+    height: 180px;
+    background: #f3f4f6;
+}
+
+.gear-my-collection-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gear-my-collection-item-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.gear-my-collection-badge-active {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.gear-my-collection-badge-backup {
+    background: #e0e7ff;
+    color: #3730a3;
+}
+
+.gear-my-collection-item-content {
+    padding: 1.25rem;
+}
+
+.gear-my-collection-item-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+}
+
+.gear-my-collection-item-brand {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin: 0 0 0.75rem;
+}
+
+.gear-my-collection-item-details {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-bottom: 0.75rem;
+}
+
+.gear-my-collection-item-stats {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.gear-my-collection-item-stat {
+    font-size: 0.875rem;
+}
+
+.gear-my-collection-stat-label {
+    color: #6b7280;
+}
+
+.gear-my-collection-stat-value {
+    color: #111827;
+    font-weight: 500;
+}
+
+.gear-my-collection-item-actions {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0 1.25rem 1.25rem;
+}
+
+.gear-my-collection-action-btn {
+    padding: 0.5rem;
+    background: #f3f4f6;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #6b7280;
+}
+
+.gear-my-collection-action-btn:hover {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+/* Modal */
+.gear-my-collection-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+}
+
+.gear-my-collection-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+.gear-my-collection-modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 0.5rem;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.gear-my-collection-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.gear-my-collection-modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.gear-my-collection-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #6b7280;
+}
+
+/* Hidden */
+.gear-my-collection-hidden {
+    display: none !important;
+}

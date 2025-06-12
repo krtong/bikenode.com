@@ -1,31 +1,31 @@
-.settings-privacy-container {
+.settings-privacy-page-container {
     max-width: 800px;
     margin: 0 auto;
 }
 
-.settings-privacy-section {
+.settings-privacy-page-section {
     background: var(--card-bg);
     border-radius: 12px;
     padding: 24px;
     margin-bottom: 24px;
 }
 
-.settings-section-header {
+.settings-privacy-page-section-header {
     margin-bottom: 24px;
 }
 
-.settings-section-title {
+.settings-privacy-page-section-title {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 8px;
 }
 
-.settings-section-description {
+.settings-privacy-page-section-description {
     color: var(--text-secondary);
     font-size: 14px;
 }
 
-.settings-privacy-setting {
+.settings-privacy-page-setting {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,32 +33,32 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.settings-privacy-setting:last-child {
+.settings-privacy-page-setting:last-child {
     border-bottom: none;
 }
 
-.settings-setting-info {
+.settings-privacy-page-setting-info {
     flex: 1;
     margin-right: 24px;
 }
 
-.settings-setting-title {
+.settings-privacy-page-setting-title {
     font-weight: 500;
     margin-bottom: 4px;
 }
 
-.settings-setting-description {
+.settings-privacy-page-setting-description {
     font-size: 14px;
     color: var(--text-secondary);
 }
 
-.settings-setting-control {
+.settings-privacy-page-setting-control {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.settings-privacy-select {
+.settings-privacy-page-select {
     min-width: 140px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -67,11 +67,11 @@
     color: var(--text-primary);
 }
 
-.settings-privacy-zones {
+.settings-privacy-page-zones {
     margin-top: 20px;
 }
 
-.settings-zone-item {
+.settings-privacy-page-zone-item {
     display: flex;
     align-items: center;
     gap: 16px;
@@ -81,7 +81,7 @@
     margin-bottom: 8px;
 }
 
-.settings-zone-icon {
+.settings-privacy-page-zone-icon {
     width: 40px;
     height: 40px;
     background: rgba(88, 101, 242, 0.1);
@@ -92,21 +92,21 @@
     font-size: 20px;
 }
 
-.settings-zone-info {
+.settings-privacy-page-zone-info {
     flex: 1;
 }
 
-.settings-zone-name {
+.settings-privacy-page-zone-name {
     font-weight: 500;
     margin-bottom: 2px;
 }
 
-.settings-zone-address {
+.settings-privacy-page-zone-address {
     font-size: 12px;
     color: var(--text-secondary);
 }
 
-.settings-zone-remove {
+.settings-privacy-page-zone-remove {
     background: none;
     border: 1px solid rgba(239, 68, 68, 0.5);
     color: #ef4444;
@@ -117,11 +117,11 @@
     transition: all 0.2s ease;
 }
 
-.settings-zone-remove:hover {
+.settings-privacy-page-zone-remove:hover {
     background: rgba(239, 68, 68, 0.1);
 }
 
-.settings-add-zone-btn {
+.settings-privacy-page-add-zone-btn {
     background: none;
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 12px 20px;
@@ -134,15 +134,15 @@
     margin-top: 12px;
 }
 
-.settings-add-zone-btn:hover {
+.settings-privacy-page-add-zone-btn:hover {
     background: rgba(255, 255, 255, 0.05);
 }
 
-.settings-blocked-users {
+.settings-privacy-page-blocked-users {
     margin-top: 20px;
 }
 
-.settings-user-item {
+.settings-privacy-page-user-item {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -152,7 +152,7 @@
     margin-bottom: 8px;
 }
 
-.settings-user-avatar {
+.settings-privacy-page-user-avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -163,20 +163,20 @@
     font-size: 14px;
 }
 
-.settings-user-info {
+.settings-privacy-page-user-info {
     flex: 1;
 }
 
-.settings-user-name {
+.settings-privacy-page-user-name {
     font-weight: 500;
 }
 
-.settings-user-username {
+.settings-privacy-page-user-username {
     font-size: 14px;
     color: var(--text-secondary);
 }
 
-.settings-unblock-btn {
+.settings-privacy-page-unblock-btn {
     background: none;
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 6px 16px;
@@ -186,16 +186,16 @@
     transition: all 0.2s ease;
 }
 
-.settings-unblock-btn:hover {
+.settings-privacy-page-unblock-btn:hover {
     background: rgba(255, 255, 255, 0.05);
 }
 
-.settings-data-section {
+.settings-privacy-page-data-section {
     display: grid;
     gap: 16px;
 }
 
-.settings-data-item {
+.settings-privacy-page-data-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -204,21 +204,21 @@
     border-radius: 8px;
 }
 
-.settings-data-info {
+.settings-privacy-page-data-info {
     flex: 1;
 }
 
-.settings-data-title {
+.settings-privacy-page-data-title {
     font-weight: 500;
     margin-bottom: 4px;
 }
 
-.settings-data-description {
+.settings-privacy-page-data-description {
     font-size: 14px;
     color: var(--text-secondary);
 }
 
-.settings-data-action {
+.settings-privacy-page-data-action {
     background: var(--accent);
     color: white;
     border: none;
@@ -228,19 +228,19 @@
     transition: all 0.2s ease;
 }
 
-.settings-data-action:hover {
+.settings-privacy-page-data-action:hover {
     background: var(--accent-hover);
 }
 
-.settings-data-action.danger {
+.settings-privacy-page-data-action.settings-privacy-page-danger {
     background: #ef4444;
 }
 
-.settings-data-action.danger:hover {
+.settings-privacy-page-data-action.settings-privacy-page-danger:hover {
     background: #dc2626;
 }
 
-.settings-warning-box {
+.settings-privacy-page-warning-box {
     background: rgba(239, 68, 68, 0.1);
     border: 1px solid rgba(239, 68, 68, 0.3);
     border-radius: 8px;
@@ -248,30 +248,30 @@
     margin-top: 20px;
 }
 
-.settings-warning-title {
+.settings-privacy-page-warning-title {
     color: #ef4444;
     font-weight: 600;
     margin-bottom: 8px;
 }
 
-.settings-warning-text {
+.settings-privacy-page-warning-text {
     font-size: 14px;
     line-height: 1.5;
 }
 
-.settings-toggle-switch {
+.settings-privacy-page-toggle-switch {
     position: relative;
     width: 44px;
     height: 24px;
 }
 
-.settings-toggle-switch input {
+.settings-privacy-page-toggle-switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-.settings-slider {
+.settings-privacy-page-slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -283,7 +283,7 @@
     border-radius: 24px;
 }
 
-.settings-slider:before {
+.settings-privacy-page-slider:before {
     position: absolute;
     content: "";
     height: 18px;
@@ -295,26 +295,26 @@
     border-radius: 50%;
 }
 
-input:checked + .settings-slider {
+input:checked + .settings-privacy-page-slider {
     background-color: var(--accent);
 }
 
-input:checked + .settings-slider:before {
+input:checked + .settings-privacy-page-slider:before {
     transform: translateX(20px);
 }
 
 @media (max-width: 768px) {
-    .settings-privacy-setting {
+    .settings-privacy-page-setting {
         flex-direction: column;
         align-items: flex-start;
         gap: 12px;
     }
 
-    .settings-setting-info {
+    .settings-privacy-page-setting-info {
         margin-right: 0;
     }
 
-    .settings-setting-control {
+    .settings-privacy-page-setting-control {
         width: 100%;
         justify-content: flex-end;
     }

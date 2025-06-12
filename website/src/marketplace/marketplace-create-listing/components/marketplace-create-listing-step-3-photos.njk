@@ -1,0 +1,82 @@
+<div class="marketplace-create-listing-step" id="marketplace-create-listing-step-3" style="display: none;">
+    <h2 class="marketplace-create-listing-step-title">Add Photos</h2>
+    <p class="marketplace-create-listing-step-subtitle">Add up to 10 photos. The first photo will be your main listing image.</p>
+    
+    <div class="marketplace-create-listing-photo-upload">
+        <div class="marketplace-create-listing-photo-grid" id="marketplace-create-listing-photo-grid">
+            <!-- Main photo slot -->
+            <div class="marketplace-create-listing-photo-slot marketplace-create-listing-photo-main">
+                <input type="file" 
+                       id="marketplace-create-listing-photo-0" 
+                       class="marketplace-create-listing-photo-input"
+                       accept="image/*"
+                       data-slot="0">
+                <label for="marketplace-create-listing-photo-0" class="marketplace-create-listing-photo-label">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span>Main Photo</span>
+                    <span class="marketplace-create-listing-photo-hint">Click or drag to upload</span>
+                </label>
+                <div class="marketplace-create-listing-photo-preview" style="display: none;">
+                    <img src="" alt="">
+                    <button type="button" class="marketplace-create-listing-photo-remove" data-slot="0">×</button>
+                </div>
+            </div>
+            
+            <!-- Additional photo slots -->
+            <div class="marketplace-create-listing-photo-slot">
+                <input type="file" 
+                       id="marketplace-create-listing-photo-1" 
+                       class="marketplace-create-listing-photo-input"
+                       accept="image/*"
+                       data-slot="1">
+                <label for="marketplace-create-listing-photo-1" class="marketplace-create-listing-photo-label">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span>Add Photo</span>
+                </label>
+                <div class="marketplace-create-listing-photo-preview" style="display: none;">
+                    <img src="" alt="">
+                    <button type="button" class="marketplace-create-listing-photo-remove" data-slot="1">×</button>
+                </div>
+            </div>
+            
+            <!-- Repeat for slots 2-9 -->
+            <div class="marketplace-create-listing-photo-slot">
+                <input type="file" 
+                       id="marketplace-create-listing-photo-2" 
+                       class="marketplace-create-listing-photo-input"
+                       accept="image/*"
+                       data-slot="2">
+                <label for="marketplace-create-listing-photo-2" class="marketplace-create-listing-photo-label">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span>Add Photo</span>
+                </label>
+                <div class="marketplace-create-listing-photo-preview" style="display: none;">
+                    <img src="" alt="">
+                    <button type="button" class="marketplace-create-listing-photo-remove" data-slot="2">×</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="marketplace-create-listing-photo-tips">
+        <h3>Photo Tips:</h3>
+        <ul>
+            <li>Take photos in good lighting</li>
+            <li>Show the item from multiple angles</li>
+            <li>Include close-ups of important details or any damage</li>
+            <li>Clean your item before photographing</li>
+        </ul>
+    </div>
+</div>

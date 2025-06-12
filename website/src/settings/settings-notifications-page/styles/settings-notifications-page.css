@@ -1,8 +1,8 @@
-.settings-notifications-content {
+.settings-notifications-page-content {
     max-width: 800px;
 }
 
-.settings-notification-section {
+.settings-notifications-page-section {
     background: var(--card-bg);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
@@ -10,26 +10,26 @@
     margin-bottom: 32px;
 }
 
-.settings-notification-section h2 {
+.settings-notifications-page-section h2 {
     color: var(--text-primary);
     margin: 0 0 8px 0;
     font-size: 1.25rem;
     font-weight: 600;
 }
 
-.settings-section-description {
+.settings-notifications-page-section-description {
     color: var(--text-secondary);
     margin: 0 0 24px 0;
     font-size: 0.9rem;
 }
 
-.settings-notification-group {
+.settings-notifications-page-group {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.settings-notification-item {
+.settings-notifications-page-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,47 +37,47 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.settings-notification-item:last-child {
+.settings-notifications-page-item:last-child {
     border-bottom: none;
 }
 
-.settings-notification-info {
+.settings-notifications-page-info {
     flex: 1;
 }
 
-.settings-notification-info h3 {
+.settings-notifications-page-info h3 {
     color: var(--text-primary);
     margin: 0 0 4px 0;
     font-size: 1rem;
     font-weight: 600;
 }
 
-.settings-notification-info p {
+.settings-notifications-page-info p {
     color: var(--text-secondary);
     margin: 0;
     font-size: 0.9rem;
 }
 
-.settings-required-notice {
+.settings-notifications-page-required-notice {
     color: var(--text-secondary);
     font-size: 0.8rem;
     margin-left: 16px;
 }
 
-.settings-toggle-switch {
+.settings-notifications-page-toggle-switch {
     position: relative;
     width: 44px;
     height: 24px;
     margin-left: 16px;
 }
 
-.settings-toggle-switch input {
+.settings-notifications-page-toggle-switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-.settings-slider {
+.settings-notifications-page-slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -89,7 +89,7 @@
     border-radius: 24px;
 }
 
-.settings-slider:before {
+.settings-notifications-page-slider:before {
     position: absolute;
     content: "";
     height: 18px;
@@ -101,40 +101,40 @@
     border-radius: 50%;
 }
 
-input:checked + .settings-slider {
+input:checked + .settings-notifications-page-slider {
     background-color: var(--accent);
 }
 
-input:checked + .settings-slider:before {
+input:checked + .settings-notifications-page-slider:before {
     transform: translateX(20px);
 }
 
-input:disabled + .settings-slider {
+input:disabled + .settings-notifications-page-slider {
     opacity: 0.5;
     cursor: not-allowed;
 }
 
-.settings-preference-grid {
+.settings-notifications-page-preference-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 24px;
 }
 
-.settings-preference-item {
+.settings-notifications-page-preference-item {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.settings-preference-item h3 {
+.settings-notifications-page-preference-item h3 {
     color: var(--text-primary);
     margin: 0;
     font-size: 1rem;
     font-weight: 600;
 }
 
-.settings-preference-select,
-.settings-time-input {
+.settings-notifications-page-preference-select,
+.settings-notifications-page-time-input {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--text-primary);
@@ -143,18 +143,18 @@ input:disabled + .settings-slider {
     font-size: 14px;
 }
 
-.settings-time-range {
+.settings-notifications-page-time-range {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.settings-time-range span {
+.settings-notifications-page-time-range span {
     color: var(--text-secondary);
     font-size: 0.9rem;
 }
 
-.settings-save-section {
+.settings-notifications-page-save-section {
     display: flex;
     gap: 16px;
     margin-top: 32px;
@@ -162,26 +162,54 @@ input:disabled + .settings-slider {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.settings-save-btn {
+.settings-notifications-page-save-btn {
     min-width: 200px;
 }
 
+.settings-notifications-page-btn-primary,
+.settings-notifications-page-btn-secondary {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+.settings-notifications-page-btn-primary:hover {
+    background: #4c5ed8;
+}
+
+.settings-notifications-page-btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.settings-notifications-page-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
 @media (max-width: 768px) {
-    .settings-notification-item {
+    .settings-notifications-page-item {
         flex-direction: column;
         align-items: flex-start;
         gap: 12px;
     }
     
-    .settings-toggle-switch {
+    .settings-notifications-page-toggle-switch {
         margin-left: 0;
     }
     
-    .settings-preference-grid {
+    .settings-notifications-page-preference-grid {
         grid-template-columns: 1fr;
     }
     
-    .settings-save-section {
+    .settings-notifications-page-save-section {
         flex-direction: column;
     }
 }

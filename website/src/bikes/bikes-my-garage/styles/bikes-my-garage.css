@@ -1,107 +1,326 @@
-/* Custom styles for virtual garage that extend global components */
-
-/* Tab icon styling */
-.vg-tab-icon {
-    font-size: 1.2rem;
+/* Bikes My Garage Page Styles */
+.bikes-my-garage-page {
+    background: #f9fafb;
+    min-height: calc(100vh - 80px);
 }
 
-/* Position utilities not in global CSS - consider using global utilities */
-.vg-position-relative {
-    position: relative;
+.bikes-my-garage-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem 2rem;
 }
 
-.vg-position-absolute {
-    position: absolute;
+/* Header Styles */
+.bikes-my-garage-header {
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 2rem;
 }
 
-.vg-top-0 { top: 0; }
-.vg-start-0 { left: 0; }
-.vg-end-0 { right: 0; }
-.vg-bottom-0 { bottom: 0; }
-
-.vg-w-100 { width: 100%; }
-.vg-h-100 { height: 100%; }
-
-/* Flexbox alignment - consider using global utilities */
-.vg-align-items-center {
+.bikes-my-garage-header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-.vg-justify-content-center {
-    justify-content: center;
+.bikes-my-garage-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
 }
 
-/* Border dashed variant */
-.vg-border-dashed {
-    border-style: dashed !important;
-    border-width: 2px;
+.bikes-my-garage-subtitle {
+    color: #6b7280;
+    margin: 0.25rem 0 0;
 }
 
-/* Crash Reports specific styles */
-.vg-crash-reports-section {
-    max-width: 800px;
+.bikes-my-garage-header-actions {
+    display: flex;
+    gap: 1rem;
 }
 
-.vg-info-card {
-    background: rgba(88, 101, 242, 0.1);
-    border: 1px solid rgba(88, 101, 242, 0.3);
-    padding: 16px;
-    border-radius: 8px;
-    margin-bottom: 24px;
+/* Button Styles */
+.bikes-my-garage-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    border: none;
 }
 
-.vg-report-severity {
-    padding: 4px 12px;
-    border-radius: 20px;
+.bikes-my-garage-btn-primary {
+    background: #3b82f6;
+    color: white;
+}
+
+.bikes-my-garage-btn-primary:hover {
+    background: #2563eb;
+}
+
+.bikes-my-garage-btn-secondary {
+    background: white;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.bikes-my-garage-btn-secondary:hover {
+    background: #f3f4f6;
+}
+
+/* Tabs */
+.bikes-my-garage-tabs {
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    padding: 0 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.bikes-my-garage-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    color: #6b7280;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.bikes-my-garage-tab:hover {
+    color: #374151;
+}
+
+.bikes-my-garage-tab-active {
+    color: #3b82f6;
+    border-bottom-color: #3b82f6;
+}
+
+.bikes-my-garage-tab-icon {
+    font-size: 1.25rem;
+}
+
+.bikes-my-garage-tab-count {
+    background: #e5e7eb;
+    color: #374151;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
     font-size: 0.75rem;
+}
+
+.bikes-my-garage-tab-active .bikes-my-garage-tab-count {
+    background: #dbeafe;
+    color: #3b82f6;
+}
+
+/* Tab Content */
+.bikes-my-garage-tab-content {
+    display: none;
+}
+
+.bikes-my-garage-tab-content.bikes-my-garage-tab-active {
+    display: block;
+}
+
+/* Stats */
+.bikes-my-garage-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.bikes-my-garage-stat-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.bikes-my-garage-stat-icon {
+    width: 48px;
+    height: 48px;
+    background: #eff6ff;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3b82f6;
+}
+
+.bikes-my-garage-stat-value {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.bikes-my-garage-stat-label {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+/* Filters */
+.bikes-my-garage-filters {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.bikes-my-garage-filter-left {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.bikes-my-garage-filter-right {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.bikes-my-garage-filter-select {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    background: white;
+}
+
+/* Bike Grid */
+.bikes-my-garage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.bikes-my-garage-bike-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: all 0.2s;
+}
+
+.bikes-my-garage-bike-card:hover {
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.bikes-my-garage-bike-image {
+    position: relative;
+    height: 200px;
+    background: #f3f4f6;
+}
+
+.bikes-my-garage-bike-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bikes-my-garage-bike-status {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: white;
+}
+
+.bikes-my-garage-status-active {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.bikes-my-garage-status-forsale {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.bikes-my-garage-bike-info {
+    padding: 1.5rem;
+}
+
+.bikes-my-garage-bike-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+}
+
+.bikes-my-garage-bike-year {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin: 0 0 1rem;
+}
+
+.bikes-my-garage-bike-stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.bikes-my-garage-bike-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+}
+
+.bikes-my-garage-bike-stat-value {
     font-weight: 600;
 }
 
-.vg-report-severity.vg-minor {
-    background: rgba(46, 213, 115, 0.2);
-    color: #2ed573;
+.bikes-my-garage-bike-stat-label {
+    font-size: 0.875rem;
+    color: #6b7280;
 }
 
-.vg-report-severity.vg-moderate {
-    background: rgba(255, 193, 7, 0.2);
-    color: #ffc107;
+.bikes-my-garage-bike-actions {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0 1.5rem 1.5rem;
 }
 
-.vg-report-severity.vg-serious {
-    background: rgba(255, 107, 0, 0.2);
-    color: #ff6b00;
+.bikes-my-garage-action-btn {
+    padding: 0.5rem;
+    background: #f3f4f6;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #6b7280;
 }
 
-.vg-report-severity.vg-severe {
-    background: rgba(255, 71, 87, 0.2);
-    color: #ff4757;
+.bikes-my-garage-action-btn:hover {
+    background: #e5e7eb;
+    color: #374151;
 }
 
-/* Maintenance specific styles */
-.vg-maintenance-schedule {
-    max-width: 1000px;
+/* Hidden */
+.bikes-my-garage-hidden {
+    display: none \!important;
 }
-
-.vg-maintenance-item {
-    border-left: 4px solid transparent;
-}
-
-.vg-maintenance-item.vg-overdue {
-    border-left-color: #ef4444;
-}
-
-.vg-maintenance-item.vg-due-soon {
-    border-left-color: #f59e0b;
-}
-
-.vg-maintenance-item.vg-upcoming {
-    border-left-color: #10b981;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .vg-tabs {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-}
+EOF < /dev/null

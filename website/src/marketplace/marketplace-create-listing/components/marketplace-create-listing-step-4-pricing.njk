@@ -1,0 +1,107 @@
+<div class="marketplace-create-listing-step" id="marketplace-create-listing-step-4" style="display: none;">
+    <h2 class="marketplace-create-listing-step-title">Set Your Price</h2>
+    
+    <div class="marketplace-create-listing-form-group">
+        <label for="marketplace-create-listing-price" class="marketplace-create-listing-label">
+            Asking Price *
+        </label>
+        <div class="marketplace-create-listing-price-input-wrapper">
+            <span class="marketplace-create-listing-currency">$</span>
+            <input type="number" 
+                   id="marketplace-create-listing-price" 
+                   name="price"
+                   class="marketplace-create-listing-input marketplace-create-listing-price-input"
+                   placeholder="0.00"
+                   step="0.01"
+                   min="0"
+                   required>
+        </div>
+    </div>
+    
+    <div class="marketplace-create-listing-form-group">
+        <label class="marketplace-create-listing-checkbox-label">
+            <input type="checkbox" 
+                   id="marketplace-create-listing-negotiable" 
+                   name="negotiable"
+                   class="marketplace-create-listing-checkbox">
+            <span>Price is negotiable</span>
+        </label>
+    </div>
+    
+    <div class="marketplace-create-listing-form-group">
+        <label for="marketplace-create-listing-original-price" class="marketplace-create-listing-label">
+            Original Retail Price (optional)
+        </label>
+        <div class="marketplace-create-listing-price-input-wrapper">
+            <span class="marketplace-create-listing-currency">$</span>
+            <input type="number" 
+                   id="marketplace-create-listing-original-price" 
+                   name="originalPrice"
+                   class="marketplace-create-listing-input marketplace-create-listing-price-input"
+                   placeholder="0.00"
+                   step="0.01"
+                   min="0">
+        </div>
+        <p class="marketplace-create-listing-help-text">Helps buyers understand the value</p>
+    </div>
+    
+    <div class="marketplace-create-listing-shipping-section">
+        <h3 class="marketplace-create-listing-section-title">Shipping Options</h3>
+        
+        <div class="marketplace-create-listing-form-group">
+            <label class="marketplace-create-listing-radio-label">
+                <input type="radio" 
+                       name="shipping"
+                       value="local-only"
+                       class="marketplace-create-listing-radio"
+                       checked>
+                <span>Local pickup only</span>
+            </label>
+            
+            <label class="marketplace-create-listing-radio-label">
+                <input type="radio" 
+                       name="shipping"
+                       value="buyer-pays"
+                       class="marketplace-create-listing-radio">
+                <span>Will ship - buyer pays shipping</span>
+            </label>
+            
+            <label class="marketplace-create-listing-radio-label">
+                <input type="radio" 
+                       name="shipping"
+                       value="free-shipping"
+                       class="marketplace-create-listing-radio">
+                <span>Free shipping</span>
+            </label>
+        </div>
+        
+        <div class="marketplace-create-listing-form-group" id="marketplace-create-listing-shipping-cost" style="display: none;">
+            <label for="marketplace-create-listing-shipping-price" class="marketplace-create-listing-label">
+                Estimated Shipping Cost
+            </label>
+            <div class="marketplace-create-listing-price-input-wrapper">
+                <span class="marketplace-create-listing-currency">$</span>
+                <input type="number" 
+                       id="marketplace-create-listing-shipping-price" 
+                       name="shippingPrice"
+                       class="marketplace-create-listing-input marketplace-create-listing-price-input"
+                       placeholder="0.00"
+                       step="0.01"
+                       min="0">
+            </div>
+        </div>
+    </div>
+    
+    <div class="marketplace-create-listing-form-group">
+        <label for="marketplace-create-listing-location" class="marketplace-create-listing-label">
+            Location *
+        </label>
+        <input type="text" 
+               id="marketplace-create-listing-location" 
+               name="location"
+               class="marketplace-create-listing-input"
+               placeholder="City, State"
+               required>
+        <p class="marketplace-create-listing-help-text">General location for local pickup</p>
+    </div>
+</div>

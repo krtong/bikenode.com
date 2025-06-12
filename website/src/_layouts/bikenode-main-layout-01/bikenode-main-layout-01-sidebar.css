@@ -130,3 +130,77 @@
         width: 260px;
     }
 }
+
+/* ===================================
+   Additional styles extracted from inline CSS
+   =================================== */
+
+/* Section Container */
+.bikenode-main-layout-01-sidebar-section {
+    margin-bottom: 1.5rem;
+}
+
+/* Section Toggle Button */
+.bikenode-main-layout-01-sidebar-section-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.bikenode-main-layout-01-sidebar-section-toggle:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Section Title */
+.bikenode-main-layout-01-sidebar-section-title {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Chevron Icon */
+.bikenode-main-layout-01-sidebar-chevron {
+    transition: transform 0.2s ease;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.bikenode-main-layout-01-sidebar-section-toggle[aria-expanded="false"] .bikenode-main-layout-01-sidebar-chevron {
+    transform: rotate(-90deg);
+}
+
+/* Section Content */
+.bikenode-main-layout-01-sidebar-section-content {
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    max-height: 500px;
+}
+
+.bikenode-main-layout-01-sidebar-section-toggle[aria-expanded="false"] + .bikenode-main-layout-01-sidebar-section-content {
+    max-height: 0;
+}
+
+/* Active Link State */
+.bikenode-main-layout-01-sidebar-link--active {
+    background: rgba(88, 101, 242, 0.1);
+    color: #5865F2;
+}
+
+.bikenode-main-layout-01-sidebar-link--active::before {
+    transform: translateX(0);
+}
+
+/* Icons */
+.bikenode-main-layout-01-sidebar-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}

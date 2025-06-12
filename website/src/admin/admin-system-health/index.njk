@@ -1,57 +1,59 @@
 ---
-layout: bikenode-main-layout-01/bikenode-main-layout-01
+layout: bikenode-main-layout-01
 title: System Health - BikeNode Admin
 ---
 
+<link rel="stylesheet" href="/admin/admin-system-health/styles/admin-system-health.css">
+
 <div class="admin-system-health-container">
-    <div class="BN-Global-card BN-Global-mb-4">
-        <h1 class="BN-Global-font-2xl BN-Global-font-bold BN-Global-text-primary BN-Global-mb-2">System Health</h1>
-        <p class="BN-Global-text-secondary">Monitor system performance and status</p>
+    <div class="admin-system-health-header-card">
+        <h1 class="admin-system-health-title">System Health</h1>
+        <p class="admin-system-health-subtitle">Monitor system performance and status</p>
     </div>
     
-    <div class="BN-Global-card BN-Global-mb-3">
-        <h2 class="BN-Global-font-xl BN-Global-font-medium BN-Global-mb-3">Service Status</h2>
+    <div class="admin-system-health-section-card">
+        <h2 class="admin-system-health-section-title">Service Status</h2>
         
-        <div class="BN-Global-list">
-            <div class="BN-Global-list-item admin-system-health-service">
-                <span class="BN-Global-font-medium">Web Server</span>
-                <span class="BN-Global-badge BN-Global-badge-success">Operational</span>
+        <div class="admin-system-health-list">
+            <div class="admin-system-health-service">
+                <span class="admin-system-health-service-name">Web Server</span>
+                <span class="admin-system-health-badge admin-system-health-badge-success">Operational</span>
             </div>
             
-            <div class="BN-Global-list-item admin-system-health-service">
-                <span class="BN-Global-font-medium">Database</span>
-                <span class="BN-Global-badge BN-Global-badge-success">Operational</span>
+            <div class="admin-system-health-service">
+                <span class="admin-system-health-service-name">Database</span>
+                <span class="admin-system-health-badge admin-system-health-badge-success">Operational</span>
             </div>
             
-            <div class="BN-Global-list-item admin-system-health-service">
-                <span class="BN-Global-font-medium">API Services</span>
-                <span class="BN-Global-badge BN-Global-badge-success">Operational</span>
+            <div class="admin-system-health-service">
+                <span class="admin-system-health-service-name">API Services</span>
+                <span class="admin-system-health-badge admin-system-health-badge-success">Operational</span>
             </div>
             
-            <div class="BN-Global-list-item admin-system-health-service">
-                <span class="BN-Global-font-medium">Discord Bot</span>
-                <span class="BN-Global-badge BN-Global-badge-success">Operational</span>
+            <div class="admin-system-health-service">
+                <span class="admin-system-health-service-name">Discord Bot</span>
+                <span class="admin-system-health-badge admin-system-health-badge-success">Operational</span>
             </div>
         </div>
     </div>
     
-    <div class="BN-Global-card">
-        <h2 class="BN-Global-font-xl BN-Global-font-medium BN-Global-mb-3">Performance Metrics</h2>
+    <div class="admin-system-health-section-card">
+        <h2 class="admin-system-health-section-title">Performance Metrics</h2>
         
-        <div class="BN-Global-list">
-            <div class="BN-Global-list-item admin-system-health-metric">
-                <span class="BN-Global-text-secondary">CPU Usage</span>
-                <span class="BN-Global-font-medium">32%</span>
+        <div class="admin-system-health-list">
+            <div class="admin-system-health-metric">
+                <span class="admin-system-health-metric-label">CPU Usage</span>
+                <span class="admin-system-health-metric-value">32%</span>
             </div>
             
-            <div class="BN-Global-list-item admin-system-health-metric">
-                <span class="BN-Global-text-secondary">Memory Usage</span>
-                <span class="BN-Global-font-medium">4.2 GB / 16 GB</span>
+            <div class="admin-system-health-metric">
+                <span class="admin-system-health-metric-label">Memory Usage</span>
+                <span class="admin-system-health-metric-value">4.2 GB / 16 GB</span>
             </div>
             
-            <div class="BN-Global-list-item admin-system-health-metric">
-                <span class="BN-Global-text-secondary">Response Time</span>
-                <span class="BN-Global-font-medium">142ms</span>
+            <div class="admin-system-health-metric">
+                <span class="admin-system-health-metric-label">Response Time</span>
+                <span class="admin-system-health-metric-value">142ms</span>
             </div>
         </div>
     </div>

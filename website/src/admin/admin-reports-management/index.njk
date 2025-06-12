@@ -1,17 +1,19 @@
 ---
-layout: bikenode-main-layout-01/bikenode-main-layout-01
+layout: bikenode-main-layout-01
 title: Reports Management - BikeNode Admin
 ---
 
+<link rel="stylesheet" href="/admin/admin-reports-management/styles/admin-reports-management.css">
+
 <div class="admin-reports-management-container">
-    <div class="BN-Global-card BN-Global-mb-4">
-        <h1 class="BN-Global-font-2xl BN-Global-font-bold BN-Global-text-primary BN-Global-mb-2">Reports Management</h1>
-        <p class="BN-Global-text-secondary">Handle user reports and violations</p>
+    <div class="admin-reports-management-header-card">
+        <h1 class="admin-reports-management-title">Reports Management</h1>
+        <p class="admin-reports-management-subtitle">Handle user reports and violations</p>
     </div>
     
-    <div class="BN-Global-card">
-        <div class="admin-reports-management-filters BN-Global-mb-3">
-            <select class="BN-Global-form-select">
+    <div class="admin-reports-management-content-card">
+        <div class="admin-reports-management-filters">
+            <select class="admin-reports-management-filter-select">
                 <option>All Reports</option>
                 <option>Spam</option>
                 <option>Inappropriate Content</option>
@@ -19,9 +21,9 @@ title: Reports Management - BikeNode Admin
             </select>
         </div>
         
-        <div class="BN-Global-list">
-            <div class="BN-Global-list-item admin-reports-management-empty">
-                <p class="BN-Global-text-secondary">No active reports</p>
+        <div class="admin-reports-management-list">
+            <div class="admin-reports-management-empty">
+                <p class="admin-reports-management-empty-message">No active reports</p>
             </div>
         </div>
     </div>

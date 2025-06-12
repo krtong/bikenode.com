@@ -1,27 +1,29 @@
 ---
-layout: authorization-page-layout/authorization-page-layout
+layout: authorization-page-layout
 title: Verify Email - BikeNode
 ---
 
 <div class="auth-verify-email-container">
-    <div class="BN-Global-card BN-Global-text-center">
-        <div class="auth-verify-email-icon BN-Global-mb-3">
-            <svg width="64" height="64" class="BN-Global-text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div class="auth-verify-email-card">
+        <div class="auth-verify-email-icon">
+            <svg width="64" height="64" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
             </svg>
         </div>
         
-        <h1 class="BN-Global-font-2xl BN-Global-font-bold BN-Global-text-primary BN-Global-mb-2">Check Your Email</h1>
-        <p class="BN-Global-text-secondary BN-Global-mb-4">We've sent a verification link to your email address</p>
+        <h1 class="auth-verify-email-title">Check Your Email</h1>
+        <p class="auth-verify-email-subtitle">We've sent a verification link to your email address</p>
         
-        <p class="BN-Global-text-secondary BN-Global-font-sm BN-Global-mb-4">
+        <p class="auth-verify-email-help-text">
             Didn't receive the email? Check your spam folder or click below to resend
         </p>
         
-        <button class="BN-Global-btn BN-Global-btn-secondary">Resend Verification Email</button>
+        <button class="auth-verify-email-resend-button">Resend Verification Email</button>
         
-        <div class="BN-Global-mt-4">
-            <a href="/auth-login-page/" class="BN-Global-text-accent">Back to login</a>
+        <div class="auth-verify-email-back-link">
+            <a href="/auth-login-page/" class="auth-verify-email-link">Back to login</a>
         </div>
     </div>
 </div>
+
+<link rel="stylesheet" href="./styles/auth-verify-email.css">

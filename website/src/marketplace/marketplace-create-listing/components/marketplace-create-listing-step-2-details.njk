@@ -1,0 +1,98 @@
+<div class="marketplace-create-listing-step" id="marketplace-create-listing-step-2" style="display: none;">
+    <h2 class="marketplace-create-listing-step-title">Item Details</h2>
+    
+    <div class="marketplace-create-listing-form-group">
+        <label for="marketplace-create-listing-title" class="marketplace-create-listing-label">
+            Listing Title *
+        </label>
+        <input type="text" 
+               id="marketplace-create-listing-title" 
+               name="title"
+               class="marketplace-create-listing-input"
+               placeholder="e.g., 2023 Trek Domane SL 6 - Size 56"
+               required>
+        <p class="marketplace-create-listing-help-text">Be specific about brand, model, year, and size</p>
+    </div>
+    
+    <div class="marketplace-create-listing-form-row">
+        <div class="marketplace-create-listing-form-group">
+            <label for="marketplace-create-listing-brand" class="marketplace-create-listing-label">
+                Brand *
+            </label>
+            <input type="text" 
+                   id="marketplace-create-listing-brand" 
+                   name="brand"
+                   class="marketplace-create-listing-input"
+                   placeholder="e.g., Trek"
+                   required>
+        </div>
+        
+        <div class="marketplace-create-listing-form-group">
+            <label for="marketplace-create-listing-model" class="marketplace-create-listing-label">
+                Model
+            </label>
+            <input type="text" 
+                   id="marketplace-create-listing-model" 
+                   name="model"
+                   class="marketplace-create-listing-input"
+                   placeholder="e.g., Domane SL 6">
+        </div>
+    </div>
+    
+    <div class="marketplace-create-listing-form-row">
+        <div class="marketplace-create-listing-form-group">
+            <label for="marketplace-create-listing-year" class="marketplace-create-listing-label">
+                Year
+            </label>
+            <input type="number" 
+                   id="marketplace-create-listing-year" 
+                   name="year"
+                   class="marketplace-create-listing-input"
+                   placeholder="e.g., 2023"
+                   min="1900"
+                   max="2025">
+        </div>
+        
+        <div class="marketplace-create-listing-form-group">
+            <label for="marketplace-create-listing-size" class="marketplace-create-listing-label">
+                Size
+            </label>
+            <input type="text" 
+                   id="marketplace-create-listing-size" 
+                   name="size"
+                   class="marketplace-create-listing-input"
+                   placeholder="e.g., 56cm, Large, 29er">
+        </div>
+    </div>
+    
+    <div class="marketplace-create-listing-form-group">
+        <label for="marketplace-create-listing-condition" class="marketplace-create-listing-label">
+            Condition *
+        </label>
+        <select id="marketplace-create-listing-condition" 
+                name="condition"
+                class="marketplace-create-listing-select"
+                required>
+            <option value="">Select condition</option>
+            <option value="new">New - Never used</option>
+            <option value="like-new">Like New - Used once or twice</option>
+            <option value="excellent">Excellent - Light use, no damage</option>
+            <option value="good">Good - Normal wear, fully functional</option>
+            <option value="fair">Fair - Heavy wear, needs minor work</option>
+            <option value="parts">For Parts - Not fully functional</option>
+        </select>
+    </div>
+    
+    <div class="marketplace-create-listing-form-group">
+        <label for="marketplace-create-listing-description" class="marketplace-create-listing-label">
+            Description *
+        </label>
+        <textarea id="marketplace-create-listing-description" 
+                  name="description"
+                  class="marketplace-create-listing-textarea"
+                  rows="6"
+                  placeholder="Describe your item in detail. Include any upgrades, defects, reason for selling, etc."
+                  required></textarea>
+        <p class="marketplace-create-listing-help-text">The more details, the better!</p>
+    </div>
+</div>

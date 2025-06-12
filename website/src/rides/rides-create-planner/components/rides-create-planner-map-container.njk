@@ -1,0 +1,90 @@
+<div class="rides-create-planner-map-container">
+    <!-- Map Controls -->
+    <div class="rides-create-planner-map-controls">
+        <div class="rides-create-planner-map-tools">
+            <button class="rides-create-planner-map-tool rides-create-planner-map-tool-active" id="rides-create-planner-draw-tool" title="Draw route">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 2L2 7V12C2 16.5 4.5 20.5 12 22C19.5 20.5 22 16.5 22 12V7L12 2Z"/>
+                </svg>
+            </button>
+            <button class="rides-create-planner-map-tool" id="rides-create-planner-edit-tool" title="Edit route">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+            </button>
+            <button class="rides-create-planner-map-tool" id="rides-create-planner-delete-tool" title="Delete waypoint">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="rides-create-planner-map-layers">
+            <button class="rides-create-planner-layer-toggle" id="rides-create-planner-layer-toggle">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                    <polyline points="2 17 12 22 22 17"/>
+                    <polyline points="2 12 12 17 22 12"/>
+                </svg>
+            </button>
+            <div class="rides-create-planner-layer-menu" id="rides-create-planner-layer-menu">
+                <button class="rides-create-planner-layer-option rides-create-planner-layer-active" data-layer="standard">
+                    Standard
+                </button>
+                <button class="rides-create-planner-layer-option" data-layer="satellite">
+                    Satellite
+                </button>
+                <button class="rides-create-planner-layer-option" data-layer="terrain">
+                    Terrain
+                </button>
+                <button class="rides-create-planner-layer-option" data-layer="heatmap">
+                    Heatmap
+                </button>
+            </div>
+        </div>
+
+        <div class="rides-create-planner-map-zoom">
+            <button class="rides-create-planner-zoom-btn" id="rides-create-planner-zoom-in">+</button>
+            <button class="rides-create-planner-zoom-btn" id="rides-create-planner-zoom-out">−</button>
+        </div>
+
+        <button class="rides-create-planner-fullscreen-btn" id="rides-create-planner-fullscreen">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Map Container -->
+    <div class="rides-create-planner-map" id="rides-create-planner-map">
+        <!-- Leaflet map will be initialized here -->
+    </div>
+
+    <!-- Map Status Bar -->
+    <div class="rides-create-planner-map-status">
+        <div class="rides-create-planner-status-info">
+            <span class="rides-create-planner-status-item">
+                <span class="rides-create-planner-status-label">Lat:</span>
+                <span id="rides-create-planner-lat">0.0000</span>
+            </span>
+            <span class="rides-create-planner-status-item">
+                <span class="rides-create-planner-status-label">Lng:</span>
+                <span id="rides-create-planner-lng">0.0000</span>
+            </span>
+            <span class="rides-create-planner-status-item">
+                <span class="rides-create-planner-status-label">Zoom:</span>
+                <span id="rides-create-planner-zoom-level">13</span>
+            </span>
+        </div>
+        <div class="rides-create-planner-status-actions">
+            <button class="rides-create-planner-status-btn" id="rides-create-planner-center-route">
+                Center Route
+            </button>
+            <button class="rides-create-planner-status-btn" id="rides-create-planner-my-location">
+                My Location
+            </button>
+        </div>
+    </div>
+</div>

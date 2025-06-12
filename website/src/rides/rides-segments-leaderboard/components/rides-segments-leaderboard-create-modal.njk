@@ -1,0 +1,91 @@
+<div class="rides-segments-leaderboard-modal" id="rides-segments-leaderboard-create-modal">
+    <div class="rides-segments-leaderboard-modal-overlay"></div>
+    <div class="rides-segments-leaderboard-modal-content">
+        <div class="rides-segments-leaderboard-modal-header">
+            <h2 class="rides-segments-leaderboard-modal-title">Create New Segment</h2>
+            <button class="rides-segments-leaderboard-modal-close" aria-label="Close modal">×</button>
+        </div>
+        
+        <div class="rides-segments-leaderboard-modal-body">
+            <form class="rides-segments-leaderboard-create-form" id="rides-segments-leaderboard-create-form">
+                <div class="rides-segments-leaderboard-form-group">
+                    <label class="rides-segments-leaderboard-form-label" for="rides-segments-leaderboard-segment-name">
+                        Segment Name
+                    </label>
+                    <input type="text" 
+                           id="rides-segments-leaderboard-segment-name" 
+                           class="rides-segments-leaderboard-form-input"
+                           placeholder="e.g., Main Street Sprint"
+                           required>
+                </div>
+                
+                <div class="rides-segments-leaderboard-form-group">
+                    <label class="rides-segments-leaderboard-form-label">
+                        Segment Type
+                    </label>
+                    <div class="rides-segments-leaderboard-radio-group">
+                        <label class="rides-segments-leaderboard-radio">
+                            <input type="radio" name="segment-type" value="climb" checked>
+                            <span>Climb</span>
+                        </label>
+                        <label class="rides-segments-leaderboard-radio">
+                            <input type="radio" name="segment-type" value="sprint">
+                            <span>Sprint</span>
+                        </label>
+                        <label class="rides-segments-leaderboard-radio">
+                            <input type="radio" name="segment-type" value="descent">
+                            <span>Descent</span>
+                        </label>
+                        <label class="rides-segments-leaderboard-radio">
+                            <input type="radio" name="segment-type" value="mixed">
+                            <span>Mixed</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="rides-segments-leaderboard-form-group">
+                    <label class="rides-segments-leaderboard-form-label">
+                        Draw Segment on Map
+                    </label>
+                    <div class="rides-segments-leaderboard-create-map" id="rides-segments-leaderboard-create-map">
+                        <!-- Mini map for drawing segment -->
+                    </div>
+                    <p class="rides-segments-leaderboard-form-help">
+                        Click on the map to set start and end points of your segment
+                    </p>
+                </div>
+                
+                <div class="rides-segments-leaderboard-form-group">
+                    <label class="rides-segments-leaderboard-form-label" for="rides-segments-leaderboard-segment-description">
+                        Description (optional)
+                    </label>
+                    <textarea id="rides-segments-leaderboard-segment-description" 
+                              class="rides-segments-leaderboard-form-textarea"
+                              rows="3"
+                              placeholder="Add any helpful information about this segment..."></textarea>
+                </div>
+                
+                <div class="rides-segments-leaderboard-form-group">
+                    <label class="rides-segments-leaderboard-checkbox">
+                        <input type="checkbox" id="rides-segments-leaderboard-private">
+                        <span>Make this segment private (only visible to you)</span>
+                    </label>
+                </div>
+            </form>
+        </div>
+        
+        <div class="rides-segments-leaderboard-modal-footer">
+            <button type="button" 
+                    class="rides-segments-leaderboard-btn rides-segments-leaderboard-btn-secondary" 
+                    id="rides-segments-leaderboard-cancel-create">
+                Cancel
+            </button>
+            <button type="submit" 
+                    form="rides-segments-leaderboard-create-form"
+                    class="rides-segments-leaderboard-btn rides-segments-leaderboard-btn-primary" 
+                    id="rides-segments-leaderboard-save-segment">
+                Create Segment
+            </button>
+        </div>
+    </div>
+</div>

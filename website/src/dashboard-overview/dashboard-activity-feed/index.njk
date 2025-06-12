@@ -1,9 +1,7 @@
 ---
-layout: bikenode-main-layout-01/bikenode-main-layout-01
+layout: bikenode-main-layout-01
 title: Activity Feed
 subtitle: See what your friends are up to
-customCSS:
-  - /routes/activity-feed/styles/activity-feed.css
 ---
 
 
@@ -275,29 +273,5 @@ customCSS:
   </div>
 </div>
 
-<script>
-  // Kudos interaction
-  document.querySelectorAll('.activity-action').forEach(btn => {
-    if (btn.textContent.includes('Kudos')) {
-      btn.addEventListener('click', () => {
-        btn.classList.toggle('active');
-        const kudosCount = btn.querySelector('.kudos-count');
-        const currentCount = parseInt(kudosCount.textContent);
-        if (btn.classList.contains('active')) {
-          kudosCount.textContent = `${currentCount + 1} Kudos`;
-        } else {
-          kudosCount.textContent = `${currentCount - 1} Kudos`;
-        }
-      });
-    }
-  });
-
-  // Post creation
-  document.querySelector('.btn-primary').addEventListener('click', () => {
-    const textarea = document.querySelector('.post-input');
-    if (textarea.value.trim()) {
-      alert('Post created!');
-      textarea.value = '';
-    }
-  });
-</script>
+<!-- Page JavaScript -->
+<script src="./js/dashboard-activity-feed.js"></script>

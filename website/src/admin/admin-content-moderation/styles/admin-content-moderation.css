@@ -1,0 +1,109 @@
+/* Admin Content Moderation Page Styles */
+
+.admin-content-moderation-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Card */
+.admin-content-moderation-header-card {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.admin-content-moderation-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+}
+
+.admin-content-moderation-subtitle {
+    color: #6b7280;
+}
+
+/* Main Content Card */
+.admin-content-moderation-content-card {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabs */
+.admin-content-moderation-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-content-moderation-tab {
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    color: #6b7280;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+
+.admin-content-moderation-tab:hover {
+    color: #374151;
+}
+
+.admin-content-moderation-tab-active {
+    color: #3b82f6;
+    border-bottom-color: #3b82f6;
+}
+
+/* Content List */
+.admin-content-moderation-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.admin-content-moderation-item {
+    padding: 1rem;
+    background-color: #f9fafb;
+    border-radius: 0.375rem;
+}
+
+.admin-content-moderation-empty-message {
+    color: #6b7280;
+    font-size: 0.875rem;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .admin-content-moderation-container {
+        padding: 1rem;
+    }
+    
+    .admin-content-moderation-header-card,
+    .admin-content-moderation-content-card {
+        padding: 1rem;
+    }
+    
+    .admin-content-moderation-title {
+        font-size: 1.5rem;
+    }
+    
+    .admin-content-moderation-tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .admin-content-moderation-tab {
+        padding: 0.5rem 1rem;
+        white-space: nowrap;
+    }
+}

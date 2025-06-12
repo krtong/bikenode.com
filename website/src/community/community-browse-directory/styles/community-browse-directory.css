@@ -1,0 +1,283 @@
+.community-browse-directory-hero {
+    padding: 80px 0;
+    background: linear-gradient(135deg, rgba(88, 101, 242, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+    text-align: center;
+}
+
+.community-browse-directory-hero-content h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+.community-browse-directory-hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.community-browse-directory-search-container {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    display: flex;
+    gap: 12px;
+}
+
+.community-browse-directory-search {
+    flex: 1;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-size: 16px;
+}
+
+.community-browse-directory-search-button {
+    background: var(--accent);
+    border: none;
+    color: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.2s ease;
+}
+
+.community-browse-directory-search-button:hover {
+    background: var(--accent-hover);
+}
+
+.community-browse-directory-stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+}
+
+.community-browse-directory-stat {
+    text-align: center;
+}
+
+.community-browse-directory-stat strong {
+    display: block;
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+
+.community-browse-directory-stat span {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.community-browse-directory-featured-section {
+    padding: 80px 0;
+}
+
+.community-browse-directory-featured-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 40px;
+}
+
+.community-browse-directory-featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 32px;
+}
+
+.community-browse-directory-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 32px;
+    transition: all 0.3s ease;
+}
+
+.community-browse-directory-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+}
+
+.community-browse-directory-card.featured {
+    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(88, 101, 242, 0.1) 100%);
+}
+
+.community-browse-directory-header {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.community-browse-directory-icon {
+    font-size: 3rem;
+    background: rgba(88, 101, 242, 0.1);
+    padding: 16px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.community-browse-directory-info h3 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.community-browse-directory-info p {
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.community-browse-directory-card-stats {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.community-browse-directory-member-count {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.community-browse-directory-activity-level {
+    color: #10b981;
+    font-weight: 500;
+}
+
+.community-browse-directory-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.community-browse-directory-tag {
+    background: rgba(88, 101, 242, 0.1);
+    color: var(--accent);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.community-browse-directory-categories-section {
+    padding: 80px 0;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.community-browse-directory-categories-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 32px;
+}
+
+.community-browse-directory-category-tabs {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.community-browse-directory-category-tab {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-secondary);
+    padding: 12px 24px;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.community-browse-directory-category-tab:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.community-browse-directory-category-tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.community-browse-directory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.community-browse-directory-join-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.community-browse-directory-join-link:hover {
+    color: var(--text-primary);
+}
+
+.community-browse-directory-load-more {
+    text-align: center;
+}
+
+.community-browse-directory-create-section {
+    padding: 80px 0;
+}
+
+.community-browse-directory-create-card {
+    background: linear-gradient(135deg, rgba(88, 101, 242, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(88, 101, 242, 0.3);
+    border-radius: 16px;
+    padding: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+}
+
+.community-browse-directory-create-content h2 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.community-browse-directory-create-content p {
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .community-browse-directory-hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .community-browse-directory-stats {
+        gap: 24px;
+    }
+    
+    .community-browse-directory-featured-grid,
+    .community-browse-directory-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .community-browse-directory-create-card {
+        flex-direction: column;
+        text-align: center;
+    }
+}

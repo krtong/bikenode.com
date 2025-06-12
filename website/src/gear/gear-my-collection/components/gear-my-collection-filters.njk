@@ -1,0 +1,62 @@
+<div class="gear-my-collection-filters">
+    <div class="gear-my-collection-filters-left">
+        <div class="gear-my-collection-search">
+            <input type="text" 
+                   class="gear-my-collection-search-input" 
+                   id="gear-my-collection-search"
+                   placeholder="Search gear...">
+            <svg class="gear-my-collection-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+            </svg>
+        </div>
+        
+        <select class="gear-my-collection-filter-select" id="gear-my-collection-brand-filter">
+            <option value="">All Brands</option>
+            <option value="shimano">Shimano</option>
+            <option value="sram">SRAM</option>
+            <option value="specialized">Specialized</option>
+            <option value="giro">Giro</option>
+            <option value="pearl-izumi">Pearl Izumi</option>
+        </select>
+        
+        <select class="gear-my-collection-filter-select" id="gear-my-collection-status-filter">
+            <option value="">All Status</option>
+            <option value="active">In Use</option>
+            <option value="backup">Backup</option>
+            <option value="retired">Retired</option>
+            <option value="forsale">For Sale</option>
+        </select>
+    </div>
+    
+    <div class="gear-my-collection-filters-right">
+        <select class="gear-my-collection-filter-select" id="gear-my-collection-sort">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="name">Name A-Z</option>
+            <option value="brand">Brand</option>
+            <option value="value">Highest Value</option>
+        </select>
+        
+        <div class="gear-my-collection-view-toggle">
+            <button class="gear-my-collection-view-btn gear-my-collection-view-active" data-view="grid" aria-label="Grid view">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <rect x="3" y="3" width="7" height="7"/>
+                    <rect x="14" y="3" width="7" height="7"/>
+                    <rect x="14" y="14" width="7" height="7"/>
+                    <rect x="3" y="14" width="7" height="7"/>
+                </svg>
+            </button>
+            <button class="gear-my-collection-view-btn" data-view="list" aria-label="List view">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <line x1="8" y1="6" x2="21" y2="6"/>
+                    <line x1="8" y1="12" x2="21" y2="12"/>
+                    <line x1="8" y1="18" x2="21" y2="18"/>
+                    <line x1="3" y1="6" x2="3.01" y2="6"/>
+                    <line x1="3" y1="12" x2="3.01" y2="12"/>
+                    <line x1="3" y1="18" x2="3.01" y2="18"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>

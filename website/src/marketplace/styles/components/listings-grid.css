@@ -1,0 +1,80 @@
+/* Listings Grid and Results Header Styles */
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.results-info {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.results-controls {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.sort-select {
+    padding: 8px 16px;
+    background: var(--bg-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.view-toggles {
+    display: flex;
+    gap: 4px;
+    background: var(--bg-primary);
+    padding: 4px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.view-toggle {
+    padding: 6px 10px;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.view-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.view-toggle.active {
+    background: var(--accent);
+    color: white;
+}
+
+/* Listings Grid */
+.listings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+.listings-grid.list-view {
+    grid-template-columns: 1fr;
+}
+
+/* Loading and Error States */
+.loading-state,
+.error-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--text-secondary);
+}
+
+.error-state {
+    color: #ef4444;
+}

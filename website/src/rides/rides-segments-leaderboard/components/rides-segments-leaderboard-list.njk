@@ -1,0 +1,90 @@
+<div class="rides-segments-leaderboard-list">
+    <div class="rides-segments-leaderboard-results-header">
+        <h3 class="rides-segments-leaderboard-results-title">
+            <span id="rides-segments-leaderboard-results-count">24</span> segments found
+        </h3>
+        <div class="rides-segments-leaderboard-view-toggle">
+            <button class="rides-segments-leaderboard-view-btn rides-segments-leaderboard-view-active" data-view="list">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <line x1="8" y1="6" x2="21" y2="6"/>
+                    <line x1="8" y1="12" x2="21" y2="12"/>
+                    <line x1="8" y1="18" x2="21" y2="18"/>
+                    <line x1="3" y1="6" x2="3.01" y2="6"/>
+                    <line x1="3" y1="12" x2="3.01" y2="12"/>
+                    <line x1="3" y1="18" x2="3.01" y2="18"/>
+                </svg>
+            </button>
+            <button class="rides-segments-leaderboard-view-btn" data-view="grid">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <rect x="3" y="3" width="7" height="7"/>
+                    <rect x="14" y="3" width="7" height="7"/>
+                    <rect x="14" y="14" width="7" height="7"/>
+                    <rect x="3" y="14" width="7" height="7"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    
+    <div class="rides-segments-leaderboard-segments-container" id="rides-segments-leaderboard-segments-list">
+        <!-- Example segment cards -->
+        <div class="rides-segments-leaderboard-segment-card" data-segment-id="1">
+            <div class="rides-segments-leaderboard-segment-header">
+                <h4 class="rides-segments-leaderboard-segment-name">Hawk Hill Climb</h4>
+                <span class="rides-segments-leaderboard-segment-badge rides-segments-leaderboard-badge-kom">KOM</span>
+            </div>
+            <div class="rides-segments-leaderboard-segment-stats">
+                <div class="rides-segments-leaderboard-stat">
+                    <span class="rides-segments-leaderboard-stat-value">2.8</span>
+                    <span class="rides-segments-leaderboard-stat-label">km</span>
+                </div>
+                <div class="rides-segments-leaderboard-stat">
+                    <span class="rides-segments-leaderboard-stat-value">184</span>
+                    <span class="rides-segments-leaderboard-stat-label">m</span>
+                </div>
+                <div class="rides-segments-leaderboard-stat">
+                    <span class="rides-segments-leaderboard-stat-value">6.6</span>
+                    <span class="rides-segments-leaderboard-stat-label">%</span>
+                </div>
+            </div>
+            <div class="rides-segments-leaderboard-segment-leaderboard">
+                <div class="rides-segments-leaderboard-leader">
+                    <span class="rides-segments-leaderboard-rank">1</span>
+                    <span class="rides-segments-leaderboard-name">John Doe</span>
+                    <span class="rides-segments-leaderboard-time">5:42</span>
+                </div>
+                <div class="rides-segments-leaderboard-leader">
+                    <span class="rides-segments-leaderboard-rank">2</span>
+                    <span class="rides-segments-leaderboard-name">Jane Smith</span>
+                    <span class="rides-segments-leaderboard-time">5:58</span>
+                </div>
+                <div class="rides-segments-leaderboard-your-time">
+                    <span class="rides-segments-leaderboard-rank">127</span>
+                    <span class="rides-segments-leaderboard-name">You</span>
+                    <span class="rides-segments-leaderboard-time">8:34</span>
+                </div>
+            </div>
+            <div class="rides-segments-leaderboard-segment-actions">
+                <button class="rides-segments-leaderboard-action-btn" title="View on map">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </button>
+                <button class="rides-segments-leaderboard-action-btn" title="View details">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- More segment cards would be dynamically loaded -->
+    </div>
+    
+    <div class="rides-segments-leaderboard-load-more">
+        <button class="rides-segments-leaderboard-btn rides-segments-leaderboard-btn-secondary" id="rides-segments-leaderboard-load-more">
+            Load More Segments
+        </button>
+    </div>
+</div>

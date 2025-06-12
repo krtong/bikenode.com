@@ -1,0 +1,133 @@
+/* Admin System Health Page Styles */
+
+.admin-system-health-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Card */
+.admin-system-health-header-card {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.admin-system-health-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+}
+
+.admin-system-health-subtitle {
+    color: #6b7280;
+}
+
+/* Section Cards */
+.admin-system-health-section-card {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+}
+
+.admin-system-health-section-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #1a202c;
+    margin-bottom: 1rem;
+}
+
+/* Service Status List */
+.admin-system-health-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.admin-system-health-service {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background-color: #f9fafb;
+    border-radius: 0.375rem;
+}
+
+.admin-system-health-service-name {
+    font-weight: 500;
+    color: #1a202c;
+}
+
+/* Status Badges */
+.admin-system-health-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 9999px;
+}
+
+.admin-system-health-badge-success {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.admin-system-health-badge-warning {
+    background-color: #fed7aa;
+    color: #92400e;
+}
+
+.admin-system-health-badge-error {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* Performance Metrics */
+.admin-system-health-metric {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background-color: #f9fafb;
+    border-radius: 0.375rem;
+}
+
+.admin-system-health-metric-label {
+    color: #6b7280;
+}
+
+.admin-system-health-metric-value {
+    font-weight: 500;
+    color: #1a202c;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .admin-system-health-container {
+        padding: 1rem;
+    }
+    
+    .admin-system-health-header-card,
+    .admin-system-health-section-card {
+        padding: 1rem;
+    }
+    
+    .admin-system-health-title {
+        font-size: 1.5rem;
+    }
+    
+    .admin-system-health-section-title {
+        font-size: 1.125rem;
+    }
+    
+    .admin-system-health-service,
+    .admin-system-health-metric {
+        padding: 0.5rem 0.75rem;
+    }
+}

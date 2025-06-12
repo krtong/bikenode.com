@@ -1,26 +1,29 @@
 ---
-layout: bikenode-main-layout-01/bikenode-main-layout-01
+layout: bikenode-main-layout-01
 title: Segments
 subtitle: Challenge yourself on popular local segments and compete for KOMs/QOMs
 showContentHeader: false
-customCSS:
-  - /segments/styles/segments.css
-  - https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
 ---
 
-<div class="segments-container">
-    {% include "segments/segments-header.njk" %}
-    {% include "segments/segments-map.njk" %}
-    {% include "segments/segments-filters.njk" %}
-    {% include "segments/segments-list.njk" %}
+<div class="rides-segments-leaderboard-container">
+    {% include "./components/rides-segments-leaderboard-header.njk" %}
+    {% include "./components/rides-segments-leaderboard-map.njk" %}
+    {% include "./components/rides-segments-leaderboard-filters.njk" %}
+    {% include "./components/rides-segments-leaderboard-list.njk" %}
 </div>
 
 <!-- Modals -->
-{% include "segments/segment-detail-modal.njk" %}
-{% include "segments/create-segment-modal.njk" %}
+{% include "./components/rides-segments-leaderboard-detail-modal.njk" %}
+{% include "./components/rides-segments-leaderboard-create-modal.njk" %}
 
-<!-- Leaflet JS -->
+<!-- Leaflet CSS & JS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<!-- Page Styles -->
+<link rel="stylesheet" href="./styles/rides-segments-leaderboard.css">
+
+<!-- Load Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <!-- Segments Application -->
-<script type="module" src="/segments/js/app.js"></script>
+<script src="./js/rides-segments-leaderboard.js"></script>

@@ -1,35 +1,34 @@
 ---
 permalink: /virtual-garage-dashboard/
-layout: bikenode-main-layout-01/bikenode-main-layout-01
+layout: bikenode-main-layout-01
 title: Virtual Garage Dashboard
-customCSS:
-  - /index.css
-  - /assets/css/global-components.css
-  - /assets/css/dashboard-layout.css
-  - /bikes/virtual-garage-dashboard/styles/virtual-garage-dashboard.css
 ---
 
-<div class="page-content">
-    {% include "bikes/virtual-garage-dashboard/components/content-header.njk" %}
+<div class="bikes-my-garage-page">
+    {% include "./components/bikes-my-garage-content-header.njk" %}
 
-    <div class="container-xl">
+    <div class="bikes-my-garage-container">
         <!-- Bikes Tab -->
-        <div class="tab-content active" data-tab-content="bikes">
-            {% include "bikes/virtual-garage-dashboard/components/garage-stats.njk" %}
-            {% include "bikes/virtual-garage-dashboard/components/garage-filters.njk" %}
-            {% include "bikes/virtual-garage-dashboard/components/bikes-grid.njk" %}
+        <div class="bikes-my-garage-tab-content bikes-my-garage-tab-active" data-tab-content="bikes">
+            {% include "./components/bikes-my-garage-garage-stats.njk" %}
+            {% include "./components/bikes-my-garage-garage-filters.njk" %}
+            {% include "./components/bikes-my-garage-bikes-grid.njk" %}
         </div>
         
         <!-- Crash Reports Tab -->
-        <div class="tab-content" data-tab-content="crash-reports">
-            {% include "bikes/virtual-garage-dashboard/components/crash-reports-list.njk" %}
+        <div class="bikes-my-garage-tab-content" data-tab-content="crash-reports">
+            {% include "./components/bikes-my-garage-crash-reports-list.njk" %}
         </div>
         
         <!-- Maintenance Tab -->
-        <div class="tab-content" data-tab-content="maintenance">
-            {% include "bikes/virtual-garage-dashboard/components/maintenance-schedule.njk" %}
+        <div class="bikes-my-garage-tab-content" data-tab-content="maintenance">
+            {% include "./components/bikes-my-garage-maintenance-schedule.njk" %}
         </div>
     </div>
 </div>
 
-<script type="module" src="/bikes/virtual-garage-dashboard/js/app.js"></script>
+<!-- Page Styles -->
+<link rel="stylesheet" href="./styles/bikes-my-garage.css">
+
+<!-- Page JavaScript -->
+<script src="./js/bikes-my-garage.js"></script>

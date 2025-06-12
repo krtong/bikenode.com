@@ -1,114 +1,114 @@
 ---
-layout: bikenode-main-layout-01/bikenode-main-layout-01
+layout: bikenode-main-layout-01
 title: Dashboard
 showContentHeader: false
 ---
 
 <!-- Dashboard Container -->
-<div class="dashboard-container">
+<div class="dashboard-home-page-container">
   <!-- Welcome Section -->
-  <section class="dashboard-welcome-section BN-Global-mb-4">
-    <div class="BN-Global-flex-between">
+  <section class="dashboard-home-page-welcome-section">
+    <div class="dashboard-home-page-welcome-header">
       <div>
-        <h1 class="BN-Global-font-2xl BN-Global-font-bold BN-Global-text-primary BN-Global-mb-2">Welcome back, John! 👋</h1>
-        <p class="BN-Global-text-secondary">Here's what's happening with your bikes and rides today.</p>
+        <h1 class="dashboard-home-page-welcome-title">Welcome back, John! 👋</h1>
+        <p class="dashboard-home-page-welcome-subtitle">Here's what's happening with your bikes and rides today.</p>
       </div>
-      <div class="BN-Global-d-flex BN-Global-gap-2">
-        <a href="/rides-record-tracker/" class="BN-Global-btn BN-Global-btn-primary">
+      <div class="dashboard-home-page-action-buttons">
+        <a href="/rides-record-tracker/" class="dashboard-home-page-btn-primary">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M8 3V13M3 8H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
           Start New Ride
         </a>
-        <button class="BN-Global-btn BN-Global-btn-secondary">View Schedule</button>
+        <button class="dashboard-home-page-btn-secondary">View Schedule</button>
       </div>
     </div>
   </section>
 
   <!-- Stats Grid -->
-  <section class="BN-Global-card-grid BN-Global-card-grid-4 BN-Global-mb-4">
+  <section class="dashboard-home-page-stats-grid">
     <!-- Distance Card -->
-    <div class="BN-Global-card dashboard-stat-card">
-      <div class="dashboard-card-header">
-        <div class="dashboard-stat-icon dashboard-rides">
+    <div class="dashboard-home-page-stat-card">
+      <div class="dashboard-home-page-stat-header">
+        <div class="dashboard-home-page-stat-icon dashboard-home-page-stat-icon-rides">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M3 9L9 3L13 7L19 1L21 3V18C21 18.5523 20.5523 19 20 19H4C3.44772 19 3 18.5523 3 18V9Z" stroke="currentColor" stroke-width="2"/>
           </svg>
         </div>
-        <span class="BN-Global-badge BN-Global-badge-success">+12%</span>
+        <span class="dashboard-home-page-stat-badge dashboard-home-page-badge-success">+12%</span>
       </div>
-      <h3 class="dashboard-stat-value">847 <span class="BN-Global-text-secondary BN-Global-font-md">km</span></h3>
-      <p class="BN-Global-text-secondary BN-Global-font-sm">This Month</p>
+      <h3 class="dashboard-home-page-stat-value">847 <span class="dashboard-home-page-stat-unit">km</span></h3>
+      <p class="dashboard-home-page-stat-label">This Month</p>
     </div>
 
     <!-- Time Card -->
-    <div class="BN-Global-card dashboard-stat-card">
-      <div class="dashboard-card-header">
-        <div class="dashboard-stat-icon dashboard-time">
+    <div class="dashboard-home-page-stat-card">
+      <div class="dashboard-home-page-stat-header">
+        <div class="dashboard-home-page-stat-icon dashboard-home-page-stat-icon-time">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
             <path d="M12 6V12L16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </div>
-        <span class="BN-Global-badge BN-Global-badge-success">+5%</span>
+        <span class="dashboard-home-page-stat-badge dashboard-home-page-badge-success">+5%</span>
       </div>
-      <h3 class="dashboard-stat-value">32:45 <span class="BN-Global-text-secondary BN-Global-font-md">hours</span></h3>
-      <p class="BN-Global-text-secondary BN-Global-font-sm">Ride Time</p>
+      <h3 class="dashboard-home-page-stat-value">32:45 <span class="dashboard-home-page-stat-unit">hours</span></h3>
+      <p class="dashboard-home-page-stat-label">Ride Time</p>
     </div>
 
     <!-- Elevation Card -->
-    <div class="BN-Global-card dashboard-stat-card">
-      <div class="dashboard-card-header">
-        <div class="dashboard-stat-icon dashboard-elevation">
+    <div class="dashboard-home-page-stat-card">
+      <div class="dashboard-home-page-stat-header">
+        <div class="dashboard-home-page-stat-icon dashboard-home-page-stat-icon-elevation">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M3 21L8 16L12 20L21 11V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <span class="BN-Global-badge BN-Global-badge-danger">-3%</span>
+        <span class="dashboard-home-page-stat-badge dashboard-home-page-badge-danger">-3%</span>
       </div>
-      <h3 class="dashboard-stat-value">8,542 <span class="BN-Global-text-secondary BN-Global-font-md">m</span></h3>
-      <p class="BN-Global-text-secondary BN-Global-font-sm">Elevation Gain</p>
+      <h3 class="dashboard-home-page-stat-value">8,542 <span class="dashboard-home-page-stat-unit">m</span></h3>
+      <p class="dashboard-home-page-stat-label">Elevation Gain</p>
     </div>
 
     <!-- Achievements Card -->
-    <div class="BN-Global-card dashboard-stat-card">
-      <div class="dashboard-card-header">
-        <div class="dashboard-stat-icon dashboard-achievements">
+    <div class="dashboard-home-page-stat-card">
+      <div class="dashboard-home-page-stat-header">
+        <div class="dashboard-home-page-stat-icon dashboard-home-page-stat-icon-achievements">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M12 2L15 8L22 9L17 14L18 21L12 18L6 21L7 14L2 9L9 8L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
           </svg>
         </div>
-        <span class="BN-Global-badge BN-Global-badge-primary">New</span>
+        <span class="dashboard-home-page-stat-badge dashboard-home-page-badge-primary">New</span>
       </div>
-      <h3 class="dashboard-stat-value">24</h3>
-      <p class="BN-Global-text-secondary BN-Global-font-sm">Achievements</p>
+      <h3 class="dashboard-home-page-stat-value">24</h3>
+      <p class="dashboard-home-page-stat-label">Achievements</p>
     </div>
   </section>
 
   <!-- Main Content Grid -->
-  <div class="dashboard-grid">
+  <div class="dashboard-home-page-main-grid">
     <!-- Recent Activities -->
-    <section class="BN-Global-card activities-card">
-      <div class="dashboard-card-header">
-        <h3 class="BN-Global-card-title">Recent Activities</h3>
-        <a href="/rides-my-dashboard/" class="BN-Global-card-link">View All</a>
+    <section class="dashboard-home-page-card dashboard-home-page-activities-card">
+      <div class="dashboard-home-page-card-header">
+        <h3 class="dashboard-home-page-card-title">Recent Activities</h3>
+        <a href="/rides-my-dashboard/" class="dashboard-home-page-card-link">View All</a>
       </div>
-      <div class="BN-Global-list">
+      <div class="dashboard-home-page-activity-list">
         <!-- Activity Item 1 -->
-        <div class="BN-Global-list-item list-icon dashboard-activity-item">
-          <div class="list-icon-left">
+        <div class="dashboard-home-page-activity-item">
+          <div class="dashboard-home-page-activity-icon">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M5 15C6.65685 15 8 13.6569 8 12C8 10.3431 6.65685 9 5 9C3.34315 9 2 10.3431 2 12C2 13.6569 3.34315 15 5 15Z" stroke="currentColor" stroke-width="1.5"/>
               <path d="M15 15C16.6569 15 18 13.6569 18 12C18 10.3431 16.6569 9 15 9C13.3431 9 12 10.3431 12 12C12 13.6569 13.3431 15 15 15Z" stroke="currentColor" stroke-width="1.5"/>
               <path d="M8 12H12M10 6L8 12L12 12L15 6" stroke="currentColor" stroke-width="1.5"/>
             </svg>
           </div>
-          <div class="BN-Global-flex-1">
-            <h4 class="BN-Global-font-medium BN-Global-mb-1">Morning Mountain Ride</h4>
-            <div class="BN-Global-text-secondary BN-Global-font-sm BN-Global-mb-2">
+          <div class="dashboard-home-page-activity-content">
+            <h4 class="dashboard-home-page-activity-title">Morning Mountain Ride</h4>
+            <div class="dashboard-home-page-activity-meta">
               Today at 6:30 AM • Trek Fuel EX
             </div>
-            <div class="BN-Global-d-flex BN-Global-gap-3 BN-Global-text-secondary BN-Global-font-sm">
+            <div class="dashboard-home-page-activity-stats">
               <span>42.5 km</span>
               <span>1:45:32</span>
               <span>856m elevation</span>
@@ -117,20 +117,20 @@ showContentHeader: false
         </div>
 
         <!-- Activity Item 2 -->
-        <div class="BN-Global-list-item list-icon dashboard-activity-item">
-          <div class="list-icon-left">
+        <div class="dashboard-home-page-activity-item">
+          <div class="dashboard-home-page-activity-icon">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M5 15C6.65685 15 8 13.6569 8 12C8 10.3431 6.65685 9 5 9C3.34315 9 2 10.3431 2 12C2 13.6569 3.34315 15 5 15Z" stroke="currentColor" stroke-width="1.5"/>
               <path d="M15 15C16.6569 15 18 13.6569 18 12C18 10.3431 16.6569 9 15 9C13.3431 9 12 10.3431 12 12C12 13.6569 13.3431 15 15 15Z" stroke="currentColor" stroke-width="1.5"/>
               <path d="M8 12H12M10 6L8 12L12 12L15 6" stroke="currentColor" stroke-width="1.5"/>
             </svg>
           </div>
-          <div class="BN-Global-flex-1">
-            <h4 class="BN-Global-font-medium BN-Global-mb-1">Evening Road Session</h4>
-            <div class="BN-Global-text-secondary BN-Global-font-sm BN-Global-mb-2">
+          <div class="dashboard-home-page-activity-content">
+            <h4 class="dashboard-home-page-activity-title">Evening Road Session</h4>
+            <div class="dashboard-home-page-activity-meta">
               Yesterday at 5:15 PM • Specialized Tarmac
             </div>
-            <div class="BN-Global-d-flex BN-Global-gap-3 BN-Global-text-secondary BN-Global-font-sm">
+            <div class="dashboard-home-page-activity-stats">
               <span>67.8 km</span>
               <span>2:12:45</span>
               <span>432m elevation</span>
@@ -139,20 +139,20 @@ showContentHeader: false
         </div>
 
         <!-- Activity Item 3 -->
-        <div class="BN-Global-list-item list-icon dashboard-activity-item">
-          <div class="list-icon-left">
+        <div class="dashboard-home-page-activity-item">
+          <div class="dashboard-home-page-activity-icon">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M5 15C6.65685 15 8 13.6569 8 12C8 10.3431 6.65685 9 5 9C3.34315 9 2 10.3431 2 12C2 13.6569 3.34315 15 5 15Z" stroke="currentColor" stroke-width="1.5"/>
               <path d="M15 15C16.6569 15 18 13.6569 18 12C18 10.3431 16.6569 9 15 9C13.3431 9 12 10.3431 12 12C12 13.6569 13.3431 15 15 15Z" stroke="currentColor" stroke-width="1.5"/>
               <path d="M8 12H12M10 6L8 12L12 12L15 6" stroke="currentColor" stroke-width="1.5"/>
             </svg>
           </div>
-          <div class="BN-Global-flex-1">
-            <h4 class="BN-Global-font-medium BN-Global-mb-1">Weekend Gravel Adventure</h4>
-            <div class="BN-Global-text-secondary BN-Global-font-sm BN-Global-mb-2">
+          <div class="dashboard-home-page-activity-content">
+            <h4 class="dashboard-home-page-activity-title">Weekend Gravel Adventure</h4>
+            <div class="dashboard-home-page-activity-meta">
               2 days ago • Canyon Grail
             </div>
-            <div class="BN-Global-d-flex BN-Global-gap-3 BN-Global-text-secondary BN-Global-font-sm">
+            <div class="dashboard-home-page-activity-stats">
               <span>125.4 km</span>
               <span>4:32:15</span>
               <span>1,234m elevation</span>
@@ -163,20 +163,20 @@ showContentHeader: false
     </section>
 
     <!-- My Bikes -->
-    <section class="BN-Global-card">
-      <div class="dashboard-card-header">
-        <h3 class="BN-Global-card-title">My Bikes</h3>
-        <a href="/bikes-my-garage/" class="BN-Global-card-link">Manage</a>
+    <section class="dashboard-home-page-card">
+      <div class="dashboard-home-page-card-header">
+        <h3 class="dashboard-home-page-card-title">My Bikes</h3>
+        <a href="/bikes-my-garage/" class="dashboard-home-page-card-link">Manage</a>
       </div>
-      <div class="dashboard-bike-cards">
+      <div class="dashboard-home-page-bike-cards">
         <!-- Bike 1 -->
-        <div class="dashboard-bike-card-mini">
-          <img src="/assets/images/bikes/trek-fuel-ex.jpg" alt="Trek Fuel EX" class="dashboard-bike-image">
-          <div class="bike-info">
-            <span class="BN-Global-badge BN-Global-badge-primary BN-Global-mb-1">Primary</span>
-            <h4 class="BN-Global-font-medium">Trek Fuel EX</h4>
-            <p class="BN-Global-text-secondary BN-Global-font-sm">Mountain Bike</p>
-            <div class="BN-Global-d-flex BN-Global-gap-2 BN-Global-text-secondary BN-Global-font-sm BN-Global-mt-2">
+        <div class="dashboard-home-page-bike-card">
+          <img src="/assets/images/bikes/trek-fuel-ex.jpg" alt="Trek Fuel EX" class="dashboard-home-page-bike-image">
+          <div class="dashboard-home-page-bike-info">
+            <span class="dashboard-home-page-bike-badge">Primary</span>
+            <h4 class="dashboard-home-page-bike-name">Trek Fuel EX</h4>
+            <p class="dashboard-home-page-bike-type">Mountain Bike</p>
+            <div class="dashboard-home-page-bike-stats">
               <span>2,458 km</span>
               <span>•</span>
               <span>42 rides</span>
@@ -185,12 +185,12 @@ showContentHeader: false
         </div>
 
         <!-- Bike 2 -->
-        <div class="dashboard-bike-card-mini">
-          <img src="/assets/images/bikes/specialized-tarmac.jpg" alt="Specialized Tarmac" class="dashboard-bike-image">
-          <div class="bike-info">
-            <h4 class="BN-Global-font-medium">Specialized Tarmac</h4>
-            <p class="BN-Global-text-secondary BN-Global-font-sm">Road Bike</p>
-            <div class="BN-Global-d-flex BN-Global-gap-2 BN-Global-text-secondary BN-Global-font-sm BN-Global-mt-2">
+        <div class="dashboard-home-page-bike-card">
+          <img src="/assets/images/bikes/specialized-tarmac.jpg" alt="Specialized Tarmac" class="dashboard-home-page-bike-image">
+          <div class="dashboard-home-page-bike-info">
+            <h4 class="dashboard-home-page-bike-name">Specialized Tarmac</h4>
+            <p class="dashboard-home-page-bike-type">Road Bike</p>
+            <div class="dashboard-home-page-bike-stats">
               <span>5,231 km</span>
               <span>•</span>
               <span>87 rides</span>
@@ -199,71 +199,71 @@ showContentHeader: false
         </div>
 
         <!-- Add Bike Button -->
-        <a href="/bikes-add-form/" class="dashboard-bike-card-mini dashboard-add-bike-card BN-Global-flex-center">
+        <a href="/bikes-add-form/" class="dashboard-home-page-add-bike-card">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M12 6V18M6 12H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
-          <span class="BN-Global-text-secondary">Add Bike</span>
+          <span>Add Bike</span>
         </a>
       </div>
     </section>
 
     <!-- Weekly Progress -->
-    <section class="BN-Global-card">
-      <div class="dashboard-card-header">
-        <h3 class="BN-Global-card-title">Weekly Progress</h3>
-        <select class="BN-Global-form-select dashboard-form-select-sm">
+    <section class="dashboard-home-page-card">
+      <div class="dashboard-home-page-card-header">
+        <h3 class="dashboard-home-page-card-title">Weekly Progress</h3>
+        <select class="dashboard-home-page-form-select">
           <option>Distance</option>
           <option>Time</option>
           <option>Elevation</option>
         </select>
       </div>
-      <div class="dashboard-progress-chart">
-        <div class="dashboard-chart-bars">
-          <div class="dashboard-chart-bar" data-day="Mon" style="--height: 80%"></div>
-          <div class="dashboard-chart-bar" data-day="Tue" style="--height: 65%"></div>
-          <div class="dashboard-chart-bar" data-day="Wed" style="--height: 90%"></div>
-          <div class="dashboard-chart-bar" data-day="Thu" style="--height: 45%"></div>
-          <div class="dashboard-chart-bar dashboard-today" data-day="Fri" style="--height: 70%"></div>
-          <div class="dashboard-chart-bar" data-day="Sat" style="--height: 0%"></div>
-          <div class="dashboard-chart-bar" data-day="Sun" style="--height: 0%"></div>
+      <div class="dashboard-home-page-progress-chart">
+        <div class="dashboard-home-page-chart-bars">
+          <div class="dashboard-home-page-chart-bar" data-day="Mon" style="--height: 80%"></div>
+          <div class="dashboard-home-page-chart-bar" data-day="Tue" style="--height: 65%"></div>
+          <div class="dashboard-home-page-chart-bar" data-day="Wed" style="--height: 90%"></div>
+          <div class="dashboard-home-page-chart-bar" data-day="Thu" style="--height: 45%"></div>
+          <div class="dashboard-home-page-chart-bar dashboard-home-page-chart-bar-today" data-day="Fri" style="--height: 70%"></div>
+          <div class="dashboard-home-page-chart-bar" data-day="Sat" style="--height: 0%"></div>
+          <div class="dashboard-home-page-chart-bar" data-day="Sun" style="--height: 0%"></div>
         </div>
       </div>
-      <div class="dashboard-progress-summary BN-Global-mt-3">
-        <div class="BN-Global-d-flex BN-Global-gap-4 text-center">
-          <div class="BN-Global-flex-1">
-            <p class="BN-Global-text-secondary BN-Global-font-sm BN-Global-mb-1">Goal</p>
-            <p class="BN-Global-font-medium">200 km</p>
+      <div class="dashboard-home-page-progress-summary">
+        <div class="dashboard-home-page-progress-stats">
+          <div class="dashboard-home-page-progress-stat">
+            <p class="dashboard-home-page-progress-label">Goal</p>
+            <p class="dashboard-home-page-progress-value">200 km</p>
           </div>
-          <div class="BN-Global-flex-1">
-            <p class="BN-Global-text-secondary BN-Global-font-sm BN-Global-mb-1">Completed</p>
-            <p class="BN-Global-font-medium BN-Global-text-accent">156 km</p>
+          <div class="dashboard-home-page-progress-stat">
+            <p class="dashboard-home-page-progress-label">Completed</p>
+            <p class="dashboard-home-page-progress-value dashboard-home-page-progress-value-accent">156 km</p>
           </div>
-          <div class="BN-Global-flex-1">
-            <p class="BN-Global-text-secondary BN-Global-font-sm BN-Global-mb-1">Remaining</p>
-            <p class="BN-Global-font-medium">44 km</p>
+          <div class="dashboard-home-page-progress-stat">
+            <p class="dashboard-home-page-progress-label">Remaining</p>
+            <p class="dashboard-home-page-progress-value">44 km</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Upcoming Events -->
-    <section class="BN-Global-card">
-      <div class="dashboard-card-header">
-        <h3 class="BN-Global-card-title">Upcoming Events</h3>
-        <a href="/events-browse-calendar/" class="BN-Global-card-link">View All</a>
+    <section class="dashboard-home-page-card">
+      <div class="dashboard-home-page-card-header">
+        <h3 class="dashboard-home-page-card-title">Upcoming Events</h3>
+        <a href="/events-browse-calendar/" class="dashboard-home-page-card-link">View All</a>
       </div>
-      <div class="BN-Global-list">
+      <div class="dashboard-home-page-event-list">
         <!-- Event 1 -->
-        <div class="BN-Global-list-item dashboard-event-item">
-          <div class="dashboard-event-date">
-            <span class="BN-Global-font-2xl BN-Global-font-bold">24</span>
-            <span class="BN-Global-text-secondary BN-Global-font-sm">Mar</span>
+        <div class="dashboard-home-page-event-item">
+          <div class="dashboard-home-page-event-date">
+            <span class="dashboard-home-page-event-day">24</span>
+            <span class="dashboard-home-page-event-month">Mar</span>
           </div>
-          <div class="BN-Global-flex-1">
-            <h4 class="BN-Global-font-medium BN-Global-mb-1">Spring Classic Group Ride</h4>
-            <p class="BN-Global-text-secondary BN-Global-font-sm BN-Global-mb-1">Central Park Loop</p>
-            <div class="BN-Global-d-flex BN-Global-gap-3 BN-Global-text-secondary BN-Global-font-sm">
+          <div class="dashboard-home-page-event-details">
+            <h4 class="dashboard-home-page-event-title">Spring Classic Group Ride</h4>
+            <p class="dashboard-home-page-event-location">Central Park Loop</p>
+            <div class="dashboard-home-page-event-meta">
               <span>8:00 AM</span>
               <span>•</span>
               <span>12 riders</span>
@@ -272,15 +272,15 @@ showContentHeader: false
         </div>
 
         <!-- Event 2 -->
-        <div class="BN-Global-list-item dashboard-event-item">
-          <div class="dashboard-event-date">
-            <span class="BN-Global-font-2xl BN-Global-font-bold">02</span>
-            <span class="BN-Global-text-secondary BN-Global-font-sm">Apr</span>
+        <div class="dashboard-home-page-event-item">
+          <div class="dashboard-home-page-event-date">
+            <span class="dashboard-home-page-event-day">02</span>
+            <span class="dashboard-home-page-event-month">Apr</span>
           </div>
-          <div class="BN-Global-flex-1">
-            <h4 class="BN-Global-font-medium BN-Global-mb-1">Mountain Challenge</h4>
-            <p class="BN-Global-text-secondary BN-Global-font-sm BN-Global-mb-1">Blue Ridge Trail</p>
-            <div class="BN-Global-d-flex BN-Global-gap-3 BN-Global-text-secondary BN-Global-font-sm">
+          <div class="dashboard-home-page-event-details">
+            <h4 class="dashboard-home-page-event-title">Mountain Challenge</h4>
+            <p class="dashboard-home-page-event-location">Blue Ridge Trail</p>
+            <div class="dashboard-home-page-event-meta">
               <span>7:00 AM</span>
               <span>•</span>
               <span>8 riders</span>
@@ -291,40 +291,40 @@ showContentHeader: false
     </section>
 
     <!-- Community Activity -->
-    <section class="BN-Global-card">
-      <div class="dashboard-card-header">
-        <h3 class="BN-Global-card-title">Community Activity</h3>
-        <button class="BN-Global-btn BN-Global-btn-icon BN-Global-btn-sm">
+    <section class="dashboard-home-page-card">
+      <div class="dashboard-home-page-card-header">
+        <h3 class="dashboard-home-page-card-title">Community Activity</h3>
+        <button class="dashboard-home-page-refresh-btn">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M2 8C2 11.3137 4.68629 14 8 14C10.3891 14 12.4531 12.5826 13.3875 10.5M14 8C14 4.68629 11.3137 2 8 2C5.61093 2 3.54688 3.41743 2.6125 5.5M2 3V5.5H4.5M11.5 10.5H14V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
       </div>
-      <div class="BN-Global-list">
+      <div class="dashboard-home-page-feed-list">
         <!-- Feed Item 1 -->
-        <div class="BN-Global-list-item dashboard-feed-item">
-          <img src="/assets/images/avatars/user-2.jpg" alt="Sarah" class="dashboard-avatar-sm">
-          <div class="BN-Global-flex-1">
-            <p class="BN-Global-font-sm"><strong>Sarah Chen</strong> completed a 85km ride</p>
-            <span class="BN-Global-text-secondary BN-Global-font-sm">2 hours ago</span>
+        <div class="dashboard-home-page-feed-item">
+          <img src="/assets/images/avatars/user-2.jpg" alt="Sarah" class="dashboard-home-page-avatar">
+          <div class="dashboard-home-page-feed-content">
+            <p class="dashboard-home-page-feed-text"><strong>Sarah Chen</strong> completed a 85km ride</p>
+            <span class="dashboard-home-page-feed-time">2 hours ago</span>
           </div>
         </div>
 
         <!-- Feed Item 2 -->
-        <div class="BN-Global-list-item dashboard-feed-item">
-          <img src="/assets/images/avatars/user-3.jpg" alt="Mike" class="dashboard-avatar-sm">
-          <div class="BN-Global-flex-1">
-            <p class="BN-Global-font-sm"><strong>Mike Johnson</strong> joined Mountain Riders group</p>
-            <span class="BN-Global-text-secondary BN-Global-font-sm">4 hours ago</span>
+        <div class="dashboard-home-page-feed-item">
+          <img src="/assets/images/avatars/user-3.jpg" alt="Mike" class="dashboard-home-page-avatar">
+          <div class="dashboard-home-page-feed-content">
+            <p class="dashboard-home-page-feed-text"><strong>Mike Johnson</strong> joined Mountain Riders group</p>
+            <span class="dashboard-home-page-feed-time">4 hours ago</span>
           </div>
         </div>
 
         <!-- Feed Item 3 -->
-        <div class="BN-Global-list-item dashboard-feed-item">
-          <img src="/assets/images/avatars/user-4.jpg" alt="Emma" class="dashboard-avatar-sm">
-          <div class="BN-Global-flex-1">
-            <p class="BN-Global-font-sm"><strong>Emma Wilson</strong> earned "Century Rider" badge</p>
-            <span class="BN-Global-text-secondary BN-Global-font-sm">Yesterday</span>
+        <div class="dashboard-home-page-feed-item">
+          <img src="/assets/images/avatars/user-4.jpg" alt="Emma" class="dashboard-home-page-avatar">
+          <div class="dashboard-home-page-feed-content">
+            <p class="dashboard-home-page-feed-text"><strong>Emma Wilson</strong> earned "Century Rider" badge</p>
+            <span class="dashboard-home-page-feed-time">Yesterday</span>
           </div>
         </div>
       </div>
@@ -333,35 +333,38 @@ showContentHeader: false
 </div>
 
 <!-- Quick Actions FAB -->
-<div class="dashboard-quick-actions-fab">
-  <button class="dashboard-fab-trigger" id="fabTrigger">
+<div class="dashboard-home-page-fab">
+  <button class="dashboard-home-page-fab-trigger" id="dashboard-home-page-fab-trigger">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
       <path d="M12 6V18M6 12H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
   </button>
-  <div class="dashboard-fab-menu" id="fabMenu">
-    <a href="/bikes-add-form/" class="dashboard-fab-item" title="Add Bike">
+  <div class="dashboard-home-page-fab-menu" id="dashboard-home-page-fab-menu">
+    <a href="/bikes-add-form/" class="dashboard-home-page-fab-item" title="Add Bike">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
         <path d="M5 15C6.65685 15 8 13.6569 8 12C8 10.3431 6.65685 9 5 9C3.34315 9 2 10.3431 2 12C2 13.6569 3.34315 15 5 15Z" stroke="currentColor" stroke-width="1.5"/>
         <path d="M15 15C16.6569 15 18 13.6569 18 12C18 10.3431 16.6569 9 15 9C13.3431 9 12 10.3431 12 12C12 13.6569 13.3431 15 15 15Z" stroke="currentColor" stroke-width="1.5"/>
         <path d="M8 12H12M10 6L8 12L12 12L15 6" stroke="currentColor" stroke-width="1.5"/>
       </svg>
     </a>
-    <a href="/rides-record-tracker/" class="dashboard-fab-item" title="Record Ride">
+    <a href="/rides-record-tracker/" class="dashboard-home-page-fab-item" title="Record Ride">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
         <path d="M2 6L5 3L7 5L10 2L13 4V12C13 12.5523 12.5523 13 12 13H3C2.44772 13 2 12.5523 2 12V6Z" stroke="currentColor"/>
       </svg>
     </a>
-    <a href="/rides-create-planner/" class="dashboard-fab-item" title="Create Route">
+    <a href="/rides-create-planner/" class="dashboard-home-page-fab-item" title="Create Route">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
         <path d="M10 2V18M10 2L8 4M10 2L12 4" stroke="currentColor" stroke-linecap="round"/>
         <circle cx="10" cy="10" r="2" stroke="currentColor"/>
       </svg>
     </a>
-    <a href="/marketplace-create-listing/" class="dashboard-fab-item" title="List Item">
+    <a href="/marketplace-create-listing/" class="dashboard-home-page-fab-item" title="List Item">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
         <path d="M2 2H18L16 7H4L2 2ZM2 2L4 7M4 7L5 13H15L16 7" stroke="currentColor" stroke-linejoin="round"/>
       </svg>
     </a>
   </div>
 </div>
+
+<link rel="stylesheet" href="./styles/dashboard-home-page.css">
+<script src="./scripts/dashboard-home-page.js"></script>

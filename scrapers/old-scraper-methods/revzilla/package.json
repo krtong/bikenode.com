@@ -1,0 +1,44 @@
+{
+  "name": "revzilla-scraper-v2",
+  "version": "2.0.0",
+  "description": "Production-ready RevZilla.com product scraper with advanced features",
+  "type": "module",
+  "main": "revzilla_scraper.js",
+  "scripts": {
+    "test": "node revzilla_scraper.js category motorcycle-helmets --pages=1",
+    "scrape": "node revzilla_scraper.js",
+    "scrape:category": "node revzilla_scraper.js category",
+    "scrape:sitemap": "node revzilla_scraper.js sitemap",
+    "scrape:batch": "node revzilla_scraper.js batch",
+    "db:import": "node revzilla_db_integration.js",
+    "clean": "rm -rf revzilla_data/backup revzilla_data/exports/*.csv"
+  },
+  "keywords": [
+    "scraper",
+    "revzilla",
+    "motorcycle",
+    "gear",
+    "ecommerce",
+    "puppeteer"
+  ],
+  "author": "BikeNode",
+  "license": "PRIVATE",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12",
+    "jsdom": "^26.1.0",
+    "json2csv": "^6.0.0-alpha.2",
+    "puppeteer": "^21.6.1",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.55.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "private"
+  }
+}

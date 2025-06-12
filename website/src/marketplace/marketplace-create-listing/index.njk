@@ -1,5 +1,5 @@
 ---
-layout: bikenode-main-layout-01/bikenode-main-layout-01
+layout: bikenode-main-layout-01
 title: Create Listing
 subtitle: List your bike or gear in the marketplace
 showContentHeader: false
@@ -7,21 +7,13 @@ breadcrumb:
   - title: Marketplace
     url: /marketplace/
   - title: Create Listing
-customCSS:
-  - /sell-item/styles/sell-item.css
-  - /sell-item/styles/components/form-steps.css
-  - /sell-item/styles/components/image-upload.css
-  - /sell-item/styles/components/pricing-options.css
-  - /sell-item/styles/components/preview-modal.css
-  - /sell-item/styles/components/bike-selection.css
-  - /sell-item/styles/components/source-selection.css
-customJS:
-  - /sell-item/js/garage-integration.js
-  - /sell-item/js/gear-integration.js
+# customJS removed - all JS will be inline or in page folder
 ---
 
-<div class="sell-item-container">
-    {% include "sell-item/header.njk" %}
+<link rel="stylesheet" href="./styles/marketplace-create-listing.css">
+
+<div class="marketplace-create-listing-container">
+    {% include "./components/marketplace-create-listing-header.njk" %}
     
     <!-- Source Selection (if not pre-selected) -->
     <div id="sourceSelection" class="source-selection" style="display: none;">
@@ -66,21 +58,21 @@ customJS:
     
     <!-- Main Form -->
     <div id="mainForm" style="display: none;">
-        {% include "sell-item/progress-bar.njk" %}
+        {% include "./components/marketplace-create-listing-progress-bar.njk" %}
         
         <form id="createListingForm" class="listing-form">
-            {% include "sell-item/step-1-category.njk" %}
-            {% include "sell-item/step-2-details.njk" %}
-            {% include "sell-item/step-3-photos.njk" %}
-            {% include "sell-item/step-4-pricing.njk" %}
-            {% include "sell-item/step-5-review.njk" %}
+            {% include "./components/marketplace-create-listing-step-1-category.njk" %}
+            {% include "./components/marketplace-create-listing-step-2-details.njk" %}
+            {% include "./components/marketplace-create-listing-step-3-photos.njk" %}
+            {% include "./components/marketplace-create-listing-step-4-pricing.njk" %}
+            {% include "./components/marketplace-create-listing-step-5-review.njk" %}
             
-            {% include "sell-item/form-navigation.njk" %}
+            {% include "./components/marketplace-create-listing-form-navigation.njk" %}
         </form>
     </div>
 </div>
 
-{% include "sell-item/preview-modal.njk" %}
-{% include "sell-item/success-modal.njk" %}
+{% include "./components/marketplace-create-listing-preview-modal.njk" %}
+{% include "./components/marketplace-create-listing-success-modal.njk" %}
 
-<script type="module" src="/sell-item/js/app.js"></script>
+<script src="./js/marketplace-create-listing.js"></script>
