@@ -25,7 +25,7 @@ class URLGrouper:
     def __init__(self, domain: str):
         """Initialize URL grouper."""
         self.domain = domain
-        self.logger = setup_logging('url_grouper', config.dirs['group'] / 'grouping.log')
+        self.logger = setup_logging('url_grouper', Path(__file__).parent / 'grouping.log')
         self.groups: Dict[str, List[str]] = defaultdict(list)
         self.templates: Dict[str, str] = {}
     
@@ -176,7 +176,7 @@ class URLGrouper:
                     structure_groups: Dict[str, List[str]],
                     analysis: Dict[str, Dict]) -> None:
         """Save grouping results."""
-        output_dir = ensure_dir(config.dirs['group'] / 'by_template')
+        output_dir = ensure_dir(Path(__file__).parent / 'by_template')
         
         # Save individual group files
         for pattern, urls in pattern_groups.items():
@@ -196,11 +196,11 @@ class URLGrouper:
             'patterns': analysis,
         }
         
-        summary_file = config.dirs['group'] / 'grouping_summary.json'
+        summary_file = Path(__file__).parent / 'grouping_summary.json'
         save_json(summary, summary_file)
         self.logger.info(f"Saved grouping summary to {summary_file}")
         
-        # Save top patterns for probe step
+        # Save top patterns info in our directory (probe step will read from here)
         top_patterns = sorted(
             analysis.items(),
             key=lambda x: x[1]['priority'],
@@ -215,9 +215,10 @@ class URLGrouper:
                 'count': info['count'],
             }
         
-        probe_file = config.dirs['probe'] / 'patterns_to_probe.json'
-        save_json(probe_input, probe_file)
-        self.logger.info(f"Saved top patterns for probing to {probe_file}")
+        # Save in our directory - probe step will read this
+        patterns_file = Path(__file__).parent / 'patterns_to_probe.json'
+        save_json(probe_input, patterns_file)
+        self.logger.info(f"Saved top patterns to {patterns_file}")
     
     def run(self, urls: List[str]) -> Tuple[Dict[str, List[str]], Dict[str, Dict]]:
         """Run the grouping process."""
@@ -270,16 +271,17 @@ Examples:
     )
     
     parser.add_argument('--domain', required=True, help='Domain being analyzed')
-    parser.add_argument('--input', help='Input file with URLs (default: filtered_urls.txt)')
+    parser.add_argument('--input', help='Input file with URLs (default: ../02_filter/all_urls.txt)')
     parser.add_argument('--max-patterns', type=int, default=50,
                        help='Maximum number of patterns to keep')
     
     args = parser.parse_args()
     
     # Load URLs
-    input_file = Path(args.input) if args.input else config.dirs['group'] / 'filtered_urls.txt'
+    input_file = Path(args.input) if args.input else Path(__file__).parent.parent / '02_filter' / 'all_urls.txt'
     if not input_file.exists():
         print(f"Error: Input file not found: {input_file}")
+        print("Make sure to run 02_filter/filter_urls.py first")
         sys.exit(1)
     
     urls = read_urls_file(input_file)
@@ -291,7 +293,7 @@ Examples:
     
     print(f"\nGrouping complete!")
     print(f"Found {len(pattern_groups)} unique URL patterns")
-    print(f"Results saved to {config.dirs['group']}")
+    print(f"Results saved to {Path(__file__).parent}")
 
 
 if __name__ == '__main__':

@@ -31,13 +31,13 @@ class DOMParser:
     def __init__(self, domain: str):
         """Initialize DOM parser."""
         self.domain = domain
-        self.logger = setup_logging('dom_parser', config.dirs['scrape'] / 'scrape.log')
-        self.output_file = config.dirs['scrape'] / 'parsed.ndjson'
+        self.logger = setup_logging('dom_parser', Path(__file__).parent / 'scrape.log')
+        self.output_file = Path(__file__).parent / 'parsed.ndjson'
         self.selectors = self.load_selectors()
     
     def load_selectors(self) -> Dict[str, Dict[str, Any]]:
         """Load CSS selectors configuration."""
-        selectors_file = config.dirs['plan'] / 'css_selectors.yaml'
+        selectors_file = Path(__file__).parent.parent / '06_plan' / 'css_selectors.yaml'
         if selectors_file.exists():
             return load_yaml(selectors_file)
         
@@ -296,7 +296,7 @@ class DOMParser:
         """Run DOM parsing on crawled HTML files."""
         self.logger.info(f"Starting DOM parsing for domain: {self.domain}")
         
-        html_dir = config.dirs['fetch'] / 'html'
+        html_dir = Path(__file__).parent.parent / '08_fetch' / 'html'
         if not html_dir.exists():
             self.logger.error("No HTML directory found. Run fetch step first.")
             return {}

@@ -1,0 +1,494 @@
+/* Rides Details Page Styles */
+
+.rides-details-page-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Header Section */
+.rides-details-page-header {
+    margin-bottom: 2rem;
+}
+
+.rides-details-page-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+.rides-details-page-breadcrumb-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.rides-details-page-breadcrumb-link:hover {
+    color: var(--accent);
+}
+
+.rides-details-page-breadcrumb-separator {
+    color: var(--text-secondary);
+    opacity: 0.5;
+}
+
+.rides-details-page-breadcrumb-current {
+    color: var(--text-primary);
+}
+
+.rides-details-page-title-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.rides-details-page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
+}
+
+.rides-details-page-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.rides-details-page-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+/* Buttons */
+.rides-details-page-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.rides-details-page-button-primary {
+    background: var(--accent);
+    color: white;
+}
+
+.rides-details-page-button-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(88, 101, 242, 0.3);
+}
+
+.rides-details-page-button-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.rides-details-page-button-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.rides-details-page-more-button {
+    padding: 0.5rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.rides-details-page-more-button:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+/* Stats Grid */
+.rides-details-page-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.rides-details-page-stat-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.rides-details-page-stat-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(88, 101, 242, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+}
+
+.rides-details-page-stat-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.rides-details-page-stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.rides-details-page-stat-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Content Layout */
+.rides-details-page-content {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 2rem;
+}
+
+/* Sections */
+.rides-details-page-section {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.rides-details-page-section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    color: var(--text-primary);
+}
+
+/* Map */
+.rides-details-page-map {
+    height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.rides-details-page-map-placeholder {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+}
+
+/* Elevation Chart */
+.rides-details-page-elevation-chart {
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.rides-details-page-elevation-chart canvas {
+    width: 100%;
+    height: 100%;
+}
+
+/* Stats Table */
+.rides-details-page-stats-table {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.rides-details-page-stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.rides-details-page-stat-row:last-child {
+    border-bottom: none;
+}
+
+.rides-details-page-stat-row-label {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.rides-details-page-stat-row-value {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* Photos Grid */
+.rides-details-page-photos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.rides-details-page-photo {
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.rides-details-page-photo:hover {
+    transform: scale(1.05);
+}
+
+.rides-details-page-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.rides-details-page-add-photo {
+    aspect-ratio: 1;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.rides-details-page-add-photo:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(88, 101, 242, 0.05);
+}
+
+/* Sidebar Cards */
+.rides-details-page-info-card,
+.rides-details-page-segments-card,
+.rides-details-page-notes-card,
+.rides-details-page-social-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.rides-details-page-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    color: var(--text-primary);
+}
+
+/* Info Items */
+.rides-details-page-info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.rides-details-page-info-item:last-child {
+    border-bottom: none;
+}
+
+.rides-details-page-info-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.rides-details-page-info-value {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.rides-details-page-difficulty-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.rides-details-page-difficulty-badge.moderate {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+}
+
+/* Segments */
+.rides-details-page-segments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.rides-details-page-segment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.rides-details-page-segment:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.rides-details-page-segment-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.rides-details-page-segment-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.rides-details-page-segment-time {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.rides-details-page-segment-rank {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.rides-details-page-segment-rank.pr {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+}
+
+/* Notes */
+.rides-details-page-notes-content {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.rides-details-page-edit-notes {
+    width: 100%;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.rides-details-page-edit-notes:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Social */
+.rides-details-page-social-stats {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.rides-details-page-social-button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.rides-details-page-social-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .rides-details-page-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .rides-details-page-sidebar {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .rides-details-page-container {
+        padding: 1rem;
+    }
+    
+    .rides-details-page-title {
+        font-size: 1.5rem;
+    }
+    
+    .rides-details-page-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .rides-details-page-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    .rides-details-page-map {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .rides-details-page-stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .rides-details-page-photos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

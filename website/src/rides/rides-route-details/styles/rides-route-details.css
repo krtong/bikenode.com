@@ -1,0 +1,653 @@
+/* Rides Route Details Page Styles */
+
+.rides-route-details-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Header Section */
+.rides-route-details-header {
+    margin-bottom: 2rem;
+}
+
+.rides-route-details-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+.rides-route-details-breadcrumb-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.rides-route-details-breadcrumb-link:hover {
+    color: var(--accent);
+}
+
+.rides-route-details-breadcrumb-separator {
+    color: var(--text-secondary);
+    opacity: 0.5;
+}
+
+.rides-route-details-breadcrumb-current {
+    color: var(--text-primary);
+}
+
+.rides-route-details-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.rides-route-details-title-section {
+    flex: 1;
+}
+
+.rides-route-details-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem 0;
+    color: var(--text-primary);
+}
+
+.rides-route-details-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.rides-route-details-author {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.rides-route-details-author-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.rides-route-details-meta-separator {
+    opacity: 0.5;
+}
+
+.rides-route-details-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Buttons */
+.rides-route-details-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.rides-route-details-button-primary {
+    background: var(--accent);
+    color: white;
+}
+
+.rides-route-details-button-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(88, 101, 242, 0.3);
+}
+
+.rides-route-details-button-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.rides-route-details-button-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.rides-route-details-save-button {
+    padding: 0.75rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.rides-route-details-save-button:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.rides-route-details-save-button.saved {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+/* Stats Bar */
+.rides-route-details-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.rides-route-details-stat {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+
+.rides-route-details-stat-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(88, 101, 242, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+.rides-route-details-stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.rides-route-details-stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.rides-route-details-stat-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Content Layout */
+.rides-route-details-content {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 2rem;
+}
+
+/* Sections */
+.rides-route-details-section {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.rides-route-details-section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    color: var(--text-primary);
+}
+
+/* Map */
+.rides-route-details-map {
+    height: 500px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.02);
+    margin-bottom: 1rem;
+}
+
+.rides-route-details-map-placeholder {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+}
+
+.rides-route-details-map-controls {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.rides-route-details-map-button {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.rides-route-details-map-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.rides-route-details-map-button.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+/* Description */
+.rides-route-details-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.rides-route-details-description p {
+    margin: 0 0 1rem 0;
+}
+
+.rides-route-details-description p:last-child {
+    margin-bottom: 0;
+}
+
+/* Elevation */
+.rides-route-details-elevation {
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.02);
+    margin-bottom: 1rem;
+}
+
+.rides-route-details-elevation canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.rides-route-details-elevation-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.rides-route-details-elevation-stat {
+    text-align: center;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+}
+
+.rides-route-details-elevation-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.rides-route-details-elevation-value {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Waypoints */
+.rides-route-details-waypoints {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.rides-route-details-waypoint {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.rides-route-details-waypoint:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.rides-route-details-waypoint-marker {
+    padding: 0.5rem 0.75rem;
+    background: rgba(88, 101, 242, 0.1);
+    color: var(--accent);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.rides-route-details-waypoint-info {
+    flex: 1;
+}
+
+.rides-route-details-waypoint-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+}
+
+.rides-route-details-waypoint-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.rides-route-details-waypoint-distance {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+/* Reviews */
+.rides-route-details-reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.rides-route-details-review {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+}
+
+.rides-route-details-review-header {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.rides-route-details-review-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.rides-route-details-review-meta {
+    flex: 1;
+}
+
+.rides-route-details-review-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+}
+
+.rides-route-details-review-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.rides-route-details-stars {
+    color: #f59e0b;
+}
+
+.rides-route-details-review-date {
+    color: var(--text-secondary);
+}
+
+.rides-route-details-review-text {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.rides-route-details-add-review {
+    width: 100%;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.rides-route-details-add-review:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+}
+
+/* Sidebar Cards */
+.rides-route-details-info-card,
+.rides-route-details-tags-card,
+.rides-route-details-stats-card,
+.rides-route-details-related-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.rides-route-details-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    color: var(--text-primary);
+}
+
+/* Info Grid */
+.rides-route-details-info-grid {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.rides-route-details-info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.rides-route-details-info-item:last-child {
+    border-bottom: none;
+}
+
+.rides-route-details-info-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.rides-route-details-info-value {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.rides-route-details-difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.rides-route-details-difficulty.challenging {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+/* Tags */
+.rides-route-details-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.rides-route-details-tag {
+    padding: 0.5rem 1rem;
+    background: rgba(88, 101, 242, 0.1);
+    color: var(--accent);
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Community Stats */
+.rides-route-details-community-stats {
+    display: grid;
+    gap: 1rem;
+}
+
+.rides-route-details-community-stat {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+}
+
+.rides-route-details-community-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.rides-route-details-community-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* Related Routes */
+.rides-route-details-related-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.rides-route-details-related-item {
+    display: flex;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.rides-route-details-related-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.rides-route-details-related-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    object-fit: cover;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.rides-route-details-related-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.rides-route-details-related-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+}
+
+.rides-route-details-related-distance {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .rides-route-details-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .rides-route-details-sidebar {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .rides-route-details-container {
+        padding: 1rem;
+    }
+    
+    .rides-route-details-title {
+        font-size: 1.5rem;
+    }
+    
+    .rides-route-details-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .rides-route-details-title-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .rides-route-details-actions {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    
+    .rides-route-details-map {
+        height: 300px;
+    }
+    
+    .rides-route-details-elevation-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .rides-route-details-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .rides-route-details-waypoint {
+        flex-direction: column;
+        text-align: center;
+    }
+}

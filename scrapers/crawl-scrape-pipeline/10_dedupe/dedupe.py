@@ -26,9 +26,9 @@ class Deduplicator:
     def __init__(self, domain: str):
         """Initialize deduplicator."""
         self.domain = domain
-        self.logger = setup_logging('deduplicator', config.dirs['dedupe'] / 'dedupe.log')
-        self.output_file = config.dirs['dedupe'] / 'deduped.ndjson'
-        self.duplicates_file = config.dirs['dedupe'] / 'duplicates.ndjson'
+        self.logger = setup_logging('deduplicator', Path(__file__).parent / 'dedupe.log')
+        self.output_file = Path(__file__).parent / 'deduped.ndjson'
+        self.duplicates_file = Path(__file__).parent / 'duplicates.ndjson'
     
     def generate_item_key(self, item: Dict[str, Any], strategy: str = 'auto') -> Optional[str]:
         """Generate a unique key for an item based on deduplication strategy."""
@@ -189,24 +189,16 @@ class Deduplicator:
         self.logger.info(f"Starting deduplication for domain: {self.domain}")
         self.logger.info(f"Strategy: {strategy}")
         
-        # Default input file
+        # Default input file per spec: 09_scrape/parsed.ndjson
         if input_file is None:
-            # Try both DOM and JSON parsed files
-            dom_file = config.dirs['scrape'] / 'parsed.ndjson'
-            json_file = config.dirs['scrape'] / 'parsed_json.ndjson'
+            input_file = Path(__file__).parent.parent / '09_scrape' / 'parsed.ndjson'
             
-            items = []
-            if dom_file.exists():
-                items.extend(load_ndjson(dom_file))
-                self.logger.info(f"Loaded {len(items)} items from DOM parsing")
+        if not input_file.exists():
+            self.logger.error(f"Input file not found: {input_file}")
+            return {}
             
-            if json_file.exists():
-                json_items = load_ndjson(json_file)
-                items.extend(json_items)
-                self.logger.info(f"Loaded {len(json_items)} items from JSON parsing")
-        else:
-            items = load_ndjson(input_file)
-            self.logger.info(f"Loaded {len(items)} items from {input_file}")
+        items = load_ndjson(input_file)
+        self.logger.info(f"Loaded {len(items)} items from {input_file}")
         
         if not items:
             self.logger.error("No items to deduplicate")
@@ -254,15 +246,8 @@ class Deduplicator:
         }
         
         # Save statistics
-        stats_file = config.dirs['dedupe'] / 'dedupe_stats.json'
+        stats_file = Path(__file__).parent / 'dedupe_stats.json'
         save_json(stats, stats_file)
-        
-        # Save to clean step
-        clean_input = config.dirs['clean'] / 'deduped.ndjson'
-        clean_input.parent.mkdir(exist_ok=True)
-        with open(clean_input, 'w') as f:
-            with open(self.output_file, 'r') as src:
-                f.write(src.read())
         
         # Log summary
         self.logger.info("Deduplication complete!")

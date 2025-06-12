@@ -26,13 +26,13 @@ class JSONParser:
     def __init__(self, domain: str):
         """Initialize JSON parser."""
         self.domain = domain
-        self.logger = setup_logging('json_parser', config.dirs['scrape'] / 'scrape_json.log')
-        self.output_file = config.dirs['scrape'] / 'parsed_json.ndjson'
+        self.logger = setup_logging('json_parser', Path(__file__).parent / 'scrape_json.log')
+        self.output_file = Path(__file__).parent / 'parsed_json.ndjson'
         self.mappings = self.load_mappings()
     
     def load_mappings(self) -> Dict[str, Dict[str, Any]]:
         """Load field mappings for JSON extraction."""
-        mappings_file = config.dirs['plan'] / 'api_endpoints.yaml'
+        mappings_file = Path(__file__).parent.parent / '06_plan' / 'api_endpoints.yaml'
         if mappings_file.exists():
             api_config = load_yaml(mappings_file)
             
@@ -221,7 +221,7 @@ class JSONParser:
         
         # Default to fetch JSON directory
         if input_dir is None:
-            input_dir = config.dirs['fetch'] / 'json'
+            input_dir = Path(__file__).parent.parent / '08_fetch' / 'json'
         
         if not input_dir.exists():
             self.logger.error(f"Input directory not found: {input_dir}")

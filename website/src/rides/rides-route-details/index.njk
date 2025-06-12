@@ -1,0 +1,344 @@
+---
+layout: bikenode-main-layout-01
+title: Route Details - BikeNode
+---
+
+<link rel="stylesheet" href="/rides/rides-route-details/styles/rides-route-details.css">
+
+<div class="rides-route-details-container">
+    <!-- Route Header -->
+    <div class="rides-route-details-header">
+        <div class="rides-route-details-breadcrumb">
+            <a href="/rides/rides-browse-gallery/" class="rides-route-details-breadcrumb-link">Routes</a>
+            <span class="rides-route-details-breadcrumb-separator">›</span>
+            <span class="rides-route-details-breadcrumb-current">Pacific Coast Highway</span>
+        </div>
+        
+        <div class="rides-route-details-title-row">
+            <div class="rides-route-details-title-section">
+                <h1 class="rides-route-details-title">Pacific Coast Highway</h1>
+                <div class="rides-route-details-meta">
+                    <span class="rides-route-details-author">
+                        <img src="/assets/images/profile-avatar.jpg" alt="Creator" class="rides-route-details-author-avatar">
+                        Created by Sarah Johnson
+                    </span>
+                    <span class="rides-route-details-meta-separator">•</span>
+                    <span class="rides-route-details-date">Updated 3 days ago</span>
+                </div>
+            </div>
+            
+            <div class="rides-route-details-actions">
+                <button class="rides-route-details-button rides-route-details-button-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
+                        <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path>
+                    </svg>
+                    Ride This Route
+                </button>
+                <button class="rides-route-details-button rides-route-details-button-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                        <polyline points="16 6 12 2 8 6"></polyline>
+                        <line x1="12" y1="2" x2="12" y2="15"></line>
+                    </svg>
+                    Export GPX
+                </button>
+                <button class="rides-route-details-save-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Route Stats -->
+    <div class="rides-route-details-stats">
+        <div class="rides-route-details-stat">
+            <div class="rides-route-details-stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="12" x2="2" y2="12"></line>
+                    <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path>
+                </svg>
+            </div>
+            <div class="rides-route-details-stat-info">
+                <span class="rides-route-details-stat-value">127.3 km</span>
+                <span class="rides-route-details-stat-label">Distance</span>
+            </div>
+        </div>
+        
+        <div class="rides-route-details-stat">
+            <div class="rides-route-details-stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v18h18"></path>
+                    <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"></path>
+                </svg>
+            </div>
+            <div class="rides-route-details-stat-info">
+                <span class="rides-route-details-stat-value">1,245 m</span>
+                <span class="rides-route-details-stat-label">Elevation Gain</span>
+            </div>
+        </div>
+        
+        <div class="rides-route-details-stat">
+            <div class="rides-route-details-stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+            </div>
+            <div class="rides-route-details-stat-info">
+                <span class="rides-route-details-stat-value">4-5 hours</span>
+                <span class="rides-route-details-stat-label">Est. Duration</span>
+            </div>
+        </div>
+        
+        <div class="rides-route-details-stat">
+            <div class="rides-route-details-stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+            </div>
+            <div class="rides-route-details-stat-info">
+                <span class="rides-route-details-stat-value">4.8</span>
+                <span class="rides-route-details-stat-label">Rating (234)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="rides-route-details-content">
+        <!-- Left Column -->
+        <div class="rides-route-details-main">
+            <!-- Route Map -->
+            <div class="rides-route-details-section">
+                <div class="rides-route-details-map" id="rides-route-details-map">
+                    <div class="rides-route-details-map-placeholder">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.3">
+                            <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                            <line x1="8" y1="2" x2="8" y2="18"></line>
+                            <line x1="16" y1="6" x2="16" y2="22"></line>
+                        </svg>
+                        <p>Loading Route Map...</p>
+                    </div>
+                </div>
+                <div class="rides-route-details-map-controls">
+                    <button class="rides-route-details-map-button" data-action="terrain">Terrain</button>
+                    <button class="rides-route-details-map-button active" data-action="satellite">Satellite</button>
+                    <button class="rides-route-details-map-button" data-action="3d">3D View</button>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="rides-route-details-section">
+                <h2 class="rides-route-details-section-title">Route Description</h2>
+                <div class="rides-route-details-description">
+                    <p>Experience one of the most scenic coastal rides in California. This route takes you along the famous Pacific Coast Highway, offering breathtaking ocean views, challenging climbs, and exhilarating descents.</p>
+                    <p>Starting from Half Moon Bay, you'll head south along Highway 1, passing through charming coastal towns and state beaches. The route features several notable climbs including Devil's Slide and the ascent to Montara Mountain.</p>
+                    <p>Key highlights include the historic Pigeon Point Lighthouse, Pescadero State Beach, and numerous scenic overlooks perfect for photo opportunities. The route is best ridden early in the morning to avoid traffic and catch the sunrise over the Pacific.</p>
+                </div>
+            </div>
+
+            <!-- Elevation Profile -->
+            <div class="rides-route-details-section">
+                <h2 class="rides-route-details-section-title">Elevation Profile</h2>
+                <div class="rides-route-details-elevation">
+                    <canvas id="rides-route-details-elevation-chart" height="200"></canvas>
+                </div>
+                <div class="rides-route-details-elevation-stats">
+                    <div class="rides-route-details-elevation-stat">
+                        <span class="rides-route-details-elevation-label">Min Elevation</span>
+                        <span class="rides-route-details-elevation-value">0 m</span>
+                    </div>
+                    <div class="rides-route-details-elevation-stat">
+                        <span class="rides-route-details-elevation-label">Max Elevation</span>
+                        <span class="rides-route-details-elevation-value">485 m</span>
+                    </div>
+                    <div class="rides-route-details-elevation-stat">
+                        <span class="rides-route-details-elevation-label">Total Ascent</span>
+                        <span class="rides-route-details-elevation-value">1,245 m</span>
+                    </div>
+                    <div class="rides-route-details-elevation-stat">
+                        <span class="rides-route-details-elevation-label">Total Descent</span>
+                        <span class="rides-route-details-elevation-value">1,189 m</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Waypoints -->
+            <div class="rides-route-details-section">
+                <h2 class="rides-route-details-section-title">Waypoints & Points of Interest</h2>
+                <div class="rides-route-details-waypoints">
+                    <div class="rides-route-details-waypoint">
+                        <div class="rides-route-details-waypoint-marker">Start</div>
+                        <div class="rides-route-details-waypoint-info">
+                            <h4 class="rides-route-details-waypoint-name">Half Moon Bay</h4>
+                            <p class="rides-route-details-waypoint-description">Starting point with parking and facilities</p>
+                        </div>
+                        <span class="rides-route-details-waypoint-distance">0 km</span>
+                    </div>
+                    
+                    <div class="rides-route-details-waypoint">
+                        <div class="rides-route-details-waypoint-marker">POI</div>
+                        <div class="rides-route-details-waypoint-info">
+                            <h4 class="rides-route-details-waypoint-name">Devil's Slide</h4>
+                            <p class="rides-route-details-waypoint-description">Scenic viewpoint and photo opportunity</p>
+                        </div>
+                        <span class="rides-route-details-waypoint-distance">15.2 km</span>
+                    </div>
+                    
+                    <div class="rides-route-details-waypoint">
+                        <div class="rides-route-details-waypoint-marker">Water</div>
+                        <div class="rides-route-details-waypoint-info">
+                            <h4 class="rides-route-details-waypoint-name">Pescadero General Store</h4>
+                            <p class="rides-route-details-waypoint-description">Water refill and snacks available</p>
+                        </div>
+                        <span class="rides-route-details-waypoint-distance">42.7 km</span>
+                    </div>
+                    
+                    <div class="rides-route-details-waypoint">
+                        <div class="rides-route-details-waypoint-marker">POI</div>
+                        <div class="rides-route-details-waypoint-info">
+                            <h4 class="rides-route-details-waypoint-name">Pigeon Point Lighthouse</h4>
+                            <p class="rides-route-details-waypoint-description">Historic lighthouse and rest area</p>
+                        </div>
+                        <span class="rides-route-details-waypoint-distance">68.3 km</span>
+                    </div>
+                    
+                    <div class="rides-route-details-waypoint">
+                        <div class="rides-route-details-waypoint-marker">End</div>
+                        <div class="rides-route-details-waypoint-info">
+                            <h4 class="rides-route-details-waypoint-name">Santa Cruz Wharf</h4>
+                            <p class="rides-route-details-waypoint-description">Finish point with restaurants and parking</p>
+                        </div>
+                        <span class="rides-route-details-waypoint-distance">127.3 km</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews -->
+            <div class="rides-route-details-section">
+                <h2 class="rides-route-details-section-title">Reviews</h2>
+                <div class="rides-route-details-reviews">
+                    <div class="rides-route-details-review">
+                        <div class="rides-route-details-review-header">
+                            <img src="/assets/images/profile1.jpg" alt="Reviewer" class="rides-route-details-review-avatar">
+                            <div class="rides-route-details-review-meta">
+                                <h4 class="rides-route-details-review-name">Mike Chen</h4>
+                                <div class="rides-route-details-review-rating">
+                                    <span class="rides-route-details-stars">★★★★★</span>
+                                    <span class="rides-route-details-review-date">2 weeks ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="rides-route-details-review-text">Amazing route! The views are absolutely stunning. Be prepared for some tough climbs, but they're worth it. Traffic can be heavy on weekends, so I recommend starting early.</p>
+                    </div>
+                    
+                    <div class="rides-route-details-review">
+                        <div class="rides-route-details-review-header">
+                            <img src="/assets/images/profile2.jpg" alt="Reviewer" class="rides-route-details-review-avatar">
+                            <div class="rides-route-details-review-meta">
+                                <h4 class="rides-route-details-review-name">Emma Wilson</h4>
+                                <div class="rides-route-details-review-rating">
+                                    <span class="rides-route-details-stars">★★★★☆</span>
+                                    <span class="rides-route-details-review-date">1 month ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="rides-route-details-review-text">Beautiful coastal ride! The route is well-planned with good rest stops. Watch out for crosswinds near the coast. The Pescadero stop is perfect for refueling.</p>
+                    </div>
+                </div>
+                <button class="rides-route-details-add-review">Write a Review</button>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="rides-route-details-sidebar">
+            <!-- Route Info -->
+            <div class="rides-route-details-info-card">
+                <h3 class="rides-route-details-card-title">Route Information</h3>
+                <div class="rides-route-details-info-grid">
+                    <div class="rides-route-details-info-item">
+                        <span class="rides-route-details-info-label">Surface</span>
+                        <span class="rides-route-details-info-value">100% Paved</span>
+                    </div>
+                    <div class="rides-route-details-info-item">
+                        <span class="rides-route-details-info-label">Traffic</span>
+                        <span class="rides-route-details-info-value">Moderate</span>
+                    </div>
+                    <div class="rides-route-details-info-item">
+                        <span class="rides-route-details-info-label">Difficulty</span>
+                        <span class="rides-route-details-info-value">
+                            <span class="rides-route-details-difficulty challenging">Challenging</span>
+                        </span>
+                    </div>
+                    <div class="rides-route-details-info-item">
+                        <span class="rides-route-details-info-label">Best Season</span>
+                        <span class="rides-route-details-info-value">Spring/Fall</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div class="rides-route-details-tags-card">
+                <h3 class="rides-route-details-card-title">Tags</h3>
+                <div class="rides-route-details-tags">
+                    <span class="rides-route-details-tag">Coastal</span>
+                    <span class="rides-route-details-tag">Scenic</span>
+                    <span class="rides-route-details-tag">Climbing</span>
+                    <span class="rides-route-details-tag">Century</span>
+                    <span class="rides-route-details-tag">Road Cycling</span>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="rides-route-details-stats-card">
+                <h3 class="rides-route-details-card-title">Community Stats</h3>
+                <div class="rides-route-details-community-stats">
+                    <div class="rides-route-details-community-stat">
+                        <span class="rides-route-details-community-value">1,234</span>
+                        <span class="rides-route-details-community-label">Times Ridden</span>
+                    </div>
+                    <div class="rides-route-details-community-stat">
+                        <span class="rides-route-details-community-value">567</span>
+                        <span class="rides-route-details-community-label">Saves</span>
+                    </div>
+                    <div class="rides-route-details-community-stat">
+                        <span class="rides-route-details-community-value">3:48:22</span>
+                        <span class="rides-route-details-community-label">Fastest Time</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Routes -->
+            <div class="rides-route-details-related-card">
+                <h3 class="rides-route-details-card-title">Similar Routes</h3>
+                <div class="rides-route-details-related-list">
+                    <a href="#" class="rides-route-details-related-item">
+                        <img src="/assets/images/route-thumb-1.jpg" alt="Route" class="rides-route-details-related-image">
+                        <div class="rides-route-details-related-info">
+                            <h4 class="rides-route-details-related-name">Skyline Boulevard Loop</h4>
+                            <span class="rides-route-details-related-distance">85.2 km</span>
+                        </div>
+                    </a>
+                    <a href="#" class="rides-route-details-related-item">
+                        <img src="/assets/images/route-thumb-2.jpg" alt="Route" class="rides-route-details-related-image">
+                        <div class="rides-route-details-related-info">
+                            <h4 class="rides-route-details-related-name">Santa Cruz Mountain Challenge</h4>
+                            <span class="rides-route-details-related-distance">102.5 km</span>
+                        </div>
+                    </a>
+                    <a href="#" class="rides-route-details-related-item">
+                        <img src="/assets/images/route-thumb-3.jpg" alt="Route" class="rides-route-details-related-image">
+                        <div class="rides-route-details-related-info">
+                            <h4 class="rides-route-details-related-name">Bay Area Coastal Classic</h4>
+                            <span class="rides-route-details-related-distance">156.8 km</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/rides/rides-route-details/js/rides-route-details.js"></script>

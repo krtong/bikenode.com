@@ -28,8 +28,8 @@ class DatabaseLoader:
     def __init__(self, domain: str):
         """Initialize database loader."""
         self.domain = domain
-        self.logger = setup_logging('db_loader', config.dirs['load'] / 'load.log')
-        self.stats_file = config.dirs['load'] / 'load_stats.json'
+        self.logger = setup_logging('db_loader', Path(__file__).parent / 'load.log')
+        self.stats_file = Path(__file__).parent / 'load_stats.json'
         self.conn = None
         self.scrape_history_id = None
     
@@ -322,11 +322,9 @@ class DatabaseLoader:
             if not self.create_schema():
                 return {}
             
-            # Default input
+            # Default input per spec: 11_clean/clean.csv
             if input_file is None:
-                input_file = config.dirs['load'] / 'clean.csv'
-                if not input_file.exists():
-                    input_file = config.dirs['clean'] / 'clean.csv'
+                input_file = Path(__file__).parent.parent / '11_clean' / 'clean.csv'
             
             if not input_file.exists():
                 self.logger.error(f"Input file not found: {input_file}")

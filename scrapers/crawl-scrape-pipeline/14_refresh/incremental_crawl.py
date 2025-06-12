@@ -29,8 +29,8 @@ class IncrementalCrawler:
     def __init__(self, domain: str):
         """Initialize incremental crawler."""
         self.domain = domain
-        self.logger = setup_logging('incremental_crawler', config.dirs['refresh'] / 'refresh.log')
-        self.output_dir = config.dirs['refresh']
+        self.logger = setup_logging('incremental_crawler', Path(__file__).parent / 'refresh.log')
+        self.output_dir = Path(__file__).parent
         self.conn = None
     
     def connect(self) -> bool:
@@ -128,7 +128,7 @@ class IncrementalCrawler:
                 category_urls = [r['source_url'] for r in cur.fetchall()]
             
             # Also check from original URL patterns
-            patterns_file = config.dirs['group'] / 'grouping_summary.json'
+            patterns_file = Path(__file__).parent.parent / '03_group' / 'grouping_summary.json'
             if patterns_file.exists():
                 summary = load_json(patterns_file)
                 patterns = summary.get('patterns', {})
@@ -344,7 +344,7 @@ class IncrementalCrawler:
             script_content = f"""#!/bin/bash
 # Incremental crawl script generated at {create_timestamp()}
 
-cd {config.base_dir}
+cd {Path(__file__).parent.parent}
 
 echo "Starting incremental crawl for {self.domain}"
 echo "URLs to crawl: {len(urls_to_crawl)}"

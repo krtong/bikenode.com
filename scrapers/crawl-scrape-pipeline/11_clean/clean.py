@@ -28,10 +28,10 @@ class DataCleaner:
     def __init__(self, domain: str):
         """Initialize data cleaner."""
         self.domain = domain
-        self.logger = setup_logging('data_cleaner', config.dirs['clean'] / 'clean.log')
-        self.output_csv = config.dirs['clean'] / 'clean.csv'
-        self.output_json = config.dirs['clean'] / 'clean.json'
-        self.validation_report = config.dirs['clean'] / 'validation_report.json'
+        self.logger = setup_logging('data_cleaner', Path(__file__).parent / 'clean.log')
+        self.output_csv = Path(__file__).parent / 'clean.csv'
+        self.output_json = Path(__file__).parent / 'clean.json'
+        self.validation_report = Path(__file__).parent / 'validation_report.json'
     
     def clean_title(self, title: Any) -> Optional[str]:
         """Clean and validate product title."""
@@ -282,12 +282,9 @@ class DataCleaner:
         """Run data cleaning process."""
         self.logger.info(f"Starting data cleaning for domain: {self.domain}")
         
-        # Default input
+        # Default input per spec: 10_dedupe/deduped.ndjson
         if input_file is None:
-            input_file = config.dirs['clean'] / 'deduped.ndjson'
-            if not input_file.exists():
-                # Fallback to dedupe output
-                input_file = config.dirs['dedupe'] / 'deduped.ndjson'
+            input_file = Path(__file__).parent.parent / '10_dedupe' / 'deduped.ndjson'
         
         if not input_file.exists():
             self.logger.error(f"Input file not found: {input_file}")
@@ -383,11 +380,6 @@ class DataCleaner:
         
         # Save summary
         save_json(summary, self.validation_report)
-        
-        # Save to load step
-        load_input = config.dirs['load'] / 'clean.csv'
-        load_input.parent.mkdir(exist_ok=True)
-        df.to_csv(load_input, index=False)
         
         # Log summary
         self.logger.info("Data cleaning complete!")

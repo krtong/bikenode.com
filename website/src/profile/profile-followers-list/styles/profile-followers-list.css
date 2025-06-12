@@ -1,0 +1,432 @@
+/* Profile Followers List Page Styles */
+
+.profile-followers-list-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Header Section */
+.profile-followers-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.profile-followers-list-title-section {
+    flex: 1;
+}
+
+.profile-followers-list-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary);
+}
+
+.profile-followers-list-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.profile-followers-list-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.profile-followers-list-search {
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    width: 250px;
+    transition: all 0.2s ease;
+}
+
+.profile-followers-list-search:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.profile-followers-list-search::placeholder {
+    color: var(--text-secondary);
+}
+
+/* Buttons */
+.profile-followers-list-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.profile-followers-list-button-primary {
+    background: var(--accent);
+    color: white;
+}
+
+.profile-followers-list-button-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(88, 101, 242, 0.3);
+}
+
+.profile-followers-list-button-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.profile-followers-list-button-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Stats Bar */
+.profile-followers-list-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.profile-followers-list-stat {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.profile-followers-list-stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.profile-followers-list-stat-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Filter Tabs */
+.profile-followers-list-filters {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+}
+
+.profile-followers-list-filter-btn {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.profile-followers-list-filter-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.profile-followers-list-filter-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+/* User Grid */
+.profile-followers-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+/* User Card */
+.profile-followers-list-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.profile-followers-list-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.profile-followers-list-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.profile-followers-list-avatar {
+    position: relative;
+    width: 64px;
+    height: 64px;
+}
+
+.profile-followers-list-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.profile-followers-list-online-indicator {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 16px;
+    height: 16px;
+    background: #6b7280;
+    border: 2px solid var(--bg-secondary);
+    border-radius: 50%;
+}
+
+.profile-followers-list-online-indicator.active {
+    background: #10b981;
+}
+
+.profile-followers-list-more-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.profile-followers-list-more-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+/* Card Info */
+.profile-followers-list-card-info {
+    margin-bottom: 1rem;
+}
+
+.profile-followers-list-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+}
+
+.profile-followers-list-username {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0 0 0.75rem 0;
+}
+
+.profile-followers-list-bio {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+}
+
+.profile-followers-list-stats-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.profile-followers-list-mini-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.profile-followers-list-mini-stat svg {
+    color: var(--accent);
+}
+
+/* Tags */
+.profile-followers-list-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.profile-followers-list-tag {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.profile-followers-list-tag.mutual {
+    background: rgba(88, 101, 242, 0.1);
+    color: var(--accent);
+}
+
+.profile-followers-list-tag.new {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.profile-followers-list-tag.verified {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+}
+
+.profile-followers-list-tag.pro {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+}
+
+.profile-followers-list-tag.nearby {
+    background: rgba(139, 92, 246, 0.1);
+    color: #8b5cf6;
+}
+
+/* Card Actions */
+.profile-followers-list-card-actions {
+    display: flex;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.profile-followers-list-action-btn {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.profile-followers-list-action-btn.following {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.profile-followers-list-action-btn.following:hover {
+    background: var(--accent-hover);
+}
+
+.profile-followers-list-action-btn.follow-back {
+    background: rgba(88, 101, 242, 0.1);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.profile-followers-list-action-btn.follow-back:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.profile-followers-list-message-btn {
+    padding: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.profile-followers-list-message-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Load More */
+.profile-followers-list-load-more {
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-followers-list-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .profile-followers-list-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .profile-followers-list-search {
+        width: 100%;
+    }
+    
+    .profile-followers-list-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .profile-followers-list-filters {
+        justify-content: flex-start;
+    }
+    
+    .profile-followers-list-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-followers-list-container {
+        padding: 1rem;
+    }
+    
+    .profile-followers-list-title {
+        font-size: 1.5rem;
+    }
+    
+    .profile-followers-list-stats {
+        gap: 1rem;
+    }
+    
+    .profile-followers-list-stat {
+        padding: 1rem;
+    }
+    
+    .profile-followers-list-stat-value {
+        font-size: 1.5rem;
+    }
+}

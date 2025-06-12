@@ -125,8 +125,8 @@ class FullCrawler:
     def __init__(self, domain: str):
         """Initialize full crawler."""
         self.domain = domain
-        self.logger = setup_logging('full_crawler', config.dirs['fetch'] / 'fetch.log')
-        self.output_dir = config.dirs['fetch']
+        self.logger = setup_logging('full_crawler', Path(__file__).parent / 'fetch.log')
+        self.output_dir = Path(__file__).parent
         self.html_dir = ensure_dir(self.output_dir / 'html')
         self.json_dir = ensure_dir(self.output_dir / 'json')
         self.metadata_file = self.output_dir / 'crawl_metadata.ndjson'
@@ -135,7 +135,7 @@ class FullCrawler:
         """Load URLs to crawl."""
         if pattern:
             # Load URLs for specific pattern
-            pattern_dir = config.dirs['group'] / 'by_template'
+            pattern_dir = Path(__file__).parent.parent / '03_group' / 'by_template'
             safe_pattern = pattern.replace('/', '_').replace('{', '').replace('}', '')
             if safe_pattern.startswith('_'):
                 safe_pattern = safe_pattern[1:]
@@ -144,8 +144,8 @@ class FullCrawler:
             if urls_file.exists():
                 return read_urls_file(urls_file)
         else:
-            # Load all filtered URLs
-            urls_file = config.dirs['filter'] / 'filtered_urls.txt'
+            # Load all filtered URLs from 02_filter per spec
+            urls_file = Path(__file__).parent.parent / '02_filter' / 'all_urls.txt'
             if urls_file.exists():
                 return read_urls_file(urls_file)
         
@@ -153,7 +153,7 @@ class FullCrawler:
     
     def should_use_api(self, pattern: str) -> bool:
         """Check if pattern should use API instead of HTML crawling."""
-        api_file = config.dirs['plan'] / 'api_endpoints.yaml'
+        api_file = Path(__file__).parent.parent / '06_plan' / 'api_endpoints.yaml'
         if api_file.exists():
             api_config = load_yaml(api_file)
             return pattern in api_config
@@ -191,7 +191,7 @@ class FullCrawler:
     
     def crawl_api_endpoints(self, pattern: str, urls: List[str]) -> int:
         """Crawl API endpoints instead of HTML pages."""
-        api_file = config.dirs['plan'] / 'api_endpoints.yaml'
+        api_file = Path(__file__).parent.parent / '06_plan' / 'api_endpoints.yaml'
         api_config = load_yaml(api_file)
         
         endpoint_config = api_config.get(pattern, {})

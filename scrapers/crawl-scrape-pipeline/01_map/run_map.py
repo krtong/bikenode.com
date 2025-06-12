@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 """
 Step 01: Site Mapping
-Discovers all URLs on a website using various methods.
+Discovers all URLs on a website and collects HTTP metadata.
+Outputs: dump.csv with columns: url,status_code,content_type,size,last_modified
 """
 
 import argparse
+import csv
 import subprocess
 import sys
 from pathlib import Path
-from typing import List, Set, Optional
+from typing import List, Dict, Optional
 from urllib.parse import urlparse, urljoin
+from datetime import datetime
 
 import scrapy
 from scrapy.crawler import CrawlerProcess
@@ -20,80 +23,66 @@ from scrapy.linkextractors import LinkExtractor
 sys.path.append(str(Path(__file__).parent.parent / '00_env'))
 
 from config import config
-from utils import setup_logging, normalize_url, is_valid_url, write_urls_file, ensure_dir
+from utils import setup_logging, normalize_url, is_valid_url, ensure_dir
 
 
-class SitemapSpider(scrapy.Spider):
-    """Spider to crawl XML sitemaps."""
+class MetadataSpider(scrapy.Spider):
+    """Spider to crawl website and collect URL metadata."""
     
-    name = 'sitemap_spider'
+    name = 'metadata_spider'
+    custom_settings = {
+        'ROBOTSTXT_OBEY': True,
+        'CONCURRENT_REQUESTS': 16,
+        'DOWNLOAD_DELAY': 0.5,
+    }
     
     def __init__(self, domain: str, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.domain = domain
-        self.start_urls = [
-            f'https://{domain}/sitemap.xml',
-            f'https://{domain}/sitemap_index.xml',
-            f'https://{domain}/robots.txt',
-        ]
-        self.found_urls = set()
-    
-    def parse(self, response):
-        """Parse sitemap or robots.txt."""
-        if response.url.endswith('robots.txt'):
-            # Extract sitemap URLs from robots.txt
-            for line in response.text.split('\n'):
-                if line.strip().lower().startswith('sitemap:'):
-                    sitemap_url = line.split(':', 1)[1].strip()
-                    yield response.follow(sitemap_url, self.parse_sitemap)
-        else:
-            # Parse as sitemap
-            yield from self.parse_sitemap(response)
-    
-    def parse_sitemap(self, response):
-        """Parse XML sitemap."""
-        # Check if it's a sitemap index
-        if b'<sitemapindex' in response.body:
-            # Parse sitemap index
-            for sitemap in response.xpath('//sitemap/loc/text()').getall():
-                yield response.follow(sitemap, self.parse_sitemap)
-        else:
-            # Parse regular sitemap
-            for url in response.xpath('//url/loc/text()').getall():
-                self.found_urls.add(normalize_url(url))
-
-
-class FullCrawlSpider(CrawlSpider):
-    """Spider to crawl entire website following links."""
-    
-    name = 'full_crawl_spider'
-    
-    def __init__(self, domain: str, max_depth: int = 5, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.domain = domain
         self.allowed_domains = [domain]
         self.start_urls = [f'https://{domain}/']
-        self.max_depth = max_depth
-        self.found_urls = set()
+        self.url_metadata = {}
         
-        # Rules for link extraction
-        self.rules = (
-            Rule(
-                LinkExtractor(allow_domains=[domain]),
-                callback='parse_item',
-                follow=True
-            ),
-        )
-    
-    def parse_item(self, response):
-        """Process each page."""
-        self.found_urls.add(normalize_url(response.url))
+    def parse(self, response):
+        """Process each response to collect metadata."""
+        # Collect metadata for current URL
+        url = normalize_url(response.url)
         
-        # Extract all links
-        for link in response.css('a::attr(href)').getall():
-            absolute_url = urljoin(response.url, link)
-            if is_valid_url(absolute_url) and self.domain in absolute_url:
-                self.found_urls.add(normalize_url(absolute_url))
+        # Get content type from headers
+        content_type = response.headers.get('Content-Type', b'').decode('utf-8').split(';')[0].strip()
+        
+        # Get content length
+        content_length = response.headers.get('Content-Length', b'0').decode('utf-8')
+        try:
+            size = int(content_length)
+        except ValueError:
+            size = len(response.body) if response.body else 0
+            
+        # Get last modified
+        last_modified = response.headers.get('Last-Modified', b'').decode('utf-8')
+        
+        # Store metadata
+        self.url_metadata[url] = {
+            'url': url,
+            'status_code': response.status,
+            'content_type': content_type,
+            'size': size,
+            'last_modified': last_modified
+        }
+        
+        # Follow links only from HTML pages
+        if 'text/html' in content_type:
+            # Extract all links
+            links = response.css('a::attr(href)').getall()
+            for link in links:
+                absolute_url = urljoin(response.url, link)
+                parsed = urlparse(absolute_url)
+                
+                # Only follow links on same domain
+                if parsed.netloc == self.domain:
+                    yield response.follow(absolute_url, self.parse)
+
+
 
 
 class SiteMapper:
@@ -102,9 +91,9 @@ class SiteMapper:
     def __init__(self, domain: str):
         """Initialize site mapper."""
         self.domain = domain
-        self.logger = setup_logging('site_mapper', config.dirs['map'] / 'mapping.log')
-        self.output_file = config.dirs['map'] / 'all_urls.txt'
-        self.urls: Set[str] = set()
+        self.logger = setup_logging('site_mapper', Path(__file__).parent / 'mapping.log')
+        self.output_file = Path(__file__).parent / 'dump.csv'
+        self.url_metadata: Dict[str, Dict] = {}
     
     def try_screaming_frog(self) -> bool:
         """Try to use Screaming Frog if available."""
@@ -116,7 +105,7 @@ class SiteMapper:
         
         try:
             # Prepare Screaming Frog command
-            output_dir = ensure_dir(config.dirs['map'] / 'screaming_frog')
+            output_dir = ensure_dir(Path(__file__).parent / 'screaming_frog')
             cmd = [
                 'java', '-jar', str(sf_path),
                 '--crawl', f'https://{self.domain}/',
@@ -130,16 +119,23 @@ class SiteMapper:
             result = subprocess.run(cmd, capture_output=True, text=True)
             
             if result.returncode == 0:
-                # Parse exported CSV
+                # Parse exported CSV to get metadata
                 csv_file = output_dir / 'internal_all.csv'
                 if csv_file.exists():
-                    import pandas as pd
-                    df = pd.read_csv(csv_file)
-                    if 'Address' in df.columns:
-                        urls = df['Address'].dropna().unique()
-                        self.urls.update(normalize_url(url) for url in urls if is_valid_url(url))
-                        self.logger.info(f"Found {len(urls)} URLs with Screaming Frog")
-                        return True
+                    with open(csv_file, 'r', newline='', encoding='utf-8') as f:
+                        reader = csv.DictReader(f)
+                        for row in reader:
+                            if 'Address' in row and is_valid_url(row.get('Address', '')):
+                                url = normalize_url(row['Address'])
+                                self.url_metadata[url] = {
+                                    'url': url,
+                                    'status_code': int(row.get('Status Code', 0)),
+                                    'content_type': row.get('Content Type', ''),
+                                    'size': int(row.get('Size (Bytes)', 0)),
+                                    'last_modified': row.get('Last Modified', '')
+                                }
+                    self.logger.info(f"Found {len(self.url_metadata)} URLs with Screaming Frog")
+                    return True
             else:
                 self.logger.warning(f"Screaming Frog failed: {result.stderr}")
                 
@@ -148,91 +144,92 @@ class SiteMapper:
         
         return False
     
-    def crawl_sitemaps(self) -> None:
-        """Crawl XML sitemaps."""
-        self.logger.info("Crawling sitemaps...")
+    def crawl_with_scrapy(self) -> None:
+        """Crawl website using Scrapy to collect metadata."""
+        self.logger.info("Crawling website with Scrapy...")
         
-        # Create and run sitemap spider
+        # Create and run metadata spider
         process = CrawlerProcess(config.get_scrapy_settings())
-        spider = SitemapSpider
-        process.crawl(spider, domain=self.domain)
+        process.crawl(MetadataSpider, domain=self.domain)
         process.start()
         
-        # Get URLs from spider
+        # Get metadata from spider
         for crawler in process.crawlers:
-            if hasattr(crawler.spider, 'found_urls'):
-                sitemap_urls = crawler.spider.found_urls
-                self.urls.update(sitemap_urls)
-                self.logger.info(f"Found {len(sitemap_urls)} URLs in sitemaps")
+            if hasattr(crawler.spider, 'url_metadata'):
+                self.url_metadata.update(crawler.spider.url_metadata)
+                self.logger.info(f"Found {len(crawler.spider.url_metadata)} URLs with metadata")
     
-    def crawl_website(self, max_depth: int = 3) -> None:
-        """Crawl website following links."""
-        self.logger.info(f"Crawling website (max depth: {max_depth})...")
+    def save_dump_csv(self) -> None:
+        """Save URL metadata to dump.csv."""
+        if not self.url_metadata:
+            self.logger.error("No URLs found!")
+            return
         
-        # Create and run full crawl spider
-        process = CrawlerProcess(config.get_scrapy_settings())
-        spider = FullCrawlSpider
-        process.crawl(spider, domain=self.domain, max_depth=max_depth)
-        process.start()
+        # Sort URLs
+        sorted_urls = sorted(self.url_metadata.keys())
         
-        # Get URLs from spider
-        for crawler in process.crawlers:
-            if hasattr(crawler.spider, 'found_urls'):
-                crawled_urls = crawler.spider.found_urls
-                self.urls.update(crawled_urls)
-                self.logger.info(f"Found {len(crawled_urls)} URLs by crawling")
+        # Write CSV
+        with open(self.output_file, 'w', newline='', encoding='utf-8') as f:
+            fieldnames = ['url', 'status_code', 'content_type', 'size', 'last_modified']
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            
+            for url in sorted_urls:
+                writer.writerow(self.url_metadata[url])
+        
+        self.logger.info(f"Saved {len(sorted_urls)} URLs to {self.output_file}")
     
-    def run(self, methods: List[str] = None) -> Set[str]:
+    def run(self, methods: List[str] = None) -> Dict[str, Dict]:
         """Run site mapping using specified methods."""
         if methods is None:
-            methods = ['screaming_frog', 'sitemap', 'crawl']
+            methods = ['screaming_frog', 'scrapy']
         
         self.logger.info(f"Starting site mapping for {self.domain}")
         self.logger.info(f"Methods: {', '.join(methods)}")
         
         # Try different methods
         if 'screaming_frog' in methods:
-            self.try_screaming_frog()
+            if self.try_screaming_frog():
+                # If Screaming Frog worked, we're done
+                self.save_dump_csv()
+                return self.url_metadata
         
-        if 'sitemap' in methods and len(self.urls) < 1000:  # Skip if we already have many URLs
-            self.crawl_sitemaps()
+        if 'scrapy' in methods:
+            self.crawl_with_scrapy()
         
-        if 'crawl' in methods and len(self.urls) < 100:  # Only crawl if we have few URLs
-            self.crawl_website()
+        # Save results
+        self.save_dump_csv()
         
-        # Save all URLs
-        if self.urls:
-            sorted_urls = sorted(self.urls)
-            write_urls_file(sorted_urls, self.output_file)
-            self.logger.info(f"Saved {len(sorted_urls)} unique URLs to {self.output_file}")
-            
-            # Also save to the filter step for convenience
-            filter_file = config.dirs['filter'] / 'all_urls.txt'
-            write_urls_file(sorted_urls, filter_file)
-        else:
-            self.logger.error("No URLs found!")
-        
-        return self.urls
+        return self.url_metadata
 
 
 def main():
     """Main entry point."""
-    parser = argparse.ArgumentParser(description='Map all URLs on a website')
-    parser.add_argument('--domain', required=True, help='Domain to map')
+    parser = argparse.ArgumentParser(
+        description='Map all URLs on a website and collect HTTP metadata',
+        epilog='Output: dump.csv with columns: url,status_code,content_type,size,last_modified'
+    )
+    parser.add_argument('domain', help='Domain to map (e.g., example.com)')
     parser.add_argument('--methods', nargs='+', 
-                       choices=['screaming_frog', 'sitemap', 'crawl'],
-                       help='Methods to use for mapping')
-    parser.add_argument('--max-depth', type=int, default=3,
-                       help='Maximum crawl depth (for crawl method)')
+                       choices=['screaming_frog', 'scrapy'],
+                       default=['scrapy'],
+                       help='Methods to use for mapping (default: scrapy)')
     
     args = parser.parse_args()
     
-    # Run site mapper
-    mapper = SiteMapper(args.domain)
-    urls = mapper.run(methods=args.methods)
+    # Clean domain (remove protocol if provided)
+    domain = args.domain.replace('https://', '').replace('http://', '').rstrip('/')
     
-    print(f"\nMapping complete! Found {len(urls)} unique URLs")
-    print(f"Results saved to: {mapper.output_file}")
+    # Run site mapper
+    mapper = SiteMapper(domain)
+    metadata = mapper.run(methods=args.methods)
+    
+    if metadata:
+        print(f"\nMapping complete! Found {len(metadata)} URLs with metadata")
+        print(f"Results saved to: {mapper.output_file}")
+    else:
+        print("\nMapping failed - no URLs found")
+        sys.exit(1)
 
 
 if __name__ == '__main__':

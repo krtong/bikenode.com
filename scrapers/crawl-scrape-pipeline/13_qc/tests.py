@@ -27,9 +27,9 @@ class QualityChecker:
     def __init__(self, domain: str):
         """Initialize quality checker."""
         self.domain = domain
-        self.logger = setup_logging('quality_checker', config.dirs['qc'] / 'qc.log')
-        self.report_file = config.dirs['qc'] / 'qc_report.txt'
-        self.report_json = config.dirs['qc'] / 'qc_report.json'
+        self.logger = setup_logging('quality_checker', Path(__file__).parent / 'qc.log')
+        self.report_file = Path(__file__).parent / 'qc_report.txt'
+        self.report_json = Path(__file__).parent / 'qc_report.json'
         self.conn = None
         self.checks_passed = 0
         self.checks_failed = 0
@@ -68,6 +68,41 @@ class QualityChecker:
         """Add a warning message."""
         self.warnings.append(warning)
         self.logger.warning(warning)
+    
+    def check_csv_file(self) -> Tuple[bool, Dict[str, Any]]:
+        """Check if clean.csv file exists and is valid."""
+        csv_file = Path(__file__).parent.parent / '11_clean' / 'clean.csv'
+        
+        try:
+            if not csv_file.exists():
+                return False, {'error': 'clean.csv not found'}
+            
+            # Load CSV and check basic properties
+            df = pd.read_csv(csv_file)
+            
+            details = {
+                'file_path': str(csv_file),
+                'row_count': len(df),
+                'column_count': len(df.columns),
+                'columns': list(df.columns),
+                'file_size_mb': round(csv_file.stat().st_size / 1024 / 1024, 2),
+            }
+            
+            # Basic validation
+            if len(df) == 0:
+                return False, {'error': 'CSV file is empty', **details}
+            
+            # Check for required columns
+            required_columns = ['url', 'title']
+            missing_columns = [col for col in required_columns if col not in df.columns]
+            if missing_columns:
+                details['missing_columns'] = missing_columns
+                return False, details
+            
+            return True, details
+            
+        except Exception as e:
+            return False, {'error': f'Failed to read CSV: {str(e)}'}
     
     def check_data_freshness(self) -> Tuple[bool, Dict[str, Any]]:
         """Check if data is fresh."""
@@ -427,6 +462,7 @@ class QualityChecker:
             
             # Run checks
             checks = [
+                ('csv_file', self.check_csv_file),
                 ('data_freshness', self.check_data_freshness),
                 ('data_completeness', self.check_data_completeness),
                 ('data_quality', self.check_data_quality),

@@ -26,8 +26,8 @@ class URLRemapper:
     def __init__(self, domain: str):
         """Initialize URL remapper."""
         self.domain = domain
-        self.logger = setup_logging('url_remapper', config.dirs['refresh'] / 'remap.log')
-        self.output_file = config.dirs['refresh'] / 'url_mappings.json'
+        self.logger = setup_logging('url_remapper', Path(__file__).parent / 'remap.log')
+        self.output_file = Path(__file__).parent / 'url_mappings.json'
         self.conn = None
         self.session = requests.Session()
         self.session.headers.update({'User-Agent': config.user_agent})
@@ -102,15 +102,15 @@ class URLRemapper:
         not_found_urls = []
         
         try:
-            # Get recent 404s from crawl logs
-            metadata_file = config.dirs['fetch'] / 'crawl_metadata.ndjson'
-            if metadata_file.exists():
-                from utils import load_ndjson
-                metadata = load_ndjson(metadata_file)
-                
-                for record in metadata:
-                    if record.get('status') == 404:
-                        not_found_urls.append(record['url'])
+            # Get recent 404s from previous dump.csv
+            previous_dump = Path(__file__).parent.parent / '01_map' / 'dump.csv'
+            if previous_dump.exists():
+                import csv
+                with open(previous_dump, 'r', newline='', encoding='utf-8') as f:
+                    reader = csv.DictReader(f)
+                    for row in reader:
+                        if row.get('status_code') == '404':
+                            not_found_urls.append(row['url'])
             
             return not_found_urls
             
@@ -124,7 +124,7 @@ class URLRemapper:
         
         try:
             # Load original URL patterns
-            patterns_file = config.dirs['group'] / 'grouping_summary.json'
+            patterns_file = Path(__file__).parent.parent / '03_group' / 'grouping_summary.json'
             if not patterns_file.exists():
                 return {}
             
@@ -325,7 +325,7 @@ class URLRemapper:
             })
             
             # Save report
-            report_file = config.dirs['refresh'] / 'remap_report.json'
+            report_file = Path(__file__).parent / 'remap_report.json'
             save_json(report, report_file)
             
             # Log summary

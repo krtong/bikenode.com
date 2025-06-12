@@ -29,10 +29,10 @@ class TemplateProber:
     def __init__(self, domain: str):
         """Initialize template prober."""
         self.domain = domain
-        self.logger = setup_logging('template_prober', config.dirs['probe'] / 'probe.log')
+        self.logger = setup_logging('template_prober', Path(__file__).parent / 'probe.log')
         self.findings: Dict[str, Dict] = {}
-        self.netlogs_dir = ensure_dir(config.dirs['probe'] / 'netlogs')
-        self.pages_dir = ensure_dir(config.dirs['probe'] / 'pages')
+        self.netlogs_dir = ensure_dir(Path(__file__).parent / 'netlogs')
+        self.pages_dir = ensure_dir(Path(__file__).parent / 'pages')
     
     async def probe_with_playwright(self, url: str) -> Dict[str, Any]:
         """Probe a URL using Playwright for JavaScript-rendered content."""
@@ -381,10 +381,11 @@ class TemplateProber:
         """Run the probing process."""
         # Load patterns to probe
         if patterns_file is None:
-            patterns_file = config.dirs['probe'] / 'patterns_to_probe.json'
+            patterns_file = Path(__file__).parent.parent / '03_group' / 'patterns_to_probe.json'
         
         if not patterns_file.exists():
             self.logger.error(f"Patterns file not found: {patterns_file}")
+            self.logger.error("Make sure to run 03_group/group_urls.py first")
             return {}
         
         patterns = load_json(patterns_file)
@@ -410,7 +411,7 @@ class TemplateProber:
     def save_findings(self) -> None:
         """Save probing findings."""
         # Save detailed findings as JSON
-        findings_file = config.dirs['probe'] / 'findings.json'
+        findings_file = Path(__file__).parent / 'findings.json'
         save_json(self.findings, findings_file)
         self.logger.info(f"Saved detailed findings to {findings_file}")
         
@@ -424,7 +425,7 @@ class TemplateProber:
                 'success_rate': sum(1 for e in findings.get('examples_probed', []) if e.get('success', False)) / len(findings.get('examples_probed', [])) if findings.get('examples_probed') else 0,
             }
         
-        summary_file = config.dirs['probe'] / 'findings_summary.yaml'
+        summary_file = Path(__file__).parent / 'findings_summary.yaml'
         save_yaml(summary, summary_file)
         self.logger.info(f"Saved findings summary to {summary_file}")
 
@@ -464,7 +465,7 @@ Examples:
     
     print(f"\nProbing complete!")
     print(f"Probed {len(findings)} patterns")
-    print(f"Findings saved to {config.dirs['probe']}")
+    print(f"Findings saved to {Path(__file__).parent}")
     
     # Print summary
     print("\nKey findings:")

@@ -138,13 +138,13 @@ class SampleCrawler:
         """Initialize sample crawler."""
         self.domain = domain
         self.pattern = pattern
-        self.logger = setup_logging('sample_crawler', config.dirs['sample'] / 'sample.log')
-        self.output_file = config.dirs['sample'] / 'output.ndjson'
+        self.logger = setup_logging('sample_crawler', Path(__file__).parent / 'sample.log')
+        self.output_file = Path(__file__).parent / 'output.ndjson'
     
     def load_configuration(self) -> Tuple[List[str], Dict[str, str], str]:
         """Load URLs, selectors, and method from configuration."""
         # Load patterns to probe results
-        findings_file = config.dirs['probe'] / 'findings.json'
+        findings_file = Path(__file__).parent.parent / '04_probe' / 'findings.json'
         if findings_file.exists():
             findings = load_json(findings_file)
             pattern_findings = findings.get(self.pattern, {})
@@ -156,7 +156,7 @@ class SampleCrawler:
             method = 'scrapy'  # Default
         
         # Load selectors from plan (if exists)
-        selectors_file = config.dirs['plan'] / 'css_selectors.yaml'
+        selectors_file = Path(__file__).parent.parent / '06_plan' / 'css_selectors.yaml'
         if selectors_file.exists():
             selectors_config = load_yaml(selectors_file)
             selectors = selectors_config.get(self.pattern, {})
@@ -170,7 +170,7 @@ class SampleCrawler:
             }
         
         # Load URLs for this pattern
-        pattern_dir = config.dirs['group'] / 'by_template'
+        pattern_dir = Path(__file__).parent.parent / '03_group' / 'by_template'
         safe_pattern = self.pattern.replace('/', '_').replace('{', '').replace('}', '')
         if safe_pattern.startswith('_'):
             safe_pattern = safe_pattern[1:]
@@ -179,7 +179,7 @@ class SampleCrawler:
         urls = []
         if urls_file.exists():
             with open(urls_file, 'r') as f:
-                urls = [line.strip() for line in f if line.strip()][:10]  # Sample 10
+                urls = [line.strip() for line in f if line.strip()][:30]  # First 30 URLs per spec
         
         return urls, selectors, method
     
@@ -265,20 +265,20 @@ class SampleCrawler:
         # Analyze results
         analysis = self.analyze_results(results)
         
-        # Save analysis
-        analysis_file = config.dirs['sample'] / 'analysis.json'
-        save_json({
-            'pattern': self.pattern,
-            'method': crawl_method,
-            'selectors': selectors,
-            'analysis': analysis,
-            'sample_results': results[:3],  # First 3 as examples
-        }, analysis_file)
-        
         # Log summary
         self.logger.info(f"Crawl complete: {analysis['successful']}/{analysis['total_urls']} successful")
         for field, coverage in analysis['coverage'].items():
             self.logger.info(f"  {field}: {coverage:.1%} coverage")
+        
+        # Check fail rule: if >10% of fields miss, exit non-zero
+        failed_fields = []
+        for field, coverage in analysis['coverage'].items():
+            if coverage < 0.9:  # Less than 90% coverage means >10% missing
+                failed_fields.append(f"{field} ({coverage:.1%})")
+        
+        if failed_fields:
+            self.logger.error(f"Failed coverage threshold for fields: {', '.join(failed_fields)}")
+            sys.exit(1)
         
         return analysis
 
