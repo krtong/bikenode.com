@@ -321,6 +321,46 @@
 
 /* Hidden */
 .bikes-my-garage-hidden {
-    display: none \!important;
+    display: none !important;
+}
+
+/* Crash Reports Buttons */
+.bikes-my-garage-crash-reports-add-button {
+    background-color: #f97316;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.bikes-my-garage-crash-reports-add-button:hover {
+    background-color: #ea580c;
+}
+
+.bikes-my-garage-crash-reports-empty-button {
+    background-color: white;
+    color: #374151;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.bikes-my-garage-crash-reports-empty-button:hover {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
 }
 EOF < /dev/null
