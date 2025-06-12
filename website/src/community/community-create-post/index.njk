@@ -4,8 +4,53 @@ title: Create Post - BikeNode
 ---
 
 <div class="community-create-post-container">
-    <div class="BN-Global-card">
-        <h1 class="BN-Global-font-2xl BN-Global-font-bold BN-Global-text-primary BN-Global-mb-2">Create New Post</h1>
-        <p class="BN-Global-text-secondary">Share your thoughts with the community.</p>
+    <div class="community-create-post-card">
+        <h1 class="community-create-post-title">Create New Post</h1>
+        <p class="community-create-post-subtitle">Share your thoughts with the community.</p>
+        
+        <form class="community-create-post-form">
+            <div class="community-create-post-form-group">
+                <label class="community-create-post-label" for="postTitle">Post Title</label>
+                <input type="text" id="postTitle" class="community-create-post-input" placeholder="Enter your post title" required>
+            </div>
+            
+            <div class="community-create-post-form-group">
+                <label class="community-create-post-label" for="postCategory">Category</label>
+                <select id="postCategory" class="community-create-post-select" required>
+                    <option value="">Select a category</option>
+                    <option value="general">General Discussion</option>
+                    <option value="tech">Technical</option>
+                    <option value="rides">Rides & Routes</option>
+                    <option value="gear">Gear & Equipment</option>
+                    <option value="maintenance">Maintenance</option>
+                </select>
+            </div>
+            
+            <div class="community-create-post-form-group">
+                <label class="community-create-post-label" for="postContent">Content</label>
+                <textarea id="postContent" class="community-create-post-textarea" placeholder="Write your post content here..." required></textarea>
+                <p class="community-create-post-help-text">Markdown formatting is supported</p>
+            </div>
+            
+            <div class="community-create-post-form-group">
+                <label class="community-create-post-label" for="postTags">Tags</label>
+                <input type="text" id="postTags" class="community-create-post-input" placeholder="Add tags (press Enter to add)">
+                <div class="community-create-post-tags-container" id="tagsContainer"></div>
+            </div>
+            
+            <div class="community-create-post-button-group">
+                <button type="button" class="community-create-post-button community-create-post-button-secondary">Cancel</button>
+                <button type="button" class="community-create-post-button community-create-post-button-secondary" id="previewButton">Preview</button>
+                <button type="submit" class="community-create-post-button community-create-post-button-primary">Publish Post</button>
+            </div>
+        </form>
+        
+        <div class="community-create-post-preview" id="postPreview" style="display: none;">
+            <h2 class="community-create-post-preview-title">Preview</h2>
+            <div class="community-create-post-preview-content" id="previewContent"></div>
+        </div>
     </div>
 </div>
+
+<link rel="stylesheet" href="./styles/community-create-post.css">
+<script type="module" src="./js/community-create-post.js"></script>
