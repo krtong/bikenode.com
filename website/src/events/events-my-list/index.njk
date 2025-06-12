@@ -3,9 +3,168 @@ layout: bikenode-main-layout-01
 title: My Events - BikeNode
 ---
 
+<!-- Page-specific styles -->
+<link rel="stylesheet" href="styles/events-my-list.css">
+
 <div class="events-my-list-container">
-    <div class="BN-Global-card">
-        <h1 class="BN-Global-font-2xl BN-Global-font-bold BN-Global-text-primary BN-Global-mb-2">My Events</h1>
-        <p class="BN-Global-text-secondary">Events you're attending or organizing.</p>
+    <!-- Header -->
+    <div class="events-my-list-header">
+        <div class="events-my-list-header-content">
+            <h1 class="events-my-list-title">My Events</h1>
+            <p class="events-my-list-subtitle">Events you're attending or organizing</p>
+        </div>
+        <a href="/events/events-create-form/" class="events-my-list-create-button">
+            Create Event
+        </a>
+    </div>
+
+    <!-- Tabs -->
+    <div class="events-my-list-tabs">
+        <button class="events-my-list-tab events-my-list-tab-active" data-tab="all">
+            All Events
+        </button>
+        <button class="events-my-list-tab" data-tab="organizing">
+            Organizing
+        </button>
+        <button class="events-my-list-tab" data-tab="attending">
+            Attending
+        </button>
+        <button class="events-my-list-tab" data-tab="past">
+            Past Events
+        </button>
+    </div>
+
+    <!-- Events Grid -->
+    <div class="events-my-list-grid">
+        <!-- Organizing Event -->
+        <div class="events-my-list-card" data-type="organizing">
+            <div class="events-my-list-card-image">
+                <span class="events-my-list-card-badge events-my-list-badge-organizing">Organizing</span>
+                <span>Event Image</span>
+            </div>
+            <div class="events-my-list-card-content">
+                <h3 class="events-my-list-card-title">Saturday Morning Century Ride</h3>
+                <div class="events-my-list-card-meta">
+                    <div class="events-my-list-meta-item">
+                        📅 March 15, 2024
+                    </div>
+                    <div class="events-my-list-meta-item">
+                        🕐 7:00 AM - 2:00 PM
+                    </div>
+                    <div class="events-my-list-meta-item">
+                        📍 San Francisco, CA
+                    </div>
+                </div>
+                <div class="events-my-list-card-stats">
+                    <div class="events-my-list-stat">
+                        <div class="events-my-list-stat-value">24</div>
+                        <div class="events-my-list-stat-label">Registered</div>
+                    </div>
+                    <div class="events-my-list-stat">
+                        <div class="events-my-list-stat-value">6</div>
+                        <div class="events-my-list-stat-label">Spots Left</div>
+                    </div>
+                    <div class="events-my-list-stat">
+                        <div class="events-my-list-stat-value">342</div>
+                        <div class="events-my-list-stat-label">Views</div>
+                    </div>
+                </div>
+                <div class="events-my-list-card-actions">
+                    <a href="/events/events-details-page/" class="events-my-list-action-button events-my-list-action-primary" data-action="manage" data-event-id="1">
+                        Manage Event
+                    </a>
+                    <a href="/events/events-details-page/" class="events-my-list-action-button">
+                        View Details
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Attending Event -->
+        <div class="events-my-list-card" data-type="attending">
+            <div class="events-my-list-card-image">
+                <span class="events-my-list-card-badge events-my-list-badge-attending">Attending</span>
+                <span>Event Image</span>
+            </div>
+            <div class="events-my-list-card-content">
+                <h3 class="events-my-list-card-title">Bay Area Bike Festival</h3>
+                <div class="events-my-list-card-meta">
+                    <div class="events-my-list-meta-item">
+                        📅 March 22, 2024
+                    </div>
+                    <div class="events-my-list-meta-item">
+                        🕐 10:00 AM - 5:00 PM
+                    </div>
+                    <div class="events-my-list-meta-item">
+                        📍 Oakland, CA
+                    </div>
+                </div>
+                <div class="events-my-list-card-stats">
+                    <div class="events-my-list-stat">
+                        <div class="events-my-list-stat-value">156</div>
+                        <div class="events-my-list-stat-label">Attendees</div>
+                    </div>
+                    <div class="events-my-list-stat">
+                        <div class="events-my-list-stat-value">8</div>
+                        <div class="events-my-list-stat-label">Days Left</div>
+                    </div>
+                    <div class="events-my-list-stat">
+                        <div class="events-my-list-stat-value">Free</div>
+                        <div class="events-my-list-stat-label">Entry</div>
+                    </div>
+                </div>
+                <div class="events-my-list-card-actions">
+                    <a href="/events/events-details-page/" class="events-my-list-action-button">
+                        View Details
+                    </a>
+                    <button class="events-my-list-action-button" data-action="cancel" data-event-id="2">
+                        Cancel Registration
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Past Event -->
+        <div class="events-my-list-card" data-type="past">
+            <div class="events-my-list-card-image">
+                <span class="events-my-list-card-badge events-my-list-badge-past">Past Event</span>
+                <span>Event Image</span>
+            </div>
+            <div class="events-my-list-card-content">
+                <h3 class="events-my-list-card-title">Winter Solstice Night Ride</h3>
+                <div class="events-my-list-card-meta">
+                    <div class="events-my-list-meta-item">
+                        📅 December 21, 2023
+                    </div>
+                    <div class="events-my-list-meta-item">
+                        🕐 6:00 PM - 9:00 PM
+                    </div>
+                    <div class="events-my-list-meta-item">
+                        📍 San Francisco, CA
+                    </div>
+                </div>
+                <div class="events-my-list-card-stats">
+                    <div class="events-my-list-stat">
+                        <div class="events-my-list-stat-value">45</div>
+                        <div class="events-my-list-stat-label">Attended</div>
+                    </div>
+                    <div class="events-my-list-stat">
+                        <div class="events-my-list-stat-value">⭐⭐⭐⭐⭐</div>
+                        <div class="events-my-list-stat-label">Your Rating</div>
+                    </div>
+                </div>
+                <div class="events-my-list-card-actions">
+                    <a href="/events/events-details-page/" class="events-my-list-action-button">
+                        View Details
+                    </a>
+                    <button class="events-my-list-action-button">
+                        View Photos
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- Page-specific JavaScript -->
+<script src="js/events-my-list.js"></script>

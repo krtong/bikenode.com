@@ -3,9 +3,109 @@ layout: bikenode-main-layout-01
 title: Item Details - BikeNode
 ---
 
+<!-- Page-specific styles -->
+<link rel="stylesheet" href="styles/marketplace-item-details.css">
+
 <div class="marketplace-item-details-container">
-    <div class="BN-Global-card">
-        <h1 class="BN-Global-font-2xl BN-Global-font-bold BN-Global-text-primary BN-Global-mb-2">Item Details</h1>
-        <p class="BN-Global-text-secondary">View detailed information about this listing.</p>
+    <div class="marketplace-item-details-grid">
+        <!-- Image Gallery -->
+        <div class="marketplace-item-details-gallery">
+            <div class="marketplace-item-details-main-image">
+                <span class="marketplace-item-details-image-text">Main Product Image</span>
+            </div>
+            <div class="marketplace-item-details-thumbnail-grid">
+                <div class="marketplace-item-details-thumbnail">
+                    <span class="marketplace-item-details-image-text">1</span>
+                </div>
+                <div class="marketplace-item-details-thumbnail">
+                    <span class="marketplace-item-details-image-text">2</span>
+                </div>
+                <div class="marketplace-item-details-thumbnail">
+                    <span class="marketplace-item-details-image-text">3</span>
+                </div>
+                <div class="marketplace-item-details-thumbnail">
+                    <span class="marketplace-item-details-image-text">4</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item Info -->
+        <div class="marketplace-item-details-info">
+            <h1 class="marketplace-item-details-title">2023 Trek Domane SL6</h1>
+            <p class="marketplace-item-details-price">$3,500</p>
+            <p class="marketplace-item-details-meta">
+                Posted 2 days ago • San Francisco, CA • 125 views
+            </p>
+            
+            <div class="marketplace-item-details-specs">
+                <div class="marketplace-item-details-spec-item">
+                    <span class="marketplace-item-details-spec-label">Condition</span>
+                    <span class="marketplace-item-details-spec-value">Excellent</span>
+                </div>
+                <div class="marketplace-item-details-spec-item">
+                    <span class="marketplace-item-details-spec-label">Size</span>
+                    <span class="marketplace-item-details-spec-value">56cm</span>
+                </div>
+                <div class="marketplace-item-details-spec-item">
+                    <span class="marketplace-item-details-spec-label">Year</span>
+                    <span class="marketplace-item-details-spec-value">2023</span>
+                </div>
+                <div class="marketplace-item-details-spec-item">
+                    <span class="marketplace-item-details-spec-label">Category</span>
+                    <span class="marketplace-item-details-spec-value">Road Bikes</span>
+                </div>
+            </div>
+
+            <div class="marketplace-item-details-actions">
+                <button class="marketplace-item-details-button marketplace-item-details-button-primary">
+                    Contact Seller
+                </button>
+                <button class="marketplace-item-details-button marketplace-item-details-button-secondary">
+                    Save Listing
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Description -->
+    <div class="marketplace-item-details-description">
+        <h2 class="marketplace-item-details-section-title">Description</h2>
+        <p class="marketplace-item-details-description-text">
+            Excellent condition Trek Domane SL6, purchased new in early 2023. This endurance road bike has been 
+            meticulously maintained and has less than 1,000 miles on it. Features full Shimano Ultegra groupset, 
+            carbon frame and fork, and disc brakes. Perfect for long rides and gran fondos. Includes original 
+            paperwork and receipts. Reason for selling: upgrading to a newer model.
+        </p>
+    </div>
+
+    <!-- Seller Info -->
+    <div class="marketplace-item-details-seller">
+        <h2 class="marketplace-item-details-section-title">Seller Information</h2>
+        <div class="marketplace-item-details-seller-info">
+            <div class="marketplace-item-details-seller-avatar">
+                <span class="marketplace-item-details-image-text">JD</span>
+            </div>
+            <div class="marketplace-item-details-seller-details">
+                <h3 class="marketplace-item-details-seller-name">John Doe</h3>
+                <p class="marketplace-item-details-seller-rating">★★★★★ 4.8 (24 reviews)</p>
+            </div>
+        </div>
+        <div class="marketplace-item-details-seller-stats">
+            <div class="marketplace-item-details-stat">
+                <div class="marketplace-item-details-stat-value">15</div>
+                <div class="marketplace-item-details-stat-label">Items Sold</div>
+            </div>
+            <div class="marketplace-item-details-stat">
+                <div class="marketplace-item-details-stat-value">2y</div>
+                <div class="marketplace-item-details-stat-label">Member Since</div>
+            </div>
+            <div class="marketplace-item-details-stat">
+                <div class="marketplace-item-details-stat-value">98%</div>
+                <div class="marketplace-item-details-stat-label">Response Rate</div>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- Page-specific JavaScript -->
+<script src="js/marketplace-item-details.js"></script>

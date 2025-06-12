@@ -3,9 +3,205 @@ layout: bikenode-main-layout-01
 title: Security Settings - BikeNode
 ---
 
+<!-- Page-specific styles -->
+<link rel="stylesheet" href="styles/settings-security-page.css">
+
 <div class="settings-security-page-container">
-    <div class="BN-Global-card">
-        <h1 class="BN-Global-font-2xl BN-Global-font-bold BN-Global-text-primary BN-Global-mb-2">Security Settings</h1>
-        <p class="BN-Global-text-secondary">Manage your account security and authentication options.</p>
+    <!-- Header -->
+    <div class="settings-security-page-header">
+        <h1 class="settings-security-page-title">Security Settings</h1>
+        <p class="settings-security-page-subtitle">Manage your account security and authentication options</p>
+    </div>
+
+    <!-- Password Section -->
+    <div class="settings-security-page-section">
+        <h2 class="settings-security-page-section-title">Password</h2>
+        
+        <div class="settings-security-page-password-strength">
+            <p class="settings-security-page-help">Last changed 3 months ago</p>
+            <div class="settings-security-page-strength-indicator">
+                <span>Password Strength:</span>
+                <div class="settings-security-page-strength-bar">
+                    <div class="settings-security-page-strength-fill settings-security-page-strength-medium"></div>
+                </div>
+                <span class="settings-security-page-strength-label">Medium</span>
+            </div>
+        </div>
+
+        <form id="password-form" class="settings-security-page-form">
+            <div class="settings-security-page-form-group">
+                <label class="settings-security-page-label" for="current-password">
+                    Current Password
+                </label>
+                <input type="password" id="current-password" class="settings-security-page-input" required>
+            </div>
+
+            <div class="settings-security-page-form-row">
+                <div class="settings-security-page-form-group">
+                    <label class="settings-security-page-label" for="new-password">
+                        New Password
+                    </label>
+                    <input type="password" id="new-password" class="settings-security-page-input" required>
+                    <div class="settings-security-page-help">
+                        At least 8 characters with a mix of letters, numbers, and symbols
+                    </div>
+                </div>
+
+                <div class="settings-security-page-form-group">
+                    <label class="settings-security-page-label" for="confirm-password">
+                        Confirm New Password
+                    </label>
+                    <input type="password" id="confirm-password" class="settings-security-page-input" required>
+                </div>
+            </div>
+
+            <button type="submit" class="settings-security-page-button settings-security-page-button-primary">
+                Update Password
+            </button>
+        </form>
+    </div>
+
+    <!-- Two-Factor Authentication -->
+    <div class="settings-security-page-section">
+        <h2 class="settings-security-page-section-title">Two-Factor Authentication</h2>
+        
+        <div class="settings-security-page-2fa-status">
+            <div class="settings-security-page-2fa-info">
+                <h3 class="settings-security-page-2fa-title">Authenticator App</h3>
+                <p class="settings-security-page-2fa-description">
+                    Add an extra layer of security by requiring a code from your phone
+                </p>
+            </div>
+            <div>
+                <span class="settings-security-page-status-badge settings-security-page-status-disabled">
+                    Disabled
+                </span>
+                <button class="settings-security-page-button settings-security-page-button-secondary settings-security-page-button-small" 
+                        data-action="enable-2fa">
+                    Enable
+                </button>
+            </div>
+        </div>
+
+        <div class="settings-security-page-qr-section">
+            <h3>Scan this QR code with your authenticator app</h3>
+            <div class="settings-security-page-qr-code">
+                [QR Code Placeholder]
+            </div>
+            <p class="settings-security-page-help">
+                Or enter this code manually: ABCD-EFGH-IJKL-MNOP
+            </p>
+
+            <div class="settings-security-page-backup-codes">
+                <h4>Backup Codes</h4>
+                <p class="settings-security-page-help">
+                    Save these codes in a secure place. You can use them to access your account if you lose your device.
+                </p>
+                <div class="settings-security-page-codes-grid">
+                    <span class="settings-security-page-code">1234-5678</span>
+                    <span class="settings-security-page-code">2345-6789</span>
+                    <span class="settings-security-page-code">3456-7890</span>
+                    <span class="settings-security-page-code">4567-8901</span>
+                    <span class="settings-security-page-code">5678-9012</span>
+                    <span class="settings-security-page-code">6789-0123</span>
+                </div>
+                <button class="settings-security-page-button settings-security-page-button-secondary settings-security-page-button-small" 
+                        data-action="copy-codes">
+                    Copy Codes
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Sessions -->
+    <div class="settings-security-page-section">
+        <h2 class="settings-security-page-section-title">Active Sessions</h2>
+        <p class="settings-security-page-help">
+            These devices are currently logged into your account. If you don't recognize a session, revoke it immediately.
+        </p>
+
+        <div class="settings-security-page-sessions">
+            <div class="settings-security-page-session">
+                <div class="settings-security-page-session-info">
+                    <div class="settings-security-page-session-device">
+                        Chrome on macOS
+                    </div>
+                    <div class="settings-security-page-session-details">
+                        San Francisco, CA • Last active: Just now
+                    </div>
+                </div>
+                <span class="settings-security-page-session-current">Current Session</span>
+            </div>
+
+            <div class="settings-security-page-session">
+                <div class="settings-security-page-session-info">
+                    <div class="settings-security-page-session-device">
+                        BikeNode Mobile App (iOS)
+                    </div>
+                    <div class="settings-security-page-session-details">
+                        San Francisco, CA • Last active: 2 hours ago
+                    </div>
+                </div>
+                <button class="settings-security-page-button settings-security-page-button-danger settings-security-page-button-small" 
+                        data-action="revoke-session" data-session-id="mobile-ios-1">
+                    Revoke
+                </button>
+            </div>
+
+            <div class="settings-security-page-session">
+                <div class="settings-security-page-session-info">
+                    <div class="settings-security-page-session-device">
+                        Firefox on Windows
+                    </div>
+                    <div class="settings-security-page-session-details">
+                        New York, NY • Last active: 5 days ago
+                    </div>
+                </div>
+                <button class="settings-security-page-button settings-security-page-button-danger settings-security-page-button-small" 
+                        data-action="revoke-session" data-session-id="firefox-windows-1">
+                    Revoke
+                </button>
+            </div>
+        </div>
+
+        <div class="settings-security-page-actions">
+            <button class="settings-security-page-button settings-security-page-button-danger">
+                Revoke All Other Sessions
+            </button>
+        </div>
+    </div>
+
+    <!-- Account Recovery -->
+    <div class="settings-security-page-section">
+        <h2 class="settings-security-page-section-title">Account Recovery</h2>
+        
+        <div class="settings-security-page-form-group">
+            <label class="settings-security-page-label" for="recovery-email">
+                Recovery Email
+            </label>
+            <input type="email" id="recovery-email" class="settings-security-page-input" 
+                   value="backup@example.com" placeholder="Enter recovery email">
+            <div class="settings-security-page-help">
+                Used to recover your account if you lose access to your primary email
+            </div>
+        </div>
+
+        <div class="settings-security-page-form-group">
+            <label class="settings-security-page-label" for="recovery-phone">
+                Recovery Phone Number
+            </label>
+            <input type="tel" id="recovery-phone" class="settings-security-page-input" 
+                   placeholder="+1 (555) 123-4567">
+            <div class="settings-security-page-help">
+                Used for account verification and recovery
+            </div>
+        </div>
+
+        <button class="settings-security-page-button settings-security-page-button-primary">
+            Update Recovery Options
+        </button>
     </div>
 </div>
+
+<!-- Page-specific JavaScript -->
+<script src="js/settings-security-page.js"></script>

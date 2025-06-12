@@ -1,0 +1,206 @@
+/* marketplace-browse-listings specific styles */
+.marketplace-browse-listings-container {
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header card */
+.marketplace-browse-listings-header {
+    background: var(--color-surface);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.marketplace-browse-listings-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.marketplace-browse-listings-subtitle {
+    color: var(--color-text-secondary);
+}
+
+/* Filters section */
+.marketplace-browse-listings-filters-card {
+    background: var(--color-surface);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.marketplace-browse-listings-filters {
+    margin-bottom: 1.25rem;
+}
+
+.marketplace-browse-listings-search-group {
+    margin-bottom: 1rem;
+}
+
+.marketplace-browse-listings-search-input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    background: var(--color-background);
+    color: var(--color-text);
+    transition: border-color 0.2s;
+}
+
+.marketplace-browse-listings-search-input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+.marketplace-browse-listings-filter-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.marketplace-browse-listings-select {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    background: var(--color-background);
+    color: var(--color-text);
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.marketplace-browse-listings-select:focus {
+    outline: none;
+    border-color: var(--color-accent);
+}
+
+/* Listings grid */
+.marketplace-browse-listings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Item card */
+.marketplace-browse-listings-item {
+    background: var(--color-surface);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.marketplace-browse-listings-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.marketplace-browse-listings-image {
+    margin-bottom: 0.5rem;
+}
+
+.marketplace-browse-listings-image-placeholder {
+    background: var(--color-background-secondary);
+    border-radius: 0.375rem;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.marketplace-browse-listings-image-text {
+    color: var(--color-text-secondary);
+}
+
+.marketplace-browse-listings-item-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: var(--color-text);
+}
+
+.marketplace-browse-listings-item-price {
+    color: var(--color-accent);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.marketplace-browse-listings-item-meta {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.marketplace-browse-listings-item-button {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.marketplace-browse-listings-item-button:hover {
+    background: var(--color-accent);
+    color: white;
+}
+
+/* Load more section */
+.marketplace-browse-listings-load-more {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.marketplace-browse-listings-load-button {
+    padding: 0.75rem 2rem;
+    background: transparent;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.marketplace-browse-listings-load-button:hover {
+    background: var(--color-accent);
+    color: white;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .marketplace-browse-listings-container {
+        padding: 1rem;
+    }
+    
+    .marketplace-browse-listings-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .marketplace-browse-listings-filter-row {
+        flex-direction: column;
+    }
+    
+    .marketplace-browse-listings-select {
+        width: 100%;
+    }
+}

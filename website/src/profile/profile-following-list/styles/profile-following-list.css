@@ -60,6 +60,41 @@
     color: var(--text-muted);
 }
 
+/* Buttons */
+.profile-following-list-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile-following-list-button-primary {
+    background: var(--color-accent);
+    color: white;
+}
+
+.profile-following-list-button-primary:hover {
+    background: var(--color-accent-dark);
+}
+
+.profile-following-list-button-secondary {
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.profile-following-list-button-secondary:hover {
+    background: var(--color-background);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
 /* Stats Bar */
 .profile-following-list-stats {
     display: flex;

@@ -3,9 +3,171 @@ layout: bikenode-main-layout-01
 title: My Listings - BikeNode
 ---
 
+<!-- Page-specific styles -->
+<link rel="stylesheet" href="styles/marketplace-my-listings.css">
+
 <div class="marketplace-my-listings-container">
-    <div class="BN-Global-card">
-        <h1 class="BN-Global-font-2xl BN-Global-font-bold BN-Global-text-primary BN-Global-mb-2">My Listings</h1>
-        <p class="BN-Global-text-secondary">Manage your active marketplace listings.</p>
+    <!-- Header -->
+    <div class="marketplace-my-listings-header">
+        <div class="marketplace-my-listings-header-content">
+            <h1 class="marketplace-my-listings-title">My Listings</h1>
+            <p class="marketplace-my-listings-subtitle">Manage your active marketplace listings</p>
+        </div>
+        <a href="/marketplace/marketplace-create-listing/" class="marketplace-my-listings-create-button">
+            Create New Listing
+        </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="marketplace-my-listings-stats">
+        <div class="marketplace-my-listings-stat-card">
+            <div class="marketplace-my-listings-stat-value">12</div>
+            <div class="marketplace-my-listings-stat-label">Active Listings</div>
+        </div>
+        <div class="marketplace-my-listings-stat-card">
+            <div class="marketplace-my-listings-stat-value">5</div>
+            <div class="marketplace-my-listings-stat-label">Sold Items</div>
+        </div>
+        <div class="marketplace-my-listings-stat-card">
+            <div class="marketplace-my-listings-stat-value">342</div>
+            <div class="marketplace-my-listings-stat-label">Total Views</div>
+        </div>
+        <div class="marketplace-my-listings-stat-card">
+            <div class="marketplace-my-listings-stat-value">28</div>
+            <div class="marketplace-my-listings-stat-label">Messages</div>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="marketplace-my-listings-tabs">
+        <button class="marketplace-my-listings-tab marketplace-my-listings-tab-active" data-status="all">
+            All Listings
+        </button>
+        <button class="marketplace-my-listings-tab" data-status="active">
+            Active
+        </button>
+        <button class="marketplace-my-listings-tab" data-status="sold">
+            Sold
+        </button>
+        <button class="marketplace-my-listings-tab" data-status="draft">
+            Drafts
+        </button>
+    </div>
+
+    <!-- Listings Table -->
+    <div class="marketplace-my-listings-table-container">
+        <table class="marketplace-my-listings-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Views</th>
+                    <th>Messages</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-status="active">
+                    <td>
+                        <div class="marketplace-my-listings-item-info">
+                            <div class="marketplace-my-listings-item-image">
+                                <span>IMG</span>
+                            </div>
+                            <div class="marketplace-my-listings-item-details">
+                                <div class="marketplace-my-listings-item-title">2023 Trek Domane SL6</div>
+                                <div class="marketplace-my-listings-item-category">Road Bikes</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="marketplace-my-listings-price">$3,500</td>
+                    <td>
+                        <span class="marketplace-my-listings-status marketplace-my-listings-status-active">
+                            Active
+                        </span>
+                    </td>
+                    <td class="marketplace-my-listings-views">125</td>
+                    <td class="marketplace-my-listings-messages">8</td>
+                    <td>
+                        <div class="marketplace-my-listings-actions">
+                            <button class="marketplace-my-listings-action-button" data-action="edit" data-listing-id="1">
+                                Edit
+                            </button>
+                            <button class="marketplace-my-listings-action-button" data-action="view" data-listing-id="1">
+                                Stats
+                            </button>
+                            <button class="marketplace-my-listings-action-button" data-action="delete" data-listing-id="1">
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr data-status="sold">
+                    <td>
+                        <div class="marketplace-my-listings-item-info">
+                            <div class="marketplace-my-listings-item-image">
+                                <span>IMG</span>
+                            </div>
+                            <div class="marketplace-my-listings-item-details">
+                                <div class="marketplace-my-listings-item-title">Shimano Ultegra R8000 Groupset</div>
+                                <div class="marketplace-my-listings-item-category">Parts & Components</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="marketplace-my-listings-price">$800</td>
+                    <td>
+                        <span class="marketplace-my-listings-status marketplace-my-listings-status-sold">
+                            Sold
+                        </span>
+                    </td>
+                    <td class="marketplace-my-listings-views">89</td>
+                    <td class="marketplace-my-listings-messages">12</td>
+                    <td>
+                        <div class="marketplace-my-listings-actions">
+                            <button class="marketplace-my-listings-action-button" data-action="view" data-listing-id="2">
+                                View
+                            </button>
+                            <button class="marketplace-my-listings-action-button" data-action="delete" data-listing-id="2">
+                                Archive
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                <tr data-status="draft">
+                    <td>
+                        <div class="marketplace-my-listings-item-info">
+                            <div class="marketplace-my-listings-item-image">
+                                <span>IMG</span>
+                            </div>
+                            <div class="marketplace-my-listings-item-details">
+                                <div class="marketplace-my-listings-item-title">AGV K6 Helmet - Size L</div>
+                                <div class="marketplace-my-listings-item-category">Gear & Apparel</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="marketplace-my-listings-price">$250</td>
+                    <td>
+                        <span class="marketplace-my-listings-status marketplace-my-listings-status-draft">
+                            Draft
+                        </span>
+                    </td>
+                    <td class="marketplace-my-listings-views">0</td>
+                    <td class="marketplace-my-listings-messages">0</td>
+                    <td>
+                        <div class="marketplace-my-listings-actions">
+                            <button class="marketplace-my-listings-action-button" data-action="edit" data-listing-id="3">
+                                Complete
+                            </button>
+                            <button class="marketplace-my-listings-action-button" data-action="delete" data-listing-id="3">
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
+
+<!-- Page-specific JavaScript -->
+<script src="js/marketplace-my-listings.js"></script>

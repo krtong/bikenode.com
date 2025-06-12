@@ -3,9 +3,165 @@ layout: bikenode-main-layout-01
 title: Create Event - BikeNode
 ---
 
+<!-- Page-specific styles -->
+<link rel="stylesheet" href="styles/events-create-form.css">
+
 <div class="events-create-form-container">
-    <div class="BN-Global-card">
-        <h1 class="BN-Global-font-2xl BN-Global-font-bold BN-Global-text-primary BN-Global-mb-2">Create New Event</h1>
-        <p class="BN-Global-text-secondary">Organize a cycling event for the community.</p>
+    <!-- Header -->
+    <div class="events-create-form-header">
+        <h1 class="events-create-form-title">Create New Event</h1>
+        <p class="events-create-form-subtitle">Organize a cycling event for the community</p>
     </div>
+
+    <!-- Form -->
+    <form id="events-create-form" class="events-create-form-card">
+        <!-- Basic Information -->
+        <div class="events-create-form-section">
+            <h2 class="events-create-form-section-title">Basic Information</h2>
+            
+            <div class="events-create-form-group">
+                <label class="events-create-form-label" for="event-title">
+                    Event Title <span class="events-create-form-label-required">*</span>
+                </label>
+                <input type="text" id="event-title" class="events-create-form-input" 
+                       placeholder="e.g., Saturday Morning Group Ride" required>
+            </div>
+
+            <div class="events-create-form-group">
+                <label class="events-create-form-label" for="event-description">
+                    Description <span class="events-create-form-label-required">*</span>
+                </label>
+                <textarea id="event-description" class="events-create-form-textarea" 
+                          placeholder="Describe your event, including route details, difficulty level, and what participants should bring..."
+                          required></textarea>
+                <div class="events-create-form-help">Provide details about the event to help participants prepare</div>
+            </div>
+
+            <div class="events-create-form-group">
+                <label class="events-create-form-label">
+                    Event Type <span class="events-create-form-label-required">*</span>
+                </label>
+                <div class="events-create-form-type-options">
+                    <div class="events-create-form-type-option" data-type="group-ride">
+                        <div class="events-create-form-type-icon">🚴</div>
+                        <div class="events-create-form-type-label">Group Ride</div>
+                    </div>
+                    <div class="events-create-form-type-option" data-type="race">
+                        <div class="events-create-form-type-icon">🏁</div>
+                        <div class="events-create-form-type-label">Race/Competition</div>
+                    </div>
+                    <div class="events-create-form-type-option" data-type="social">
+                        <div class="events-create-form-type-icon">🎉</div>
+                        <div class="events-create-form-type-label">Social Event</div>
+                    </div>
+                    <div class="events-create-form-type-option" data-type="workshop">
+                        <div class="events-create-form-type-icon">🔧</div>
+                        <div class="events-create-form-type-label">Workshop</div>
+                    </div>
+                </div>
+                <input type="hidden" id="event-type-input" name="event-type" required>
+            </div>
+        </div>
+
+        <!-- Date and Time -->
+        <div class="events-create-form-section">
+            <h2 class="events-create-form-section-title">Date and Time</h2>
+            
+            <div class="events-create-form-datetime-row">
+                <div class="events-create-form-group">
+                    <label class="events-create-form-label" for="event-start-date">
+                        Start Date <span class="events-create-form-label-required">*</span>
+                    </label>
+                    <input type="datetime-local" id="event-start-date" class="events-create-form-input" required>
+                </div>
+                
+                <div class="events-create-form-group">
+                    <label class="events-create-form-label" for="event-end-date">
+                        End Date <span class="events-create-form-label-required">*</span>
+                    </label>
+                    <input type="datetime-local" id="event-end-date" class="events-create-form-input" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Location -->
+        <div class="events-create-form-section">
+            <h2 class="events-create-form-section-title">Location</h2>
+            
+            <div class="events-create-form-group">
+                <label class="events-create-form-label" for="event-location">
+                    Meeting Point <span class="events-create-form-label-required">*</span>
+                </label>
+                <input type="text" id="event-location" class="events-create-form-input" 
+                       placeholder="e.g., Central Park Main Entrance" required>
+            </div>
+
+            <div class="events-create-form-location-group">
+                <div class="events-create-form-group">
+                    <label class="events-create-form-label" for="event-city">City</label>
+                    <input type="text" id="event-city" class="events-create-form-input" placeholder="San Francisco">
+                </div>
+                
+                <div class="events-create-form-group">
+                    <label class="events-create-form-label" for="event-state">State</label>
+                    <input type="text" id="event-state" class="events-create-form-input" placeholder="CA">
+                </div>
+                
+                <div class="events-create-form-group">
+                    <label class="events-create-form-label" for="event-zip">ZIP Code</label>
+                    <input type="text" id="event-zip" class="events-create-form-input" placeholder="94102">
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Details -->
+        <div class="events-create-form-section">
+            <h2 class="events-create-form-section-title">Additional Details</h2>
+            
+            <div class="events-create-form-group">
+                <label class="events-create-form-label" for="event-capacity">
+                    Maximum Participants
+                </label>
+                <input type="number" id="event-capacity" class="events-create-form-input" 
+                       placeholder="Leave blank for unlimited" min="1">
+                <div class="events-create-form-help">Set a limit on the number of participants</div>
+            </div>
+
+            <div class="events-create-form-group">
+                <label class="events-create-form-label" for="event-difficulty">
+                    Difficulty Level
+                </label>
+                <select id="event-difficulty" class="events-create-form-select">
+                    <option value="">Select difficulty</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                    <option value="expert">Expert</option>
+                </select>
+            </div>
+
+            <div class="events-create-form-group">
+                <label class="events-create-form-label">Event Image</label>
+                <div class="events-create-form-upload">
+                    <div class="events-create-form-upload-icon">📷</div>
+                    <div class="events-create-form-upload-text">Click to upload or drag and drop</div>
+                    <div class="events-create-form-upload-hint">PNG, JPG up to 10MB</div>
+                </div>
+                <input type="file" id="event-image-input" accept="image/*" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="events-create-form-actions">
+            <button type="button" class="events-create-form-button events-create-form-button-secondary">
+                Cancel
+            </button>
+            <button type="submit" class="events-create-form-button events-create-form-button-primary">
+                Create Event
+            </button>
+        </div>
+    </form>
 </div>
+
+<!-- Page-specific JavaScript -->
+<script src="js/events-create-form.js"></script>

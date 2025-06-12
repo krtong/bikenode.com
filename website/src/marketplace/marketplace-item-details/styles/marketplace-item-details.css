@@ -1,0 +1,257 @@
+/* marketplace-item-details specific styles */
+.marketplace-item-details-container {
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Main layout grid */
+.marketplace-item-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Image gallery section */
+.marketplace-item-details-gallery {
+    background: var(--color-surface);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.marketplace-item-details-main-image {
+    width: 100%;
+    height: 400px;
+    background: var(--color-background-secondary);
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.marketplace-item-details-image-text {
+    color: var(--color-text-secondary);
+    font-size: 1.125rem;
+}
+
+.marketplace-item-details-thumbnail-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+
+.marketplace-item-details-thumbnail {
+    width: 100%;
+    height: 80px;
+    background: var(--color-background-secondary);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+}
+
+.marketplace-item-details-thumbnail:hover {
+    opacity: 0.8;
+}
+
+/* Info section */
+.marketplace-item-details-info {
+    background: var(--color-surface);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.marketplace-item-details-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+}
+
+.marketplace-item-details-price {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+}
+
+.marketplace-item-details-meta {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.marketplace-item-details-specs {
+    margin-bottom: 1.5rem;
+}
+
+.marketplace-item-details-spec-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.marketplace-item-details-spec-label {
+    font-weight: 500;
+    color: var(--color-text-secondary);
+}
+
+.marketplace-item-details-spec-value {
+    color: var(--color-text);
+}
+
+.marketplace-item-details-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.marketplace-item-details-button {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+}
+
+.marketplace-item-details-button-primary {
+    background: var(--color-accent);
+    color: white;
+}
+
+.marketplace-item-details-button-primary:hover {
+    background: var(--color-accent-dark);
+}
+
+.marketplace-item-details-button-secondary {
+    background: transparent;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+}
+
+.marketplace-item-details-button-secondary:hover {
+    background: var(--color-accent);
+    color: white;
+}
+
+/* Description section */
+.marketplace-item-details-description {
+    background: var(--color-surface);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.marketplace-item-details-section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+}
+
+.marketplace-item-details-description-text {
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+/* Seller info section */
+.marketplace-item-details-seller {
+    background: var(--color-surface);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.marketplace-item-details-seller-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.marketplace-item-details-seller-avatar {
+    width: 60px;
+    height: 60px;
+    background: var(--color-background-secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.marketplace-item-details-seller-details {
+    flex: 1;
+}
+
+.marketplace-item-details-seller-name {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+}
+
+.marketplace-item-details-seller-rating {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
+
+.marketplace-item-details-seller-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.marketplace-item-details-stat {
+    text-align: center;
+}
+
+.marketplace-item-details-stat-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.marketplace-item-details-stat-label {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .marketplace-item-details-container {
+        padding: 1rem;
+    }
+    
+    .marketplace-item-details-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .marketplace-item-details-main-image {
+        height: 300px;
+    }
+    
+    .marketplace-item-details-actions {
+        flex-direction: column;
+    }
+    
+    .marketplace-item-details-seller-stats {
+        grid-template-columns: 1fr;
+    }
+}

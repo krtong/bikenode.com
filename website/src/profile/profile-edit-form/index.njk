@@ -3,9 +3,242 @@ layout: bikenode-main-layout-01
 title: Edit Profile - BikeNode
 ---
 
+<!-- Page-specific styles -->
+<link rel="stylesheet" href="styles/profile-edit-form.css">
+
 <div class="profile-edit-form-container">
-    <div class="BN-Global-card">
-        <h1 class="BN-Global-font-2xl BN-Global-font-bold BN-Global-text-primary BN-Global-mb-2">Edit Profile</h1>
-        <p class="BN-Global-text-secondary">Update your profile information.</p>
+    <!-- Header -->
+    <div class="profile-edit-form-header">
+        <h1 class="profile-edit-form-title">Edit Profile</h1>
+        <p class="profile-edit-form-subtitle">Update your profile information and preferences</p>
     </div>
+
+    <!-- Success Message -->
+    <div class="profile-edit-form-success">
+        Profile updated successfully!
+    </div>
+
+    <!-- Form -->
+    <form id="profile-edit-form">
+        <!-- Avatar Section -->
+        <div class="profile-edit-form-section">
+            <h2 class="profile-edit-form-section-title">Profile Picture</h2>
+            <div class="profile-edit-form-avatar-section">
+                <div class="profile-edit-form-avatar-container">
+                    <div class="profile-edit-form-avatar">
+                        <img src="" alt="Profile" class="profile-edit-form-avatar-image" style="display: none;">
+                        <div class="profile-edit-form-avatar-placeholder">
+                            JD
+                        </div>
+                    </div>
+                    <div class="profile-edit-form-avatar-overlay">
+                        Change Photo
+                    </div>
+                </div>
+                <div class="profile-edit-form-avatar-info">
+                    <div class="profile-edit-form-avatar-buttons">
+                        <button type="button" class="profile-edit-form-button profile-edit-form-button-primary" data-action="upload">
+                            Upload Photo
+                        </button>
+                        <button type="button" class="profile-edit-form-button profile-edit-form-button-secondary" data-action="remove">
+                            Remove
+                        </button>
+                    </div>
+                    <p class="profile-edit-form-help">
+                        JPG, PNG or GIF. Max size 5MB. Recommended: 400x400px
+                    </p>
+                </div>
+            </div>
+            <input type="file" id="avatar-input" accept="image/*" style="display: none;">
+        </div>
+
+        <!-- Basic Information -->
+        <div class="profile-edit-form-section">
+            <h2 class="profile-edit-form-section-title">Basic Information</h2>
+            
+            <div class="profile-edit-form-row">
+                <div class="profile-edit-form-group">
+                    <label class="profile-edit-form-label" for="profile-first-name">
+                        First Name
+                    </label>
+                    <input type="text" id="profile-first-name" class="profile-edit-form-input" 
+                           value="John" required>
+                </div>
+                
+                <div class="profile-edit-form-group">
+                    <label class="profile-edit-form-label" for="profile-last-name">
+                        Last Name
+                    </label>
+                    <input type="text" id="profile-last-name" class="profile-edit-form-input" 
+                           value="Doe" required>
+                </div>
+            </div>
+
+            <div class="profile-edit-form-group">
+                <label class="profile-edit-form-label" for="profile-username">
+                    Username
+                </label>
+                <input type="text" id="profile-username" class="profile-edit-form-input" 
+                       value="johndoe" required>
+                <div class="profile-edit-form-help">
+                    This is your unique identifier on BikeNode
+                </div>
+            </div>
+
+            <div class="profile-edit-form-group">
+                <label class="profile-edit-form-label" for="profile-email">
+                    Email Address
+                </label>
+                <input type="email" id="profile-email" class="profile-edit-form-input" 
+                       value="john.doe@example.com" required>
+            </div>
+
+            <div class="profile-edit-form-group">
+                <label class="profile-edit-form-label" for="profile-bio">
+                    Bio
+                </label>
+                <textarea id="profile-bio" class="profile-edit-form-textarea" 
+                          placeholder="Tell us about yourself and your cycling interests..." maxlength="500">Passionate cyclist and bike enthusiast. Love exploring new trails and participating in community rides.</textarea>
+                <div class="profile-edit-form-help">500 characters remaining</div>
+            </div>
+        </div>
+
+        <!-- Location & Cycling Info -->
+        <div class="profile-edit-form-section">
+            <h2 class="profile-edit-form-section-title">Location & Cycling Info</h2>
+            
+            <div class="profile-edit-form-row">
+                <div class="profile-edit-form-group">
+                    <label class="profile-edit-form-label" for="profile-city">
+                        City
+                    </label>
+                    <input type="text" id="profile-city" class="profile-edit-form-input" 
+                           placeholder="San Francisco" value="San Francisco">
+                </div>
+                
+                <div class="profile-edit-form-group">
+                    <label class="profile-edit-form-label" for="profile-state">
+                        State/Region
+                    </label>
+                    <input type="text" id="profile-state" class="profile-edit-form-input" 
+                           placeholder="CA" value="CA">
+                </div>
+            </div>
+
+            <div class="profile-edit-form-row">
+                <div class="profile-edit-form-group">
+                    <label class="profile-edit-form-label" for="profile-riding-style">
+                        Preferred Riding Style
+                    </label>
+                    <select id="profile-riding-style" class="profile-edit-form-select">
+                        <option value="">Select style</option>
+                        <option value="road" selected>Road Cycling</option>
+                        <option value="mountain">Mountain Biking</option>
+                        <option value="gravel">Gravel/Adventure</option>
+                        <option value="commuter">Commuter</option>
+                        <option value="touring">Touring</option>
+                        <option value="bmx">BMX</option>
+                    </select>
+                </div>
+                
+                <div class="profile-edit-form-group">
+                    <label class="profile-edit-form-label" for="profile-experience">
+                        Experience Level
+                    </label>
+                    <select id="profile-experience" class="profile-edit-form-select">
+                        <option value="">Select level</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate" selected>Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="profile-edit-form-section">
+            <h2 class="profile-edit-form-section-title">Social Links</h2>
+            
+            <div class="profile-edit-form-social-group">
+                <div class="profile-edit-form-social-icon">🌐</div>
+                <div class="profile-edit-form-social-input">
+                    <input type="url" class="profile-edit-form-input" 
+                           placeholder="https://yourwebsite.com">
+                </div>
+            </div>
+
+            <div class="profile-edit-form-social-group">
+                <div class="profile-edit-form-social-icon">📸</div>
+                <div class="profile-edit-form-social-input">
+                    <input type="text" class="profile-edit-form-input" 
+                           placeholder="Instagram username">
+                </div>
+            </div>
+
+            <div class="profile-edit-form-social-group">
+                <div class="profile-edit-form-social-icon">🐦</div>
+                <div class="profile-edit-form-social-input">
+                    <input type="text" class="profile-edit-form-input" 
+                           placeholder="Twitter username">
+                </div>
+            </div>
+
+            <div class="profile-edit-form-social-group">
+                <div class="profile-edit-form-social-icon">📱</div>
+                <div class="profile-edit-form-social-input">
+                    <input type="text" class="profile-edit-form-input" 
+                           placeholder="Strava profile URL">
+                </div>
+            </div>
+        </div>
+
+        <!-- Privacy Settings -->
+        <div class="profile-edit-form-section">
+            <h2 class="profile-edit-form-section-title">Privacy Settings</h2>
+            
+            <label class="profile-edit-form-privacy-option">
+                <input type="radio" name="privacy" value="public" class="profile-edit-form-privacy-radio" checked>
+                <div class="profile-edit-form-privacy-content">
+                    <div class="profile-edit-form-privacy-title">Public Profile</div>
+                    <div class="profile-edit-form-privacy-description">
+                        Anyone can see your profile and activities
+                    </div>
+                </div>
+            </label>
+
+            <label class="profile-edit-form-privacy-option">
+                <input type="radio" name="privacy" value="friends" class="profile-edit-form-privacy-radio">
+                <div class="profile-edit-form-privacy-content">
+                    <div class="profile-edit-form-privacy-title">Friends Only</div>
+                    <div class="profile-edit-form-privacy-description">
+                        Only your friends can see your full profile
+                    </div>
+                </div>
+            </label>
+
+            <label class="profile-edit-form-privacy-option">
+                <input type="radio" name="privacy" value="private" class="profile-edit-form-privacy-radio">
+                <div class="profile-edit-form-privacy-content">
+                    <div class="profile-edit-form-privacy-title">Private</div>
+                    <div class="profile-edit-form-privacy-description">
+                        Only you can see your profile details
+                    </div>
+                </div>
+            </label>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="profile-edit-form-actions">
+            <button type="button" class="profile-edit-form-cancel">
+                Cancel
+            </button>
+            <button type="submit" class="profile-edit-form-submit">
+                Save Changes
+            </button>
+        </div>
+    </form>
 </div>
+
+<!-- Page-specific JavaScript -->
+<script src="js/profile-edit-form.js"></script>

@@ -152,6 +152,57 @@
     font-size: 12px;
 }
 
+/* Buttons */
+.settings-account-page-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.settings-account-page-button-primary {
+    background: var(--color-accent);
+    color: white;
+}
+
+.settings-account-page-button-primary:hover {
+    background: var(--color-accent-dark);
+}
+
+.settings-account-page-button-secondary {
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.settings-account-page-button-secondary:hover {
+    background: var(--color-background);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.settings-account-page-button-danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.settings-account-page-button-danger:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: #f87171;
+}
+
+.settings-account-page-btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
 .settings-account-page-security-option,
 .settings-account-page-privacy-option,
 .settings-account-page-preference-option {

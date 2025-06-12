@@ -3,9 +3,156 @@ layout: bikenode-main-layout-01
 title: Event Details - BikeNode
 ---
 
+<!-- Page-specific styles -->
+<link rel="stylesheet" href="styles/events-details-page.css">
+
 <div class="events-details-page-container">
-    <div class="BN-Global-card">
-        <h1 class="BN-Global-font-2xl BN-Global-font-bold BN-Global-text-primary BN-Global-mb-2">Event Details</h1>
-        <p class="BN-Global-text-secondary">View detailed information about this event.</p>
+    <!-- Hero Section -->
+    <div class="events-details-page-hero">
+        <div class="events-details-page-hero-image">
+            <div class="events-details-page-hero-overlay">
+                <h1 class="events-details-page-title">Saturday Morning Century Ride</h1>
+                <div class="events-details-page-meta">
+                    <div class="events-details-page-meta-item">
+                        📅 March 15, 2024
+                    </div>
+                    <div class="events-details-page-meta-item">
+                        🕐 7:00 AM - 2:00 PM
+                    </div>
+                    <div class="events-details-page-meta-item">
+                        📍 San Francisco, CA
+                    </div>
+                    <div class="events-details-page-meta-item">
+                        🚴 Group Ride
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="events-details-page-content">
+        <!-- Main Details -->
+        <div class="events-details-page-main">
+            <!-- Description -->
+            <div class="events-details-page-section">
+                <h2 class="events-details-page-section-title">About This Event</h2>
+                <p class="events-details-page-description">
+                    Join us for an epic century ride through the scenic routes of Northern California! 
+                    This challenging but rewarding ride will take us through coastal roads, rolling hills, 
+                    and beautiful countryside. We'll have support vehicles, rest stops every 25 miles, 
+                    and a celebration lunch at the finish.
+                </p>
+                <p class="events-details-page-description">
+                    This ride is suitable for experienced cyclists who can maintain a 15-18 mph pace 
+                    on flat terrain. Please ensure your bike is in good working condition and bring 
+                    appropriate nutrition and hydration. Helmet required.
+                </p>
+            </div>
+
+            <!-- Event Details -->
+            <div class="events-details-page-section">
+                <h2 class="events-details-page-section-title">Event Details</h2>
+                <div class="events-details-page-info-grid">
+                    <div class="events-details-page-info-item">
+                        <div class="events-details-page-info-label">Distance</div>
+                        <div class="events-details-page-info-value">100 miles</div>
+                    </div>
+                    <div class="events-details-page-info-item">
+                        <div class="events-details-page-info-label">Difficulty</div>
+                        <div class="events-details-page-info-value">Advanced</div>
+                    </div>
+                    <div class="events-details-page-info-item">
+                        <div class="events-details-page-info-label">Pace</div>
+                        <div class="events-details-page-info-value">15-18 mph</div>
+                    </div>
+                    <div class="events-details-page-info-item">
+                        <div class="events-details-page-info-label">Elevation Gain</div>
+                        <div class="events-details-page-info-value">4,500 ft</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div class="events-details-page-section">
+                <h2 class="events-details-page-section-title">Meeting Location</h2>
+                <p class="events-details-page-description">
+                    Golden Gate Park - Main Parking Lot<br>
+                    501 Stanyan St, San Francisco, CA 94117
+                </p>
+                <div class="events-details-page-map">
+                    Map View
+                </div>
+            </div>
+
+            <!-- Participants -->
+            <div class="events-details-page-section">
+                <h2 class="events-details-page-section-title">Participants (24/30)</h2>
+                <div class="events-details-page-participants-list">
+                    <div class="events-details-page-participant">
+                        <div class="events-details-page-participant-avatar">JD</div>
+                        <div class="events-details-page-participant-name">John Doe</div>
+                    </div>
+                    <div class="events-details-page-participant">
+                        <div class="events-details-page-participant-avatar">SM</div>
+                        <div class="events-details-page-participant-name">Sarah Miller</div>
+                    </div>
+                    <div class="events-details-page-participant">
+                        <div class="events-details-page-participant-avatar">TC</div>
+                        <div class="events-details-page-participant-name">Tom Chen</div>
+                    </div>
+                    <div class="events-details-page-participant">
+                        <div class="events-details-page-participant-avatar">LW</div>
+                        <div class="events-details-page-participant-name">Lisa Wong</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="events-details-page-sidebar">
+            <!-- Registration Card -->
+            <div class="events-details-page-registration">
+                <div class="events-details-page-price">$25</div>
+                <div class="events-details-page-spots">6 spots remaining</div>
+                <button class="events-details-page-register-button">
+                    Register Now
+                </button>
+            </div>
+
+            <!-- Organizer Card -->
+            <div class="events-details-page-organizer">
+                <h3 class="events-details-page-section-title">Event Organizer</h3>
+                <div class="events-details-page-organizer-info">
+                    <div class="events-details-page-organizer-avatar">BC</div>
+                    <div class="events-details-page-organizer-details">
+                        <div class="events-details-page-organizer-name">Bay Cycling Club</div>
+                        <div class="events-details-page-organizer-events">42 events organized</div>
+                    </div>
+                </div>
+                <button class="events-details-page-contact-button">
+                    Contact Organizer
+                </button>
+            </div>
+
+            <!-- Share Card -->
+            <div class="events-details-page-share">
+                <h3 class="events-details-page-section-title">Share Event</h3>
+                <div class="events-details-page-share-buttons">
+                    <button class="events-details-page-share-button" data-platform="facebook">
+                        Facebook
+                    </button>
+                    <button class="events-details-page-share-button" data-platform="twitter">
+                        Twitter
+                    </button>
+                    <button class="events-details-page-share-button" data-platform="copy">
+                        Copy Link
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- Page-specific JavaScript -->
+<script src="js/events-details-page.js"></script>

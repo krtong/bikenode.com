@@ -3,9 +3,205 @@ layout: bikenode-main-layout-01
 title: Discord Bot Setup - BikeNode
 ---
 
+<!-- Page-specific styles -->
+<link rel="stylesheet" href="styles/discord-bot-setup.css">
+
 <div class="discord-bot-setup-container">
-    <div class="BN-Global-card">
-        <h1 class="BN-Global-font-2xl BN-Global-font-bold BN-Global-text-primary BN-Global-mb-2">Discord Bot Setup</h1>
-        <p class="BN-Global-text-secondary">Configure the BikeNode bot for your Discord server.</p>
+    <!-- Header -->
+    <div class="discord-bot-setup-header">
+        <h1 class="discord-bot-setup-title">
+            <svg class="discord-bot-setup-icon" viewBox="0 0 24 24" fill="#5865F2">
+                <path d="M20.317 4.37c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.64 18.64 0 0 0-5.487 0 12.404 12.404 0 0 0-.617-1.23A.077.077 0 0 0 8.562 2.88c-1.714.29-3.354.8-4.885 1.49a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+            </svg>
+            Discord Bot Setup
+        </h1>
+        <p class="discord-bot-setup-subtitle">Configure the BikeNode bot for your Discord server in just a few steps</p>
+    </div>
+
+    <!-- Progress Indicator -->
+    <div class="discord-bot-setup-progress">
+        <div class="discord-bot-setup-steps">
+            <div class="discord-bot-setup-step discord-bot-setup-step-active">
+                <div class="discord-bot-setup-step-number">1</div>
+                <div class="discord-bot-setup-step-label">Add Bot</div>
+                <div class="discord-bot-setup-step-line"></div>
+            </div>
+            <div class="discord-bot-setup-step">
+                <div class="discord-bot-setup-step-number">2</div>
+                <div class="discord-bot-setup-step-label">Select Server</div>
+                <div class="discord-bot-setup-step-line"></div>
+            </div>
+            <div class="discord-bot-setup-step">
+                <div class="discord-bot-setup-step-number">3</div>
+                <div class="discord-bot-setup-step-label">Configure</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 1: Add Bot -->
+    <div class="discord-bot-setup-section" data-step="1">
+        <h2 class="discord-bot-setup-section-title">
+            <span class="discord-bot-setup-section-number">1</span>
+            Add BikeNode Bot to Discord
+        </h2>
+        <p class="discord-bot-setup-section-description">
+            Click the button below to add the BikeNode bot to your Discord server. You'll need administrator 
+            permissions on the server where you want to add the bot.
+        </p>
+        
+        <a href="https://discord.com/api/oauth2/authorize?client_id=YOUR_BOT_ID&permissions=8&scope=bot" 
+           class="discord-bot-setup-invite" target="_blank">
+            <svg class="discord-bot-setup-invite-icon" viewBox="0 0 24 24" fill="white">
+                <path d="M20.317 4.37c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.64 18.64 0 0 0-5.487 0 12.404 12.404 0 0 0-.617-1.23A.077.077 0 0 0 8.562 2.88c-1.714.29-3.354.8-4.885 1.49a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+            </svg>
+            <div class="discord-bot-setup-invite-content">
+                <div class="discord-bot-setup-invite-title">Add to Discord</div>
+                <div class="discord-bot-setup-invite-text">Authorize BikeNode bot for your server</div>
+            </div>
+        </a>
+    </div>
+
+    <!-- Step 2: Select Server -->
+    <div class="discord-bot-setup-section" data-step="2" style="display: none;">
+        <h2 class="discord-bot-setup-section-title">
+            <span class="discord-bot-setup-section-number">2</span>
+            Select Your Server
+        </h2>
+        <p class="discord-bot-setup-section-description">
+            Choose which server you want to configure the BikeNode bot for:
+        </p>
+        
+        <div class="discord-bot-setup-servers">
+            <div class="discord-bot-setup-server" data-server-id="server1">
+                <div class="discord-bot-setup-server-icon">BN</div>
+                <div class="discord-bot-setup-server-info">
+                    <div class="discord-bot-setup-server-name">BikeNode Community</div>
+                    <div class="discord-bot-setup-server-members">1,234 members</div>
+                </div>
+            </div>
+            
+            <div class="discord-bot-setup-server" data-server-id="server2">
+                <div class="discord-bot-setup-server-icon">MC</div>
+                <div class="discord-bot-setup-server-info">
+                    <div class="discord-bot-setup-server-name">Motorcycle Club</div>
+                    <div class="discord-bot-setup-server-members">567 members</div>
+                </div>
+            </div>
+            
+            <div class="discord-bot-setup-server" data-server-id="server3">
+                <div class="discord-bot-setup-server-icon">RG</div>
+                <div class="discord-bot-setup-server-info">
+                    <div class="discord-bot-setup-server-name">Riders Group</div>
+                    <div class="discord-bot-setup-server-members">89 members</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 3: Configure -->
+    <div class="discord-bot-setup-section" data-step="3" style="display: none;">
+        <h2 class="discord-bot-setup-section-title">
+            <span class="discord-bot-setup-section-number">3</span>
+            Configure Bot Features
+        </h2>
+        <p class="discord-bot-setup-section-description">
+            Choose which features you want to enable for your server:
+        </p>
+        
+        <div class="discord-bot-setup-config">
+            <div class="discord-bot-setup-option">
+                <div class="discord-bot-setup-option-info">
+                    <div class="discord-bot-setup-option-title">Bike Lookup Commands</div>
+                    <div class="discord-bot-setup-option-description">
+                        Enable /bike command to search motorcycle specifications
+                    </div>
+                </div>
+                <label class="discord-bot-setup-toggle">
+                    <input type="checkbox" checked data-option="bike-lookup">
+                    <span class="discord-bot-setup-toggle-slider"></span>
+                </label>
+            </div>
+            
+            <div class="discord-bot-setup-option">
+                <div class="discord-bot-setup-option-info">
+                    <div class="discord-bot-setup-option-title">Virtual Garage Integration</div>
+                    <div class="discord-bot-setup-option-description">
+                        Allow members to manage their BikeNode garage from Discord
+                    </div>
+                </div>
+                <label class="discord-bot-setup-toggle">
+                    <input type="checkbox" checked data-option="garage-integration">
+                    <span class="discord-bot-setup-toggle-slider"></span>
+                </label>
+            </div>
+            
+            <div class="discord-bot-setup-option">
+                <div class="discord-bot-setup-option-info">
+                    <div class="discord-bot-setup-option-title">Welcome Messages</div>
+                    <div class="discord-bot-setup-option-description">
+                        Send welcome messages to new members
+                    </div>
+                </div>
+                <label class="discord-bot-setup-toggle">
+                    <input type="checkbox" data-option="welcome-messages">
+                    <span class="discord-bot-setup-toggle-slider"></span>
+                </label>
+            </div>
+            
+            <div class="discord-bot-setup-option">
+                <div class="discord-bot-setup-option-info">
+                    <div class="discord-bot-setup-option-title">Event Reminders</div>
+                    <div class="discord-bot-setup-option-description">
+                        Post reminders for upcoming BikeNode events
+                    </div>
+                </div>
+                <label class="discord-bot-setup-toggle">
+                    <input type="checkbox" checked data-option="event-reminders">
+                    <span class="discord-bot-setup-toggle-slider"></span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="discord-bot-setup-channels" style="display: none;">
+            <h3>Channel Configuration</h3>
+            <div class="discord-bot-setup-channel-group">
+                <label class="discord-bot-setup-channel-label" for="welcome-channel">
+                    Welcome Channel
+                </label>
+                <select class="discord-bot-setup-channel-select" id="welcome-channel" data-channel="welcome">
+                    <option value="">Select a channel</option>
+                    <option value="general">#general</option>
+                    <option value="welcome">#welcome</option>
+                    <option value="introductions">#introductions</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="discord-bot-setup-actions">
+        <button class="discord-bot-setup-button discord-bot-setup-button-secondary" 
+                data-action="previous" style="display: none;">
+            Previous
+        </button>
+        <button class="discord-bot-setup-button discord-bot-setup-button-primary" 
+                data-action="next">
+            Next Step
+        </button>
+        <button class="discord-bot-setup-button discord-bot-setup-button-primary" 
+                data-action="complete" style="display: none;">
+            Complete Setup
+        </button>
+    </div>
+
+    <!-- Success Message -->
+    <div class="discord-bot-setup-success" style="display: none;">
+        <div class="discord-bot-setup-success-icon">✅</div>
+        <h2 class="discord-bot-setup-success-title">Setup Complete!</h2>
+        <p>The BikeNode bot has been successfully configured for your server.</p>
+        <p>You can now use bot commands in your Discord server.</p>
     </div>
 </div>
+
+<!-- Page-specific JavaScript -->
+<script src="js/discord-bot-setup.js"></script>

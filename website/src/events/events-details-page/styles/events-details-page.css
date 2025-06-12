@@ -1,0 +1,320 @@
+/* events-details-page specific styles */
+.events-details-page-container {
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Hero section */
+.events-details-page-hero {
+    background: var(--color-surface);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.events-details-page-hero-image {
+    width: 100%;
+    height: 400px;
+    background: var(--color-background-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.events-details-page-hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 2rem;
+    color: white;
+}
+
+.events-details-page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.events-details-page-meta {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-size: 1rem;
+}
+
+.events-details-page-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Main content grid */
+.events-details-page-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+/* Details section */
+.events-details-page-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.events-details-page-section {
+    background: var(--color-surface);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.events-details-page-section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+}
+
+.events-details-page-description {
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+/* Info grid */
+.events-details-page-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.events-details-page-info-item {
+    padding: 1rem;
+    background: var(--color-background);
+    border-radius: 0.375rem;
+}
+
+.events-details-page-info-label {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.events-details-page-info-value {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+/* Map placeholder */
+.events-details-page-map {
+    height: 300px;
+    background: var(--color-background-secondary);
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-secondary);
+}
+
+/* Sidebar */
+.events-details-page-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Registration card */
+.events-details-page-registration {
+    background: var(--color-surface);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.events-details-page-price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+}
+
+.events-details-page-spots {
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+}
+
+.events-details-page-register-button {
+    width: 100%;
+    padding: 1rem;
+    background: var(--color-accent);
+    color: white;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.events-details-page-register-button:hover {
+    background: var(--color-accent-dark);
+}
+
+.events-details-page-register-button:disabled {
+    background: var(--color-text-secondary);
+    cursor: not-allowed;
+}
+
+/* Organizer card */
+.events-details-page-organizer {
+    background: var(--color-surface);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.events-details-page-organizer-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.events-details-page-organizer-avatar {
+    width: 60px;
+    height: 60px;
+    background: var(--color-background-secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.events-details-page-organizer-details {
+    flex: 1;
+}
+
+.events-details-page-organizer-name {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+}
+
+.events-details-page-organizer-events {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
+
+.events-details-page-contact-button {
+    width: 100%;
+    padding: 0.75rem;
+    background: transparent;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.events-details-page-contact-button:hover {
+    background: var(--color-accent);
+    color: white;
+}
+
+/* Share section */
+.events-details-page-share {
+    background: var(--color-surface);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.events-details-page-share-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.events-details-page-share-button {
+    flex: 1;
+    padding: 0.75rem;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.events-details-page-share-button:hover {
+    background: var(--color-background-secondary);
+}
+
+/* Participants section */
+.events-details-page-participants-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.events-details-page-participant {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--color-background);
+    border-radius: 0.375rem;
+}
+
+.events-details-page-participant-avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--color-background-secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+}
+
+.events-details-page-participant-name {
+    flex: 1;
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .events-details-page-container {
+        padding: 1rem;
+    }
+    
+    .events-details-page-hero-image {
+        height: 250px;
+    }
+    
+    .events-details-page-title {
+        font-size: 1.875rem;
+    }
+    
+    .events-details-page-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .events-details-page-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .events-details-page-meta {
+        font-size: 0.875rem;
+        gap: 1rem;
+    }
+}

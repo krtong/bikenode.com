@@ -3,26 +3,29 @@ layout: bikenode-main-layout-01
 title: Browse Marketplace - BikeNode
 ---
 
+<!-- Page-specific styles -->
+<link rel="stylesheet" href="styles/marketplace-browse-listings.css">
+
 <div class="marketplace-browse-listings-container">
-    <div class="BN-Global-card BN-Global-mb-4">
-        <h1 class="BN-Global-font-2xl BN-Global-font-bold BN-Global-text-primary BN-Global-mb-2">Marketplace</h1>
-        <p class="BN-Global-text-secondary">Browse bikes, parts, and gear from the community</p>
+    <div class="marketplace-browse-listings-header">
+        <h1 class="marketplace-browse-listings-title">Marketplace</h1>
+        <p class="marketplace-browse-listings-subtitle">Browse bikes, parts, and gear from the community</p>
     </div>
     
-    <div class="BN-Global-card BN-Global-mb-3">
-        <div class="marketplace-browse-listings-filters BN-Global-mb-3">
-            <div class="BN-Global-form-group">
-                <input type="text" class="BN-Global-form-control" placeholder="Search marketplace...">
+    <div class="marketplace-browse-listings-filters-card">
+        <div class="marketplace-browse-listings-filters">
+            <div class="marketplace-browse-listings-search-group">
+                <input type="text" class="marketplace-browse-listings-search-input" placeholder="Search marketplace...">
             </div>
-            <div class="BN-Global-flex BN-Global-gap-2">
-                <select class="BN-Global-form-select">
+            <div class="marketplace-browse-listings-filter-row">
+                <select class="marketplace-browse-listings-select" data-filter="category">
                     <option>All Categories</option>
                     <option>Complete Bikes</option>
                     <option>Parts & Components</option>
                     <option>Gear & Apparel</option>
                     <option>Accessories</option>
                 </select>
-                <select class="BN-Global-form-select">
+                <select class="marketplace-browse-listings-select" data-filter="sort">
                     <option>Sort by: Newest</option>
                     <option>Price: Low to High</option>
                     <option>Price: High to Low</option>
@@ -32,46 +35,49 @@ title: Browse Marketplace - BikeNode
         </div>
     </div>
     
-    <div class="BN-Global-card-grid BN-Global-card-grid-3">
+    <div class="marketplace-browse-listings-grid">
         <!-- Example listing cards -->
-        <div class="BN-Global-card marketplace-browse-listings-item">
-            <div class="marketplace-browse-listings-image BN-Global-mb-2">
-                <div class="BN-Global-bg-secondary BN-Global-rounded" style="height: 200px; display: flex; align-items: center; justify-content: center;">
-                    <span class="BN-Global-text-secondary">Bike Image</span>
+        <div class="marketplace-browse-listings-item">
+            <div class="marketplace-browse-listings-image">
+                <div class="marketplace-browse-listings-image-placeholder">
+                    <span class="marketplace-browse-listings-image-text">Bike Image</span>
                 </div>
             </div>
-            <h3 class="BN-Global-font-lg BN-Global-font-medium BN-Global-mb-1">2023 Trek Domane SL6</h3>
-            <p class="BN-Global-text-accent BN-Global-font-xl BN-Global-font-bold BN-Global-mb-1">$3,500</p>
-            <p class="BN-Global-text-secondary BN-Global-font-sm BN-Global-mb-2">San Francisco, CA • 2 days ago</p>
-            <a href="/marketplace-item-details/" class="BN-Global-btn BN-Global-btn-secondary BN-Global-w-100">View Details</a>
+            <h3 class="marketplace-browse-listings-item-title">2023 Trek Domane SL6</h3>
+            <p class="marketplace-browse-listings-item-price">$3,500</p>
+            <p class="marketplace-browse-listings-item-meta">San Francisco, CA • 2 days ago</p>
+            <a href="/marketplace-item-details/" class="marketplace-browse-listings-item-button">View Details</a>
         </div>
         
-        <div class="BN-Global-card marketplace-browse-listings-item">
-            <div class="marketplace-browse-listings-image BN-Global-mb-2">
-                <div class="BN-Global-bg-secondary BN-Global-rounded" style="height: 200px; display: flex; align-items: center; justify-content: center;">
-                    <span class="BN-Global-text-secondary">Part Image</span>
+        <div class="marketplace-browse-listings-item">
+            <div class="marketplace-browse-listings-image">
+                <div class="marketplace-browse-listings-image-placeholder">
+                    <span class="marketplace-browse-listings-image-text">Part Image</span>
                 </div>
             </div>
-            <h3 class="BN-Global-font-lg BN-Global-font-medium BN-Global-mb-1">Shimano Ultegra R8000 Groupset</h3>
-            <p class="BN-Global-text-accent BN-Global-font-xl BN-Global-font-bold BN-Global-mb-1">$800</p>
-            <p class="BN-Global-text-secondary BN-Global-font-sm BN-Global-mb-2">Oakland, CA • 5 days ago</p>
-            <a href="/marketplace-item-details/" class="BN-Global-btn BN-Global-btn-secondary BN-Global-w-100">View Details</a>
+            <h3 class="marketplace-browse-listings-item-title">Shimano Ultegra R8000 Groupset</h3>
+            <p class="marketplace-browse-listings-item-price">$800</p>
+            <p class="marketplace-browse-listings-item-meta">Oakland, CA • 5 days ago</p>
+            <a href="/marketplace-item-details/" class="marketplace-browse-listings-item-button">View Details</a>
         </div>
         
-        <div class="BN-Global-card marketplace-browse-listings-item">
-            <div class="marketplace-browse-listings-image BN-Global-mb-2">
-                <div class="BN-Global-bg-secondary BN-Global-rounded" style="height: 200px; display: flex; align-items: center; justify-content: center;">
-                    <span class="BN-Global-text-secondary">Gear Image</span>
+        <div class="marketplace-browse-listings-item">
+            <div class="marketplace-browse-listings-image">
+                <div class="marketplace-browse-listings-image-placeholder">
+                    <span class="marketplace-browse-listings-image-text">Gear Image</span>
                 </div>
             </div>
-            <h3 class="BN-Global-font-lg BN-Global-font-medium BN-Global-mb-1">AGV K6 Helmet - Size L</h3>
-            <p class="BN-Global-text-accent BN-Global-font-xl BN-Global-font-bold BN-Global-mb-1">$250</p>
-            <p class="BN-Global-text-secondary BN-Global-font-sm BN-Global-mb-2">San Jose, CA • 1 week ago</p>
-            <a href="/marketplace-item-details/" class="BN-Global-btn BN-Global-btn-secondary BN-Global-w-100">View Details</a>
+            <h3 class="marketplace-browse-listings-item-title">AGV K6 Helmet - Size L</h3>
+            <p class="marketplace-browse-listings-item-price">$250</p>
+            <p class="marketplace-browse-listings-item-meta">San Jose, CA • 1 week ago</p>
+            <a href="/marketplace-item-details/" class="marketplace-browse-listings-item-button">View Details</a>
         </div>
     </div>
     
-    <div class="BN-Global-text-center BN-Global-mt-4">
-        <button class="BN-Global-btn BN-Global-btn-secondary">Load More Listings</button>
+    <div class="marketplace-browse-listings-load-more">
+        <button class="marketplace-browse-listings-load-button">Load More Listings</button>
     </div>
 </div>
+
+<!-- Page-specific JavaScript -->
+<script src="js/marketplace-browse-listings.js"></script>
