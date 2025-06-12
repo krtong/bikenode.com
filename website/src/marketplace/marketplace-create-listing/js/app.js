@@ -72,7 +72,7 @@ class SellItemApp {
         // Modal close buttons
         document.querySelectorAll('[data-close-modal]').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                e.target.closest('.BN-Global-modal').style.display = 'none';
+                e.target.closest('.marketplace-create-listing-modal').style.display = 'none';
             });
         });
     }

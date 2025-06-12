@@ -75,7 +75,7 @@ class VirtualGarageApp {
         }
         
         // Modal close on background click
-        document.querySelectorAll('.BN-Global-modal').forEach(modal => {
+        document.querySelectorAll('.bikes-my-garage-modal').forEach(modal => {
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     modal.classList.remove('active');

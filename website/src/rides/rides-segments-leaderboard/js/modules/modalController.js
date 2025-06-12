@@ -12,7 +12,7 @@ function initModalClosing() {
     // Close buttons
     document.querySelectorAll('.modal-close').forEach(btn => {
         btn.addEventListener('click', () => {
-            const modal = btn.closest('.BN-Global-modal');
+            const modal = btn.closest('.rides-segments-leaderboard-modal');
             closeModal(modal);
         });
     });
@@ -20,7 +20,7 @@ function initModalClosing() {
     // Overlay clicks
     document.querySelectorAll('.modal-overlay').forEach(overlay => {
         overlay.addEventListener('click', () => {
-            const modal = overlay.closest('.BN-Global-modal');
+            const modal = overlay.closest('.rides-segments-leaderboard-modal');
             closeModal(modal);
         });
     });
@@ -28,7 +28,7 @@ function initModalClosing() {
     // ESC key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            const activeModal = document.querySelector('.BN-Global-modal.active');
+            const activeModal = document.querySelector('.rides-segments-leaderboard-modal.active');
             if (activeModal) closeModal(activeModal);
         }
     });

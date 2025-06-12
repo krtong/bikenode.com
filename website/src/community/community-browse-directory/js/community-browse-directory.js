@@ -23,7 +23,7 @@ if (searchInput) {
 }
 
 // Mock join community
-document.querySelectorAll('.BN-Global-btn, .community-browse-directory-join-link').forEach(btn => {
+document.querySelectorAll('.community-browse-directory-btn, .community-browse-directory-join-link').forEach(btn => {
     btn.addEventListener('click', function(e) {
         if (this.textContent.includes('Join') || this.textContent.includes('View') || this.textContent.includes('Load More') || this.textContent.includes('Create')) {
             e.preventDefault();

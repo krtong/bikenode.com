@@ -471,7 +471,7 @@
         justify-content: stretch;
     }
     
-    .profile-achievements-list-header-actions .BN-Global-btn {
+    .profile-achievements-list-header-actions .profile-achievements-list-btn {
         flex: 1;
     }
     

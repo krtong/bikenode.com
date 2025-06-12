@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const submitBtn = this.querySelector('.BN-Global-btn-primary');
+            const submitBtn = this.querySelector('.settings-account-page-btn-primary');
             const originalText = submitBtn.textContent;
             
             submitBtn.textContent = 'Saving...';
