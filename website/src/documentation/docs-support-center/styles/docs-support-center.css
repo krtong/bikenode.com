@@ -1,0 +1,48 @@
+/* docs-support-center specific styles */
+
+.docs-support-center-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.docs-support-center-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.docs-support-center-subtitle {
+    color: var(--color-text-secondary);
+    margin-bottom: 2rem;
+}
+
+.docs-support-center-card {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.docs-support-center-card:last-child {
+    margin-bottom: 0;
+}
+
+.docs-support-center-card-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.docs-support-center-card-text {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0.25rem;
+}
+
+.docs-support-center-card-text:last-child {
+    margin-bottom: 0;
+}
