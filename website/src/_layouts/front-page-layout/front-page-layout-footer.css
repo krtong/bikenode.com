@@ -1,10 +1,11 @@
 /* Front Page Layout Footer Styles */
 
 .front-page-layout-footer {
-    background: #111827;
-    color: #9ca3af;
+    background: var(--bg-secondary, #36393f);
+    color: var(--text-secondary, #b9bbbe);
     padding: 64px 0 32px;
     margin-top: 80px;
+    border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
 }
 
 .front-page-layout-footer-container {
@@ -32,7 +33,7 @@
 }
 
 .front-page-layout-footer-logo {
-    color: #3b82f6;
+    color: var(--accent, #5865f2);
 }
 
 .front-page-layout-footer-logo-text {
@@ -72,7 +73,7 @@
 
 .front-page-layout-footer-newsletter-button {
     padding: 10px 20px;
-    background: #3b82f6;
+    background: var(--accent, #5865f2);
     color: white;
     border: none;
     border-radius: 8px;
@@ -82,7 +83,7 @@
 }
 
 .front-page-layout-footer-newsletter-button:hover {
-    background: #2563eb;
+    background: var(--accent-hover, #4752c4);
 }
 
 .front-page-layout-footer-column h4 {
@@ -151,8 +152,8 @@
 
 /* Inline styles extracted from front-page-layout-footer.njk */
 .front-page-layout-footer-container {
-    background-color: #111827;
-    color: #9ca3af;
+    background-color: var(--bg-secondary, #36393f);
+    color: var(--text-secondary, #b9bbbe);
     padding: 4rem 0 2rem;
     margin-top: 5rem;
 }
@@ -186,10 +187,15 @@
     text-decoration: none;
 }
 
+.front-page-layout-footer-logo-img {
+    height: 36px;
+    width: auto;
+}
+
 .front-page-layout-footer-logo-icon {
     width: 40px;
     height: 40px;
-    background-color: #3b82f6;
+    background-color: var(--accent, #5865f2);
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -224,8 +230,8 @@
 .front-page-layout-footer-newsletter-input {
     flex: 1;
     padding: 0.625rem 1rem;
-    background-color: #1f2937;
-    border: 1px solid #374151;
+    background-color: var(--bg-tertiary, #40444b);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
     border-radius: 6px;
     color: white;
     font-size: 0.875rem;
@@ -242,7 +248,7 @@
 
 .front-page-layout-footer-newsletter-btn {
     padding: 0.625rem 1.25rem;
-    background-color: #3b82f6;
+    background-color: var(--accent, #5865f2);
     color: white;
     border: none;
     border-radius: 6px;
@@ -253,7 +259,7 @@
 }
 
 .front-page-layout-footer-newsletter-btn:hover {
-    background-color: #2563eb;
+    background-color: var(--accent-hover, #4752c4);
 }
 
 .front-page-layout-footer-column {
@@ -284,7 +290,7 @@
 
 .front-page-layout-footer-divider {
     border: none;
-    border-top: 1px solid #374151;
+    border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
     margin: 2rem 0;
 }
 
@@ -309,17 +315,17 @@
 .front-page-layout-footer-social-link {
     width: 40px;
     height: 40px;
-    background-color: #1f2937;
+    background-color: var(--bg-tertiary, #40444b);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #9ca3af;
+    color: var(--text-secondary, #b9bbbe);
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .front-page-layout-footer-social-link:hover {
-    background-color: #374151;
+    background-color: rgba(255, 255, 255, 0.1);
     color: white;
 }
 

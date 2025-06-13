@@ -1,5 +1,12 @@
 # Peraves Scraper
 
+> **⚠️ Scraping Principles**
+> - Work with real Peraves website data and verified specifications only
+> - Don't assume model details - verify from actual sources
+> - Document real findings from data collection
+> - Leave room for discovering new models and specification updates
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 Scrapes cabin motorcycle data from Peraves/PERAVES CZ, manufacturer of the Ecomobile, MonoTracer, and MonoRacer series.
 
 ## Models Covered

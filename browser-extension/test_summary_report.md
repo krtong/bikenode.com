@@ -1,5 +1,12 @@
 # BikeNode Web Extension Test Summary Report
 
+> **⚠️ Test Reporting Principles**
+> - Report only actual test results from real test runs
+> - Don't assume functionality - verify through actual testing
+> - Document real errors and failures discovered
+> - Leave room for discovering unexpected behaviors
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 ## Overview
 Comprehensive testing of the BikeNode Universal Classified Ad Scraper extension using Stagehand browser automation.
 

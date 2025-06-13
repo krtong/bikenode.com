@@ -1,5 +1,12 @@
 # Claude AI Integration for BikeNode Discord Bot
 
+> **⚠️ Integration Principles**
+> - Work with real Discord data and actual bot functionality only
+> - Don't make assumptions about Discord API behavior - test and verify
+> - Document actual implementation details, not theoretical features
+> - Leave room for discovering edge cases and limitations
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 This integration allows Discord users to send messages to Claude AI and receive responses through the BikeNode Discord bot.
 
 ## Features

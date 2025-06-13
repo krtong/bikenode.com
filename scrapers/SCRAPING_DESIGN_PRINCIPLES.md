@@ -138,9 +138,13 @@ Before deploying any scraper, verify:
 - [ ] NO content filtering based on perceived relevance
 - [ ] NO categorization of pages or elements
 - [ ] NO interpretation of data during collection
+- [ ] NO placeholder data or mock responses
+- [ ] NO generic file names (always use specific, descriptive names)
 - [ ] ALL selectors are documented with evidence
 - [ ] ALL patterns are discovered from real data
 - [ ] Raw data is preserved for future reference
+- [ ] CHECKED for existing similar files before creating new ones
+- [ ] VERIFIED all referenced files actually exist
 
 ## Remember
 

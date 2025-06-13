@@ -13,10 +13,10 @@ from datetime import datetime
 import pandas as pd
 
 # Add parent directory to path
-sys.path.append(str(Path(__file__).parent.parent / '00_env'))
+sys.path.append(str(Path(__file__).parent.parent / 'orchestration'))
 
 from config import config
-from utils import (
+from utils_minimal import (
     setup_logging, load_ndjson, save_json, clean_text,
     extract_price, create_timestamp
 )

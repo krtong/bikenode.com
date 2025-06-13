@@ -1,5 +1,12 @@
 # Lit Motors C-1 Scraper
 
+> **⚠️ Scraping Principles**
+> - No mock data or placeholders - work with real website data only
+> - Don't make assumptions about specifications - discover through DOM scouting
+> - Document actual findings from real data collection
+> - Leave room for discovering project updates and changes
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 Scrapes data for Lit Motors' self-balancing enclosed electric motorcycle project.
 
 ## Overview

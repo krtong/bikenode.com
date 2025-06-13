@@ -16,10 +16,10 @@ from psycopg2 import sql
 import json
 
 # Add parent directory to path
-sys.path.append(str(Path(__file__).parent.parent / '00_env'))
+sys.path.append(str(Path(__file__).parent.parent / 'orchestration'))
 
 from config import config
-from utils import setup_logging, create_timestamp, save_json
+from utils_minimal import setup_logging, create_timestamp, save_json
 
 
 class DatabaseLoader:

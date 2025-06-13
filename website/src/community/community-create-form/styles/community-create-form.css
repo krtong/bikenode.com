@@ -1,14 +1,19 @@
+/* Community Create Form - Discord-inspired dark theme */
+
 .community-create-form-container {
     max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
     display: grid;
     grid-template-columns: 1fr;
     gap: 32px;
 }
 
 .community-create-form-wrapper {
-    background: var(--card-bg);
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 32px;
 }
 
@@ -25,14 +30,14 @@
 }
 
 .community-create-form-section-header h2 {
-    color: var(--text-primary);
+    color: #e4e4e7;
     margin: 0 0 8px 0;
     font-size: 1.25rem;
     font-weight: 600;
 }
 
 .community-create-form-section-header p {
-    color: var(--text-secondary);
+    color: #a3a3a3;
     margin: 0;
     font-size: 0.9rem;
 }
@@ -53,7 +58,7 @@
 }
 
 .community-create-form-group label {
-    color: var(--text-primary);
+    color: #e4e4e7;
     font-weight: 500;
     margin-bottom: 8px;
     font-size: 0.9rem;
@@ -66,7 +71,7 @@
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    color: var(--text-primary);
+    color: #e4e4e7;
     font-size: 14px;
     transition: all 0.2s ease;
 }
@@ -75,12 +80,12 @@
 .community-create-form-group select:focus,
 .community-create-form-group textarea:focus {
     outline: none;
-    border-color: var(--accent);
+    border-color: #5865f2;
     background: rgba(255, 255, 255, 0.08);
 }
 
 .community-create-form-field-hint {
-    color: var(--text-secondary);
+    color: #a3a3a3;
     font-size: 0.8rem;
     margin-top: 4px;
 }
@@ -113,7 +118,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-secondary);
+    color: #a3a3a3;
 }
 
 .community-create-form-upload-controls {
@@ -123,7 +128,7 @@
 }
 
 .community-create-form-upload-hint {
-    color: var(--text-secondary);
+    color: #a3a3a3;
     font-size: 0.8rem;
 }
 
@@ -212,7 +217,7 @@
 .community-create-form-remove-rule {
     background: none;
     border: none;
-    color: var(--text-secondary);
+    color: #a3a3a3;
     cursor: pointer;
     padding: 8px;
     border-radius: 4px;
@@ -272,14 +277,14 @@
 }
 
 .community-create-form-feature-info h3 {
-    color: var(--text-primary);
+    color: #e4e4e7;
     margin: 0 0 4px 0;
     font-size: 1rem;
     font-weight: 600;
 }
 
 .community-create-form-feature-info p {
-    color: var(--text-secondary);
+    color: #a3a3a3;
     margin: 0;
     font-size: 0.9rem;
     line-height: 1.4;
@@ -299,7 +304,7 @@
     right: -400px;
     width: 400px;
     height: 100vh;
-    background: var(--card-bg);
+    background: rgba(26, 26, 26, 0.8);
     border-left: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 1000;
     transition: right 0.3s ease;
@@ -319,7 +324,7 @@
 }
 
 .community-create-form-preview-header h3 {
-    color: var(--text-primary);
+    color: #e4e4e7;
     margin: 0;
     font-size: 1.1rem;
 }
@@ -327,7 +332,7 @@
 .community-create-form-close-preview {
     background: none;
     border: none;
-    color: var(--text-secondary);
+    color: #a3a3a3;
     cursor: pointer;
     padding: 8px;
     border-radius: 4px;
@@ -336,7 +341,7 @@
 
 .community-create-form-close-preview:hover {
     background: rgba(255, 255, 255, 0.1);
-    color: var(--text-primary);
+    color: #e4e4e7;
 }
 
 .community-create-form-community-preview {
@@ -346,7 +351,7 @@
 .community-create-form-preview-banner {
     width: 100%;
     height: 80px;
-    background: linear-gradient(135deg, var(--accent), rgba(88, 101, 242, 0.7));
+    background: linear-gradient(135deg, #5865f2, rgba(88, 101, 242, 0.7));
     border-radius: 8px;
     margin-bottom: 16px;
 }
@@ -367,24 +372,24 @@
     justify-content: center;
     font-size: 1.5rem;
     margin-top: -30px;
-    border: 3px solid var(--card-bg);
+    border: 3px solid rgba(26, 26, 26, 0.8);
 }
 
 .community-create-form-preview-info h2 {
-    color: var(--text-primary);
+    color: #e4e4e7;
     margin: 0 0 8px 0;
     font-size: 1.1rem;
 }
 
 .community-create-form-preview-info p {
-    color: var(--text-secondary);
+    color: #a3a3a3;
     margin: 0 0 12px 0;
     font-size: 0.9rem;
     line-height: 1.4;
 }
 
 .community-create-form-preview-stats {
-    color: var(--text-secondary);
+    color: #a3a3a3;
     font-size: 0.8rem;
 }
 

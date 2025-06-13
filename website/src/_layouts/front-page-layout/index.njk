@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% include "front-page-layout/front-page-layout-head.njk" %}
+    {% include "./front-page-layout-head.njk" %}
 </head>
 <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
     <!-- Background Animation Canvas -->
     <canvas id="front-page-layout-background-canvas"></canvas>
     
-    {% include "front-page-layout/front-page-layout-header.njk" %}
+    {% include "./front-page-layout-header.njk" %}
     
     {{ content | safe }}
     
-    {% include "front-page-layout/front-page-layout-footer.njk" %}
+    {% include "./front-page-layout-footer.njk" %}
     
-    <script src="/_layouts/front-page-layout/front-page-layout-background-animation.js"></script>
+    <script src="./front-page-layout-background-animation.js"></script>
     {% if customJS %}
     {% for script in customJS %}
     <script src="{{ script }}"></script>

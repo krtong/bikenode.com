@@ -1,5 +1,18 @@
 # BikeNode Website
 
+> **⚠️ CRITICAL: Read Before ANY Development**
+> 
+> **MANDATORY READING BEFORE PROCEEDING:**
+> 1. [README_BEFORE_MAKING_ANY_PAGE.md](src/README_BEFORE_MAKING_ANY_PAGE.md)
+> 2. [SELF_CONTAINED_ARCHITECTURE.md](src/SELF_CONTAINED_ARCHITECTURE.md)
+> 
+> **ABSOLUTE RULES:**
+> - **NO PLACEHOLDERS** - No mock data, no "coming soon", no Lorem ipsum
+> - **CHECK BEFORE CREATING** - Always search for existing files with similar names
+> - **VERIFY LINKS** - Never link to a page without confirming it exists
+> - **HYPERSPECIFIC NAMES** - No generic names like "styles.css" or "utils.js"
+> - **SELF-CONTAINED** - Each page in its own folder with ALL its assets
+
 A modern static website built with 11ty (Eleventy) for the BikeNode platform - connecting bike enthusiasts through virtual garages, communities, and Discord integration.
 
 ## 🚀 Quick Start

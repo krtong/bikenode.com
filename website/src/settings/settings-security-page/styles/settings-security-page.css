@@ -78,7 +78,7 @@
 
 .settings-security-page-strength-medium {
     width: 66%;
-    background: #f59e0b;
+    background: #fee75c;
 }
 
 .settings-security-page-strength-strong {
@@ -327,7 +327,7 @@
 .settings-security-page-alert-warning {
     background: rgba(251, 191, 36, 0.1);
     border: 1px solid rgba(251, 191, 36, 0.3);
-    color: #f59e0b;
+    color: #fee75c;
 }
 
 .settings-security-page-alert-error {

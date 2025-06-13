@@ -1,5 +1,12 @@
 # Fake Data Removal Summary
 
+> **⚠️ Data Integrity Principles**
+> - Document only actual code changes and real data removal
+> - Don't assume data sources - verify through actual scraping
+> - Record real implementation details and validation methods
+> - Leave room for discovering additional fake data patterns
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 ## Overview
 All fake data generation has been removed from the cabin-motorcycles scrapers project. The scrapers now only return real data scraped from actual websites, or empty results when no data is found.
 

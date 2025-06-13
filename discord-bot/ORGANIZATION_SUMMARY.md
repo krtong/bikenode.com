@@ -1,5 +1,12 @@
 # Discord Bot Organization Summary
 
+> **⚠️ Organization Principles**
+> - Document actual file structures and real code organization only
+> - Don't assume file purposes - verify actual functionality
+> - Record real changes made to the codebase
+> - Leave room for discovering additional organization needs
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 ## Changes Made
 
 ### 1. Claude Commands Consolidation

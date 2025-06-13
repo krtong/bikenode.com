@@ -2,6 +2,10 @@
 layout: bikenode-main-layout-01
 title: Dashboard
 showContentHeader: false
+customCSS:
+  - ./styles/dashboard-home-page.css
+customJS:
+  - ./scripts/dashboard-home-page.js
 ---
 
 <!-- Dashboard Container -->
@@ -14,7 +18,7 @@ showContentHeader: false
         <p class="dashboard-home-page-welcome-subtitle">Here's what's happening with your bikes and rides today.</p>
       </div>
       <div class="dashboard-home-page-action-buttons">
-        <a href="/rides-record-tracker/" class="dashboard-home-page-btn-primary">
+        <a href="/rides/rides-record-tracker/" class="dashboard-home-page-btn-primary">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M8 3V13M3 8H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
@@ -91,7 +95,7 @@ showContentHeader: false
     <section class="dashboard-home-page-card dashboard-home-page-activities-card">
       <div class="dashboard-home-page-card-header">
         <h3 class="dashboard-home-page-card-title">Recent Activities</h3>
-        <a href="/rides-my-dashboard/" class="dashboard-home-page-card-link">View All</a>
+        <a href="/rides/rides-my-dashboard/" class="dashboard-home-page-card-link">View All</a>
       </div>
       <div class="dashboard-home-page-activity-list">
         <!-- Activity Item 1 -->
@@ -166,7 +170,7 @@ showContentHeader: false
     <section class="dashboard-home-page-card">
       <div class="dashboard-home-page-card-header">
         <h3 class="dashboard-home-page-card-title">My Bikes</h3>
-        <a href="/bikes-my-garage/" class="dashboard-home-page-card-link">Manage</a>
+        <a href="/bikes/bikes-my-garage/" class="dashboard-home-page-card-link">Manage</a>
       </div>
       <div class="dashboard-home-page-bike-cards">
         <!-- Bike 1 -->
@@ -199,7 +203,7 @@ showContentHeader: false
         </div>
 
         <!-- Add Bike Button -->
-        <a href="/bikes-add-form/" class="dashboard-home-page-add-bike-card">
+        <a href="/bikes/bikes-add-form/" class="dashboard-home-page-add-bike-card">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path d="M12 6V18M6 12H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
@@ -220,13 +224,13 @@ showContentHeader: false
       </div>
       <div class="dashboard-home-page-progress-chart">
         <div class="dashboard-home-page-chart-bars">
-          <div class="dashboard-home-page-chart-bar" data-day="Mon" style="--height: 80%"></div>
-          <div class="dashboard-home-page-chart-bar" data-day="Tue" style="--height: 65%"></div>
-          <div class="dashboard-home-page-chart-bar" data-day="Wed" style="--height: 90%"></div>
-          <div class="dashboard-home-page-chart-bar" data-day="Thu" style="--height: 45%"></div>
-          <div class="dashboard-home-page-chart-bar dashboard-home-page-chart-bar-today" data-day="Fri" style="--height: 70%"></div>
-          <div class="dashboard-home-page-chart-bar" data-day="Sat" style="--height: 0%"></div>
-          <div class="dashboard-home-page-chart-bar" data-day="Sun" style="--height: 0%"></div>
+          <div class="dashboard-home-page-chart-bar dashboard-home-page-chart-bar-mon" data-day="Mon"></div>
+          <div class="dashboard-home-page-chart-bar dashboard-home-page-chart-bar-tue" data-day="Tue"></div>
+          <div class="dashboard-home-page-chart-bar dashboard-home-page-chart-bar-wed" data-day="Wed"></div>
+          <div class="dashboard-home-page-chart-bar dashboard-home-page-chart-bar-thu" data-day="Thu"></div>
+          <div class="dashboard-home-page-chart-bar dashboard-home-page-chart-bar-today dashboard-home-page-chart-bar-fri" data-day="Fri"></div>
+          <div class="dashboard-home-page-chart-bar dashboard-home-page-chart-bar-sat" data-day="Sat"></div>
+          <div class="dashboard-home-page-chart-bar dashboard-home-page-chart-bar-sun" data-day="Sun"></div>
         </div>
       </div>
       <div class="dashboard-home-page-progress-summary">
@@ -251,7 +255,7 @@ showContentHeader: false
     <section class="dashboard-home-page-card">
       <div class="dashboard-home-page-card-header">
         <h3 class="dashboard-home-page-card-title">Upcoming Events</h3>
-        <a href="/events-browse-calendar/" class="dashboard-home-page-card-link">View All</a>
+        <a href="/events/events-browse-calendar/" class="dashboard-home-page-card-link">View All</a>
       </div>
       <div class="dashboard-home-page-event-list">
         <!-- Event 1 -->
@@ -340,31 +344,28 @@ showContentHeader: false
     </svg>
   </button>
   <div class="dashboard-home-page-fab-menu" id="dashboard-home-page-fab-menu">
-    <a href="/bikes-add-form/" class="dashboard-home-page-fab-item" title="Add Bike">
+    <a href="/bikes/bikes-add-form/" class="dashboard-home-page-fab-item" title="Add Bike">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
         <path d="M5 15C6.65685 15 8 13.6569 8 12C8 10.3431 6.65685 9 5 9C3.34315 9 2 10.3431 2 12C2 13.6569 3.34315 15 5 15Z" stroke="currentColor" stroke-width="1.5"/>
         <path d="M15 15C16.6569 15 18 13.6569 18 12C18 10.3431 16.6569 9 15 9C13.3431 9 12 10.3431 12 12C12 13.6569 13.3431 15 15 15Z" stroke="currentColor" stroke-width="1.5"/>
         <path d="M8 12H12M10 6L8 12L12 12L15 6" stroke="currentColor" stroke-width="1.5"/>
       </svg>
     </a>
-    <a href="/rides-record-tracker/" class="dashboard-home-page-fab-item" title="Record Ride">
+    <a href="/rides/rides-record-tracker/" class="dashboard-home-page-fab-item" title="Record Ride">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
         <path d="M2 6L5 3L7 5L10 2L13 4V12C13 12.5523 12.5523 13 12 13H3C2.44772 13 2 12.5523 2 12V6Z" stroke="currentColor"/>
       </svg>
     </a>
-    <a href="/rides-create-planner/" class="dashboard-home-page-fab-item" title="Create Route">
+    <a href="/rides/rides-create-planner/" class="dashboard-home-page-fab-item" title="Create Route">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
         <path d="M10 2V18M10 2L8 4M10 2L12 4" stroke="currentColor" stroke-linecap="round"/>
         <circle cx="10" cy="10" r="2" stroke="currentColor"/>
       </svg>
     </a>
-    <a href="/marketplace-create-listing/" class="dashboard-home-page-fab-item" title="List Item">
+    <a href="/marketplace/marketplace-create-listing/" class="dashboard-home-page-fab-item" title="List Item">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
         <path d="M2 2H18L16 7H4L2 2ZM2 2L4 7M4 7L5 13H15L16 7" stroke="currentColor" stroke-linejoin="round"/>
       </svg>
     </a>
   </div>
 </div>
-
-<link rel="stylesheet" href="./styles/dashboard-home-page.css">
-<script src="./scripts/dashboard-home-page.js"></script>

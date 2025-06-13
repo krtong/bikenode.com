@@ -1,5 +1,12 @@
 # BMW C1 Scraper
 
+> **⚠️ Scraping Principles**
+> - No mock data or placeholders - work with real BMW C1 sources only
+> - Don't assume specifications - discover through DOM scouting
+> - Document actual findings from web archives and databases
+> - Leave room for discovering additional historical information
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 Scrapes data for BMW's C1 cabin scooter.
 
 ## Overview

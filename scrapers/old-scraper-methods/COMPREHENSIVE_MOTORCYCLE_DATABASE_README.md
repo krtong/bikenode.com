@@ -1,5 +1,11 @@
 # Comprehensive Motorcycle Database System
 
+> **⚠️ Data Collection Standards**
+> Following [SCRAPING_DESIGN_PRINCIPLES.md](../SCRAPING_DESIGN_PRINCIPLES.md):
+> - All data scraped from real sources, no synthetic entries
+> - Specifications verified through actual web scraping
+> - Gaps in data documented, not filled with assumptions
+
 ## Overview
 
 A fully consolidated motorcycle database system that combines 44,113 CSV variants with detailed specifications scraped from motorcyclespecs.co.za, creating a comprehensive resource covering motorcycles from 1894 to 2025.

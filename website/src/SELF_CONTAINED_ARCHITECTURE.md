@@ -11,6 +11,7 @@ This document explains the BikeNode website's self-contained architecture. This 
 2. **NO GENERIC NAMES** - Everything must be explicitly named for what it belongs to. Future readers should intuit exactly what this file is, what it does, and who it belongs to.
 3. **SELF-CONTAINED LAYOUT FOLDERS** - Zero shared components. If two layouts need similar functionality, copy the code into each layout folder and rename it to be specific to that layout.
 4. **COMPLETE ISOLATION** - Changes to one component should NEVER affect another
+5. **LOCAL CSS** - All id's and classes are named with hyperspecificity to the document they belong to. CSS files are located inside the page's folder, not in a shared `_includes` folder.
 
 ## What This Means in Practice
 
@@ -64,7 +65,7 @@ _layouts/
     ├── authorization-page-layout-footer.njk
     └── authorization-page-layout-styles.css
 
-pages/
+src/
 ├── profile/
 │   └── profile-my-page/
 │       ├── index.njk
@@ -229,27 +230,21 @@ Each copy can be customized for its specific layout without affecting others.
 
 ### Page Folder Structure
 ```
-/profile/
+/src/profile/
   └── profile-my-page/
       ├── index.njk
-      ├── components/
-      │   ├── profile-my-page-avatar-widget.njk
-      │   ├── profile-my-page-stats-card.njk
-      │   └── profile-my-page-activity-feed.njk
-      ├── styles/
-      │   ├── profile-my-page-main.css
-      │   ├── profile-my-page-responsive.css
-      │   └── profile-my-page-dark-mode.css
-      ├── scripts/
-      │   ├── profile-my-page-main.js
-      │   ├── profile-my-page-api.js
-      │   └── profile-my-page-interactions.js
-      ├── data/
-      │   ├── profile-my-page-mock-data.json
-      │   └── profile-my-page-config.json
-      └── images/
-          ├── profile-my-page-default-avatar.png
-          └── profile-my-page-achievement-badges.svg
+      │── profile-my-page-component-avatar-widget.njk
+      │── profile-my-page-component-stats-card.njk
+      │── profile-my-page-component-activity-feed.njk
+      │── profile-my-page-style-main.css
+      │── profile-my-page-script-main.js
+      │── profile-my-page-script-api.js
+      │── profile-my-page-script-interactions.js
+      ├── profile-my-page-mock-data/
+      │   └── profile-my-page-mock-data-config.json
+      └── profile-my-page-images/
+          ├── profile-my-page-images-default-avatar.png
+          └── profile-my-page-images-achievement-badges.svg
 ```
 
 ## Data Handling and API Endpoints
@@ -391,6 +386,11 @@ const dashboardHomePageLoadUserSummary = async () => {
 - Could I delete everything else and this would still work?
 - Is every single name unique and descriptive?
 - Am I sharing anything with another component?
+- Did I avoid assumptions and explored/investigated to ensure everything?
+- Did I avoid fake data, placeholders, or mock data that is specific to this page?
+- Did I avoid making new file or folder before checking for existing ones that have a slightly different name?
+- Does this website work and run?
+- Does "npm run dev" build correctly and start the website and api servers?
 
 If any answer is "no", you're doing it wrong.
 

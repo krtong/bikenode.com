@@ -1,0 +1,400 @@
+/* Modern header design for BikeNode Main Layout 01 */
+.bikenode-main-layout-01-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+}
+
+.bikenode-main-layout-01-header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Brand */
+.bikenode-main-layout-01-header-brand {
+    flex-shrink: 0;
+}
+
+.bikenode-main-layout-01-header-brand-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+.bikenode-main-layout-01-header-brand-logo {
+    height: 2rem;
+}
+
+.bikenode-main-layout-01-header-brand-text {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #111827;
+}
+
+/* Navigation */
+.bikenode-main-layout-01-header-nav {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.bikenode-main-layout-01-header-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: #4b5563;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.bikenode-main-layout-01-header-nav-link:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+}
+
+.bikenode-main-layout-01-header-nav-link-active {
+    background-color: #eff6ff;
+    color: #3b82f6;
+}
+
+.bikenode-main-layout-01-header-nav-icon {
+    display: flex;
+    align-items: center;
+}
+
+.bikenode-main-layout-01-header-nav-text {
+    font-size: 0.875rem;
+}
+
+/* Search */
+.bikenode-main-layout-01-header-search {
+    flex: 1;
+    max-width: 25rem;
+}
+
+.bikenode-main-layout-01-header-search-form {
+    position: relative;
+}
+
+.bikenode-main-layout-01-header-search-input {
+    width: 100%;
+    padding: 0.5rem 2.5rem 0.5rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    background-color: #f9fafb;
+    transition: all 0.2s ease;
+}
+
+.bikenode-main-layout-01-header-search-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.bikenode-main-layout-01-header-search-button {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+/* User actions */
+.bikenode-main-layout-01-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.bikenode-main-layout-01-header-action-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.bikenode-main-layout-01-header-action-button:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+}
+
+.bikenode-main-layout-01-header-notification-dot {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #ef4444;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.bikenode-main-layout-01-header-notifications-button[data-notifications]:not([data-notifications="0"])::after {
+    content: attr(data-notifications);
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+    background: #ef4444;
+    color: white;
+    font-size: 0.625rem;
+    font-weight: 600;
+    padding: 0.125rem 0.25rem;
+    border-radius: 9999px;
+    min-width: 1rem;
+    text-align: center;
+}
+
+/* User menu */
+.bikenode-main-layout-01-header-user-menu {
+    position: relative;
+}
+
+.bikenode-main-layout-01-header-user-menu-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.bikenode-main-layout-01-header-user-menu-button:hover {
+    background-color: #f3f4f6;
+    border-color: #e5e7eb;
+}
+
+.bikenode-main-layout-01-header-user-avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.bikenode-main-layout-01-header-dropdown-icon {
+    color: #6b7280;
+}
+
+.bikenode-main-layout-01-header-user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    min-width: 15rem;
+    overflow: hidden;
+}
+
+.bikenode-main-layout-01-header-dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+}
+
+.bikenode-main-layout-01-header-dropdown-avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.bikenode-main-layout-01-header-dropdown-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.bikenode-main-layout-01-header-dropdown-name {
+    font-weight: 600;
+    color: #111827;
+}
+
+.bikenode-main-layout-01-header-dropdown-email {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.bikenode-main-layout-01-header-dropdown-divider {
+    height: 1px;
+    background-color: #e5e7eb;
+}
+
+.bikenode-main-layout-01-header-dropdown-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: #4b5563;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.bikenode-main-layout-01-header-dropdown-link:hover {
+    background-color: #f9fafb;
+    color: #111827;
+}
+
+.bikenode-main-layout-01-header-logout-link {
+    color: #ef4444;
+}
+
+.bikenode-main-layout-01-header-get-started-button {
+    padding: 0.5rem 1.25rem;
+    background-color: #3b82f6;
+    color: white;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: none;
+}
+
+.bikenode-main-layout-01-header-get-started-button:hover {
+    background-color: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Show get started button when logged out */
+body:not(.bikenode-main-layout-01-user-logged-in) .bikenode-main-layout-01-header-get-started-button {
+    display: block;
+}
+
+body:not(.bikenode-main-layout-01-user-logged-in) .bikenode-main-layout-01-header-action-button,
+body:not(.bikenode-main-layout-01-user-logged-in) .bikenode-main-layout-01-header-user-menu {
+    display: none;
+}
+
+/* Mobile menu */
+.bikenode-main-layout-01-header-mobile-menu-button {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.bikenode-main-layout-01-header-menu-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.bikenode-main-layout-01-header-menu-icon span {
+    display: block;
+    width: 1.5rem;
+    height: 2px;
+    background-color: #4b5563;
+    transition: all 0.3s ease;
+}
+
+.bikenode-main-layout-01-header-mobile-menu-button[aria-expanded="true"] .bikenode-main-layout-01-header-menu-icon span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.bikenode-main-layout-01-header-mobile-menu-button[aria-expanded="true"] .bikenode-main-layout-01-header-menu-icon span:nth-child(2) {
+    opacity: 0;
+}
+
+.bikenode-main-layout-01-header-mobile-menu-button[aria-expanded="true"] .bikenode-main-layout-01-header-menu-icon span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.bikenode-main-layout-01-header-mobile-nav {
+    position: fixed;
+    top: 4rem;
+    left: 0;
+    right: 0;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+}
+
+.bikenode-main-layout-01-header-mobile-search {
+    margin-bottom: 1rem;
+}
+
+.bikenode-main-layout-01-header-mobile-search-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+.bikenode-main-layout-01-header-mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.bikenode-main-layout-01-header-mobile-nav-link {
+    padding: 0.75rem 1rem;
+    color: #4b5563;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.bikenode-main-layout-01-header-mobile-nav-link:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .bikenode-main-layout-01-header-search {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .bikenode-main-layout-01-header-nav {
+        display: none;
+    }
+    
+    .bikenode-main-layout-01-header-mobile-menu-button {
+        display: block;
+    }
+    
+    .bikenode-main-layout-01-header-container {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .bikenode-main-layout-01-header-brand-text {
+        display: none;
+    }
+}

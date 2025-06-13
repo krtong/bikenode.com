@@ -17,10 +17,10 @@ import requests
 from bs4 import BeautifulSoup
 
 # Add parent directory to path
-sys.path.append(str(Path(__file__).parent.parent / '00_env'))
+sys.path.append(str(Path(__file__).parent.parent / 'orchestration'))
 
 from config import config
-from utils import setup_logging, load_json, save_json, save_yaml, ensure_dir, create_timestamp
+from utils_minimal import setup_logging, load_json, save_json, save_yaml, ensure_dir, create_timestamp
 
 
 class TemplateProber:

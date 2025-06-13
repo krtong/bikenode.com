@@ -16,7 +16,13 @@ class Config:
     def __init__(self, env_path: Optional[Path] = None):
         """Initialize configuration from environment variables."""
         if env_path is None:
-            env_path = Path(__file__).parent / '.env'
+            # First try root .env file
+            root_env = Path(__file__).parent.parent.parent.parent / '.env'
+            if root_env.exists():
+                env_path = root_env
+            else:
+                # Fallback to 00_env/.env
+                env_path = Path(__file__).parent.parent / '00_env' / '.env'
         
         # Load .env file if it exists
         if env_path.exists():

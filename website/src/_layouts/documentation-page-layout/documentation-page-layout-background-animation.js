@@ -379,16 +379,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const currentCameraX = averageCurve;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            // Background gradient colors
+            // Background gradient colors - BikeNode dark theme
             const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            gradient.addColorStop(0, '#242a36');
-            gradient.addColorStop(0.4, '#131519');
-            gradient.addColorStop(0.7, '#080809');
+            gradient.addColorStop(0, '#1a1d21');
+            gradient.addColorStop(0.4, '#141619');
+            gradient.addColorStop(0.7, '#0f1114');
             gradient.addColorStop(1, '#000000');
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            ctx.strokeStyle = '#90b40f'; // this does nothing.
+            ctx.strokeStyle = '#2c3034'; // Dark road color matching theme
             ctx.lineWidth = 1.5; // Increased from 1 to 1.5 for more visibility
 
             const minZ = cameraZ;
@@ -419,10 +419,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const midZ = segment.p1.world.z;
                 const fibMod = Math.floor(midZ / 100) % fibSequence.length;
                 if (fibMod < 3 || fibMod > 8) {
-                    ctx.strokeStyle = '#4651a8'; // Brighter center line
+                    ctx.strokeStyle = '#5865f2'; // BikeNode accent color for center line
                     drawLine(p1.x, p1.y, p2.x, p2.y, fade * 0.9); // Increased from 0.8 to 0.9
                     // Remember to reset stroke style after
-                    ctx.strokeStyle = '#171a3c';
+                    ctx.strokeStyle = '#2c3034';
                 }
             }
 

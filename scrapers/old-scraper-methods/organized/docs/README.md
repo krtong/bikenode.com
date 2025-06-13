@@ -1,5 +1,12 @@
 # 99Spokes Scraper Pipeline
 
+> **⚠️ Scraping Principles**
+> - Work with real 99spokes website data only - no mock or placeholder data
+> - Don't make assumptions about site structure - verify through actual scraping
+> - Document real findings from scraping runs
+> - Leave room for discovering edge cases and site changes
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 ## 5-Stage Scraping Pipeline
 
 ### Stage 1: Brand/Make Scraper

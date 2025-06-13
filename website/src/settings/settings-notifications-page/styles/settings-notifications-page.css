@@ -102,7 +102,7 @@
 }
 
 input:checked + .settings-notifications-page-slider {
-    background-color: var(--accent);
+    background-color: #5865f2;
 }
 
 input:checked + .settings-notifications-page-slider:before {
@@ -168,7 +168,7 @@ input:disabled + .settings-notifications-page-slider {
 
 .settings-notifications-page-btn-primary,
 .settings-notifications-page-btn-secondary {
-    background: var(--accent);
+    background: #5865f2;
     color: white;
     border: none;
     padding: 12px 24px;

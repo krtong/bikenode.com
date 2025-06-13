@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% include "bikenode-main-layout-01/bikenode-main-layout-01-head.njk" %}
+    {% include "./bikenode-main-layout-01-head.njk" %}
 </head>
 <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
     <!-- Background Animation Canvas -->
     <canvas id="bikenode-main-layout-01-background-canvas"></canvas>
     
-    {% include "bikenode-main-layout-01/bikenode-main-layout-01-header.njk" %}
+    {% include "./bikenode-main-layout-01-header.njk" %}
     
     <!-- Main Layout Container -->
     <div class="bikenode-main-layout-01-layout {% if layoutTheme %}layout-theme-{{ layoutTheme }}{% else %}layout-theme-glass{% endif %}">
-        {% include "bikenode-main-layout-01/bikenode-main-layout-01-sidebar.njk" %}
+        {% include "./bikenode-main-layout-01-sidebar.njk" %}
         
         <!-- Main Content -->
         <main class="bikenode-main-layout-01-content">
@@ -36,11 +36,11 @@
         </main>
     </div>
     
-    {% include "bikenode-main-layout-01/bikenode-main-layout-01-footer.njk" %}
+    {% include "./bikenode-main-layout-01-footer.njk" %}
     
-    <script src="/_layouts/bikenode-main-layout-01/bikenode-main-layout-01-background-animation.js"></script>
-    <script src="/_layouts/bikenode-main-layout-01/bikenode-main-layout-01-sidebar.js"></script>
-    <script src="/_layouts/bikenode-main-layout-01/bikenode-main-layout-01-header.js"></script>
+    <script src="./bikenode-main-layout-01-background-animation.js"></script>
+    <script src="./bikenode-main-layout-01-sidebar.js"></script>
+    <script src="./bikenode-main-layout-01-header.js"></script>
     {% if customJS %}
     {% for script in customJS %}
     <script src="{{ script }}"></script>

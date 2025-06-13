@@ -1,0 +1,60 @@
+/* ===================================
+   Front Page Background Canvas Styles
+   =================================== */
+
+#front-page-layout-background-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 1;
+    background: transparent;
+    pointer-events: none;
+}
+
+/* Add subtle animation for a living feel */
+@keyframes front-page-layout-canvas-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.9;
+    }
+}
+
+/* Apply gentle pulsing effect */
+#front-page-layout-background-canvas {
+    animation: front-page-layout-canvas-pulse 12s ease-in-out infinite;
+}
+
+/* Blend mode for better integration */
+@supports (mix-blend-mode: multiply) {
+    #front-page-layout-background-canvas {
+        mix-blend-mode: normal;
+        opacity: 1;
+    }
+}
+
+/* Performance optimization for mobile */
+@media (max-width: 768px) {
+    #front-page-layout-background-canvas {
+        opacity: 1;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    #front-page-layout-background-canvas {
+        animation: none;
+    }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    #front-page-layout-background-canvas {
+        opacity: 1;
+        mix-blend-mode: normal;
+    }
+}

@@ -1,5 +1,12 @@
 # 🧪 Final Testing Checklist - Fixed Claude Integration
 
+> **⚠️ Testing Principles**
+> - Test with real Discord environments and actual bot interactions only
+> - Don't assume functionality works - verify each feature through testing
+> - Document actual test results and real errors encountered
+> - Leave room for discovering unexpected behaviors and edge cases
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 ## 🔴 HIGH PRIORITY - Core Functionality
 
 ### 1. Bot Startup Test

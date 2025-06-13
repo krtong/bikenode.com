@@ -1,5 +1,10 @@
 # Cabin Motorcycles API Documentation
 
+> **⚠️ API Design Principles**
+> - Returns only real data from database - no mock responses
+> - Validates all inputs without assumptions
+> - Documents actual capabilities, not theoretical features
+
 ## Overview
 
 The Cabin Motorcycles API provides access to information about motorcycles with cabin enclosures, including fully-enclosed and semi-enclosed models. This API includes comprehensive rate limiting to prevent abuse and ensure fair access for all users.

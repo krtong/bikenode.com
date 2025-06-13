@@ -1,5 +1,12 @@
 # 🏍️ Motorcycle Logo Acquisition System
 
+> **⚠️ Logo Acquisition Principles**
+> - Work with real logo sources and actual image files only
+> - Don't assume logo availability - verify through actual searches
+> - Document real acquisition results and quality issues
+> - Leave room for discovering better logo sources and formats
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 A comprehensive system for acquiring, verifying, and processing high-quality PNG logos for motorcycle brands. This system ensures every logo meets quality standards through automated search and manual verification.
 
 ## ✨ Features

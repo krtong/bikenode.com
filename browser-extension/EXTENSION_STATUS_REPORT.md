@@ -1,5 +1,12 @@
 # Browser Extension Status Report
 
+> **⚠️ Extension Development Principles**
+> - Work with real website data and actual DOM elements only
+> - Don't assume website structures - verify through actual extraction
+> - Document real limitations discovered through testing
+> - Leave room for discovering edge cases across different sites
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 ## Current State
 
 The browser extension is now fully functional with the following capabilities:

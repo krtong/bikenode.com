@@ -1,5 +1,12 @@
 # RevZilla Scraper Status Report
 
+> **⚠️ Scraper Status Principles**
+> - Report only actual tested functionality and real results
+> - Don't assume features work - verify through actual scraping runs
+> - Document real errors and issues discovered during testing
+> - Leave room for discovering new site changes and edge cases
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 ## ✅ What's Working
 
 1. **Puppeteer Setup**

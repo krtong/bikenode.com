@@ -1,5 +1,12 @@
 # Discord Bot Project Status
 
+> **⚠️ Documentation Principles**
+> - Document actual bot behavior and real Discord interactions only
+> - Don't assume features work - test and verify each component
+> - Record real limitations and edge cases discovered through testing
+> - Leave room for exploring unknown Discord API behaviors
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 ## 📋 What Has Been Done
 
 ### ✅ Discord Bot Foundation

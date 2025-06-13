@@ -14,10 +14,10 @@ import psycopg2
 from psycopg2.extras import RealDictCursor
 
 # Add parent directory to path
-sys.path.append(str(Path(__file__).parent.parent / '00_env'))
+sys.path.append(str(Path(__file__).parent.parent / 'orchestration'))
 
 from config import config
-from utils import setup_logging, save_json, load_json, create_timestamp
+from utils_minimal import setup_logging, save_json, load_json, create_timestamp
 
 
 class URLRemapper:

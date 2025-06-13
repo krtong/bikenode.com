@@ -1,8 +1,13 @@
 # RevZilla Scraper
 
-Working scraper for RevZilla.com product data.
+> **⚠️ Scraping Principles**
+> - No mock data or placeholders - work with real website data only
+> - Don't make assumptions about site structure - discover and verify first
+> - Document actual findings from real scraping attempts
+> - Leave room for discovering edge cases and site changes
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md] and [CODE_STANDARDS.md]
 
-⚠️ **IMPORTANT**: This project follows strict code standards. See [CODE_STANDARDS.md](CODE_STANDARDS.md) before contributing. Mock data, placeholder code, and untested assumptions are strictly prohibited.
+Working scraper for RevZilla.com product data.
 
 ## Key Discoveries
 

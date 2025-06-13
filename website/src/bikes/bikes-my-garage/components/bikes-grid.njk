@@ -1,30 +1,30 @@
-<!-- Bikes Grid using global CSS components -->
-<div class="card-grid card-grid-3" id="bikesGrid">
+<!-- Bikes Grid -->
+<div class="bikes-my-garage-bikes-grid bikes-my-garage-bikes-grid--3-columns" id="bikesGrid">
     <!-- Bike cards will be dynamically loaded here -->
     
     <!-- Add New Bike Card -->
-    <div class="card add-bike-card">
-        <a href="/add-bike-v2/" class="add-bike-link">
-            <div class="add-bike-icon">➕</div>
-            <h3 class="font-lg font-semibold text-primary mb-2">Add New Bike</h3>
-            <p class="text-secondary">Click to add a bike to your garage</p>
+    <div class="bikes-my-garage-bike-card bikes-my-garage-bike-card--add-new">
+        <a href="/bikes/add-bikes/" class="bikes-my-garage-add-bike-link">
+            <div class="bikes-my-garage-add-bike-icon">➕</div>
+            <h3 class="bikes-my-garage-add-bike-title">Add New Bike</h3>
+            <p class="bikes-my-garage-add-bike-text">Click to add a bike to your garage</p>
         </a>
     </div>
 </div>
 
 <!-- Loading State -->
-<div class="text-center p-5 d-none" id="loadingState">
-    <div class="mb-3" style="font-size: 2rem;">⏳</div>
-    <p class="text-secondary mt-2">Loading your bikes...</p>
+<div class="bikes-my-garage-loading-state bikes-my-garage-loading-state--hidden" id="loadingState">
+    <div class="bikes-my-garage-loading-icon">⏳</div>
+    <p class="bikes-my-garage-loading-text">Loading your bikes...</p>
 </div>
 
 <!-- Empty State -->
-<div class="text-center p-5 d-none" id="emptyState">
-    <div class="mb-3" style="font-size: 4rem;">🏍️</div>
-    <h3 class="font-xl font-semibold text-primary mb-2">No bikes yet</h3>
-    <p class="text-secondary mb-4">Start building your virtual garage by adding your first bike</p>
-    <a href="/add-bike-v2/" class="btn btn-primary">
-        <span>➕</span>
-        Add Your First Bike
+<div class="bikes-my-garage-empty-state bikes-my-garage-empty-state--hidden" id="emptyState">
+    <div class="bikes-my-garage-empty-icon">🏍️</div>
+    <h3 class="bikes-my-garage-empty-title">No bikes yet</h3>
+    <p class="bikes-my-garage-empty-text">Start building your virtual garage by adding your first bike</p>
+    <a href="/bikes/add-bikes/" class="bikes-my-garage-empty-button">
+        <span class="bikes-my-garage-empty-button-icon">➕</span>
+        <span class="bikes-my-garage-empty-button-text">Add Your First Bike</span>
     </a>
 </div>

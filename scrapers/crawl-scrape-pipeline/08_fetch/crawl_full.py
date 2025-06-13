@@ -20,10 +20,10 @@ from scrapy import signals
 from scrapy.exceptions import NotConfigured
 
 # Add parent directory to path
-sys.path.append(str(Path(__file__).parent.parent / '00_env'))
+sys.path.append(str(Path(__file__).parent.parent / 'orchestration'))
 
 from config import config
-from utils import (
+from utils_minimal import (
     setup_logging, load_json, load_yaml, save_json, append_ndjson,
     read_urls_file, ensure_dir, create_timestamp, chunk_list
 )

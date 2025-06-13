@@ -83,9 +83,31 @@ module.exports = {
 };
 ```
 
+## 📚 MANDATORY PREREQUISITE READING
+
+**Before writing ANY code, you MUST read:**
+1. [SCRAPING_DESIGN_PRINCIPLES.md](../SCRAPING_DESIGN_PRINCIPLES.md)
+
 ## 🚫 Forbidden Practices
 
-### 1. **Never Hardcode Selectors Without Scouting**
+### 1. **Never Use Placeholders or Mock Data**
+- NO example.com references
+- NO Lorem ipsum text
+- NO fake product names or prices
+- NO "coming soon" placeholders
+- NO theoretical features - only what actually works
+
+### 2. **Never Create Files Without Checking First**
+- ALWAYS search for existing files with similar names
+- CHECK different paths and naming variations
+- VERIFY the file doesn't already exist before creating
+
+### 3. **Never Link Without Verification**
+- ALWAYS confirm target files exist before linking
+- NEVER assume a page or file will exist
+- CHECK the actual path before creating references
+
+### 4. **Never Hardcode Selectors Without Scouting**
 ```javascript
 // ❌ FORBIDDEN - No evidence these selectors exist
 const SELECTORS = {

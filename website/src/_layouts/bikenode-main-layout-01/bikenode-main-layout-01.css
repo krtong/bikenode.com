@@ -1,16 +1,64 @@
 /* BikeNode Main Layout Container Styles */
+
+/* Dark Theme CSS Variables */
+:root {
+    --bg-primary: #2f3136;
+    --bg-secondary: #36393f;
+    --bg-tertiary: #40444b;
+    --text-primary: #ffffff;
+    --text-secondary: #b9bbbe;
+    --accent: #5865f2;
+    --accent-hover: #4752c4;
+    --card-bg: #40444b;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --success: #43b581;
+    --danger: #f04747;
+    --warning: #faa81a;
+    --info: #00b0f4;
+}
+
+/* Base body styles */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Background Canvas - ensure it's behind everything */
+#bikenode-main-layout-01-background-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
 .bikenode-main-layout-01-layout {
     display: flex;
     min-height: 100vh;
     background: transparent;
+    position: relative;
+    z-index: 1;
 }
 
 .bikenode-main-layout-01-content {
     flex: 1;
     margin-left: 280px;
-    padding: 2rem;
-    padding-top: calc(80px + 2rem);
+    padding: 1.5rem;
+    padding-top: calc(60px + 1.5rem);
     min-height: 100vh;
+}
+
+/* Full width for dashboard */
+.dashboard-page .bikenode-main-layout-01-content {
+    padding: 0;
+    padding-top: 60px;
 }
 
 .bikenode-main-layout-01-content-header {
@@ -63,7 +111,7 @@
 @media (max-width: 768px) {
     .bikenode-main-layout-01-content {
         padding: 1rem;
-        padding-top: calc(80px + 1rem);
+        padding-top: calc(60px + 1rem);
     }
     
     .bikenode-main-layout-01-content-header h1 {
@@ -205,7 +253,7 @@ body {
     line-height: 1.5;
     letter-spacing: 0.01em;
     min-height: 100vh;
-    padding-top: 80px; /* Account for fixed header */
+    padding-top: 0; /* Remove padding - header is fixed */
 }
 
 /* Fallback background for pages without canvas animation */
@@ -1048,7 +1096,7 @@ body.menu-open {
 .bikenode-main-layout-01-page-layout {
     display: flex;
     min-height: 100vh;
-    padding-top: 60px; /* Account for fixed header */
+    padding-top: 0; /* No padding needed - header is fixed */
 }
 
 .bikenode-main-layout-01-page-content {
@@ -1365,7 +1413,7 @@ body.menu-open {
 
 .bikenode-main-layout-01-badge-warning {
     background: rgba(245, 158, 11, 0.1);
-    color: #f59e0b;
+    color: #5865f2;
 }
 
 /* ===================================
@@ -1540,7 +1588,7 @@ body.menu-open {
 
 .bikenode-main-layout-01-progress-success .bikenode-main-layout-01-progress-bar { background: #10b981; }
 .bikenode-main-layout-01-progress-danger .bikenode-main-layout-01-progress-bar { background: #ef4444; }
-.bikenode-main-layout-01-progress-warning .bikenode-main-layout-01-progress-bar { background: #f59e0b; }
+.bikenode-main-layout-01-progress-warning .bikenode-main-layout-01-progress-bar { background: #5865f2; }
 
 /* ===================================
    11. ALERT COMPONENTS
@@ -1570,7 +1618,7 @@ body.menu-open {
 .bikenode-main-layout-01-alert-warning {
     background: rgba(245, 158, 11, 0.1);
     border: 1px solid rgba(245, 158, 11, 0.3);
-    color: #f59e0b;
+    color: #5865f2;
 }
 
 .bikenode-main-layout-01-alert-danger {
@@ -1673,7 +1721,7 @@ body.menu-open {
 .bikenode-main-layout-01-text-accent { color: var(--accent); }
 .bikenode-main-layout-01-text-success { color: #10b981; }
 .bikenode-main-layout-01-text-danger { color: #ef4444; }
-.bikenode-main-layout-01-text-warning { color: #f59e0b; }
+.bikenode-main-layout-01-text-warning { color: #5865f2; }
 
 .bikenode-main-layout-01-font-sm { font-size: 0.875rem; }
 .bikenode-main-layout-01-font-md { font-size: 1rem; }

@@ -2,27 +2,63 @@
   <div class="front-page-layout-header-wrapper">
     <div class="front-page-layout-header-logo-section">
       <a href="/" class="front-page-layout-header-logo">
-        <div class="front-page-layout-header-logo-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2L2 7V12C2 16.5 4.5 20.74 8.5 22.5L12 24L15.5 22.5C19.5 20.74 22 16.5 22 12V7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        BikeNode
+        <img src="/_layouts/front-page-layout/bikenode_logo.png" alt="BikeNode" class="front-page-layout-header-logo-img">
       </a>
     </div>
 
     <nav class="front-page-layout-header-nav">
       <ul class="front-page-layout-header-nav-links">
-        <li><a href="/features" class="front-page-layout-header-nav-link">Features</a></li>
-        <li><a href="/pricing" class="front-page-layout-header-nav-link">Pricing</a></li>
-        <li><a href="/about" class="front-page-layout-header-nav-link">About</a></li>
-        <li><a href="/documentation/docs-home-page" class="front-page-layout-header-nav-link">Documentation</a></li>
-        <li><a href="/community" class="front-page-layout-header-nav-link">Community</a></li>
+        <li><a href="/marketplace/marketplace-browse-listings/" class="front-page-layout-header-nav-link" data-text="Marketplace">
+          <svg class="front-page-layout-header-nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M3 3H17L15 8H5L3 3ZM3 3L5 8M5 8L6 13H14L15 8" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="7" cy="17" r="1" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="13" cy="17" r="1" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <span>Marketplace</span>
+        </a></li>
+        <li><a href="/rides/rides-browse-gallery/" class="front-page-layout-header-nav-link" data-text="Routes">
+          <svg class="front-page-layout-header-nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 2C7.79086 2 6 3.79086 6 6C6 7.74028 6.8 9.1886 8 10C8 10 10 13 10 13C10 13 12 10 12 10C13.2 9.1886 14 7.74028 14 6C14 3.79086 12.2091 2 10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="10" cy="6" r="1.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M10 13L10 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M6 18H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span>Routes</span>
+        </a></li>
+        <li><a href="/community/community-forums-list/" class="front-page-layout-header-nav-link" data-text="Communities">
+          <svg class="front-page-layout-header-nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M17 10C17 13.866 13.866 17 10 17C9 17 8 16.8 7.2 16.4L3 18L4.6 13.8C4.2 13 4 12 4 11C4 7.134 7.134 4 11 4C11.7 4 12.4 4.1 13 4.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="15" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <span>Communities</span>
+        </a></li>
+        <li><a href="/events/events-browse-calendar/" class="front-page-layout-header-nav-link" data-text="Events">
+          <svg class="front-page-layout-header-nav-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="3" y="4" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M7 2V6M13 2V6M3 8H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <rect x="6" y="11" width="2" height="2" rx="0.5" fill="currentColor"/>
+            <rect x="9" y="11" width="2" height="2" rx="0.5" fill="currentColor"/>
+            <rect x="12" y="11" width="2" height="2" rx="0.5" fill="currentColor"/>
+          </svg>
+          <span>Events</span>
+        </a></li>
+        <li><a href="/discord/discord-my-servers/" class="front-page-layout-header-nav-link" data-text="Discord">
+          <svg class="front-page-layout-header-nav-icon" width="20" height="20" viewBox="0 0 71 55" fill="currentColor">
+            <path d="M60.1045 4.8978C55.5792 2.8214 50.7265 1.2916 45.6527 0.41542C45.5603 0.39851 45.468 0.440769 45.4204 0.525289C44.7963 1.6353 44.105 3.0834 43.6209 4.2216C38.1637 3.4046 32.7345 3.4046 27.3892 4.2216C26.905 3.0581 26.1886 1.6353 25.5617 0.525289C25.5141 0.443589 25.4218 0.40133 25.3294 0.41542C20.2584 1.2888 15.4057 2.8186 10.8776 4.8978C10.8384 4.9147 10.8048 4.9429 10.7825 4.9795C1.57795 18.7309 -0.943561 32.1443 0.293408 45.3914C0.299005 45.4562 0.335386 45.5182 0.385761 45.5576C6.45866 50.0174 12.3413 52.7249 18.1147 54.5195C18.2071 54.5477 18.305 54.5139 18.3638 54.4378C19.7295 52.5728 20.9469 50.6063 21.9907 48.5383C22.0523 48.4172 21.9935 48.2735 21.8676 48.2256C19.9366 47.4931 18.0979 46.6 16.3292 45.5858C16.1893 45.5041 16.1781 45.304 16.3068 45.2082C16.679 44.9293 17.0513 44.6391 17.4067 44.3461C17.471 44.2926 17.5606 44.2813 17.6362 44.3151C29.2558 49.6202 41.8354 49.6202 53.3179 44.3151C53.3935 44.2785 53.4831 44.2898 53.5502 44.3433C53.9057 44.6363 54.2779 44.9293 54.6529 45.2082C54.7816 45.304 54.7732 45.5041 54.6333 45.5858C52.8646 46.6197 51.0259 47.4931 49.0921 48.2228C48.9662 48.2707 48.9102 48.4172 48.9718 48.5383C50.038 50.6034 51.2554 52.5699 52.5959 54.435C52.6519 54.5139 52.7526 54.5477 52.845 54.5195C58.6464 52.7249 64.529 50.0174 70.6019 45.5576C70.6551 45.5182 70.6887 45.459 70.6943 45.3942C72.1747 30.0791 68.2147 16.7757 60.1968 4.9823C60.1772 4.9429 60.1437 4.9147 60.1045 4.8978ZM23.7259 37.3253C20.2276 37.3253 17.3451 34.1136 17.3451 30.1693C17.3451 26.225 20.1717 23.0133 23.7259 23.0133C27.308 23.0133 30.1626 26.2532 30.1066 30.1693C30.1066 34.1136 27.28 37.3253 23.7259 37.3253ZM47.3178 37.3253C43.8196 37.3253 40.9371 34.1136 40.9371 30.1693C40.9371 26.225 43.7636 23.0133 47.3178 23.0133C50.9 23.0133 53.7545 26.2532 53.6986 30.1693C53.6986 34.1136 50.9 37.3253 47.3178 37.3253Z"/>
+          </svg>
+          <span>Discord</span>
+        </a></li>
       </ul>
 
       <div class="front-page-layout-header-actions">
-        <a href="/authentication/auth-login-page" class="front-page-layout-header-login-btn">Login</a>
-        <a href="/authentication/auth-signup-page" class="front-page-layout-header-signup-btn">Sign Up</a>
+        <button class="front-page-layout-header-search-btn" aria-label="Search">
+          <svg class="front-page-layout-header-search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19 19L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <input type="search" class="front-page-layout-header-search-input" placeholder="Search BikeNode..." aria-label="Search">
+        </button>
+        <a href="/dashboard-overview/dashboard-home-page/" class="front-page-layout-header-dashboard-btn">Get Started</a>
       </div>
     </nav>
 

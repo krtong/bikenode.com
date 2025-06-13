@@ -1,5 +1,12 @@
 # Electrified Bikes Scraper - Status Report
 
+> **⚠️ Scraper Development Principles**
+> - Work with real website data and actual scraped content only
+> - Don't assume website availability or structure - verify through actual scraping
+> - Document real scraping results and encountered issues
+> - Leave room for discovering website changes and new data sources
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 ## Overview
 Building web scrapers to collect real specification data for electrified bike brands. All data is sourced from actual websites - no made-up information.
 

@@ -3,6 +3,28 @@
  * Uses global CSS badge and list components
  */
 
+// Initialize maintenance event listeners
+export function initMaintenanceEventListeners() {
+    // Add button event listener
+    const addBtn = document.getElementById('bikesMyGarageMaintenanceAddBtn');
+    if (addBtn) {
+        addBtn.addEventListener('click', openAddMaintenanceModal);
+    }
+    
+    // Empty state button event listener  
+    const emptyBtn = document.getElementById('bikesMyGarageMaintenanceEmptyBtn');
+    if (emptyBtn) {
+        emptyBtn.addEventListener('click', openAddMaintenanceModal);
+    }
+}
+
+// Open add maintenance modal
+function openAddMaintenanceModal() {
+    // Implementation for opening modal
+    console.log('Opening add maintenance modal');
+    // TODO: Implement modal functionality
+}
+
 export async function loadMaintenanceTasks(apiBase) {
     try {
         const response = await fetch(`${apiBase}/user/maintenance`);

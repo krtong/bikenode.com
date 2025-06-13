@@ -11,10 +11,10 @@ from typing import Dict, List, Optional, Any, Set, Tuple
 import hashlib
 
 # Add parent directory to path
-sys.path.append(str(Path(__file__).parent.parent / '00_env'))
+sys.path.append(str(Path(__file__).parent.parent / 'orchestration'))
 
 from config import config
-from utils import (
+from utils_minimal import (
     setup_logging, load_ndjson, save_json, append_ndjson,
     create_hash, create_timestamp
 )

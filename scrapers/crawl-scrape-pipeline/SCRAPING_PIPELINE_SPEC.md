@@ -1,5 +1,17 @@
 # Scraping Pipeline Specification
 
+> **⚠️ MANDATORY: Read These First**
+> 
+> **MUST READ BEFORE PROCEEDING:**
+> 1. [SCRAPING_DESIGN_PRINCIPLES.md](../SCRAPING_DESIGN_PRINCIPLES.md)
+> 
+> **CRITICAL RULES:**
+> - **NO PLACEHOLDERS** - Never use mock data, test data, or example.com
+> - **NO ASSUMPTIONS** - Never assume website structure or content
+> - **CHECK FIRST** - Always verify files exist before referencing them
+> - **SPECIFIC NAMES** - No generic file names like "utils.py" or "helpers.js"
+> - **VERIFY EXISTENCE** - Check for similar files before creating new ones
+
 Below is the exact guidance you'd hand to an AI developer—no fluff, no missing pieces—so it knows precisely **what to build**, **where**, **with what tools**, and **why**.  Treat each folder as its own contract: inputs, outputs, tech, and scope.
 
 ---
@@ -166,5 +178,8 @@ Below is the exact guidance you'd hand to an AI developer—no fluff, no missing
 * **Fail loudly** on missing files, missing selectors, parse errors.
 * **Load secrets only from `00_env/.env`**; do not hard-code.
 * **Use pinned versions** in `requirements.txt`; no placeholders or mocks.
+* **File storage for raw data**: Steps 1-11 use ONLY files (CSV, JSON, NDJSON, TXT).
+* **Database only for clean data**: Step 12 optionally loads clean.csv to database.
+* **No raw data in database**: Never push unprocessed, non-production data to database.
 
 Hand this spec to your code-gen AI and it will know **exactly** what to build, where to read, what to write, and which stack to use—nothing more, nothing less.

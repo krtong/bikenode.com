@@ -6,15 +6,18 @@
     min-height: 100vh;
     padding-top: 60px;
     max-width: 100%;
+    background: var(--bg-primary);
 }
 
 /* Main Content */
 .documentation-page-layout-docs-content {
     flex: 1;
     margin-left: 280px;
-    padding: 0;
+    padding: 0 40px 40px;
     max-width: none;
     width: calc(100vw - 280px);
+    background: var(--bg-primary);
+    color: var(--text-primary);
 }
 
 .documentation-page-layout-content-header {
@@ -38,6 +41,7 @@
 
 .documentation-page-layout-content-body {
     line-height: 1.7;
+    color: var(--text-secondary);
 }
 
 .documentation-page-layout-content-section {
@@ -62,6 +66,76 @@
     color: var(--text-secondary);
     margin-bottom: 16px;
     font-size: 16px;
+}
+
+/* General content styles for documentation */
+.documentation-page-layout-docs-content p {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    line-height: 1.7;
+}
+
+.documentation-page-layout-docs-content h1,
+.documentation-page-layout-docs-content h2,
+.documentation-page-layout-docs-content h3,
+.documentation-page-layout-docs-content h4,
+.documentation-page-layout-docs-content h5,
+.documentation-page-layout-docs-content h6 {
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    margin-top: 24px;
+}
+
+.documentation-page-layout-docs-content ul,
+.documentation-page-layout-docs-content ol {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    padding-left: 24px;
+}
+
+.documentation-page-layout-docs-content li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.documentation-page-layout-docs-content a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.documentation-page-layout-docs-content a:hover {
+    text-decoration: underline;
+}
+
+.documentation-page-layout-docs-content code {
+    background: var(--bg-tertiary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.9em;
+    color: #e06c75;
+}
+
+.documentation-page-layout-docs-content pre {
+    background: var(--bg-tertiary);
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin-bottom: 16px;
+}
+
+.documentation-page-layout-docs-content pre code {
+    background: none;
+    padding: 0;
+    color: var(--text-primary);
+}
+
+.documentation-page-layout-docs-content blockquote {
+    border-left: 4px solid var(--accent);
+    padding-left: 16px;
+    margin: 16px 0;
+    color: var(--text-secondary);
+    font-style: italic;
 }
 
 /* Feature List */
@@ -694,10 +768,10 @@
     /* Typography */
     --font-family-base: 'gg sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     
-    /* Colors - Primary Palette */
-    --bg-primary: #2f3136;
-    --bg-secondary: #36393f;
-    --bg-tertiary: #40444b;
+    /* Colors - BikeNode Dark Theme */
+    --bg-primary: #1a1d21;
+    --bg-secondary: #212529;
+    --bg-tertiary: #2c3034;
     --text-primary: #ffffff;
     --text-secondary: #b9bbbe;
     --text-muted: #72767d;
@@ -804,7 +878,7 @@
 /* Base Styles */
 body {
     font-family: var(--font-family-base);
-    background: transparent; /* Allows canvas animation to show through */
+    background: var(--bg-primary); /* Dark background */
     color: var(--text-primary);
     line-height: 1.5;
     letter-spacing: 0.01em;
@@ -818,7 +892,8 @@ body.no-animation {
 }
 
 /* Background Animation Canvas */
-#backgroundCanvas {
+#backgroundCanvas,
+#documentation-page-layout-background-canvas {
     position: fixed;
     top: 0;
     left: 0;
@@ -826,6 +901,7 @@ body.no-animation {
     height: 100%;
     z-index: -1;
     opacity: 1;
+    background: var(--bg-primary);
 }
 
 /* ===================================
@@ -1969,7 +2045,7 @@ body.menu-open {
 
 .documentation-page-layout-badge-warning {
     background: rgba(245, 158, 11, 0.1);
-    color: #f59e0b;
+    color: #5865f2;
 }
 
 /* ===================================
@@ -2144,7 +2220,7 @@ body.menu-open {
 
 .documentation-page-layout-progress-success .documentation-page-layout-progress-bar { background: #10b981; }
 .documentation-page-layout-progress-danger .documentation-page-layout-progress-bar { background: #ef4444; }
-.documentation-page-layout-progress-warning .documentation-page-layout-progress-bar { background: #f59e0b; }
+.documentation-page-layout-progress-warning .documentation-page-layout-progress-bar { background: #5865f2; }
 
 /* ===================================
    11. ALERT COMPONENTS
@@ -2174,7 +2250,7 @@ body.menu-open {
 .documentation-page-layout-alert-warning {
     background: rgba(245, 158, 11, 0.1);
     border: 1px solid rgba(245, 158, 11, 0.3);
-    color: #f59e0b;
+    color: #5865f2;
 }
 
 .documentation-page-layout-alert-danger {
@@ -2277,7 +2353,7 @@ body.menu-open {
 .documentation-page-layout-text-accent { color: var(--accent); }
 .documentation-page-layout-text-success { color: #10b981; }
 .documentation-page-layout-text-danger { color: #ef4444; }
-.documentation-page-layout-text-warning { color: #f59e0b; }
+.documentation-page-layout-text-warning { color: #5865f2; }
 
 .documentation-page-layout-font-sm { font-size: 0.875rem; }
 .documentation-page-layout-font-md { font-size: 1rem; }

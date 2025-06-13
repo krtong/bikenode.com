@@ -156,7 +156,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: var(--accent);
+    background: #5865f2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -219,7 +219,7 @@
 }
 
 .settings-privacy-page-data-action {
-    background: var(--accent);
+    background: #5865f2;
     color: white;
     border: none;
     padding: 8px 20px;
@@ -296,7 +296,7 @@
 }
 
 input:checked + .settings-privacy-page-slider {
-    background-color: var(--accent);
+    background-color: #5865f2;
 }
 
 input:checked + .settings-privacy-page-slider:before {

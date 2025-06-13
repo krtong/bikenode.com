@@ -1,5 +1,10 @@
 # Motorcycle API Setup Guide
 
+> **⚠️ Setup Requirements**
+> - Uses real motorcycle data from database
+> - No test data or mock responses
+> - Actual PostgreSQL integration required
+
 This guide explains how to set up and run the motorcycle API server with PostgreSQL database integration.
 
 ## Prerequisites

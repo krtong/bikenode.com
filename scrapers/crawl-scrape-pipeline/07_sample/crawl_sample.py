@@ -16,10 +16,10 @@ import scrapy
 from scrapy.crawler import CrawlerProcess
 
 # Add parent directory to path
-sys.path.append(str(Path(__file__).parent.parent / '00_env'))
+sys.path.append(str(Path(__file__).parent.parent / 'orchestration'))
 
 from config import config
-from utils import (
+from utils_minimal import (
     setup_logging, load_json, load_yaml, save_json, append_ndjson,
     ensure_dir, create_timestamp, normalize_url
 )

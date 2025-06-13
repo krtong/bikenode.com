@@ -1,5 +1,12 @@
 # Discord Bot Data Directory
 
+> **⚠️ Data Management Principles**
+> - Work with real Discord bot data only - no mock or placeholder data
+> - Don't assume data formats or structures - verify actual file contents
+> - Document data flows based on actual bot operations
+> - Leave room for discovering data edge cases and format variations
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 This directory contains data files used by the Discord bot.
 
 ## Structure

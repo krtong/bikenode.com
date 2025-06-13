@@ -1,5 +1,17 @@
 # Database Directory Structure
 
+> **⚠️ DATABASE RULES - READ FIRST**
+> 
+> **Before ANY database work, read:**
+> - [README_BEFORE_MAKING_ANY_PAGE.md](../website/src/README_BEFORE_MAKING_ANY_PAGE.md)
+> 
+> **ABSOLUTE REQUIREMENTS:**
+> - **NO PLACEHOLDERS** - No test data, sample data, or Lorem ipsum in ANY table
+> - **NO ASSUMPTIONS** - Don't guess data types or relationships
+> - **CHECK FIRST** - Verify tables/columns don't already exist with similar names
+> - **REAL DATA ONLY** - Production database must contain only verified, real data
+> - **PRESERVE RAW** - Keep original data exactly as collected
+
 This directory contains all database-related files for the BikeNode project.
 
 ## Directory Structure

@@ -13,23 +13,17 @@
                 </svg>
             </button>
             <div class="bikenode-main-layout-01-sidebar-section-content" id="overview-section">
-                <a href="/dashboard" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/dashboard/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                <a href="/dashboard-overview/dashboard-home-page/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/dashboard-overview/dashboard-home-page/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
                     <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M3 10L10 3L17 10M5 8V17H15V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <span>Dashboard Home</span>
                 </a>
-                <a href="/dashboard/activity-feed" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/dashboard/activity-feed/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                <a href="/dashboard-overview/dashboard-activity-feed/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/dashboard-overview/dashboard-activity-feed/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
                     <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M10 2V10L14 14M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <span>Activity Feed</span>
-                </a>
-                <a href="/dashboard/stats" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/dashboard/stats/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
-                    <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M3 17V9M10 17V3M17 17V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <span>Stats</span>
                 </a>
             </div>
         </div>
@@ -43,21 +37,21 @@
                 </svg>
             </button>
             <div class="bikenode-main-layout-01-sidebar-section-content" id="bikes-section">
-                <a href="/bikes" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/bikes/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                <a href="/bikes/bikes-my-garage/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/bikes/bikes-my-garage/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
                     <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <circle cx="5" cy="15" r="3" stroke="currentColor" stroke-width="1.5"/>
                         <circle cx="15" cy="15" r="3" stroke="currentColor" stroke-width="1.5"/>
                         <path d="M5 15L10 5L15 15M10 5L7 2M15 15L13 8H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span>Garage</span>
+                    <span>My Garage</span>
                 </a>
-                <a href="/bikes/add" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/bikes/add/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                <a href="/bikes/bikes-add-form/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/bikes/bikes-add-form/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
                     <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M10 5V15M5 10H15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <span>Add Bike</span>
                 </a>
-                <a href="/bikes/maintenance" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/bikes/maintenance/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                <a href="/bikes/bikes-maintenance-log/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/bikes/bikes-maintenance-log/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
                     <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M10 2L8 8H12L10 18M6 10H3M14 10H17M5 4L3 6M15 4L17 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -75,23 +69,61 @@
                 </svg>
             </button>
             <div class="bikenode-main-layout-01-sidebar-section-content" id="rides-section">
-                <a href="/rides" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/rides/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                <a href="/rides/rides-my-dashboard/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/rides/rides-my-dashboard/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
                     <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M3 17C3 17 7 11 10 11C13 11 17 17 17 17M3 7C3 7 7 13 10 13C13 13 17 7 17 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <span>My Rides</span>
                 </a>
-                <a href="/routes/planner" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/routes/planner/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                <a href="/rides/rides-browse-gallery/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/rides/rides-browse-gallery/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                    <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <rect x="3" y="3" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                        <rect x="11" y="3" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                        <rect x="3" y="11" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                        <rect x="11" y="11" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                    <span>Browse Routes</span>
+                </a>
+                <a href="/rides/rides-create-planner/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/rides/rides-create-planner/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
                     <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M10 2V10M10 10L17 3M10 10L3 17M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <span>Route Planner</span>
                 </a>
-                <a href="/segments" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/segments/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                <a href="/rides/rides-segments-leaderboard/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/rides/rides-segments-leaderboard/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
                     <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M3 10H7L10 3L13 17L16 10H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <span>Segments</span>
+                </a>
+                <a href="/rides/rides-record-tracker/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/rides/rides-record-tracker/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                    <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="10" cy="10" r="3" fill="currentColor"/>
+                        <path d="M10 2V5M10 15V18M2 10H5M15 10H18" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                    <span>Record Ride</span>
+                </a>
+                <a href="/rides/rides-activity-heatmap/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/rides/rides-activity-heatmap/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                    <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <rect x="2" y="2" width="4" height="4" rx="1" fill="currentColor" opacity="0.3"/>
+                        <rect x="8" y="2" width="4" height="4" rx="1" fill="currentColor" opacity="0.6"/>
+                        <rect x="14" y="2" width="4" height="4" rx="1" fill="currentColor"/>
+                        <rect x="2" y="8" width="4" height="4" rx="1" fill="currentColor" opacity="0.6"/>
+                        <rect x="8" y="8" width="4" height="4" rx="1" fill="currentColor"/>
+                        <rect x="14" y="8" width="4" height="4" rx="1" fill="currentColor" opacity="0.3"/>
+                        <rect x="2" y="14" width="4" height="4" rx="1" fill="currentColor"/>
+                        <rect x="8" y="14" width="4" height="4" rx="1" fill="currentColor" opacity="0.3"/>
+                        <rect x="14" y="14" width="4" height="4" rx="1" fill="currentColor" opacity="0.6"/>
+                    </svg>
+                    <span>Activity Heatmap</span>
+                </a>
+                <a href="/rides/rides-training-plans/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/rides/rides-training-plans/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                    <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M3 3H17V17H3V3Z" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M7 7H13M7 10H13M7 13H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Training Plans</span>
                 </a>
             </div>
         </div>
@@ -105,19 +137,19 @@
                 </svg>
             </button>
             <div class="bikenode-main-layout-01-sidebar-section-content" id="community-section">
-                <a href="/community/forums" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/community/forums/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                <a href="/community/community-forums-list/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/community/community-forums-list/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
                     <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M17 8C17 5.23858 14.7614 3 12 3H8C5.23858 3 3 5.23858 3 8V12C3 14.7614 5.23858 17 8 17H9L12 20V17H12C14.7614 17 17 14.7614 17 12V8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <span>Forums</span>
                 </a>
-                <a href="/events" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/events/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                <a href="/events/events-browse-calendar/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/events/events-browse-calendar/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
                     <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M17 7H3M17 5V15C17 16.1046 16.1046 17 15 17H5C3.89543 17 3 16.1046 3 15V5C3 3.89543 3.89543 3 5 3H15C16.1046 3 17 3.89543 17 5ZM13 2V4M7 2V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <span>Events</span>
                 </a>
-                <a href="/messages" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/messages/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                <a href="/community/community-messages-inbox/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/community/community-messages-inbox/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
                     <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M3 6L10 11L17 6M3 6V14C3 15.1046 3.89543 16 5 16H15C16.1046 16 17 15.1046 17 14V6M3 6C3 4.89543 3.89543 4 5 4H15C16.1046 4 17 4.89543 17 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -135,26 +167,139 @@
                 </svg>
             </button>
             <div class="bikenode-main-layout-01-sidebar-section-content" id="settings-section">
-                <a href="/profile" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/profile/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                <a href="/profile/profile-my-page/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/profile/profile-my-page/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
                     <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <circle cx="10" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/>
                         <path d="M3 18C3 15.2386 5.23858 13 8 13H12C14.7614 13 17 15.2386 17 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
                     </svg>
-                    <span>Profile</span>
+                    <span>My Profile</span>
                 </a>
-                <a href="/settings/account" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/settings/account/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                <a href="/profile/profile-following-list/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/profile/profile-following-list/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                    <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M17 10H12M12 10L14 8M12 10L14 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="7" cy="5" r="2" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M3 14C3 12.3431 4.34315 11 6 11H8C9.65685 11 11 12.3431 11 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Following</span>
+                </a>
+                <a href="/profile/profile-followers-list/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/profile/profile-followers-list/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                    <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M3 10H8M8 10L6 8M8 10L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="13" cy="5" r="2" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M9 14C9 12.3431 10.3431 11 12 11H14C15.6569 11 17 12.3431 17 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Followers</span>
+                </a>
+                <a href="/settings/settings-account-page/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/settings/settings-account-page/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
                     <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M10 12C11.1046 12 12 11.1046 12 10C12 8.89543 11.1046 8 10 8C8.89543 8 8 8.89543 8 10C8 11.1046 8.89543 12 10 12Z" stroke="currentColor" stroke-width="1.5"/>
                         <path d="M16.7 10.7L16 10L16.7 9.3C17.1 8.9 17.1 8.3 16.7 7.9L15.1 6.3C14.7 5.9 14.1 5.9 13.7 6.3L13 7L12.3 6.3C11.9 5.9 11.3 5.9 10.9 6.3L10 7.2V3C10 2.4 9.6 2 9 2H7C6.4 2 6 2.4 6 3V7.2L5.1 6.3C4.7 5.9 4.1 5.9 3.7 6.3L3 7L2.3 6.3C1.9 5.9 1.3 5.9 0.9 6.3L-0.7 7.9C-1.1 8.3 -1.1 8.9 -0.7 9.3L0 10L-0.7 10.7C-1.1 11.1 -1.1 11.7 -0.7 12.1L0.9 13.7C1.3 14.1 1.9 14.1 2.3 13.7L3 13L3.7 13.7C4.1 14.1 4.7 14.1 5.1 13.7L6 12.8V17C6 17.6 6.4 18 7 18H9C9.6 18 10 17.6 10 17V12.8L10.9 13.7C11.3 14.1 11.9 14.1 12.3 13.7L13 13L13.7 13.7C14.1 14.1 14.7 14.1 15.1 13.7L16.7 12.1C17.1 11.7 17.1 11.1 16.7 10.7Z" stroke="currentColor" stroke-width="1.5"/>
                     </svg>
                     <span>Account</span>
                 </a>
-                <a href="/settings/privacy" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/settings/privacy/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                <a href="/settings/settings-privacy-page/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/settings/settings-privacy-page/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
                     <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M10 2L4 5V10C4 13.5 6.5 16.5 10 18C13.5 16.5 16 13.5 16 10V5L10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M7 10L9 12L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <span>Privacy</span>
+                </a>
+            </div>
+        </div>
+
+        {# Marketplace Section #}
+        <div class="bikenode-main-layout-01-sidebar-section">
+            <button class="bikenode-main-layout-01-sidebar-section-toggle" aria-expanded="true" aria-controls="marketplace-section">
+                <h3 class="bikenode-main-layout-01-sidebar-section-title">Marketplace</h3>
+                <svg class="bikenode-main-layout-01-sidebar-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M5 6L8 9L11 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="bikenode-main-layout-01-sidebar-section-content" id="marketplace-section">
+                <a href="/marketplace/marketplace-browse-listings/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/marketplace/marketplace-browse-listings/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                    <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M3 3H17L15 8H5L3 3ZM3 3L5 8M5 8L6 13H14L15 8" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                        <circle cx="7" cy="17" r="1" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="13" cy="17" r="1" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                    <span>Browse Listings</span>
+                </a>
+                <a href="/marketplace/marketplace-create-listing/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/marketplace/marketplace-create-listing/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                    <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M12 2V8L14 6L16 8V2M4 6H12M4 10H16M4 14H16M4 18H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Sell Item</span>
+                </a>
+                <a href="/marketplace/marketplace-my-listings/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/marketplace/marketplace-my-listings/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                    <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M3 7V17C3 17.5523 3.44772 18 4 18H16C16.5523 18 17 17.5523 17 17V7M3 7H17M3 7L5 2H15L17 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>My Listings</span>
+                </a>
+            </div>
+        </div>
+
+        {# Events Section #}
+        <div class="bikenode-main-layout-01-sidebar-section">
+            <button class="bikenode-main-layout-01-sidebar-section-toggle" aria-expanded="true" aria-controls="events-section">
+                <h3 class="bikenode-main-layout-01-sidebar-section-title">Events</h3>
+                <svg class="bikenode-main-layout-01-sidebar-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M5 6L8 9L11 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="bikenode-main-layout-01-sidebar-section-content" id="events-section">
+                <a href="/events/events-browse-calendar/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/events/events-browse-calendar/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                    <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <rect x="3" y="4" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M7 2V6M13 2V6M3 8H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Browse Events</span>
+                </a>
+                <a href="/events/events-create-form/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/events/events-create-form/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                    <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 5V15M5 10H15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Create Event</span>
+                </a>
+                <a href="/events/events-my-list/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/events/events-my-list/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                    <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7 2V6M13 2V6M3 8H17M5 12H8M5 15H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <rect x="3" y="4" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                    <span>My Events</span>
+                </a>
+            </div>
+        </div>
+
+        {# Discord Integration Section #}
+        <div class="bikenode-main-layout-01-sidebar-section">
+            <button class="bikenode-main-layout-01-sidebar-section-toggle" aria-expanded="true" aria-controls="discord-section">
+                <h3 class="bikenode-main-layout-01-sidebar-section-title">Discord Integration</h3>
+                <svg class="bikenode-main-layout-01-sidebar-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M5 6L8 9L11 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="bikenode-main-layout-01-sidebar-section-content" id="discord-section">
+                <a href="/discord/discord-my-servers/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/discord/discord-my-servers/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                    <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+                    </svg>
+                    <span>Discord Servers</span>
+                </a>
+                <a href="/discord/discord-bot-management/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/discord/discord-bot-management/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                    <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <rect x="4" y="4" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="8" cy="8" r="1" fill="currentColor"/>
+                        <circle cx="12" cy="8" r="1" fill="currentColor"/>
+                        <path d="M8 12C8 12 9 13 10 13C11 13 12 12 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Bot Management</span>
+                </a>
+                <a href="/discord/discord-bot-setup/" class="bikenode-main-layout-01-sidebar-link {% if page.url == '/discord/discord-bot-setup/' %}bikenode-main-layout-01-sidebar-link--active{% endif %}">
+                    <svg class="bikenode-main-layout-01-sidebar-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 2L8 8H12L10 18M6 10H3M14 10H17M5 4L3 6M15 4L17 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Bot Setup</span>
                 </a>
             </div>
         </div>

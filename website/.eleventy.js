@@ -29,43 +29,20 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.ignores.add("src/**/index-old.njk");
   eleventyConfig.ignores.add("src/deprecated/**/*");
   
-  // Configure URL structure to flatten nested directories
-  eleventyConfig.addGlobalData("permalink", function() {
+  // Remove old index files from build
+  eleventyConfig.addGlobalData("eleventyExcludeFromCollections", function() {
     return (data) => {
-      // Ignore old files
-      if (data.page.filePathStem.includes('index-old')) {
-        return false;
-      }
-      // Special handling for front-page
-      if (data.page.filePathStem.includes('/front-page/index')) {
-        return '/';
-      }
-      // For category/page-name structure, extract just the page name
-      const match = data.page.filePathStem.match(/\/([\w-]+)\/([\w-]+)\/index$/);
-      if (match) {
-        const category = match[1];
-        const pageName = match[2];
-        
-        // Handle conflicts by keeping category prefix for duplicates
-        if (pageName === 'equipment' && category === 'gear') {
-          return '/gear-equipment/';
-        }
-        if (pageName === 'equipment' && category === 'bikes') {
-          return '/bikes-equipment/';
-        }
-        
-        // For pages with specific hyphenated names, use just the page name
-        if (pageName.includes('-')) {
-          return `/${pageName}/`;
-        }
-        
-        // For generic names, include category
-        return `/${category}-${pageName}/`;
-      }
-      // Default behavior
-      return data.page.filePathStem + '/';
+      return data.page.filePathStem.includes('index-old');
     };
   });
+  
+  // Add layout alias for folder-based layouts
+  eleventyConfig.addLayoutAlias("bikenode-main-layout-01", "bikenode-main-layout-01/index.njk");
+  eleventyConfig.addLayoutAlias("bikenode-main-layout-01/index", "bikenode-main-layout-01/index.njk");
+  eleventyConfig.addLayoutAlias("front-page-layout", "front-page-layout/index.njk");
+  eleventyConfig.addLayoutAlias("front-page-layout/index", "front-page-layout/index.njk");
+  eleventyConfig.addLayoutAlias("documentation-page-layout", "documentation-page-layout/index.njk");
+  eleventyConfig.addLayoutAlias("authorization-page-layout", "authorization-page-layout/index.njk");
   
   return {
     dir: {

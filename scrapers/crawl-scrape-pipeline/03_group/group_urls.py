@@ -13,10 +13,10 @@ from typing import List, Dict, Set, Tuple, Optional
 from urllib.parse import urlparse
 
 # Add parent directory to path
-sys.path.append(str(Path(__file__).parent.parent / '00_env'))
+sys.path.append(str(Path(__file__).parent.parent / 'orchestration'))
 
 from config import config
-from utils import setup_logging, read_urls_file, write_urls_file, save_json, ensure_dir
+from utils_minimal import setup_logging, read_urls_file, write_urls_file, save_json, ensure_dir
 
 
 class URLGrouper:

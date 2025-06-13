@@ -1,5 +1,17 @@
 # Bikenode Chrome Extension
 
+> **⚠️ MANDATORY READING BEFORE DEVELOPMENT**
+> 
+> **Read these first:**
+> 1. [README_BEFORE_MAKING_ANY_PAGE.md](../website/src/README_BEFORE_MAKING_ANY_PAGE.md)
+> 
+> **EXTENSION RULES:**
+> - **NO PLACEHOLDERS** - No fake listings, mock prices, or test data
+> - **VERIFY SITES** - Test only on real marketplace websites
+> - **CHECK FIRST** - Search for existing modules before creating new ones
+> - **SPECIFIC NAMES** - Use names like "craigslist-parser.js" not "parser.js"
+> - **REAL RESULTS** - Only show actual scraped data, never simulated
+
 This directory contains the Chrome extension that aggregates listings for bikes (motorcycles and bicycles) and bike components from various sources.
 
 ## Features

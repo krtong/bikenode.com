@@ -1,4 +1,5 @@
 /* Rides Dashboard Styles */
+
 .rides-dashboard {
   max-width: 1400px;
   margin: 0 auto;
@@ -35,17 +36,19 @@
 }
 
 .action-button.primary {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: #5865f2;
+  border-color: #5865f2;
   color: white;
+  box-shadow: 0 4px 12px rgba(88, 101, 242, 0.3);
 }
 
 .action-button.primary:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
+  background: #4752c4;
+  border-color: #4752c4;
+  box-shadow: 0 6px 20px rgba(88, 101, 242, 0.4);
 }
 
-.action-button .icon {
+.action-button .rides-dashboard-icon {
   font-size: 1.25rem;
 }
 
@@ -73,7 +76,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: var(--accent);
+  background: #5865f2;
   opacity: 0.8;
 }
 
@@ -91,32 +94,33 @@
   margin: 0;
 }
 
-.trend {
+.rides-dashboard-trend {
   font-size: 0.875rem;
   font-weight: 600;
   padding: 0.25rem 0.5rem;
   border-radius: 0.375rem;
 }
 
-.trend.positive {
-  color: #10b981;
-  background: rgba(16, 185, 129, 0.1);
+.rides-dashboard-trend.positive {
+  color: #57f287;
+  background: rgba(87, 242, 135, 0.1);
 }
 
-.trend.negative {
-  color: #ef4444;
-  background: rgba(239, 68, 68, 0.1);
+.rides-dashboard-trend.negative {
+  color: #ed4245;
+  background: rgba(237, 66, 69, 0.1);
 }
 
-.badge {
+.rides-dashboard-badge {
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.25rem 0.75rem;
-  background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+  background: linear-gradient(135deg, #5865f2 0%, #eb459e 100%);
   color: white;
   border-radius: 999px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  box-shadow: 0 2px 8px rgba(88, 101, 242, 0.3);
 }
 
 .stat-main {
@@ -219,9 +223,10 @@
 }
 
 .control-btn.active {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: #5865f2;
+  border-color: #5865f2;
   color: white;
+  box-shadow: 0 2px 8px rgba(88, 101, 242, 0.3);
 }
 
 /* Chart */
@@ -254,7 +259,7 @@
 
 /* Recent Rides */
 .view-all {
-  color: var(--accent);
+  color: #5865f2;
   text-decoration: none;
   font-size: 0.875rem;
   font-weight: 500;
@@ -262,7 +267,8 @@
 }
 
 .view-all:hover {
-  color: var(--accent-hover);
+  color: #4752c4;
+  text-decoration: underline;
 }
 
 .rides-list {
@@ -282,20 +288,23 @@
 }
 
 .ride-item:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(88, 101, 242, 0.05);
+  border: 1px solid rgba(88, 101, 242, 0.2);
   transform: translateX(4px);
+  margin: -1px;
 }
 
 .ride-icon {
   width: 48px;
   height: 48px;
-  background: var(--accent);
+  background: #5865f2;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(88, 101, 242, 0.3);
 }
 
 .ride-details {
@@ -335,10 +344,18 @@
 
 .metric-item {
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(88, 101, 242, 0.03);
+  border: 1px solid rgba(88, 101, 242, 0.1);
   border-radius: 0.75rem;
   text-align: center;
   position: relative;
+  transition: all 0.2s ease;
+}
+
+.metric-item:hover {
+  background: rgba(88, 101, 242, 0.05);
+  border-color: rgba(88, 101, 242, 0.3);
+  transform: translateY(-2px);
 }
 
 .metric-icon {
@@ -371,13 +388,13 @@
 }
 
 .metric-trend.positive {
-  color: #10b981;
-  background: rgba(16, 185, 129, 0.1);
+  color: #57f287;
+  background: rgba(87, 242, 135, 0.1);
 }
 
 .metric-trend.negative {
-  color: #ef4444;
-  background: rgba(239, 68, 68, 0.1);
+  color: #ed4245;
+  background: rgba(237, 66, 69, 0.1);
 }
 
 .metric-trend.neutral {

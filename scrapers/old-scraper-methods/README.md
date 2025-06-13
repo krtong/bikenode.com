@@ -1,5 +1,11 @@
 # 99Spokes Scraper Pipeline
 
+> **⚠️ Scraping Principles**
+> Following [SCRAPING_DESIGN_PRINCIPLES.md](../SCRAPING_DESIGN_PRINCIPLES.md):
+> - All selectors discovered from actual site data
+> - No hardcoded assumptions about structure
+> - Raw data preserved for validation
+
 ## 5-Stage Scraping Pipeline
 
 ### Stage 1: Brand/Make Scraper

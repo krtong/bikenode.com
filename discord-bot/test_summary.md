@@ -1,5 +1,12 @@
 # Discord Claude Integration Test Summary
 
+> **⚠️ Test Summary Principles**
+> - Report only actual test results from real test executions
+> - Don't assume features work - verify through actual testing
+> - Document real bugs and issues discovered during testing
+> - Leave room for discovering additional edge cases
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 ## Overall Status: ⚠️ PARTIALLY TESTED
 
 ### ✅ Tests Completed (8/12)

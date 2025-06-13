@@ -1,5 +1,9 @@
 # BikeNode Profile Image Generator
 
+> **⚠️ Important Note**
+> These are temporary placeholder images for development only.
+> Production should use real user-uploaded images, not AI-generated placeholders.
+
 This script generates all the placeholder images needed for the BikeNode profile page using DALL-E 3.
 
 ## Images Generated

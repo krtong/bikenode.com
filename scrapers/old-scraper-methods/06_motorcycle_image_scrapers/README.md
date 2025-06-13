@@ -1,5 +1,12 @@
 # Motorcycle Image Scraper Suite
 
+> **⚠️ Scraping Principles**
+> - Work with real motorcycle database records and actual image URLs only
+> - Don't assume image availability - verify through actual download attempts
+> - Document real download results and discovered edge cases
+> - Leave room for discovering new image sources and formats
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 This directory contains a comprehensive, organized motorcycle image downloading system with multi-website scraping capabilities.
 
 ## 📁 Project Structure

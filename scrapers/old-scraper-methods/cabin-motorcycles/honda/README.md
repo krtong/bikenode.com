@@ -1,5 +1,12 @@
 # Honda Gyro Canopy Scraper
 
+> **⚠️ Scraping Principles**
+> - Work with real Honda website data and verified sources only
+> - Don't assume specifications - discover through DOM scouting
+> - Document actual findings including Japanese language sources
+> - Leave room for discovering regional variations and updates
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 Scrapes data for Honda's Gyro Canopy three-wheeled delivery vehicle.
 
 ## Overview

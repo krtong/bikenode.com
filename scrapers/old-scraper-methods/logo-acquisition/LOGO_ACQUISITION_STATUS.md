@@ -1,5 +1,12 @@
 # Motorcycle Brand Logo Acquisition Status
 
+> **⚠️ Logo Acquisition Principles**
+> - Track only actual downloaded and verified logo files
+> - Don't assume logo availability - verify through actual acquisition
+> - Document real acquisition challenges and successes
+> - Leave room for discovering new logo sources and methods
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 ## Current Progress
 - **Total Brands**: 684
 - **Logos Acquired**: 3 (BMW, Harley-Davidson, Honda)

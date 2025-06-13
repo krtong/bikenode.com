@@ -1,5 +1,12 @@
 # Cabin Motorcycles Tests
 
+> **⚠️ Testing Principles**
+> - Test with real database operations and actual data flows only
+> - Don't assume functionality works - verify through actual tests
+> - Document real test results and discovered edge cases
+> - Leave room for discovering unexpected behaviors in production
+> - See core principles in [README_BEFORE_MAKING_ANY_PAGE.md]
+
 Comprehensive test suite for the cabin motorcycles database operations, validation, and PostgreSQL functions.
 
 ## Test Structure

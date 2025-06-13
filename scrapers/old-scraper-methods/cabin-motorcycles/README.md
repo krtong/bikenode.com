@@ -1,5 +1,17 @@
 # Cabin Motorcycles Scraper
 
+> **⚠️ REQUIRED READING BEFORE CODING**
+> 
+> **You MUST read these first:**
+> 1. [SCRAPING_DESIGN_PRINCIPLES.md](../../SCRAPING_DESIGN_PRINCIPLES.md)
+> 2. [CODE_STANDARDS.md](../CODE_STANDARDS.md)
+> 
+> **ENFORCEMENT:**
+> - **NO PLACEHOLDERS** - Zero tolerance for mock/test data
+> - **CHECK FIRST** - Search for existing scrapers before creating new ones
+> - **VERIFY TARGETS** - Confirm websites exist before scraping
+> - **SPECIFIC NAMES** - No generic scraper names like "utils.js"
+
 This project contains web scrapers for various cabin motorcycle manufacturers, including historical and current models.
 
 ## Manufacturers Covered

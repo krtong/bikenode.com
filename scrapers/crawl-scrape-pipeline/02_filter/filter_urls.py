@@ -13,9 +13,28 @@ from pathlib import Path
 from typing import List, Dict
 
 # Add parent directory to path
-sys.path.append(str(Path(__file__).parent.parent / '00_env'))
+sys.path.append(str(Path(__file__).parent.parent / 'orchestration'))
 
-from utils import setup_logging
+# Simple logging setup to avoid pandas dependency
+import logging
+
+def setup_logging(name: str, log_file=None):
+    """Simple logging setup."""
+    logger = logging.getLogger(name)
+    logger.setLevel(logging.INFO)
+    
+    # Console handler
+    handler = logging.StreamHandler()
+    handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+    logger.addHandler(handler)
+    
+    # File handler if specified
+    if log_file:
+        fh = logging.FileHandler(log_file)
+        fh.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+        logger.addHandler(fh)
+    
+    return logger
 
 
 class URLFilter:

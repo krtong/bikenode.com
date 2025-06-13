@@ -1,3 +1,13 @@
+/* Community Browse Directory - Discord-inspired dark theme */
+
+/* Container */
+.community-browse-directory-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Hero Section */
 .community-browse-directory-hero {
     padding: 80px 0;
     background: linear-gradient(135deg, rgba(88, 101, 242, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
@@ -9,12 +19,12 @@
     font-weight: 800;
     line-height: 1.2;
     margin-bottom: 24px;
-    color: var(--text-primary);
+    color: #e4e4e7;
 }
 
 .community-browse-directory-hero-subtitle {
     font-size: 1.25rem;
-    color: var(--text-secondary);
+    color: #a3a3a3;
     line-height: 1.6;
     margin-bottom: 40px;
     max-width: 600px;
@@ -31,16 +41,22 @@
 
 .community-browse-directory-search {
     flex: 1;
-    background: var(--card-bg);
+    background: rgba(26, 26, 26, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--text-primary);
+    color: #e4e4e7;
     padding: 16px 20px;
     border-radius: 12px;
     font-size: 16px;
 }
 
+.community-browse-directory-search:focus {
+    outline: none;
+    border-color: #5865f2;
+    box-shadow: 0 0 0 3px rgba(88, 101, 242, 0.1);
+}
+
 .community-browse-directory-search-button {
-    background: var(--accent);
+    background: #5865f2;
     border: none;
     color: white;
     padding: 16px 24px;
@@ -51,7 +67,7 @@
 }
 
 .community-browse-directory-search-button:hover {
-    background: var(--accent-hover);
+    background: #4752c4;
 }
 
 .community-browse-directory-stats {
@@ -67,12 +83,12 @@
 .community-browse-directory-stat strong {
     display: block;
     font-size: 2rem;
-    color: var(--accent);
+    color: #5865f2;
     margin-bottom: 8px;
 }
 
 .community-browse-directory-stat span {
-    color: var(--text-secondary);
+    color: #a3a3a3;
     font-size: 1rem;
 }
 
@@ -83,7 +99,7 @@
 .community-browse-directory-featured-section h2 {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: #e4e4e7;
     margin-bottom: 40px;
 }
 
@@ -94,7 +110,8 @@
 }
 
 .community-browse-directory-card {
-    background: var(--card-bg);
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     padding: 32px;
@@ -103,11 +120,12 @@
 
 .community-browse-directory-card:hover {
     transform: translateY(-4px);
-    border-color: var(--accent);
+    border-color: #5865f2;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .community-browse-directory-card.featured {
-    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(88, 101, 242, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(88, 101, 242, 0.1) 100%);
 }
 
 .community-browse-directory-header {
@@ -127,14 +145,14 @@
 }
 
 .community-browse-directory-info h3 {
-    color: var(--text-primary);
+    color: #e4e4e7;
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 8px;
 }
 
 .community-browse-directory-info p {
-    color: var(--text-secondary);
+    color: #a3a3a3;
     line-height: 1.5;
 }
 
@@ -146,7 +164,7 @@
 }
 
 .community-browse-directory-member-count {
-    color: var(--text-primary);
+    color: #e4e4e7;
     font-weight: 600;
 }
 
@@ -164,7 +182,7 @@
 
 .community-browse-directory-tag {
     background: rgba(88, 101, 242, 0.1);
-    color: var(--accent);
+    color: #5865f2;
     padding: 4px 12px;
     border-radius: 12px;
     font-size: 0.8rem;
@@ -179,7 +197,7 @@
 .community-browse-directory-categories-section h2 {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: #e4e4e7;
     margin-bottom: 32px;
 }
 
@@ -193,7 +211,7 @@
 .community-browse-directory-category-tab {
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--text-secondary);
+    color: #a3a3a3;
     padding: 12px 24px;
     border-radius: 24px;
     cursor: pointer;
@@ -203,13 +221,13 @@
 }
 
 .community-browse-directory-category-tab:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+    border-color: #5865f2;
+    color: #5865f2;
 }
 
 .community-browse-directory-category-tab.active {
-    background: var(--accent);
-    border-color: var(--accent);
+    background: #5865f2;
+    border-color: #5865f2;
     color: white;
 }
 
@@ -220,15 +238,47 @@
     margin-bottom: 40px;
 }
 
+.community-browse-directory-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.community-browse-directory-btn-primary {
+    background: #5865f2;
+    color: white;
+}
+
+.community-browse-directory-btn-primary:hover {
+    background: #4752c4;
+    transform: translateY(-2px);
+}
+
+.community-browse-directory-btn-secondary {
+    background: transparent;
+    color: #5865f2;
+    border: 1px solid #5865f2;
+}
+
+.community-browse-directory-btn-secondary:hover {
+    background: rgba(88, 101, 242, 0.1);
+}
+
 .community-browse-directory-join-link {
-    color: var(--accent);
+    color: #5865f2;
     text-decoration: none;
     font-weight: 600;
     transition: color 0.2s ease;
 }
 
 .community-browse-directory-join-link:hover {
-    color: var(--text-primary);
+    color: #e4e4e7;
 }
 
 .community-browse-directory-load-more {
@@ -251,14 +301,14 @@
 }
 
 .community-browse-directory-create-content h2 {
-    color: var(--text-primary);
+    color: #e4e4e7;
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 8px;
 }
 
 .community-browse-directory-create-content p {
-    color: var(--text-secondary);
+    color: #a3a3a3;
     line-height: 1.5;
 }
 

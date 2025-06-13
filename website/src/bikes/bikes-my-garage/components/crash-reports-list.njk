@@ -1,20 +1,20 @@
-<!-- Crash Reports Section using global CSS components -->
-<div class="garage-crash-reports-section">
-    <div class="flex-between mb-4">
+<!-- Crash Reports Section -->
+<div class="bikes-my-garage-crash-reports-section">
+    <div class="bikes-my-garage-crash-reports-header">
         <div>
-            <h2 class="font-xl font-semibold">Crash Reports</h2>
-            <p class="text-secondary">Track your gear performance in real-world scenarios</p>
+            <h2 class="bikes-my-garage-crash-reports-title">Crash Reports</h2>
+            <p class="bikes-my-garage-crash-reports-subtitle">Track your gear performance in real-world scenarios</p>
         </div>
-        <button class="bikes-my-garage-crash-reports-add-button" onclick="openAddCrashReportModal()">
+        <button class="bikes-my-garage-crash-reports-add-button" id="bikesMyGarageCrashReportsAddBtn">
             <span>➕</span>
             Add Report
         </button>
     </div>
     
     <!-- Info Card -->
-    <div class="garage-info-card mb-4">
-        <span>ℹ️</span>
-        <p>Your crash reports help other riders make informed gear decisions. All reports are anonymous.</p>
+    <div class="bikes-my-garage-crash-reports-info-card">
+        <span class="bikes-my-garage-crash-reports-info-icon">ℹ️</span>
+        <p class="bikes-my-garage-crash-reports-info-text">Your crash reports help other riders make informed gear decisions. All reports are anonymous.</p>
     </div>
     
     <!-- Crash Reports List -->
@@ -23,13 +23,13 @@
     </div>
     
     <!-- Empty State -->
-    <div class="text-center p-5 d-none" id="crashReportsEmpty">
-        <div class="mb-3" style="font-size: 4rem;">📋</div>
-        <h3 class="font-lg font-semibold text-primary mb-2">No crash reports yet</h3>
-        <p class="text-secondary mb-4">We hope you never need to add one, but if you do, your experience can help others</p>
-        <button class="bikes-my-garage-crash-reports-empty-button" onclick="openAddCrashReportModal()">
-            <span>➕</span>
-            Add Your First Report
+    <div class="bikes-my-garage-crash-reports-empty bikes-my-garage-crash-reports-empty--hidden" id="crashReportsEmpty">
+        <div class="bikes-my-garage-crash-reports-empty-icon">📋</div>
+        <h3 class="bikes-my-garage-crash-reports-empty-title">No crash reports yet</h3>
+        <p class="bikes-my-garage-crash-reports-empty-text">We hope you never need to add one, but if you do, your experience can help others</p>
+        <button class="bikes-my-garage-crash-reports-empty-button" id="bikesMyGarageCrashReportsEmptyBtn">
+            <span class="bikes-my-garage-crash-reports-empty-button-icon">➕</span>
+            <span class="bikes-my-garage-crash-reports-empty-button-text">Add Your First Report</span>
         </button>
     </div>
 </div>

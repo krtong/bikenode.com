@@ -20,10 +20,10 @@ from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 
 # Add parent directory to path
-sys.path.append(str(Path(__file__).parent.parent / '00_env'))
+sys.path.append(str(Path(__file__).parent.parent / 'orchestration'))
 
 from config import config
-from utils import setup_logging, normalize_url, is_valid_url, ensure_dir
+from utils_minimal import setup_logging, normalize_url, is_valid_url, ensure_dir
 
 
 class MetadataSpider(scrapy.Spider):

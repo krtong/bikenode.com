@@ -79,7 +79,7 @@
 .settings-email-page-preview-icon {
     width: 40px;
     height: 40px;
-    background: var(--accent);
+    background: #5865f2;
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -125,7 +125,7 @@
     position: fixed;
     bottom: 24px;
     right: 24px;
-    background: var(--accent);
+    background: #5865f2;
     color: white;
     padding: 16px 24px;
     border-radius: 8px;
@@ -214,7 +214,7 @@
 }
 
 input:checked + .settings-email-page-slider {
-    background-color: var(--accent);
+    background-color: #5865f2;
 }
 
 input:checked + .settings-email-page-slider:before {

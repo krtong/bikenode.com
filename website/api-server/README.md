@@ -1,5 +1,17 @@
 # BikeNode API Server
 
+> **⚠️ STOP - READ THESE FIRST**
+> 
+> **MANDATORY READING:**
+> 1. [SELF_CONTAINED_ARCHITECTURE.md](../src/SELF_CONTAINED_ARCHITECTURE.md)
+> 2. [README_BEFORE_MAKING_ANY_PAGE.md](../src/README_BEFORE_MAKING_ANY_PAGE.md)
+> 
+> **CRITICAL RULES:**
+> - **NO PLACEHOLDERS** - No mock responses, test data, or "TODO" returns
+> - **VERIFY EXISTENCE** - Check files exist before importing or referencing
+> - **SPECIFIC NAMES** - No generic handler names like "utils" or "helpers"
+> - **REAL DATA ONLY** - All endpoints must connect to real database
+
 This directory contains the Go-based API server for BikeNode.
 
 ## Structure

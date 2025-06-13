@@ -3,20 +3,37 @@
    Self-contained header styles for main layout
    =================================== */
 
+/* CSS Variables */
+:root {
+    --bg-primary: #2f3136;
+    --text-primary: #ffffff;
+    --text-secondary: #b9bbbe;
+    --accent: #5865f2;
+    --accent-hover: #ea580c;
+    --transition-fast: all 0.2s ease;
+    --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --radius-sm: 4px;
+    --radius-md: 8px;
+}
+
 /* Header Container */
 .bikenode-main-layout-01-header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    height: 80px;
+    height: 60px;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 100;
+    z-index: 1000;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    transition: var(--transition-fast);
+    transition: var(--transition-smooth);
+}
+
+.bikenode-main-layout-01-header:hover {
+    height: 80px;
 }
 
 /* Header Content Container */
@@ -30,18 +47,20 @@
 
 /* Header Container (extracted from inline) */
 .bikenode-main-layout-01-header-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(150px, 1fr) auto minmax(150px, 1fr);
     align-items: center;
-    justify-content: space-between;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
     height: 100%;
-    max-width: 100%;
+    width: 100%;
+    position: relative;
 }
 
 /* Navigation Brand Section */
-.bikenode-main-layout-01-header-nav-brand {
+.bikenode-main-layout-01-header-brand {
     display: flex;
     align-items: center;
+    justify-self: start;
 }
 
 /* BikeNode Logo */
@@ -58,19 +77,24 @@
 /* Navigation Links Container */
 .bikenode-main-layout-01-header-nav {
     display: flex;
-    gap: 1rem;
-    flex: 1;
+    align-items: center;
+    gap: 0.25rem;
+    justify-content: center;
 }
 
 /* Individual Navigation Links */
 .bikenode-main-layout-01-header-nav-link {
-    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0.5rem;
     color: var(--text-secondary);
     text-decoration: none;
     border-radius: var(--radius-md);
-    transition: var(--transition-fast);
+    transition: var(--transition-smooth);
     font-weight: 500;
-    font-size: 15px;
+    font-size: 14px;
+    white-space: nowrap;
 }
 
 .bikenode-main-layout-01-header-nav-link:hover {
@@ -83,37 +107,150 @@
     color: var(--accent);
 }
 
-/* User Section Container */
-.bikenode-main-layout-01-header-user {
+/* Search Bar */
+.bikenode-main-layout-01-header-search {
+    position: relative;
+    flex-shrink: 0;
+    order: 2;
+}
+
+.bikenode-main-layout-01-header-search-form {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 1rem;
-}
-
-/* User Avatar */
-.bikenode-main-layout-01-header-user-avatar {
+    flex-direction: row-reverse;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 1);
+    border-radius: 24px;
+    padding: 0.4rem;
+    transition: var(--transition-smooth);
     width: 40px;
     height: 40px;
-    border-radius: 50%;
     overflow: hidden;
-    border: 2px solid var(--accent);
-    transition: var(--transition-fast);
 }
 
-.bikenode-main-layout-01-header-user-avatar:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 0 4px rgba(88, 101, 242, 0.2);
+.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-search-form,
+.bikenode-main-layout-01-header-search-form:focus-within {
+    width: 220px;
+    padding-right: 0.5rem;
+    border-color: rgba(255, 255, 255, 1);
+    background: rgba(255, 255, 255, 0.08);
 }
 
-.bikenode-main-layout-01-header-user-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.bikenode-main-layout-01-header-search-input {
+    width: 0;
+    opacity: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 14px;
+    outline: none;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    margin-right: 0.5rem;
+}
+
+.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-search-input,
+.bikenode-main-layout-01-header-search-form:focus-within .bikenode-main-layout-01-header-search-input {
+    width: 140px;
+    opacity: 1;
+}
+
+.bikenode-main-layout-01-header-search-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.bikenode-main-layout-01-header-search-button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.bikenode-main-layout-01-header-search-button:hover {
+    color: var(--text-primary);
+}
+
+.bikenode-main-layout-01-header-search-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* User Actions Container */
+.bikenode-main-layout-01-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-self: end;
+}
+
+/* Get Started Button */
+.bikenode-main-layout-01-header-get-started-button {
+    padding: 0.5rem 1rem;
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    order: 1;
+}
+
+.bikenode-main-layout-01-header-get-started-button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(88, 101, 242, 0.3);
 }
 
 /* User Menu Container */
 .bikenode-main-layout-01-header-user-menu {
     position: relative;
+}
+
+.bikenode-main-layout-01-header-user-menu-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+}
+
+.bikenode-main-layout-01-header-user-menu-button:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* User Avatar */
+.bikenode-main-layout-01-header-user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-user-avatar {
+    width: 36px;
+    height: 36px;
+}
+
+/* Dropdown Icon */
+.bikenode-main-layout-01-header-dropdown-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--text-secondary);
+    transition: transform 0.2s ease;
 }
 
 /* Username */
@@ -123,8 +260,8 @@
     cursor: pointer;
 }
 
-/* Dropdown Menu */
-.bikenode-main-layout-01-header-dropdown {
+/* User Dropdown */
+.bikenode-main-layout-01-header-user-dropdown {
     position: absolute;
     top: 100%;
     right: 0;
@@ -134,44 +271,184 @@
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-md);
-    padding: 0.5rem;
-    min-width: 200px;
-    display: none;
+    min-width: 240px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
 }
 
-.bikenode-main-layout-01-header-user-menu:hover .bikenode-main-layout-01-header-dropdown {
-    display: block;
+.bikenode-main-layout-01-header-user-menu-button[aria-expanded="true"] + .bikenode-main-layout-01-header-user-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
-.bikenode-main-layout-01-header-dropdown a {
-    display: block;
-    padding: 0.5rem 1rem;
+/* Dropdown Links */
+.bikenode-main-layout-01-header-dropdown-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
     color: var(--text-secondary);
     text-decoration: none;
     border-radius: var(--radius-sm);
-    transition: var(--transition-fast);
+    transition: all 0.2s ease;
+    font-size: 14px;
 }
 
-.bikenode-main-layout-01-header-dropdown a:hover {
+.bikenode-main-layout-01-header-dropdown-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.bikenode-main-layout-01-header-dropdown-link svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+/* Dropdown Header */
+.bikenode-main-layout-01-header-dropdown-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bikenode-main-layout-01-header-dropdown-info {
+    flex: 1;
+}
+
+.bikenode-main-layout-01-header-dropdown-name {
+    display: block;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.bikenode-main-layout-01-header-dropdown-email {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Dropdown Divider */
+.bikenode-main-layout-01-header-dropdown-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0.5rem 0;
+}
+
+/* Logout Link */
+.bikenode-main-layout-01-header-logout-link {
+    color: #ef4444;
+}
+
+.bikenode-main-layout-01-header-logout-link:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+}
+
+/* Mobile Menu Button */
+.bikenode-main-layout-01-header-mobile-menu-button {
+    display: none;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
+.bikenode-main-layout-01-header-menu-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.bikenode-main-layout-01-header-menu-icon span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: currentColor;
+    transition: all 0.3s ease;
+}
+
+/* Mobile Navigation */
+.bikenode-main-layout-01-header-mobile-nav {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.bikenode-main-layout-01-header-mobile-nav:not([hidden]) {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.bikenode-main-layout-01-header-mobile-search {
+    margin-bottom: 1rem;
+}
+
+.bikenode-main-layout-01-header-mobile-search-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 14px;
+    outline: none;
+}
+
+.bikenode-main-layout-01-header-mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.bikenode-main-layout-01-header-mobile-nav-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+}
+
+.bikenode-main-layout-01-header-mobile-nav-link:hover {
     background: rgba(255, 255, 255, 0.05);
     color: var(--text-primary);
 }
 
 /* Mobile Responsive */
-@media (max-width: 1024px) {
-    .bikenode-main-layout-01-header-nav {
+@media (max-width: 768px) {
+    .bikenode-main-layout-01-header {
+        height: 60px !important;
+    }
+    
+    .bikenode-main-layout-01-header-nav,
+    .bikenode-main-layout-01-header-search {
         display: none;
     }
     
-    .bikenode-main-layout-01-header-content {
-        margin-left: 0;
+    .bikenode-main-layout-01-header-mobile-menu-button {
+        display: block;
     }
-}
-
-@media (max-width: 768px) {
-    .bikenode-main-layout-01-header {
-        height: 60px;
+    
+    .bikenode-main-layout-01-header-container {
+        padding: 0 1rem;
     }
 }
 
@@ -180,26 +457,55 @@
    =================================== */
 
 /* Logo Link */
-.bikenode-main-layout-01-header-logo-link {
+.bikenode-main-layout-01-header-brand-link {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
     text-decoration: none;
-    color: var(--text-primary);
-    font-weight: 600;
-    font-size: 1.25rem;
+    transition: all 0.3s ease;
 }
 
-/* Logo Icon */
-.bikenode-main-layout-01-header-logo-icon {
-    width: 32px;
-    height: 32px;
-    color: var(--accent);
+/* Logo Image */
+.bikenode-main-layout-01-header-brand-logo {
+    height: 36px;
+    width: auto;
+    transition: var(--transition-smooth);
 }
 
-/* Logo Text */
-.bikenode-main-layout-01-header-logo-text {
+.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-brand-logo {
+    height: 44px;
+}
+
+/* Action Buttons */
+.bikenode-main-layout-01-header-action-button {
+    position: relative;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bikenode-main-layout-01-header-action-button:hover {
+    background: rgba(255, 255, 255, 0.05);
     color: var(--text-primary);
+}
+
+/* Notification Dot */
+.bikenode-main-layout-01-header-notification-dot {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    border: 2px solid var(--bg-primary);
 }
 
 /* Navigation List */
@@ -220,7 +526,51 @@
 .bikenode-main-layout-01-header-nav-icon {
     width: 20px;
     height: 20px;
-    margin-right: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* Navigation Link Text */
+.bikenode-main-layout-01-header-nav-text {
+    display: inline-block;
+    max-width: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-width 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.3s ease 0.1s,
+                margin 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-nav-text {
+    max-width: 120px;
+    opacity: 1;
+    margin-left: 0.5rem;
+}
+
+/* Staggered animation for each nav item */
+.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-nav-item:nth-child(1) .bikenode-main-layout-01-header-nav-text {
+    transition-delay: 0s, 0.1s, 0s;
+}
+
+.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-nav-item:nth-child(2) .bikenode-main-layout-01-header-nav-text {
+    transition-delay: 0.1s, 0.2s, 0.1s;
+}
+
+.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-nav-item:nth-child(3) .bikenode-main-layout-01-header-nav-text {
+    transition-delay: 0.2s, 0.3s, 0.2s;
+}
+
+.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-nav-item:nth-child(4) .bikenode-main-layout-01-header-nav-text {
+    transition-delay: 0.3s, 0.4s, 0.3s;
+}
+
+.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-nav-item:nth-child(5) .bikenode-main-layout-01-header-nav-text {
+    transition-delay: 0.4s, 0.5s, 0.4s;
+}
+
+.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-nav-link {
+    gap: 0.5rem;
 }
 
 /* Navigation Link Active State */
@@ -289,10 +639,10 @@
     background: rgba(255, 255, 255, 0.05);
 }
 
-/* User Avatar in Dropdown */
-.bikenode-main-layout-01-header-user-avatar {
-    width: 32px;
-    height: 32px;
+/* Dropdown Avatar */
+.bikenode-main-layout-01-header-dropdown-avatar {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     object-fit: cover;
 }

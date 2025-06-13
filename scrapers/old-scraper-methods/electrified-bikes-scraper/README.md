@@ -1,5 +1,17 @@
 # Electrified Bikes Scraper Project
 
+> **⚠️ STOP! READ THESE DOCUMENTS FIRST**
+> 
+> **Mandatory prerequisites:**
+> 1. [SCRAPING_DESIGN_PRINCIPLES.md](../../SCRAPING_DESIGN_PRINCIPLES.md)
+> 2. [CODE_STANDARDS.md](../CODE_STANDARDS.md)
+> 
+> **STRICT REQUIREMENTS:**
+> - **NO PLACEHOLDERS** - No fake brand names or theoretical models
+> - **VERIFY BEFORE CREATING** - Check if brand scrapers already exist
+> - **REAL WEBSITES ONLY** - Confirm URLs work before adding to scraper
+> - **HYPERSPECIFIC FILES** - Name files like "surron-2024-scraper.js" not "bike-scraper.js"
+
 ## Overview
 This project aims to collect year/make/model/specs data for electrified bikes (Sur-Ron, Talaria, Segway, etc.) from various online sources.
 
