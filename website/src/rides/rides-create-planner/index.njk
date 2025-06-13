@@ -3,23 +3,17 @@ layout: bikenode-main-layout-01
 title: Route Planner
 subtitle: Plan your next motorcycle adventure
 showContentHeader: false
+customCSS:
+  - https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
+  - https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css
+  - ./styles/rides-create-planner.css
+customJS:
+  - https://unpkg.com/leaflet@1.9.4/dist/leaflet.js
+  - https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js
+  - ./js/rides-create-planner.js
 ---
 
 <div class="rides-create-planner">
     {% include "./components/rides-create-planner-route-sidebar.njk" %}
     {% include "./components/rides-create-planner-map-container.njk" %}
 </div>
-
-<!-- Load Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
-
-<!-- Page Styles -->
-<link rel="stylesheet" href="./styles/rides-create-planner.css">
-
-<!-- Load Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
-
-<!-- Load Route Planner Application -->
-<script src="./js/rides-create-planner.js"></script>
