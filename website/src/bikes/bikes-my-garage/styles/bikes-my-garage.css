@@ -1,25 +1,28 @@
 /* Bikes My Garage Page Styles */
+
+/* Use the same variables as bikenode-main-layout-01 */
 .bikes-my-garage-page {
-    background: #f9fafb;
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 60px);
 }
 
 .bikes-my-garage-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem 2rem;
+    padding: 2rem;
 }
 
 /* Header Styles */
 .bikes-my-garage-header {
-    background: white;
-    border-bottom: 1px solid #e5e7eb;
-    padding: 2rem;
+    background: var(--bg-secondary, #36393f);
+    border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    padding: 1.5rem 0;
+    margin: 0 -2rem;
 }
 
 .bikes-my-garage-header-content {
     max-width: 1400px;
     margin: 0 auto;
+    padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,10 +32,11 @@
     font-size: 2rem;
     font-weight: 700;
     margin: 0;
+    color: var(--text-primary, #ffffff);
 }
 
 .bikes-my-garage-subtitle {
-    color: #6b7280;
+    color: var(--text-secondary, #b9bbbe);
     margin: 0.25rem 0 0;
 }
 
@@ -57,56 +61,62 @@
 }
 
 .bikes-my-garage-btn-primary {
-    background: #3b82f6;
+    background: var(--accent, #5865f2);
     color: white;
 }
 
 .bikes-my-garage-btn-primary:hover {
-    background: #2563eb;
+    background: var(--accent-hover, #4752c4);
 }
 
 .bikes-my-garage-btn-secondary {
-    background: white;
-    color: #374151;
-    border: 1px solid #d1d5db;
+    background: var(--bg-tertiary, #40444b);
+    color: var(--text-primary, #ffffff);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
 }
 
 .bikes-my-garage-btn-secondary:hover {
-    background: #f3f4f6;
+    background: var(--bg-secondary, #36393f);
 }
 
 /* Tabs */
 .bikes-my-garage-tabs {
-    background: white;
-    border-bottom: 1px solid #e5e7eb;
+    background: var(--bg-secondary, #36393f);
+    border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
     display: flex;
-    padding: 0 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
+    padding: 0;
+    margin: 0 -2rem 0 -2rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.bikes-my-garage-tabs::-webkit-scrollbar {
+    display: none;
 }
 
 .bikes-my-garage-tab {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1rem 1.5rem;
+    padding: 1rem 2rem;
     background: none;
     border: none;
     border-bottom: 2px solid transparent;
     cursor: pointer;
-    color: #6b7280;
+    color: var(--text-secondary, #b9bbbe);
     font-size: 0.875rem;
     font-weight: 500;
     transition: all 0.2s;
 }
 
 .bikes-my-garage-tab:hover {
-    color: #374151;
+    color: var(--text-primary, #ffffff);
 }
 
 .bikes-my-garage-tab-active {
-    color: #3b82f6;
-    border-bottom-color: #3b82f6;
+    color: var(--accent, #5865f2);
+    border-bottom-color: var(--accent, #5865f2);
 }
 
 .bikes-my-garage-tab-icon {
@@ -114,21 +124,22 @@
 }
 
 .bikes-my-garage-tab-count {
-    background: #e5e7eb;
-    color: #374151;
+    background: var(--bg-tertiary, #40444b);
+    color: var(--text-secondary, #b9bbbe);
     padding: 0.125rem 0.5rem;
     border-radius: 9999px;
     font-size: 0.75rem;
 }
 
 .bikes-my-garage-tab-active .bikes-my-garage-tab-count {
-    background: #dbeafe;
-    color: #3b82f6;
+    background: var(--accent, #5865f2);
+    color: white;
 }
 
 /* Tab Content */
 .bikes-my-garage-tab-content {
     display: none;
+    padding-top: 2rem;
 }
 
 .bikes-my-garage-tab-content.bikes-my-garage-tab-active {
@@ -140,12 +151,12 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
-    margin: 2rem 0;
+    margin: 0 0 2rem 0;
 }
 
 .bikes-my-garage-stat-card {
-    background: white;
-    border: 1px solid #e5e7eb;
+    background: var(--card-bg, #40444b);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
     border-radius: 0.5rem;
     padding: 1.5rem;
     display: flex;
@@ -156,29 +167,29 @@
 .bikes-my-garage-stat-icon {
     width: 48px;
     height: 48px;
-    background: #eff6ff;
+    background: var(--bg-secondary, #36393f);
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #3b82f6;
+    color: var(--accent, #5865f2);
 }
 
 .bikes-my-garage-stat-value {
     font-size: 1.875rem;
     font-weight: 700;
-    color: #111827;
+    color: var(--text-primary, #ffffff);
 }
 
 .bikes-my-garage-stat-label {
-    color: #6b7280;
     font-size: 0.875rem;
+    color: var(--text-secondary, #b9bbbe);
 }
 
 /* Filters */
 .bikes-my-garage-filters {
-    background: white;
-    border: 1px solid #e5e7eb;
+    background: var(--card-bg, #40444b);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
     border-radius: 0.5rem;
     padding: 1.5rem;
     display: flex;
@@ -203,11 +214,51 @@
 }
 
 .bikes-my-garage-filter-select {
+    background: var(--bg-tertiary, #40444b);
+    color: var(--text-primary, #ffffff);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
     padding: 0.5rem 0.75rem;
-    border: 1px solid #d1d5db;
     border-radius: 0.375rem;
     font-size: 0.875rem;
-    background: white;
+}
+
+.bikes-my-garage-search-container {
+    position: relative;
+}
+
+.bikes-my-garage-search {
+    background: var(--bg-tertiary, #40444b);
+    color: var(--text-primary, #ffffff);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    padding: 0.5rem 0.75rem 0.5rem 2.5rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    width: 200px;
+}
+
+.bikes-my-garage-search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary, #b9bbbe);
+}
+
+.bikes-my-garage-view-btn {
+    background: var(--bg-tertiary, #40444b);
+    color: var(--text-secondary, #b9bbbe);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.bikes-my-garage-view-btn:hover,
+.bikes-my-garage-view-active {
+    background: var(--accent, #5865f2);
+    color: white;
+    border-color: var(--accent, #5865f2);
 }
 
 /* Bike Grid */
@@ -218,21 +269,22 @@
 }
 
 .bikes-my-garage-bike-card {
-    background: white;
-    border: 1px solid #e5e7eb;
+    background: var(--card-bg, #40444b);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
     border-radius: 0.5rem;
     overflow: hidden;
     transition: all 0.2s;
 }
 
 .bikes-my-garage-bike-card:hover {
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .bikes-my-garage-bike-image {
     position: relative;
     height: 200px;
-    background: #f3f4f6;
+    background: var(--bg-secondary, #36393f);
 }
 
 .bikes-my-garage-bike-image img {
@@ -249,17 +301,16 @@
     border-radius: 9999px;
     font-size: 0.75rem;
     font-weight: 500;
-    background: white;
 }
 
 .bikes-my-garage-status-active {
-    background: #d1fae5;
-    color: #065f46;
+    background: var(--success, #43b581);
+    color: white;
 }
 
 .bikes-my-garage-status-forsale {
-    background: #fef3c7;
-    color: #92400e;
+    background: var(--warning, #faa81a);
+    color: white;
 }
 
 .bikes-my-garage-bike-info {
@@ -270,11 +321,12 @@
     font-size: 1.125rem;
     font-weight: 600;
     margin: 0 0 0.25rem;
+    color: var(--text-primary, #ffffff);
 }
 
 .bikes-my-garage-bike-year {
-    color: #6b7280;
     font-size: 0.875rem;
+    color: var(--text-secondary, #b9bbbe);
     margin: 0 0 1rem;
 }
 
@@ -291,11 +343,12 @@
 
 .bikes-my-garage-bike-stat-value {
     font-weight: 600;
+    color: var(--text-primary, #ffffff);
 }
 
 .bikes-my-garage-bike-stat-label {
     font-size: 0.875rem;
-    color: #6b7280;
+    color: var(--text-secondary, #b9bbbe);
 }
 
 .bikes-my-garage-bike-actions {
@@ -305,18 +358,41 @@
 }
 
 .bikes-my-garage-action-btn {
+    background: var(--bg-secondary, #36393f);
+    color: var(--text-secondary, #b9bbbe);
     padding: 0.5rem;
-    background: #f3f4f6;
     border: none;
     border-radius: 0.375rem;
     cursor: pointer;
     transition: all 0.2s;
-    color: #6b7280;
 }
 
 .bikes-my-garage-action-btn:hover {
-    background: #e5e7eb;
-    color: #374151;
+    background: var(--accent, #5865f2);
+    color: white;
+}
+
+/* Empty State */
+.bikes-my-garage-empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-secondary, #b9bbbe);
+}
+
+.bikes-my-garage-empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.bikes-my-garage-empty-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    color: var(--text-primary, #ffffff);
+}
+
+.bikes-my-garage-empty-text {
+    margin: 0 0 2rem;
 }
 
 /* Hidden */
@@ -324,9 +400,9 @@
     display: none !important;
 }
 
-/* Crash Reports Buttons */
+/* Crash Reports Styles */
 .bikes-my-garage-crash-reports-add-button {
-    background-color: #f97316;
+    background: var(--accent, #5865f2);
     color: white;
     padding: 0.75rem 1.5rem;
     border: none;
@@ -341,14 +417,14 @@
 }
 
 .bikes-my-garage-crash-reports-add-button:hover {
-    background-color: #ea580c;
+    background: var(--accent-hover, #4752c4);
 }
 
 .bikes-my-garage-crash-reports-empty-button {
-    background-color: white;
-    color: #374151;
+    background: var(--bg-tertiary, #40444b);
+    color: var(--text-primary, #ffffff);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
     padding: 0.75rem 1.5rem;
-    border: 1px solid #d1d5db;
     border-radius: 0.375rem;
     font-size: 1rem;
     font-weight: 500;
@@ -360,7 +436,35 @@
 }
 
 .bikes-my-garage-crash-reports-empty-button:hover {
-    background-color: #f9fafb;
-    border-color: #9ca3af;
+    background: var(--bg-secondary, #36393f);
 }
-EOF < /dev/null
+
+/* List view styles */
+.bikes-my-garage-list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.bikes-my-garage-list-view .bikes-my-garage-bike-card {
+    display: flex;
+    height: auto;
+}
+
+.bikes-my-garage-list-view .bikes-my-garage-bike-image {
+    width: 200px;
+    height: 150px;
+    flex-shrink: 0;
+}
+
+.bikes-my-garage-list-view .bikes-my-garage-bike-info {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bikes-my-garage-list-view .bikes-my-garage-bike-actions {
+    padding: 0;
+    margin-left: auto;
+}

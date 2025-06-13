@@ -3,7 +3,7 @@ layout: front-page-layout
 title: BikeNode - The Motorcycle Community
 permalink: /
 customCSS:
-  - ./styles/front-page.css
+  - /front-page/styles/front-page.css
 ---
 
 <div class="front-page-container">
@@ -21,7 +21,8 @@ customCSS:
 
   <!-- Features Section -->
   <section class="front-page-features-section">
-    <div class="front-page-features-grid">
+    <div class="front-page-features-wrapper">
+      <div class="front-page-features-grid">
       <div class="front-page-feature-card">
         <div class="front-page-feature-icon">🏍️</div>
         <h3 class="front-page-feature-title">Virtual Garage</h3>
@@ -43,13 +44,16 @@ customCSS:
         <p class="front-page-feature-description">Buy and sell bikes, gear, and parts with trusted riders</p>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- Call to Action -->
   <section class="front-page-cta-section">
-    <h2 class="front-page-cta-title">Ready to Join the Community?</h2>
-    <p class="front-page-cta-subtitle">Create your free account and start your journey</p>
-    <a href="/authentication/auth-signup-page/" class="front-page-cta-button">Join BikeNode</a>
+    <div class="front-page-cta-wrapper">
+      <h2 class="front-page-cta-title">Ready to Join the Community?</h2>
+      <p class="front-page-cta-subtitle">Create your free account and start your journey</p>
+      <a href="/authentication/auth-signup-page/" class="front-page-cta-button">Join BikeNode</a>
+    </div>
   </section>
 </div>
 

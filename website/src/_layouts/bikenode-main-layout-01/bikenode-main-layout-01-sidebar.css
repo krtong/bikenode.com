@@ -19,26 +19,16 @@
     transition: transform var(--transition-normal);
 }
 
-/* Sidebar Scrollbar - Ultra thin 1px line */
+/* Sidebar Scrollbar - Hidden */
 .bikenode-main-layout-01-sidebar {
-    scrollbar-width: thin; /* Firefox */
-    scrollbar-color: rgba(255, 255, 255, 0.2) transparent; /* Firefox */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 
 .bikenode-main-layout-01-sidebar::-webkit-scrollbar {
-    width: 1px;
-}
-
-.bikenode-main-layout-01-sidebar::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.bikenode-main-layout-01-sidebar::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.bikenode-main-layout-01-sidebar::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
+    width: 0;
+    height: 0;
+    display: none;
 }
 
 /* Sidebar Navigation */

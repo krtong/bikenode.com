@@ -1,0 +1,24 @@
+homepage:
+  quotes:
+    selector: "div.quote"
+    fields:
+      text: "span.text::text"
+      author: "small.author::text"
+      tags: "div.tags a.tag::text"
+
+author_page:
+  author_info:
+    selector: "div.author-details"
+    fields:
+      name: "h3.author-title::text"
+      born_date: "span.author-born-date::text"
+      born_location: "span.author-born-location::text"
+      description: "div.author-description::text"
+
+tag_page:
+  quotes:
+    selector: "div.quote"
+    fields:
+      text: "span.text::text"
+      author: "small.author::text"
+      tags: "div.tags a.tag::text"

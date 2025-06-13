@@ -4,8 +4,10 @@
     background: var(--bg-secondary, #36393f);
     color: var(--text-secondary, #b9bbbe);
     padding: 64px 0 32px;
-    margin-top: 80px;
+    margin-top: 0;
     border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    position: relative;
+    z-index: 2;
 }
 
 .front-page-layout-footer-container {
@@ -155,7 +157,9 @@
     background-color: var(--bg-secondary, #36393f);
     color: var(--text-secondary, #b9bbbe);
     padding: 4rem 0 2rem;
-    margin-top: 5rem;
+    margin-top: 0;
+    position: relative;
+    z-index: 2;
 }
 
 .front-page-layout-footer-wrapper {

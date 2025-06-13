@@ -1,0 +1,315 @@
+/* Rides Record Tracker - Self-contained styles */
+
+/* Container */
+.rides-record-tracker-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header */
+.rides-record-tracker-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.rides-record-tracker-timer {
+  font-size: 72px;
+  font-weight: bold;
+  color: #5865f2;
+  margin-bottom: 16px;
+  font-family: monospace;
+}
+
+.rides-record-tracker-status {
+  font-size: 18px;
+  color: #888;
+  margin-bottom: 32px;
+}
+
+/* Control Buttons */
+.rides-record-tracker-control-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.rides-record-tracker-control-btn {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: none;
+  font-size: 48px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rides-record-tracker-start-btn {
+  background: #5865f2;
+  color: white;
+}
+
+.rides-record-tracker-start-btn:hover {
+  background: #4752c4;
+  transform: scale(1.05);
+}
+
+.rides-record-tracker-pause-btn {
+  background: #f59e0b;
+  color: white;
+}
+
+.rides-record-tracker-pause-btn:hover {
+  background: #d97706;
+  transform: scale(1.05);
+}
+
+.rides-record-tracker-stop-btn {
+  background: #ef4444;
+  color: white;
+}
+
+.rides-record-tracker-stop-btn:hover {
+  background: #dc2626;
+  transform: scale(1.05);
+}
+
+/* Metrics Grid */
+.rides-record-tracker-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.rides-record-tracker-metric-card {
+  background: #2a2a2a;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.rides-record-tracker-metric-value {
+  font-size: 36px;
+  font-weight: bold;
+  color: #5865f2;
+  margin-bottom: 8px;
+}
+
+.rides-record-tracker-metric-label {
+  font-size: 14px;
+  color: #888;
+}
+
+/* Map Section */
+.rides-record-tracker-map-section {
+  background: #2a2a2a;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.rides-record-tracker-map-view {
+  height: 400px;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 18px;
+  position: relative;
+}
+
+.rides-record-tracker-gps-status {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rides-record-tracker-gps-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+.rides-record-tracker-gps-indicator.rides-record-tracker-searching {
+  background: #f59e0b;
+  animation: rides-record-tracker-pulse 1.5s infinite;
+}
+
+@keyframes rides-record-tracker-pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Ride Settings */
+.rides-record-tracker-ride-settings {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.rides-record-tracker-setting-card {
+  background: #2a2a2a;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.rides-record-tracker-setting-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.rides-record-tracker-ride-type-options {
+  display: grid;
+  gap: 8px;
+}
+
+.rides-record-tracker-ride-type-btn {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #ccc;
+}
+
+.rides-record-tracker-ride-type-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.rides-record-tracker-ride-type-btn.rides-record-tracker-active {
+  background: rgba(88, 101, 242, 0.2);
+  border-color: #5865f2;
+}
+
+/* Sensor List */
+.rides-record-tracker-sensor-list {
+  display: grid;
+  gap: 12px;
+}
+
+.rides-record-tracker-sensor-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.rides-record-tracker-sensor-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rides-record-tracker-sensor-icon {
+  width: 32px;
+  height: 32px;
+  background: rgba(88, 101, 242, 0.1);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.rides-record-tracker-sensor-name {
+  font-weight: 500;
+  color: #fff;
+}
+
+.rides-record-tracker-sensor-status {
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+
+.rides-record-tracker-sensor-status.rides-record-tracker-connected {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.rides-record-tracker-sensor-status.rides-record-tracker-disconnected {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+/* Quick Stats */
+.rides-record-tracker-quick-stats {
+  background: rgba(88, 101, 242, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  text-align: center;
+}
+
+.rides-record-tracker-quick-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rides-record-tracker-quick-stat-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #5865f2;
+}
+
+.rides-record-tracker-quick-stat-label {
+  font-size: 12px;
+  color: #888;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .rides-record-tracker-timer {
+    font-size: 48px;
+  }
+
+  .rides-record-tracker-control-btn {
+    width: 80px;
+    height: 80px;
+    font-size: 32px;
+  }
+
+  .rides-record-tracker-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .rides-record-tracker-map-view {
+    height: 250px;
+  }
+}

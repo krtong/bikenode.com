@@ -73,6 +73,10 @@
     object-fit: cover;
 }
 
+.profile-edit-form-avatar-image-hidden {
+    display: none;
+}
+
 .profile-edit-form-avatar-overlay {
     position: absolute;
     bottom: 0;

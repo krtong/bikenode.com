@@ -3,6 +3,12 @@ layout: bikenode-main-layout-01
 title: Segments
 subtitle: Challenge yourself on popular local segments and compete for KOMs/QOMs
 showContentHeader: false
+customCSS:
+  - https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
+  - ./styles/rides-segments-leaderboard.css
+customJS:
+  - https://unpkg.com/leaflet@1.9.4/dist/leaflet.js
+  - ./js/rides-segments-leaderboard.js
 ---
 
 <div class="rides-segments-leaderboard-container">
@@ -17,13 +23,8 @@ showContentHeader: false
 {% include "./components/rides-segments-leaderboard-create-modal.njk" %}
 
 <!-- Leaflet CSS & JS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-<!-- Page Styles -->
-<link rel="stylesheet" href="./styles/rides-segments-leaderboard.css">
 
 <!-- Load Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <!-- Segments Application -->
-<script src="./js/rides-segments-leaderboard.js"></script>

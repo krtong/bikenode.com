@@ -1,27 +1,477 @@
 /* Profile My Page Styles */
 
 .profile-my-page-container {
-    padding: 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0;
 }
 
-.profile-my-page-card {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+/* Profile Header Section */
+.profile-my-page-header {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
 }
 
-.profile-my-page-title {
+.profile-my-page-cover-photo {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.profile-my-page-cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-my-page-edit-cover-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.2s;
+}
+
+.profile-my-page-edit-cover-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.profile-my-page-user-info {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    align-items: flex-start;
+    position: relative;
+}
+
+.profile-my-page-avatar-section {
+    margin-top: -4rem;
+}
+
+.profile-my-page-avatar {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.profile-my-page-avatar-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 4px solid white;
+    object-fit: cover;
+    background: #f3f4f6;
+}
+
+.profile-my-page-edit-avatar-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 3px solid white;
+    transition: background 0.2s;
+}
+
+.profile-my-page-edit-avatar-btn:hover {
+    background: #2563eb;
+}
+
+.profile-my-page-details {
+    flex: 1;
+}
+
+.profile-my-page-username {
     font-size: 2rem;
     font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 0.5rem 0;
+}
+
+.profile-my-page-tagline {
+    color: #6b7280;
+    font-size: 1.125rem;
+    margin: 0 0 1rem 0;
+}
+
+.profile-my-page-location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+}
+
+.profile-my-page-member-since {
+    color: #9ca3af;
+    font-size: 0.875rem;
+}
+
+.profile-my-page-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.profile-my-page-btn-primary,
+.profile-my-page-btn-secondary {
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+}
+
+.profile-my-page-btn-primary {
+    background: #3b82f6;
+    color: white;
+}
+
+.profile-my-page-btn-primary:hover {
+    background: #2563eb;
+}
+
+.profile-my-page-btn-secondary {
+    background: white;
+    color: #374151;
+    border: 1px solid #e5e7eb;
+}
+
+.profile-my-page-btn-secondary:hover {
+    background: #f9fafb;
+}
+
+/* Stats Grid */
+.profile-my-page-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.profile-my-page-stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile-my-page-stat-icon {
+    width: 48px;
+    height: 48px;
+    background: #eff6ff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3b82f6;
+}
+
+.profile-my-page-stat-content {
+    flex: 1;
+}
+
+.profile-my-page-stat-number {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.profile-my-page-stat-label {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+/* Tabs */
+.profile-my-page-tabs {
+    display: flex;
+    gap: 2rem;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 2rem;
+}
+
+.profile-my-page-tab {
+    padding: 1rem 0;
+    background: none;
+    border: none;
+    color: #6b7280;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.profile-my-page-tab:hover {
+    color: #374151;
+}
+
+.profile-my-page-tab-active {
+    color: #3b82f6;
+}
+
+.profile-my-page-tab-active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #3b82f6;
+}
+
+/* Tab Content */
+.profile-my-page-tab-panel {
+    display: none;
+}
+
+.profile-my-page-tab-panel-active {
+    display: block;
+}
+
+/* About Section */
+.profile-my-page-about-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.profile-my-page-section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+}
+
+.profile-my-page-subsection-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #374151;
+    margin: 2rem 0 1rem 0;
+}
+
+.profile-my-page-bio {
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.profile-my-page-bio p {
+    margin-bottom: 1rem;
+}
+
+.profile-my-page-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.profile-my-page-tag {
+    background: #eff6ff;
+    color: #3b82f6;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.profile-my-page-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.profile-my-page-skill-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: #f9fafb;
+    border-radius: 8px;
+    color: #374151;
+}
+
+/* Bikes Grid */
+.profile-my-page-bikes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.profile-my-page-bike-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.profile-my-page-bike-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #f3f4f6;
+}
+
+.profile-my-page-bike-info {
+    padding: 1.5rem;
+}
+
+.profile-my-page-bike-name {
+    font-size: 1.125rem;
+    font-weight: 600;
     color: #1f2937;
     margin-bottom: 0.5rem;
 }
 
-.profile-my-page-subtitle {
+.profile-my-page-bike-specs {
     color: #6b7280;
-    font-size: 1rem;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.profile-my-page-bike-stats {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #9ca3af;
+    font-size: 0.875rem;
+}
+
+/* Activity Feed */
+.profile-my-page-activity-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.profile-my-page-activity-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 1rem;
+}
+
+.profile-my-page-activity-icon {
+    width: 40px;
+    height: 40px;
+    background: #eff6ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3b82f6;
+    flex-shrink: 0;
+}
+
+.profile-my-page-activity-content {
+    flex: 1;
+}
+
+.profile-my-page-activity-content h4 {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.25rem;
+}
+
+.profile-my-page-activity-content p {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.profile-my-page-activity-time {
+    color: #9ca3af;
+    font-size: 0.75rem;
+}
+
+/* Achievements Grid */
+.profile-my-page-achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.profile-my-page-achievement-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.profile-my-page-achievement-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.profile-my-page-achievement-title {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.profile-my-page-achievement-desc {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-my-page-user-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .profile-my-page-avatar-section {
+        margin-top: -3rem;
+    }
+    
+    .profile-my-page-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .profile-my-page-btn-primary,
+    .profile-my-page-btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .profile-my-page-tabs {
+        overflow-x: auto;
+        gap: 1rem;
+    }
+    
+    .profile-my-page-stats-grid {
+        grid-template-columns: 1fr;
+    }
 }

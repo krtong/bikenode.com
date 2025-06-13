@@ -8,9 +8,12 @@ breadcrumb:
     url: /marketplace/
   - title: Create Listing
 # customJS removed - all JS will be inline or in page folder
+customCSS:
+  - ./styles/marketplace-create-listing.css
+customJS:
+  - ./js/marketplace-create-listing.js
 ---
 
-<link rel="stylesheet" href="./styles/marketplace-create-listing.css">
 
 <div class="marketplace-create-listing-container">
     {% include "./components/marketplace-create-listing-header.njk" %}
@@ -74,5 +77,3 @@ breadcrumb:
 
 {% include "./components/marketplace-create-listing-preview-modal.njk" %}
 {% include "./components/marketplace-create-listing-success-modal.njk" %}
-
-<script src="./js/marketplace-create-listing.js"></script>

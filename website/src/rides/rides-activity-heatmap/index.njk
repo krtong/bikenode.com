@@ -6,79 +6,84 @@ breadcrumb:
   - title: Explore
     url: /explore/
   - title: Heatmap
+customCSS:
+  - https://unpkg.com/leaflet@1.9.4/dist/leaflet.css
+  - ./styles/rides-activity-heatmap.css
+customJS:
+  - https://unpkg.com/leaflet@1.9.4/dist/leaflet.js
+  - https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js
 ---
 
 <!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-<div class="heatmap-container">
-  <div id="heatmap" class="heatmap-view"></div>
+<div class="rides-activity-heatmap-container">
+  <div id="heatmap" class="rides-activity-heatmap-view"></div>
 
-  <div class="map-tools">
-    <button class="tool-btn" title="Zoom In">➕</button>
-    <button class="tool-btn" title="Zoom Out">➖</button>
-    <button class="tool-btn" title="My Location">📍</button>
-    <button class="tool-btn" title="Full Screen">⛶</button>
+  <div class="rides-activity-heatmap-map-tools">
+    <button class="rides-activity-heatmap-tool-btn" title="Zoom In">➕</button>
+    <button class="rides-activity-heatmap-tool-btn" title="Zoom Out">➖</button>
+    <button class="rides-activity-heatmap-tool-btn" title="My Location">📍</button>
+    <button class="rides-activity-heatmap-tool-btn" title="Full Screen">⛶</button>
   </div>
 
-  <div class="stats-overlay">
-    <div class="stat-item">
-      <div class="stat-number">12,847</div>
-      <div class="stat-desc">Activities</div>
+  <div class="rides-activity-heatmap-stats-overlay">
+    <div class="rides-activity-heatmap-stat-item">
+      <div class="rides-activity-heatmap-stat-number">12,847</div>
+      <div class="rides-activity-heatmap-stat-desc">Activities</div>
     </div>
-    <div class="stat-item">
-      <div class="stat-number">3,421</div>
-      <div class="stat-desc">Riders</div>
+    <div class="rides-activity-heatmap-stat-item">
+      <div class="rides-activity-heatmap-stat-number">3,421</div>
+      <div class="rides-activity-heatmap-stat-desc">Riders</div>
     </div>
-    <div class="stat-item">
-      <div class="stat-number">256K</div>
-      <div class="stat-desc">Miles</div>
+    <div class="rides-activity-heatmap-stat-item">
+      <div class="rides-activity-heatmap-stat-number">256K</div>
+      <div class="rides-activity-heatmap-stat-desc">Miles</div>
     </div>
   </div>
 
-  <div class="heatmap-controls">
-    <div class="control-section">
-      <div class="control-title">Activity Type</div>
-      <div class="activity-filters">
-        <label class="filter-option">
+  <div class="rides-activity-heatmap-controls">
+    <div class="rides-activity-heatmap-control-section">
+      <div class="rides-activity-heatmap-control-title">Activity Type</div>
+      <div class="rides-activity-heatmap-activity-filters">
+        <label class="rides-activity-heatmap-filter-option">
           <input type="checkbox" checked>
           <span>🚴 Road Cycling</span>
         </label>
-        <label class="filter-option">
+        <label class="rides-activity-heatmap-filter-option">
           <input type="checkbox" checked>
           <span>🏔️ Mountain Biking</span>
         </label>
-        <label class="filter-option">
+        <label class="rides-activity-heatmap-filter-option">
           <input type="checkbox" checked>
           <span>🚵 Gravel Riding</span>
         </label>
-        <label class="filter-option">
+        <label class="rides-activity-heatmap-filter-option">
           <input type="checkbox">
           <span>🏃 Running</span>
         </label>
       </div>
     </div>
 
-    <div class="control-section">
-      <div class="control-title">Time Range</div>
-      <div class="time-range-selector">
-        <button class="time-btn">24h</button>
-        <button class="time-btn">7d</button>
-        <button class="time-btn active">30d</button>
-        <button class="time-btn">90d</button>
-        <button class="time-btn">1y</button>
-        <button class="time-btn">All</button>
+    <div class="rides-activity-heatmap-control-section">
+      <div class="rides-activity-heatmap-control-title">Time Range</div>
+      <div class="rides-activity-heatmap-time-range-selector">
+        <button class="rides-activity-heatmap-time-btn">24h</button>
+        <button class="rides-activity-heatmap-time-btn">7d</button>
+        <button class="rides-activity-heatmap-time-btn rides-activity-heatmap-active">30d</button>
+        <button class="rides-activity-heatmap-time-btn">90d</button>
+        <button class="rides-activity-heatmap-time-btn">1y</button>
+        <button class="rides-activity-heatmap-time-btn">All</button>
       </div>
     </div>
 
-    <div class="control-section">
-      <div class="control-title">Heat Intensity</div>
-      <div class="intensity-slider">
-        <div class="slider-container">
+    <div class="rides-activity-heatmap-control-section">
+      <div class="rides-activity-heatmap-control-title">Heat Intensity</div>
+      <div class="rides-activity-heatmap-intensity-slider">
+        <div class="rides-activity-heatmap-slider-container">
           <span style="font-size: 12px;">Low</span>
-          <div class="slider">
-            <div class="slider-fill"></div>
-            <div class="slider-handle"></div>
+          <div class="rides-activity-heatmap-slider">
+            <div class="rides-activity-heatmap-slider-fill"></div>
+            <div class="rides-activity-heatmap-slider-handle"></div>
           </div>
           <span style="font-size: 12px;">High</span>
         </div>
@@ -86,12 +91,12 @@ breadcrumb:
     </div>
   </div>
 
-  <div class="heatmap-legend">
-    <div class="legend-title">Activity Density</div>
-    <div class="legend-scale">
-      <div class="legend-gradient"></div>
+  <div class="rides-activity-heatmap-legend">
+    <div class="rides-activity-heatmap-legend-title">Activity Density</div>
+    <div class="rides-activity-heatmap-legend-scale">
+      <div class="rides-activity-heatmap-legend-gradient"></div>
     </div>
-    <div class="legend-labels">
+    <div class="rides-activity-heatmap-legend-labels">
       <span>Low</span>
       <span>High</span>
     </div>
@@ -99,9 +104,7 @@ breadcrumb:
 </div>
 
 <!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <!-- Leaflet Heatmap Plugin -->
-<script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
 
 <script type="module">
   // Import mock data
@@ -216,7 +219,7 @@ breadcrumb:
     });
 
     fullscreenBtn.addEventListener('click', () => {
-      const container = document.querySelector('.heatmap-container');
+      const container = document.querySelector('.rides-activity-heatmap-container');
       if (container.requestFullscreen) {
         container.requestFullscreen();
       }
@@ -233,10 +236,10 @@ breadcrumb:
   }
 
   // Time range selection
-  document.querySelectorAll('.time-btn').forEach(btn => {
+  document.querySelectorAll('.rides-activity-heatmap-time-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      document.querySelectorAll('.rides-activity-heatmap-time-btn').forEach(b => b.classList.remove('rides-activity-heatmap-active'));
+      btn.classList.add('rides-activity-heatmap-active');
       
       // Simulate different data for different time ranges
       const timeRange = btn.textContent;
@@ -260,15 +263,15 @@ breadcrumb:
     };
 
     const data = stats[range] || stats['30d'];
-    document.querySelector('.stat-number').textContent = data.activities;
-    document.querySelectorAll('.stat-number')[1].textContent = data.riders;
-    document.querySelectorAll('.stat-number')[2].textContent = data.miles;
+    document.querySelector('.rides-activity-heatmap-stat-number').textContent = data.activities;
+    document.querySelectorAll('.rides-activity-heatmap-stat-number')[1].textContent = data.riders;
+    document.querySelectorAll('.rides-activity-heatmap-stat-number')[2].textContent = data.miles;
   }
 
   // Slider interaction
-  const slider = document.querySelector('.slider');
-  const sliderHandle = document.querySelector('.slider-handle');
-  const sliderFill = document.querySelector('.slider-fill');
+  const slider = document.querySelector('.rides-activity-heatmap-slider');
+  const sliderHandle = document.querySelector('.rides-activity-heatmap-slider-handle');
+  const sliderFill = document.querySelector('.rides-activity-heatmap-slider-fill');
   let isDragging = false;
 
   sliderHandle.addEventListener('mousedown', () => isDragging = true);
@@ -289,7 +292,7 @@ breadcrumb:
   });
 
   // Activity filter changes
-  document.querySelectorAll('.filter-option input').forEach(input => {
+  document.querySelectorAll('.rides-activity-heatmap-filter-option input').forEach(input => {
     input.addEventListener('change', () => {
       console.log('Filter updated:', input.nextElementSibling.textContent);
       // In a real app, you'd filter the heatmap data here

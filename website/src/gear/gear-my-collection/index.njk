@@ -7,9 +7,12 @@ breadcrumb:
   - title: Dashboard
     url: /dashboard/
   - title: Gear Collection
+customCSS:
+  - ./styles/gear-my-collection.css
+customJS:
+  - ./js/gear-my-collection.js
 ---
 
-<link rel="stylesheet" href="./styles/gear-my-collection.css">
 
 <div class="gear-my-collection-page">
     {% include "./components/gear-my-collection-header.njk" %}
@@ -18,5 +21,3 @@ breadcrumb:
     {% include "./components/gear-my-collection-gear-grid.njk" %}
     {% include "./components/gear-my-collection-add-gear-modal.njk" %}
 </div>
-
-<script src="./js/gear-my-collection.js"></script>

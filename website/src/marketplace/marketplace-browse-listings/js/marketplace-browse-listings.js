@@ -1,9 +1,9 @@
 // marketplace-browse-listings.js
 document.addEventListener('DOMContentLoaded', function() {
     // Search functionality
-    const searchInput = document.querySelector('.marketplace-search-input');
-    const locationInput = document.querySelector('.marketplace-location-input');
-    const searchButton = document.querySelector('.marketplace-search-button');
+    const searchInput = document.querySelector('.marketplace-browse-listings-search-input');
+    const locationInput = document.querySelector('.marketplace-browse-listings-location-input');
+    const searchButton = document.querySelector('.marketplace-browse-listings-search-button');
     
     if (searchButton) {
         searchButton.addEventListener('click', function() {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Tab filtering
-    const filterTabs = document.querySelectorAll('.marketplace-tab');
+    const filterTabs = document.querySelectorAll('.marketplace-browse-listings-tab');
     filterTabs.forEach(tab => {
         tab.addEventListener('click', function() {
             // Remove active class from all tabs
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Pagination
-    const pageButtons = document.querySelectorAll('.marketplace-page-number');
+    const pageButtons = document.querySelectorAll('.marketplace-browse-listings-page-number');
     pageButtons.forEach(button => {
         button.addEventListener('click', function() {
             // Remove active class from all page buttons
@@ -45,8 +45,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Previous/Next buttons
-    const prevButton = document.querySelector('.marketplace-page-button:first-child');
-    const nextButton = document.querySelector('.marketplace-page-button:last-child');
+    const prevButton = document.querySelector('.marketplace-browse-listings-page-button:first-child');
+    const nextButton = document.querySelector('.marketplace-browse-listings-page-button:last-child');
     
     if (prevButton) {
         prevButton.addEventListener('click', function() {
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Post ad button
-    const postAdButton = document.querySelector('.marketplace-post-ad-button');
+    const postAdButton = document.querySelector('.marketplace-browse-listings-post-ad-button');
     if (postAdButton) {
         postAdButton.addEventListener('click', function() {
             window.location.href = '/marketplace/marketplace-create-listing/';
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Category cards hover effect
-    const categoryCards = document.querySelectorAll('.marketplace-category-card');
+    const categoryCards = document.querySelectorAll('.marketplace-browse-listings-category-card');
     categoryCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-4px)';
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Listing cards click handling
-    const listingCards = document.querySelectorAll('.marketplace-listing-card, .marketplace-list-item');
+    const listingCards = document.querySelectorAll('.marketplace-browse-listings-listing-card, .marketplace-browse-listings-list-item');
     listingCards.forEach(card => {
         card.style.cursor = 'pointer';
         card.addEventListener('click', function() {

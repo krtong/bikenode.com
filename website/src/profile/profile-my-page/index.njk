@@ -3,11 +3,276 @@ layout: bikenode-main-layout-01
 title: My Profile - BikeNode
 customCSS:
   - ./styles/profile-my-page.css
+customJS:
+  - ./js/profile-my-page.js
 ---
 
 <div class="profile-my-page-container">
-    <div class="profile-my-page-card">
-        <h1 class="profile-my-page-title">My Profile</h1>
-        <p class="profile-my-page-subtitle">View and manage your BikeNode profile.</p>
+    <!-- Profile Header Section -->
+    <div class="profile-my-page-header">
+        <div class="profile-my-page-cover-photo">
+            <img src="./images/profile-my-page-default-cover.jpg" alt="Cover Photo" class="profile-my-page-cover-image">
+            <button class="profile-my-page-edit-cover-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+                Edit Cover
+            </button>
+        </div>
+        
+        <div class="profile-my-page-user-info">
+            <div class="profile-my-page-avatar-section">
+                <div class="profile-my-page-avatar">
+                    <img src="./images/profile-my-page-default-avatar.png" alt="Profile Avatar" class="profile-my-page-avatar-image">
+                    <button class="profile-my-page-edit-avatar-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="profile-my-page-details">
+                <h1 class="profile-my-page-username">John Rider</h1>
+                <p class="profile-my-page-tagline">Adventure Seeker | Sport Bike Enthusiast</p>
+                <div class="profile-my-page-location">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <span>San Francisco, CA</span>
+                </div>
+                <div class="profile-my-page-member-since">Member since October 2023</div>
+            </div>
+            
+            <div class="profile-my-page-actions">
+                <a href="/profile/profile-edit-form/" class="profile-my-page-btn-primary">Edit Profile</a>
+                <button class="profile-my-page-btn-secondary">Share Profile</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Profile Stats -->
+    <div class="profile-my-page-stats-grid">
+        <div class="profile-my-page-stat-card">
+            <div class="profile-my-page-stat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+            </div>
+            <div class="profile-my-page-stat-content">
+                <div class="profile-my-page-stat-number">247</div>
+                <div class="profile-my-page-stat-label">Followers</div>
+            </div>
+        </div>
+        
+        <div class="profile-my-page-stat-card">
+            <div class="profile-my-page-stat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M5 12h14"></path>
+                    <path d="M12 5l7 7-7 7"></path>
+                </svg>
+            </div>
+            <div class="profile-my-page-stat-content">
+                <div class="profile-my-page-stat-number">89</div>
+                <div class="profile-my-page-stat-label">Following</div>
+            </div>
+        </div>
+        
+        <div class="profile-my-page-stat-card">
+            <div class="profile-my-page-stat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </div>
+            <div class="profile-my-page-stat-content">
+                <div class="profile-my-page-stat-number">1,234</div>
+                <div class="profile-my-page-stat-label">Forum Posts</div>
+            </div>
+        </div>
+        
+        <div class="profile-my-page-stat-card">
+            <div class="profile-my-page-stat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+            </div>
+            <div class="profile-my-page-stat-content">
+                <div class="profile-my-page-stat-number">42</div>
+                <div class="profile-my-page-stat-label">Rides Logged</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Profile Content Tabs -->
+    <div class="profile-my-page-tabs">
+        <button class="profile-my-page-tab profile-my-page-tab-active" data-tab="about">About</button>
+        <button class="profile-my-page-tab" data-tab="bikes">My Bikes</button>
+        <button class="profile-my-page-tab" data-tab="activity">Activity</button>
+        <button class="profile-my-page-tab" data-tab="achievements">Achievements</button>
+    </div>
+    
+    <!-- Tab Content -->
+    <div class="profile-my-page-tab-content">
+        <!-- About Tab -->
+        <div class="profile-my-page-tab-panel profile-my-page-tab-panel-active" data-panel="about">
+            <div class="profile-my-page-about-section">
+                <h2 class="profile-my-page-section-title">About Me</h2>
+                <div class="profile-my-page-bio">
+                    <p>Passionate motorcyclist with over 10 years of riding experience. I love exploring new routes, meeting fellow riders, and sharing knowledge about bike maintenance and safety.</p>
+                    <p>Currently riding a 2022 Yamaha MT-09 and a vintage 1978 Honda CB750. Always looking for the next adventure!</p>
+                </div>
+                
+                <h3 class="profile-my-page-subsection-title">Riding Preferences</h3>
+                <div class="profile-my-page-tags">
+                    <span class="profile-my-page-tag">Sport Touring</span>
+                    <span class="profile-my-page-tag">Canyon Carving</span>
+                    <span class="profile-my-page-tag">Track Days</span>
+                    <span class="profile-my-page-tag">Weekend Rides</span>
+                    <span class="profile-my-page-tag">Motorcycle Camping</span>
+                </div>
+                
+                <h3 class="profile-my-page-subsection-title">Skills & Interests</h3>
+                <div class="profile-my-page-skills-grid">
+                    <div class="profile-my-page-skill-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                        </svg>
+                        <span>DIY Maintenance</span>
+                    </div>
+                    <div class="profile-my-page-skill-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                        </svg>
+                        <span>Motorcycle Photography</span>
+                    </div>
+                    <div class="profile-my-page-skill-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        <span>Safety Advocate</span>
+                    </div>
+                    <div class="profile-my-page-skill-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <polyline points="4 17 10 11 4 5"></polyline>
+                            <line x1="12" y1="19" x2="20" y2="19"></line>
+                        </svg>
+                        <span>Custom Builds</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bikes Tab -->
+        <div class="profile-my-page-tab-panel" data-panel="bikes">
+            <div class="profile-my-page-bikes-grid">
+                <div class="profile-my-page-bike-card">
+                    <img src="./images/profile-my-page-bike-yamaha.jpg" alt="Yamaha MT-09" class="profile-my-page-bike-image">
+                    <div class="profile-my-page-bike-info">
+                        <h3 class="profile-my-page-bike-name">2022 Yamaha MT-09</h3>
+                        <p class="profile-my-page-bike-specs">890cc Triple • 119 HP</p>
+                        <div class="profile-my-page-bike-stats">
+                            <span>12,453 miles</span>
+                            <span>•</span>
+                            <span>Primary Bike</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-my-page-bike-card">
+                    <img src="./images/profile-my-page-bike-honda.jpg" alt="Honda CB750" class="profile-my-page-bike-image">
+                    <div class="profile-my-page-bike-info">
+                        <h3 class="profile-my-page-bike-name">1978 Honda CB750</h3>
+                        <p class="profile-my-page-bike-specs">736cc Four • 67 HP</p>
+                        <div class="profile-my-page-bike-stats">
+                            <span>34,567 miles</span>
+                            <span>•</span>
+                            <span>Classic</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Activity Tab -->
+        <div class="profile-my-page-tab-panel" data-panel="activity">
+            <div class="profile-my-page-activity-feed">
+                <div class="profile-my-page-activity-item">
+                    <div class="profile-my-page-activity-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="profile-my-page-activity-content">
+                        <h4>Completed Pacific Coast Highway ride</h4>
+                        <p>456 miles • 8 hours • Big Sur to Malibu</p>
+                        <span class="profile-my-page-activity-time">2 days ago</span>
+                    </div>
+                </div>
+                
+                <div class="profile-my-page-activity-item">
+                    <div class="profile-my-page-activity-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                        </svg>
+                    </div>
+                    <div class="profile-my-page-activity-content">
+                        <h4>Performed oil change on MT-09</h4>
+                        <p>Regular maintenance at 12,000 miles</p>
+                        <span class="profile-my-page-activity-time">1 week ago</span>
+                    </div>
+                </div>
+                
+                <div class="profile-my-page-activity-item">
+                    <div class="profile-my-page-activity-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <div class="profile-my-page-activity-content">
+                        <h4>Joined Bay Area Sport Riders group</h4>
+                        <p>Connected with 156 local riders</p>
+                        <span class="profile-my-page-activity-time">2 weeks ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Achievements Tab -->
+        <div class="profile-my-page-tab-panel" data-panel="achievements">
+            <div class="profile-my-page-achievements-grid">
+                <div class="profile-my-page-achievement-card">
+                    <div class="profile-my-page-achievement-icon">🏆</div>
+                    <h4 class="profile-my-page-achievement-title">Century Rider</h4>
+                    <p class="profile-my-page-achievement-desc">Logged over 100 rides</p>
+                </div>
+                
+                <div class="profile-my-page-achievement-card">
+                    <div class="profile-my-page-achievement-icon">🛣️</div>
+                    <h4 class="profile-my-page-achievement-title">Road Warrior</h4>
+                    <p class="profile-my-page-achievement-desc">10,000+ miles ridden</p>
+                </div>
+                
+                <div class="profile-my-page-achievement-card">
+                    <div class="profile-my-page-achievement-icon">👥</div>
+                    <h4 class="profile-my-page-achievement-title">Community Leader</h4>
+                    <p class="profile-my-page-achievement-desc">1,000+ forum posts</p>
+                </div>
+                
+                <div class="profile-my-page-achievement-card">
+                    <div class="profile-my-page-achievement-icon">🔧</div>
+                    <h4 class="profile-my-page-achievement-title">Wrench Master</h4>
+                    <p class="profile-my-page-achievement-desc">50+ maintenance logs</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

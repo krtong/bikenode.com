@@ -31,17 +31,78 @@ class MetadataSpider(scrapy.Spider):
     
     name = 'metadata_spider'
     custom_settings = {
-        'ROBOTSTXT_OBEY': True,
-        'CONCURRENT_REQUESTS': 16,
-        'DOWNLOAD_DELAY': 0.5,
+        'ROBOTSTXT_OBEY': False,  # Many sites block robots.txt crawling
+        'CONCURRENT_REQUESTS': 2,
+        'DOWNLOAD_DELAY': 1,
+        'RANDOMIZE_DOWNLOAD_DELAY': True,
+        'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'DEFAULT_REQUEST_HEADERS': {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'DNT': '1',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'none',
+            'Sec-Fetch-User': '?1',
+            'Sec-Ch-Ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+            'Sec-Ch-Ua-Mobile': '?0',
+            'Sec-Ch-Ua-Platform': '"macOS"',
+            'Cache-Control': 'max-age=0',
+        },
+        'COOKIES_ENABLED': True,
+        'DOWNLOADER_MIDDLEWARES': {
+            'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+            'scrapy.downloadermiddlewares.retry.RetryMiddleware': 90,
+            'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
+        },
+        'RETRY_TIMES': 3,
+        'RETRY_HTTP_CODES': [500, 502, 503, 504, 408, 429, 403],
+        'DOWNLOAD_TIMEOUT': 30,
+        'REDIRECT_ENABLED': True,
+        'REDIRECT_MAX_TIMES': 5,
     }
     
     def __init__(self, domain: str, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.domain = domain
-        self.allowed_domains = [domain]
-        self.start_urls = [f'https://{domain}/']
+        # Allow the main domain and all subdomains
+        self.allowed_domains = [domain, f'.{domain}']
+        # Try both with and without www
+        self.start_urls = [f'https://{domain}/', f'https://www.{domain}/']
         self.url_metadata = {}
+        
+    def start_requests(self):
+        """Generate initial requests."""
+        for url in self.start_urls:
+            yield scrapy.Request(
+                url,
+                callback=self.parse,
+                errback=self.errback,
+                dont_filter=True,
+                headers={
+                    'Referer': 'https://www.google.com/',
+                }
+            )
+    
+    def errback(self, failure):
+        """Handle errors in requests."""
+        self.logger.error(f"Request failed: {failure.request.url} - {failure.value}")
+    
+    def is_same_domain(self, netloc):
+        """Check if a netloc belongs to the same domain (including subdomains)."""
+        # Handle exact match
+        if netloc == self.domain:
+            return True
+        # Handle www subdomain
+        if netloc == f'www.{self.domain}':
+            return True
+        # Handle any subdomain
+        if netloc.endswith(f'.{self.domain}'):
+            return True
+        return False
         
     def parse(self, response):
         """Process each response to collect metadata."""
@@ -70,17 +131,34 @@ class MetadataSpider(scrapy.Spider):
             'last_modified': last_modified
         }
         
+        self.logger.info(f"Parsed {url} - Status: {response.status}, Type: {content_type}, Size: {size}")
+        
+        # Debug: Check what we're getting
+        if len(response.body) < 1000:
+            self.logger.warning(f"Small response body ({len(response.body)} bytes): {response.body[:500]}")
+        
         # Follow links only from HTML pages
         if 'text/html' in content_type:
             # Extract all links
             links = response.css('a::attr(href)').getall()
+            self.logger.info(f"Found {len(links)} links on {url}")
+            
+            # Try different selectors if no links found
+            if not links:
+                links = response.xpath('//a/@href').getall()
+                self.logger.info(f"Found {len(links)} links using xpath on {url}")
+            
             for link in links:
                 absolute_url = urljoin(response.url, link)
                 parsed = urlparse(absolute_url)
                 
-                # Only follow links on same domain
-                if parsed.netloc == self.domain:
-                    yield response.follow(absolute_url, self.parse)
+                # Only follow links on same domain (including subdomains)
+                if self.is_same_domain(parsed.netloc):
+                    yield scrapy.Request(
+                        absolute_url,
+                        callback=self.parse,
+                        errback=self.errback
+                    )
 
 
 

@@ -33,7 +33,7 @@ Hi claude, it is extremely important that you read this entire document before m
       /Bikes/
 
       - /bikes-my-garage/ - Virtual garage with all bikes
-      - /bikes-add-form/ - Add new bike workflow
+      - /add-bikes/ - Add new bike workflow
       - /bikes-maintenance-log/ - Maintenance tracking
       - /bikes-details-page/ - Individual bike details
 

@@ -1,0 +1,202 @@
+---
+layout: bikenode-main-layout-01
+title: Add Bike to Garage
+subtitle: Browse our comprehensive database to find your bike
+customCSS:
+  - ./styles/add-bikes.css
+---
+
+<!-- Page-specific CSS -->
+
+<div class="add-bikes-container">
+    <!-- Header with Search and Status -->
+    <div class="add-bikes-header">
+        <div class="add-bikes-header-actions">
+            <div class="add-bikes-global-search">
+                <svg class="add-bikes-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" placeholder="Quick search bikes..." class="add-bikes-global-search-input">
+            </div>
+            <div class="add-bikes-api-status-v2">
+                <span class="add-bikes-status-dot" id="api-status-dot">●</span>
+                <span class="add-bikes-status-text">Checking...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb Trail -->
+    <div class="add-bikes-breadcrumb" id="v2-breadcrumb">
+        <span class="add-bikes-breadcrumb-item active">Select Type</span>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="add-bikes-main-content">
+        <!-- Stage 1: Vehicle Type Selection -->
+        <div class="add-bikes-content-stage active" id="stage-type">
+            <div class="add-bikes-type-selection-grid">
+                <div class="add-bikes-type-card" data-type="motorcycle">
+                    <div class="add-bikes-type-icon">🏍️</div>
+                    <h3>Motorcycle</h3>
+                    <p>Sport, Cruiser, Adventure, Touring</p>
+                    <div class="add-bikes-type-stats">
+                        <span class="add-bikes-stat-item">
+                            <span class="add-bikes-stat-number" id="motorcycle-count">0</span>
+                            <span class="add-bikes-stat-label">Models</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="add-bikes-type-card" data-type="bicycle">
+                    <div class="add-bikes-type-icon">🚴</div>
+                    <h3>Bicycle</h3>
+                    <p>Road, Mountain, Gravel, E-Bike</p>
+                    <div class="add-bikes-type-stats">
+                        <span class="add-bikes-stat-item">
+                            <span class="add-bikes-stat-number" id="bicycle-count">0</span>
+                            <span class="add-bikes-stat-label">Models</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="add-bikes-type-card" data-type="electrified">
+                    <div class="add-bikes-type-icon">⚡</div>
+                    <h3>Electrified</h3>
+                    <p>Sur-Ron, Talaria, Super73, E-Mopeds</p>
+                    <div class="add-bikes-type-stats">
+                        <span class="add-bikes-stat-item">
+                            <span class="add-bikes-stat-number" id="electrified-count">0</span>
+                            <span class="add-bikes-stat-label">Models</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stage 2: Brand Selection -->
+        <div class="add-bikes-content-stage" id="stage-brand">
+            <div class="add-bikes-stage-header">
+                <h2>Select Brand</h2>
+                <div class="add-bikes-filter-controls">
+                    <input type="text" placeholder="Filter brands..." class="add-bikes-filter-input" id="brand-filter">
+                    <div class="add-bikes-view-toggle">
+                        <button class="add-bikes-view-btn active" data-view="grid">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                        </button>
+                        <button class="add-bikes-view-btn" data-view="list">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="3" y="4" width="18" height="2"></rect>
+                                <rect x="3" y="11" width="18" height="2"></rect>
+                                <rect x="3" y="18" width="18" height="2"></rect>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="add-bikes-brand-grid" id="brand-grid">
+                <!-- Brands will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Stage 3: Year Selection -->
+        <div class="add-bikes-content-stage" id="stage-year">
+            <div class="add-bikes-stage-header">
+                <h2>Select Year</h2>
+                <p class="add-bikes-stage-subtitle">Choose the model year for <span id="selected-brand-name"></span></p>
+            </div>
+            <div class="add-bikes-year-timeline" id="year-timeline">
+                <!-- Years will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Stage 4: Model Selection -->
+        <div class="add-bikes-content-stage" id="stage-model">
+            <div class="add-bikes-stage-header">
+                <h2>Select Model</h2>
+                <p class="add-bikes-stage-subtitle"><span id="selected-year"></span> <span id="selected-brand-name-2"></span> Models</p>
+                <div class="add-bikes-filter-controls">
+                    <input type="text" placeholder="Filter models..." class="add-bikes-filter-input" id="model-filter">
+                    <select class="add-bikes-category-filter" id="category-filter">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+            </div>
+            <div class="add-bikes-model-grid" id="model-grid">
+                <!-- Models will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Stage 5: Variant Selection -->
+        <div class="add-bikes-content-stage" id="stage-variant">
+            <div class="add-bikes-stage-header">
+                <h2>Select Variant</h2>
+                <p class="add-bikes-stage-subtitle"><span id="selected-model-info"></span></p>
+            </div>
+            <div class="add-bikes-variant-list" id="variant-list">
+                <!-- Variants will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Stage 6: Specifications View -->
+        <div class="add-bikes-content-stage" id="stage-specs">
+            <div class="add-bikes-specs-container">
+                <div class="add-bikes-specs-hero">
+                    <div class="add-bikes-specs-image" id="specs-image">
+                        <div class="add-bikes-image-placeholder">
+                            <span class="add-bikes-vehicle-icon-large">🏍️</span>
+                        </div>
+                    </div>
+                    <div class="add-bikes-specs-overview">
+                        <h2 id="specs-title">Loading...</h2>
+                        <p id="specs-subtitle"></p>
+                        <div class="add-bikes-specs-actions">
+                            <button class="add-bikes-btn-primary add-bikes-btn-large" onclick="addToGarage()">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                    <path d="M2 17l10 5 10-5"></path>
+                                    <path d="M2 12l10 5 10-5"></path>
+                                </svg>
+                                Add to My Garage
+                            </button>
+                            <button class="add-bikes-btn-secondary" onclick="compareBikes()">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M18 20V10"></path>
+                                    <path d="M12 20V4"></path>
+                                    <path d="M6 20v-6"></path>
+                                </svg>
+                                Compare
+                            </button>
+                            <button class="add-bikes-btn-secondary" onclick="shareSpecs()">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <circle cx="18" cy="5" r="3"></circle>
+                                    <circle cx="6" cy="12" r="3"></circle>
+                                    <circle cx="18" cy="19" r="3"></circle>
+                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                </svg>
+                                Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="add-bikes-specs-details" id="specs-details">
+                    <!-- Specifications will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="add-bikes-loading-overlay" id="loading-overlay">
+        <div class="add-bikes-loading-spinner"></div>
+        <p class="add-bikes-loading-text">Loading...</p>
+    </div>
+</div>
+
+<!-- V2 JavaScript -->
+<script type="module" src="./js/app.js"></script>

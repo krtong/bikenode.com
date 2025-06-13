@@ -2,290 +2,16 @@
 layout: bikenode-main-layout-01
 title: Training Plans
 subtitle: Structured workouts to improve your performance
+customCSS:
+  - ./styles/rides-training-plans.css
 breadcrumb:
   - title: Training
     url: /training/
   - title: Plans
 ---
 
-<style>
-  .training-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 32px;
-  }
 
-  .plan-filters {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 32px;
-  }
-
-  .filter-group {
-    display: flex;
-    gap: 8px;
-  }
-
-  .filter-btn {
-    padding: 8px 16px;
-    background: var(--card-bg);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .filter-btn:hover {
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .filter-btn.active {
-    background: var(--accent);
-    border-color: var(--accent);
-  }
-
-  .plans-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 24px;
-  }
-
-  .plan-card {
-    background: var(--card-bg);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.2s ease;
-    cursor: pointer;
-  }
-
-  .plan-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-  }
-
-  .plan-header {
-    padding: 20px;
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-  }
-
-  .plan-category {
-    font-size: 12px;
-    text-transform: uppercase;
-    opacity: 0.9;
-    margin-bottom: 4px;
-  }
-
-  .plan-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-
-  .plan-duration {
-    font-size: 14px;
-    opacity: 0.9;
-  }
-
-  .plan-body {
-    padding: 20px;
-  }
-
-  .plan-description {
-    font-size: 14px;
-    color: var(--text-secondary);
-    margin-bottom: 16px;
-    line-height: 1.5;
-  }
-
-  .plan-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-
-  .plan-stat {
-    text-align: center;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 8px;
-  }
-
-  .plan-stat-value {
-    font-size: 18px;
-    font-weight: bold;
-    color: var(--accent);
-  }
-
-  .plan-stat-label {
-    font-size: 12px;
-    color: var(--text-secondary);
-    margin-top: 4px;
-  }
-
-  .plan-tags {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
-  }
-
-  .plan-tag {
-    background: rgba(88, 101, 242, 0.1);
-    color: var(--accent);
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 12px;
-  }
-
-  .plan-action {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .plan-popularity {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 14px;
-    color: var(--text-secondary);
-  }
-
-  .active-plan {
-    background: var(--card-bg);
-    border-radius: 12px;
-    padding: 24px;
-    margin-bottom: 32px;
-    border: 2px solid var(--accent);
-  }
-
-  .active-plan-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 20px;
-  }
-
-  .active-plan-info {
-    flex: 1;
-  }
-
-  .active-plan-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-
-  .active-plan-subtitle {
-    color: var(--text-secondary);
-  }
-
-  .week-progress {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 20px;
-  }
-
-  .week-dot {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .week-dot.completed {
-    background: var(--accent);
-  }
-
-  .week-dot.current {
-    background: rgba(88, 101, 242, 0.3);
-    border: 2px solid var(--accent);
-  }
-
-  .week-dot:hover {
-    transform: scale(1.1);
-  }
-
-  .todays-workout {
-    background: rgba(88, 101, 242, 0.1);
-    border-radius: 8px;
-    padding: 16px;
-  }
-
-  .workout-title {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-
-  .workout-details {
-    display: flex;
-    gap: 24px;
-    margin-bottom: 12px;
-  }
-
-  .workout-detail {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    color: var(--text-secondary);
-  }
-
-  .custom-plan-cta {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-    border-radius: 12px;
-    padding: 32px;
-    text-align: center;
-    margin-top: 32px;
-  }
-
-  .cta-icon {
-    font-size: 48px;
-    margin-bottom: 16px;
-  }
-
-  .cta-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-
-  .cta-description {
-    color: var(--text-secondary);
-    margin-bottom: 20px;
-  }
-
-  @media (max-width: 768px) {
-    .training-header {
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .plan-filters {
-      flex-wrap: wrap;
-    }
-
-    .plans-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .plan-stats {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
-
-<div class="training-header">
+<div class="rides-training-plans-training-header">
   <div>
     <h1>Training Plans</h1>
     <p style="color: var(--text-secondary); margin-top: 8px;">Choose a plan that matches your goals</p>
@@ -296,38 +22,38 @@ breadcrumb:
 </div>
 
 <!-- Active Plan (if any) -->
-<div class="active-plan">
-  <div class="active-plan-header">
-    <div class="active-plan-info">
-      <h2 class="active-plan-title">Century Preparation Plan</h2>
-      <p class="active-plan-subtitle">Week 3 of 8 • Building Base Fitness</p>
+<div class="rides-training-plans-active-plan">
+  <div class="rides-training-plans-active-plan-header">
+    <div class="rides-training-plans-active-plan-info">
+      <h2 class="rides-training-plans-active-plan-title">Century Preparation Plan</h2>
+      <p class="rides-training-plans-active-plan-subtitle">Week 3 of 8 • Building Base Fitness</p>
     </div>
     <button class="btn-secondary">View Details</button>
   </div>
   
-  <div class="week-progress">
-    <div class="week-dot completed">1</div>
-    <div class="week-dot completed">2</div>
-    <div class="week-dot current">3</div>
-    <div class="week-dot">4</div>
-    <div class="week-dot">5</div>
-    <div class="week-dot">6</div>
-    <div class="week-dot">7</div>
-    <div class="week-dot">8</div>
+  <div class="rides-training-plans-week-progress">
+    <div class="rides-training-plans-week-dot completed">1</div>
+    <div class="rides-training-plans-week-dot completed">2</div>
+    <div class="rides-training-plans-week-dot current">3</div>
+    <div class="rides-training-plans-week-dot">4</div>
+    <div class="rides-training-plans-week-dot">5</div>
+    <div class="rides-training-plans-week-dot">6</div>
+    <div class="rides-training-plans-week-dot">7</div>
+    <div class="rides-training-plans-week-dot">8</div>
   </div>
   
-  <div class="todays-workout">
-    <h3 class="workout-title">Today's Workout: Tempo Intervals</h3>
-    <div class="workout-details">
-      <div class="workout-detail">
+  <div class="rides-training-plans-todays-workout">
+    <h3 class="rides-training-plans-workout-title">Today's Workout: Tempo Intervals</h3>
+    <div class="rides-training-plans-workout-details">
+      <div class="rides-training-plans-workout-detail">
         <span>⏱️</span>
         <span>90 minutes</span>
       </div>
-      <div class="workout-detail">
+      <div class="rides-training-plans-workout-detail">
         <span>📏</span>
         <span>~35 miles</span>
       </div>
-      <div class="workout-detail">
+      <div class="rides-training-plans-workout-detail">
         <span>💪</span>
         <span>Moderate intensity</span>
       </div>
@@ -336,56 +62,56 @@ breadcrumb:
   </div>
 </div>
 
-<div class="plan-filters">
-  <div class="filter-group">
-    <button class="filter-btn active">All Plans</button>
-    <button class="filter-btn">Beginner</button>
-    <button class="filter-btn">Intermediate</button>
-    <button class="filter-btn">Advanced</button>
+<div class="rides-training-plans-plan-filters">
+  <div class="rides-training-plans-filter-group">
+    <button class="rides-training-plans-filter-btn active">All Plans</button>
+    <button class="rides-training-plans-filter-btn">Beginner</button>
+    <button class="rides-training-plans-filter-btn">Intermediate</button>
+    <button class="rides-training-plans-filter-btn">Advanced</button>
   </div>
-  <div class="filter-group">
-    <button class="filter-btn">Speed</button>
-    <button class="filter-btn">Endurance</button>
-    <button class="filter-btn">Climbing</button>
-    <button class="filter-btn">Weight Loss</button>
+  <div class="rides-training-plans-filter-group">
+    <button class="rides-training-plans-filter-btn">Speed</button>
+    <button class="rides-training-plans-filter-btn">Endurance</button>
+    <button class="rides-training-plans-filter-btn">Climbing</button>
+    <button class="rides-training-plans-filter-btn">Weight Loss</button>
   </div>
 </div>
 
-<div class="plans-grid">
-  <div class="plan-card">
-    <div class="plan-header">
-      <div class="plan-category">Endurance</div>
-      <h3 class="plan-title">Century Preparation</h3>
-      <div class="plan-duration">8 weeks • 4-5 days/week</div>
+<div class="rides-training-plans-plans-grid">
+  <div class="rides-training-plans-plan-card">
+    <div class="rides-training-plans-plan-header">
+      <div class="rides-training-plans-plan-category">Endurance</div>
+      <h3 class="rides-training-plans-plan-title">Century Preparation</h3>
+      <div class="rides-training-plans-plan-duration">8 weeks • 4-5 days/week</div>
     </div>
-    <div class="plan-body">
-      <p class="plan-description">
+    <div class="rides-training-plans-plan-body">
+      <p class="rides-training-plans-plan-description">
         Build the endurance and strength needed to complete your first century ride. Progressive weekly mileage with structured workouts.
       </p>
       
-      <div class="plan-stats">
-        <div class="plan-stat">
-          <div class="plan-stat-value">150-250</div>
-          <div class="plan-stat-label">Weekly Miles</div>
+      <div class="rides-training-plans-plan-stats">
+        <div class="rides-training-plans-plan-stat">
+          <div class="rides-training-plans-plan-stat-value">150-250</div>
+          <div class="rides-training-plans-plan-stat-label">Weekly Miles</div>
         </div>
-        <div class="plan-stat">
-          <div class="plan-stat-value">8-15</div>
-          <div class="plan-stat-label">Hours/Week</div>
+        <div class="rides-training-plans-plan-stat">
+          <div class="rides-training-plans-plan-stat-value">8-15</div>
+          <div class="rides-training-plans-plan-stat-label">Hours/Week</div>
         </div>
-        <div class="plan-stat">
-          <div class="plan-stat-value">32</div>
-          <div class="plan-stat-label">Workouts</div>
+        <div class="rides-training-plans-plan-stat">
+          <div class="rides-training-plans-plan-stat-value">32</div>
+          <div class="rides-training-plans-plan-stat-label">Workouts</div>
         </div>
       </div>
       
-      <div class="plan-tags">
-        <span class="plan-tag">Intermediate</span>
-        <span class="plan-tag">Road</span>
-        <span class="plan-tag">Structured</span>
+      <div class="rides-training-plans-plan-tags">
+        <span class="rides-training-plans-plan-tag">Intermediate</span>
+        <span class="rides-training-plans-plan-tag">Road</span>
+        <span class="rides-training-plans-plan-tag">Structured</span>
       </div>
       
-      <div class="plan-action">
-        <div class="plan-popularity">
+      <div class="rides-training-plans-plan-action">
+        <div class="rides-training-plans-plan-popularity">
           <span>👥</span>
           <span>2.3k athletes</span>
         </div>
@@ -394,40 +120,40 @@ breadcrumb:
     </div>
   </div>
 
-  <div class="plan-card">
-    <div class="plan-header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
-      <div class="plan-category">Speed</div>
-      <h3 class="plan-title">Sprint Power</h3>
-      <div class="plan-duration">6 weeks • 3-4 days/week</div>
+  <div class="rides-training-plans-plan-card">
+    <div class="rides-training-plans-plan-header" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+      <div class="rides-training-plans-plan-category">Speed</div>
+      <h3 class="rides-training-plans-plan-title">Sprint Power</h3>
+      <div class="rides-training-plans-plan-duration">6 weeks • 3-4 days/week</div>
     </div>
-    <div class="plan-body">
-      <p class="plan-description">
+    <div class="rides-training-plans-plan-body">
+      <p class="rides-training-plans-plan-description">
         Explosive power development for criterium racing and sprinting. High-intensity intervals with focused recovery.
       </p>
       
-      <div class="plan-stats">
-        <div class="plan-stat">
-          <div class="plan-stat-value">100-150</div>
-          <div class="plan-stat-label">Weekly Miles</div>
+      <div class="rides-training-plans-plan-stats">
+        <div class="rides-training-plans-plan-stat">
+          <div class="rides-training-plans-plan-stat-value">100-150</div>
+          <div class="rides-training-plans-plan-stat-label">Weekly Miles</div>
         </div>
-        <div class="plan-stat">
-          <div class="plan-stat-value">6-10</div>
-          <div class="plan-stat-label">Hours/Week</div>
+        <div class="rides-training-plans-plan-stat">
+          <div class="rides-training-plans-plan-stat-value">6-10</div>
+          <div class="rides-training-plans-plan-stat-label">Hours/Week</div>
         </div>
-        <div class="plan-stat">
-          <div class="plan-stat-value">24</div>
-          <div class="plan-stat-label">Workouts</div>
+        <div class="rides-training-plans-plan-stat">
+          <div class="rides-training-plans-plan-stat-value">24</div>
+          <div class="rides-training-plans-plan-stat-label">Workouts</div>
         </div>
       </div>
       
-      <div class="plan-tags">
-        <span class="plan-tag">Advanced</span>
-        <span class="plan-tag">Racing</span>
-        <span class="plan-tag">High Intensity</span>
+      <div class="rides-training-plans-plan-tags">
+        <span class="rides-training-plans-plan-tag">Advanced</span>
+        <span class="rides-training-plans-plan-tag">Racing</span>
+        <span class="rides-training-plans-plan-tag">High Intensity</span>
       </div>
       
-      <div class="plan-action">
-        <div class="plan-popularity">
+      <div class="rides-training-plans-plan-action">
+        <div class="rides-training-plans-plan-popularity">
           <span>👥</span>
           <span>856 athletes</span>
         </div>
@@ -436,40 +162,40 @@ breadcrumb:
     </div>
   </div>
 
-  <div class="plan-card">
-    <div class="plan-header" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
-      <div class="plan-category">Beginner</div>
-      <h3 class="plan-title">First 50 Miles</h3>
-      <div class="plan-duration">6 weeks • 3 days/week</div>
+  <div class="rides-training-plans-plan-card">
+    <div class="rides-training-plans-plan-header" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+      <div class="rides-training-plans-plan-category">Beginner</div>
+      <h3 class="rides-training-plans-plan-title">First 50 Miles</h3>
+      <div class="rides-training-plans-plan-duration">6 weeks • 3 days/week</div>
     </div>
-    <div class="plan-body">
-      <p class="plan-description">
+    <div class="rides-training-plans-plan-body">
+      <p class="rides-training-plans-plan-description">
         Perfect for new cyclists looking to build up to their first 50-mile ride. Gradual progression with rest and recovery.
       </p>
       
-      <div class="plan-stats">
-        <div class="plan-stat">
-          <div class="plan-stat-value">50-100</div>
-          <div class="plan-stat-label">Weekly Miles</div>
+      <div class="rides-training-plans-plan-stats">
+        <div class="rides-training-plans-plan-stat">
+          <div class="rides-training-plans-plan-stat-value">50-100</div>
+          <div class="rides-training-plans-plan-stat-label">Weekly Miles</div>
         </div>
-        <div class="plan-stat">
-          <div class="plan-stat-value">4-7</div>
-          <div class="plan-stat-label">Hours/Week</div>
+        <div class="rides-training-plans-plan-stat">
+          <div class="rides-training-plans-plan-stat-value">4-7</div>
+          <div class="rides-training-plans-plan-stat-label">Hours/Week</div>
         </div>
-        <div class="plan-stat">
-          <div class="plan-stat-value">18</div>
-          <div class="plan-stat-label">Workouts</div>
+        <div class="rides-training-plans-plan-stat">
+          <div class="rides-training-plans-plan-stat-value">18</div>
+          <div class="rides-training-plans-plan-stat-label">Workouts</div>
         </div>
       </div>
       
-      <div class="plan-tags">
-        <span class="plan-tag">Beginner</span>
-        <span class="plan-tag">Base Building</span>
-        <span class="plan-tag">Low Intensity</span>
+      <div class="rides-training-plans-plan-tags">
+        <span class="rides-training-plans-plan-tag">Beginner</span>
+        <span class="rides-training-plans-plan-tag">Base Building</span>
+        <span class="rides-training-plans-plan-tag">Low Intensity</span>
       </div>
       
-      <div class="plan-action">
-        <div class="plan-popularity">
+      <div class="rides-training-plans-plan-action">
+        <div class="rides-training-plans-plan-popularity">
           <span>👥</span>
           <span>5.1k athletes</span>
         </div>
@@ -478,40 +204,40 @@ breadcrumb:
     </div>
   </div>
 
-  <div class="plan-card">
-    <div class="plan-header" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
-      <div class="plan-category">Climbing</div>
-      <h3 class="plan-title">Hill Climbing Master</h3>
-      <div class="plan-duration">8 weeks • 4 days/week</div>
+  <div class="rides-training-plans-plan-card">
+    <div class="rides-training-plans-plan-header" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+      <div class="rides-training-plans-plan-category">Climbing</div>
+      <h3 class="rides-training-plans-plan-title">Hill Climbing Master</h3>
+      <div class="rides-training-plans-plan-duration">8 weeks • 4 days/week</div>
     </div>
-    <div class="plan-body">
-      <p class="plan-description">
+    <div class="rides-training-plans-plan-body">
+      <p class="rides-training-plans-plan-description">
         Develop the power and endurance to conquer any climb. Focused on power-to-weight ratio and climbing technique.
       </p>
       
-      <div class="plan-stats">
-        <div class="plan-stat">
-          <div class="plan-stat-value">30-50k</div>
-          <div class="plan-stat-label">Weekly Elevation</div>
+      <div class="rides-training-plans-plan-stats">
+        <div class="rides-training-plans-plan-stat">
+          <div class="rides-training-plans-plan-stat-value">30-50k</div>
+          <div class="rides-training-plans-plan-stat-label">Weekly Elevation</div>
         </div>
-        <div class="plan-stat">
-          <div class="plan-stat-value">8-12</div>
-          <div class="plan-stat-label">Hours/Week</div>
+        <div class="rides-training-plans-plan-stat">
+          <div class="rides-training-plans-plan-stat-value">8-12</div>
+          <div class="rides-training-plans-plan-stat-label">Hours/Week</div>
         </div>
-        <div class="plan-stat">
-          <div class="plan-stat-value">32</div>
-          <div class="plan-stat-label">Workouts</div>
+        <div class="rides-training-plans-plan-stat">
+          <div class="rides-training-plans-plan-stat-value">32</div>
+          <div class="rides-training-plans-plan-stat-label">Workouts</div>
         </div>
       </div>
       
-      <div class="plan-tags">
-        <span class="plan-tag">Intermediate</span>
-        <span class="plan-tag">Mountains</span>
-        <span class="plan-tag">Power</span>
+      <div class="rides-training-plans-plan-tags">
+        <span class="rides-training-plans-plan-tag">Intermediate</span>
+        <span class="rides-training-plans-plan-tag">Mountains</span>
+        <span class="rides-training-plans-plan-tag">Power</span>
       </div>
       
-      <div class="plan-action">
-        <div class="plan-popularity">
+      <div class="rides-training-plans-plan-action">
+        <div class="rides-training-plans-plan-popularity">
           <span>👥</span>
           <span>1.7k athletes</span>
         </div>
@@ -520,40 +246,40 @@ breadcrumb:
     </div>
   </div>
 
-  <div class="plan-card">
-    <div class="plan-header" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
-      <div class="plan-category">Weight Loss</div>
-      <h3 class="plan-title">Burn & Build</h3>
-      <div class="plan-duration">12 weeks • 5 days/week</div>
+  <div class="rides-training-plans-plan-card">
+    <div class="rides-training-plans-plan-header" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+      <div class="rides-training-plans-plan-category">Weight Loss</div>
+      <h3 class="rides-training-plans-plan-title">Burn & Build</h3>
+      <div class="rides-training-plans-plan-duration">12 weeks • 5 days/week</div>
     </div>
-    <div class="plan-body">
-      <p class="plan-description">
+    <div class="rides-training-plans-plan-body">
+      <p class="rides-training-plans-plan-description">
         Structured plan combining cycling workouts with nutrition guidance for sustainable weight loss and fitness gains.
       </p>
       
-      <div class="plan-stats">
-        <div class="plan-stat">
-          <div class="plan-stat-value">150-200</div>
-          <div class="plan-stat-label">Weekly Miles</div>
+      <div class="rides-training-plans-plan-stats">
+        <div class="rides-training-plans-plan-stat">
+          <div class="rides-training-plans-plan-stat-value">150-200</div>
+          <div class="rides-training-plans-plan-stat-label">Weekly Miles</div>
         </div>
-        <div class="plan-stat">
-          <div class="plan-stat-value">10-15</div>
-          <div class="plan-stat-label">Hours/Week</div>
+        <div class="rides-training-plans-plan-stat">
+          <div class="rides-training-plans-plan-stat-value">10-15</div>
+          <div class="rides-training-plans-plan-stat-label">Hours/Week</div>
         </div>
-        <div class="plan-stat">
-          <div class="plan-stat-value">60</div>
-          <div class="plan-stat-label">Workouts</div>
+        <div class="rides-training-plans-plan-stat">
+          <div class="rides-training-plans-plan-stat-value">60</div>
+          <div class="rides-training-plans-plan-stat-label">Workouts</div>
         </div>
       </div>
       
-      <div class="plan-tags">
-        <span class="plan-tag">All Levels</span>
-        <span class="plan-tag">Fitness</span>
-        <span class="plan-tag">Nutrition</span>
+      <div class="rides-training-plans-plan-tags">
+        <span class="rides-training-plans-plan-tag">All Levels</span>
+        <span class="rides-training-plans-plan-tag">Fitness</span>
+        <span class="rides-training-plans-plan-tag">Nutrition</span>
       </div>
       
-      <div class="plan-action">
-        <div class="plan-popularity">
+      <div class="rides-training-plans-plan-action">
+        <div class="rides-training-plans-plan-popularity">
           <span>👥</span>
           <span>3.8k athletes</span>
         </div>
@@ -562,40 +288,40 @@ breadcrumb:
     </div>
   </div>
 
-  <div class="plan-card">
-    <div class="plan-header" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);">
-      <div class="plan-category">Recovery</div>
-      <h3 class="plan-title">Active Recovery</h3>
-      <div class="plan-duration">4 weeks • 3-4 days/week</div>
+  <div class="rides-training-plans-plan-card">
+    <div class="rides-training-plans-plan-header" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);">
+      <div class="rides-training-plans-plan-category">Recovery</div>
+      <h3 class="rides-training-plans-plan-title">Active Recovery</h3>
+      <div class="rides-training-plans-plan-duration">4 weeks • 3-4 days/week</div>
     </div>
-    <div class="plan-body">
-      <p class="plan-description">
+    <div class="rides-training-plans-plan-body">
+      <p class="rides-training-plans-plan-description">
         Perfect between training blocks or after a big event. Maintain fitness while allowing your body to recover and adapt.
       </p>
       
-      <div class="plan-stats">
-        <div class="plan-stat">
-          <div class="plan-stat-value">75-125</div>
-          <div class="plan-stat-label">Weekly Miles</div>
+      <div class="rides-training-plans-plan-stats">
+        <div class="rides-training-plans-plan-stat">
+          <div class="rides-training-plans-plan-stat-value">75-125</div>
+          <div class="rides-training-plans-plan-stat-label">Weekly Miles</div>
         </div>
-        <div class="plan-stat">
-          <div class="plan-stat-value">5-8</div>
-          <div class="plan-stat-label">Hours/Week</div>
+        <div class="rides-training-plans-plan-stat">
+          <div class="rides-training-plans-plan-stat-value">5-8</div>
+          <div class="rides-training-plans-plan-stat-label">Hours/Week</div>
         </div>
-        <div class="plan-stat">
-          <div class="plan-stat-value">16</div>
-          <div class="plan-stat-label">Workouts</div>
+        <div class="rides-training-plans-plan-stat">
+          <div class="rides-training-plans-plan-stat-value">16</div>
+          <div class="rides-training-plans-plan-stat-label">Workouts</div>
         </div>
       </div>
       
-      <div class="plan-tags">
-        <span class="plan-tag">All Levels</span>
-        <span class="plan-tag">Recovery</span>
-        <span class="plan-tag">Easy</span>
+      <div class="rides-training-plans-plan-tags">
+        <span class="rides-training-plans-plan-tag">All Levels</span>
+        <span class="rides-training-plans-plan-tag">Recovery</span>
+        <span class="rides-training-plans-plan-tag">Easy</span>
       </div>
       
-      <div class="plan-action">
-        <div class="plan-popularity">
+      <div class="rides-training-plans-plan-action">
+        <div class="rides-training-plans-plan-popularity">
           <span>👥</span>
           <span>923 athletes</span>
         </div>
@@ -605,10 +331,10 @@ breadcrumb:
   </div>
 </div>
 
-<div class="custom-plan-cta">
-  <div class="cta-icon">🎯</div>
-  <h3 class="cta-title">Need Something Different?</h3>
-  <p class="cta-description">
+<div class="rides-training-plans-custom-plan-cta">
+  <div class="rides-training-plans-cta-icon">🎯</div>
+  <h3 class="rides-training-plans-cta-title">Need Something Different?</h3>
+  <p class="rides-training-plans-cta-description">
     Create a custom training plan tailored to your specific goals, schedule, and fitness level
   </p>
   <button class="btn-primary btn-large">Build Custom Plan</button>
@@ -616,18 +342,18 @@ breadcrumb:
 
 <script>
   // Filter functionality
-  document.querySelectorAll('.filter-btn').forEach(btn => {
+  document.querySelectorAll('.rides-training-plans-filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      if (btn.parentElement.classList.contains('filter-group')) {
+      if (btn.parentElement.classList.contains('rides-training-plans-filter-group')) {
         // For grouped filters, only one active per group
-        btn.parentElement.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.parentElement.querySelectorAll('.rides-training-plans-filter-btn').forEach(b => b.classList.remove('active'));
       }
       btn.classList.toggle('active');
     });
   });
 
   // Plan card click
-  document.querySelectorAll('.plan-card').forEach(card => {
+  document.querySelectorAll('.rides-training-plans-plan-card').forEach(card => {
     card.addEventListener('click', (e) => {
       if (!e.target.classList.contains('btn-primary')) {
         window.location.href = '/training-plan-details/';
@@ -636,7 +362,7 @@ breadcrumb:
   });
 
   // Week progress
-  document.querySelectorAll('.week-dot').forEach(dot => {
+  document.querySelectorAll('.rides-training-plans-week-dot').forEach(dot => {
     dot.addEventListener('click', () => {
       alert(`Week ${dot.textContent} details`);
     });

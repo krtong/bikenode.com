@@ -1,0 +1,665 @@
+/* Discord Bot Management Styles */
+
+/* Invite Section */
+.discord-bot-management-invite-section {
+    margin-bottom: 40px;
+}
+
+.discord-bot-management-invite-card {
+    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(88, 101, 242, 0.1) 100%);
+    border: 1px solid rgba(88, 101, 242, 0.3);
+    border-radius: 16px;
+    padding: 32px;
+}
+
+.discord-bot-management-invite-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.discord-bot-management-bot-avatar {
+    font-size: 3rem;
+    background: rgba(88, 101, 242, 0.2);
+    padding: 20px;
+    border-radius: 16px;
+}
+
+.discord-bot-management-invite-info h2 {
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    font-size: 1.5rem;
+}
+
+.discord-bot-management-invite-info p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 1rem;
+}
+
+.discord-bot-management-invite-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.discord-bot-management-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.discord-bot-management-feature-icon {
+    font-size: 1.2rem;
+}
+
+.discord-bot-management-invite-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.discord-bot-management-btn-large {
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.discord-bot-management-btn-icon {
+    margin-right: 8px;
+}
+
+/* Connected Servers */
+.discord-bot-management-connected-servers {
+    margin-bottom: 40px;
+}
+
+.discord-bot-management-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.discord-bot-management-section-header h2 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.discord-bot-management-server-count {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 12px;
+    border-radius: 12px;
+}
+
+.discord-bot-management-servers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.discord-bot-management-server-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.discord-bot-management-server-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.discord-bot-management-server-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--accent);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.discord-bot-management-server-info {
+    flex: 1;
+}
+
+.discord-bot-management-server-info h3 {
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    font-size: 1.1rem;
+}
+
+.discord-bot-management-server-info p {
+    color: var(--text-secondary);
+    margin: 0 0 8px 0;
+    font-size: 0.9rem;
+}
+
+.discord-bot-management-server-status {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.discord-bot-management-server-status.discord-bot-management-online {
+    color: #10b981;
+}
+
+.discord-bot-management-server-status.discord-bot-management-warning {
+    color: #f59e0b;
+}
+
+.discord-bot-management-server-actions {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.discord-bot-management-server-features h4 {
+    color: var(--text-primary);
+    margin: 0 0 16px 0;
+    font-size: 1rem;
+}
+
+.discord-bot-management-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.discord-bot-management-feature-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.discord-bot-management-feature-toggle span {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.discord-bot-management-customizations {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.discord-bot-management-customizations h5 {
+    color: var(--text-primary);
+    margin: 0 0 16px 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.discord-bot-management-custom-settings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.discord-bot-management-custom-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.discord-bot-management-custom-item label {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.discord-bot-management-prefix-input,
+.discord-bot-management-channel-select,
+.discord-bot-management-role-select {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.discord-bot-management-permission-notice {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 16px;
+}
+
+.discord-bot-management-permission-notice p {
+    color: #f59e0b;
+    margin: 0 0 8px 0;
+    font-size: 0.9rem;
+}
+
+.discord-bot-management-permission-notice ul {
+    color: var(--text-secondary);
+    margin: 0;
+    padding-left: 20px;
+}
+
+.discord-bot-management-permission-notice li {
+    margin-bottom: 4px;
+    font-size: 0.8rem;
+}
+
+/* Help & Support */
+.discord-bot-management-help-support h2 {
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    font-size: 1.25rem;
+}
+
+.discord-bot-management-support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.discord-bot-management-support-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+}
+
+.discord-bot-management-support-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.discord-bot-management-support-icon {
+    font-size: 1.5rem;
+}
+
+.discord-bot-management-support-card h3 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.discord-bot-management-support-card p {
+    color: var(--text-secondary);
+    margin: 0 0 20px 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.discord-bot-management-support-card .btn-primary,
+.discord-bot-management-support-card .btn-secondary {
+    width: 100%;
+}
+
+.discord-bot-management-toggle-switch {
+    position: relative;
+    width: 44px;
+    height: 24px;
+}
+
+.discord-bot-management-toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.discord-bot-management-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: 0.2s;
+    border-radius: 24px;
+}
+
+.discord-bot-management-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.2s;
+    border-radius: 50%;
+}
+
+input:checked + .discord-bot-management-slider {
+    background-color: var(--accent);
+}
+
+input:checked + .discord-bot-management-slider:before {
+    transform: translateX(20px);
+}
+
+.discord-bot-management-btn-danger {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+.discord-bot-management-btn-danger:hover {
+    background: #b91c1c;
+}
+
+.discord-bot-management-btn-danger.discord-bot-management-small {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+/* Auto Role Configuration */
+.discord-bot-management-auto-role-config {
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(88, 101, 242, 0.05);
+    border: 1px solid rgba(88, 101, 242, 0.2);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.discord-bot-management-auto-role-config.discord-bot-management-disabled {
+    background: rgba(255, 255, 255, 0.02);
+    border-color: rgba(255, 255, 255, 0.1);
+    opacity: 0.6;
+}
+
+.discord-bot-management-auto-role-config h5 {
+    color: var(--text-primary);
+    margin: 0 0 16px 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.discord-bot-management-auto-role-config h6 {
+    color: var(--text-primary);
+    margin: 0 0 12px 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.discord-bot-management-disabled-notice {
+    text-align: center;
+    padding: 20px;
+}
+
+.discord-bot-management-disabled-notice p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-style: italic;
+}
+
+.discord-bot-management-role-types {
+    margin-bottom: 24px;
+}
+
+.discord-bot-management-role-type-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.discord-bot-management-role-type-option {
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: block;
+}
+
+.discord-bot-management-role-type-option:hover {
+    border-color: var(--accent);
+    background: rgba(88, 101, 242, 0.05);
+}
+
+.discord-bot-management-role-type-option input:checked + .discord-bot-management-option-content {
+    color: var(--accent);
+}
+
+.discord-bot-management-role-type-option input:checked + .discord-bot-management-option-content h4 {
+    color: var(--accent);
+}
+
+.discord-bot-management-role-type-option input {
+    display: none;
+}
+
+.discord-bot-management-option-content h4 {
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.discord-bot-management-option-content p {
+    color: var(--text-secondary);
+    margin: 0 0 4px 0;
+    font-size: 0.8rem;
+}
+
+.discord-bot-management-option-content small {
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    opacity: 0.8;
+}
+
+.discord-bot-management-role-settings {
+    margin-bottom: 24px;
+}
+
+.discord-bot-management-role-behavior-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.discord-bot-management-behavior-setting {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.discord-bot-management-behavior-setting label {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.discord-bot-management-setting-select {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.discord-bot-management-role-preview {
+    margin-bottom: 24px;
+}
+
+.discord-bot-management-preview-roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.discord-bot-management-role-badge {
+    background: var(--accent);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.discord-bot-management-role-badge.discord-bot-management-make {
+    background: #10b981;
+}
+
+.discord-bot-management-role-badge.discord-bot-management-type {
+    background: #f59e0b;
+}
+
+.discord-bot-management-role-badge.discord-bot-management-year {
+    background: #8b5cf6;
+}
+
+.discord-bot-management-role-badge.discord-bot-management-makemodel {
+    background: #ef4444;
+}
+
+.discord-bot-management-role-badge.discord-bot-management-disabled {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text-secondary);
+}
+
+.discord-bot-management-no-roles {
+    color: var(--text-secondary);
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+.discord-bot-management-preview-note {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.discord-bot-management-advanced-settings {
+    margin-top: 20px;
+}
+
+.discord-bot-management-advanced-settings details {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.discord-bot-management-advanced-settings summary {
+    color: var(--text-primary);
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.discord-bot-management-advanced-content {
+    margin-top: 16px;
+}
+
+.discord-bot-management-advanced-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.discord-bot-management-advanced-setting {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.discord-bot-management-advanced-setting label {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.discord-bot-management-advanced-setting small {
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    margin-top: 2px;
+}
+
+.discord-bot-management-number-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    width: 60px;
+}
+
+.discord-bot-management-toggle-switch.discord-bot-management-small {
+    width: 32px;
+    height: 18px;
+}
+
+.discord-bot-management-toggle-switch.discord-bot-management-small .discord-bot-management-slider:before {
+    height: 12px;
+    width: 12px;
+    left: 3px;
+    bottom: 3px;
+}
+
+.discord-bot-management-toggle-switch.discord-bot-management-small input:checked + .discord-bot-management-slider:before {
+    transform: translateX(14px);
+}
+
+@media (max-width: 768px) {
+    .discord-bot-management-invite-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .discord-bot-management-invite-features {
+        grid-template-columns: 1fr;
+    }
+    
+    .discord-bot-management-invite-actions {
+        flex-direction: column;
+    }
+    
+    .discord-bot-management-server-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .discord-bot-management-server-actions {
+        margin-left: 0;
+    }
+    
+    .discord-bot-management-feature-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .discord-bot-management-custom-settings {
+        grid-template-columns: 1fr;
+    }
+    
+    .discord-bot-management-support-grid {
+        grid-template-columns: 1fr;
+    }
+}

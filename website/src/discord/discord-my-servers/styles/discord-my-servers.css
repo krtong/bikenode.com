@@ -1,0 +1,332 @@
+.discord-my-servers-content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+    gap: 24px;
+}
+
+.discord-my-servers-discord-content {
+    max-width: 1200px;
+}
+
+.discord-my-servers-discord-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.discord-my-servers-stat-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.discord-my-servers-stat-icon {
+    font-size: 2rem;
+    background: rgba(88, 101, 242, 0.1);
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.discord-my-servers-stat-content h3 {
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.discord-my-servers-stat-content p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.discord-my-servers-servers-section,
+.discord-my-servers-commands-section,
+.discord-my-servers-activity-section,
+.discord-my-servers-quick-actions {
+    margin-bottom: 40px;
+}
+
+.discord-my-servers-servers-section h2,
+.discord-my-servers-commands-section h2,
+.discord-my-servers-activity-section h2,
+.discord-my-servers-quick-actions h2 {
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    font-size: 1.25rem;
+}
+
+.discord-my-servers-servers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 24px;
+}
+
+.discord-my-servers-server-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.discord-my-servers-server-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.discord-my-servers-server-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--accent);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.discord-my-servers-server-info {
+    flex: 1;
+}
+
+.discord-my-servers-server-info h3 {
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    font-size: 1.1rem;
+}
+
+.discord-my-servers-server-info p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.discord-my-servers-server-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.discord-my-servers-status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.discord-my-servers-status-indicator.discord-my-servers-online {
+    background: #10b981;
+}
+
+.discord-my-servers-status-indicator.discord-my-servers-warning {
+    background: #f59e0b;
+}
+
+.discord-my-servers-status-text {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.discord-my-servers-server-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.discord-my-servers-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.discord-my-servers-stat-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.discord-my-servers-stat-value {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.discord-my-servers-server-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.discord-my-servers-commands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.discord-my-servers-command-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.discord-my-servers-command-icon {
+    font-size: 1.5rem;
+    background: rgba(88, 101, 242, 0.1);
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.discord-my-servers-command-info h4 {
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    font-size: 1rem;
+    font-family: 'Courier New', monospace;
+}
+
+.discord-my-servers-command-info p {
+    color: var(--text-secondary);
+    margin: 0 0 8px 0;
+    font-size: 0.9rem;
+}
+
+.discord-my-servers-command-usage {
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.discord-my-servers-activity-feed {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.discord-my-servers-activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.discord-my-servers-activity-item:last-child {
+    border-bottom: none;
+}
+
+.discord-my-servers-activity-icon {
+    font-size: 1rem;
+    background: rgba(88, 101, 242, 0.1);
+    padding: 6px;
+    border-radius: 6px;
+    margin-top: 2px;
+}
+
+.discord-my-servers-activity-content {
+    flex: 1;
+}
+
+.discord-my-servers-activity-content p {
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    font-size: 0.9rem;
+}
+
+.discord-my-servers-activity-content code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+}
+
+.discord-my-servers-activity-time {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.discord-my-servers-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.discord-my-servers-action-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: block;
+}
+
+.discord-my-servers-action-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.discord-my-servers-action-icon {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.discord-my-servers-action-card h4 {
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    font-size: 1rem;
+}
+
+.discord-my-servers-action-card p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.btn-secondary.small {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    .discord-my-servers-content-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .discord-my-servers-discord-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .discord-my-servers-servers-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .discord-my-servers-commands-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .discord-my-servers-server-actions {
+        justify-content: center;
+    }
+    
+    .discord-my-servers-actions-grid {
+        grid-template-columns: 1fr;
+    }
+}

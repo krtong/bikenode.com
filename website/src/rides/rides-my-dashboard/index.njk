@@ -5,270 +5,271 @@ subtitle: Track your cycling progress and performance
 showContentHeader: false
 breadcrumb:
   - title: Dashboard
-    url: /dashboard/
+    url: /dashboard-overview/dashboard-home-page/
   - title: Rides
+customCSS:
+  - ./styles/rides-my-dashboard.css
 customJS:
-  - https://cdn.jsdelivr.net/npm/chart.js
-  - ./js/rides-dashboard.js
+  - ./js/rides-my-dashboard.js
 ---
 
-<div class="rides-dashboard">
+<div class="rides-my-dashboard-container">
   <!-- Quick Actions Bar -->
-  <div class="quick-actions">
-    <a href="/rides/rides-record-tracker/" class="action-button primary">
-      <i class="icon">🚴</i>
+  <div class="rides-my-dashboard-quick-actions">
+    <a href="/rides/rides-record-tracker/" class="rides-my-dashboard-action-button rides-my-dashboard-action-button-primary">
+      <i class="rides-my-dashboard-icon">🚴</i>
       <span>Record New Ride</span>
     </a>
-    <a href="/rides/rides-create-planner/" class="action-button">
-      <i class="icon">🗺️</i>
+    <a href="/rides/rides-create-planner/" class="rides-my-dashboard-action-button">
+      <i class="rides-my-dashboard-icon">🗺️</i>
       <span>Plan Route</span>
     </a>
-    <a href="#" class="action-button" title="Import feature coming soon">
-      <i class="icon">📤</i>
+    <a href="#" class="rides-my-dashboard-action-button" title="Import feature coming soon">
+      <i class="rides-my-dashboard-icon">📤</i>
       <span>Import GPX</span>
     </a>
-    <a href="#" class="action-button" title="Calendar view coming soon">
-      <i class="icon">📅</i>
+    <a href="#" class="rides-my-dashboard-action-button" title="Calendar view coming soon">
+      <i class="rides-my-dashboard-icon">📅</i>
       <span>Calendar View</span>
     </a>
   </div>
 
   <!-- Hero Stats -->
-  <div class="hero-stats">
-    <div class="hero-stat-card">
-      <div class="stat-header">
+  <div class="rides-my-dashboard-hero-stats">
+    <div class="rides-my-dashboard-hero-stat-card">
+      <div class="rides-my-dashboard-stat-header">
         <h3>This Week</h3>
-        <span class="trend positive">+15%</span>
+        <span class="rides-my-dashboard-trend rides-my-dashboard-trend-positive">+15%</span>
       </div>
-      <div class="stat-main">
-        <div class="stat-value">182.4</div>
-        <div class="stat-unit">miles</div>
+      <div class="rides-my-dashboard-stat-main">
+        <div class="rides-my-dashboard-stat-value">182.4</div>
+        <div class="rides-my-dashboard-stat-unit">miles</div>
       </div>
-      <div class="stat-details">
-        <div class="detail-item">
-          <span class="detail-value">11:24:36</span>
-          <span class="detail-label">Time</span>
+      <div class="rides-my-dashboard-stat-details">
+        <div class="rides-my-dashboard-detail-item">
+          <span class="rides-my-dashboard-detail-value">11:24:36</span>
+          <span class="rides-my-dashboard-detail-label">Time</span>
         </div>
-        <div class="detail-item">
-          <span class="detail-value">8,432</span>
-          <span class="detail-label">Elevation</span>
+        <div class="rides-my-dashboard-detail-item">
+          <span class="rides-my-dashboard-detail-value">8,432</span>
+          <span class="rides-my-dashboard-detail-label">Elevation</span>
         </div>
-        <div class="detail-item">
-          <span class="detail-value">5</span>
-          <span class="detail-label">Rides</span>
+        <div class="rides-my-dashboard-detail-item">
+          <span class="rides-my-dashboard-detail-value">5</span>
+          <span class="rides-my-dashboard-detail-label">Rides</span>
         </div>
       </div>
     </div>
 
-    <div class="hero-stat-card">
-      <div class="stat-header">
+    <div class="rides-my-dashboard-hero-stat-card">
+      <div class="rides-my-dashboard-stat-header">
         <h3>This Month</h3>
-        <span class="trend positive">+8%</span>
+        <span class="rides-my-dashboard-trend rides-my-dashboard-trend-positive">+8%</span>
       </div>
-      <div class="stat-main">
-        <div class="stat-value">734.2</div>
-        <div class="stat-unit">miles</div>
+      <div class="rides-my-dashboard-stat-main">
+        <div class="rides-my-dashboard-stat-value">734.2</div>
+        <div class="rides-my-dashboard-stat-unit">miles</div>
       </div>
-      <div class="stat-details">
-        <div class="detail-item">
-          <span class="detail-value">42:15:22</span>
-          <span class="detail-label">Time</span>
+      <div class="rides-my-dashboard-stat-details">
+        <div class="rides-my-dashboard-detail-item">
+          <span class="rides-my-dashboard-detail-value">42:15:22</span>
+          <span class="rides-my-dashboard-detail-label">Time</span>
         </div>
-        <div class="detail-item">
-          <span class="detail-value">32,150</span>
-          <span class="detail-label">Elevation</span>
+        <div class="rides-my-dashboard-detail-item">
+          <span class="rides-my-dashboard-detail-value">32,150</span>
+          <span class="rides-my-dashboard-detail-label">Elevation</span>
         </div>
-        <div class="detail-item">
-          <span class="detail-value">18</span>
-          <span class="detail-label">Rides</span>
+        <div class="rides-my-dashboard-detail-item">
+          <span class="rides-my-dashboard-detail-value">18</span>
+          <span class="rides-my-dashboard-detail-label">Rides</span>
         </div>
       </div>
     </div>
 
-    <div class="hero-stat-card">
-      <div class="stat-header">
+    <div class="rides-my-dashboard-hero-stat-card">
+      <div class="rides-my-dashboard-stat-header">
         <h3>All Time</h3>
-        <span class="badge">PRO</span>
+        <span class="rides-my-dashboard-badge">PRO</span>
       </div>
-      <div class="stat-main">
-        <div class="stat-value">12.3K</div>
-        <div class="stat-unit">miles</div>
+      <div class="rides-my-dashboard-stat-main">
+        <div class="rides-my-dashboard-stat-value">12.3K</div>
+        <div class="rides-my-dashboard-stat-unit">miles</div>
       </div>
-      <div class="stat-details">
-        <div class="detail-item">
-          <span class="detail-value">652:48:19</span>
-          <span class="detail-label">Time</span>
+      <div class="rides-my-dashboard-stat-details">
+        <div class="rides-my-dashboard-detail-item">
+          <span class="rides-my-dashboard-detail-value">652:48:19</span>
+          <span class="rides-my-dashboard-detail-label">Time</span>
         </div>
-        <div class="detail-item">
-          <span class="detail-value">485K</span>
-          <span class="detail-label">Elevation</span>
+        <div class="rides-my-dashboard-detail-item">
+          <span class="rides-my-dashboard-detail-value">485K</span>
+          <span class="rides-my-dashboard-detail-label">Elevation</span>
         </div>
-        <div class="detail-item">
-          <span class="detail-value">342</span>
-          <span class="detail-label">Rides</span>
+        <div class="rides-my-dashboard-detail-item">
+          <span class="rides-my-dashboard-detail-value">342</span>
+          <span class="rides-my-dashboard-detail-label">Rides</span>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Main Dashboard Content -->
-  <div class="dashboard-content">
+  <div class="rides-my-dashboard-content">
     <!-- Left Column -->
-    <div class="content-left">
+    <div class="rides-my-dashboard-content-left">
       <!-- Activity Chart -->
-      <div class="chart-card">
-        <div class="card-header">
+      <div class="rides-my-dashboard-chart-card">
+        <div class="rides-my-dashboard-card-header">
           <h3>Activity Overview</h3>
-          <div class="chart-controls">
-            <button class="control-btn active" data-range="week">Week</button>
-            <button class="control-btn" data-range="month">Month</button>
-            <button class="control-btn" data-range="year">Year</button>
+          <div class="rides-my-dashboard-chart-controls">
+            <button class="rides-my-dashboard-control-btn rides-my-dashboard-control-btn-active" data-range="week">Week</button>
+            <button class="rides-my-dashboard-control-btn" data-range="month">Month</button>
+            <button class="rides-my-dashboard-control-btn" data-range="year">Year</button>
           </div>
         </div>
-        <div class="chart-wrapper">
-          <canvas id="activityChart"></canvas>
+        <div class="rides-my-dashboard-chart-wrapper">
+          <canvas id="rides-my-dashboard-activity-chart"></canvas>
         </div>
-        <div class="chart-legend">
-          <div class="legend-item">
-            <span class="legend-color" style="background: #3B82F6"></span>
+        <div class="rides-my-dashboard-chart-legend">
+          <div class="rides-my-dashboard-legend-item">
+            <span class="rides-my-dashboard-legend-color" style="background: #3B82F6"></span>
             <span>Distance</span>
           </div>
-          <div class="legend-item">
-            <span class="legend-color" style="background: #10B981"></span>
+          <div class="rides-my-dashboard-legend-item">
+            <span class="rides-my-dashboard-legend-color" style="background: #10B981"></span>
             <span>Elevation</span>
           </div>
-          <div class="legend-item">
-            <span class="legend-color" style="background: #F59E0B"></span>
+          <div class="rides-my-dashboard-legend-item">
+            <span class="rides-my-dashboard-legend-color" style="background: #F59E0B"></span>
             <span>Time</span>
           </div>
         </div>
       </div>
 
       <!-- Recent Rides -->
-      <div class="rides-card">
-        <div class="card-header">
+      <div class="rides-my-dashboard-rides-card">
+        <div class="rides-my-dashboard-card-header">
           <h3>Recent Activities</h3>
-          <a href="/rides-history/" class="view-all">View All →</a>
+          <a href="/rides-history/" class="rides-my-dashboard-view-all">View All →</a>
         </div>
-        <div class="rides-list" id="recentRides">
+        <div class="rides-my-dashboard-rides-list" id="rides-my-dashboard-recent-rides">
           <!-- Rides will be populated here -->
         </div>
       </div>
     </div>
 
     <!-- Right Column -->
-    <div class="content-right">
+    <div class="rides-my-dashboard-content-right">
       <!-- Performance Metrics -->
-      <div class="metrics-card">
+      <div class="rides-my-dashboard-metrics-card">
         <h3>Performance Metrics</h3>
-        <div class="metrics-grid">
-          <div class="metric-item">
-            <div class="metric-icon">⚡</div>
-            <div class="metric-value">19.2</div>
-            <div class="metric-label">Avg Speed (mph)</div>
-            <div class="metric-trend positive">+0.5</div>
+        <div class="rides-my-dashboard-metrics-grid">
+          <div class="rides-my-dashboard-metric-item">
+            <div class="rides-my-dashboard-metric-icon">⚡</div>
+            <div class="rides-my-dashboard-metric-value">19.2</div>
+            <div class="rides-my-dashboard-metric-label">Avg Speed (mph)</div>
+            <div class="rides-my-dashboard-metric-trend rides-my-dashboard-metric-trend-positive">+0.5</div>
           </div>
-          <div class="metric-item">
-            <div class="metric-icon">💪</div>
-            <div class="metric-value">185</div>
-            <div class="metric-label">Avg Power (W)</div>
-            <div class="metric-trend positive">+8</div>
+          <div class="rides-my-dashboard-metric-item">
+            <div class="rides-my-dashboard-metric-icon">💪</div>
+            <div class="rides-my-dashboard-metric-value">185</div>
+            <div class="rides-my-dashboard-metric-label">Avg Power (W)</div>
+            <div class="rides-my-dashboard-metric-trend rides-my-dashboard-metric-trend-positive">+8</div>
           </div>
-          <div class="metric-item">
-            <div class="metric-icon">❤️</div>
-            <div class="metric-value">142</div>
-            <div class="metric-label">Avg Heart Rate</div>
-            <div class="metric-trend neutral">±0</div>
+          <div class="rides-my-dashboard-metric-item">
+            <div class="rides-my-dashboard-metric-icon">❤️</div>
+            <div class="rides-my-dashboard-metric-value">142</div>
+            <div class="rides-my-dashboard-metric-label">Avg Heart Rate</div>
+            <div class="rides-my-dashboard-metric-trend rides-my-dashboard-metric-trend-neutral">±0</div>
           </div>
-          <div class="metric-item">
-            <div class="metric-icon">🔥</div>
-            <div class="metric-value">8,234</div>
-            <div class="metric-label">Calories Burned</div>
-            <div class="metric-trend positive">+523</div>
+          <div class="rides-my-dashboard-metric-item">
+            <div class="rides-my-dashboard-metric-icon">🔥</div>
+            <div class="rides-my-dashboard-metric-value">8,234</div>
+            <div class="rides-my-dashboard-metric-label">Calories Burned</div>
+            <div class="rides-my-dashboard-metric-trend rides-my-dashboard-metric-trend-positive">+523</div>
           </div>
         </div>
       </div>
 
       <!-- Goals Progress -->
-      <div class="goals-card">
-        <div class="card-header">
+      <div class="rides-my-dashboard-goals-card">
+        <div class="rides-my-dashboard-card-header">
           <h3>Monthly Goals</h3>
-          <button class="edit-goals-btn">Edit</button>
+          <button class="rides-my-dashboard-edit-goals-btn">Edit</button>
         </div>
-        <div class="goals-list">
-          <div class="goal-item">
-            <div class="goal-info">
-              <span class="goal-name">Distance</span>
-              <span class="goal-progress">734 / 1000 mi</span>
+        <div class="rides-my-dashboard-goals-list">
+          <div class="rides-my-dashboard-goal-item">
+            <div class="rides-my-dashboard-goal-info">
+              <span class="rides-my-dashboard-goal-name">Distance</span>
+              <span class="rides-my-dashboard-goal-progress">734 / 1000 mi</span>
             </div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 73.4%"></div>
-            </div>
-          </div>
-          <div class="goal-item">
-            <div class="goal-info">
-              <span class="goal-name">Climbing</span>
-              <span class="goal-progress">32,150 / 40,000 ft</span>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 80.4%"></div>
+            <div class="rides-my-dashboard-progress-bar">
+              <div class="rides-my-dashboard-progress-fill" style="width: 73.4%"></div>
             </div>
           </div>
-          <div class="goal-item">
-            <div class="goal-info">
-              <span class="goal-name">Time</span>
-              <span class="goal-progress">42.3 / 50 hrs</span>
+          <div class="rides-my-dashboard-goal-item">
+            <div class="rides-my-dashboard-goal-info">
+              <span class="rides-my-dashboard-goal-name">Climbing</span>
+              <span class="rides-my-dashboard-goal-progress">32,150 / 40,000 ft</span>
             </div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 84.6%"></div>
+            <div class="rides-my-dashboard-progress-bar">
+              <div class="rides-my-dashboard-progress-fill" style="width: 80.4%"></div>
             </div>
           </div>
-          <div class="goal-item">
-            <div class="goal-info">
-              <span class="goal-name">Ride Streak</span>
-              <span class="goal-progress">5 / 7 days</span>
+          <div class="rides-my-dashboard-goal-item">
+            <div class="rides-my-dashboard-goal-info">
+              <span class="rides-my-dashboard-goal-name">Time</span>
+              <span class="rides-my-dashboard-goal-progress">42.3 / 50 hrs</span>
             </div>
-            <div class="progress-bar">
-              <div class="progress-fill streak" style="width: 71.4%"></div>
+            <div class="rides-my-dashboard-progress-bar">
+              <div class="rides-my-dashboard-progress-fill" style="width: 84.6%"></div>
+            </div>
+          </div>
+          <div class="rides-my-dashboard-goal-item">
+            <div class="rides-my-dashboard-goal-info">
+              <span class="rides-my-dashboard-goal-name">Ride Streak</span>
+              <span class="rides-my-dashboard-goal-progress">5 / 7 days</span>
+            </div>
+            <div class="rides-my-dashboard-progress-bar">
+              <div class="rides-my-dashboard-progress-fill rides-my-dashboard-progress-fill-streak" style="width: 71.4%"></div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Personal Records -->
-      <div class="records-card">
+      <div class="rides-my-dashboard-records-card">
         <h3>Personal Records</h3>
-        <div class="records-grid">
-          <div class="record-item">
-            <div class="record-icon">🏆</div>
-            <div class="record-details">
-              <div class="record-value">112.4 mi</div>
-              <div class="record-label">Longest Ride</div>
-              <div class="record-date">May 15, 2025</div>
+        <div class="rides-my-dashboard-records-grid">
+          <div class="rides-my-dashboard-record-item">
+            <div class="rides-my-dashboard-record-icon">🏆</div>
+            <div class="rides-my-dashboard-record-details">
+              <div class="rides-my-dashboard-record-value">112.4 mi</div>
+              <div class="rides-my-dashboard-record-label">Longest Ride</div>
+              <div class="rides-my-dashboard-record-date">May 15, 2025</div>
             </div>
           </div>
-          <div class="record-item">
-            <div class="record-icon">⛰️</div>
-            <div class="record-details">
-              <div class="record-value">8,432 ft</div>
-              <div class="record-label">Most Climbing</div>
-              <div class="record-date">Jun 2, 2025</div>
+          <div class="rides-my-dashboard-record-item">
+            <div class="rides-my-dashboard-record-icon">⛰️</div>
+            <div class="rides-my-dashboard-record-details">
+              <div class="rides-my-dashboard-record-value">8,432 ft</div>
+              <div class="rides-my-dashboard-record-label">Most Climbing</div>
+              <div class="rides-my-dashboard-record-date">Jun 2, 2025</div>
             </div>
           </div>
-          <div class="record-item">
-            <div class="record-icon">🚀</div>
-            <div class="record-details">
-              <div class="record-value">45.2 mph</div>
-              <div class="record-label">Max Speed</div>
-              <div class="record-date">Apr 28, 2025</div>
+          <div class="rides-my-dashboard-record-item">
+            <div class="rides-my-dashboard-record-icon">🚀</div>
+            <div class="rides-my-dashboard-record-details">
+              <div class="rides-my-dashboard-record-value">45.2 mph</div>
+              <div class="rides-my-dashboard-record-label">Max Speed</div>
+              <div class="rides-my-dashboard-record-date">Apr 28, 2025</div>
             </div>
           </div>
-          <div class="record-item new">
-            <div class="record-icon">💪</div>
-            <div class="record-details">
-              <div class="record-value">312 W</div>
-              <div class="record-label">20min Power</div>
-              <div class="record-date">Yesterday</div>
+          <div class="rides-my-dashboard-record-item rides-my-dashboard-record-item-new">
+            <div class="rides-my-dashboard-record-icon">💪</div>
+            <div class="rides-my-dashboard-record-details">
+              <div class="rides-my-dashboard-record-value">312 W</div>
+              <div class="rides-my-dashboard-record-label">20min Power</div>
+              <div class="rides-my-dashboard-record-date">Yesterday</div>
             </div>
           </div>
         </div>

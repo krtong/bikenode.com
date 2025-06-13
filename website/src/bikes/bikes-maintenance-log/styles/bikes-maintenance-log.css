@@ -1,0 +1,490 @@
+/* Bikes Maintenance Log Styles */
+
+.bikes-maintenance-log-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.bikes-maintenance-log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+    gap: 24px;
+}
+
+.bikes-maintenance-log-header-left h1 {
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    font-size: 1.8rem;
+}
+
+.bikes-maintenance-log-subtitle {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.bikes-maintenance-log-header-actions {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.bikes-maintenance-log-overview {
+    margin-bottom: 40px;
+}
+
+.bikes-maintenance-log-overview-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.bikes-maintenance-log-stat-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.bikes-maintenance-log-stat-card.bikes-maintenance-log-upcoming {
+    border-color: rgba(251, 191, 36, 0.3);
+    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(251, 191, 36, 0.1) 100%);
+}
+
+.bikes-maintenance-log-stat-icon {
+    font-size: 2rem;
+    background: rgba(88, 101, 242, 0.1);
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.bikes-maintenance-log-stat-content h3 {
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.bikes-maintenance-log-stat-content p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.bikes-maintenance-log-upcoming-section {
+    margin-bottom: 40px;
+}
+
+.bikes-maintenance-log-upcoming-section h2 {
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    margin-bottom: 24px;
+}
+
+.bikes-maintenance-log-upcoming-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.bikes-maintenance-log-upcoming-item {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.bikes-maintenance-log-upcoming-item.bikes-maintenance-log-priority-high {
+    border-left: 4px solid #ef4444;
+}
+
+.bikes-maintenance-log-upcoming-item.bikes-maintenance-log-priority-medium {
+    border-left: 4px solid #f59e0b;
+}
+
+.bikes-maintenance-log-upcoming-icon {
+    font-size: 2rem;
+    background: rgba(251, 191, 36, 0.1);
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.bikes-maintenance-log-upcoming-content {
+    flex: 1;
+}
+
+.bikes-maintenance-log-upcoming-content h3 {
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+    font-size: 1.1rem;
+}
+
+.bikes-maintenance-log-upcoming-content p {
+    color: var(--text-secondary);
+    margin: 0 0 12px 0;
+    font-size: 0.9rem;
+}
+
+.bikes-maintenance-log-upcoming-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.bikes-maintenance-log-progress-bar {
+    flex: 1;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.bikes-maintenance-log-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #f59e0b);
+    transition: width 0.3s ease;
+}
+
+.bikes-maintenance-log-progress-text {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.bikes-maintenance-log-upcoming-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.bikes-maintenance-log-btn-small {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+.bikes-maintenance-log-filter-section {
+    margin-bottom: 32px;
+}
+
+.bikes-maintenance-log-filter-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.bikes-maintenance-log-search-group {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+    max-width: 400px;
+}
+
+.bikes-maintenance-log-search-input {
+    flex: 1;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.bikes-maintenance-log-search-btn {
+    background: var(--accent);
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.bikes-maintenance-log-filter-group {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.bikes-maintenance-log-filter-select {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.bikes-maintenance-log-records-section h2 {
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    margin-bottom: 24px;
+}
+
+.bikes-maintenance-log-records-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.bikes-maintenance-log-record-item {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    gap: 24px;
+    transition: all 0.2s ease;
+}
+
+.bikes-maintenance-log-record-item:hover {
+    border-color: var(--accent);
+}
+
+.bikes-maintenance-log-record-date {
+    text-align: center;
+    min-width: 60px;
+}
+
+.bikes-maintenance-log-date-month {
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.bikes-maintenance-log-date-day {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.bikes-maintenance-log-date-year {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.bikes-maintenance-log-record-content {
+    flex: 1;
+}
+
+.bikes-maintenance-log-record-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.bikes-maintenance-log-record-header h3 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.bikes-maintenance-log-record-type {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.bikes-maintenance-log-record-type.bikes-maintenance-log-oil {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+}
+
+.bikes-maintenance-log-record-type.bikes-maintenance-log-tire {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.bikes-maintenance-log-record-type.bikes-maintenance-log-suspension {
+    background: rgba(168, 85, 247, 0.2);
+    color: #a855f7;
+}
+
+.bikes-maintenance-log-record-description {
+    color: var(--text-secondary);
+    margin: 0 0 16px 0;
+    line-height: 1.5;
+}
+
+.bikes-maintenance-log-record-details {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.bikes-maintenance-log-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.bikes-maintenance-log-detail-icon {
+    opacity: 0.7;
+}
+
+.bikes-maintenance-log-record-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-self: flex-start;
+}
+
+.bikes-maintenance-log-record-action {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+.bikes-maintenance-log-record-action:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.bikes-maintenance-log-record-action.bikes-maintenance-log-delete:hover {
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.bikes-maintenance-log-load-more {
+    text-align: center;
+}
+
+.bikes-maintenance-log-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.bikes-maintenance-log-modal {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 600px;
+    width: 90vw;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.bikes-maintenance-log-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.bikes-maintenance-log-modal-header h2 {
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.bikes-maintenance-log-modal-close {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.bikes-maintenance-log-modal-form .bikes-maintenance-log-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.bikes-maintenance-log-modal-form .bikes-maintenance-log-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.bikes-maintenance-log-modal-form label {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.bikes-maintenance-log-modal-form input,
+.bikes-maintenance-log-modal-form select,
+.bikes-maintenance-log-modal-form textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.bikes-maintenance-log-modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+    .bikes-maintenance-log-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .bikes-maintenance-log-header-actions {
+        justify-content: flex-end;
+    }
+    
+    .bikes-maintenance-log-overview-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .bikes-maintenance-log-upcoming-item {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+    
+    .bikes-maintenance-log-filter-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .bikes-maintenance-log-record-item {
+        flex-direction: column;
+    }
+    
+    .bikes-maintenance-log-record-details {
+        justify-content: center;
+    }
+    
+    .bikes-maintenance-log-modal-form .bikes-maintenance-log-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
