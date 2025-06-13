@@ -4,6 +4,10 @@ scrapy-playwright==0.0.33
 playwright>=1.40.0
 # crawlee==0.1.0  # Commented out due to dependency conflict
 
+# Anti-bot evasion
+scrapy-fake-useragent==1.4.4
+scrapy-rotating-proxies==0.6.2
+
 # Data processing
 pandas==2.1.4
 pyyaml==6.0.1

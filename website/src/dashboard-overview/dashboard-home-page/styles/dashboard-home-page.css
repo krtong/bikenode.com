@@ -23,13 +23,13 @@
 .dashboard-home-page-welcome-title {
   font-size: 2rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--text-primary, #ffffff);
   margin: 0 0 8px 0;
 }
 
 .dashboard-home-page-welcome-subtitle {
   font-size: 1.1rem;
-  color: #666;
+  color: var(--text-secondary, #b9bbbe);
   margin: 0;
 }
 
@@ -54,22 +54,23 @@
 }
 
 .dashboard-home-page-btn-primary {
-  background: #ff6b35;
+  background: var(--accent, #5865f2);
   color: white;
 }
 
 .dashboard-home-page-btn-primary:hover {
-  background: #ff5722;
+  background: var(--accent-hover, #4752c4);
   transform: translateY(-1px);
 }
 
 .dashboard-home-page-btn-secondary {
-  background: #f5f5f5;
-  color: #333;
+  background: var(--bg-tertiary, #40444b);
+  color: var(--text-primary, #ffffff);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
 }
 
 .dashboard-home-page-btn-secondary:hover {
-  background: #e8e8e8;
+  background: var(--bg-secondary, #36393f);
 }
 
 /* Stats Grid */
@@ -81,8 +82,8 @@
 }
 
 .dashboard-home-page-stat-card {
-  background: white;
-  border: 1px solid #e0e0e0;
+  background: var(--card-bg, #40444b);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
   border-radius: 12px;
   padding: 24px;
   transition: all 0.3s ease;
@@ -90,7 +91,7 @@
 
 .dashboard-home-page-stat-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .dashboard-home-page-stat-header {
@@ -107,26 +108,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--bg-secondary, #36393f);
 }
 
 .dashboard-home-page-stat-icon-rides {
-  background: rgba(255, 107, 53, 0.1);
-  color: #ff6b35;
+  color: var(--accent, #5865f2);
 }
 
 .dashboard-home-page-stat-icon-time {
-  background: rgba(52, 152, 219, 0.1);
-  color: #3498db;
+  color: var(--info, #00b0f4);
 }
 
 .dashboard-home-page-stat-icon-elevation {
-  background: rgba(46, 204, 113, 0.1);
-  color: #2ecc71;
+  color: var(--success, #43b581);
 }
 
 .dashboard-home-page-stat-icon-achievements {
-  background: rgba(155, 89, 182, 0.1);
-  color: #9b59b6;
+  color: var(--warning, #faa81a);
 }
 
 .dashboard-home-page-stat-badge {
@@ -137,36 +135,36 @@
 }
 
 .dashboard-home-page-badge-success {
-  background: rgba(46, 204, 113, 0.1);
-  color: #27ae60;
+  background: rgba(67, 181, 129, 0.2);
+  color: var(--success, #43b581);
 }
 
 .dashboard-home-page-badge-danger {
-  background: rgba(231, 76, 60, 0.1);
-  color: #e74c3c;
+  background: rgba(240, 71, 71, 0.2);
+  color: var(--danger, #f04747);
 }
 
 .dashboard-home-page-badge-primary {
-  background: rgba(52, 152, 219, 0.1);
-  color: #3498db;
+  background: rgba(88, 101, 242, 0.2);
+  color: var(--accent, #5865f2);
 }
 
 .dashboard-home-page-stat-value {
   font-size: 2rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--text-primary, #ffffff);
   margin: 0 0 8px 0;
 }
 
 .dashboard-home-page-stat-unit {
   font-size: 1rem;
   font-weight: 400;
-  color: #666;
+  color: var(--text-secondary, #b9bbbe);
 }
 
 .dashboard-home-page-stat-label {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-secondary, #b9bbbe);
   margin: 0;
 }
 
@@ -178,8 +176,8 @@
 }
 
 .dashboard-home-page-card {
-  background: white;
-  border: 1px solid #e0e0e0;
+  background: var(--card-bg, #40444b);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
   border-radius: 12px;
   padding: 24px;
 }
@@ -198,12 +196,12 @@
 .dashboard-home-page-card-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: var(--text-primary, #ffffff);
   margin: 0;
 }
 
 .dashboard-home-page-card-link {
-  color: #ff6b35;
+  color: var(--accent, #5865f2);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
@@ -224,24 +222,25 @@
   display: flex;
   gap: 16px;
   padding: 16px;
-  background: #f8f9fa;
+  background: var(--bg-secondary, #36393f);
   border-radius: 8px;
   transition: background 0.3s ease;
 }
 
 .dashboard-home-page-activity-item:hover {
-  background: #f0f1f3;
+  background: var(--bg-tertiary, #40444b);
 }
 
 .dashboard-home-page-activity-icon {
   width: 40px;
   height: 40px;
-  background: white;
+  background: var(--bg-tertiary, #40444b);
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  color: var(--accent, #5865f2);
 }
 
 .dashboard-home-page-activity-content {
@@ -250,13 +249,13 @@
 
 .dashboard-home-page-activity-title {
   font-weight: 600;
-  color: #1a1a1a;
+  color: var(--text-primary, #ffffff);
   margin: 0 0 4px 0;
 }
 
 .dashboard-home-page-activity-meta {
   font-size: 0.85rem;
-  color: #666;
+  color: var(--text-secondary, #b9bbbe);
   margin-bottom: 8px;
 }
 
@@ -264,7 +263,7 @@
   display: flex;
   gap: 16px;
   font-size: 0.9rem;
-  color: #333;
+  color: var(--text-secondary, #b9bbbe);
 }
 
 .dashboard-home-page-activity-stats span {
@@ -284,14 +283,14 @@
   display: flex;
   flex-direction: column;
   padding: 16px;
-  background: #f8f9fa;
+  background: var(--bg-secondary, #36393f);
   border-radius: 8px;
   transition: all 0.3s ease;
 }
 
 .dashboard-home-page-bike-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .dashboard-home-page-bike-image {
@@ -310,7 +309,7 @@
   display: inline-block;
   font-size: 0.75rem;
   padding: 4px 8px;
-  background: #ff6b35;
+  background: var(--accent, #5865f2);
   color: white;
   border-radius: 4px;
   margin-bottom: 8px;
@@ -318,19 +317,19 @@
 
 .dashboard-home-page-bike-name {
   font-weight: 600;
-  color: #1a1a1a;
+  color: var(--text-primary, #ffffff);
   margin: 0 0 4px 0;
 }
 
 .dashboard-home-page-bike-type {
   font-size: 0.85rem;
-  color: #666;
+  color: var(--text-secondary, #b9bbbe);
   margin: 0 0 8px 0;
 }
 
 .dashboard-home-page-bike-stats {
   font-size: 0.85rem;
-  color: #333;
+  color: var(--text-primary, #ffffff);
 }
 
 .dashboard-home-page-add-bike-card {
@@ -340,25 +339,26 @@
   justify-content: center;
   padding: 16px;
   background: transparent;
-  border: 2px dashed #e0e0e0;
+  border: 2px dashed var(--border-color, rgba(255, 255, 255, 0.1));
   border-radius: 8px;
-  color: #666;
+  color: var(--text-secondary, #b9bbbe);
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .dashboard-home-page-add-bike-card:hover {
-  border-color: #ff6b35;
-  color: #ff6b35;
-  background: rgba(255, 107, 53, 0.05);
+  border-color: var(--accent, #5865f2);
+  color: var(--accent, #5865f2);
+  background: rgba(88, 101, 242, 0.05);
 }
 
 /* Progress Chart */
 .dashboard-home-page-form-select {
   padding: 8px 12px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
   border-radius: 6px;
-  background: white;
+  background: var(--bg-tertiary, #40444b);
+  color: var(--text-primary, #ffffff);
   font-size: 0.9rem;
   cursor: pointer;
 }
@@ -377,7 +377,7 @@
 
 .dashboard-home-page-chart-bar {
   flex: 1;
-  background: #e8e8e8;
+  background: var(--bg-secondary, #36393f);
   border-radius: 4px 4px 0 0;
   position: relative;
   min-height: 20px;
@@ -391,15 +391,15 @@
   left: 50%;
   transform: translateX(-50%);
   font-size: 0.75rem;
-  color: #666;
+  color: var(--text-secondary, #b9bbbe);
 }
 
 .dashboard-home-page-chart-bar:hover {
-  background: #ff6b35;
+  background: var(--accent, #5865f2);
 }
 
 .dashboard-home-page-chart-bar-today {
-  background: #ff6b35;
+  background: var(--accent, #5865f2);
 }
 
 /* Chart bar heights */
@@ -426,19 +426,19 @@
 
 .dashboard-home-page-progress-label {
   font-size: 0.85rem;
-  color: #666;
+  color: var(--text-secondary, #b9bbbe);
   margin: 0 0 4px 0;
 }
 
 .dashboard-home-page-progress-value {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: var(--text-primary, #ffffff);
   margin: 0;
 }
 
 .dashboard-home-page-progress-value-accent {
-  color: #ff6b35;
+  color: var(--accent, #5865f2);
 }
 
 /* Event List */
@@ -452,14 +452,14 @@
   display: flex;
   gap: 16px;
   padding: 16px;
-  background: #f8f9fa;
+  background: var(--bg-secondary, #36393f);
   border-radius: 8px;
 }
 
 .dashboard-home-page-event-date {
   width: 60px;
   height: 60px;
-  background: #ff6b35;
+  background: var(--accent, #5865f2);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -486,33 +486,33 @@
 
 .dashboard-home-page-event-title {
   font-weight: 600;
-  color: #1a1a1a;
+  color: var(--text-primary, #ffffff);
   margin: 0 0 4px 0;
 }
 
 .dashboard-home-page-event-location {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-secondary, #b9bbbe);
   margin: 0 0 8px 0;
 }
 
 .dashboard-home-page-event-meta {
   font-size: 0.85rem;
-  color: #333;
+  color: var(--text-primary, #ffffff);
 }
 
 /* Community Feed */
 .dashboard-home-page-refresh-btn {
   background: none;
   border: none;
-  color: #666;
+  color: var(--text-secondary, #b9bbbe);
   cursor: pointer;
   padding: 4px;
   transition: color 0.3s ease;
 }
 
 .dashboard-home-page-refresh-btn:hover {
-  color: #ff6b35;
+  color: var(--accent, #5865f2);
 }
 
 .dashboard-home-page-feed-list {
@@ -540,13 +540,13 @@
 
 .dashboard-home-page-feed-text {
   font-size: 0.9rem;
-  color: #333;
+  color: var(--text-primary, #ffffff);
   margin: 0 0 4px 0;
 }
 
 .dashboard-home-page-feed-time {
   font-size: 0.8rem;
-  color: #999;
+  color: var(--text-secondary, #b9bbbe);
 }
 
 /* FAB */
@@ -561,7 +561,7 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: #ff6b35;
+  background: var(--accent, #5865f2);
   border: none;
   color: white;
   cursor: pointer;
@@ -594,9 +594,9 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: white;
-  border: 1px solid #e0e0e0;
-  color: #333;
+  background: var(--card-bg, #40444b);
+  border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+  color: var(--text-primary, #ffffff);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -607,9 +607,9 @@
 
 .dashboard-home-page-fab-item:hover {
   transform: scale(1.1);
-  background: #ff6b35;
+  background: var(--accent, #5865f2);
   color: white;
-  border-color: #ff6b35;
+  border-color: var(--accent, #5865f2);
 }
 
 /* Responsive */
