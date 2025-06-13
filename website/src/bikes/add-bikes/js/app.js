@@ -264,8 +264,8 @@ async function selectVariant(variant, variantData) {
 
 // Filter functions
 function filterBrands(searchTerm) {
-    const brands = document.querySelectorAll('.brand-item');
-    const letterSeparators = document.querySelectorAll('.brand-letter-separator');
+    const brands = document.querySelectorAll('.add-bikes-brand-item');
+    const letterSeparators = document.querySelectorAll('.add-bikes-brand-letter-separator');
     const term = searchTerm.toLowerCase();
     
     // If no search term, show everything
@@ -277,7 +277,7 @@ function filterBrands(searchTerm) {
     
     // Hide/show brands based on search
     brands.forEach(brand => {
-        const name = brand.querySelector('.brand-name').textContent.toLowerCase();
+        const name = brand.querySelector('.add-bikes-brand-name').textContent.toLowerCase();
         brand.style.display = name.includes(term) ? '' : 'none';
     });
     
@@ -287,8 +287,8 @@ function filterBrands(searchTerm) {
         let hasVisibleBrands = false;
         let nextElement = separator.nextElementSibling;
         
-        while (nextElement && !nextElement.classList.contains('brand-letter-separator')) {
-            if (nextElement.classList.contains('brand-item') && 
+        while (nextElement && !nextElement.classList.contains('add-bikes-brand-letter-separator')) {
+            if (nextElement.classList.contains('add-bikes-brand-item') && 
                 nextElement.style.display !== 'none') {
                 hasVisibleBrands = true;
                 break;
@@ -301,7 +301,7 @@ function filterBrands(searchTerm) {
 }
 
 function filterModels(searchTerm) {
-    const models = document.querySelectorAll('.model-card');
+    const models = document.querySelectorAll('.add-bikes-model-card');
     const term = searchTerm.toLowerCase();
     
     models.forEach(model => {
@@ -313,7 +313,7 @@ function filterModels(searchTerm) {
 
 // Category filter for models
 window.filterByCategory = function(category) {
-    const models = document.querySelectorAll('.model-card');
+    const models = document.querySelectorAll('.add-bikes-model-card');
     
     models.forEach(model => {
         if (!category || model.dataset.category === category) {
@@ -362,6 +362,19 @@ function navigateToBreadcrumb(index) {
 async function performGlobalSearch(query) {
     // This could be implemented to search across all bikes
     console.log('Global search:', query);
+    
+    // Show a temporary message that this feature is coming soon
+    const searchInput = document.querySelector('.add-bikes-global-search-input');
+    if (searchInput) {
+        const originalPlaceholder = searchInput.placeholder;
+        searchInput.placeholder = 'Global search coming soon...';
+        searchInput.value = '';
+        searchInput.blur();
+        
+        setTimeout(() => {
+            searchInput.placeholder = originalPlaceholder;
+        }, 2000);
+    }
 }
 
 // Global functions for actions

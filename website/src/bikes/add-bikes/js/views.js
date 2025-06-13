@@ -151,7 +151,7 @@ export function renderModels(modelData, type) {
             : model.category || model.engine || 'View details';
             
         modelCard.innerHTML = `
-            <div class="model-icon">${type === 'motorcycle' ? 
+            <div class="add-bikes-model-icon">${type === 'motorcycle' ? 
                 '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M6 15h12v-4l-3-3h-6l-3 3v4z"></path></svg>' : 
                 '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="18" r="3"></circle><circle cx="12" cy="6" r="3"></circle><path d="M12 9v6"></path></svg>'}</div>
             <h3>${model.name}</h3>
@@ -211,7 +211,7 @@ export function renderSpecs(specsData, state) {
     const specsTitle = document.getElementById('specs-title');
     const specsSubtitle = document.getElementById('specs-subtitle');
     const specsDetails = document.getElementById('specs-details');
-    const specsIcon = document.querySelector('.vehicle-icon-large');
+    const specsIcon = document.querySelector('.add-bikes-vehicle-icon-large');
     
     // Update title
     specsTitle.textContent = `${state.selectedYear} ${state.selectedBrand} ${state.selectedModel}`;
@@ -314,15 +314,15 @@ function renderDetailedSpecs(specs, container, type) {
         if (Object.keys(categorySpecs).length === 0) return;
         
         const section = document.createElement('div');
-        section.className = 'specs-category';
+        section.className = 'add-bikes-specs-category';
         section.innerHTML = `<h3>${category}</h3>`;
         
         const specGrid = document.createElement('div');
-        specGrid.className = 'specs-grid';
+        specGrid.className = 'add-bikes-specs-grid';
         
         Object.entries(categorySpecs).forEach(([key, value]) => {
             const specItem = document.createElement('div');
-            specItem.className = 'spec-item';
+            specItem.className = 'add-bikes-spec-item';
             
             // Format the key
             const formattedKey = key
@@ -345,8 +345,8 @@ function renderDetailedSpecs(specs, container, type) {
             }
             
             specItem.innerHTML = `
-                <div class="spec-label">${formattedKey}</div>
-                <div class="spec-value">${formattedValue}</div>
+                <div class="add-bikes-spec-label">${formattedKey}</div>
+                <div class="add-bikes-spec-value">${formattedValue}</div>
             `;
             specGrid.appendChild(specItem);
         });
@@ -359,11 +359,11 @@ function renderDetailedSpecs(specs, container, type) {
 // Render basic specifications
 function renderBasicSpecs(specsData, container, state) {
     const section = document.createElement('div');
-    section.className = 'specs-category';
+    section.className = 'add-bikes-specs-category';
     section.innerHTML = '<h3>Basic Information</h3>';
     
     const specGrid = document.createElement('div');
-    specGrid.className = 'specs-grid';
+    specGrid.className = 'add-bikes-specs-grid';
     
     const basicSpecs = {
         'Type': state.selectedType === 'motorcycle' ? 'Motorcycle' : 'Bicycle',
@@ -381,10 +381,10 @@ function renderBasicSpecs(specsData, container, state) {
     
     Object.entries(basicSpecs).forEach(([label, value]) => {
         const specItem = document.createElement('div');
-        specItem.className = 'spec-item';
+        specItem.className = 'add-bikes-spec-item';
         specItem.innerHTML = `
-            <div class="spec-label">${label}</div>
-            <div class="spec-value">${value}</div>
+            <div class="add-bikes-spec-label">${label}</div>
+            <div class="add-bikes-spec-value">${value}</div>
         `;
         specGrid.appendChild(specItem);
     });
@@ -394,11 +394,11 @@ function renderBasicSpecs(specsData, container, state) {
     
     // Add notice about missing specs
     const notice = document.createElement('div');
-    notice.className = 'specs-notice';
+    notice.className = 'add-bikes-specs-notice';
     notice.innerHTML = `
         <p><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: text-bottom;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg> Detailed specifications are not yet available for this model.</p>
         <p>Would you like to contribute specifications for this ${state.selectedType}?</p>
-        <button class="btn-secondary" onclick="alert('Specification submission coming soon!')">Submit Specifications</button>
+        <button class="add-bikes-btn-secondary" onclick="alert('Specification submission coming soon!')">Submit Specifications</button>
     `;
     container.appendChild(notice);
 }
