@@ -17,7 +17,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
-    background-color: #ff6b35;
+    background-color: var(--accent, #5865f2);
     color: white;
     text-decoration: none;
     border-radius: 8px;
@@ -26,9 +26,9 @@
 }
 
 .rides-browse-gallery-create-btn:hover {
-    background-color: #ff5722;
+    background-color: var(--accent-hover, #4752c4);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 4px 12px rgba(88, 101, 242, 0.3);
 }
 
 /* Filter Bar */
@@ -38,8 +38,8 @@
     align-items: center;
     margin-bottom: 2rem;
     padding: 1rem;
-    background: rgba(248, 249, 250, 0.8);
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: var(--card-bg, #40444b);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
     border-radius: 8px;
     backdrop-filter: blur(10px);
 }
@@ -50,8 +50,8 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: white;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: var(--bg-tertiary, #40444b);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
     border-radius: 6px;
 }
 
@@ -64,12 +64,12 @@
     background: transparent;
     border: none;
     outline: none;
-    color: #333;
+    color: var(--text-primary, #ffffff);
     font-size: 0.875rem;
 }
 
 .rides-browse-gallery-search-input::placeholder {
-    color: #999;
+    color: var(--text-secondary, #b9bbbe);
 }
 
 .rides-browse-gallery-filter-dropdown {
@@ -81,17 +81,17 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: white;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: var(--bg-tertiary, #40444b);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
     border-radius: 6px;
-    color: #666;
+    color: var(--text-secondary, #b9bbbe);
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .rides-browse-gallery-filter-btn:hover {
-    border-color: #ff6b35;
-    color: #333;
+    border-color: var(--accent, #5865f2);
+    color: var(--text-primary, #ffffff);
 }
 
 .rides-browse-gallery-dropdown-arrow {
@@ -101,7 +101,7 @@
 .rides-browse-gallery-view-toggle {
     display: flex;
     gap: 0.25rem;
-    background: white;
+    background: var(--bg-tertiary, #40444b);
     padding: 0.25rem;
     border-radius: 6px;
 }
@@ -110,14 +110,14 @@
     padding: 0.5rem;
     background: transparent;
     border: none;
-    color: #999;
+    color: var(--text-secondary, #b9bbbe);
     cursor: pointer;
     border-radius: 4px;
     transition: all 0.2s ease;
 }
 
 .rides-browse-gallery-view-btn-active {
-    background: #ff6b35;
+    background: var(--accent, #5865f2);
     color: white;
 }
 
@@ -130,8 +130,8 @@
 }
 
 .rides-browse-gallery-route-card {
-    background: white;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: var(--bg-tertiary, #40444b);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
@@ -151,7 +151,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #999;
+    color: var(--text-secondary, #b9bbbe);
     position: relative;
     font-size: 0.875rem;
 }
@@ -193,11 +193,11 @@
     margin: 0 0 0.5rem 0;
     font-size: 1.125rem;
     font-weight: 600;
-    color: #333;
+    color: var(--text-primary, #ffffff);
 }
 
 .rides-browse-gallery-route-author {
-    color: #666;
+    color: var(--text-secondary, #b9bbbe);
     font-size: 0.875rem;
     margin-bottom: 1rem;
 }
@@ -217,12 +217,12 @@
 .rides-browse-gallery-stat-value {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #333;
+    color: var(--text-primary, #ffffff);
 }
 
 .rides-browse-gallery-stat-label {
     font-size: 0.75rem;
-    color: #999;
+    color: var(--text-secondary, #b9bbbe);
     text-transform: uppercase;
 }
 
@@ -252,7 +252,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #666;
+    color: var(--text-secondary, #b9bbbe);
     font-size: 0.875rem;
 }
 
@@ -261,14 +261,14 @@
 }
 
 .rides-browse-gallery-save-count {
-    color: #666;
+    color: var(--text-secondary, #b9bbbe);
 }
 
 .rides-browse-gallery-save-btn {
     padding: 0.5rem 1rem;
     background: transparent;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    color: #666;
+    color: var(--text-secondary, #b9bbbe);
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -277,7 +277,7 @@
 
 .rides-browse-gallery-save-btn:hover {
     background: rgba(255, 107, 53, 0.1);
-    border-color: #ff6b35;
+    border-color: var(--accent, #5865f2);
     color: #ff6b35;
 }
 
@@ -290,9 +290,9 @@
     display: inline-flex;
     align-items: center;
     padding: 0.75rem 2rem;
-    background: rgba(248, 249, 250, 0.8);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    color: #333;
+    background: var(--card-bg, #40444b);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    color: var(--text-primary, #ffffff);
     text-decoration: none;
     border-radius: 8px;
     font-weight: 500;
