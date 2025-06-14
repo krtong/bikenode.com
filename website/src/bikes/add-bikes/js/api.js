@@ -1,6 +1,6 @@
 // API functions for loading data from the backend
 
-const API_BASE = 'http://localhost:8080/api';
+import { MAIN_API as API_BASE } from '../../../config/api-config.js';
 
 // Load category statistics
 export async function loadCategories() {

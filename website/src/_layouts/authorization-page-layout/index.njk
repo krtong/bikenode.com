@@ -28,8 +28,8 @@
                 <a href="/" class="authorization-page-layout-logo-link">
                     <img src="/assets/images/bikenode_logo.png" alt="BikeNode" class="authorization-page-layout-auth-logo">
                 </a>
-                <h1>{{ authTitle or title }}</h1>
-                <p>{{ authSubtitle or subtitle }}</p>
+                {% if authTitle %}<h1>{{ authTitle }}</h1>{% endif %}
+                {% if authSubtitle %}<p>{{ authSubtitle }}</p>{% endif %}
             </div>
 
             {{ content | safe }}

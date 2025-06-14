@@ -72,7 +72,8 @@ async function checkAPIStatus() {
     const statusText = document.querySelector('.add-bikes-api-status-v2 .add-bikes-status-text');
     
     try {
-        const response = await fetch('http://localhost:8080/api/health');
+        const { MAIN_API } = await import('../../../config/api-config.js');
+        const response = await fetch(`${MAIN_API}/health`);
         if (response.ok) {
             const data = await response.json();
             if (data.status === 'healthy') {

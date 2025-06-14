@@ -1,12 +1,12 @@
 /* Map Container Styles */
-.route-map-container {
+.rides-create-planner-map-container {
     position: relative;
     background: var(--bg-primary);
     display: flex;
     flex-direction: column;
 }
 
-.route-map-controls {
+.rides-create-planner-map-controls {
     position: absolute;
     top: 16px;
     left: 16px;
@@ -18,11 +18,11 @@
     pointer-events: none;
 }
 
-.route-map-controls > * {
+.rides-create-planner-map-controls > * {
     pointer-events: auto;
 }
 
-.route-map-style-selector {
+.rides-create-planner-map-style-selector {
     display: flex;
     gap: 4px;
     background: rgba(0, 0, 0, 0.8);
@@ -32,7 +32,7 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.route-map-style {
+.rides-create-planner-map-style {
     padding: 6px 12px;
     background: transparent;
     color: rgba(255, 255, 255, 0.7);
@@ -43,22 +43,22 @@
     transition: all 0.2s ease;
 }
 
-.route-map-style:hover {
+.rides-create-planner-map-style:hover {
     background: rgba(255, 255, 255, 0.1);
     color: white;
 }
 
-.route-map-style.active {
+.rides-create-planner-map-style.active {
     background: var(--accent);
     color: white;
 }
 
-.route-map-layers {
+.rides-create-planner-map-layers {
     display: flex;
     gap: 8px;
 }
 
-.route-layer-toggle {
+.rides-create-planner-layer-toggle {
     padding: 6px 12px;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
@@ -70,26 +70,26 @@
     transition: all 0.2s ease;
 }
 
-.route-layer-toggle:hover {
+.rides-create-planner-layer-toggle:hover {
     background: rgba(255, 255, 255, 0.1);
     color: white;
     border-color: rgba(255, 255, 255, 0.3);
 }
 
-.route-layer-toggle.active {
+.rides-create-planner-layer-toggle.active {
     background: var(--accent);
     color: white;
     border-color: var(--accent);
 }
 
-.route-map-display {
+.rides-create-planner-map-display {
     flex: 1;
     width: 100%;
     background: #1a1a1a;
     cursor: crosshair;
 }
 
-.route-map-display.waypoint-mode {
+.rides-create-planner-map-display.waypoint-mode {
     cursor: pointer !important;
 }
 
@@ -117,7 +117,7 @@
 }
 
 /* Context Menu */
-.route-context-menu {
+.rides-create-planner-context-menu {
     position: absolute;
     background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
@@ -129,7 +129,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
-.route-context-menu-item {
+.rides-create-planner-context-menu-item {
     padding: 8px 16px;
     color: var(--text-primary);
     cursor: pointer;
@@ -138,11 +138,11 @@
     transition: all 0.2s ease;
 }
 
-.route-context-menu-item:hover {
+.rides-create-planner-context-menu-item:hover {
     background: rgba(255, 255, 255, 0.1);
 }
 
-.route-context-menu-item.divider {
+.rides-create-planner-context-menu-item.divider {
     height: 1px;
     background: rgba(255, 255, 255, 0.1);
     margin: 4px 8px;
@@ -150,12 +150,12 @@
     cursor: default;
 }
 
-.route-context-menu-item:hover.divider {
+.rides-create-planner-context-menu-item:hover.divider {
     background: rgba(255, 255, 255, 0.1);
 }
 
 /* Custom Markers */
-.route-waypoint-marker-custom {
+.rides-create-planner-waypoint-marker-custom {
     background: var(--accent);
     color: white;
     border: 2px solid white;
@@ -170,7 +170,7 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-.route-poi-marker {
+.rides-create-planner-poi-marker {
     background: white;
     border: 2px solid var(--accent);
     border-radius: 50%;
@@ -184,7 +184,7 @@
 }
 
 /* Distance Markers */
-.route-distance-marker {
+.rides-create-planner-distance-marker {
     background: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 4px 8px;
@@ -201,21 +201,21 @@
 }
 
 /* Surface Type Overlay */
-.route-surface-segment {
+.rides-create-planner-surface-segment {
     stroke-width: 6;
     stroke-linecap: round;
     stroke-linejoin: round;
     opacity: 0.8;
 }
 
-.route-surface-paved {
+.rides-create-planner-surface-paved {
     stroke: #10b981;
 }
 
-.route-surface-gravel {
+.rides-create-planner-surface-gravel {
     stroke: #fee75c;
 }
 
-.route-surface-dirt {
+.rides-create-planner-surface-dirt {
     stroke: #ef4444;
 }

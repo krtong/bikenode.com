@@ -1,4 +1,6 @@
 // Gear Collection App
+import { USER_API } from '../../../config/api-config.js';
+
 class GearCollectionApp {
     constructor() {
         this.gear = [];
@@ -95,7 +97,7 @@ class GearCollectionApp {
     
     async loadGear() {
         try {
-            const response = await fetch('http://localhost:8081/api/user/gear-collection', {
+            const response = await fetch(`${USER_API}/user/gear-collection`, {
                 credentials: 'include'
             });
             
@@ -111,7 +113,7 @@ class GearCollectionApp {
     
     async loadBrands() {
         try {
-            const response = await fetch('http://localhost:8081/api/gear/brands', {
+            const response = await fetch(`${USER_API}/gear/brands`, {
                 credentials: 'include'
             });
             
@@ -409,7 +411,7 @@ class GearCollectionApp {
         };
         
         try {
-            const response = await fetch('http://localhost:8081/api/user/gear-collection', {
+            const response = await fetch(`${USER_API}/user/gear-collection`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -484,7 +486,7 @@ class GearCollectionApp {
     
     async toggleFavorite(gearId) {
         try {
-            const response = await fetch(`http://localhost:8081/api/user/gear/${gearId}/favorite`, {
+            const response = await fetch(`${USER_API}/user/gear/${gearId}/favorite`, {
                 method: 'POST',
                 credentials: 'include'
             });
@@ -499,7 +501,7 @@ class GearCollectionApp {
     
     async logUsage(gearId) {
         try {
-            const response = await fetch(`http://localhost:8081/api/user/gear/${gearId}/usage`, {
+            const response = await fetch(`${USER_API}/user/gear/${gearId}/usage`, {
                 method: 'POST',
                 credentials: 'include'
             });

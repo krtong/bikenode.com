@@ -2,123 +2,125 @@
 layout: bikenode-main-layout-01
 title: Bot Management
 subtitle: Configure BikeNode bot settings and commands
+customCSS:
+  - ./styles/discord-bot-management.css
 ---
 
-<div class="bot-content">
+<div class="discord-bot-management-bot-content">
     <!-- Invite Bot Section -->
-    <div class="invite-section">
-        <div class="invite-card">
-            <div class="invite-header">
-                <div class="bot-avatar">🤖</div>
-                <div class="invite-info">
+    <div class="discord-bot-management-invite-section">
+        <div class="discord-bot-management-invite-card">
+            <div class="discord-bot-management-invite-header">
+                <div class="discord-bot-management-bot-avatar">🤖</div>
+                <div class="discord-bot-management-invite-info">
                     <h2>Add BikeNode Bot to Your Server</h2>
                     <p>Enhance your Discord server with virtual garage features, bike comparisons, and community tools</p>
                 </div>
             </div>
-            <div class="invite-features">
-                <div class="feature-item">
-                    <span class="feature-icon">🏍️</span>
+            <div class="discord-bot-management-invite-features">
+                <div class="discord-bot-management-feature-item">
+                    <span class="discord-bot-management-feature-icon">🏍️</span>
                     <span>Virtual Garage Commands</span>
                 </div>
-                <div class="feature-item">
-                    <span class="feature-icon">🔍</span>
+                <div class="discord-bot-management-feature-item">
+                    <span class="discord-bot-management-feature-icon">🔍</span>
                     <span>Bike Comparisons & Search</span>
                 </div>
-                <div class="feature-item">
-                    <span class="feature-icon">👥</span>
+                <div class="discord-bot-management-feature-item">
+                    <span class="discord-bot-management-feature-icon">👥</span>
                     <span>Community Management</span>
                 </div>
-                <div class="feature-item">
-                    <span class="feature-icon">🎯</span>
+                <div class="discord-bot-management-feature-item">
+                    <span class="discord-bot-management-feature-icon">🎯</span>
                     <span>Auto-Roles & Welcome Messages</span>
                 </div>
             </div>
-            <div class="invite-actions">
-                <button class="btn-primary btn-large invite-btn" onclick="inviteBot()">
-                    <span class="btn-icon">➕</span>
+            <div class="discord-bot-management-invite-actions">
+                <button class="discord-bot-management-btn-primary discord-bot-management-btn-large discord-bot-management-invite-btn" onclick="inviteBot()">
+                    <span class="discord-bot-management-btn-icon">➕</span>
                     Invite to Discord Server
                 </button>
-                <a href="/discord/discord-bot-setup/" class="btn-secondary">Setup Guide</a>
+                <a href="/discord/discord-bot-setup/" class="discord-bot-management-btn-secondary">Setup Guide</a>
             </div>
         </div>
     </div>
 
     <!-- Connected Servers -->
-    <div class="connected-servers">
-        <div class="section-header">
+    <div class="discord-bot-management-connected-servers">
+        <div class="discord-bot-management-section-header">
             <h2>Connected Servers</h2>
-            <span class="server-count">3 servers connected</span>
+            <span class="discord-bot-management-server-count">3 servers connected</span>
         </div>
         
-        <div class="servers-list">
-            <div class="server-card">
-                <div class="server-header">
-                    <div class="server-icon">SB</div>
-                    <div class="server-info">
+        <div class="discord-bot-management-servers-list">
+            <div class="discord-bot-management-server-card">
+                <div class="discord-bot-management-server-header">
+                    <div class="discord-bot-management-server-icon">SB</div>
+                    <div class="discord-bot-management-server-info">
                         <h3>Sport Bike Riders</h3>
                         <p>1,234 members • Owner permissions</p>
                         <span class="discord-bot-management-server-status discord-bot-management-online">🟢 Bot Active</span>
                     </div>
-                    <div class="server-actions">
-                        <button class="btn-secondary small" onclick="openServerSettings('sportbike')">Configure</button>
-                        <button class="btn-danger small" onclick="disconnectServer('sportbike')">Remove</button>
+                    <div class="discord-bot-management-server-actions">
+                        <button class="discord-bot-management-btn-secondary discord-bot-management-small" onclick="openServerSettings('sportbike')">Configure</button>
+                        <button class="discord-bot-management-btn-danger discord-bot-management-small" onclick="disconnectServer('sportbike')">Remove</button>
                     </div>
                 </div>
                 
-                <div class="server-features">
+                <div class="discord-bot-management-server-features">
                     <h4>Features & Permissions</h4>
-                    <div class="feature-grid">
-                        <div class="feature-toggle">
+                    <div class="discord-bot-management-feature-grid">
+                        <div class="discord-bot-management-feature-toggle">
                             <span>Welcome Messages</span>
-                            <label class="toggle-switch">
+                            <label class="discord-bot-management-toggle-switch">
                                 <input type="checkbox" checked>
-                                <span class="slider"></span>
+                                <span class="discord-bot-management-slider"></span>
                             </label>
                         </div>
-                        <div class="feature-toggle-with-config">
-                            <div class="feature-toggle">
+                        <div class="discord-bot-management-feature-toggle-with-config">
+                            <div class="discord-bot-management-feature-toggle">
                                 <span>Auto Role Assignment</span>
-                                <label class="toggle-switch">
+                                <label class="discord-bot-management-toggle-switch">
                                     <input type="checkbox" checked onchange="toggleAutoRoles('sportbike', this.checked)">
-                                    <span class="slider"></span>
+                                    <span class="discord-bot-management-slider"></span>
                                 </label>
                             </div>
                             
                             <!-- Auto Role Configuration -->
-                            <div class="auto-role-config" id="auto-role-sportbike">
-                                <div class="role-types">
+                            <div class="discord-bot-management-auto-role-config" id="auto-role-sportbike">
+                                <div class="discord-bot-management-role-types">
                                     <h6>Role Assignment Types</h6>
-                                    <div class="role-type-grid">
-                                        <label class="role-type-option">
+                                    <div class="discord-bot-management-role-type-grid">
+                                        <label class="discord-bot-management-role-type-option">
                                             <input type="checkbox" name="roleType-sportbike" value="make" checked onchange="updateRolePreview('sportbike')">
-                                            <div class="option-content">
+                                            <div class="discord-bot-management-option-content">
                                                 <h4>By Make</h4>
                                                 <p>Assign roles based on bike manufacturer</p>
                                                 <small>e.g., @Yamaha, @Honda, @Trek</small>
                                             </div>
                                         </label>
                                         
-                                        <label class="role-type-option">
+                                        <label class="discord-bot-management-role-type-option">
                                             <input type="checkbox" name="roleType-sportbike" value="type" checked onchange="updateRolePreview('sportbike')">
-                                            <div class="option-content">
+                                            <div class="discord-bot-management-option-content">
                                                 <h4>By Type</h4>
                                                 <p>Assign roles based on bike category</p>
                                                 <small>e.g., @SportBike, @MTB, @Cruiser</small>
                                             </div>
                                         </label>
                                         
-                                        <label class="role-type-option">
+                                        <label class="discord-bot-management-role-type-option">
                                             <input type="checkbox" name="roleType-sportbike" value="year" onchange="updateRolePreview('sportbike')">
-                                            <div class="option-content">
+                                            <div class="discord-bot-management-option-content">
                                                 <h4>By Year</h4>
                                                 <p>Assign roles based on model year</p>
                                                 <small>e.g., @2024Rider, @2023Rider</small>
                                             </div>
                                         </label>
                                         
-                                        <label class="role-type-option">
+                                        <label class="discord-bot-management-role-type-option">
                                             <input type="checkbox" name="roleType-sportbike" value="makemodel" onchange="updateRolePreview('sportbike')">
-                                            <div class="option-content">
+                                            <div class="discord-bot-management-option-content">
                                                 <h4>Make + Model</h4>
                                                 <p>Specific bike model roles</p>
                                                 <small>e.g., @YamahaR1, @TrekFuelEX</small>
@@ -127,39 +129,39 @@ subtitle: Configure BikeNode bot settings and commands
                                     </div>
                                 </div>
                                 
-                                <div class="role-settings">
+                                <div class="discord-bot-management-role-settings">
                                     <h6>Role Behavior</h6>
-                                    <div class="role-behavior-grid">
-                                        <div class="behavior-setting">
+                                    <div class="discord-bot-management-role-behavior-grid">
+                                        <div class="discord-bot-management-behavior-setting">
                                             <label>Assignment Trigger</label>
-                                            <select class="setting-select">
+                                            <select class="discord-bot-management-setting-select">
                                                 <option value="garage-add">When bike added to garage</option>
                                                 <option value="manual">Manual assignment only</option>
                                                 <option value="join">On server join (if garage exists)</option>
                                             </select>
                                         </div>
                                         
-                                        <div class="behavior-setting">
+                                        <div class="discord-bot-management-behavior-setting">
                                             <label>Multiple Bikes</label>
-                                            <select class="setting-select">
+                                            <select class="discord-bot-management-setting-select">
                                                 <option value="all">Assign all applicable roles</option>
                                                 <option value="primary">Only primary bike role</option>
                                                 <option value="latest">Only latest bike role</option>
                                             </select>
                                         </div>
                                         
-                                        <div class="behavior-setting">
+                                        <div class="discord-bot-management-behavior-setting">
                                             <label>Role Removal</label>
-                                            <select class="setting-select">
+                                            <select class="discord-bot-management-setting-select">
                                                 <option value="auto">Auto-remove when bike removed</option>
                                                 <option value="manual">Manual removal only</option>
                                                 <option value="keep">Keep roles permanently</option>
                                             </select>
                                         </div>
                                         
-                                        <div class="behavior-setting">
+                                        <div class="discord-bot-management-behavior-setting">
                                             <label>Role Color</label>
-                                            <select class="setting-select">
+                                            <select class="discord-bot-management-setting-select">
                                                 <option value="auto">Auto-assign colors</option>
                                                 <option value="brand">Match brand colors</option>
                                                 <option value="type">Match bike type colors</option>
@@ -169,37 +171,37 @@ subtitle: Configure BikeNode bot settings and commands
                                     </div>
                                 </div>
                                 
-                                <div class="role-preview">
+                                <div class="discord-bot-management-role-preview">
                                     <h6>Role Preview</h6>
-                                    <div class="preview-roles" id="preview-sportbike">
-                                        <span class="role-badge make">@Yamaha</span>
-                                        <span class="role-badge type">@SportBike</span>
-                                        <span class="role-badge disabled">@2024Rider</span>
-                                        <span class="role-badge disabled">@YamahaR1</span>
+                                    <div class="discord-bot-management-preview-roles" id="preview-sportbike">
+                                        <span class="discord-bot-management-role-badge discord-bot-management-make">@Yamaha</span>
+                                        <span class="discord-bot-management-role-badge discord-bot-management-type">@SportBike</span>
+                                        <span class="discord-bot-management-role-badge discord-bot-management-disabled">@2024Rider</span>
+                                        <span class="discord-bot-management-role-badge discord-bot-management-disabled">@YamahaR1</span>
                                     </div>
-                                    <p class="preview-note">Preview shows roles for a Yamaha R1 Sport Bike based on current settings</p>
+                                    <p class="discord-bot-management-preview-note">Preview shows roles for a Yamaha R1 Sport Bike based on current settings</p>
                                 </div>
                                 
-                                <div class="advanced-settings">
+                                <div class="discord-bot-management-advanced-settings">
                                     <details>
                                         <summary>Advanced Settings</summary>
-                                        <div class="advanced-content">
-                                            <div class="advanced-grid">
-                                                <div class="advanced-setting">
+                                        <div class="discord-bot-management-advanced-content">
+                                            <div class="discord-bot-management-advanced-grid">
+                                                <div class="discord-bot-management-advanced-setting">
                                                     <label>Role Prefix</label>
-                                                    <input type="text" placeholder="e.g., 🏍️" class="prefix-input">
+                                                    <input type="text" placeholder="e.g., 🏍️" class="discord-bot-management-prefix-input">
                                                     <small>Optional prefix for all auto-assigned roles</small>
                                                 </div>
                                                 
-                                                <div class="advanced-setting">
+                                                <div class="discord-bot-management-advanced-setting">
                                                     <label>Minimum Bikes Required</label>
-                                                    <input type="number" value="1" min="1" max="10" class="number-input">
+                                                    <input type="number" value="1" min="1" max="10" class="discord-bot-management-number-input">
                                                     <small>How many bikes needed before assigning roles</small>
                                                 </div>
                                                 
-                                                <div class="advanced-setting">
+                                                <div class="discord-bot-management-advanced-setting">
                                                     <label>Role Assignment Delay</label>
-                                                    <select class="setting-select">
+                                                    <select class="discord-bot-management-setting-select">
                                                         <option value="instant">Instant</option>
                                                         <option value="5min">5 minutes</option>
                                                         <option value="1hour">1 hour</option>
@@ -208,11 +210,11 @@ subtitle: Configure BikeNode bot settings and commands
                                                     <small>Delay before assigning roles (spam protection)</small>
                                                 </div>
                                                 
-                                                <div class="advanced-setting">
+                                                <div class="discord-bot-management-advanced-setting">
                                                     <label>Auto-Create Roles</label>
-                                                    <label class="toggle-switch small">
+                                                    <label class="discord-bot-management-toggle-switch discord-bot-management-small">
                                                         <input type="checkbox" checked>
-                                                        <span class="slider"></span>
+                                                        <span class="discord-bot-management-slider"></span>
                                                     </label>
                                                     <small>Automatically create new roles for new makes/models</small>
                                                 </div>
@@ -222,54 +224,54 @@ subtitle: Configure BikeNode bot settings and commands
                                 </div>
                             </div>
                         </div>
-                        <div class="feature-toggle">
+                        <div class="discord-bot-management-feature-toggle">
                             <span>Garage Commands</span>
-                            <label class="toggle-switch">
+                            <label class="discord-bot-management-toggle-switch">
                                 <input type="checkbox" checked>
-                                <span class="slider"></span>
+                                <span class="discord-bot-management-slider"></span>
                             </label>
                         </div>
-                        <div class="feature-toggle">
+                        <div class="discord-bot-management-feature-toggle">
                             <span>Bike Comparisons</span>
-                            <label class="toggle-switch">
+                            <label class="discord-bot-management-toggle-switch">
                                 <input type="checkbox" checked>
-                                <span class="slider"></span>
+                                <span class="discord-bot-management-slider"></span>
                             </label>
                         </div>
-                        <div class="feature-toggle">
+                        <div class="discord-bot-management-feature-toggle">
                             <span>Community Events</span>
-                            <label class="toggle-switch">
+                            <label class="discord-bot-management-toggle-switch">
                                 <input type="checkbox">
-                                <span class="slider"></span>
+                                <span class="discord-bot-management-slider"></span>
                             </label>
                         </div>
-                        <div class="feature-toggle">
+                        <div class="discord-bot-management-feature-toggle">
                             <span>Moderation Tools</span>
-                            <label class="toggle-switch">
+                            <label class="discord-bot-management-toggle-switch">
                                 <input type="checkbox" checked>
-                                <span class="slider"></span>
+                                <span class="discord-bot-management-slider"></span>
                             </label>
                         </div>
                     </div>
                     
-                    <div class="customizations">
+                    <div class="discord-bot-management-customizations">
                         <h5>General Customizations</h5>
-                        <div class="custom-settings">
-                            <div class="custom-item">
+                        <div class="discord-bot-management-custom-settings">
+                            <div class="discord-bot-management-custom-item">
                                 <label>Command Prefix</label>
-                                <input type="text" value="!" class="prefix-input">
+                                <input type="text" value="!" class="discord-bot-management-prefix-input">
                             </div>
-                            <div class="custom-item">
+                            <div class="discord-bot-management-custom-item">
                                 <label>Welcome Channel</label>
-                                <select class="channel-select">
+                                <select class="discord-bot-management-channel-select">
                                     <option>#general</option>
                                     <option>#welcome</option>
                                     <option>#new-members</option>
                                 </select>
                             </div>
-                            <div class="custom-item">
+                            <div class="discord-bot-management-custom-item">
                                 <label>Default Member Role</label>
-                                <select class="role-select">
+                                <select class="discord-bot-management-role-select">
                                     <option>@Member</option>
                                     <option>@Rider</option>
                                     <option>@Community</option>
@@ -280,95 +282,95 @@ subtitle: Configure BikeNode bot settings and commands
                 </div>
             </div>
 
-            <div class="server-card">
-                <div class="server-header">
-                    <div class="server-icon">MT</div>
-                    <div class="server-info">
+            <div class="discord-bot-management-server-card">
+                <div class="discord-bot-management-server-header">
+                    <div class="discord-bot-management-server-icon">MT</div>
+                    <div class="discord-bot-management-server-info">
                         <h3>Mountain Bike Central</h3>
                         <p>856 members • Admin permissions</p>
                         <span class="discord-bot-management-server-status discord-bot-management-online">🟢 Bot Active</span>
                     </div>
-                    <div class="server-actions">
-                        <button class="btn-secondary small" onclick="openServerSettings('mtb')">Configure</button>
-                        <button class="btn-danger small" onclick="disconnectServer('mtb')">Remove</button>
+                    <div class="discord-bot-management-server-actions">
+                        <button class="discord-bot-management-btn-secondary discord-bot-management-small" onclick="openServerSettings('mtb')">Configure</button>
+                        <button class="discord-bot-management-btn-danger discord-bot-management-small" onclick="disconnectServer('mtb')">Remove</button>
                     </div>
                 </div>
                 
-                <div class="server-features">
+                <div class="discord-bot-management-server-features">
                     <h4>Features & Permissions</h4>
-                    <div class="feature-grid">
-                        <div class="feature-toggle">
+                    <div class="discord-bot-management-feature-grid">
+                        <div class="discord-bot-management-feature-toggle">
                             <span>Welcome Messages</span>
-                            <label class="toggle-switch">
+                            <label class="discord-bot-management-toggle-switch">
                                 <input type="checkbox" checked>
-                                <span class="slider"></span>
+                                <span class="discord-bot-management-slider"></span>
                             </label>
                         </div>
-                        <div class="feature-toggle-with-config">
-                            <div class="feature-toggle">
+                        <div class="discord-bot-management-feature-toggle-with-config">
+                            <div class="discord-bot-management-feature-toggle">
                                 <span>Auto Role Assignment</span>
-                                <label class="toggle-switch">
+                                <label class="discord-bot-management-toggle-switch">
                                     <input type="checkbox" onchange="toggleAutoRoles('mtb', this.checked)">
-                                    <span class="slider"></span>
+                                    <span class="discord-bot-management-slider"></span>
                                 </label>
                             </div>
                             
                             <!-- Auto Role Configuration for MTB Server -->
-                            <div class="auto-role-config disabled" id="auto-role-mtb">
+                            <div class="discord-bot-management-auto-role-config discord-bot-management-disabled" id="auto-role-mtb">
                                 <h5>Auto Role Assignment Settings</h5>
-                                <div class="disabled-notice">
+                                <div class="discord-bot-management-disabled-notice">
                                     <p>⚠️ Auto Role Assignment is currently disabled. Enable it above to configure role settings.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="feature-toggle">
+                        <div class="discord-bot-management-feature-toggle">
                             <span>Garage Commands</span>
-                            <label class="toggle-switch">
+                            <label class="discord-bot-management-toggle-switch">
                                 <input type="checkbox" checked>
-                                <span class="slider"></span>
+                                <span class="discord-bot-management-slider"></span>
                             </label>
                         </div>
-                        <div class="feature-toggle">
+                        <div class="discord-bot-management-feature-toggle">
                             <span>Bike Comparisons</span>
-                            <label class="toggle-switch">
+                            <label class="discord-bot-management-toggle-switch">
                                 <input type="checkbox" checked>
-                                <span class="slider"></span>
+                                <span class="discord-bot-management-slider"></span>
                             </label>
                         </div>
-                        <div class="feature-toggle">
+                        <div class="discord-bot-management-feature-toggle">
                             <span>Community Events</span>
-                            <label class="toggle-switch">
+                            <label class="discord-bot-management-toggle-switch">
                                 <input type="checkbox" checked>
-                                <span class="slider"></span>
+                                <span class="discord-bot-management-slider"></span>
                             </label>
                         </div>
-                        <div class="feature-toggle">
+                        <div class="discord-bot-management-feature-toggle">
                             <span>Moderation Tools</span>
-                            <label class="toggle-switch">
+                            <label class="discord-bot-management-toggle-switch">
                                 <input type="checkbox">
-                                <span class="slider"></span>
+                                <span class="discord-bot-management-slider"></span>
                             </label>
                         </div>
                     </div>
                     
-                    <div class="customizations">
+                    <div class="discord-bot-management-customizations">
                         <h5>General Customizations</h5>
-                        <div class="custom-settings">
-                            <div class="custom-item">
+                        <div class="discord-bot-management-custom-settings">
+                            <div class="discord-bot-management-custom-item">
                                 <label>Command Prefix</label>
-                                <input type="text" value="/bn" class="prefix-input">
+                                <input type="text" value="/bn" class="discord-bot-management-prefix-input">
                             </div>
-                            <div class="custom-item">
+                            <div class="discord-bot-management-custom-item">
                                 <label>Welcome Channel</label>
-                                <select class="channel-select">
+                                <select class="discord-bot-management-channel-select">
                                     <option>#general</option>
                                     <option>#introductions</option>
                                     <option>#mtb-chat</option>
                                 </select>
                             </div>
-                            <div class="custom-item">
+                            <div class="discord-bot-management-custom-item">
                                 <label>Default Member Role</label>
-                                <select class="role-select">
+                                <select class="discord-bot-management-role-select">
                                     <option>None</option>
                                     <option>@MTB Rider</option>
                                     <option>@Trail Rider</option>
@@ -379,21 +381,21 @@ subtitle: Configure BikeNode bot settings and commands
                 </div>
             </div>
 
-            <div class="server-card">
-                <div class="server-header">
-                    <div class="server-icon">CR</div>
-                    <div class="server-info">
+            <div class="discord-bot-management-server-card">
+                <div class="discord-bot-management-server-header">
+                    <div class="discord-bot-management-server-icon">CR</div>
+                    <div class="discord-bot-management-server-info">
                         <h3>Cruiser Nation</h3>
                         <p>432 members • Moderator permissions</p>
-                        <span class="server-status warning">⚠️ Limited Permissions</span>
+                        <span class="discord-bot-management-server-status discord-bot-management-warning">⚠️ Limited Permissions</span>
                     </div>
-                    <div class="server-actions">
-                        <button class="btn-secondary small" onclick="requestPermissions('cruiser')">Request Permissions</button>
-                        <button class="btn-danger small" onclick="disconnectServer('cruiser')">Remove</button>
+                    <div class="discord-bot-management-server-actions">
+                        <button class="discord-bot-management-btn-secondary discord-bot-management-small" onclick="requestPermissions('cruiser')">Request Permissions</button>
+                        <button class="discord-bot-management-btn-danger discord-bot-management-small" onclick="disconnectServer('cruiser')">Remove</button>
                     </div>
                 </div>
                 
-                <div class="permission-notice">
+                <div class="discord-bot-management-permission-notice">
                     <p>⚠️ The bot needs additional permissions to enable all features. Contact a server administrator to grant:</p>
                     <ul>
                         <li>Manage Roles (for auto-role assignment)</li>
@@ -406,49 +408,49 @@ subtitle: Configure BikeNode bot settings and commands
     </div>
 
     <!-- Help & Support -->
-    <div class="help-support">
+    <div class="discord-bot-management-help-support">
         <h2>Help & Support</h2>
-        <div class="support-grid">
-            <div class="support-card">
-                <div class="support-header">
-                    <span class="support-icon">💬</span>
+        <div class="discord-bot-management-support-grid">
+            <div class="discord-bot-management-support-card">
+                <div class="discord-bot-management-support-header">
+                    <span class="discord-bot-management-support-icon">💬</span>
                     <h3>AI Help Chat</h3>
                 </div>
                 <p>Get instant help with bot setup, commands, and troubleshooting</p>
-                <button class="btn-primary" onclick="openHelpChat()">
+                <button class="discord-bot-management-btn-primary" onclick="openHelpChat()">
                     Start Chat
                 </button>
             </div>
             
-            <div class="support-card">
-                <div class="support-header">
-                    <span class="support-icon">❓</span>
+            <div class="discord-bot-management-support-card">
+                <div class="discord-bot-management-support-header">
+                    <span class="discord-bot-management-support-icon">❓</span>
                     <h3>Interactive FAQ</h3>
                 </div>
                 <p>Browse common questions and solutions with interactive guides</p>
-                <button class="btn-secondary" onclick="openFAQ()">
+                <button class="discord-bot-management-btn-secondary" onclick="openFAQ()">
                     View FAQ
                 </button>
             </div>
             
-            <div class="support-card">
-                <div class="support-header">
-                    <span class="support-icon">💡</span>
+            <div class="discord-bot-management-support-card">
+                <div class="discord-bot-management-support-header">
+                    <span class="discord-bot-management-support-icon">💡</span>
                     <h3>Request Features</h3>
                 </div>
                 <p>Suggest new features or improvements for the BikeNode bot</p>
-                <button class="btn-secondary" onclick="openFeatureRequest()">
+                <button class="discord-bot-management-btn-secondary" onclick="openFeatureRequest()">
                     Submit Request
                 </button>
             </div>
             
-            <div class="support-card">
-                <div class="support-header">
-                    <span class="support-icon">📚</span>
+            <div class="discord-bot-management-support-card">
+                <div class="discord-bot-management-support-header">
+                    <span class="discord-bot-management-support-icon">📚</span>
                     <h3>Documentation</h3>
                 </div>
                 <p>Complete guides for bot setup, commands, and advanced features</p>
-                <a href="/bot-documentation/" class="btn-secondary">
+                <a href="/bot-documentation/" class="discord-bot-management-btn-secondary">
                     View Docs
                 </a>
             </div>

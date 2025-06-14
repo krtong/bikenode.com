@@ -1,133 +1,133 @@
 /* Route Stats and Surface Type Styles */
 
 /* Route Stats Section */
-.route-stats-section {
+.rides-create-planner-stats-section {
     background: rgba(255, 255, 255, 0.02);
     border-radius: 8px;
     padding: 16px;
 }
 
-.distance-display {
+.rides-create-planner-distance-display {
     display: flex;
     align-items: baseline;
     gap: 4px;
     margin-bottom: 16px;
 }
 
-.distance-value {
+.rides-create-planner-distance-value {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--text-primary);
     line-height: 1;
 }
 
-.distance-unit {
+.rides-create-planner-distance-unit {
     font-size: 1.2rem;
     color: var(--text-secondary);
     font-weight: 500;
 }
 
-.distance-label {
+.rides-create-planner-distance-label {
     font-size: 0.85rem;
     color: var(--text-secondary);
     margin-left: 8px;
 }
 
-.elevation-display {
+.rides-create-planner-elevation-display {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
 }
 
-.elevation-item {
+.rides-create-planner-elevation-item {
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
 
-.elevation-label {
+.rides-create-planner-elevation-label {
     font-size: 0.8rem;
     color: var(--text-secondary);
     font-weight: 500;
 }
 
-.elevation-value {
+.rides-create-planner-elevation-value {
     font-size: 1.1rem;
     color: var(--text-primary);
     font-weight: 600;
 }
 
 /* Surface Type Section */
-.surface-type-section {
+.rides-create-planner-surface-type-section {
     background: rgba(255, 255, 255, 0.02);
     border-radius: 8px;
     padding: 16px;
 }
 
-.surface-breakdown {
+.rides-create-planner-surface-breakdown {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.surface-item {
+.rides-create-planner-surface-item {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.surface-color {
+.rides-create-planner-surface-color {
     width: 24px;
     height: 4px;
     border-radius: 2px;
     flex-shrink: 0;
 }
 
-.surface-color.paved {
+.rides-create-planner-surface-color.paved {
     background: #10b981;
 }
 
-.surface-color.gravel {
+.rides-create-planner-surface-color.gravel {
     background: #fee75c;
 }
 
-.surface-color.dirt {
+.rides-create-planner-surface-color.dirt {
     background: #ef4444;
 }
 
-.surface-item span:nth-child(2) {
+.rides-create-planner-surface-item span:nth-child(2) {
     flex: 1;
     color: var(--text-secondary);
     font-size: 0.9rem;
 }
 
-.surface-percent {
+.rides-create-planner-surface-percent {
     color: var(--text-primary);
     font-weight: 500;
     font-size: 0.9rem;
 }
 
 /* My Routes Section */
-.my-routes-section {
+.rides-create-planner-my-routes-section {
     background: rgba(255, 255, 255, 0.02);
     border-radius: 8px;
     padding: 16px;
 }
 
-.route-list {
+.rides-create-planner-route-list {
     margin-bottom: 12px;
     max-height: 200px;
     overflow-y: auto;
 }
 
-.no-routes {
+.rides-create-planner-no-routes {
     color: var(--text-secondary);
     font-size: 0.85rem;
     text-align: center;
     padding: 24px 0;
 }
 
-.saved-route-item {
+.rides-create-planner-saved-route-item {
     padding: 12px;
     background: var(--card-bg);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -137,31 +137,31 @@
     transition: all 0.2s ease;
 }
 
-.saved-route-item:hover {
+.rides-create-planner-saved-route-item:hover {
     background: var(--card-hover);
     border-color: rgba(255, 255, 255, 0.2);
 }
 
-.route-name {
+.rides-create-planner-route-name {
     color: var(--text-primary);
     font-weight: 500;
     font-size: 0.9rem;
     margin-bottom: 4px;
 }
 
-.route-info {
+.rides-create-planner-route-info {
     display: flex;
     gap: 12px;
     font-size: 0.8rem;
     color: var(--text-secondary);
 }
 
-.route-date {
+.rides-create-planner-route-date {
     opacity: 0.7;
 }
 
 /* Loading States */
-.stats-loading {
+.rides-create-planner-stats-loading {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -169,7 +169,7 @@
     color: var(--text-secondary);
 }
 
-.stats-loading::after {
+.rides-create-planner-stats-loading::after {
     content: '';
     display: inline-block;
     width: 16px;
@@ -182,7 +182,7 @@
 }
 
 /* Error States */
-.stats-error {
+.rides-create-planner-stats-error {
     color: #ef4444;
     font-size: 0.85rem;
     padding: 12px;

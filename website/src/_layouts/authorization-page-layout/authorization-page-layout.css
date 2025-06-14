@@ -54,15 +54,13 @@ body {
 }
 
 .authorization-page-layout-auth-card {
-    background: var(--glass-bg);
-    backdrop-filter: var(--blur-lg);
-    -webkit-backdrop-filter: var(--blur-lg);
-    border: 1px solid var(--glass-border);
+    background: #2f3136;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     padding: 48px;
     width: 100%;
     max-width: 420px;
-    box-shadow: var(--glass-shadow);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     position: relative;
     overflow: hidden;
     animation: slideIn 0.5s ease-out;

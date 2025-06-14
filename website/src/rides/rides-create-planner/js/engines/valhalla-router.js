@@ -1,7 +1,9 @@
 // Valhalla Router Implementation
+import { VALHALLA_API } from '../../../../../config/api-config.js';
+
 export class ValhallaRouter {
     constructor() {
-        this.serverUrl = 'http://localhost:8002';
+        this.serverUrl = VALHALLA_API;
         this.customServer = null;
     }
     

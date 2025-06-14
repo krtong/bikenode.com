@@ -344,6 +344,38 @@
     margin-top: 24px;
 }
 
+/* Button Styles */
+.dashboard-activity-feed-btn {
+    padding: 10px 24px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dashboard-activity-feed-btn-primary {
+    background: var(--accent);
+    color: white;
+}
+
+.dashboard-activity-feed-btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+.dashboard-activity-feed-btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dashboard-activity-feed-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .dashboard-activity-feed-container {

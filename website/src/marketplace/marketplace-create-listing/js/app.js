@@ -1,4 +1,6 @@
 // Sell Item App
+import { USER_API } from '../../../config/api-config.js';
+
 class SellItemApp {
     constructor() {
         this.currentStep = 1;
@@ -139,7 +141,7 @@ class SellItemApp {
     
     async loadUserBikes() {
         try {
-            const response = await fetch('http://localhost:8081/api/user/bikes', {
+            const response = await fetch(`${USER_API}/user/bikes`, {
                 credentials: 'include'
             });
             
@@ -219,9 +221,9 @@ class SellItemApp {
         try {
             let endpoint;
             if (category === 'motorcycle') {
-                endpoint = 'http://localhost:8081/api/motorcycles/makes';
+                endpoint = `${USER_API}/motorcycles/makes`;
             } else {
-                endpoint = 'http://localhost:8081/api/bicycles/manufacturers';
+                endpoint = `${USER_API}/bicycles/manufacturers`;
             }
             
             const response = await fetch(endpoint);
@@ -254,9 +256,9 @@ class SellItemApp {
         try {
             let endpoint;
             if (category === 'motorcycle') {
-                endpoint = `http://localhost:8081/api/motorcycles/years?make=${encodeURIComponent(brand)}`;
+                endpoint = `${USER_API}/motorcycles/years?make=${encodeURIComponent(brand)}`;
             } else {
-                endpoint = `http://localhost:8081/api/bicycles/years?manufacturer=${encodeURIComponent(brand)}`;
+                endpoint = `${USER_API}/bicycles/years?manufacturer=${encodeURIComponent(brand)}`;
             }
             
             const response = await fetch(endpoint);
@@ -290,9 +292,9 @@ class SellItemApp {
         try {
             let endpoint;
             if (category === 'motorcycle') {
-                endpoint = `http://localhost:8081/api/motorcycles/models?make=${encodeURIComponent(brand)}&year=${year}`;
+                endpoint = `${USER_API}/motorcycles/models?make=${encodeURIComponent(brand)}&year=${year}`;
             } else {
-                endpoint = `http://localhost:8081/api/bicycles/models?manufacturer=${encodeURIComponent(brand)}&year=${year}`;
+                endpoint = `${USER_API}/bicycles/models?manufacturer=${encodeURIComponent(brand)}&year=${year}`;
             }
             
             const response = await fetch(endpoint);

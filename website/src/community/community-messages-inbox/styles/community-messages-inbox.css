@@ -1,0 +1,318 @@
+/* Community Messages Inbox Styles */
+
+.community-messages-inbox-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Header Section */
+.community-messages-inbox-header {
+    margin-bottom: 2rem;
+}
+
+.community-messages-inbox-header h1 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem;
+}
+
+.community-messages-inbox-header p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Messages Layout */
+.community-messages-inbox-layout {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 1.5rem;
+    height: calc(100vh - 200px);
+}
+
+/* Conversations List */
+.community-messages-inbox-sidebar {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.community-messages-inbox-search {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.community-messages-inbox-search-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    position: relative;
+}
+
+.community-messages-inbox-search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.community-messages-inbox-search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-tertiary);
+}
+
+.community-messages-inbox-conversations {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.community-messages-inbox-conversation-item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.community-messages-inbox-conversation-item:hover {
+    background: var(--bg-hover);
+}
+
+.community-messages-inbox-conversation-item.active {
+    background: var(--bg-secondary);
+    border-left: 3px solid var(--primary-color);
+}
+
+.community-messages-inbox-conversation-item.unread {
+    background: rgba(var(--primary-rgb), 0.05);
+}
+
+.community-messages-inbox-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.community-messages-inbox-conversation-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.community-messages-inbox-conversation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.25rem;
+}
+
+.community-messages-inbox-conversation-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.community-messages-inbox-conversation-time {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+}
+
+.community-messages-inbox-conversation-preview {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.community-messages-inbox-conversation-item.unread .community-messages-inbox-conversation-preview {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.community-messages-inbox-unread-badge {
+    background: var(--primary-color);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.125rem 0.5rem;
+    border-radius: 10px;
+    margin-left: 0.5rem;
+}
+
+/* Main Content Area */
+.community-messages-inbox-content {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Empty State */
+.community-messages-inbox-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 2rem;
+}
+
+.community-messages-inbox-empty-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--bg-secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    color: var(--text-tertiary);
+}
+
+.community-messages-inbox-empty-state h3 {
+    color: var(--text-primary);
+    margin: 0 0 0.5rem;
+}
+
+.community-messages-inbox-empty-state p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Message Thread */
+.community-messages-inbox-thread {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.community-messages-inbox-thread-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.community-messages-inbox-thread-user {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.community-messages-inbox-thread-user-info h3 {
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.community-messages-inbox-thread-user-info p {
+    margin: 0.25rem 0 0;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.community-messages-inbox-thread-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.community-messages-inbox-action-btn {
+    padding: 0.5rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.community-messages-inbox-action-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+/* Filters */
+.community-messages-inbox-filters {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.community-messages-inbox-filter-btn {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.community-messages-inbox-filter-btn:hover {
+    background: var(--bg-hover);
+}
+
+.community-messages-inbox-filter-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+    .community-messages-inbox-layout {
+        grid-template-columns: 300px 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .community-messages-inbox-container {
+        padding: 1rem;
+    }
+
+    .community-messages-inbox-layout {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .community-messages-inbox-sidebar {
+        height: 400px;
+    }
+
+    .community-messages-inbox-content {
+        min-height: 400px;
+    }
+
+    .community-messages-inbox-conversation-item {
+        padding: 0.75rem;
+    }
+
+    .community-messages-inbox-avatar {
+        width: 40px;
+        height: 40px;
+    }
+}

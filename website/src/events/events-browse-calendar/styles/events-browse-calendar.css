@@ -3,6 +3,12 @@
     min-height: calc(100vh - 120px);
 }
 
+.events-browse-calendar-page .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
 .events-browse-calendar-header {
     text-align: center;
     margin-bottom: 48px;
@@ -19,6 +25,56 @@
     color: var(--text-secondary);
     font-size: 1.125rem;
     margin: 0 0 24px 0;
+}
+
+/* Event Actions */
+.events-browse-calendar-event-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+/* Button Styles */
+.events-browse-calendar-btn-primary {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.events-browse-calendar-btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+.events-browse-calendar-btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.events-browse-calendar-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Events Content */
+.events-browse-calendar-content {
+    margin-bottom: 48px;
 }
 
 /* Event Filters */
@@ -379,6 +435,11 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     position: relative;
+}
+
+.events-browse-calendar-map-container {
+    width: 100%;
+    height: 100%;
 }
 
 .events-browse-calendar-map-placeholder {

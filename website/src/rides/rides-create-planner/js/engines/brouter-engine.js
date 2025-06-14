@@ -1,7 +1,9 @@
 // BRouter Engine Implementation
+import { BROUTER_API } from '../../../../../config/api-config.js';
+
 export class BRouterEngine {
     constructor() {
-        this.serverUrl = 'http://localhost:17777';
+        this.serverUrl = BROUTER_API;
         this.customServer = null;
         this.profiles = {
             'road': 'fastbike',

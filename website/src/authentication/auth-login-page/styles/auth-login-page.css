@@ -1,35 +1,73 @@
 /* Auth Login Page Styles */
 
-.auth-login-page-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-.auth-login-page-card {
-    width: 100%;
-    max-width: 400px;
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
+/* Container and card styles removed - using layout's built-in structure */
 
 .auth-login-page-title {
     font-size: 2rem;
     font-weight: 700;
-    color: #1a1a1a;
+    color: var(--text-primary, #ffffff);
     margin-bottom: 10px;
     text-align: center;
 }
 
 .auth-login-page-subtitle {
     font-size: 1rem;
-    color: #666;
+    color: var(--text-secondary, #b9bbbe);
     margin-bottom: 30px;
     text-align: center;
+}
+
+.auth-login-page-discord-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 24px;
+    background: #5865F2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.auth-login-page-discord-button:hover {
+    background: #4752C4;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(88, 101, 242, 0.3);
+}
+
+.auth-login-page-discord-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.auth-login-page-divider {
+    position: relative;
+    margin: 30px 0;
+    text-align: center;
+}
+
+.auth-login-page-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border-color, rgba(255, 255, 255, 0.1));
+}
+
+.auth-login-page-divider span {
+    position: relative;
+    background: #2f3136; /* Match the auth card background */
+    padding: 0 20px;
+    font-size: 0.875rem;
+    color: var(--text-secondary, #b9bbbe);
+    font-weight: 500;
 }
 
 .auth-login-page-form {
@@ -47,22 +85,23 @@
 .auth-login-page-form-label {
     font-size: 0.875rem;
     font-weight: 500;
-    color: #333;
+    color: var(--text-primary, #ffffff);
 }
 
 .auth-login-page-form-input {
     padding: 12px 16px;
     font-size: 1rem;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
     border-radius: 8px;
-    background: white;
+    background: var(--bg-tertiary, #2f3136);
+    color: var(--text-primary, #ffffff);
     transition: all 0.3s ease;
 }
 
 .auth-login-page-form-input:focus {
     outline: none;
-    border-color: #ff6b35;
-    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+    border-color: var(--accent, #ff6b35);
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2);
 }
 
 .auth-login-page-submit-button {
@@ -70,7 +109,7 @@
     font-size: 1rem;
     font-weight: 600;
     color: white;
-    background: #ff6b35;
+    background: var(--accent, #ff6b35);
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -79,7 +118,7 @@
 }
 
 .auth-login-page-submit-button:hover {
-    background: #ff5722;
+    background: var(--accent-hover, #ff5722);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
 }
@@ -91,7 +130,7 @@
 
 .auth-login-page-forgot-link {
     font-size: 0.875rem;
-    color: #ff6b35;
+    color: var(--accent, #ff6b35);
     text-decoration: none;
 }
 
@@ -102,17 +141,17 @@
 .auth-login-page-signup-prompt {
     margin-top: 30px;
     padding-top: 30px;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
     text-align: center;
 }
 
 .auth-login-page-signup-text {
     font-size: 0.875rem;
-    color: #666;
+    color: var(--text-secondary, #b9bbbe);
 }
 
 .auth-login-page-signup-link {
-    color: #ff6b35;
+    color: var(--accent, #ff6b35);
     text-decoration: none;
     font-weight: 500;
 }

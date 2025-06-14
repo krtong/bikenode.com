@@ -3,9 +3,9 @@ layout: bikenode-main-layout-01
 title: Events Calendar - BikeNode
 permalink: /events/
 customCSS:
-  - /events/events-browse-calendar/styles/events-browse-calendar.css
+  - ./styles/events-browse-calendar.css
 customJS:
-  - /events/events-browse-calendar/js/events-browse-calendar.js
+  - ./js/events-browse-calendar.js
 ---
 
 <section class="events-browse-calendar-page">
@@ -84,7 +84,7 @@ customJS:
         </div>
         
         <!-- Events Content -->
-        <div class="events-content">
+        <div class="events-browse-calendar-content">
             <!-- List View -->
             <div class="events-browse-calendar-list" id="listView">
                 <!-- Featured Event -->
@@ -128,9 +128,9 @@ customJS:
                         <p class="events-browse-calendar-description">
                             The largest motorcycle show in Northern California featuring the latest bikes, gear, and accessories from top manufacturers.
                         </p>
-                        <div class="event-actions">
+                        <div class="events-browse-calendar-event-actions">
                             <button class="events-browse-calendar-btn-primary">Register</button>
-                            <button class="btn-secondary">
+                            <button class="events-browse-calendar-btn-secondary">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <circle cx="18" cy="5" r="3"></circle>
                                     <circle cx="6" cy="12" r="3"></circle>
@@ -261,7 +261,7 @@ customJS:
             
             <!-- Map View (hidden by default) -->
             <div class="events-browse-calendar-map events-browse-calendar-map-hidden" id="mapView">
-                <div class="map-container">
+                <div class="events-browse-calendar-map-container">
                     <div class="events-browse-calendar-map-placeholder">
                         <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
                             <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
@@ -276,7 +276,7 @@ customJS:
         
         <!-- Load More -->
         <div class="events-browse-calendar-load-more-container">
-            <button class="btn-secondary events-browse-calendar-load-more">Load More Events</button>
+            <button class="events-browse-calendar-btn-secondary events-browse-calendar-load-more">Load More Events</button>
         </div>
     </div>
 </section>
