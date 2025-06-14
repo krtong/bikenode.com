@@ -3,21 +3,23 @@ layout: bikenode-main-layout-01
 title: Equipment
 subtitle: Track your tools, accessories, and riding equipment
 showContentHeader: false
+customCSS:
+  - ./styles/gear-equipment-catalog.css
 ---
 
-<div class="safety-equipment-page">
+<div class="gear-equipment-catalog-page">
     <!-- Page Header -->
-    <div class="equipment-header">
-        <div class="header-content">
+    <div class="gear-equipment-catalog-header">
+        <div class="gear-equipment-catalog-header-content">
             <h1>Equipment</h1>
-            <p class="subtitle">Manage your tools, accessories, and riding equipment</p>
+            <p class="gear-equipment-catalog-subtitle">Manage your tools, accessories, and riding equipment</p>
         </div>
-        <div class="header-actions">
-            <button class="btn-secondary" id="checklistBtn">
+        <div class="gear-equipment-catalog-header-actions">
+            <button class="gear-equipment-catalog-btn-secondary" id="checklistBtn">
                 <span>📋</span>
                 Safety Checklist
             </button>
-            <button class="btn-primary" id="addEquipmentBtn">
+            <button class="gear-equipment-catalog-btn-primary" id="addEquipmentBtn">
                 <span>➕</span>
                 Add Equipment
             </button>
@@ -25,22 +27,22 @@ showContentHeader: false
     </div>
 
     <!-- Bike Type Tabs -->
-    <div class="bike-type-tabs">
-        <button class="bike-type-tab active" data-type="motorcycle">
-            <span class="tab-icon">🏍️</span>
-            <span class="tab-label">Motorcycle</span>
+    <div class="gear-equipment-catalog-bike-type-tabs">
+        <button class="gear-equipment-catalog-bike-type-tab gear-equipment-catalog-active" data-type="motorcycle">
+            <span class="gear-equipment-catalog-tab-icon">🏍️</span>
+            <span class="gear-equipment-catalog-tab-label">Motorcycle</span>
         </button>
-        <button class="bike-type-tab" data-type="bicycle">
-            <span class="tab-icon">🚴</span>
-            <span class="tab-label">Bicycle</span>
+        <button class="gear-equipment-catalog-bike-type-tab" data-type="bicycle">
+            <span class="gear-equipment-catalog-tab-icon">🚴</span>
+            <span class="gear-equipment-catalog-tab-label">Bicycle</span>
         </button>
-        <button class="bike-type-tab" data-type="ebike">
-            <span class="tab-icon">⚡</span>
-            <span class="tab-label">E-Bike</span>
+        <button class="gear-equipment-catalog-bike-type-tab" data-type="ebike">
+            <span class="gear-equipment-catalog-tab-icon">⚡</span>
+            <span class="gear-equipment-catalog-tab-label">E-Bike</span>
         </button>
-        <button class="bike-type-tab" data-type="scooter">
-            <span class="tab-icon">🛵</span>
-            <span class="tab-label">Scooter</span>
+        <button class="gear-equipment-catalog-bike-type-tab" data-type="scooter">
+            <span class="gear-equipment-catalog-tab-icon">🛵</span>
+            <span class="gear-equipment-catalog-tab-label">Scooter</span>
         </button>
     </div>
 

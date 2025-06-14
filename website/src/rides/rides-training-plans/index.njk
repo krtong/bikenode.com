@@ -16,7 +16,7 @@ breadcrumb:
     <h1>Training Plans</h1>
     <p style="color: var(--text-secondary); margin-top: 8px;">Choose a plan that matches your goals</p>
   </div>
-  <button class="btn-primary">
+  <button class="rides-training-plans-btn-primary">
     <span>📋</span> Create Custom Plan
   </button>
 </div>
@@ -28,7 +28,7 @@ breadcrumb:
       <h2 class="rides-training-plans-active-plan-title">Century Preparation Plan</h2>
       <p class="rides-training-plans-active-plan-subtitle">Week 3 of 8 • Building Base Fitness</p>
     </div>
-    <button class="btn-secondary">View Details</button>
+    <button class="rides-training-plans-btn-secondary">View Details</button>
   </div>
   
   <div class="rides-training-plans-week-progress">
@@ -58,7 +58,7 @@ breadcrumb:
         <span>Moderate intensity</span>
       </div>
     </div>
-    <button class="btn-primary">Start Workout</button>
+    <button class="rides-training-plans-btn-primary">Start Workout</button>
   </div>
 </div>
 
@@ -115,7 +115,7 @@ breadcrumb:
           <span>👥</span>
           <span>2.3k athletes</span>
         </div>
-        <button class="btn-primary">Start Plan</button>
+        <button class="rides-training-plans-btn-primary">Start Plan</button>
       </div>
     </div>
   </div>
@@ -157,7 +157,7 @@ breadcrumb:
           <span>👥</span>
           <span>856 athletes</span>
         </div>
-        <button class="btn-primary">Start Plan</button>
+        <button class="rides-training-plans-btn-primary">Start Plan</button>
       </div>
     </div>
   </div>
@@ -199,7 +199,7 @@ breadcrumb:
           <span>👥</span>
           <span>5.1k athletes</span>
         </div>
-        <button class="btn-primary">Start Plan</button>
+        <button class="rides-training-plans-btn-primary">Start Plan</button>
       </div>
     </div>
   </div>
@@ -241,7 +241,7 @@ breadcrumb:
           <span>👥</span>
           <span>1.7k athletes</span>
         </div>
-        <button class="btn-primary">Start Plan</button>
+        <button class="rides-training-plans-btn-primary">Start Plan</button>
       </div>
     </div>
   </div>
@@ -283,7 +283,7 @@ breadcrumb:
           <span>👥</span>
           <span>3.8k athletes</span>
         </div>
-        <button class="btn-primary">Start Plan</button>
+        <button class="rides-training-plans-btn-primary">Start Plan</button>
       </div>
     </div>
   </div>
@@ -325,7 +325,7 @@ breadcrumb:
           <span>👥</span>
           <span>923 athletes</span>
         </div>
-        <button class="btn-primary">Start Plan</button>
+        <button class="rides-training-plans-btn-primary">Start Plan</button>
       </div>
     </div>
   </div>
@@ -337,7 +337,7 @@ breadcrumb:
   <p class="rides-training-plans-cta-description">
     Create a custom training plan tailored to your specific goals, schedule, and fitness level
   </p>
-  <button class="btn-primary btn-large">Build Custom Plan</button>
+  <button class="rides-training-plans-btn-primary rides-training-plans-btn-large">Build Custom Plan</button>
 </div>
 
 <script>
@@ -355,7 +355,7 @@ breadcrumb:
   // Plan card click
   document.querySelectorAll('.rides-training-plans-plan-card').forEach(card => {
     card.addEventListener('click', (e) => {
-      if (!e.target.classList.contains('btn-primary')) {
+      if (!e.target.classList.contains('rides-training-plans-btn-primary')) {
         window.location.href = '/training-plan-details/';
       }
     });

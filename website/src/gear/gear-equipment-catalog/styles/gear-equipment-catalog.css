@@ -1,6 +1,6 @@
 /* Equipment Page Styles */
 
-.safety-equipment-page {
+.gear-equipment-catalog-page {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0;
@@ -18,7 +18,7 @@
     margin: 0 0 8px 0;
 }
 
-.page-intro .subtitle {
+.page-intro .gear-equipment-catalog-subtitle {
     color: var(--text-secondary);
     font-size: 1rem;
     margin: 0;
@@ -31,7 +31,7 @@
 }
 
 /* Bike Type Tabs */
-.bike-type-tabs {
+.gear-equipment-catalog-bike-type-tabs {
     display: flex;
     gap: 8px;
     margin-bottom: 32px;
@@ -39,7 +39,7 @@
     padding-bottom: 0;
 }
 
-.bike-type-tab {
+.gear-equipment-catalog-bike-type-tab {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -56,16 +56,16 @@
     margin-bottom: -1px;
 }
 
-.bike-type-tab:hover {
+.gear-equipment-catalog-bike-type-tab:hover {
     color: var(--text-primary);
 }
 
-.bike-type-tab.active {
+.gear-equipment-catalog-bike-type-tab.gear-equipment-catalog-active {
     color: var(--accent);
     border-bottom-color: var(--accent);
 }
 
-.bike-type-tab .tab-icon {
+.gear-equipment-catalog-bike-type-tab .gear-equipment-catalog-tab-icon {
     font-size: 1.2rem;
 }
 
@@ -650,12 +650,12 @@
 }
 
 @media (max-width: 768px) {
-    .equipment-header {
+    .gear-equipment-catalog-header {
         flex-direction: column;
         align-items: flex-start;
     }
     
-    .header-actions {
+    .gear-equipment-catalog-header-actions {
         width: 100%;
         justify-content: flex-start;
     }
@@ -716,7 +716,7 @@
         grid-template-columns: 1fr;
     }
     
-    .header-content h1 {
+    .gear-equipment-catalog-header-content h1 {
         font-size: 1.5rem;
     }
     
@@ -728,4 +728,66 @@
         width: 100%;
         justify-content: center;
     }
+}
+
+/* Button Styles */
+.gear-equipment-catalog-btn-primary {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.gear-equipment-catalog-btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+.gear-equipment-catalog-btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.gear-equipment-catalog-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+/* Header Styles */
+.gear-equipment-catalog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.gear-equipment-catalog-header-content h1 {
+    color: var(--text-primary);
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+}
+
+.gear-equipment-catalog-header-actions {
+    display: flex;
+    gap: 12px;
 }

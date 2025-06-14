@@ -21,12 +21,12 @@ customJS:
             <p class="bikes-maintenance-log-subtitle">Track service history and plan upcoming maintenance</p>
         </div>
         <div class="bikes-maintenance-log-header-actions">
-            <button class="btn-secondary" onclick="scheduleReminder()">
-                <span class="icon">🔔</span>
+            <button class="bikes-maintenance-log-btn-secondary" onclick="scheduleReminder()">
+                <span class="bikes-maintenance-log-icon">🔔</span>
                 Set Reminder
             </button>
-            <button class="btn-primary" onclick="addMaintenanceRecord()">
-                <span class="icon">➕</span>
+            <button class="bikes-maintenance-log-btn-primary" onclick="addMaintenanceRecord()">
+                <span class="bikes-maintenance-log-icon">➕</span>
                 Add Record
             </button>
         </div>
@@ -86,8 +86,8 @@ customJS:
                     </div>
                 </div>
                 <div class="bikes-maintenance-log-upcoming-actions">
-                    <button class="bikes-maintenance-log-btn-small btn-primary" onclick="completeService('oil-change')">Mark Complete</button>
-                    <button class="bikes-maintenance-log-btn-small btn-secondary" onclick="snoozeReminder('oil-change')">Snooze</button>
+                    <button class="bikes-maintenance-log-btn-small bikes-maintenance-log-btn-primary" onclick="completeService('oil-change')">Mark Complete</button>
+                    <button class="bikes-maintenance-log-btn-small bikes-maintenance-log-btn-secondary" onclick="snoozeReminder('oil-change')">Snooze</button>
                 </div>
             </div>
             
@@ -104,8 +104,8 @@ customJS:
                     </div>
                 </div>
                 <div class="bikes-maintenance-log-upcoming-actions">
-                    <button class="bikes-maintenance-log-btn-small btn-primary" onclick="completeService('chain')">Mark Complete</button>
-                    <button class="bikes-maintenance-log-btn-small btn-secondary" onclick="snoozeReminder('chain')">Snooze</button>
+                    <button class="bikes-maintenance-log-btn-small bikes-maintenance-log-btn-primary" onclick="completeService('chain')">Mark Complete</button>
+                    <button class="bikes-maintenance-log-btn-small bikes-maintenance-log-btn-secondary" onclick="snoozeReminder('chain')">Snooze</button>
                 </div>
             </div>
         </div>
@@ -129,15 +129,15 @@ customJS:
                     <option value="other">Other</option>
                 </select>
                 
-                <select class="filter-select" id="year-filter">
+                <select class="bikes-maintenance-log-filter-select" id="year-filter">
                     <option value="">All Years</option>
                     <option value="2024">2024</option>
                     <option value="2023">2023</option>
                     <option value="2022">2022</option>
                 </select>
                 
-                <button class="btn-secondary" onclick="exportRecords()">
-                    <span class="icon">📊</span>
+                <button class="bikes-maintenance-log-btn-secondary" onclick="exportRecords()">
+                    <span class="bikes-maintenance-log-icon">📊</span>
                     Export
                 </button>
             </div>
@@ -148,19 +148,19 @@ customJS:
     <section class="bikes-maintenance-log-records-section">
         <h2>Maintenance History</h2>
         <div class="bikes-maintenance-log-records-list">
-            <div class="record-item">
-                <div class="record-date">
-                    <div class="date-month">Nov</div>
-                    <div class="date-day">15</div>
-                    <div class="date-year">2024</div>
+            <div class="bikes-maintenance-log-record-item">
+                <div class="bikes-maintenance-log-record-date">
+                    <div class="bikes-maintenance-log-date-month">Nov</div>
+                    <div class="bikes-maintenance-log-date-day">15</div>
+                    <div class="bikes-maintenance-log-date-year">2024</div>
                 </div>
                 
-                <div class="record-content">
-                    <div class="record-header">
+                <div class="bikes-maintenance-log-record-content">
+                    <div class="bikes-maintenance-log-record-header">
                         <h3>Öhlins Suspension Setup</h3>
-                        <div class="record-type suspension">Suspension</div>
+                        <div class="bikes-maintenance-log-record-type bikes-maintenance-log-suspension">Suspension</div>
                     </div>
-                    <p class="record-description">
+                    <p class="bikes-maintenance-log-record-description">
                         Dialed in compression and rebound settings for track days. Perfect setup achieved 
                         after testing at Thunderhill Raceway.
                     </p>
@@ -180,29 +180,29 @@ customJS:
                     </div>
                 </div>
                 
-                <div class="record-actions">
-                    <button class="record-action" onclick="editRecord(1)">Edit</button>
-                    <button class="record-action" onclick="duplicateRecord(1)">Duplicate</button>
-                    <button class="record-action delete" onclick="deleteRecord(1)">Delete</button>
+                <div class="bikes-maintenance-log-record-actions">
+                    <button class="bikes-maintenance-log-record-action" onclick="editRecord(1)">Edit</button>
+                    <button class="bikes-maintenance-log-record-action" onclick="duplicateRecord(1)">Duplicate</button>
+                    <button class="bikes-maintenance-log-record-action bikes-maintenance-log-delete" onclick="deleteRecord(1)">Delete</button>
                 </div>
             </div>
             
-            <div class="record-item">
-                <div class="record-date">
-                    <div class="date-month">Oct</div>
-                    <div class="date-day">28</div>
-                    <div class="date-year">2024</div>
+            <div class="bikes-maintenance-log-record-item">
+                <div class="bikes-maintenance-log-record-date">
+                    <div class="bikes-maintenance-log-date-month">Oct</div>
+                    <div class="bikes-maintenance-log-date-day">28</div>
+                    <div class="bikes-maintenance-log-date-year">2024</div>
                 </div>
                 
-                <div class="record-content">
-                    <div class="record-header">
+                <div class="bikes-maintenance-log-record-content">
+                    <div class="bikes-maintenance-log-record-header">
                         <h3>Oil Change & Filter</h3>
-                        <div class="record-type oil">Oil Change</div>
+                        <div class="bikes-maintenance-log-record-type bikes-maintenance-log-oil">Oil Change</div>
                     </div>
-                    <p class="record-description">
+                    <p class="bikes-maintenance-log-record-description">
                         Regular oil change with Motul 5100 15W-50. New oil filter and drain plug washer installed.
                     </p>
-                    <div class="record-details">
+                    <div class="bikes-maintenance-log-record-details">
                         <span class="detail-item">
                             <span class="detail-icon">📍</span>
                             <span>Local Garage</span>
@@ -218,10 +218,10 @@ customJS:
                     </div>
                 </div>
                 
-                <div class="record-actions">
-                    <button class="record-action" onclick="editRecord(2)">Edit</button>
-                    <button class="record-action" onclick="duplicateRecord(2)">Duplicate</button>
-                    <button class="record-action delete" onclick="deleteRecord(2)">Delete</button>
+                <div class="bikes-maintenance-log-record-actions">
+                    <button class="bikes-maintenance-log-record-action" onclick="editRecord(2)">Edit</button>
+                    <button class="bikes-maintenance-log-record-action" onclick="duplicateRecord(2)">Duplicate</button>
+                    <button class="bikes-maintenance-log-record-action bikes-maintenance-log-delete" onclick="deleteRecord(2)">Delete</button>
                 </div>
             </div>
             
@@ -265,7 +265,7 @@ customJS:
         </div>
         
         <div class="bikes-maintenance-log-load-more">
-            <button class="btn-secondary">Load More Records</button>
+            <button class="bikes-maintenance-log-btn-secondary">Load More Records</button>
         </div>
     </section>
 </div>
@@ -309,24 +309,24 @@ customJS:
                 </div>
             </div>
             
-            <div class="form-group">
+            <div class="bikes-maintenance-log-form-group">
                 <label for="service-title">Title</label>
                 <input type="text" id="service-title" placeholder="Brief description" required>
             </div>
             
-            <div class="form-group">
+            <div class="bikes-maintenance-log-form-group">
                 <label for="service-location">Location/Shop</label>
                 <input type="text" id="service-location" placeholder="Where was the service performed?">
             </div>
             
-            <div class="form-group">
+            <div class="bikes-maintenance-log-form-group">
                 <label for="service-description">Description</label>
                 <textarea id="service-description" rows="4" placeholder="Detailed description of the service performed..."></textarea>
             </div>
             
             <div class="bikes-maintenance-log-modal-actions">
-                <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
-                <button type="submit" class="btn-primary">Add Record</button>
+                <button type="button" class="bikes-maintenance-log-btn-secondary" onclick="closeModal()">Cancel</button>
+                <button type="submit" class="bikes-maintenance-log-btn-primary">Add Record</button>
             </div>
         </form>
     </div>

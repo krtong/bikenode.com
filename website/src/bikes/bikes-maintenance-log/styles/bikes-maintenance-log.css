@@ -488,3 +488,194 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Button Styles */
+.bikes-maintenance-log-btn-primary {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bikes-maintenance-log-btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+.bikes-maintenance-log-btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bikes-maintenance-log-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.bikes-maintenance-log-btn-small {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+.bikes-maintenance-log-btn-small.bikes-maintenance-log-btn-primary {
+    padding: 6px 12px;
+}
+
+.bikes-maintenance-log-btn-small.bikes-maintenance-log-btn-secondary {
+    padding: 6px 12px;
+}
+
+/* Icon Styles */
+.bikes-maintenance-log-icon {
+    font-size: 16px;
+    display: inline-block;
+}
+
+/* Form Group Styles */
+.bikes-maintenance-log-form-group {
+    margin-bottom: 20px;
+}
+
+.bikes-maintenance-log-form-group label {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+/* Record Item Styles */
+.bikes-maintenance-log-record-item {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    gap: 20px;
+    transition: all 0.2s ease;
+}
+
+.bikes-maintenance-log-record-item:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.bikes-maintenance-log-record-date {
+    text-align: center;
+    min-width: 60px;
+}
+
+.bikes-maintenance-log-date-month {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.bikes-maintenance-log-date-day {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+    margin: 4px 0;
+}
+
+.bikes-maintenance-log-date-year {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.bikes-maintenance-log-record-content {
+    flex: 1;
+}
+
+.bikes-maintenance-log-record-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.bikes-maintenance-log-record-header h3 {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.bikes-maintenance-log-record-type {
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.bikes-maintenance-log-record-type.bikes-maintenance-log-oil {
+    background: rgba(251, 191, 36, 0.2);
+    color: #fbbf24;
+}
+
+.bikes-maintenance-log-record-type.bikes-maintenance-log-suspension {
+    background: rgba(139, 92, 246, 0.2);
+    color: #8b5cf6;
+}
+
+.bikes-maintenance-log-record-type.bikes-maintenance-log-tire {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+}
+
+.bikes-maintenance-log-record-description {
+    color: var(--text-secondary);
+    margin: 0 0 12px 0;
+    line-height: 1.5;
+}
+
+.bikes-maintenance-log-record-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.bikes-maintenance-log-record-action {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.bikes-maintenance-log-record-action:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+}
+
+.bikes-maintenance-log-record-action.bikes-maintenance-log-delete {
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.bikes-maintenance-log-record-action.bikes-maintenance-log-delete:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.5);
+}
