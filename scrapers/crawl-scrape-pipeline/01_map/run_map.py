@@ -280,45 +280,40 @@ class SiteMapper:
         self.logger.info(f"Starting site mapping for {self.domain}")
         self.logger.info(f"Methods: {', '.join(methods)}")
         
-        # Check if domain is known to have bot protection
-        protected_domains = [
-            'revzilla.com', 'cyclegear.com', 'motorcycle.com', 
-            'bikebandit.com', 'denniskirk.com', 'jpcycles.com'
-        ]
-        
-        is_protected = any(protected in self.domain for protected in protected_domains)
-        
-        if is_protected:
-            self.logger.info(f"Domain {self.domain} is known to have bot protection, using sitemap-first approach")
-            # For protected sites, try sitemap first
-            if 'sitemap' in methods:
-                self.crawl_with_sitemap(enhanced=True)
-                if self.url_metadata:
+        # Try different methods in order
+        for method in methods:
+            if method == 'screaming_frog':
+                if self.try_screaming_frog():
+                    # If Screaming Frog worked, we're done
                     self.save_dump_csv()
                     return self.url_metadata
-        
-        # Try different methods
-        if 'screaming_frog' in methods:
-            if self.try_screaming_frog():
-                # If Screaming Frog worked, we're done
-                self.save_dump_csv()
-                return self.url_metadata
-        
-        if 'scrapy' in methods and not is_protected:
-            self.crawl_with_scrapy()
             
-            # If scrapy found very few URLs, it might be blocked
-            if len(self.url_metadata) < 10:
-                self.logger.warning(f"Scrapy only found {len(self.url_metadata)} URLs, might be blocked")
-                if 'sitemap' in methods:
-                    self.logger.info("Falling back to sitemap crawling")
-                    self.url_metadata.clear()  # Clear failed results
-                    self.crawl_with_sitemap(enhanced=True)
-        
-        # If still no URLs and sitemap method available, try it
-        if not self.url_metadata and 'sitemap' in methods:
-            self.logger.info("No URLs found with other methods, trying sitemap")
-            self.crawl_with_sitemap(enhanced=True)
+            elif method == 'scrapy':
+                self.crawl_with_scrapy()
+                
+                # If scrapy found reasonable number of URLs, continue
+                if len(self.url_metadata) >= 10:
+                    self.logger.info(f"Scrapy found {len(self.url_metadata)} URLs")
+                    break
+                else:
+                    self.logger.warning(f"Scrapy only found {len(self.url_metadata)} URLs, trying next method")
+                    self.url_metadata.clear()  # Clear potentially incomplete results
+            
+            elif method == 'sitemap':
+                self.crawl_with_sitemap(enhanced=True)
+                if self.url_metadata:
+                    self.logger.info(f"Sitemap method found {len(self.url_metadata)} URLs")
+                    break
+            
+            elif method == 'human':
+                self.crawl_with_human_behavior()
+                if self.url_metadata:
+                    break
+            
+            elif method == 'stealth':
+                self.crawl_with_stealth()
+                if self.url_metadata:
+                    break
         
         # Save results
         self.save_dump_csv()
@@ -329,26 +324,7 @@ class SiteMapper:
         """Crawl website using sitemap.xml."""
         self.logger.info("Using sitemap crawler")
         
-        # Check if we need specialized crawler
-        if 'revzilla' in self.domain:
-            try:
-                from revzilla_crawler import RevZillaCrawler
-                
-                self.logger.info("Using specialized RevZilla crawler")
-                sitemap_crawler = RevZillaCrawler()
-                sitemap_urls = sitemap_crawler.crawl(max_sitemaps=50)
-                
-                if sitemap_urls:
-                    self.url_metadata.update(sitemap_urls)
-                    self.logger.info(f"Found {len(sitemap_urls)} URLs via RevZilla crawler")
-                    return
-                else:
-                    self.logger.warning("RevZilla crawler found no URLs")
-                    
-            except Exception as e:
-                self.logger.error(f"Error using RevZilla crawler: {e}")
-        
-        # Try enhanced sitemap crawler for other sites
+        # Try enhanced sitemap crawler first
         if enhanced:
             try:
                 from enhanced_sitemap_crawler import EnhancedSitemapCrawler
@@ -381,6 +357,43 @@ class SiteMapper:
                 
         except Exception as e:
             self.logger.error(f"Error using basic sitemap crawler: {e}")
+    
+    def crawl_with_human_behavior(self) -> None:
+        """Crawl website using human-like behavior patterns."""
+        self.logger.info("Using human-like crawler")
+        try:
+            from human_crawler import HumanLikeSpider
+            
+            process = CrawlerProcess(CRAWLER_CONFIG)
+            process.crawl(HumanLikeSpider, domain=self.domain)
+            process.start()
+            
+            # Get results
+            for crawler in process.crawlers:
+                if hasattr(crawler.spider, 'url_metadata'):
+                    self.url_metadata.update(crawler.spider.url_metadata)
+                    self.logger.info(f"Found {len(crawler.spider.url_metadata)} URLs via human crawler")
+                    
+        except Exception as e:
+            self.logger.error(f"Error using human crawler: {e}")
+    
+    def crawl_with_stealth(self) -> None:
+        """Crawl website using stealth techniques with browser automation."""
+        self.logger.info("Using stealth crawler")
+        try:
+            from stealth_crawler import StealthCrawler
+            
+            crawler = StealthCrawler(self.domain)
+            url_metadata = crawler.run()
+            
+            if url_metadata:
+                self.url_metadata.update(url_metadata)
+                self.logger.info(f"Found {len(url_metadata)} URLs via stealth crawler")
+            else:
+                self.logger.warning("Stealth crawler found no URLs")
+                
+        except Exception as e:
+            self.logger.error(f"Error using stealth crawler: {e}")
 
 
 def main():

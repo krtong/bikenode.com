@@ -129,7 +129,7 @@
     overflow: hidden;
 }
 
-.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-search-form,
+.bikenode-main-layout-01-header-expanded .bikenode-main-layout-01-header-search-form,
 .bikenode-main-layout-01-header-search-form:focus-within {
     width: 220px;
     padding-right: 0.5rem;
@@ -150,7 +150,7 @@
     margin-right: 0.5rem;
 }
 
-.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-search-input,
+.bikenode-main-layout-01-header-expanded .bikenode-main-layout-01-header-search-input,
 .bikenode-main-layout-01-header-search-form:focus-within .bikenode-main-layout-01-header-search-input {
     width: 140px;
     opacity: 1;
@@ -531,45 +531,21 @@
 
 /* Navigation Link Text */
 .bikenode-main-layout-01-header-nav-text {
-    display: inline-block;
+    display: none;
     max-width: 0;
     overflow: hidden;
     opacity: 0;
-    transition: max-width 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-                opacity 0.3s ease 0.1s,
-                margin 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
     vertical-align: middle;
+    margin-left: 0;
 }
 
-.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-nav-text {
-    max-width: 120px;
-    opacity: 1;
+/* When header is expanded via JavaScript */
+.bikenode-main-layout-01-header-expanded .bikenode-main-layout-01-header-nav-text {
     margin-left: 0.5rem;
 }
 
-/* Staggered animation for each nav item */
-.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-nav-item:nth-child(1) .bikenode-main-layout-01-header-nav-text {
-    transition-delay: 0s, 0.1s, 0s;
-}
-
-.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-nav-item:nth-child(2) .bikenode-main-layout-01-header-nav-text {
-    transition-delay: 0.1s, 0.2s, 0.1s;
-}
-
-.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-nav-item:nth-child(3) .bikenode-main-layout-01-header-nav-text {
-    transition-delay: 0.2s, 0.3s, 0.2s;
-}
-
-.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-nav-item:nth-child(4) .bikenode-main-layout-01-header-nav-text {
-    transition-delay: 0.3s, 0.4s, 0.3s;
-}
-
-.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-nav-item:nth-child(5) .bikenode-main-layout-01-header-nav-text {
-    transition-delay: 0.4s, 0.5s, 0.4s;
-}
-
-.bikenode-main-layout-01-header:hover .bikenode-main-layout-01-header-nav-link {
+.bikenode-main-layout-01-header-expanded .bikenode-main-layout-01-header-nav-link {
     gap: 0.5rem;
 }
 

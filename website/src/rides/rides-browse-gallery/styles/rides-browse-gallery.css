@@ -141,8 +141,8 @@
 
 .rides-browse-gallery-route-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(255, 107, 53, 0.5);
-    box-shadow: 0 8px 24px rgba(255, 107, 53, 0.15);
+    border-color: rgba(88, 101, 242, 0.5);
+    box-shadow: 0 8px 24px rgba(88, 101, 242, 0.15);
 }
 
 .rides-browse-gallery-map-preview {
@@ -235,8 +235,8 @@
 
 .rides-browse-gallery-route-tag {
     padding: 0.25rem 0.75rem;
-    background: rgba(255, 107, 53, 0.1);
-    color: #ff6b35;
+    background: rgba(88, 101, 242, 0.1);
+    color: #5865f2;
     border-radius: 16px;
     font-size: 0.75rem;
     font-weight: 500;
@@ -276,9 +276,9 @@
 }
 
 .rides-browse-gallery-save-btn:hover {
-    background: rgba(255, 107, 53, 0.1);
+    background: rgba(88, 101, 242, 0.1);
     border-color: var(--accent, #5865f2);
-    color: #ff6b35;
+    color: #5865f2;
 }
 
 /* Load More */
@@ -302,7 +302,7 @@
 
 .rides-browse-gallery-load-more-btn:hover {
     background: rgba(248, 249, 250, 1);
-    border-color: rgba(255, 107, 53, 0.5);
+    border-color: rgba(88, 101, 242, 0.5);
     transform: translateY(-2px);
 }
 
