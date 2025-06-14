@@ -1,127 +1,135 @@
-#!/usr/bin/env python3
 """
-Configuration loader for the crawl-scrape pipeline.
-Loads environment variables and provides configuration access.
+Configuration settings for the crawl-scrape pipeline.
 """
-
 import os
 from pathlib import Path
-from typing import Dict, Any, Optional
-from dotenv import load_dotenv
+from typing import Dict, Any
 
+# Base directories
+BASE_DIR = Path(__file__).parent.parent
+DATA_DIR = BASE_DIR / "data"
+LOGS_DIR = BASE_DIR / "logs"
+OUTPUT_DIR = BASE_DIR / "output"
 
-class Config:
-    """Configuration management for the scraping pipeline."""
-    
-    def __init__(self, env_path: Optional[Path] = None):
-        """Initialize configuration from environment variables."""
-        if env_path is None:
-            # First try root .env file
-            root_env = Path(__file__).parent.parent.parent.parent / '.env'
-            if root_env.exists():
-                env_path = root_env
-            else:
-                # Fallback to 00_env/.env
-                env_path = Path(__file__).parent.parent / '00_env' / '.env'
-        
-        # Load .env file if it exists
-        if env_path.exists():
-            load_dotenv(env_path)
-        
-        # Database configuration
-        self.database_url = os.getenv('DATABASE_URL', 'postgresql://localhost:5432/bikenode')
-        
-        # Proxy configuration
-        self.proxy_host = os.getenv('PROXY_HOST', '')
-        self.proxy_port = os.getenv('PROXY_PORT', '')
-        self.proxy_user = os.getenv('PROXY_USER', '')
-        self.proxy_password = os.getenv('PROXY_PASSWORD', '')
-        
-        # API configuration
-        self.api_key = os.getenv('API_KEY', '')
-        self.api_secret = os.getenv('API_SECRET', '')
-        
-        # Scraping configuration
-        self.user_agent = os.getenv('USER_AGENT', 'Mozilla/5.0 (compatible; BikenodeBot/1.0)')
-        self.concurrent_requests = int(os.getenv('CONCURRENT_REQUESTS', '16'))
-        self.download_delay = float(os.getenv('DOWNLOAD_DELAY', '0.5'))
-        
-        # Screaming Frog configuration
-        self.screaming_frog_path = os.getenv(
-            'SCREAMING_FROG_PATH',
-            '/Applications/Screaming Frog SEO Spider.app/Contents/MacOS/ScreamingFrogSEOSpiderLauncher.jar'
-        )
-        
-        # Pipeline directories
-        self.base_dir = Path(__file__).parent.parent
-        self.dirs = {
-            'env': self.base_dir / '00_env',
-            'map': self.base_dir / '01_map',
-            'filter': self.base_dir / '02_filter',
-            'group': self.base_dir / '03_group',
-            'probe': self.base_dir / '04_probe',
-            'decide': self.base_dir / '05_decide',
-            'plan': self.base_dir / '06_plan',
-            'sample': self.base_dir / '07_sample',
-            'fetch': self.base_dir / '08_fetch',
-            'scrape': self.base_dir / '09_scrape',
-            'dedupe': self.base_dir / '10_dedupe',
-            'clean': self.base_dir / '11_clean',
-            'load': self.base_dir / '12_load',
-            'qc': self.base_dir / '13_qc',
-            'refresh': self.base_dir / '14_refresh',
+# Create directories if they don't exist
+for dir_path in [DATA_DIR, LOGS_DIR, OUTPUT_DIR]:
+    dir_path.mkdir(exist_ok=True)
+
+# Pipeline step directories
+STEPS = {
+    "00_env": BASE_DIR / "00_env",
+    "01_map": BASE_DIR / "01_map",
+    "02_filter": BASE_DIR / "02_filter",
+    "03_group": BASE_DIR / "03_group",
+    "04_probe": BASE_DIR / "04_probe",
+    "05_decide": BASE_DIR / "05_decide",
+    "06_plan": BASE_DIR / "06_plan",
+    "07_sample": BASE_DIR / "07_sample",
+    "08_fetch": BASE_DIR / "08_fetch",
+    "09_scrape": BASE_DIR / "09_scrape",
+    "10_dedupe": BASE_DIR / "10_dedupe",
+    "11_clean": BASE_DIR / "11_clean",
+    "12_load": BASE_DIR / "12_load",
+    "13_qc": BASE_DIR / "13_qc",
+    "14_refresh": BASE_DIR / "14_refresh",
+}
+
+# Crawler settings
+CRAWLER_CONFIG = {
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+    "concurrent_requests": 8,
+    "download_delay": 1,
+    "autothrottle_enabled": True,
+    "autothrottle_target_concurrency": 4.0,
+    "robotstxt_obey": True,
+    "cookies_enabled": False,
+}
+
+# Database settings
+DATABASE_CONFIG = {
+    "host": os.getenv("DB_HOST", "localhost"),
+    "port": os.getenv("DB_PORT", "5432"),
+    "database": os.getenv("DB_NAME", "bikenode"),
+    "user": os.getenv("DB_USER", "postgres"),
+    "password": os.getenv("DB_PASSWORD", ""),
+}
+
+# Data processing settings
+PROCESSING_CONFIG = {
+    "batch_size": 100,
+    "max_retries": 3,
+    "timeout": 30,
+    "chunk_size": 1000,
+}
+
+# Quality control settings
+QC_CONFIG = {
+    "min_data_freshness_days": 7,
+    "required_fields": ["title", "url", "timestamp"],
+    "price_stability_threshold": 0.5,
+    "min_completeness_ratio": 0.8,
+}
+
+# Logging settings
+LOGGING_CONFIG = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "default": {
+            "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
         }
-    
-    @property
-    def proxy_url(self) -> Optional[str]:
-        """Get formatted proxy URL if proxy is configured."""
-        if not self.proxy_host:
-            return None
-        
-        auth = ''
-        if self.proxy_user:
-            auth = f"{self.proxy_user}:{self.proxy_password}@"
-        
-        port = f":{self.proxy_port}" if self.proxy_port else ""
-        return f"http://{auth}{self.proxy_host}{port}"
-    
-    def get_scrapy_settings(self) -> Dict[str, Any]:
-        """Get Scrapy-specific settings."""
-        settings = {
-            'USER_AGENT': self.user_agent,
-            'CONCURRENT_REQUESTS': self.concurrent_requests,
-            'DOWNLOAD_DELAY': self.download_delay,
-            'ROBOTSTXT_OBEY': True,
-            'COOKIES_ENABLED': True,
-            'TELNETCONSOLE_ENABLED': False,
-            'LOG_LEVEL': 'INFO',
-            'RETRY_TIMES': 3,
-            'RETRY_HTTP_CODES': [500, 502, 503, 504, 408, 429],
-            'DOWNLOAD_TIMEOUT': 30,
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "default",
+            "stream": "ext://sys.stdout"
+        },
+        "file": {
+            "class": "logging.FileHandler",
+            "formatter": "default",
+            "filename": str(LOGS_DIR / "pipeline.log")
         }
-        
-        if self.proxy_url:
-            settings['DOWNLOADER_MIDDLEWARES'] = {
-                'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
-            }
-            settings['HTTP_PROXY'] = self.proxy_url
-            settings['HTTPS_PROXY'] = self.proxy_url
-        
-        return settings
+    },
+    "root": {
+        "level": "INFO",
+        "handlers": ["console", "file"]
+    }
+}
+
+def get_step_config(step_name: str) -> Dict[str, Any]:
+    """Get configuration for a specific pipeline step."""
+    step_configs = {
+        "01_map": {
+            "output_file": STEPS["01_map"] / "sitemap.txt",
+            "max_depth": 3,
+            "follow_external": False,
+        },
+        "02_filter": {
+            "input_file": STEPS["01_map"] / "sitemap.txt",
+            "output_file": STEPS["02_filter"] / "all_urls.txt",
+            "exclude_patterns": ["login", "logout", "admin"],
+        },
+        "03_group": {
+            "input_file": STEPS["02_filter"] / "all_urls.txt",
+            "output_dir": STEPS["03_group"] / "by_template",
+        },
+        "07_sample": {
+            "output_file": STEPS["07_sample"] / "output.ndjson",
+            "sample_size": 10,
+        },
+        "08_fetch": {
+            "output_dir": STEPS["08_fetch"] / "html",
+            "batch_dir": STEPS["08_fetch"],
+        },
+        "09_scrape": {
+            "input_dir": STEPS["08_fetch"] / "html",
+            "output_file": STEPS["09_scrape"] / "parsed.ndjson",
+        },
+        "12_load": {
+            "input_file": STEPS["11_clean"] / "cleaned.ndjson",
+            "database": DATABASE_CONFIG,
+        },
+    }
     
-    def get_playwright_context(self) -> Dict[str, Any]:
-        """Get Playwright browser context options."""
-        context = {
-            'user_agent': self.user_agent,
-            'viewport': {'width': 1920, 'height': 1080},
-            'ignore_https_errors': True,
-        }
-        
-        if self.proxy_url:
-            context['proxy'] = {'server': self.proxy_url}
-        
-        return context
-
-
-# Global config instance
-config = Config()
+    return step_configs.get(step_name, {})

@@ -20,10 +20,10 @@ from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 
 # Add parent directory to path
-sys.path.append(str(Path(__file__).parent.parent / 'orchestration'))
+sys.path.append(str(Path(__file__).parent.parent))
 
-from config import config
-from utils_minimal import setup_logging, normalize_url, is_valid_url, ensure_dir
+from orchestration.config import CRAWLER_CONFIG, STEPS
+from orchestration.utils_minimal import normalize_url, is_valid_url, logger
 
 
 class MetadataSpider(scrapy.Spider):
@@ -52,7 +52,7 @@ class MetadataSpider(scrapy.Spider):
             'Sec-Ch-Ua-Platform': '"macOS"',
             'Cache-Control': 'max-age=0',
         },
-        'COOKIES_ENABLED': True,
+        'COOKIES_ENABLED': False,
         'DOWNLOADER_MIDDLEWARES': {
             'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
             'scrapy.downloadermiddlewares.retry.RetryMiddleware': 90,
@@ -113,11 +113,14 @@ class MetadataSpider(scrapy.Spider):
         content_type = response.headers.get('Content-Type', b'').decode('utf-8').split(';')[0].strip()
         
         # Get content length
-        content_length = response.headers.get('Content-Length', b'0').decode('utf-8')
-        try:
-            size = int(content_length)
-        except ValueError:
-            size = len(response.body) if response.body else 0
+        content_length = response.headers.get('Content-Length', b'').decode('utf-8')
+        if content_length:
+            try:
+                size = int(content_length)
+            except ValueError:
+                size = len(response.body)
+        else:
+            size = len(response.body)
             
         # Get last modified
         last_modified = response.headers.get('Last-Modified', b'').decode('utf-8')
@@ -169,13 +172,14 @@ class SiteMapper:
     def __init__(self, domain: str):
         """Initialize site mapper."""
         self.domain = domain
-        self.logger = setup_logging('site_mapper', Path(__file__).parent / 'mapping.log')
+        self.logger = logger
         self.output_file = Path(__file__).parent / 'dump.csv'
         self.url_metadata: Dict[str, Dict] = {}
     
     def try_screaming_frog(self) -> bool:
         """Try to use Screaming Frog if available."""
-        sf_path = Path(config.screaming_frog_path)
+        # Screaming Frog is optional - skip if not configured
+        sf_path = Path("/Applications/Screaming Frog SEO Spider.app/Contents/Resources/app/ScreamingFrogSEOSpider.jar")
         
         if not sf_path.exists():
             self.logger.info("Screaming Frog not found, skipping")
@@ -183,7 +187,8 @@ class SiteMapper:
         
         try:
             # Prepare Screaming Frog command
-            output_dir = ensure_dir(Path(__file__).parent / 'screaming_frog')
+            output_dir = Path(__file__).parent / 'screaming_frog'
+            output_dir.mkdir(exist_ok=True)
             cmd = [
                 'java', '-jar', str(sf_path),
                 '--crawl', f'https://{self.domain}/',
@@ -227,7 +232,17 @@ class SiteMapper:
         self.logger.info("Crawling website with Scrapy...")
         
         # Create and run metadata spider
-        process = CrawlerProcess(config.get_scrapy_settings())
+        scrapy_settings = {
+            'USER_AGENT': CRAWLER_CONFIG['user_agent'],
+            'CONCURRENT_REQUESTS': CRAWLER_CONFIG['concurrent_requests'],
+            'DOWNLOAD_DELAY': CRAWLER_CONFIG['download_delay'],
+            'AUTOTHROTTLE_ENABLED': CRAWLER_CONFIG['autothrottle_enabled'],
+            'AUTOTHROTTLE_TARGET_CONCURRENCY': CRAWLER_CONFIG['autothrottle_target_concurrency'],
+            'ROBOTSTXT_OBEY': CRAWLER_CONFIG['robotstxt_obey'],
+            'COOKIES_ENABLED': CRAWLER_CONFIG['cookies_enabled'],
+            'LOG_LEVEL': 'INFO',
+        }
+        process = CrawlerProcess(scrapy_settings)
         process.crawl(MetadataSpider, domain=self.domain)
         process.start()
         

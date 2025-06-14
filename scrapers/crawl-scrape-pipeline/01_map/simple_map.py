@@ -10,12 +10,11 @@ from bs4 import BeautifulSoup
 from collections import deque
 
 # Add parent directory to path
-sys.path.append(str(Path(__file__).parent.parent / 'orchestration'))
-from utils_minimal import setup_logging, normalize_url, is_valid_url
+sys.path.append(str(Path(__file__).parent.parent))
+from orchestration.utils_minimal import normalize_url, is_valid_url, logger
 
 def simple_crawl(start_url, max_pages=50):
     """Simple crawler that discovers URLs on a website."""
-    logger = setup_logging('simple_mapper', Path(__file__).parent / 'map.log')
     
     # Parse domain
     parsed = urlparse(start_url)
@@ -85,8 +84,16 @@ def simple_crawl(start_url, max_pages=50):
             writer.writerow(url_metadata[url])
     
     logger.info(f"Saved {len(url_metadata)} URLs to {output_file}")
+    
+    # Also save sitemap.txt for next step
+    sitemap_file = Path(__file__).parent / 'sitemap.txt'
+    with open(sitemap_file, 'w', encoding='utf-8') as f:
+        for url in sorted(url_metadata.keys()):
+            f.write(url + '\n')
+    
     print(f"\nMapping complete! Found {len(url_metadata)} URLs")
     print(f"Results saved to: {output_file}")
+    print(f"Sitemap saved to: {sitemap_file}")
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:

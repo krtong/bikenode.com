@@ -101,7 +101,7 @@
 .front-page-layout-header-nav-link span {
     max-width: 0;
     opacity: 0;
-    transition: all 0.3s ease;
+    transition: max-width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease 0.45s;
     overflow: hidden;
 }
 
@@ -110,6 +110,7 @@
     max-width: 120px;
     opacity: 1;
     margin-left: 0;
+    transition: max-width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease 0.45s;
 }
 
 .front-page-layout-header-nav-link:hover {
@@ -154,7 +155,7 @@
     border-radius: 20px;
     padding: 0;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     width: 44px;
     height: 44px;
     overflow: hidden;
@@ -193,12 +194,13 @@
     font-size: 0.875rem;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease 0.45s;
 }
 
 .front-page-layout-header-container:hover .front-page-layout-header-search-input,
 .front-page-layout-header-search-btn:focus-within .front-page-layout-header-search-input {
     opacity: 1;
+    transition: opacity 0.4s ease 0.45s;
 }
 
 .front-page-layout-header-search-input::placeholder {

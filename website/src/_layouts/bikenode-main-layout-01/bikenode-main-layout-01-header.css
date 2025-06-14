@@ -33,7 +33,7 @@
 }
 
 .bikenode-main-layout-01-header:hover {
-    height: 80px;
+    /* No vertical changes on hover */
 }
 
 /* Header Content Container */

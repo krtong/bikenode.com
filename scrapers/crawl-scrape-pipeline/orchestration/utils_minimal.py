@@ -1,193 +1,220 @@
-#!/usr/bin/env python3
 """
-Minimal utilities for the crawl-scrape pipeline without heavy dependencies.
+Minimal utility functions for the crawl-scrape pipeline.
 """
-
 import json
 import logging
-import hashlib
-from datetime import datetime
+import logging.config
+import time
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Generator
 from urllib.parse import urlparse, urljoin
-# import yaml  # Commented out to avoid dependency issues
 import re
 
+from .config import LOGGING_CONFIG
 
-def setup_logging(name: str, log_file: Optional[Path] = None, level: str = 'INFO') -> logging.Logger:
-    """Set up logging for a pipeline step."""
-    logger = logging.getLogger(name)
-    logger.setLevel(getattr(logging, level))
+# Configure logging
+logging.config.dictConfig(LOGGING_CONFIG)
+logger = logging.getLogger(__name__)
+
+
+def read_ndjson(file_path: Path) -> Generator[Dict[str, Any], None, None]:
+    """Read NDJSON file and yield each line as a dictionary."""
+    if not file_path.exists():
+        logger.warning(f"File not found: {file_path}")
+        return
     
-    # Remove existing handlers
-    logger.handlers = []
-    
-    # Console handler
-    console_handler = logging.StreamHandler()
-    console_handler.setFormatter(
-        logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    )
-    logger.addHandler(console_handler)
-    
-    # File handler
-    if log_file:
-        file_handler = logging.FileHandler(log_file)
-        file_handler.setFormatter(
-            logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        )
-        logger.addHandler(file_handler)
-    
-    return logger
-
-
-def ensure_dir(path: Path) -> Path:
-    """Ensure directory exists."""
-    path.mkdir(parents=True, exist_ok=True)
-    return path
-
-
-def create_timestamp() -> str:
-    """Create ISO timestamp."""
-    return datetime.utcnow().isoformat() + 'Z'
-
-
-def save_json(data: Any, filepath: Path, indent: int = 2) -> None:
-    """Save data as JSON."""
-    with open(filepath, 'w', encoding='utf-8') as f:
-        json.dump(data, f, indent=indent, ensure_ascii=False)
-
-
-def load_json(filepath: Path) -> Any:
-    """Load JSON data."""
-    with open(filepath, 'r', encoding='utf-8') as f:
-        return json.load(f)
-
-
-def save_yaml(data: Any, filepath: Path) -> None:
-    """Save data as YAML."""
-    # For now, save as JSON instead
-    save_json(data, filepath.with_suffix('.json'))
-
-
-def load_yaml(filepath: Path) -> Any:
-    """Load YAML data."""
-    # For now, try to load JSON instead
-    json_path = filepath.with_suffix('.json')
-    if json_path.exists():
-        return load_json(json_path)
-    # Return empty dict if not found
-    return {}
-
-
-def append_ndjson(data: Dict[str, Any], filepath: Path) -> None:
-    """Append a record to NDJSON file."""
-    with open(filepath, 'a', encoding='utf-8') as f:
-        f.write(json.dumps(data, ensure_ascii=False) + '\n')
-
-
-def load_ndjson(filepath: Path) -> List[Dict[str, Any]]:
-    """Load all records from NDJSON file."""
-    records = []
-    with open(filepath, 'r', encoding='utf-8') as f:
-        for line in f:
+    with open(file_path, 'r', encoding='utf-8') as f:
+        for line_num, line in enumerate(f, 1):
             line = line.strip()
-            if line:
-                records.append(json.loads(line))
-    return records
+            if not line:
+                continue
+            try:
+                yield json.loads(line)
+            except json.JSONDecodeError as e:
+                logger.error(f"Error parsing line {line_num} in {file_path}: {e}")
 
 
-def read_urls_file(filepath: Path) -> List[str]:
-    """Read URLs from text file (one per line)."""
-    urls = []
-    with open(filepath, 'r', encoding='utf-8') as f:
-        for line in f:
-            url = line.strip()
-            if url and not url.startswith('#'):
-                urls.append(url)
-    return urls
+def write_ndjson(data: List[Dict[str, Any]], file_path: Path) -> None:
+    """Write list of dictionaries to NDJSON file."""
+    file_path.parent.mkdir(parents=True, exist_ok=True)
+    
+    with open(file_path, 'w', encoding='utf-8') as f:
+        for item in data:
+            f.write(json.dumps(item, ensure_ascii=False) + '\n')
+    
+    logger.info(f"Wrote {len(data)} items to {file_path}")
 
 
-def write_urls_file(urls: List[str], filepath: Path) -> None:
-    """Write URLs to text file (one per line)."""
-    with open(filepath, 'w', encoding='utf-8') as f:
-        for url in urls:
-            f.write(url + '\n')
+def append_ndjson(item: Dict[str, Any], file_path: Path) -> None:
+    """Append a single item to NDJSON file."""
+    file_path.parent.mkdir(parents=True, exist_ok=True)
+    
+    with open(file_path, 'a', encoding='utf-8') as f:
+        f.write(json.dumps(item, ensure_ascii=False) + '\n')
+
+
+def read_lines(file_path: Path) -> List[str]:
+    """Read lines from a text file."""
+    if not file_path.exists():
+        logger.warning(f"File not found: {file_path}")
+        return []
+    
+    with open(file_path, 'r', encoding='utf-8') as f:
+        return [line.strip() for line in f if line.strip()]
+
+
+def write_lines(lines: List[str], file_path: Path) -> None:
+    """Write lines to a text file."""
+    file_path.parent.mkdir(parents=True, exist_ok=True)
+    
+    with open(file_path, 'w', encoding='utf-8') as f:
+        for line in lines:
+            f.write(line + '\n')
+    
+    logger.info(f"Wrote {len(lines)} lines to {file_path}")
 
 
 def normalize_url(url: str) -> str:
-    """Normalize URL for consistency."""
+    """Normalize URL for consistent comparison."""
+    # Remove trailing slash
+    url = url.rstrip('/')
+    
     # Remove fragment
     parsed = urlparse(url)
-    normalized = parsed._replace(fragment='').geturl()
+    url = parsed._replace(fragment='').geturl()
     
-    # Remove trailing slash from path
-    if normalized.endswith('/') and normalized.count('/') > 3:
-        normalized = normalized[:-1]
+    # Sort query parameters
+    if parsed.query:
+        params = sorted(parsed.query.split('&'))
+        url = parsed._replace(query='&'.join(params)).geturl()
     
-    return normalized
+    return url.lower()
 
 
-def is_valid_url(url: str, domain: Optional[str] = None) -> bool:
-    """Check if URL is valid and optionally from specific domain."""
+def extract_domain(url: str) -> str:
+    """Extract domain from URL."""
+    parsed = urlparse(url)
+    return parsed.netloc.lower()
+
+
+def is_valid_url(url: str) -> bool:
+    """Check if URL is valid."""
     try:
-        parsed = urlparse(url)
-        
-        # Check basic validity
-        if not parsed.scheme or not parsed.netloc:
-            return False
-        
-        # Check domain if specified
-        if domain and parsed.netloc != domain and not parsed.netloc.endswith(f'.{domain}'):
-            return False
-        
-        return True
+        result = urlparse(url)
+        return all([result.scheme, result.netloc])
     except:
         return False
 
 
-def clean_text(text: str) -> str:
-    """Clean text by removing extra whitespace."""
-    if not text:
-        return ''
+def get_url_pattern(url: str) -> str:
+    """Extract URL pattern for grouping similar URLs."""
+    parsed = urlparse(url)
+    path = parsed.path
     
-    # Replace multiple spaces with single space
+    # Replace numeric IDs with placeholder
+    path = re.sub(r'/\d+', '/{id}', path)
+    
+    # Replace UUIDs with placeholder
+    path = re.sub(r'/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}', '/{uuid}', path)
+    
+    # Replace slugs with placeholder (keep first part)
+    path = re.sub(r'/([a-z0-9]+)(-[a-z0-9-]+)+', r'/\1-{slug}', path)
+    
+    return f"{parsed.scheme}://{parsed.netloc}{path}"
+
+
+def retry_with_backoff(func, max_retries: int = 3, initial_delay: float = 1.0):
+    """Retry function with exponential backoff."""
+    def wrapper(*args, **kwargs):
+        delay = initial_delay
+        last_exception = None
+        
+        for attempt in range(max_retries):
+            try:
+                return func(*args, **kwargs)
+            except Exception as e:
+                last_exception = e
+                if attempt < max_retries - 1:
+                    logger.warning(f"Attempt {attempt + 1} failed: {e}. Retrying in {delay}s...")
+                    time.sleep(delay)
+                    delay *= 2
+                else:
+                    logger.error(f"All {max_retries} attempts failed.")
+        
+        raise last_exception
+    
+    return wrapper
+
+
+def chunk_list(lst: List[Any], chunk_size: int) -> Generator[List[Any], None, None]:
+    """Split list into chunks of specified size."""
+    for i in range(0, len(lst), chunk_size):
+        yield lst[i:i + chunk_size]
+
+
+def safe_get(data: Dict[str, Any], path: str, default: Any = None) -> Any:
+    """Safely get nested value from dictionary using dot notation."""
+    keys = path.split('.')
+    value = data
+    
+    for key in keys:
+        if isinstance(value, dict) and key in value:
+            value = value[key]
+        else:
+            return default
+    
+    return value
+
+
+def ensure_list(value: Any) -> List[Any]:
+    """Ensure value is a list."""
+    if value is None:
+        return []
+    if isinstance(value, list):
+        return value
+    return [value]
+
+
+def clean_text(text: str) -> str:
+    """Clean text by removing extra whitespace and special characters."""
+    if not text:
+        return ""
+    
+    # Remove extra whitespace
     text = ' '.join(text.split())
     
-    # Remove leading/trailing whitespace
-    text = text.strip()
+    # Remove control characters
+    text = ''.join(char for char in text if ord(char) >= 32 or char in '\n\t')
     
-    return text
+    return text.strip()
 
 
-def extract_price(text: str) -> Optional[float]:
-    """Extract price from text."""
-    if not text:
-        return None
+def format_timestamp(timestamp: Optional[float] = None) -> str:
+    """Format timestamp as ISO 8601 string."""
+    if timestamp is None:
+        timestamp = time.time()
     
-    # Remove currency symbols and commas
-    text = text.replace('$', '').replace(',', '').replace('£', '').replace('€', '')
-    
-    # Find first number
-    match = re.search(r'(\d+\.?\d*)', text)
-    if match:
-        try:
-            return float(match.group(1))
-        except:
-            pass
-    
-    return None
+    from datetime import datetime
+    return datetime.fromtimestamp(timestamp).isoformat()
 
 
-def create_hash(data: Any) -> str:
-    """Create hash of data."""
-    if isinstance(data, dict):
-        data = json.dumps(data, sort_keys=True)
-    elif not isinstance(data, str):
-        data = str(data)
-    
-    return hashlib.sha256(data.encode()).hexdigest()
+def parse_timestamp(timestamp_str: str) -> float:
+    """Parse ISO 8601 timestamp string to Unix timestamp."""
+    from datetime import datetime
+    dt = datetime.fromisoformat(timestamp_str.replace('Z', '+00:00'))
+    return dt.timestamp()
 
 
-def chunk_list(lst: List[Any], chunk_size: int) -> List[List[Any]]:
-    """Split list into chunks."""
-    return [lst[i:i + chunk_size] for i in range(0, len(lst), chunk_size)]
+def calculate_checksum(data: str) -> str:
+    """Calculate MD5 checksum of string."""
+    import hashlib
+    return hashlib.md5(data.encode('utf-8')).hexdigest()
+
+
+def format_size(size_bytes: int) -> str:
+    """Format bytes as human-readable string."""
+    for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
+        if size_bytes < 1024.0:
+            return f"{size_bytes:.2f} {unit}"
+        size_bytes /= 1024.0
+    return f"{size_bytes:.2f} PB"

@@ -5,6 +5,7 @@ Groups URLs by template/pattern to identify common page types.
 """
 
 import argparse
+import json
 import re
 import sys
 from collections import defaultdict, Counter
@@ -13,10 +14,10 @@ from typing import List, Dict, Set, Tuple, Optional
 from urllib.parse import urlparse
 
 # Add parent directory to path
-sys.path.append(str(Path(__file__).parent.parent / 'orchestration'))
+sys.path.append(str(Path(__file__).parent.parent))
 
-from config import config
-from utils_minimal import setup_logging, read_urls_file, write_urls_file, save_json, ensure_dir
+from orchestration.config import get_step_config
+from orchestration.utils_minimal import logger, read_lines, write_lines, get_url_pattern
 
 
 class URLGrouper:
@@ -25,7 +26,7 @@ class URLGrouper:
     def __init__(self, domain: str):
         """Initialize URL grouper."""
         self.domain = domain
-        self.logger = setup_logging('url_grouper', Path(__file__).parent / 'grouping.log')
+        self.logger = logger
         self.groups: Dict[str, List[str]] = defaultdict(list)
         self.templates: Dict[str, str] = {}
     
@@ -176,7 +177,8 @@ class URLGrouper:
                     structure_groups: Dict[str, List[str]],
                     analysis: Dict[str, Dict]) -> None:
         """Save grouping results."""
-        output_dir = ensure_dir(Path(__file__).parent / 'by_template')
+        output_dir = Path(__file__).parent / 'by_template'
+        output_dir.mkdir(exist_ok=True)
         
         # Save individual group files
         for pattern, urls in pattern_groups.items():
@@ -186,7 +188,7 @@ class URLGrouper:
                 safe_pattern = safe_pattern[1:]
             
             group_file = output_dir / f"{safe_pattern}.txt"
-            write_urls_file(urls, group_file)
+            write_lines(urls, group_file)
         
         # Save summary
         summary = {
@@ -197,7 +199,8 @@ class URLGrouper:
         }
         
         summary_file = Path(__file__).parent / 'grouping_summary.json'
-        save_json(summary, summary_file)
+        with open(summary_file, 'w') as f:
+            json.dump(summary, f, indent=2)
         self.logger.info(f"Saved grouping summary to {summary_file}")
         
         # Save top patterns info in our directory (probe step will read from here)
@@ -217,7 +220,8 @@ class URLGrouper:
         
         # Save in our directory - probe step will read this
         patterns_file = Path(__file__).parent / 'patterns_to_probe.json'
-        save_json(probe_input, patterns_file)
+        with open(patterns_file, 'w') as f:
+            json.dump(probe_input, f, indent=2)
         self.logger.info(f"Saved top patterns to {patterns_file}")
     
     def run(self, urls: List[str]) -> Tuple[Dict[str, List[str]], Dict[str, Dict]]:
@@ -284,7 +288,7 @@ Examples:
         print("Make sure to run 02_filter/filter_urls.py first")
         sys.exit(1)
     
-    urls = read_urls_file(input_file)
+    urls = read_lines(input_file)
     print(f"Loaded {len(urls)} URLs from {input_file}")
     
     # Run grouping

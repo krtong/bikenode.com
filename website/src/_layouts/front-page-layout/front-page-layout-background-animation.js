@@ -71,10 +71,29 @@ document.addEventListener('DOMContentLoaded', function() {
             targetDistance = minDistance + ((1 - mouseY) / 2) * (maxDistance - minDistance);
         });
 
+        // **Header Hover Detection**
+        const header = document.querySelector('.front-page-layout-header-container');
+        if (header) {
+            header.addEventListener('mouseenter', function() {
+                isHovering = true;
+                targetSpeed = hoverSpeed;
+            });
+            
+            header.addEventListener('mouseleave', function() {
+                isHovering = false;
+                targetSpeed = baseSpeed;
+            });
+        }
+
         // **Speed Control**
         const baseSpeed = 3000;
+        const hoverSpeed = 1500; // Slower speed on hover
         const variation = 500;
         let lastTime = 0;
+        let isHovering = false;
+        let currentSpeed = baseSpeed;
+        let targetSpeed = baseSpeed;
+        const speedTransition = 0.08; // Smooth transition factor
 
         // **Fibonacci Sequence and Golden Ratio**
         const goldenRatio = 1.61803398875;
@@ -337,7 +356,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const deltaTime = (timestamp - lastTime) / 1000;
             lastTime = timestamp;
 
-            const speed = baseSpeed + Math.sin(timestamp * 0.001) * variation;
+            // Smooth speed transition
+            currentSpeed += (targetSpeed - currentSpeed) * speedTransition;
+            
+            const speed = currentSpeed + Math.sin(timestamp * 0.001) * variation;
             cameraZ += speed * deltaTime;
             totalDistance += speed * deltaTime;
 

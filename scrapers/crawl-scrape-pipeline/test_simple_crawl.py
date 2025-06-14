@@ -1,47 +1,49 @@
 #!/usr/bin/env python3
-"""Simple test to verify web crawling works."""
+"""
+Simple test crawler to verify basic connectivity and parsing.
+"""
+import scrapy
+from scrapy.crawler import CrawlerProcess
 
-import requests
-from bs4 import BeautifulSoup
 
-def test_basic_fetch():
-    """Test basic HTTP fetch."""
-    url = "https://quotes.toscrape.com"
-    print(f"Testing basic fetch of {url}...")
+class SimpleSpider(scrapy.Spider):
+    name = 'simple_test'
+    start_urls = ['https://quotes.toscrape.com/']
     
-    try:
-        response = requests.get(url, timeout=10)
-        print(f"✓ Status code: {response.status_code}")
-        print(f"✓ Content length: {len(response.text)} bytes")
+    def parse(self, response):
+        print(f"\n=== RESPONSE DEBUG ===")
+        print(f"URL: {response.url}")
+        print(f"Status: {response.status}")
+        print(f"Headers: {response.headers}")
+        print(f"Body length: {len(response.body)}")
+        print(f"Text length: {len(response.text)}")
+        print(f"First 500 chars of body: {response.text[:500]}")
         
-        # Parse with BeautifulSoup
-        soup = BeautifulSoup(response.text, 'html.parser')
-        title = soup.find('title')
-        print(f"✓ Page title: {title.text if title else 'No title'}")
+        # Test different ways to extract links
+        links_css = response.css('a::attr(href)').getall()
+        print(f"\nLinks found with CSS: {len(links_css)}")
+        print(f"First 5 CSS links: {links_css[:5]}")
         
-        # Find some quotes
-        quotes = soup.find_all('div', class_='quote')
-        print(f"✓ Found {len(quotes)} quotes on the page")
+        links_xpath = response.xpath('//a/@href').getall()
+        print(f"\nLinks found with XPath: {len(links_xpath)}")
+        print(f"First 5 XPath links: {links_xpath[:5]}")
         
-        # Find links
-        links = soup.find_all('a', href=True)
-        print(f"✓ Found {len(links)} links")
+        # Test quote extraction
+        quotes = response.css('div.quote')
+        print(f"\nQuotes found: {len(quotes)}")
         
-        # Show first few links
-        print("\nFirst 5 links:")
-        for i, link in enumerate(links[:5]):
-            print(f"  - {link['href']}")
-        
-        return True
-        
-    except Exception as e:
-        print(f"✗ Error: {e}")
-        return False
+        if quotes:
+            first_quote = quotes[0]
+            text = first_quote.css('span.text::text').get()
+            author = first_quote.css('small.author::text').get()
+            print(f"First quote: '{text}' - {author}")
 
-if __name__ == "__main__":
-    print("Testing basic web crawling capability...\n")
+
+if __name__ == '__main__':
+    process = CrawlerProcess({
+        'USER_AGENT': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
+        'LOG_LEVEL': 'WARNING',
+    })
     
-    if test_basic_fetch():
-        print("\n✅ Basic crawling works! The pipeline should be able to fetch pages.")
-    else:
-        print("\n❌ Basic crawling failed. Check your internet connection.")
+    process.crawl(SimpleSpider)
+    process.start()
