@@ -1,0 +1,70 @@
+#!/bin/bash
+# Check for notifications - @mentions and system alerts
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/log-action"
+
+INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-1}"
+MESSAGES_LOG="$SCRIPT_DIR/data/messages.log"
+READ_STATUS_FILE="$SCRIPT_DIR/read-status/$INSTANCE_ID.txt"
+
+# Check if messages log exists
+if [ ! -f "$MESSAGES_LOG" ]; then
+    echo "📭 No new notifications"
+    log_action "CHECK_NOTIFICATIONS" "Checked notifications: 0 mentions, 0 alerts"
+    exit 0
+fi
+
+# Get total message count
+total_messages=$(wc -l < "$MESSAGES_LOG" 2>/dev/null || echo "0")
+if [ "$total_messages" -eq 0 ]; then
+    echo "📭 No new notifications"
+    log_action "CHECK_NOTIFICATIONS" "Checked notifications: 0 mentions, 0 alerts"
+    exit 0
+fi
+
+# Create read status file if it doesn't exist
+touch "$READ_STATUS_FILE" 2>/dev/null || true
+
+# Check for @mentions and system alerts in unread messages
+MENTIONS_COUNT=0
+SYSTEM_ALERTS_COUNT=0
+
+# Check each message for notifications
+for msg_num in $(seq 1 "$total_messages"); do
+    # Check if this message is marked as read
+    if ! grep -q "^$msg_num:" "$READ_STATUS_FILE" 2>/dev/null; then
+        # Message is unread - check for notifications
+        message_line=$(sed -n "${msg_num}p" "$MESSAGES_LOG")
+        if [ -n "$message_line" ]; then
+            # Check for @mentions directed at this instance
+            if echo "$message_line" | grep -q "@$INSTANCE_ID"; then
+                MENTIONS_COUNT=$((MENTIONS_COUNT + 1))
+            fi
+            
+            # Check for system alerts (messages containing ALERT/URGENT/SYSTEM)
+            if echo "$message_line" | grep -i -q -E "(ALERT|URGENT|SYSTEM:)"; then
+                SYSTEM_ALERTS_COUNT=$((SYSTEM_ALERTS_COUNT + 1))
+            fi
+        fi
+    fi
+done
+
+TOTAL_NOTIFICATIONS=$((MENTIONS_COUNT + SYSTEM_ALERTS_COUNT))
+
+if [ "$TOTAL_NOTIFICATIONS" -gt 0 ]; then
+    echo "🔔 NOTIFICATIONS: $TOTAL_NOTIFICATIONS total"
+    if [ "$MENTIONS_COUNT" -gt 0 ]; then
+        echo "   📧 @mentions: $MENTIONS_COUNT"
+    fi
+    if [ "$SYSTEM_ALERTS_COUNT" -gt 0 ]; then
+        echo "   ⚠️  System alerts: $SYSTEM_ALERTS_COUNT"
+    fi
+    echo ""
+    echo "Use 'check-unread' to see details"
+else
+    echo "📭 No new notifications"
+fi
+
+# Log the notification check
+log_action "CHECK_NOTIFICATIONS" "Checked notifications: $MENTIONS_COUNT mentions, $SYSTEM_ALERTS_COUNT alerts"

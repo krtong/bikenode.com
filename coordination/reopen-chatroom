@@ -1,62 +1,93 @@
 #!/bin/bash
-# Reopen a previously closed chatroom
+# Reopen a closed chatroom
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-3}"
-
-# Source logging function
 source "$SCRIPT_DIR/log-action"
+INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-1}"
+CHATROOM_STATUS_FILE="$SCRIPT_DIR/data/chatroom-status.txt"
+CHATROOMS_DIR="$SCRIPT_DIR/chatrooms"
 
-# Main logic
-if [ $# -lt 2 ]; then
-    echo "Usage: reopen-chatroom <chatroom-name> <reason>"
-    echo "Example: reopen-chatroom temp-discussion 'Project reactivated, need to continue discussions'"
+# Show usage
+if [ $# -eq 0 ]; then
+    echo "Usage: reopen-chatroom <chatroom-name> [reason]"
     echo ""
-    echo "Available closed chatrooms:"
-    if [ -d "$SCRIPT_DIR/chatrooms/closed" ]; then
-        ls "$SCRIPT_DIR/chatrooms/closed/" 2>/dev/null | grep -o '^[^_]*' | sort -u
-    else
-        echo "  (none)"
+    echo "Closed chatrooms available to reopen:"
+    echo ""
+    # Show closed chatrooms
+    if [ -f "$CHATROOM_STATUS_FILE" ]; then
+        closed_count=0
+        while IFS=':' read -r name status creator created modified reason; do
+            if [ "$status" = "closed" ]; then
+                echo "  🔒 $name (closed on $modified)"
+                echo "      Closure reason: $reason"
+                echo ""
+                closed_count=$((closed_count + 1))
+            fi
+        done < "$CHATROOM_STATUS_FILE"
+        
+        if [ "$closed_count" -eq 0 ]; then
+            echo "  No closed chatrooms to reopen."
+        fi
     fi
     exit 1
 fi
 
 CHATROOM_NAME="$1"
-REOPEN_REASON="${@:2}"
-CLOSED_DIR="$SCRIPT_DIR/chatrooms/closed"
+REOPEN_REASON="${2:-Chatroom reopened}"
+
+# Validate chatroom name format
+if ! [[ "$CHATROOM_NAME" =~ ^[a-z0-9-]+$ ]]; then
+    echo "ERROR: Invalid chatroom name format"
+    exit 1
+fi
+
+# Check if chatroom exists and is closed
+CHATROOM_FILE="$CHATROOMS_DIR/$CHATROOM_NAME.txt"
+if [ ! -f "$CHATROOM_FILE" ]; then
+    echo "ERROR: Chatroom '$CHATROOM_NAME' does not exist"
+    exit 1
+fi
+
+# Check current status
+if ! grep -q "^$CHATROOM_NAME:closed:" "$CHATROOM_STATUS_FILE" 2>/dev/null; then
+    if grep -q "^$CHATROOM_NAME:open:" "$CHATROOM_STATUS_FILE" 2>/dev/null; then
+        echo "ERROR: Chatroom '$CHATROOM_NAME' is already open"
+    else
+        echo "ERROR: Chatroom '$CHATROOM_NAME' not found in status file"
+    fi
+    exit 1
+fi
+
+# Get timestamp
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
 
-# Find the most recent closed file for this chatroom
-CLOSED_FILE=$(ls -t "$CLOSED_DIR/${CHATROOM_NAME}_closed_"*.txt 2>/dev/null | head -1)
+# Create temporary file for atomic update
+TEMP_STATUS_FILE=$(mktemp)
 
-if [ -z "$CLOSED_FILE" ]; then
-    echo "ERROR: No closed chatroom found with name '$CHATROOM_NAME'"
-    log_action "REOPEN_CHATROOM_FAILED" "Not found: $CHATROOM_NAME"
-    exit 1
-fi
+# Update status file - change closed to open and clear closure reason
+while IFS=':' read -r name status creator created modified reason; do
+    if [ "$name" = "$CHATROOM_NAME" ] && [ "$status" = "closed" ]; then
+        # Reopen this chatroom
+        echo "$name:open:$creator:$created:$TIMESTAMP:" >> "$TEMP_STATUS_FILE"
+    else
+        # Keep other entries unchanged
+        echo "$name:$status:$creator:$created:$modified:$reason" >> "$TEMP_STATUS_FILE"
+    fi
+done < "$CHATROOM_STATUS_FILE"
 
-# Check if chatroom already exists (was already reopened)
-if [ -f "$SCRIPT_DIR/chatrooms/$CHATROOM_NAME.txt" ]; then
-    echo "ERROR: Chatroom '$CHATROOM_NAME' is already open"
-    log_action "REOPEN_CHATROOM_FAILED" "Already open: $CHATROOM_NAME"
-    exit 1
-fi
+# Atomic replace
+mv "$TEMP_STATUS_FILE" "$CHATROOM_STATUS_FILE"
 
-# Copy the closed chatroom back to active
-cp "$CLOSED_FILE" "$SCRIPT_DIR/chatrooms/$CHATROOM_NAME.txt"
-
-# Add reopening notice
-echo "" >> "$SCRIPT_DIR/chatrooms/$CHATROOM_NAME.txt"
-echo "[CHATROOM REOPENED: $TIMESTAMP by $INSTANCE_ID]" >> "$SCRIPT_DIR/chatrooms/$CHATROOM_NAME.txt"
-echo "[REASON: $REOPEN_REASON]" >> "$SCRIPT_DIR/chatrooms/$CHATROOM_NAME.txt"
-echo "" >> "$SCRIPT_DIR/chatrooms/$CHATROOM_NAME.txt"
-
-# Recreate inbox directory if needed
-mkdir -p "$SCRIPT_DIR/inboxes/$CHATROOM_NAME"
+# Add reopening message to the chatroom
+echo "[$TIMESTAMP] SYSTEM: Chatroom reopened by $INSTANCE_ID" >> "$CHATROOM_FILE"
+echo "[$TIMESTAMP] SYSTEM: Reopen reason: $REOPEN_REASON" >> "$CHATROOM_FILE"
 
 # Log the action
-log_action "REOPEN_CHATROOM" "Reopened: $CHATROOM_NAME | Reason: $REOPEN_REASON"
+log_action "CHATROOM_REOPENED" "Reopened chatroom '$CHATROOM_NAME' - Reason: $REOPEN_REASON"
 
-echo "Chatroom '$CHATROOM_NAME' reopened successfully"
-echo "Reason: $REOPEN_REASON"
-echo "Location: $SCRIPT_DIR/chatrooms/$CHATROOM_NAME.txt"
+echo "🔓 Chatroom '$CHATROOM_NAME' has been reopened"
+echo "👤 Reopened by: $INSTANCE_ID"
+echo "⏰ Reopened at: $TIMESTAMP"
+echo "📝 Reason: $REOPEN_REASON"
+echo ""
+echo "The chatroom is now available for messaging."

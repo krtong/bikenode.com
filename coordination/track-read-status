@@ -1,0 +1,113 @@
+#!/bin/bash
+# Track read status of messages
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+READ_STATUS_DIR="$SCRIPT_DIR/read-status"
+mkdir -p "$READ_STATUS_DIR"
+
+# Source logging function
+source "$SCRIPT_DIR/log-action"
+
+# Usage check
+if [ $# -lt 1 ]; then
+    echo "Usage: track-read-status <action> [parameters]"
+    echo ""
+    echo "Actions:"
+    echo "  mark <chatroom> <message_id> <reader>   - Mark message as read"
+    echo "  show <chatroom> [message_id]            - Show read status"
+    echo "  unread <reader>                         - Show unread messages for user"
+    echo ""
+    echo "Example: track-read-status mark general msg123 instance-2"
+    echo "Example: track-read-status show general"
+    exit 1
+fi
+
+ACTION="$1"
+
+case "$ACTION" in
+    "mark")
+        if [ $# -lt 4 ]; then
+            echo "ERROR: mark requires <chatroom> <message_id> <reader>"
+            exit 1
+        fi
+        
+        CHATROOM="$2"
+        MSG_ID="$3"
+        READER="$4"
+        TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+        
+        # Create read receipt file
+        RECEIPT_FILE="$READ_STATUS_DIR/${CHATROOM}_reads.txt"
+        echo "[$TIMESTAMP] $MSG_ID read by $READER" >> "$RECEIPT_FILE"
+        
+        # Log the action
+        log_action "MARK_MESSAGE_READ" "Chatroom: $CHATROOM | Msg: $MSG_ID | Reader: $READER"
+        
+        echo "Marked message $MSG_ID as read by $READER in $CHATROOM"
+        ;;
+        
+    "show")
+        if [ $# -lt 2 ]; then
+            echo "ERROR: show requires <chatroom> [message_id]"
+            exit 1
+        fi
+        
+        CHATROOM="$2"
+        MSG_ID="${3:-}"
+        RECEIPT_FILE="$READ_STATUS_DIR/${CHATROOM}_reads.txt"
+        
+        if [ ! -f "$RECEIPT_FILE" ]; then
+            echo "No read receipts for $CHATROOM"
+            exit 0
+        fi
+        
+        if [ -n "$MSG_ID" ]; then
+            # Show specific message
+            echo "Read receipts for message $MSG_ID in $CHATROOM:"
+            grep "$MSG_ID" "$RECEIPT_FILE" || echo "No read receipts found"
+        else
+            # Show all
+            echo "All read receipts for $CHATROOM:"
+            cat "$RECEIPT_FILE"
+        fi
+        ;;
+        
+    "unread")
+        if [ $# -lt 2 ]; then
+            echo "ERROR: unread requires <reader>"
+            exit 1
+        fi
+        
+        READER="$2"
+        echo "=== Unread messages for $READER ==="
+        
+        # Check all chatrooms
+        for chatroom_file in "$SCRIPT_DIR/chatrooms"/*.txt; do
+            if [ -f "$chatroom_file" ]; then
+                chatroom=$(basename "$chatroom_file" .txt)
+                receipt_file="$READ_STATUS_DIR/${chatroom}_reads.txt"
+                
+                # Extract message IDs from chatroom
+                grep -E "ID: [a-f0-9]+" "$chatroom_file" | while read -r line; do
+                    if [[ $line =~ ID:\ ([a-f0-9]+) ]]; then
+                        msg_id="${BASH_REMATCH[1]}"
+                        
+                        # Check if reader has read this message
+                        if [ -f "$receipt_file" ]; then
+                            if ! grep -q "$msg_id read by $READER" "$receipt_file"; then
+                                echo "Unread in $chatroom: Message ID $msg_id"
+                            fi
+                        else
+                            echo "Unread in $chatroom: Message ID $msg_id"
+                        fi
+                    fi
+                done
+            fi
+        done
+        ;;
+        
+    *)
+        echo "ERROR: Unknown action '$ACTION'"
+        exit 1
+        ;;
+esac

@@ -2,6 +2,7 @@
 # Close a chatroom with required closure reason
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/log-action"
 
 INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-1}"
 CHATROOM_STATUS_FILE="$SCRIPT_DIR/data/chatroom-status.txt"
@@ -9,9 +10,9 @@ CHATROOMS_DIR="$SCRIPT_DIR/chatrooms"
 
 # Show usage
 if [ $# -eq 0 ]; then
-    echo "Usage: close-chatroom <chatroom-name>"
+    echo "Usage: close-chatroom <chatroom-name> [closure-reason]"
     echo ""
-    echo "This will prompt you for a closure reason."
+    echo "If no closure reason is provided, you will be prompted for one."
     echo ""
     echo "Available chatrooms:"
     echo ""
@@ -29,6 +30,7 @@ if [ $# -eq 0 ]; then
 fi
 
 CHATROOM_NAME="$1"
+CLOSURE_REASON="${@:2}"
 
 # Validate chatroom name format
 if ! [[ "$CHATROOM_NAME" =~ ^[a-z0-9]([a-z0-9-]*[a-z0-9])?$ ]]; then
@@ -55,15 +57,17 @@ if ! grep -q "^$CHATROOM_NAME:open:" "$CHATROOM_STATUS_FILE" 2>/dev/null; then
     exit 1
 fi
 
-# Prompt for closure reason (required)
-echo "💬 Why are you closing chatroom '$CHATROOM_NAME'?"
-echo "Please provide a reason (required):"
-read -r CLOSURE_REASON
-
-# Validate closure reason is not empty
+# Prompt for closure reason if not provided
 if [ -z "$CLOSURE_REASON" ]; then
-    echo "ERROR: Closure reason is required. Chatroom not closed."
-    exit 1
+    echo "💬 Why are you closing chatroom '$CHATROOM_NAME'?"
+    echo "Please provide a reason (required):"
+    read -r CLOSURE_REASON
+    
+    # Validate closure reason is not empty
+    if [ -z "$CLOSURE_REASON" ]; then
+        echo "ERROR: Closure reason is required. Chatroom not closed."
+        exit 1
+    fi
 fi
 
 # Validate closure reason length and content
@@ -102,7 +106,7 @@ echo "[$TIMESTAMP] SYSTEM: Chatroom closed by $INSTANCE_ID" >> "$CHATROOM_FILE"
 echo "[$TIMESTAMP] SYSTEM: Closure reason: $CLOSURE_REASON" >> "$CHATROOM_FILE"
 
 # Log the action
-"$SCRIPT_DIR/log-action" "CHATROOM_CLOSED" "Closed chatroom '$CHATROOM_NAME' - Reason: $CLOSURE_REASON"
+log_action "CHATROOM_CLOSED" "Closed chatroom '$CHATROOM_NAME' - Reason: $CLOSURE_REASON"
 
 echo "🔒 Chatroom '$CHATROOM_NAME' has been closed"
 echo "👤 Closed by: $INSTANCE_ID"

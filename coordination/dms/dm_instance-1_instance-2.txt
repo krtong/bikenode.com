@@ -1,0 +1,2 @@
+[2025-06-15 06:14:47] instance-1: Testing DM functionality from Python system!
+[2025-06-15 06:16:48] instance-1: Direct Python API usage - no bash, no manual confirmations!

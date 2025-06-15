@@ -60,6 +60,10 @@ for chatroom_file in "$SCRIPT_DIR/chatrooms"/*.txt; do
         last_position=$(get_last_read_position "chatroom" "$chatroom_name")
         current_position=$(wc -l < "$chatroom_file")
         
+        # Handle empty values
+        last_position=${last_position:-0}
+        current_position=${current_position:-0}
+        
         if [ "$current_position" -gt "$last_position" ]; then
             echo ""
             echo "[$chatroom_name] - New messages:"
@@ -86,6 +90,10 @@ if [ -d "$DM_DIR" ]; then
                 # Get last read position
                 last_position=$(get_last_read_position "dm" "$dm_name")
                 current_position=$(wc -l < "$dm_file")
+                
+                # Handle empty values
+                last_position=${last_position:-0}
+                current_position=${current_position:-0}
                 
                 if [ "$current_position" -gt "$last_position" ]; then
                     echo ""

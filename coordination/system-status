@@ -1,0 +1,107 @@
+#!/bin/bash
+# Show comprehensive system status
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/log-action"
+
+INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-1}"
+
+echo "🤖 === Agent Coordination System Status ==="
+echo "Agent: $INSTANCE_ID"
+echo "Time: $(date '+%Y-%m-%d %H:%M:%S')"
+echo ""
+
+# Log the action
+log_action "SYSTEM_STATUS" "Checking comprehensive system status"
+
+# 1. Chatroom Status
+echo "📋 === Chatroom Status ==="
+if [ -f "$SCRIPT_DIR/data/chatroom-status.txt" ]; then
+    while IFS=':' read -r name status creator created modified reason; do
+        if [[ ! "$name" =~ ^# ]]; then
+            case "$status" in
+                "open")
+                    echo "  ✅ $name (open) - created by $creator"
+                    ;;
+                "closed")
+                    echo "  🔒 $name (closed) - reason: $reason"
+                    ;;
+            esac
+        fi
+    done < "$SCRIPT_DIR/data/chatroom-status.txt"
+else
+    echo "  No chatroom status file found"
+fi
+echo ""
+
+# 2. Message Statistics
+echo "📊 === Message Statistics ==="
+if [ -f "$SCRIPT_DIR/data/messages.log" ]; then
+    total_messages=$(wc -l < "$SCRIPT_DIR/data/messages.log")
+    echo "  Total messages: $total_messages"
+    
+    # Count unread for this instance
+    if [ -f "$SCRIPT_DIR/read-status/$INSTANCE_ID.txt" ]; then
+        read_count=$(wc -l < "$SCRIPT_DIR/read-status/$INSTANCE_ID.txt")
+        unread_count=$((total_messages - read_count))
+        echo "  Read by $INSTANCE_ID: $read_count"
+        echo "  Unread by $INSTANCE_ID: $unread_count"
+    else
+        echo "  Unread by $INSTANCE_ID: $total_messages (no read status)"
+    fi
+else
+    echo "  No messages yet"
+fi
+echo ""
+
+# 3. Direct Messages
+echo "💬 === Direct Messages ==="
+if [ -d "$SCRIPT_DIR/dms" ]; then
+    dm_count=$(find "$SCRIPT_DIR/dms" -name "*.txt" | wc -l)
+    echo "  Active conversations: $dm_count"
+    
+    for dm_file in "$SCRIPT_DIR/dms"/*.txt; do
+        if [ -f "$dm_file" ]; then
+            filename=$(basename "$dm_file" .txt)
+            if [[ "$filename" == *"$INSTANCE_ID"* ]]; then
+                msg_count=$(grep -c "^MESSAGE:" "$dm_file" 2>/dev/null || echo "0")
+                echo "    📞 $filename ($msg_count messages)"
+            fi
+        fi
+    done
+else
+    echo "  No DM directory found"
+fi
+echo ""
+
+# 4. Recent Actions
+echo "📝 === Recent Actions (Last 10) ==="
+if [ -f "$SCRIPT_DIR/data/action-log.txt" ]; then
+    tail -10 "$SCRIPT_DIR/data/action-log.txt" | while read -r line; do
+        echo "    $line"
+    done
+else
+    echo "  No action log found"
+fi
+echo ""
+
+# 5. Available Commands
+echo "🛠️  === Available Commands ==="
+echo "  Messaging:"
+echo "    send-message @instance-X 'message'     - Send to default chatroom"
+echo "    send-dm instance-X 'message'           - Send direct message"
+echo "    check-unread                           - View unread messages"
+echo "    mark-read [number|range|all]           - Mark messages as read"
+echo ""
+echo "  Chatrooms:"
+echo "    create-chatroom name 'description'     - Create new chatroom"
+echo "    close-chatroom name                    - Close chatroom (requires reason)"
+echo "    reopen-chatroom name [reason]          - Reopen closed chatroom"
+echo ""
+echo "  Information:"
+echo "    check-dm                               - View direct messages"
+echo "    system-status                          - This status report"
+echo "    ./data/action-log.txt                  - View full action log"
+echo ""
+
+echo "System ready for agent collaboration! 🚀"

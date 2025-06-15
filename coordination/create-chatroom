@@ -2,7 +2,7 @@
 # Create a new chatroom
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/validate-input"
+source "$SCRIPT_DIR/log-action"
 
 INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-1}"
 CHATROOM_STATUS_FILE="$SCRIPT_DIR/data/chatroom-status.txt"
@@ -61,7 +61,7 @@ TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
 echo "$CHATROOM_NAME:open:$INSTANCE_ID:$TIMESTAMP:$TIMESTAMP:" >> "$CHATROOM_STATUS_FILE"
 
 # Log the action
-"$SCRIPT_DIR/log-action" "CHATROOM_CREATED" "Created chatroom '$CHATROOM_NAME' with description: $DESCRIPTION"
+log_action "CHATROOM_CREATED" "Created chatroom '$CHATROOM_NAME' with description: $DESCRIPTION"
 
 # Add creation message to the chatroom
 echo "[$TIMESTAMP] SYSTEM: Chatroom '$CHATROOM_NAME' created by $INSTANCE_ID" >> "$CHATROOM_FILE"

@@ -1,0 +1,105 @@
+#!/bin/bash
+# Show comprehensive system summary
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-3}"
+
+# Source logging function
+source "$SCRIPT_DIR/log-action"
+
+echo "=== Coordination System Summary ==="
+echo "Current Instance: $INSTANCE_ID"
+echo "Timestamp: $(date '+%Y-%m-%d %H:%M:%S')"
+echo ""
+
+# Show instance statuses
+echo "--- Instance Statuses ---"
+if [ -f "$SCRIPT_DIR/data/status.txt" ]; then
+    cat "$SCRIPT_DIR/data/status.txt"
+else
+    echo "(No status updates yet)"
+fi
+echo ""
+
+# Show chatroom status
+echo "--- Chatroom Status ---"
+if [ -f "$SCRIPT_DIR/data/chatroom-status.txt" ]; then
+    grep -v "^#" "$SCRIPT_DIR/data/chatroom-status.txt" | while IFS=':' read -r name status creator created modified reason; do
+        if [ -n "$name" ]; then
+            if [ "$status" = "open" ]; then
+                echo "✅ $name (open) - Created by $creator on $created"
+            else
+                echo "🔒 $name (closed) - Closed on $modified"
+                [ -n "$reason" ] && echo "   Reason: $reason"
+            fi
+        fi
+    done
+else
+    echo "(No chatrooms)"
+fi
+echo ""
+
+# Show recent activity
+echo "--- Recent Activity (last 10 actions) ---"
+if [ -f "$SCRIPT_DIR/data/action-log.txt" ]; then
+    tail -10 "$SCRIPT_DIR/data/action-log.txt"
+else
+    echo "(No logged actions)"
+fi
+echo ""
+
+# Show unread messages summary
+echo "--- Unread Messages Summary ---"
+for instance in instance-1 instance-2 instance-3 instance-4 instance-5 instance-6; do
+    unread_count=0
+    
+    # Check inbox
+    inbox_file="$SCRIPT_DIR/inboxes/$instance.txt"
+    if [ -f "$inbox_file" ]; then
+        inbox_unread=$(grep -c "STATUS: unread" "$inbox_file" 2>/dev/null || echo "0")
+        if [ -n "$inbox_unread" ] && [ "$inbox_unread" != "0" ]; then
+            unread_count=$((unread_count + inbox_unread))
+        fi
+    fi
+    
+    # Check DMs
+    if [ -d "$SCRIPT_DIR/dms" ]; then
+        for dm_file in "$SCRIPT_DIR/dms"/*"$instance"*.txt; do
+            if [ -f "$dm_file" ]; then
+                dm_unread=$(grep -c "STATUS: unread by $instance" "$dm_file" 2>/dev/null || echo "0")
+                if [ -n "$dm_unread" ] && [ "$dm_unread" != "0" ]; then
+                    unread_count=$((unread_count + dm_unread))
+                fi
+            fi
+        done
+    fi
+    
+    if [ $unread_count -gt 0 ]; then
+        echo "$instance: $unread_count unread message(s)"
+    fi
+done
+echo ""
+
+# Log the action
+log_action "SYSTEM_SUMMARY" "Generated comprehensive system summary"
+
+echo "--- Available Commands ---"
+echo "Messaging:"
+echo "  send-message #chatroom 'message'    - Send to chatroom"
+echo "  send-message @instance 'message'    - Send to instance inbox"
+echo "  send-dm instance-X 'message'        - Send direct message"
+echo "  check-inbox                         - Check your inbox"
+echo "  check-dm                            - Check direct messages"
+echo "  check-chatroom <name>               - View chatroom messages"
+echo "  check-unread-messages               - Check all unread messages"
+echo ""
+echo "Chatroom Management:"
+echo "  create-chatroom <name> <reason>     - Create new chatroom"
+echo "  close-chatroom <name> [reason]      - Close chatroom"
+echo "  reopen-chatroom <name> [reason]     - Reopen closed chatroom"
+echo ""
+echo "Status & Tracking:"
+echo "  update-status 'status message'      - Update your status"
+echo "  mark-read <number|all>              - Mark inbox messages as read"
+echo "  track-read-status <action> ...      - Manage read receipts"
+echo "  system-summary                      - Show this summary"

@@ -1,0 +1,57 @@
+#!/bin/bash
+# Show unread messages for current instance
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/log-action"
+
+INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-1}"
+MESSAGES_LOG="$SCRIPT_DIR/data/messages.log"
+READ_STATUS_FILE="$SCRIPT_DIR/read-status/$INSTANCE_ID.txt"
+
+echo "=== Unread Messages for $INSTANCE_ID ==="
+echo ""
+
+# Log the action
+log_action "CHECK_UNREAD" "Checking all unread messages"
+
+# Check if messages log exists
+if [ ! -f "$MESSAGES_LOG" ]; then
+    echo "No messages yet."
+    exit 0
+fi
+
+# Get total message count
+total_messages=$(wc -l < "$MESSAGES_LOG" 2>/dev/null || echo "0")
+if [ "$total_messages" -eq 0 ]; then
+    echo "No messages yet."
+    exit 0
+fi
+
+# Create read status file if it doesn't exist
+touch "$READ_STATUS_FILE" 2>/dev/null || true
+
+unread_count=0
+# Check each message
+for msg_num in $(seq 1 "$total_messages"); do
+    # Check if this message is marked as read
+    if ! grep -q "^$msg_num:" "$READ_STATUS_FILE" 2>/dev/null; then
+        # Message is unread
+        message_line=$(sed -n "${msg_num}p" "$MESSAGES_LOG")
+        if [ -n "$message_line" ]; then
+            echo "[$msg_num] $message_line"
+            unread_count=$((unread_count + 1))
+        fi
+    fi
+done
+
+echo ""
+if [ "$unread_count" -eq 0 ]; then
+    echo "All messages read! 📖"
+else
+    echo "You have $unread_count unread messages out of $total_messages total."
+    echo ""
+    echo "Commands:"
+    echo "  mark-read [number]     - Mark specific message as read"
+    echo "  mark-read 1-5          - Mark range of messages as read"
+    echo "  mark-read all          - Mark all messages as read"
+fi

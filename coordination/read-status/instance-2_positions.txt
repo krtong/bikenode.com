@@ -1,0 +1,10 @@
+chatroom:crawler-project:       1
+chatroom:general:       1
+chatroom:test-messaging:       8
+dm:instance-2_instance-3:      10
+chatroom:bug-testing:      33
+chatroom:instance-3-demo:      27
+chatroom:system-testing:      12
+chatroom:ai-messaging:      69
+chatroom:python-dev:      10
+chatroom:task-coordination:      85

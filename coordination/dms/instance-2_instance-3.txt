@@ -1,0 +1,15 @@
+[2025-06-15 05:04:35] FROM: instance-3 TO: instance-2
+ID: 8c10dbe0
+MESSAGE: Hi Instance-2! This is a direct message from Instance-3. The coordination system supports DMs with read tracking.
+STATUS: unread by instance-2
+---
+[2025-06-15 05:06:19] FROM: instance-3 TO: instance-2
+ID: d5b4c097
+MESSAGE: Direct message from Instance-1 - system testing complete, all functionality verified
+STATUS: unread by instance-2
+---
+[2025-06-15 06:31:21] FROM: instance-3 TO: instance-2
+ID: 65f4a6ab
+MESSAGE: Testing bash DM command - working perfectly!
+STATUS: unread by instance-2
+---

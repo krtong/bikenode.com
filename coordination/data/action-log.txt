@@ -1,2 +1,777 @@
 [2025-06-15 04:20:48] instance-1: CHATROOM_CREATED - Created chatroom 'test-messaging' with description: Testing chatroom functionality
 [2025-06-15 04:23:48] instance-1: CHATROOM_CLOSED - Closed chatroom 'test-messaging' - Reason: Testing closure functionality for system validation
+[2025-06-15 04:31:36] instance-3 | SYSTEM_TEST | Testing logging functionality
+[2025-06-15 04:32:08] instance-3 | SEND_MESSAGE | To: #ai-messaging | ID: f66348d0
+[2025-06-15 04:32:28] instance-3 | SEND_DM | To: instance-1 | ID: 045dbce9
+[2025-06-15 04:32:45] instance-3 | CHATROOM_REOPENED | Reopened chatroom 'test-messaging' - Reason: Reopening for continued testing
+[2025-06-15 04:32:47] instance-1 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 04:36:14] instance-1 | SYSTEM_STATUS | Checking comprehensive system status
+[2025-06-15 04:36:26] instance-1 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 04:37:32] instance-1 | MARK_READ | Message 1 marked as read
+[2025-06-15 04:37:32] instance-1 | MARK_READ | Message 2 marked as read
+[2025-06-15 04:37:32] instance-1 | MARK_READ | Message 3 marked as read
+[2025-06-15 04:37:32] instance-1 | MARK_READ | Message 4 marked as read
+[2025-06-15 04:37:32] instance-1 | MARK_READ | Message 5 marked as read
+[2025-06-15 04:37:36] instance-1 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 04:38:09] instance-1 | UPDATE_STATUS | Status updated to: Comprehensive coordination system fully operational - all logging and message tracking implemented 
+[2025-06-15 04:38:15] instance-3 | CHATROOM_CLOSED | Closed chatroom 'test-messaging' - Reason: Completed testing of messaging functionality
+[2025-06-15 04:38:19] instance-1 | SYSTEM_STATUS | Checking comprehensive system status
+[2025-06-15 05:00:41] instance-1 | SEARCH_MESSAGES | Searched for: security 
+[2025-06-15 05:00:43] instance-3 | UPDATE_STATUS | Status updated to: Completed implementing comprehensive messaging system with logging 
+[2025-06-15 05:02:54] instance-1 | REPLY_MESSAGE | Replied to message #8 from instance-1
+[2025-06-15 05:03:07] instance-1 | SYSTEM_STATUS | Checking comprehensive system status
+[2025-06-15 05:03:09] instance-3 | SYSTEM_SUMMARY | Generated comprehensive system summary
+[2025-06-15 05:03:34] instance-2 | HELP_ACCESSED | Agent accessed help system
+[2025-06-15 05:03:43] instance-3 | SEND_MESSAGE | To: #ai-messaging | ID: 8c44ec74
+[2025-06-15 05:03:49] instance-2 | CHECK_NOTIFICATIONS | Checked notifications: 2 mentions, 0 alerts
+[2025-06-15 05:03:51] instance-3 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 05:03:56] instance-2 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 05:04:03] instance-2 | UPDATE_STATUS | Status updated to: Active - Testing notification system and coordination tools 
+[2025-06-15 05:04:04] instance-1 | UPDATE_STATUS | Status updated to: All agent coordination improvements completed - system fully operational with enhanced security, logging, and functionality 
+[2025-06-15 05:04:11] instance-3 | SEND_MESSAGE | To: @instance-1 | ID: 8abda4b6
+[2025-06-15 05:04:13] instance-2 | SEND_MESSAGE | To: #ai-messaging | ID: ba8f3a34
+[2025-06-15 05:04:34] instance-2 | SEND_MESSAGE | To: @instance-1 | ID: f056f223
+[2025-06-15 05:04:35] instance-3 | SEND_DM | To: instance-2 | ID: 8c10dbe0
+[2025-06-15 05:04:45] instance-3 | CHECK_CHATROOM | Viewed: ai-messaging
+[2025-06-15 05:04:47] instance-1 | SYSTEM_STATUS | Checking comprehensive system status
+[2025-06-15 05:04:53] instance-2 | CHECK_NOTIFICATIONS | Checked notifications: 0
+0 mentions, 0 alerts
+[2025-06-15 05:05:00] instance-1 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 05:05:08] instance-1 | SEARCH_MESSAGES | Searched for: @instance-1 
+[2025-06-15 05:05:16] instance-1 | REPLY_MESSAGE | Replied to message #16 from instance-3
+[2025-06-15 05:05:27] instance-3 | SEND_MESSAGE | To: #ai-messaging | ID: acfadee2
+[2025-06-15 05:05:34] instance-3 | CHATROOM_CREATED | Created chatroom 'instance-3-demo' with description: Demonstrating chatroom creation functionality
+[2025-06-15 05:06:16] instance-3 | SEND_MESSAGE | To: #instance-3-demo | ID: e335d496
+[2025-06-15 05:06:19] instance-3 | SEND_DM | To: instance-2 | ID: d5b4c097
+[2025-06-15 05:06:23] instance-3 | SYSTEM_SUMMARY | Generated comprehensive system summary
+[2025-06-15 05:07:05] instance-2 | LIST_CHATROOMS | Agent accessed chatroom list
+[2025-06-15 05:08:33] instance-1 | CHATROOM_CREATED | Created chatroom 'system-testing' with description: Instance-1 testing chatroom creation and management features
+[2025-06-15 05:08:43] instance-3 | LIST_CHATROOMS | Agent accessed chatroom list
+[2025-06-15 05:08:52] instance-3 | SEND_MESSAGE | To: #system-testing | ID: 59883be6
+[2025-06-15 05:08:55] instance-3 | CHECK_DM | Checking all DMs
+[2025-06-15 05:08:55] instance-3 | MARK_MESSAGE_READ | Chatroom: dm_instance-1_instance-3 | Msg: 045 | Reader: instance-3
+[2025-06-15 05:08:55] instance-3 | MARK_MESSAGE_READ | Chatroom: dm_instance-2_instance-3 | Msg: 8 | Reader: instance-3
+[2025-06-15 05:08:57] instance-1 | MARK_READ | Message 17 marked as read
+[2025-06-15 05:08:57] instance-1 | MARK_READ | Message 18 marked as read
+[2025-06-15 05:08:57] instance-1 | MARK_READ | Message 19 marked as read
+[2025-06-15 05:08:57] instance-1 | MARK_READ | Message 20 marked as read
+[2025-06-15 05:09:06] instance-2 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 05:09:09] instance-1 | CHATROOM_CLOSED | Closed chatroom 'system-testing' - Reason: System testing completed successfully - all features verified functional
+[2025-06-15 05:11:27] instance-3 | HELP_ACCESSED | Agent accessed help system
+[2025-06-15 05:11:29] instance-2 | SEND_MESSAGE | To: #system-testing | ID: e88248ef
+[2025-06-15 05:11:32] instance-1 | LIST_ALL_COMMANDS | Accessed complete command reference
+[2025-06-15 05:11:35] instance-3 | CHECK_NOTIFICATIONS | Checked notifications: 0
+0 mentions, 0 alerts
+[2025-06-15 05:11:46] instance-2 | SEND_MESSAGE | To: @instance-3 | ID: a11f0e1a
+[2025-06-15 05:11:48] instance-1 | UPDATE_STATUS | Status updated to: Instance-1 system testing complete ✅ All features verified: messaging, threading, search, chatrooms, DMs, read tracking, security 
+[2025-06-15 05:11:50] instance-3 | SEARCH_MESSAGES | Searched for: instance-3 
+[2025-06-15 05:12:34] instance-3 | MARK_READ | Message 1 in instance-3 inbox
+[2025-06-15 05:13:15] instance-2 | HELP_ACCESSED | Agent accessed help system
+[2025-06-15 05:13:29] instance-2 | LIST_ALL_COMMANDS | Accessed complete command reference
+[2025-06-15 05:13:46] instance-2 | SEARCH_MESSAGES | Searched for: coordination 
+[2025-06-15 05:13:56] instance-2 | REPLY_MESSAGE | Replied to message #8 from instance-1
+[2025-06-15 05:14:05] instance-2 | SYSTEM_STATUS | Checking comprehensive system status
+[2025-06-15 05:14:16] instance-1 | LIST_ALL_COMMANDS | Accessed complete command reference
+[2025-06-15 05:14:21] instance-3 | HELP_ACCESSED | Agent accessed help system
+[2025-06-15 05:14:56] instance-3 | REPLY_MESSAGE | Replied to message #13 from [2025-06-15 04:32:28] DM: instance-3 -> instance-1: Testing DM functionality with read tracking
+[2025-06-15 05:15:28] instance-3 | LIST_ALL_COMMANDS | Accessed complete command reference
+[2025-06-15 05:15:33] instance-2 | CHATROOM_CREATED | Created chatroom 'bug-testing' with description: Dedicated space for testing coordination system bugs and edge cases
+[2025-06-15 05:15:39] instance-2 | SEND_MESSAGE | To: #bug-testing | ID: 497b187e
+[2025-06-15 05:15:56] instance-2 | SEARCH_MESSAGES | Searched for: 🚀 
+[2025-06-15 05:15:57] instance-3 | SEND_MESSAGE | To: #ai-messaging | ID: 8b5bcec5
+[2025-06-15 05:16:09] instance-3 | SYSTEM_STATUS | Checking comprehensive system status
+[2025-06-15 05:16:12] instance-2 | MARK_READ_ALL | All       51 messages marked as read
+[2025-06-15 05:16:26] instance-2 | SEND_MESSAGE | To: #bug-testing | ID: 7491b367
+[2025-06-15 05:16:41] instance-2 | SEND_MESSAGE | To: #bug-testing | ID: 86a8bbcf
+[2025-06-15 05:16:54] instance-2 | SEND_MESSAGE | To: @nonexistent-instance | ID: 3329b940
+[2025-06-15 05:16:55] instance-3 | CHECK_CHATROOM | Viewed: bug-testing
+[2025-06-15 05:17:15] instance-2 | UPDATE_STATUS | Status updated to: Testing edge cases and workflows - finding bugs and improvements 
+[2025-06-15 05:17:16] instance-3 | SEND_MESSAGE | To: #bug-testing | ID: 400d9c90
+[2025-06-15 05:17:31] instance-1 | SYSTEM_STATUS | Checking comprehensive system status
+[2025-06-15 05:17:38] instance-1 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 05:17:48] instance-3 | SEND_MESSAGE | To: #bug-testing | ID: 7506d846
+[2025-06-15 05:17:54] instance-3 | CHATROOM_CREATED | Created chatroom 'task-coordination' with description: For coordinating specific tasks between instances with clear ownership
+[2025-06-15 05:18:13] instance-1 | SEARCH_MESSAGES | Searched for: check-notifications --recent
+[2025-06-15 05:18:21] instance-3 | SEND_MESSAGE | To: #task-coordination | ID: 5d780a90
+[2025-06-15 05:18:22] instance-1 | REPLY_MESSAGE | Replied to message #30 from instance-3
+[2025-06-15 05:35:13] instance-3 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 05:35:14] instance-3 | SEND_MESSAGE | To: #task-coordination | ID: 84c8dce7
+[2025-06-15 05:35:30] instance-2 | CHECK_NOTIFICATIONS | Checked notifications: 0
+0 mentions, 0
+0 alerts
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 1 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 2 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 3 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 4 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 5 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 6 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 7 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 8 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 9 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 10 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 11 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 12 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 13 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 14 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 15 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 16 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 17 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 18 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 19 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 20 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 21 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 22 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 23 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 24 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 25 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 26 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 27 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 28 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 29 marked as read
+[2025-06-15 05:35:39] instance-3 | MARK_READ | Message 30 marked as read
+[2025-06-15 05:36:12] instance-2 | CHECK_NOTIFICATIONS | Checked notifications: 0
+0 mentions, 0
+0 alerts
+[2025-06-15 05:36:25] instance-2 | SEND_MESSAGE | To: #bug-testing | ID: a18b9149
+[2025-06-15 05:36:31] instance-2 | CHECK_NOTIFICATIONS | Checked notifications: 1 mentions, 0 alerts
+[2025-06-15 05:38:02] instance-1 | CHECK_NOTIFICATIONS | Checked notifications: 1 mentions, 0 alerts
+[2025-06-15 05:43:58] instance-3 | SEND_MESSAGE | To: #task-coordination | ID: 38fdb9e8
+[2025-06-15 05:44:05] instance-2 | SEND_MESSAGE | To:  | ID: 5dcd3263
+[2025-06-15 05:44:09] instance-3 | UPDATE_STATUS | Status updated to: Working on task: Creating workflow examples for coordination system 
+[2025-06-15 05:44:16] instance-2 | SEND_MESSAGE | To: @instance-invalid | ID: 4f0e8f6e
+[2025-06-15 05:44:27] instance-2 | SEND_MESSAGE | To: #task-coordination | ID: 18a1b93b
+[2025-06-15 05:44:33] instance-3 | SEND_MESSAGE | To: #instance-3-demo | ID: e4dcb343
+[2025-06-15 05:44:49] instance-3 | SEARCH_MESSAGES | Searched for: task-coordination --recent
+[2025-06-15 05:45:09] instance-2 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 05:45:15] instance-3 | SEND_MESSAGE | To: #ai-messaging | ID: f754b6aa
+[2025-06-15 05:45:42] instance-1 | SEND_MESSAGE | To: #task-coordination | ID: c729e7ef
+[2025-06-15 05:45:47] instance-1 | CHECK_NOTIFICATIONS | Checked notifications: 1 mentions, 2 alerts
+[2025-06-15 05:45:52] instance-1 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 05:46:04] instance-1 | SEND_MESSAGE | To: #task-coordination | ID: 26096ebc
+[2025-06-15 05:46:09] instance-2 | SEND_MESSAGE | To: #task-coordination | ID: fe06ce16
+[2025-06-15 05:46:30] instance-2 | UPDATE_STATUS | Status updated to: Coordinating Python system migration with instances 1 and 3 
+[2025-06-15 05:46:32] instance-3 | CHECK_CHATROOM | Viewed: task-coordination
+[2025-06-15 05:46:42] instance-1 | SEND_MESSAGE | To: #task-coordination | ID: 839e0dab
+[2025-06-15 05:46:44] instance-2 | SEND_MESSAGE | To: #task-coordination | ID: b6594cbd
+[2025-06-15 05:46:55] instance-2 | SEND_MESSAGE | To: #task-coordination | ID: d97ff7c6
+[2025-06-15 05:46:57] instance-3 | SEND_MESSAGE | To: #task-coordination | ID: d2200a51
+[2025-06-15 05:46:59] instance-1 | SEND_MESSAGE | To: #task-coordination | ID: 14c5f759
+[2025-06-15 05:47:03] instance-2 | CHECK_NOTIFICATIONS | Checked notifications: 4 mentions, 3 alerts
+[2025-06-15 05:47:11] instance-3 | CHATROOM_CREATED | Created chatroom 'python-dev' with description: Technical discussion for Python coordination system development
+[2025-06-15 05:47:12] instance-1 | SEND_MESSAGE | To: #task-coordination | ID: 87aa5dfc
+[2025-06-15 05:47:24] instance-1 | SEND_MESSAGE | To: #python-dev | ID: 6ebeaf8d
+[2025-06-15 05:47:31] instance-3 | SEND_MESSAGE | To: #task-coordination | ID: 5e41ba1a
+[2025-06-15 05:47:42] instance-2 | SEND_MESSAGE | To: #python-dev | ID: 70986932
+[2025-06-15 05:47:50] instance-2 | UPDATE_STATUS | Status updated to: Building testing framework for Python coordination system 
+[2025-06-15 05:48:44] instance-2 | SEND_MESSAGE | To: #python-dev | ID: 6d961fe8
+[2025-06-15 05:49:10] instance-2 | CHECK_NOTIFICATIONS | Checked notifications: 8 mentions, 3 alerts
+[2025-06-15 05:49:15] instance-2 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 05:49:26] instance-2 | SEND_MESSAGE | To: #python-dev | ID: 45c64edf
+[2025-06-15 05:49:48] instance-1 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 05:49:48] instance-1 | SYSTEM_STATUS | Checking comprehensive system status
+[2025-06-15 05:49:56] instance-1 | UPDATE_STATUS | Status updated to: Implementing system status & update commands + coordinating Python migration
+[2025-06-15 05:50:12] instance-1 | SEND_MESSAGE | To: #python-dev | ID: f1149260
+[2025-06-15 05:52:56] instance-2 | SEND_MESSAGE | To: #python-dev | ID: 6259aa68
+[2025-06-15 05:53:42] instance-3 | UPDATE_STATUS | Status updated to: Working on Python API design for search, threading, and chatroom management features 
+[2025-06-15 05:53:52] instance-3 | CHECK_CHATROOM | Viewed: python-dev
+[2025-06-15 05:53:56] instance-2 | SEND_MESSAGE | To: #python-dev | ID: 38a91c76
+[2025-06-15 05:55:04] instance-1 | LIST_CHATROOMS | Agent accessed chatroom list
+[2025-06-15 05:55:11] instance-1 | SEARCH_MESSAGES | Searched for: python
+[2025-06-15 05:55:29] instance-1 | SEND_MESSAGE | To: #python-dev | ID: ee4583c1
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #test | ID: ab320e7f
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #test | ID: c8cee9cd
+[2025-06-15 05:57:23] test-instance | CHECK_NOTIFICATIONS | Checked notifications: 1 mentions, 3 alerts
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 1e9a80d0
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 5472edaf
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 96a6f8e2
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: edfdb2ff
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 551f967a
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: f0e65a4b
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 7585bf88
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 751461a2
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 5adacc1e
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 27a346a2
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 4e821fb7
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: ebfd7cc7
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: a4854ae4
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: fd0f97bb
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: e5c915a7
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: aae8a75f
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 8c7274be
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 85bb11f9
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 6af3bd99
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 38f44d3a
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: b620bf61
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: afc6c774
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 17ae6180
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 0af4085c
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 33eee5f2
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: d2547ddb
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 1dc000d2
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 44aec2dd
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: a08d9662
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 550066b6
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 25a26019
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 4f8154d1
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 82edc2dc
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 3985ca46
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: fabd324c
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: e1464ded
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 4ebfd5f8
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 73b43a60
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: e6b7bc23
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 5c445287
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: c3f37348
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: ed3f33ed
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 90d4c20f
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: fd954c0e
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 57d6c415
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 0fcf5515
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 755a6be5
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 39cc0380
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 0b80e5de
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: c017602a
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: d5405422
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 635f2be4
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: f3bc9466
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: ad74a2f3
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 5f4b184c
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 03903eef
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 27a379b9
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 69f56faa
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 343ba0c0
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 86efa7fe
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 1e7c1510
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 37db7a06
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: c4d05ed7
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 3c356eb4
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: c0d20fc8
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 4825ff09
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 758b5e43
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 159f36c8
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: b7baa4f2
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 068b5a7b
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: f8a7fad3
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 32b0cac8
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 02b4dba1
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: ef4c3ed9
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: a8ad717f
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 2beba244
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 086a0880
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 0128fe45
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: e8f796c2
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 629af027
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 45cb6f9f
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 7675eae3
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 0a41d43a
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 8538c3a8
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 26e42322
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 6c09fc97
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 25906e13
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 7e1577ef
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: aaf33a30
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: e4e46218
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 0fada82c
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 90d4cc1c
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 7594e8b5
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 78930cc5
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 52f48778
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 6028f40e
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: f6fae217
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 8047c459
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: ec29385d
+[2025-06-15 05:57:23] test-instance | SEND_MESSAGE | To: #perf-test | ID: 92266393
+[2025-06-15 05:57:23] test-instance | CHECK_NOTIFICATIONS | Checked notifications: 1 mentions, 3 alerts
+[2025-06-15 06:09:18] instance-2 | SEND_MESSAGE | To: #python-dev | ID: af36e909
+[2025-06-15 06:09:18] instance-1 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 06:09:18] instance-1 | SYSTEM_STATUS | Checking comprehensive system status
+[2025-06-15 06:09:19] instance-3 | SEND_MESSAGE | To: #task-coordination | ID: 5c43b040
+[2025-06-15 06:10:02] instance-3 | SEARCH_MESSAGES | Searched for: instance-3
+[2025-06-15 06:10:14] instance-3 | CHATROOM_CREATED | Created chatroom 'python-testing' with description: Testing Python coordination system features
+[2025-06-15 06:10:35] instance-3 | SEND_MESSAGE | To: #python-testing | ID: 4fec2639
+[2025-06-15 06:10:46] instance-3 | SEARCH_MESSAGES | Searched for: python
+[2025-06-15 06:10:58] instance-3 | REPLY_MESSAGE | Replied to message #10
+[2025-06-15 06:11:00] instance-2 | CHECK_NOTIFICATIONS | Checked notifications: 10 mentions, 3 alerts
+[2025-06-15 06:11:11] instance-3 | CHATROOM_CLOSED | Closed chatroom 'python-testing' - Reason: Testing complete - closing test chatroom
+[2025-06-15 06:11:44] instance-2 | SEND_MESSAGE | To: #test | ID: 3714a2a9
+[2025-06-15 06:11:44] instance-1 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 06:11:44] instance-1 | SYSTEM_STATUS | Checking comprehensive system status
+[2025-06-15 06:11:49] instance-1 | LIST_CHATROOMS | Agent accessed chatroom list
+[2025-06-15 06:12:46] instance-3 | SEND_MESSAGE | To: #python-dev | ID: 1d3fa770
+[2025-06-15 06:13:52] instance-2 | SEND_MESSAGE | To: #python-dev | ID: 7e3194d2
+[2025-06-15 06:13:52] instance-2 | CHECK_NOTIFICATIONS | Checked notifications: 10 mentions, 3 alerts
+[2025-06-15 06:13:52] instance-2 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 06:13:52] instance-2 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 06:13:52] instance-2 | SYSTEM_STATUS | Checking comprehensive system status
+[2025-06-15 06:13:52] instance-2 | SEND_MESSAGE | To: @instance-1 | ID: e3618cb4
+[2025-06-15 06:13:52] instance-2 | UPDATE_STATUS | Status updated to: Testing Python API directly - no bash commands
+[2025-06-15 06:13:52] instance-2 | SEARCH_MESSAGES | Searched for: python
+[2025-06-15 06:13:52] instance-2 | LIST_CHATROOMS | Agent accessed chatroom list
+[2025-06-15 06:14:23] instance-2 | SEND_MESSAGE | To: #python-dev | ID: e4896f14
+[2025-06-15 06:14:23] instance-2 | CHECK_NOTIFICATIONS | Checked notifications: 10 mentions, 3 alerts
+[2025-06-15 06:14:23] instance-2 | UPDATE_STATUS | Status updated to: Using Python API directly - no bash, no test files
+[2025-06-15 06:14:47] instance-1 | SEND_DM | To: instance-2 | ID: b7e4c3da
+[2025-06-15 06:14:51] instance-1 | CHECK_DM | Checking all DMs
+[2025-06-15 06:14:57] instance-2 | SEND_MESSAGE | To: #python-dev | ID: 43418956
+[2025-06-15 06:14:58] instance-1 | CHATROOM_REOPENED | Reopened chatroom 'test-messaging' - Reason: Testing reopen functionality in Python system
+[2025-06-15 06:15:04] instance-1 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 06:15:04] instance-1 | SYSTEM_STATUS | Checking comprehensive system status
+[2025-06-15 06:15:04] instance-1 | SYSTEM_SUMMARY | Generated comprehensive system summary
+[2025-06-15 06:15:20] instance-1 | SEND_MESSAGE | To: #python-dev | ID: 2cd6ca9b
+[2025-06-15 06:16:48] instance-1 | SEND_MESSAGE | To: #python-dev | ID: 032317fe
+[2025-06-15 06:16:48] instance-1 | SEND_DM | To: instance-2 | ID: 8aeadecf
+[2025-06-15 06:16:48] instance-1 | CHECK_NOTIFICATIONS | Checked notifications: 8 mentions, 5 alerts
+[2025-06-15 06:16:48] instance-1 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 06:16:48] instance-1 | SYSTEM_STATUS | Checking comprehensive system status
+[2025-06-15 06:16:48] instance-1 | UPDATE_STATUS | Status updated to: Using pure Python API - demonstrating zero bash dependency!
+[2025-06-15 06:16:48] instance-1 | SEARCH_MESSAGES | Searched for: python
+[2025-06-15 06:16:48] instance-1 | CHECK_DM | Checking all DMs
+[2025-06-15 06:16:48] instance-1 | LIST_CHATROOMS | Agent accessed chatroom list
+[2025-06-15 06:20:04] instance-3 | SEND_MESSAGE | To: #task-coordination | ID: 5f46ab1c
+[2025-06-15 06:23:05] instance-1 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 06:23:05] instance-1 | SYSTEM_STATUS | Checking comprehensive system status
+[2025-06-15 06:23:05] instance-1 | SYSTEM_SUMMARY | Generated comprehensive system summary
+[2025-06-15 06:23:13] instance-1 | SEND_MESSAGE | To: #task-coordination | ID: f02d463e
+[2025-06-15 06:27:46] instance-2 | CHECK_NOTIFICATIONS | Checked notifications: 11 mentions, 6 alerts
+[2025-06-15 06:28:03] instance-2 | SEND_MESSAGE | To: #task-coordination | ID: b1a555f1
+[2025-06-15 06:29:14] instance-2 | CHECK_DM | Checking all DMs
+[2025-06-15 06:29:34] instance-1 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 06:29:39] instance-1 | SYSTEM_STATUS | Checking comprehensive system status
+[2025-06-15 06:29:47] instance-1 | CHECK_NOTIFICATIONS | Checked notifications: 8 mentions, 6 alerts
+[2025-06-15 06:29:47] instance-1 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 06:29:51] instance-3 | LIST_CHATROOMS | Agent accessed chatroom list
+[2025-06-15 06:29:51] instance-3 | HELP_ACCESSED | Agent accessed help system
+[2025-06-15 06:30:38] instance-1 | MARK_READ | Message 1 marked as read
+[2025-06-15 06:30:38] instance-1 | MARK_READ | Message 2 marked as read
+[2025-06-15 06:30:38] instance-1 | MARK_READ | Message 3 marked as read
+[2025-06-15 06:30:38] instance-1 | MARK_READ | Message 4 marked as read
+[2025-06-15 06:30:38] instance-1 | MARK_READ | Message 5 marked as read
+[2025-06-15 06:30:38] instance-1 | MARK_READ | Message 6 marked as read
+[2025-06-15 06:30:38] instance-1 | MARK_READ | Message 7 marked as read
+[2025-06-15 06:30:38] instance-1 | MARK_READ | Message 8 marked as read
+[2025-06-15 06:30:38] instance-1 | MARK_READ | Message 9 marked as read
+[2025-06-15 06:30:38] instance-1 | MARK_READ | Message 10 marked as read
+[2025-06-15 06:30:38] instance-1 | MARK_READ | Message 11 marked as read
+[2025-06-15 06:30:38] instance-1 | MARK_READ | Message 12 marked as read
+[2025-06-15 06:30:38] instance-1 | MARK_READ | Message 13 marked as read
+[2025-06-15 06:30:38] instance-1 | MARK_READ | Message 14 marked as read
+[2025-06-15 06:30:38] instance-1 | MARK_READ | Message 15 marked as read
+[2025-06-15 06:30:38] instance-1 | MARK_READ | Message 16 marked as read
+[2025-06-15 06:30:38] instance-1 | MARK_READ | Message 17 marked as read
+[2025-06-15 06:30:38] instance-1 | MARK_READ | Message 18 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 19 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 20 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 21 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 22 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 23 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 24 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 25 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 26 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 27 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 28 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 29 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 30 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 31 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 32 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 33 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 34 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 35 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 36 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 37 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 38 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 39 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 40 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 41 marked as read
+[2025-06-15 06:30:39] instance-1 | MARK_READ | Message 42 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 43 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 44 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 45 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 46 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 47 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 48 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 49 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 50 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 51 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 52 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 53 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 54 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 55 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 56 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 57 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 58 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 59 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 60 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 61 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 62 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 63 marked as read
+[2025-06-15 06:30:40] instance-1 | MARK_READ | Message 64 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 65 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 66 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 67 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 68 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 69 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 70 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 71 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 72 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 73 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 74 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 75 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 76 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 77 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 78 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 79 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 80 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 81 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 82 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 83 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 84 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 85 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 86 marked as read
+[2025-06-15 06:30:41] instance-1 | MARK_READ | Message 87 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 88 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 89 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 90 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 91 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 92 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 93 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 94 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 95 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 96 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 97 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 98 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 99 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 100 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 101 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 102 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 103 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 104 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 105 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 106 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 107 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 108 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 109 marked as read
+[2025-06-15 06:30:42] instance-1 | MARK_READ | Message 110 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 111 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 112 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 113 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 114 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 115 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 116 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 117 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 118 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 119 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 120 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 121 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 122 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 123 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 124 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 125 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 126 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 127 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 128 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 129 marked as read
+[2025-06-15 06:30:43] instance-1 | MARK_READ | Message 130 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 131 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 132 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 133 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 134 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 135 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 136 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 137 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 138 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 139 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 140 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 141 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 142 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 143 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 144 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 145 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 146 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 147 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 148 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 149 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 150 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 151 marked as read
+[2025-06-15 06:30:44] instance-1 | MARK_READ | Message 152 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 153 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 154 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 155 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 156 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 157 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 158 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 159 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 160 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 161 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 162 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 163 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 164 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 165 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 166 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 167 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 168 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 169 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 170 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 171 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 172 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 173 marked as read
+[2025-06-15 06:30:45] instance-1 | MARK_READ | Message 174 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 175 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 176 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 177 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 178 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 179 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 180 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 181 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 182 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 183 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 184 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 185 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 186 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 187 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 188 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 189 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 190 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 191 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 192 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 193 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 194 marked as read
+[2025-06-15 06:30:46] instance-1 | MARK_READ | Message 195 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 196 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 197 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 198 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 199 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 200 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 201 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 202 marked as read
+[2025-06-15 06:30:47] instance-3 | SEND_MESSAGE | To: #task-coordination | ID: 1cbd3b28
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 203 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 204 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 205 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 206 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 207 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 208 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 209 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 210 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 211 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 212 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 213 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 214 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 215 marked as read
+[2025-06-15 06:30:47] instance-1 | MARK_READ | Message 216 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 217 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 218 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 219 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 220 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 221 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 222 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 223 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 224 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 225 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 226 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 227 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 228 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 229 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 230 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 231 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 232 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 233 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 234 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 235 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 236 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 237 marked as read
+[2025-06-15 06:30:48] instance-1 | MARK_READ | Message 238 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 239 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 240 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 241 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 242 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 243 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 244 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 245 marked as read
+[2025-06-15 06:30:49] instance-1 | SEARCH_MESSAGES | Searched for: bash 
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 246 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 247 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 248 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 249 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 250 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 251 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 252 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 253 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 254 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 255 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 256 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 257 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 258 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 259 marked as read
+[2025-06-15 06:30:49] instance-1 | MARK_READ | Message 260 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 261 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 262 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 263 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 264 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 265 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 266 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 267 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 268 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 269 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 270 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 271 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 272 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 273 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 274 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 275 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 276 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 277 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 278 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 279 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 280 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 281 marked as read
+[2025-06-15 06:30:50] instance-1 | MARK_READ | Message 282 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 283 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 284 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 285 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 286 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 287 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 288 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 289 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 290 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 291 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 292 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 293 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 294 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 295 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 296 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 297 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 298 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 299 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 300 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 301 marked as read
+[2025-06-15 06:30:51] instance-1 | MARK_READ | Message 302 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 303 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 304 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 305 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 306 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 307 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 308 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 309 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 310 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 311 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 312 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 313 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 314 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 315 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 316 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 317 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 318 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 319 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 320 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 321 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 322 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 323 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 324 marked as read
+[2025-06-15 06:30:52] instance-1 | MARK_READ | Message 325 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 326 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 327 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 328 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 329 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 330 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 331 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 332 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 333 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 334 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 335 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 336 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 337 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 338 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 339 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 340 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 341 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 342 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 343 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 344 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 345 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 346 marked as read
+[2025-06-15 06:30:53] instance-1 | MARK_READ | Message 347 marked as read
+[2025-06-15 06:30:54] instance-1 | MARK_READ | Message 348 marked as read
+[2025-06-15 06:30:54] instance-1 | MARK_READ | Message 349 marked as read
+[2025-06-15 06:30:54] instance-1 | MARK_READ | Message 350 marked as read
+[2025-06-15 06:30:54] instance-1 | MARK_READ | Message 351 marked as read
+[2025-06-15 06:30:54] instance-1 | MARK_READ | Message 352 marked as read
+[2025-06-15 06:30:54] instance-1 | MARK_READ | Message 353 marked as read
+[2025-06-15 06:30:54] instance-1 | MARK_READ | Message 354 marked as read
+[2025-06-15 06:30:54] instance-1 | MARK_READ | Message 355 marked as read
+[2025-06-15 06:30:54] instance-1 | MARK_READ | Message 356 marked as read
+[2025-06-15 06:30:54] instance-1 | MARK_READ | Message 357 marked as read
+[2025-06-15 06:30:54] instance-1 | MARK_READ | Message 358 marked as read
+[2025-06-15 06:30:54] instance-1 | MARK_READ | Message 359 marked as read
+[2025-06-15 06:30:54] instance-1 | MARK_READ | Message 360 marked as read
+[2025-06-15 06:30:54] instance-1 | MARK_READ | Message 361 marked as read
+[2025-06-15 06:30:54] instance-1 | MARK_READ | Message 362 marked as read
+[2025-06-15 06:30:54] instance-1 | MARK_READ | Message 363 marked as read
+[2025-06-15 06:30:54] instance-1 | MARK_READ | Message 364 marked as read
+[2025-06-15 06:30:54] instance-1 | MARK_READ | Message 365 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 366 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 367 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 368 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 369 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 370 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 371 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 372 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 373 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 374 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 375 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 376 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 377 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 378 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 379 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 380 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 381 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 382 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 383 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 384 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 385 marked as read
+[2025-06-15 06:30:55] instance-1 | MARK_READ | Message 386 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 387 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 388 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 389 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 390 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 391 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 392 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 393 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 394 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 395 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 396 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 397 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 398 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 399 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 400 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 401 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 402 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 403 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 404 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 405 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 406 marked as read
+[2025-06-15 06:30:56] instance-1 | MARK_READ | Message 407 marked as read
+[2025-06-15 06:30:57] instance-1 | MARK_READ | Message 408 marked as read
+[2025-06-15 06:30:57] instance-1 | MARK_READ | Message 409 marked as read
+[2025-06-15 06:30:57] instance-1 | MARK_READ | Message 410 marked as read
+[2025-06-15 06:30:57] instance-1 | MARK_READ | Message 411 marked as read
+[2025-06-15 06:30:57] instance-1 | MARK_READ | Message 412 marked as read
+[2025-06-15 06:30:57] instance-1 | MARK_READ | Message 413 marked as read
+[2025-06-15 06:30:57] instance-1 | MARK_READ | Message 414 marked as read
+[2025-06-15 06:30:57] instance-1 | MARK_READ | Message 415 marked as read
+[2025-06-15 06:30:57] instance-1 | MARK_READ | Message 416 marked as read
+[2025-06-15 06:31:21] instance-3 | SEND_DM | To: instance-2 | ID: 65f4a6ab
+[2025-06-15 06:31:25] instance-3 | CHECK_DM | Checking all DMs
+[2025-06-15 06:31:25] instance-3 | MARK_MESSAGE_READ | Chatroom: dm_instance-1_instance-3 | Msg: 045 | Reader: instance-3
+[2025-06-15 06:31:26] instance-3 | MARK_MESSAGE_READ | Chatroom: dm_instance-2_instance-3 | Msg: 8 | Reader: instance-3
+[2025-06-15 06:31:26] instance-3 | MARK_MESSAGE_READ | Chatroom: dm_instance-2_instance-3 | Msg: 65 | Reader: instance-3
+[2025-06-15 06:31:29] instance-1 | UPDATE_STATUS | Status updated to: Testing all bash commands - coordination system fully operational! 🚀 
+[2025-06-15 06:31:44] instance-1 | REPLY_MESSAGE | Replied to message #497 from instance-3
+[2025-06-15 06:31:52] instance-3 | SYSTEM_SUMMARY | Generated comprehensive system summary
+[2025-06-15 06:32:03] instance-1 | SEND_MESSAGE | To: #task-coordination | ID: d4a36d21
+[2025-06-15 06:32:03] instance-3 | SEND_MESSAGE | To: #task-coordination | ID: 71fdcfba
+[2025-06-15 06:32:12] instance-1 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 06:32:12] instance-1 | SYSTEM_STATUS | Checking comprehensive system status
+[2025-06-15 06:32:21] instance-1 | CHECK_UNREAD | Checking all unread messages
+[2025-06-15 06:32:36] instance-1 | SEND_MESSAGE | To: #python-dev | ID: 0b211085
+[2025-06-15 06:32:45] instance-1 | LIST_CHATROOMS | Agent accessed chatroom list
+[2025-06-15 06:34:06] instance-1 | SEND_MESSAGE | To: #task-coordination | ID: c72909cf

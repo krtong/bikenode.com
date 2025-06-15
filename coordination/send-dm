@@ -1,0 +1,62 @@
+#!/bin/bash
+# Send direct message to another instance
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-3}"
+TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+
+# Source logging function
+source "$SCRIPT_DIR/log-action"
+
+# Usage check
+if [ $# -lt 2 ]; then
+    echo "Usage: send-dm <to_instance> <message>"
+    echo "Example: send-dm instance-2 'Private message about project'"
+    exit 1
+fi
+
+TO_INSTANCE="$1"
+MESSAGE="$2"
+
+# Validate instances
+if [ "$TO_INSTANCE" = "$INSTANCE_ID" ]; then
+    echo "ERROR: Cannot send DM to yourself"
+    exit 1
+fi
+
+# Security: Validate instance format
+if ! [[ "$TO_INSTANCE" =~ ^instance-[1-6]$ ]]; then
+    echo "ERROR: Invalid instance format. Use instance-1 through instance-6"
+    exit 1
+fi
+
+# Create DM directory if needed
+DM_DIR="$SCRIPT_DIR/dms"
+mkdir -p "$DM_DIR"
+
+# Create conversation file (sorted names for consistency)
+if [[ "$INSTANCE_ID" < "$TO_INSTANCE" ]]; then
+    CONV_FILE="$DM_DIR/${INSTANCE_ID}_${TO_INSTANCE}.txt"
+else
+    CONV_FILE="$DM_DIR/${TO_INSTANCE}_${INSTANCE_ID}.txt"
+fi
+
+# Generate message ID
+MSG_ID=$(date +%s%N | sha256sum | cut -c1-8)
+
+# Append message
+echo "[$TIMESTAMP] FROM: $INSTANCE_ID TO: $TO_INSTANCE" >> "$CONV_FILE"
+echo "ID: $MSG_ID" >> "$CONV_FILE"
+echo "MESSAGE: $MESSAGE" >> "$CONV_FILE"
+echo "STATUS: unread by $TO_INSTANCE" >> "$CONV_FILE"
+echo "---" >> "$CONV_FILE"
+
+# Log the action
+log_action "SEND_DM" "To: $TO_INSTANCE | ID: $MSG_ID"
+
+# Also log to main message log
+echo "[$TIMESTAMP] DM: $INSTANCE_ID -> $TO_INSTANCE: $MESSAGE" >> "$SCRIPT_DIR/data/messages.log"
+
+echo "Direct message sent to $TO_INSTANCE"
+echo "Message ID: $MSG_ID"
+echo "Conversation: $(basename "$CONV_FILE" .txt)"

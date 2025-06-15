@@ -1,32 +1,91 @@
 #!/bin/bash
-# Send message to another Claude Code instance
+# Send message to chatroom or instance
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+FROM_INSTANCE="${CLAUDE_INSTANCE_ID:-instance-3}"
+
+# Source logging function
+source "$SCRIPT_DIR/log-action"
 
 # Usage check
 if [ $# -lt 2 ]; then
-    echo "Usage: send-message <to_instance> <message>"
-    echo "Example: send-message instance-2 'Working on coordination system'"
+    echo "Usage: send-message <destination> <message>"
+    echo "  Chatroom: send-message #chatroom-name 'message'"
+    echo "  Instance: send-message @instance-2 'message'"
+    echo "  Legacy:   send-message instance-2 'message'"
     exit 1
 fi
 
-TO_INSTANCE="$1"
+DESTINATION="$1"
 MESSAGE="$2"
-FROM_INSTANCE="${CLAUDE_INSTANCE_ID:-instance-1}"
 
-# Create inbox file if it doesn't exist
-INBOX_FILE="$SCRIPT_DIR/inboxes/$TO_INSTANCE.txt"
-mkdir -p "$SCRIPT_DIR/inboxes"
+# Generate message ID
+MSG_ID=$(date +%s%N | sha256sum | cut -c1-8)
 
-# Append message to inbox
-echo "[$TIMESTAMP] FROM: $FROM_INSTANCE" >> "$INBOX_FILE"
-echo "MESSAGE: $MESSAGE" >> "$INBOX_FILE"
-echo "STATUS: unread" >> "$INBOX_FILE"
-echo "---" >> "$INBOX_FILE"
-
-# Also log to main message log
-echo "[$TIMESTAMP] $FROM_INSTANCE -> $TO_INSTANCE: $MESSAGE" >> "$SCRIPT_DIR/data/messages.log"
-
-echo "Message sent to $TO_INSTANCE"
-echo "Inbox location: $INBOX_FILE"
+# Determine destination type
+if [[ "$DESTINATION" =~ ^#(.+)$ ]]; then
+    # Chatroom message
+    CHATROOM="${BASH_REMATCH[1]}"
+    CHATROOM_FILE="$SCRIPT_DIR/chatrooms/$CHATROOM.txt"
+    
+    if [ ! -f "$CHATROOM_FILE" ]; then
+        echo "ERROR: Chatroom '$CHATROOM' does not exist"
+        echo "Available chatrooms:"
+        ls "$SCRIPT_DIR/chatrooms/" 2>/dev/null | grep -v ".lock" | sed 's/.txt$//' | sed 's/^/  #/'
+        exit 1
+    fi
+    
+    # Append to chatroom
+    echo "[$TIMESTAMP] FROM: $FROM_INSTANCE" >> "$CHATROOM_FILE"
+    echo "ID: $MSG_ID" >> "$CHATROOM_FILE"
+    echo "MESSAGE: $MESSAGE" >> "$CHATROOM_FILE"
+    echo "---" >> "$CHATROOM_FILE"
+    
+    # Log action
+    log_action "SEND_MESSAGE" "To: #$CHATROOM | ID: $MSG_ID"
+    echo "[$TIMESTAMP] $FROM_INSTANCE -> #$CHATROOM: $MESSAGE" >> "$SCRIPT_DIR/data/messages.log"
+    
+    echo "Message sent to #$CHATROOM"
+    echo "Message ID: $MSG_ID"
+    
+elif [[ "$DESTINATION" =~ ^@(.+)$ ]]; then
+    # Direct instance message (inbox)
+    TO_INSTANCE="${BASH_REMATCH[1]}"
+    INBOX_FILE="$SCRIPT_DIR/inboxes/$TO_INSTANCE.txt"
+    mkdir -p "$SCRIPT_DIR/inboxes"
+    
+    # Append message to inbox
+    echo "[$TIMESTAMP] FROM: $FROM_INSTANCE" >> "$INBOX_FILE"
+    echo "ID: $MSG_ID" >> "$INBOX_FILE"
+    echo "MESSAGE: $MESSAGE" >> "$INBOX_FILE"
+    echo "STATUS: unread" >> "$INBOX_FILE"
+    echo "---" >> "$INBOX_FILE"
+    
+    # Log action
+    log_action "SEND_MESSAGE" "To: @$TO_INSTANCE | ID: $MSG_ID"
+    echo "[$TIMESTAMP] $FROM_INSTANCE -> @$TO_INSTANCE: $MESSAGE" >> "$SCRIPT_DIR/data/messages.log"
+    
+    echo "Message sent to @$TO_INSTANCE"
+    echo "Message ID: $MSG_ID"
+    
+else
+    # Legacy format (backward compatibility)
+    TO_INSTANCE="$DESTINATION"
+    INBOX_FILE="$SCRIPT_DIR/inboxes/$TO_INSTANCE.txt"
+    mkdir -p "$SCRIPT_DIR/inboxes"
+    
+    # Append message to inbox
+    echo "[$TIMESTAMP] FROM: $FROM_INSTANCE" >> "$INBOX_FILE"
+    echo "ID: $MSG_ID" >> "$INBOX_FILE"
+    echo "MESSAGE: $MESSAGE" >> "$INBOX_FILE"
+    echo "STATUS: unread" >> "$INBOX_FILE"
+    echo "---" >> "$INBOX_FILE"
+    
+    # Log action
+    log_action "SEND_MESSAGE" "To: $TO_INSTANCE | ID: $MSG_ID"
+    echo "[$TIMESTAMP] $FROM_INSTANCE -> $TO_INSTANCE: $MESSAGE" >> "$SCRIPT_DIR/data/messages.log"
+    
+    echo "Message sent to $TO_INSTANCE"
+    echo "Message ID: $MSG_ID"
+fi

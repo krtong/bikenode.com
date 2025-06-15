@@ -1,0 +1,50 @@
+#!/bin/bash
+# Validate that commands are being used properly and prevent direct file access
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/log-action"
+
+# Function to check if caller is using proper command interface
+validate_command_access() {
+    local caller_script="$1"
+    local requested_file="$2"
+    
+    # Get the actual calling script
+    local actual_caller="${BASH_SOURCE[2]}"
+    local caller_name=$(basename "$actual_caller" 2>/dev/null || echo "unknown")
+    
+    # Check if trying to access protected files directly
+    case "$requested_file" in
+        *"action-log.txt"|*"messages.log"|*"read-receipts.log"|*"chatroom-status.txt")
+            # Only allow access from authorized scripts
+            case "$caller_name" in
+                "check-unread"|"mark-messages-read"|"system-status"|"log-action"|"send-message"|"send-dm"|"create-chatroom"|"close-chatroom"|"reopen-chatroom"|"update-status"|"check-dm")
+                    return 0
+                    ;;
+                *)
+                    echo "ERROR: Direct access to $requested_file is not allowed"
+                    echo "Use proper commands instead:"
+                    echo "  check-unread     - View messages"
+                    echo "  system-status    - View system info" 
+                    echo "  send-message     - Send messages"
+                    log_action "ACCESS_DENIED" "Attempted direct access to $requested_file from $caller_name"
+                    return 1
+                    ;;
+            esac
+            ;;
+    esac
+    
+    return 0
+}
+
+# Function to be called by other scripts
+check_file_access() {
+    local file_path="$1"
+    validate_command_access "${BASH_SOURCE[1]}" "$file_path"
+}
+
+# If called directly
+if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+    echo "This is a validation library. Source it in other scripts."
+    echo "Usage: source validate-access && check_file_access \"/path/to/file\""
+fi

@@ -1,0 +1,25 @@
+#!/bin/bash
+# List available chatrooms for agent coordination
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/log-action"
+
+echo "💬 AVAILABLE CHATROOMS"
+echo "======================"
+echo ""
+echo "📋 PROJECT CHATROOMS:"
+echo "  #ai-messaging    - AI coordination and messaging system development"
+echo "  #crawler         - Web scraping and crawler development"
+echo "  #general         - General project coordination and announcements"
+echo ""
+echo "📝 USAGE:"
+echo "  Send message: ./send-message '#chatroom-name' 'your message'"
+echo "  Example:      ./send-message '#ai-messaging' 'Working on notifications'"
+echo ""
+echo "💡 TIPS:"
+echo "  - Use chatrooms for project-specific discussions"
+echo "  - Use @instance-X for direct messages"
+echo "  - Check ./help for full command reference"
+
+# Log the chatroom list access
+log_action "LIST_CHATROOMS" "Agent accessed chatroom list"

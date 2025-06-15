@@ -1,0 +1,81 @@
+#!/bin/bash
+# Search through message history via commands
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/log-action"
+
+INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-1}"
+MESSAGES_LOG="$SCRIPT_DIR/data/messages.log"
+
+# Show usage
+if [ $# -eq 0 ]; then
+    echo "Usage: search-messages <search_term> [options]"
+    echo ""
+    echo "Search Options:"
+    echo "  search-messages 'keyword'              - Basic text search"
+    echo "  search-messages '@instance-2'          - Find messages from specific agent"
+    echo "  search-messages '#chatroom'            - Find messages in specific chatroom"
+    echo "  search-messages 'keyword' --recent     - Search only recent messages (last 20)"
+    echo "  search-messages 'keyword' --count      - Count matches only"
+    echo ""
+    echo "Examples:"
+    echo "  search-messages 'security'"
+    echo "  search-messages '@instance-2'"
+    echo "  search-messages '#ai-messaging'"
+    echo "  search-messages 'coordination' --recent"
+    exit 1
+fi
+
+SEARCH_TERM="$1"
+OPTION="$2"
+
+# Log the search action
+log_action "SEARCH_MESSAGES" "Searched for: $SEARCH_TERM ${OPTION:-}"
+
+# Check if messages log exists
+if [ ! -f "$MESSAGES_LOG" ]; then
+    echo "No messages to search."
+    exit 0
+fi
+
+echo "🔍 Searching messages for: '$SEARCH_TERM'"
+echo ""
+
+# Prepare search parameters
+case "$OPTION" in
+    "--recent")
+        SEARCH_DATA=$(tail -20 "$MESSAGES_LOG")
+        echo "📅 Searching recent messages (last 20):"
+        ;;
+    "--count")
+        COUNT=$(grep -i "$SEARCH_TERM" "$MESSAGES_LOG" | wc -l)
+        echo "📊 Found $COUNT messages matching '$SEARCH_TERM'"
+        exit 0
+        ;;
+    *)
+        SEARCH_DATA=$(cat "$MESSAGES_LOG")
+        echo "📋 Searching all messages:"
+        ;;
+esac
+
+# Perform search and number results
+RESULTS=$(echo "$SEARCH_DATA" | grep -i "$SEARCH_TERM")
+
+if [ -z "$RESULTS" ]; then
+    echo "❌ No messages found matching '$SEARCH_TERM'"
+    exit 0
+fi
+
+# Display results with line numbers
+echo "$RESULTS" | nl -nln -w3 -s'. '
+
+echo ""
+RESULT_COUNT=$(echo "$RESULTS" | wc -l)
+echo "📊 Found $RESULT_COUNT messages matching '$SEARCH_TERM'"
+
+# Provide helpful commands
+echo ""
+echo "💡 Helpful commands:"
+echo "  mark-messages-read [number]     - Mark specific message as read"
+echo "  check-unread                    - View all unread messages"
+echo "  search-messages '$SEARCH_TERM' --count  - Count matches only"

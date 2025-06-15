@@ -1,0 +1,116 @@
+#!/bin/bash
+# Reply to specific messages with threading support
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/log-action"
+
+INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-1}"
+MESSAGES_LOG="$SCRIPT_DIR/data/messages.log"
+
+# Show usage
+if [ $# -lt 2 ]; then
+    echo "Usage: reply-to-message <message_number> '<reply_text>'"
+    echo ""
+    echo "Reply to a specific message with threading:"
+    echo "  reply-to-message 5 'Thanks for the update on security'"
+    echo "  reply-to-message 12 'I agree with your assessment'"
+    echo ""
+    echo "To find message numbers:"
+    echo "  check-unread                    - See unread messages with numbers"
+    echo "  search-messages 'keyword'       - Find specific messages"
+    echo ""
+    exit 1
+fi
+
+MESSAGE_NUMBER="$1"
+REPLY_TEXT="$2"
+
+# Validate message number
+if ! [[ "$MESSAGE_NUMBER" =~ ^[0-9]+$ ]]; then
+    echo "ERROR: Message number must be a positive integer"
+    exit 1
+fi
+
+# Check if messages log exists
+if [ ! -f "$MESSAGES_LOG" ]; then
+    echo "ERROR: No messages found to reply to"
+    exit 1
+fi
+
+# Get total message count
+TOTAL_MESSAGES=$(wc -l < "$MESSAGES_LOG" 2>/dev/null || echo "0")
+
+# Validate message number exists
+if [ "$MESSAGE_NUMBER" -gt "$TOTAL_MESSAGES" ] || [ "$MESSAGE_NUMBER" -lt 1 ]; then
+    echo "ERROR: Message $MESSAGE_NUMBER does not exist (total messages: $TOTAL_MESSAGES)"
+    exit 1
+fi
+
+# Get the original message
+ORIGINAL_MESSAGE=$(sed -n "${MESSAGE_NUMBER}p" "$MESSAGES_LOG")
+
+if [ -z "$ORIGINAL_MESSAGE" ]; then
+    echo "ERROR: Could not retrieve message $MESSAGE_NUMBER"
+    exit 1
+fi
+
+# Extract details from original message
+ORIGINAL_TIMESTAMP=$(echo "$ORIGINAL_MESSAGE" | grep -o '\[[^]]*\]' | head -1)
+ORIGINAL_SENDER=$(echo "$ORIGINAL_MESSAGE" | sed 's/.*\] \([^:]*\) ->.*/\1/')
+
+# Validate reply text
+if [ -z "$REPLY_TEXT" ]; then
+    echo "ERROR: Reply text cannot be empty"
+    exit 1
+fi
+
+if [ ${#REPLY_TEXT} -gt 500 ]; then
+    echo "ERROR: Reply text too long (max 500 characters)"
+    exit 1
+fi
+
+# Generate reply ID
+REPLY_ID=$(date +%s%N | sha256sum | cut -c1-8)
+TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+
+# Determine target (extract from original message)
+if [[ "$ORIGINAL_MESSAGE" =~ "-> @"([^:]*): ]]; then
+    # It was a DM, reply as DM
+    TARGET="@$ORIGINAL_SENDER"
+elif [[ "$ORIGINAL_MESSAGE" =~ "-> #"([^:]*): ]] || [[ "$ORIGINAL_MESSAGE" =~ "-> "([^:]*): ]]; then
+    # It was a chatroom message, reply to same chatroom
+    TARGET=$(echo "$ORIGINAL_MESSAGE" | sed 's/.*-> \([^:]*\):.*/\1/')
+else
+    # Default to general chatroom
+    TARGET="general"
+fi
+
+# Format threaded reply
+THREADED_REPLY="[REPLY to msg #$MESSAGE_NUMBER from $ORIGINAL_SENDER] $REPLY_TEXT"
+
+# Add to messages log
+echo "[$TIMESTAMP] $INSTANCE_ID -> $TARGET: $THREADED_REPLY" >> "$MESSAGES_LOG"
+
+# Log the action
+log_action "REPLY_MESSAGE" "Replied to message #$MESSAGE_NUMBER from $ORIGINAL_SENDER"
+
+# Show confirmation
+echo "✅ Reply sent successfully!"
+echo ""
+echo "📨 Original message #$MESSAGE_NUMBER:"
+echo "   $ORIGINAL_MESSAGE"
+echo ""
+echo "💬 Your reply:"
+echo "   [$TIMESTAMP] $INSTANCE_ID -> $TARGET: $THREADED_REPLY"
+echo ""
+echo "🔗 Reply ID: $REPLY_ID"
+
+# Update read status for the message being replied to
+READ_STATUS_FILE="$SCRIPT_DIR/read-status/$INSTANCE_ID.txt"
+mkdir -p "$SCRIPT_DIR/read-status"
+if [ -f "$READ_STATUS_FILE" ]; then
+    if ! grep -q "^$MESSAGE_NUMBER:" "$READ_STATUS_FILE"; then
+        echo "$MESSAGE_NUMBER:$TIMESTAMP" >> "$READ_STATUS_FILE"
+        echo "📖 Marked message #$MESSAGE_NUMBER as read"
+    fi
+fi

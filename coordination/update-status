@@ -2,6 +2,8 @@
 # Update instance status - SECURITY PATCHED
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/log-action"
+
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
 INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-1}"
 
@@ -54,6 +56,9 @@ echo "$INSTANCE_ID: $STATUS_MESSAGE (updated: $TIMESTAMP)" >> "${STATUS_FILE}.tm
 
 # Replace old file
 mv "${STATUS_FILE}.tmp" "$STATUS_FILE"
+
+# Log the action
+log_action "UPDATE_STATUS" "Status updated to: $STATUS_MESSAGE"
 
 echo "Status updated for $INSTANCE_ID"
 echo "Current status: $STATUS_MESSAGE"

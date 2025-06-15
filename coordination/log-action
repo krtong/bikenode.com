@@ -4,28 +4,33 @@
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ACTION_LOG="$SCRIPT_DIR/data/action-log.txt"
-INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-1}"
+INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-3}"
 
-# Ensure action log exists
+# Ensure data directory and action log exist
+mkdir -p "$SCRIPT_DIR/data"
 touch "$ACTION_LOG"
 
-# Get parameters
-ACTION_TYPE="$1"
-DETAILS="$2"
+# Function for logging (can be sourced by other scripts)
+log_action() {
+    local action="$1"
+    local details="$2"
+    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    echo "[$timestamp] $INSTANCE_ID | $action | $details" >> "$ACTION_LOG"
+}
 
-if [ -z "$ACTION_TYPE" ]; then
-    echo "ERROR: Action type required"
-    echo "Usage: log-action \"ACTION_TYPE\" \"details\""
-    exit 1
-fi
-
-# Create timestamp
-TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
-
-# Log the action
-echo "[$TIMESTAMP] $INSTANCE_ID: $ACTION_TYPE - $DETAILS" >> "$ACTION_LOG"
-
-# Also output to console if called directly
+# If called directly (not sourced)
 if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+    # Get parameters
+    ACTION_TYPE="$1"
+    DETAILS="$2"
+    
+    if [ -z "$ACTION_TYPE" ]; then
+        echo "ERROR: Action type required"
+        echo "Usage: log-action \"ACTION_TYPE\" \"details\""
+        exit 1
+    fi
+    
+    # Log the action
+    log_action "$ACTION_TYPE" "$DETAILS"
     echo "Action logged: $ACTION_TYPE"
 fi

@@ -1,0 +1,96 @@
+#!/bin/bash
+# Mark specific messages as read for current instance
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/log-action"
+
+INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-1}"
+MESSAGES_LOG="$SCRIPT_DIR/data/messages.log"
+READ_STATUS_DIR="$SCRIPT_DIR/read-status"
+READ_STATUS_FILE="$READ_STATUS_DIR/$INSTANCE_ID.txt"
+
+# Show usage
+if [ $# -eq 0 ]; then
+    echo "Usage: mark-messages-read [message_number|all]"
+    echo ""
+    echo "Mark specific messages as read:"
+    echo "  mark-messages-read 5        - Mark message 5 as read"
+    echo "  mark-messages-read 1-5      - Mark messages 1-5 as read"
+    echo "  mark-messages-read all      - Mark all messages as read"
+    echo ""
+    echo "Current unread messages:"
+    "$SCRIPT_DIR/check-unread"
+    exit 1
+fi
+
+# Create read status file if it doesn't exist
+mkdir -p "$READ_STATUS_DIR"
+touch "$READ_STATUS_FILE"
+
+# Function to mark a single message as read
+mark_message_read() {
+    local msg_num="$1"
+    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    
+    # Check if message exists
+    if [ "$msg_num" -gt "$(wc -l < "$MESSAGES_LOG" 2>/dev/null || echo "0")" ]; then
+        echo "ERROR: Message $msg_num does not exist"
+        return 1
+    fi
+    
+    # Check if already marked as read
+    if grep -q "^$msg_num:" "$READ_STATUS_FILE" 2>/dev/null; then
+        echo "Message $msg_num already marked as read"
+        return 0
+    fi
+    
+    # Mark as read
+    echo "$msg_num:$timestamp" >> "$READ_STATUS_FILE"
+    echo "Marked message $msg_num as read"
+    
+    # Log the read receipt
+    echo "[$timestamp] READ-RECEIPT: $INSTANCE_ID read message $msg_num" >> "$SCRIPT_DIR/data/read-receipts.log"
+    log_action "MARK_READ" "Message $msg_num marked as read"
+}
+
+# Parse input
+if [ "$1" = "all" ]; then
+    # Mark all messages as read
+    total_messages=$(wc -l < "$MESSAGES_LOG" 2>/dev/null || echo "0")
+    if [ "$total_messages" -eq 0 ]; then
+        echo "No messages to mark as read"
+        exit 0
+    fi
+    
+    timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    for i in $(seq 1 "$total_messages"); do
+        if ! grep -q "^$i:" "$READ_STATUS_FILE" 2>/dev/null; then
+            echo "$i:$timestamp" >> "$READ_STATUS_FILE"
+        fi
+    done
+    echo "Marked all $total_messages messages as read"
+    echo "[$timestamp] READ-RECEIPT: $INSTANCE_ID read all messages (1-$total_messages)" >> "$SCRIPT_DIR/data/read-receipts.log"
+    log_action "MARK_READ_ALL" "All $total_messages messages marked as read"
+    
+elif [[ "$1" =~ ^[0-9]+-[0-9]+$ ]]; then
+    # Range of messages (e.g., 1-5)
+    start_msg="${1%-*}"
+    end_msg="${1#*-}"
+    
+    if [ "$start_msg" -gt "$end_msg" ]; then
+        echo "ERROR: Invalid range - start must be less than or equal to end"
+        exit 1
+    fi
+    
+    for i in $(seq "$start_msg" "$end_msg"); do
+        mark_message_read "$i"
+    done
+    
+elif [[ "$1" =~ ^[0-9]+$ ]]; then
+    # Single message number
+    mark_message_read "$1"
+    
+else
+    echo "ERROR: Invalid input. Use a number, range (1-5), or 'all'"
+    exit 1
+fi

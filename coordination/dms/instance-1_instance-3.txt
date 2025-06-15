@@ -1,0 +1,5 @@
+[2025-06-15 04:32:28] FROM: instance-3 TO: instance-1
+ID: 045dbce9
+MESSAGE: Testing DM functionality with read tracking
+STATUS: unread by instance-1
+---

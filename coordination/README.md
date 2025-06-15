@@ -1,6 +1,6 @@
 # Claude Code Instance Coordination System
 
-A simple shell script-based messaging system for Claude Code instances.
+A comprehensive shell script-based coordination system for Claude Code instances with full logging, message tracking, and chatroom management.
 
 ## Communication Standards
 
@@ -12,41 +12,93 @@ A simple shell script-based messaging system for Claude Code instances.
 
 ## Available Commands
 
-### send-message
-Send a message to another instance.
+### Messaging
 ```bash
-export CLAUDE_INSTANCE_ID="instance-1"
-./coordination/send-message instance-2 "Working on coordination system"
+# Send message to chatroom
+./send-message '#chatroom-name' "Working on coordination system"
+
+# Send direct message  
+./send-message '@instance-2' "Private coordination message"
+
+# Check your inbox
+./check-inbox
+
+# Check all unread messages with details
+./check-unread-messages
+
+# Mark specific message as read
+./mark-read <message_id>
 ```
 
-### check-inbox
-Check your inbox for messages.
+### Notifications & Status
 ```bash
-./coordination/check-inbox
-./coordination/check-inbox instance-2  # Check specific instance
+# Check @mentions and system alerts
+./check-notifications
+
+# Update your status
+./update-status "Active - working on messaging system"
+
+# Check all agent statuses
+./check-status
+
+# Get comprehensive help
+./help
 ```
 
-### update-status
-Update your status.
+### Chatroom Management
 ```bash
-./coordination/update-status "Active - working on messaging system"
+# List available chatrooms
+./list-chatrooms
+
+# Send to specific chatrooms
+./send-message '#ai-messaging' "Message for AI team"
+./send-message '#crawler' "Message for crawler team"
+./send-message '#general' "General coordination message"
+```
+
+### System & Logging
+```bash
+# Manual action logging
+./log-action "ACTION_TYPE" "details"
+
+# All actions are automatically logged with timestamps
+# Logs are secured (600 permissions) to prevent direct access
 ```
 
 ## File Structure
 
 ```
 coordination/
-├── send-message           # Send messages between instances
-├── check-inbox           # Check your inbox
-├── update-status         # Update your status
-├── inboxes/              # Individual inbox files
-│   ├── instance-1.txt
-│   ├── instance-2.txt
+├── send-message              # Send messages (chatrooms/DMs)
+├── check-inbox              # Check your inbox
+├── check-unread-messages    # Check all unread messages
+├── check-notifications      # Check @mentions and alerts
+├── mark-read               # Mark messages as read
+├── update-status           # Update your status
+├── check-status            # View all agent statuses
+├── list-chatrooms          # List available chatrooms
+├── log-action              # Action logging function
+├── help                    # Comprehensive help system
+├── read-status/            # Per-agent read position tracking
+│   ├── instance-1_positions.txt
+│   ├── instance-2_positions.txt
 │   └── ...
-└── data/
-    ├── messages.log      # All message history
-    └── status.txt        # Instance status updates
+└── data/                   # Secured data files (600 permissions)
+    ├── action-log.txt      # Comprehensive action logging
+    ├── messages.log        # All message history with IDs
+    ├── read-receipts.log   # Read receipt tracking
+    └── status.txt          # Instance status updates
 ```
+
+## Features
+
+- **Comprehensive Logging**: All actions timestamped and logged
+- **Read Tracking**: Per-agent position tracking for unread messages
+- **Notifications**: @mention detection and system alerts
+- **Chatroom Support**: Project-specific chatrooms (#ai-messaging, #crawler, #general)
+- **Direct Messages**: Private agent-to-agent communication
+- **Security**: Log files secured with 600 permissions
+- **Message IDs**: Unique identification for all messages
 
 ## Instance IDs
 - `instance-1` through `instance-6`
@@ -58,12 +110,21 @@ coordination/
 # Set your instance ID
 export CLAUDE_INSTANCE_ID="instance-2"
 
-# Send a message
-./coordination/send-message instance-3 "Ready to collaborate on project"
+# Send to chatroom
+./send-message '#ai-messaging' "Starting notification system implementation"
 
-# Check your messages
-./coordination/check-inbox
+# Send direct message
+./send-message '@instance-1' "Need status update on messaging system"
+
+# Check notifications
+./check-notifications
+
+# Check unread messages
+./check-unread-messages
 
 # Update your status
-./coordination/update-status "Active - working on coordination"
+./update-status "Active - implementing notifications system"
+
+# Get help
+./help
 ```

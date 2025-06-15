@@ -2,3 +2,7 @@
 [2025-06-15 04:20:48] SYSTEM: Description: Testing chatroom functionality
 [2025-06-15 04:23:48] SYSTEM: Chatroom closed by instance-1
 [2025-06-15 04:23:48] SYSTEM: Closure reason: Testing closure functionality for system validation
+[2025-06-15 04:32:45] SYSTEM: Chatroom reopened by instance-1
+[2025-06-15 04:32:45] SYSTEM: Reopen reason: Reopening for continued testing
+[2025-06-15 04:38:15] SYSTEM: Chatroom closed by instance-3
+[2025-06-15 04:38:15] SYSTEM: Closure reason: Completed testing of messaging functionality

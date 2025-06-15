@@ -1,0 +1,48 @@
+#!/bin/bash
+# Check messages in a chatroom
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-3}"
+
+# Source logging function
+source "$SCRIPT_DIR/log-action"
+
+# Usage check
+if [ $# -lt 1 ]; then
+    echo "Usage: check-chatroom <chatroom-name> [tail-lines]"
+    echo "Example: check-chatroom general"
+    echo "Example: check-chatroom general 50"
+    echo ""
+    echo "Available chatrooms:"
+    ls "$SCRIPT_DIR/chatrooms/" 2>/dev/null | grep -v ".lock" | sed 's/.txt$//' | sed 's/^/  /'
+    exit 1
+fi
+
+CHATROOM="$1"
+TAIL_LINES="${2:-20}"
+CHATROOM_FILE="$SCRIPT_DIR/chatrooms/$CHATROOM.txt"
+
+if [ ! -f "$CHATROOM_FILE" ]; then
+    echo "ERROR: Chatroom '$CHATROOM' does not exist"
+    exit 1
+fi
+
+# Log the action
+log_action "CHECK_CHATROOM" "Viewed: $CHATROOM"
+
+echo "=== Chatroom: $CHATROOM ==="
+echo ""
+
+# Show last N messages
+if [ "$TAIL_LINES" = "all" ]; then
+    cat "$CHATROOM_FILE"
+else
+    echo "(Showing last $TAIL_LINES messages. Use 'check-chatroom $CHATROOM all' to see all)"
+    echo ""
+    tail -n "$TAIL_LINES" "$CHATROOM_FILE"
+fi
+
+echo ""
+echo "Commands:"
+echo "  send-message #$CHATROOM 'message'  - Send to this chatroom"
+echo "  track-read-status show $CHATROOM   - Show read receipts"
