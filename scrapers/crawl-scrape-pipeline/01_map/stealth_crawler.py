@@ -120,7 +120,7 @@ class StealthSpider(scrapy.Spider):
                     'playwright_include_page': True,
                     'playwright_page_methods': [
                         # Remove webdriver traces
-                        PageMethod('evaluate_on_new_document', """
+                        {'name': 'evaluate_on_new_document', 'args': ["""
                             () => {
                                 // Override webdriver property
                                 Object.defineProperty(navigator, 'webdriver', {

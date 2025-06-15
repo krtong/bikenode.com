@@ -1,0 +1,32 @@
+#!/bin/bash
+# Send message to another Claude Code instance
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+
+# Usage check
+if [ $# -lt 2 ]; then
+    echo "Usage: send-message <to_instance> <message>"
+    echo "Example: send-message instance-2 'Working on coordination system'"
+    exit 1
+fi
+
+TO_INSTANCE="$1"
+MESSAGE="$2"
+FROM_INSTANCE="${CLAUDE_INSTANCE_ID:-instance-1}"
+
+# Create inbox file if it doesn't exist
+INBOX_FILE="$SCRIPT_DIR/inboxes/$TO_INSTANCE.txt"
+mkdir -p "$SCRIPT_DIR/inboxes"
+
+# Append message to inbox
+echo "[$TIMESTAMP] FROM: $FROM_INSTANCE" >> "$INBOX_FILE"
+echo "MESSAGE: $MESSAGE" >> "$INBOX_FILE"
+echo "STATUS: unread" >> "$INBOX_FILE"
+echo "---" >> "$INBOX_FILE"
+
+# Also log to main message log
+echo "[$TIMESTAMP] $FROM_INSTANCE -> $TO_INSTANCE: $MESSAGE" >> "$SCRIPT_DIR/data/messages.log"
+
+echo "Message sent to $TO_INSTANCE"
+echo "Inbox location: $INBOX_FILE"

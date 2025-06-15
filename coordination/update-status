@@ -1,0 +1,59 @@
+#!/bin/bash
+# Update instance status - SECURITY PATCHED
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-1}"
+
+# Valid instances for security
+VALID_INSTANCES=("instance-1" "instance-2" "instance-3" "instance-4" "instance-5" "instance-6")
+
+# Sanitization function
+sanitize_input() {
+    # Remove potential command injection characters
+    echo "$1" | sed 's/[;&|`$(){}[\]\\]/_/g' | tr '\n' ' ' | cut -c1-200
+}
+
+# Validate instance function
+validate_instance() {
+    local instance="$1"
+    for valid in "${VALID_INSTANCES[@]}"; do
+        if [[ "$instance" == "$valid" ]]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
+if [ $# -lt 1 ]; then
+    echo "Usage: update-status <status_message>"
+    echo "Example: update-status 'Active - working on messaging system'"
+    exit 1
+fi
+
+STATUS_MESSAGE="$1"
+
+# SECURITY: Validate instance ID
+if ! validate_instance "$INSTANCE_ID"; then
+    echo "ERROR: Invalid instance '$INSTANCE_ID'. Valid instances: ${VALID_INSTANCES[*]}"
+    exit 1
+fi
+
+# SECURITY: Sanitize status message
+STATUS_MESSAGE=$(sanitize_input "$STATUS_MESSAGE")
+STATUS_FILE="$SCRIPT_DIR/data/status.txt"
+
+# Create status file if it doesn't exist
+touch "$STATUS_FILE"
+
+# Remove old entry for this instance if it exists
+grep -v "^$INSTANCE_ID:" "$STATUS_FILE" > "${STATUS_FILE}.tmp" 2>/dev/null || touch "${STATUS_FILE}.tmp"
+
+# Add new status
+echo "$INSTANCE_ID: $STATUS_MESSAGE (updated: $TIMESTAMP)" >> "${STATUS_FILE}.tmp"
+
+# Replace old file
+mv "${STATUS_FILE}.tmp" "$STATUS_FILE"
+
+echo "Status updated for $INSTANCE_ID"
+echo "Current status: $STATUS_MESSAGE"

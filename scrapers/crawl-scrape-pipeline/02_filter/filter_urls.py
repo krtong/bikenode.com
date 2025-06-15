@@ -40,11 +40,17 @@ def setup_logging(name: str, log_file=None):
 class URLFilter:
     """Filters URLs based on HTTP metadata from dump.csv."""
     
-    def __init__(self):
+    def __init__(self, input_file=None):
         """Initialize URL filter."""
         self.logger = setup_logging('url_filter', Path(__file__).parent / 'filter.log')
-        self.input_file = Path(__file__).parent.parent / '01_map' / 'dump.csv'
-        self.output_file = Path(__file__).parent / 'all_urls.txt'
+        if input_file:
+            self.input_file = Path(input_file)
+        else:
+            self.input_file = Path(__file__).parent.parent / '01_map' / 'dump.csv'
+        
+        # Generate output filename based on input filename
+        input_stem = self.input_file.stem  # filename without extension
+        self.output_file = Path(__file__).parent / f'{input_stem}_filtered.txt'
     
     def filter_urls(self) -> List[str]:
         """Filter URLs based on status code and content type."""
@@ -127,14 +133,14 @@ def main():
     """Main entry point."""
     parser = argparse.ArgumentParser(
         description='Filter URLs keeping only status_code==200 and content_type starts with text/html',
-        epilog='Input: ../01_map/dump.csv\nOutput: all_urls.txt'
+        epilog='Input: ../01_map/dump.csv or specified CSV file\nOutput: all_urls.txt'
     )
     
-    # No arguments needed - paths are fixed per spec
+    parser.add_argument('--input', help='Input CSV file (default: ../01_map/dump.csv)')
     args = parser.parse_args()
     
     # Run filter
-    filter = URLFilter()
+    filter = URLFilter(input_file=args.input)
     filtered_urls = filter.run()
     
     if filtered_urls:

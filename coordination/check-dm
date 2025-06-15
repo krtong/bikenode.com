@@ -1,0 +1,67 @@
+#!/bin/bash
+# Check direct messages with read tracking
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-3}"
+
+# Source logging function
+source "$SCRIPT_DIR/log-action"
+
+# Function to extract message IDs and mark them as read
+mark_messages_read() {
+    local dm_file="$1"
+    local reader="$2"
+    
+    # Extract message IDs from the file
+    grep -E "ID: [0-9]+" "$dm_file" | while read -r line; do
+        if [[ $line =~ ID:\ ([0-9]+) ]]; then
+            local msg_id="${BASH_REMATCH[1]}"
+            local chatroom=$(basename "$dm_file" .txt)
+            
+            # Mark as read
+            "$SCRIPT_DIR/track-read-status" mark "dm_$chatroom" "$msg_id" "$reader" 2>/dev/null
+        fi
+    done
+}
+
+# Main logic
+DM_DIR="$SCRIPT_DIR/dms"
+
+if [ ! -d "$DM_DIR" ]; then
+    echo "No direct messages yet."
+    exit 0
+fi
+
+echo "=== Direct Messages for $INSTANCE_ID ==="
+echo ""
+
+# Log the action
+log_action "CHECK_DM" "Checking all DMs"
+
+# Find all DM files involving this instance
+found_dms=false
+for dm_file in "$DM_DIR"/*.txt; do
+    if [ -f "$dm_file" ]; then
+        filename=$(basename "$dm_file" .txt)
+        
+        # Check if this instance is involved in the conversation
+        if [[ "$filename" == *"$INSTANCE_ID"* ]]; then
+            found_dms=true
+            echo "--- Conversation: $filename ---"
+            cat "$dm_file"
+            echo ""
+            
+            # Mark messages as read
+            mark_messages_read "$dm_file" "$INSTANCE_ID"
+        fi
+    fi
+done
+
+if [ "$found_dms" = false ]; then
+    echo "No direct messages found."
+fi
+
+echo ""
+echo "Commands:"
+echo "  send-dm <instance> 'message'  - Send a direct message"
+echo "  track-read-status show dm_<conversation>  - Show read receipts"

@@ -1,11 +1,5 @@
 /* Authentication Signup Page - Multi-Stage Form Styles */
 
-.auth-signup-page-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
 /* Progress Bar */
 .auth-signup-page-progress {
     margin-bottom: 3rem;
@@ -71,10 +65,7 @@
 
 /* Form Steps */
 .auth-signup-page-form {
-    background: #2f3136;
-    border-radius: 12px;
-    padding: 2.5rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    /* No card styling needed - layout provides it */
 }
 
 .auth-signup-page-step-content {
@@ -140,7 +131,7 @@
 
 .auth-signup-page-divider span {
     position: relative;
-    background: #2f3136;
+    background: var(--card-bg, #2f3136);
     padding: 0 1rem;
     font-size: 0.875rem;
     color: var(--text-tertiary, #72767d);
@@ -216,7 +207,8 @@
 
 .auth-signup-page-next-button,
 .auth-signup-page-back-button,
-.auth-signup-page-submit-button {
+.auth-signup-page-submit-button,
+.auth-signup-page-skip-button {
     padding: 12px 24px;
     border: none;
     border-radius: 8px;
@@ -238,13 +230,15 @@
     background: #4752c4;
 }
 
-.auth-signup-page-back-button {
+.auth-signup-page-back-button,
+.auth-signup-page-skip-button {
     background: transparent;
     color: var(--text-primary, #ffffff);
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.auth-signup-page-back-button:hover {
+.auth-signup-page-back-button:hover,
+.auth-signup-page-skip-button:hover {
     background: rgba(255, 255, 255, 0.05);
 }
 
@@ -394,63 +388,74 @@
     font-size: 0.75rem;
 }
 
-/* Brand Selection */
-.auth-signup-page-brand-categories {
+
+/* Category Selection */
+.auth-signup-page-categories-container {
     margin-bottom: 2rem;
 }
 
-.auth-signup-page-brand-category {
-    margin-bottom: 1.5rem;
+.auth-signup-page-category-section {
+    margin-bottom: 2.5rem;
 }
 
-.auth-signup-page-brand-category h4 {
+.auth-signup-page-category-section:last-child {
+    margin-bottom: 0;
+}
+
+.auth-signup-page-category-title {
+    font-size: 1.25rem;
     color: var(--text-primary, #ffffff);
-    margin: 0 0 0.75rem;
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
 }
 
-.auth-signup-page-brand-list {
+.auth-signup-page-category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+}
+
+.auth-signup-page-category-item {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     gap: 0.5rem;
-}
-
-.auth-signup-page-brand-chip {
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.05);
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    font-size: 0.875rem;
-    color: var(--text-secondary, #b9bbbe);
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s;
 }
 
-.auth-signup-page-brand-chip:hover {
-    background: rgba(255, 255, 255, 0.08);
+.auth-signup-page-category-item:hover {
+    background: rgba(255, 255, 255, 0.05);
 }
 
-.auth-signup-page-brand-chip.selected {
-    background: rgba(88, 101, 242, 0.2);
-    border-color: var(--accent, #5865f2);
+.auth-signup-page-category-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent, #5865f2);
+    cursor: pointer;
+}
+
+.auth-signup-page-category-item input:checked ~ span {
     color: var(--accent, #5865f2);
+    font-weight: 500;
 }
 
-.auth-signup-page-selected-brands {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 1rem;
-}
-
-.auth-signup-page-selected-brands h4 {
+.auth-signup-page-category-item span {
     color: var(--text-primary, #ffffff);
-    margin: 0 0 0.75rem;
+    font-size: 0.875rem;
 }
 
-.auth-signup-page-selected-brands-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+.auth-signup-page-no-selection {
+    color: var(--text-secondary, #b9bbbe);
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    margin: 2rem 0;
 }
 
 /* Sign In Prompt */
@@ -493,5 +498,9 @@
     
     .auth-signup-page-interests-grid {
         grid-template-columns: 1fr 1fr;
+    }
+    
+    .auth-signup-page-category-grid {
+        grid-template-columns: 1fr;
     }
 }

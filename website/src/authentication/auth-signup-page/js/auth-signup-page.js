@@ -1,32 +1,81 @@
 // Multi-stage signup form functionality
 let currentStep = 1;
-const totalSteps = 5;
+const totalSteps = 3;
 
-// Brand data based on vehicle types
-const brandData = {
+// Category definitions for each vehicle type
+const vehicleCategories = {
     motorcycle: {
-        title: 'Motorcycle Brands',
-        brands: ['Honda', 'Yamaha', 'Kawasaki', 'Suzuki', 'Harley-Davidson', 'BMW', 'Ducati', 'KTM', 'Triumph', 'Indian', 'Royal Enfield', 'Aprilia', 'Moto Guzzi', 'Zero', 'LiveWire', 'Energica']
+        name: 'Motorcycles',
+        categories: [
+            'Sport/Performance',
+            'Street/Naked', 
+            'Touring',
+            'Cruiser',
+            'Adventure',
+            'Dual Sport/Enduro',
+            'Off-Road Only',
+            'Scooter/Moped',
+            'Electric',
+            'Custom/Classic'
+        ]
     },
     bicycle: {
-        title: 'Bicycle Brands',
-        brands: ['Trek', 'Specialized', 'Giant', 'Cannondale', 'Scott', 'Santa Cruz', 'Yeti', 'Pivot', 'Ibis', 'Canyon', 'Cervelo', 'BMC', 'Pinarello', 'Bianchi', 'Kona', 'Norco']
+        name: 'Bicycles',
+        categories: [
+            'Road',
+            'Mountain',
+            'Gravel/Adventure',
+            'Commuter/Urban',
+            'Hybrid/Fitness',
+            'BMX/Dirt Jump',
+            'Touring',
+            'Cargo/Utility',
+            'Folding',
+            'Track/Fixed'
+        ]
     },
     'cabin-bikes': {
-        title: 'Cabin Bike Brands',
-        brands: ['Lit Motors', 'Nimbus', 'MonoTracer', 'Peraves', 'C1 (BMW)', 'Carver', 'Elio Motors']
+        name: 'Cabin Bikes',
+        categories: [
+            'Fully Enclosed',
+            'Semi-Enclosed',
+            'Three-Wheeler',
+            'Tilting Three-Wheeler',
+            'Autocycle',
+            'Velomobile'
+        ]
     },
     escooters: {
-        title: 'E-Scooter Brands',
-        brands: ['NIU', 'Gogoro', 'Yadea', 'Super Soco', 'Silence', 'Vespa Elettrica', 'BMW CE', 'Kymco', 'Vmoto', 'Segway', 'Unagi', 'Apollo']
+        name: 'E-Scooters',
+        categories: [
+            'Standing Commuter',
+            'Performance',
+            'Seated/Moped Style',
+            'Off-Road',
+            'Three-Wheel',
+            'Cargo/Delivery'
+        ]
     },
     emtb: {
-        title: 'E-MTB Brands',
-        brands: ['Specialized Turbo', 'Trek Rail', 'Giant Trance E+', 'Scott E-Genius', 'Orbea Wild', 'YT Decoy', 'Canyon Spectral:ON', 'Haibike', 'Bulls', 'Focus', 'Merida eOne', 'Norco Sight VLT']
+        name: 'E-MTB & E-Bikes',
+        categories: [
+            'E-Mountain',
+            'E-Road',
+            'E-Gravel',
+            'E-Commuter',
+            'E-Cargo',
+            'Speed Pedelec'
+        ]
     },
     emotos: {
-        title: 'E-Moto Brands',
-        brands: ['Sur Ron', 'Talaria', 'Segway', 'Cake', 'Electric Motion', 'Stark Future', 'KTM Freeride E', 'Oset', 'Kuberg', 'Bultaco', 'Torrot']
+        name: 'E-Motos',
+        categories: [
+            'Light Electric (Sur Ron type)',
+            'Electric Dirt Bike',
+            'Electric Dual Sport',
+            'Electric Street',
+            'Electric Trials'
+        ]
     }
 };
 
@@ -35,12 +84,13 @@ function nextStep() {
     if (validateCurrentStep()) {
         if (currentStep < totalSteps) {
             currentStep++;
-            updateStepDisplay();
             
-            // Load brands when reaching step 5
-            if (currentStep === 5) {
-                loadBrandsBasedOnInterests();
+            // If moving to step 3, generate categories based on selected interests
+            if (currentStep === 3) {
+                generateCategorySelections();
             }
+            
+            updateStepDisplay();
         }
     }
 }
@@ -86,31 +136,35 @@ function validateCurrentStep() {
         case 1:
             return validateAccountStep();
         case 2:
-            return validateProfileStep();
-        case 3:
-            return true; // Verification is optional
-        case 4:
             return validateInterestsStep();
-        case 5:
-            return true; // Brand selection is optional
+        case 3:
+            return true; // Categories are optional
         default:
             return true;
     }
 }
 
-// Validate account step
-function validateAccountStep() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
+// Validate interests step
+function validateInterestsStep() {
+    const selectedInterests = document.querySelectorAll('input[name="interests"]:checked');
     
-    if (!email || !password || !confirmPassword) {
-        alert('Please fill in all required fields');
+    if (selectedInterests.length === 0) {
+        alert('Please select at least one vehicle type');
         return false;
     }
     
-    if (password !== confirmPassword) {
-        alert('Passwords do not match');
+    return true;
+}
+
+// Validate account step
+function validateAccountStep() {
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    
+    if (!firstName || !lastName || !email || !password) {
+        alert('Please fill in all required fields');
         return false;
     }
     
@@ -122,155 +176,86 @@ function validateAccountStep() {
     return true;
 }
 
-// Validate profile step
-function validateProfileStep() {
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const username = document.getElementById('username').value;
-    
-    if (!firstName || !lastName || !username) {
-        alert('Please fill in all required fields');
-        return false;
-    }
-    
-    return true;
+// Skip categories and complete signup
+function skipCategories() {
+    const signupForm = document.getElementById('signupForm');
+    const event = new Event('submit', { cancelable: true });
+    signupForm.dispatchEvent(event);
 }
 
-// Validate interests step
-function validateInterestsStep() {
+// Generate category selections based on selected vehicle types
+function generateCategorySelections() {
     const selectedInterests = document.querySelectorAll('input[name="interests"]:checked');
+    const categoriesContainer = document.getElementById('categoriesContainer');
     
+    // Clear existing content
+    categoriesContainer.innerHTML = '';
+    
+    // If no interests selected, show message
     if (selectedInterests.length === 0) {
-        alert('Please select at least one interest');
-        return false;
+        categoriesContainer.innerHTML = '<p class="auth-signup-page-no-selection">Please go back and select at least one vehicle type.</p>';
+        return;
     }
     
-    return true;
-}
-
-// Toggle verification upload
-function toggleVerificationUpload() {
-    const checkbox = document.getElementById('wantVerification');
-    const uploadSection = document.getElementById('verificationUpload');
-    
-    if (checkbox.checked) {
-        uploadSection.style.display = 'block';
-    } else {
-        uploadSection.style.display = 'none';
-    }
-}
-
-// Load brands based on selected interests
-function loadBrandsBasedOnInterests() {
-    const selectedInterests = document.querySelectorAll('input[name="interests"]:checked');
-    const brandCategories = document.getElementById('brandCategories');
-    
-    brandCategories.innerHTML = '';
-    
+    // Generate category sections for each selected interest
     selectedInterests.forEach(interest => {
-        const category = interest.value;
-        if (brandData[category]) {
-            const categoryDiv = document.createElement('div');
-            categoryDiv.className = 'auth-signup-page-brand-category';
+        const vehicleType = interest.value;
+        const vehicleData = vehicleCategories[vehicleType];
+        
+        if (vehicleData) {
+            const section = document.createElement('div');
+            section.className = 'auth-signup-page-category-section';
             
-            const title = document.createElement('h4');
-            title.textContent = brandData[category].title;
-            categoryDiv.appendChild(title);
+            section.innerHTML = `
+                <h3 class="auth-signup-page-category-title">${vehicleData.name}</h3>
+                <div class="auth-signup-page-category-grid">
+                    ${vehicleData.categories.map(category => `
+                        <label class="auth-signup-page-category-item">
+                            <input type="checkbox" name="categories-${vehicleType}" value="${category}">
+                            <span>${category}</span>
+                        </label>
+                    `).join('')}
+                </div>
+            `;
             
-            const brandList = document.createElement('div');
-            brandList.className = 'auth-signup-page-brand-list';
-            
-            brandData[category].brands.forEach(brand => {
-                const brandChip = document.createElement('button');
-                brandChip.type = 'button';
-                brandChip.className = 'auth-signup-page-brand-chip';
-                brandChip.textContent = brand;
-                brandChip.onclick = () => toggleBrand(brand, brandChip);
-                brandList.appendChild(brandChip);
-            });
-            
-            categoryDiv.appendChild(brandList);
-            brandCategories.appendChild(categoryDiv);
+            categoriesContainer.appendChild(section);
         }
     });
 }
 
-// Toggle brand selection
-const selectedBrands = new Set();
 
-function toggleBrand(brand, element) {
-    if (selectedBrands.has(brand)) {
-        selectedBrands.delete(brand);
-        element.classList.remove('selected');
-    } else {
-        selectedBrands.add(brand);
-        element.classList.add('selected');
-    }
-    
-    updateSelectedBrandsDisplay();
-}
-
-// Update selected brands display
-function updateSelectedBrandsDisplay() {
-    const selectedCount = document.getElementById('selectedCount');
-    const selectedList = document.getElementById('selectedBrandsList');
-    
-    selectedCount.textContent = selectedBrands.size;
-    
-    selectedList.innerHTML = '';
-    selectedBrands.forEach(brand => {
-        const chip = document.createElement('span');
-        chip.className = 'auth-signup-page-brand-chip selected';
-        chip.textContent = brand;
-        selectedList.appendChild(chip);
-    });
-}
-
-// Handle file upload
+// Handle form submission
 document.addEventListener('DOMContentLoaded', function() {
-    const fileInput = document.getElementById('licenseUpload');
-    if (fileInput) {
-        fileInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const uploadPlaceholder = document.querySelector('.auth-signup-page-upload-placeholder');
-                uploadPlaceholder.innerHTML = `
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    <p>${file.name}</p>
-                    <span>File uploaded successfully</span>
-                `;
-            }
-        });
-    }
-    
-    // Handle form submission
     const signupForm = document.getElementById('signupForm');
     signupForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
         // Collect all form data
         const formData = {
-            email: document.getElementById('email').value,
-            password: document.getElementById('password').value,
             firstName: document.getElementById('firstName').value,
             lastName: document.getElementById('lastName').value,
-            username: document.getElementById('username').value,
-            location: document.getElementById('location').value,
-            wantVerification: document.getElementById('wantVerification').checked,
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value,
             interests: Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(cb => cb.value),
-            brands: Array.from(selectedBrands)
+            categories: {}
         };
+        
+        // Collect selected categories for each vehicle type
+        formData.interests.forEach(interest => {
+            const categoryCheckboxes = document.querySelectorAll(`input[name="categories-${interest}"]:checked`);
+            if (categoryCheckboxes.length > 0) {
+                formData.categories[interest] = Array.from(categoryCheckboxes).map(cb => cb.value);
+            }
+        });
         
         console.log('Signup data:', formData);
         
         // Here you would typically send the data to your backend
-        alert('Account created successfully! Redirecting to dashboard...');
+        // Store signup completion flag
+        localStorage.setItem('justSignedUp', 'true');
         
-        // Redirect to dashboard or login page
-        window.location.href = '/dashboard-overview/dashboard-home-page/';
+        // Redirect to verification prompt
+        window.location.href = '/authentication/auth-verification-prompt/';
     });
     
     // Password strength indicator
@@ -280,6 +265,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const password = e.target.value;
             const strengthBar = document.querySelector('.auth-signup-page-password-strength-bar');
             const strengthText = document.querySelector('.auth-signup-page-password-strength-text');
+            
+            if (!strengthBar || !strengthText) return;
             
             let strength = 0;
             let strengthLabel = 'Weak';

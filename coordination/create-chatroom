@@ -1,0 +1,77 @@
+#!/bin/bash
+# Create a new chatroom
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/validate-input"
+
+INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-1}"
+CHATROOM_STATUS_FILE="$SCRIPT_DIR/data/chatroom-status.txt"
+CHATROOMS_DIR="$SCRIPT_DIR/chatrooms"
+
+# Show usage
+if [ $# -eq 0 ]; then
+    echo "Usage: create-chatroom <chatroom-name> [description]"
+    echo ""
+    echo "Examples:"
+    echo "  create-chatroom feature-planning \"Planning new features\""
+    echo "  create-chatroom debug-session"
+    echo ""
+    echo "Rules:"
+    echo "  - Chatroom names must be alphanumeric with hyphens only"
+    echo "  - Names must be 3-30 characters"
+    echo "  - Cannot start or end with hyphen"
+    exit 1
+fi
+
+CHATROOM_NAME="$1"
+DESCRIPTION="${2:-No description provided}"
+
+# Validate chatroom name
+if ! [[ "$CHATROOM_NAME" =~ ^[a-z0-9]([a-z0-9-]*[a-z0-9])?$ ]] || [ "${#CHATROOM_NAME}" -lt 3 ] || [ "${#CHATROOM_NAME}" -gt 30 ]; then
+    echo "ERROR: Invalid chatroom name '$CHATROOM_NAME'"
+    echo "Requirements:"
+    echo "  - 3-30 characters"
+    echo "  - Lowercase letters, numbers, hyphens only"
+    echo "  - Cannot start or end with hyphen"
+    exit 1
+fi
+
+# Check if chatroom already exists
+CHATROOM_FILE="$CHATROOMS_DIR/$CHATROOM_NAME.txt"
+if [ -f "$CHATROOM_FILE" ]; then
+    # Check if it's closed - if so, we can reopen
+    if grep -q "^$CHATROOM_NAME:closed:" "$CHATROOM_STATUS_FILE" 2>/dev/null; then
+        echo "Chatroom '$CHATROOM_NAME' exists but is closed."
+        echo "Use: reopen-chatroom $CHATROOM_NAME"
+        exit 1
+    else
+        echo "ERROR: Chatroom '$CHATROOM_NAME' already exists and is active"
+        exit 1
+    fi
+fi
+
+# Create the chatroom file
+mkdir -p "$CHATROOMS_DIR"
+touch "$CHATROOM_FILE"
+
+# Get timestamp
+TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+
+# Add to chatroom status tracking
+echo "$CHATROOM_NAME:open:$INSTANCE_ID:$TIMESTAMP:$TIMESTAMP:" >> "$CHATROOM_STATUS_FILE"
+
+# Log the action
+"$SCRIPT_DIR/log-action" "CHATROOM_CREATED" "Created chatroom '$CHATROOM_NAME' with description: $DESCRIPTION"
+
+# Add creation message to the chatroom
+echo "[$TIMESTAMP] SYSTEM: Chatroom '$CHATROOM_NAME' created by $INSTANCE_ID" >> "$CHATROOM_FILE"
+echo "[$TIMESTAMP] SYSTEM: Description: $DESCRIPTION" >> "$CHATROOM_FILE"
+
+echo "✅ Chatroom '$CHATROOM_NAME' created successfully!"
+echo "📝 Description: $DESCRIPTION"
+echo "🏠 Created by: $INSTANCE_ID"
+echo "⏰ Created at: $TIMESTAMP"
+echo ""
+echo "Commands to use this chatroom:"
+echo "  send-message --chatroom=$CHATROOM_NAME @instance-X 'message'"
+echo "  check-inbox --chatroom=$CHATROOM_NAME"

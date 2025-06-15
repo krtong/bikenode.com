@@ -1,0 +1,6 @@
+# Chatroom Status Tracking
+# Format: CHATROOM_NAME:STATUS:CREATED_BY:CREATED_TIME:LAST_MODIFIED:CLOSURE_REASON
+ai-messaging:open:system:2025-06-15 00:00:00:2025-06-15 00:00:00:
+crawler-project:open:system:2025-06-15 00:00:00:2025-06-15 00:00:00:
+general:open:system:2025-06-15 00:00:00:2025-06-15 00:00:00:
+test-messaging:open:instance-1:2025-06-15 04:20:48:2025-06-15 04:20:48:

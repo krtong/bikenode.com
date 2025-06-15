@@ -107,27 +107,44 @@
     }
 }
 
+/* Reverse typewriter animation for fade out */
+@keyframes typewriter-reverse {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0;
+    }
+}
+
 /* Hide text by default, show only icons */
 .front-page-layout-header-nav-link span {
     max-width: 0;
     width: 0;
     opacity: 0;
     visibility: hidden;
-    transition: max-width 0.3s ease 2s, opacity 0.2s ease 2s, visibility 0s linear 2.2s;
+    transition: max-width 0.6s ease 0.4s, opacity 0.1s ease 0.4s, visibility 0s linear 0.8s;
     overflow: hidden;
     white-space: nowrap;
     position: relative;
 }
 
-/* Hover state for entire header - show text */
-.front-page-layout-header-container:hover .front-page-layout-header-nav-link span {
+/* Reverse typewriter animation when collapsing */
+.front-page-layout-header-container:not(.header-expanded) .front-page-layout-header-nav-link span {
+    animation: typewriter-reverse 0.3s steps(20) forwards;
+}
+
+/* Expanded state for entire header - show text */
+.front-page-layout-header-container.header-expanded .front-page-layout-header-nav-link span {
     max-width: 120px;
     opacity: 1;
     visibility: visible;
     margin-left: 0;
-    transition: max-width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.1s ease 0.3s, visibility 0s linear 0.3s;
-    animation: typewriter 0.4s steps(20) 0.4s both;
+    transition: max-width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease 0.5s, visibility 0s linear 0.5s;
+    animation: typewriter 0.6s steps(20) 0.9s both;
 }
+
+
 
 .front-page-layout-header-nav-link:hover {
     background: rgba(88, 101, 242, 0.1);
@@ -168,20 +185,24 @@
     justify-content: center;
     background: rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 20px;
+    border-radius: 22px;
     padding: 0;
     cursor: pointer;
-    transition: all 0.3s ease 2s;
+    transition: width 0.6s ease 0.4s, padding 0.6s ease 0.4s, background-color 0.6s ease 0.4s, border-color 0.6s ease 0.4s;
     width: 44px;
     height: 44px;
     overflow: hidden;
 }
 
-.front-page-layout-header-container:hover .front-page-layout-header-search-btn {
-    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+.front-page-layout-header-container.header-expanded .front-page-layout-header-search-btn {
+    width: 200px;
+    padding: 0 1rem;
+    justify-content: flex-start;
+    background: rgba(88, 101, 242, 0.1);
+    border-color: rgba(88, 101, 242, 0.5);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.front-page-layout-header-container:hover .front-page-layout-header-search-btn,
 .front-page-layout-header-search-btn:focus-within {
     width: 200px;
     padding: 0 1rem;
@@ -198,7 +219,7 @@
     transition: color 0.3s ease;
 }
 
-.front-page-layout-header-container:hover .front-page-layout-header-search-icon,
+.front-page-layout-header-container.header-expanded .front-page-layout-header-search-icon,
 .front-page-layout-header-search-btn:focus-within .front-page-layout-header-search-icon {
     color: #5865f2;
 }
@@ -215,18 +236,23 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.2s ease 2s, visibility 0s linear 2.2s;
+    transition: opacity 0.1s ease 0.4s, visibility 0s linear 0.4s;
     white-space: nowrap;
     overflow: hidden;
 }
 
-.front-page-layout-header-container:hover .front-page-layout-header-search-input,
+.front-page-layout-header-container.header-expanded .front-page-layout-header-search-input,
 .front-page-layout-header-search-btn:focus-within .front-page-layout-header-search-input {
     width: calc(100% - 54px);
     opacity: 1;
     visibility: visible;
-    transition: opacity 0.1s ease 0.3s, visibility 0s linear 0.3s;
-    animation: typewriter 0.3s steps(15) 0.4s both;
+    transition: opacity 0.4s ease 0.5s, visibility 0s linear 0.5s;
+    animation: typewriter 0.6s steps(15) 0.9s both;
+}
+
+/* Reverse typewriter animation for search input when collapsing */
+.front-page-layout-header-container:not(.header-expanded) .front-page-layout-header-search-input {
+    animation: typewriter-reverse 0.3s steps(15) forwards;
 }
 
 .front-page-layout-header-search-input::placeholder {

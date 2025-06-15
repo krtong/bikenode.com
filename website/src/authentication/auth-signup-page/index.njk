@@ -9,11 +9,10 @@ customJS:
   - ./js/auth-signup-page.js
 ---
 
-<div class="auth-signup-page-container">
-    <!-- Progress Bar -->
+<!-- Progress Bar -->
     <div class="auth-signup-page-progress">
         <div class="auth-signup-page-progress-bar">
-            <div class="auth-signup-page-progress-fill" style="width: 20%"></div>
+            <div class="auth-signup-page-progress-fill" style="width: 33.33%"></div>
         </div>
         <div class="auth-signup-page-steps">
             <div class="auth-signup-page-step active" data-step="1">
@@ -22,19 +21,11 @@ customJS:
             </div>
             <div class="auth-signup-page-step" data-step="2">
                 <span class="auth-signup-page-step-number">2</span>
-                <span class="auth-signup-page-step-label">Profile</span>
+                <span class="auth-signup-page-step-label">Vehicle Types</span>
             </div>
             <div class="auth-signup-page-step" data-step="3">
                 <span class="auth-signup-page-step-number">3</span>
-                <span class="auth-signup-page-step-label">Verification</span>
-            </div>
-            <div class="auth-signup-page-step" data-step="4">
-                <span class="auth-signup-page-step-number">4</span>
-                <span class="auth-signup-page-step-label">Interests</span>
-            </div>
-            <div class="auth-signup-page-step" data-step="5">
-                <span class="auth-signup-page-step-number">5</span>
-                <span class="auth-signup-page-step-label">Brands</span>
+                <span class="auth-signup-page-step-label">Categories</span>
             </div>
         </div>
     </div>
@@ -42,47 +33,20 @@ customJS:
     <form class="auth-signup-page-form" id="signupForm">
         <!-- Step 1: Account Creation -->
         <div class="auth-signup-page-step-content active" data-step="1">
-            <h2 class="auth-signup-page-step-title">Create Your Account</h2>
-            <p class="auth-signup-page-step-subtitle">Join the BikeNode community</p>
+            <h2 class="auth-signup-page-step-title">Welcome to BikeNode</h2>
+            <p class="auth-signup-page-step-subtitle">Join our community of riders</p>
             
             <!-- Discord OAuth Option -->
             <button type="button" class="auth-signup-page-discord-button">
                 <svg width="20" height="20" viewBox="0 0 71 55" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M60.1045 4.8978C55.5792 2.8214 50.7265 1.2916 45.6527 0.41542C45.5603 0.39851 45.468 0.440769 45.4204 0.525289C44.7963 1.6353 44.105 3.0834 43.6209 4.2216C38.1637 3.4046 32.7345 3.4046 27.3892 4.2216C26.905 3.0581 26.1886 1.6353 25.5617 0.525289C25.5141 0.443589 25.4218 0.40133 25.3294 0.41542C20.2584 1.2888 15.4057 2.8186 10.8776 4.8978C10.8384 4.9147 10.8048 4.9429 10.7825 4.9795C1.57795 18.7309 -0.943561 32.1443 0.293408 45.3914C0.299005 45.4562 0.335386 45.5182 0.385761 45.5576C6.45866 50.0174 12.3413 52.7249 18.1147 54.5195C18.2071 54.5477 18.305 54.5139 18.3638 54.4378C19.7295 52.5728 20.9469 50.6063 21.9907 48.5383C22.0523 48.4172 21.9935 48.2735 21.8676 48.2256C19.9366 47.4931 18.0979 46.6 16.3292 45.5858C16.1893 45.5041 16.1781 45.3032 16.3068 45.2082C16.679 44.9293 17.0513 44.6391 17.4067 44.3461C17.471 44.2926 17.5606 44.2813 17.6362 44.3151C29.2558 49.6202 41.8354 49.6202 53.3179 44.3151C53.3935 44.2785 53.4831 44.2898 53.5502 44.3433C53.9057 44.6363 54.2779 44.9293 54.6529 45.2082C54.7816 45.3032 54.7732 45.5041 54.6333 45.5858C52.8646 46.6197 51.0259 47.4931 49.0921 48.2228C48.9662 48.2707 48.9102 48.4172 48.9718 48.5383C50.038 50.6034 51.2554 52.5699 52.5959 54.435C52.6519 54.5139 52.7526 54.5477 52.845 54.5195C58.6464 52.7249 64.529 50.0174 70.6019 45.5576C70.6551 45.5182 70.6887 45.459 70.6943 45.3942C72.1747 30.0791 68.2147 16.7757 60.1968 4.9823C60.1772 4.9429 60.1437 4.9147 60.1045 4.8978ZM23.7259 37.3253C20.2276 37.3253 17.3451 34.1136 17.3451 30.1693C17.3451 26.225 20.1717 23.0133 23.7259 23.0133C27.308 23.0133 30.1626 26.2532 30.1066 30.1693C30.1066 34.1136 27.28 37.3253 23.7259 37.3253ZM47.3178 37.3253C43.8196 37.3253 40.9371 34.1136 40.9371 30.1693C40.9371 26.225 43.7636 23.0133 47.3178 23.0133C50.9 23.0133 53.7545 26.2532 53.6986 30.1693C53.6986 34.1136 50.9 37.3253 47.3178 37.3253Z" fill="currentColor"/>
                 </svg>
-                <span>Continue with Discord</span>
+                <span>Sign up with Discord</span>
             </button>
             
             <div class="auth-signup-page-divider">
                 <span>OR</span>
             </div>
-            
-            <div class="auth-signup-page-form-group">
-                <label class="auth-signup-page-form-label">Email</label>
-                <input type="email" class="auth-signup-page-form-input" id="email" placeholder="you@example.com" required>
-            </div>
-            
-            <div class="auth-signup-page-form-group">
-                <label class="auth-signup-page-form-label">Password</label>
-                <input type="password" class="auth-signup-page-form-input" id="password" placeholder="••••••••" required>
-                <div class="auth-signup-page-password-strength">
-                    <div class="auth-signup-page-password-strength-bar"></div>
-                    <span class="auth-signup-page-password-strength-text">Password strength</span>
-                </div>
-            </div>
-            
-            <div class="auth-signup-page-form-group">
-                <label class="auth-signup-page-form-label">Confirm Password</label>
-                <input type="password" class="auth-signup-page-form-input" id="confirmPassword" placeholder="••••••••" required>
-            </div>
-            
-            <button type="button" class="auth-signup-page-next-button" onclick="nextStep()">Next</button>
-        </div>
-
-        <!-- Step 2: Profile Information -->
-        <div class="auth-signup-page-step-content" data-step="2">
-            <h2 class="auth-signup-page-step-title">Tell Us About Yourself</h2>
-            <p class="auth-signup-page-step-subtitle">Help us personalize your experience</p>
             
             <div class="auth-signup-page-form-row">
                 <div class="auth-signup-page-form-group">
@@ -97,76 +61,26 @@ customJS:
             </div>
             
             <div class="auth-signup-page-form-group">
-                <label class="auth-signup-page-form-label">Username</label>
-                <input type="text" class="auth-signup-page-form-input" id="username" placeholder="johndoe" required>
-                <span class="auth-signup-page-input-hint">This will be your unique identifier on BikeNode</span>
+                <label class="auth-signup-page-form-label">Email</label>
+                <input type="email" class="auth-signup-page-form-input" id="email" placeholder="you@example.com" required>
             </div>
             
             <div class="auth-signup-page-form-group">
-                <label class="auth-signup-page-form-label">Location (Optional)</label>
-                <input type="text" class="auth-signup-page-form-input" id="location" placeholder="San Francisco, CA">
-                <span class="auth-signup-page-input-hint">Helps you find local riders and events</span>
+                <label class="auth-signup-page-form-label">Password</label>
+                <input type="password" class="auth-signup-page-form-input" id="password" placeholder="Create a strong password" required>
+                <div class="auth-signup-page-password-strength">
+                    <div class="auth-signup-page-password-strength-bar"></div>
+                    <span class="auth-signup-page-password-strength-text">Password strength</span>
+                </div>
             </div>
             
-            <div class="auth-signup-page-button-group">
-                <button type="button" class="auth-signup-page-back-button" onclick="previousStep()">Back</button>
-                <button type="button" class="auth-signup-page-next-button" onclick="nextStep()">Next</button>
-            </div>
+            <button type="button" class="auth-signup-page-next-button" onclick="nextStep()">Continue</button>
         </div>
 
-        <!-- Step 3: Verification -->
-        <div class="auth-signup-page-step-content" data-step="3">
-            <h2 class="auth-signup-page-step-title">Verification (Optional)</h2>
-            <p class="auth-signup-page-step-subtitle">Become a verified rider and build trust in the community</p>
-            
-            <div class="auth-signup-page-verification-card">
-                <div class="auth-signup-page-verification-benefits">
-                    <h3>Benefits of Verification</h3>
-                    <ul>
-                        <li>✓ Verified badge on your profile</li>
-                        <li>✓ Higher trust score for marketplace listings</li>
-                        <li>✓ Access to exclusive events</li>
-                        <li>✓ Priority support</li>
-                    </ul>
-                </div>
-                
-                <div class="auth-signup-page-form-group">
-                    <label class="auth-signup-page-checkbox-label">
-                        <input type="checkbox" id="wantVerification" onchange="toggleVerificationUpload()">
-                        <span>Yes, I want to become a verified rider</span>
-                    </label>
-                </div>
-                
-                <div class="auth-signup-page-verification-upload" id="verificationUpload" style="display: none;">
-                    <label class="auth-signup-page-form-label">Upload Driver's License or ID</label>
-                    <div class="auth-signup-page-upload-area">
-                        <input type="file" id="licenseUpload" accept="image/*,.pdf" class="auth-signup-page-file-input">
-                        <div class="auth-signup-page-upload-placeholder">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="7 10 12 15 17 10"></polyline>
-                                <line x1="12" y1="15" x2="12" y2="3"></line>
-                            </svg>
-                            <p>Click to upload or drag and drop</p>
-                            <span>PNG, JPG or PDF up to 10MB</span>
-                        </div>
-                    </div>
-                    <span class="auth-signup-page-privacy-note">
-                        🔒 Your ID is encrypted and only used for verification. We never share your personal information.
-                    </span>
-                </div>
-            </div>
-            
-            <div class="auth-signup-page-button-group">
-                <button type="button" class="auth-signup-page-back-button" onclick="previousStep()">Back</button>
-                <button type="button" class="auth-signup-page-next-button" onclick="nextStep()">Next</button>
-            </div>
-        </div>
-
-        <!-- Step 4: Vehicle Interests -->
-        <div class="auth-signup-page-step-content" data-step="4">
+        <!-- Step 2: Vehicle Interests -->
+        <div class="auth-signup-page-step-content" data-step="2">
             <h2 class="auth-signup-page-step-title">What Are You Interested In?</h2>
-            <p class="auth-signup-page-step-subtitle">Select all that apply - this helps us show relevant content</p>
+            <p class="auth-signup-page-step-subtitle">Select all that apply (you can change this later)</p>
             
             <div class="auth-signup-page-interests-grid">
                 <label class="auth-signup-page-interest-card">
@@ -226,32 +140,28 @@ customJS:
             
             <div class="auth-signup-page-button-group">
                 <button type="button" class="auth-signup-page-back-button" onclick="previousStep()">Back</button>
-                <button type="button" class="auth-signup-page-next-button" onclick="nextStep()">Next</button>
+                <button type="button" class="auth-signup-page-next-button" onclick="nextStep()">Continue</button>
             </div>
         </div>
 
-        <!-- Step 5: Brand Preferences -->
-        <div class="auth-signup-page-step-content" data-step="5">
-            <h2 class="auth-signup-page-step-title">Select Your Favorite Brands</h2>
-            <p class="auth-signup-page-step-subtitle">We'll notify you about news and deals from these brands</p>
+        <!-- Step 3: Category Selection -->
+        <div class="auth-signup-page-step-content" data-step="3">
+            <h2 class="auth-signup-page-step-title">Select Your Favorite Categories</h2>
+            <p class="auth-signup-page-step-subtitle">Choose specific categories you're interested in</p>
             
-            <div class="auth-signup-page-brand-categories" id="brandCategories">
-                <!-- Brand categories will be dynamically populated based on selected interests -->
-            </div>
-            
-            <div class="auth-signup-page-selected-brands">
-                <h4>Selected Brands (<span id="selectedCount">0</span>)</h4>
-                <div class="auth-signup-page-selected-brands-list" id="selectedBrandsList"></div>
+            <div class="auth-signup-page-categories-container" id="categoriesContainer">
+                <!-- Categories will be dynamically inserted here based on selected vehicle types -->
             </div>
             
             <div class="auth-signup-page-button-group">
                 <button type="button" class="auth-signup-page-back-button" onclick="previousStep()">Back</button>
+                <button type="button" class="auth-signup-page-skip-button" onclick="skipCategories()">Skip for now</button>
                 <button type="submit" class="auth-signup-page-submit-button">Complete Signup</button>
             </div>
         </div>
+
     </form>
     
     <div class="auth-signup-page-signin-prompt">
         <p>Already have an account? <a href="/authentication/auth-login-page/" class="auth-signup-page-signin-link">Sign in</a></p>
     </div>
-</div>

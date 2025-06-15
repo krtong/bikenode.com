@@ -1,0 +1,79 @@
+---
+layout: authorization-page-layout
+title: Get Verified - BikeNode
+authTitle: Want to Get Verified?
+authSubtitle: Unlock exclusive benefits and build trust
+customCSS:
+  - ./styles/auth-verification-prompt.css
+customJS:
+  - ./js/auth-verification-prompt.js
+---
+
+<div class="auth-verification-prompt-container">
+    <div class="auth-verification-prompt-icon">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+            <path d="M9 12l2 2 4-4"/>
+        </svg>
+    </div>
+    
+    <h2 class="auth-verification-prompt-title">Become a Verified Rider</h2>
+    <p class="auth-verification-prompt-subtitle">
+        Join our trusted community of verified riders and unlock exclusive benefits
+    </p>
+    
+    <div class="auth-verification-prompt-benefits">
+        <div class="auth-verification-prompt-benefit">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+            </svg>
+            <div>
+                <h4>Verified Badge</h4>
+                <p>Stand out with a verified badge on your profile</p>
+            </div>
+        </div>
+        
+        <div class="auth-verification-prompt-benefit">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+            <div>
+                <h4>Marketplace Trust</h4>
+                <p>Higher trust score for buying and selling</p>
+            </div>
+        </div>
+        
+        <div class="auth-verification-prompt-benefit">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <div>
+                <h4>Exclusive Access</h4>
+                <p>Join VIP events and early access programs</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="auth-verification-prompt-actions">
+        <a href="/settings/settings-security-page/" class="auth-verification-prompt-btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            Get Verified Now
+        </a>
+        
+        <button class="auth-verification-prompt-btn-secondary" onclick="skipVerification()">
+            Maybe Later
+        </button>
+    </div>
+    
+    <p class="auth-verification-prompt-note">
+        You can always get verified later from your account settings
+    </p>
+</div>

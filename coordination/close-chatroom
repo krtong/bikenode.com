@@ -1,0 +1,112 @@
+#!/bin/bash
+# Close a chatroom with required closure reason
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-1}"
+CHATROOM_STATUS_FILE="$SCRIPT_DIR/data/chatroom-status.txt"
+CHATROOMS_DIR="$SCRIPT_DIR/chatrooms"
+
+# Show usage
+if [ $# -eq 0 ]; then
+    echo "Usage: close-chatroom <chatroom-name>"
+    echo ""
+    echo "This will prompt you for a closure reason."
+    echo ""
+    echo "Available chatrooms:"
+    echo ""
+    # Show open chatrooms
+    if [ -f "$CHATROOM_STATUS_FILE" ]; then
+        while IFS=':' read -r name status creator created modified reason; do
+            if [ "$status" = "open" ] && [ "$name" != "general" ]; then
+                echo "  ✅ $name (created by $creator on $created)"
+            fi
+        done < "$CHATROOM_STATUS_FILE"
+    fi
+    echo ""
+    echo "Note: The 'general' chatroom cannot be closed."
+    exit 1
+fi
+
+CHATROOM_NAME="$1"
+
+# Validate chatroom name format
+if ! [[ "$CHATROOM_NAME" =~ ^[a-z0-9]([a-z0-9-]*[a-z0-9])?$ ]]; then
+    echo "ERROR: Invalid chatroom name format"
+    exit 1
+fi
+
+# Prevent closing system chatrooms
+if [[ "$CHATROOM_NAME" == "general" ]]; then
+    echo "ERROR: Cannot close the 'general' chatroom - it's a system chatroom"
+    exit 1
+fi
+
+# Check if chatroom exists and is open
+CHATROOM_FILE="$CHATROOMS_DIR/$CHATROOM_NAME.txt"
+if [ ! -f "$CHATROOM_FILE" ]; then
+    echo "ERROR: Chatroom '$CHATROOM_NAME' does not exist"
+    exit 1
+fi
+
+# Check current status
+if ! grep -q "^$CHATROOM_NAME:open:" "$CHATROOM_STATUS_FILE" 2>/dev/null; then
+    echo "ERROR: Chatroom '$CHATROOM_NAME' is not open or does not exist in status file"
+    exit 1
+fi
+
+# Prompt for closure reason (required)
+echo "💬 Why are you closing chatroom '$CHATROOM_NAME'?"
+echo "Please provide a reason (required):"
+read -r CLOSURE_REASON
+
+# Validate closure reason is not empty
+if [ -z "$CLOSURE_REASON" ]; then
+    echo "ERROR: Closure reason is required. Chatroom not closed."
+    exit 1
+fi
+
+# Validate closure reason length and content
+if [ "${#CLOSURE_REASON}" -lt 10 ]; then
+    echo "ERROR: Closure reason must be at least 10 characters. Please provide a meaningful reason."
+    exit 1
+fi
+
+if [ "${#CLOSURE_REASON}" -gt 200 ]; then
+    echo "ERROR: Closure reason too long (max 200 characters)"
+    exit 1
+fi
+
+# Get timestamp
+TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+
+# Create temporary file for atomic update
+TEMP_STATUS_FILE=$(mktemp)
+
+# Update status file - change open to closed and add closure reason
+while IFS=':' read -r name status creator created modified reason; do
+    if [ "$name" = "$CHATROOM_NAME" ] && [ "$status" = "open" ]; then
+        # Close this chatroom
+        echo "$name:closed:$creator:$created:$TIMESTAMP:$CLOSURE_REASON" >> "$TEMP_STATUS_FILE"
+    else
+        # Keep other entries unchanged
+        echo "$name:$status:$creator:$created:$modified:$reason" >> "$TEMP_STATUS_FILE"
+    fi
+done < "$CHATROOM_STATUS_FILE"
+
+# Atomic replace
+mv "$TEMP_STATUS_FILE" "$CHATROOM_STATUS_FILE"
+
+# Add closure message to the chatroom
+echo "[$TIMESTAMP] SYSTEM: Chatroom closed by $INSTANCE_ID" >> "$CHATROOM_FILE"
+echo "[$TIMESTAMP] SYSTEM: Closure reason: $CLOSURE_REASON" >> "$CHATROOM_FILE"
+
+# Log the action
+"$SCRIPT_DIR/log-action" "CHATROOM_CLOSED" "Closed chatroom '$CHATROOM_NAME' - Reason: $CLOSURE_REASON"
+
+echo "🔒 Chatroom '$CHATROOM_NAME' has been closed"
+echo "👤 Closed by: $INSTANCE_ID"
+echo "⏰ Closed at: $TIMESTAMP"
+echo "📝 Reason: $CLOSURE_REASON"
+echo ""
+echo "The chatroom can be reopened later using: reopen-chatroom $CHATROOM_NAME"

@@ -15,9 +15,46 @@ import time
 import random
 
 # Add parent directory to path
-sys.path.append(str(Path(__file__).parent.parent / 'orchestration'))
+sys.path.append(str(Path(__file__).parent.parent))
 
-from utils_minimal import setup_logging, normalize_url
+try:
+    from orchestration.utils_minimal import setup_logging, normalize_url
+except ImportError:
+    # Fallback imports if orchestration module is not available
+    import logging
+    
+    def setup_logging(name, log_file):
+        """Simple logging setup."""
+        logger = logging.getLogger(name)
+        logger.setLevel(logging.INFO)
+        
+        # File handler
+        fh = logging.FileHandler(log_file)
+        fh.setLevel(logging.INFO)
+        
+        # Console handler
+        ch = logging.StreamHandler()
+        ch.setLevel(logging.INFO)
+        
+        # Formatter
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        fh.setFormatter(formatter)
+        ch.setFormatter(formatter)
+        
+        logger.addHandler(fh)
+        logger.addHandler(ch)
+        
+        return logger
+    
+    def normalize_url(url):
+        """Basic URL normalization."""
+        # Remove trailing slash
+        url = url.rstrip('/')
+        # Remove fragment
+        from urllib.parse import urlparse
+        parsed = urlparse(url)
+        url = parsed._replace(fragment='').geturl()
+        return url.lower()
 
 
 class CurlCrawler:

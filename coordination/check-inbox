@@ -1,0 +1,41 @@
+#!/bin/bash
+# Check inbox for messages
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-1}"
+
+if [ $# -eq 1 ]; then
+    INSTANCE_ID="$1"
+fi
+
+INBOX_FILE="$SCRIPT_DIR/inboxes/$INSTANCE_ID.txt"
+
+echo "=== Inbox for $INSTANCE_ID ==="
+
+if [ ! -f "$INBOX_FILE" ]; then
+    echo "No messages yet."
+    echo "Inbox will be created at: $INBOX_FILE"
+    exit 0
+fi
+
+if [ ! -s "$INBOX_FILE" ]; then
+    echo "No messages."
+    exit 0
+fi
+
+# Count unread messages
+UNREAD_COUNT=$(grep -c "STATUS: unread" "$INBOX_FILE" 2>/dev/null || echo "0")
+echo "Unread messages: $UNREAD_COUNT"
+echo ""
+
+# Show all messages
+cat "$INBOX_FILE"
+
+# Offer to mark as read
+if [ "$UNREAD_COUNT" -gt 0 ]; then
+    echo ""
+    echo "Commands:"
+    echo "  mark-read [message_number]  - Mark specific message as read"
+    echo "  mark-read all              - Mark all messages as read"
+    echo "  check-unread               - View only unread messages"
+fi

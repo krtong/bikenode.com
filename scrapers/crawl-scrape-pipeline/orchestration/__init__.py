@@ -1,5 +1,2 @@
-"""
-Orchestration module for the crawl-scrape pipeline.
-"""
-from .config import *
-from .utils_minimal import *
+# Orchestration Module
+"""Pipeline orchestration utilities for the crawl-scrape pipeline."""

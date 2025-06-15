@@ -1,0 +1,105 @@
+#!/bin/bash
+# Check unread messages across all chatrooms and DMs
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-3}"
+
+# Source logging function
+source "$SCRIPT_DIR/log-action"
+
+echo "=== Unread Messages for $INSTANCE_ID ==="
+echo ""
+
+# Log the action
+log_action "CHECK_UNREAD" "Checking all unread messages"
+
+# Function to get last read position for a file
+get_last_read_position() {
+    local file_type="$1"  # chatroom or dm
+    local file_name="$2"
+    local position_file="$SCRIPT_DIR/read-status/${INSTANCE_ID}_positions.txt"
+    
+    if [ -f "$position_file" ]; then
+        grep "^$file_type:$file_name:" "$position_file" | cut -d: -f3 || echo "0"
+    else
+        echo "0"
+    fi
+}
+
+# Function to update last read position
+update_read_position() {
+    local file_type="$1"
+    local file_name="$2"
+    local position="$3"
+    local position_file="$SCRIPT_DIR/read-status/${INSTANCE_ID}_positions.txt"
+    
+    # Create directory if needed
+    mkdir -p "$SCRIPT_DIR/read-status"
+    
+    # Remove old entry and add new one
+    if [ -f "$position_file" ]; then
+        grep -v "^$file_type:$file_name:" "$position_file" > "$position_file.tmp"
+        mv "$position_file.tmp" "$position_file"
+    fi
+    
+    echo "$file_type:$file_name:$position" >> "$position_file"
+}
+
+# Check chatrooms
+echo "--- Chatroom Messages ---"
+for chatroom_file in "$SCRIPT_DIR/chatrooms"/*.txt; do
+    if [ -f "$chatroom_file" ]; then
+        chatroom_name=$(basename "$chatroom_file" .txt)
+        
+        # Skip if it's a lock file
+        if [[ "$chatroom_name" == *.lock ]]; then
+            continue
+        fi
+        
+        # Get last read position
+        last_position=$(get_last_read_position "chatroom" "$chatroom_name")
+        current_position=$(wc -l < "$chatroom_file")
+        
+        if [ "$current_position" -gt "$last_position" ]; then
+            echo ""
+            echo "[$chatroom_name] - New messages:"
+            tail -n +"$((last_position + 1))" "$chatroom_file" | head -20
+            echo "..."
+            
+            # Update position
+            update_read_position "chatroom" "$chatroom_name" "$current_position"
+        fi
+    fi
+done
+
+# Check DMs
+echo ""
+echo "--- Direct Messages ---"
+DM_DIR="$SCRIPT_DIR/dms"
+if [ -d "$DM_DIR" ]; then
+    for dm_file in "$DM_DIR"/*.txt; do
+        if [ -f "$dm_file" ]; then
+            dm_name=$(basename "$dm_file" .txt)
+            
+            # Only check DMs involving this instance
+            if [[ "$dm_name" == *"$INSTANCE_ID"* ]]; then
+                # Get last read position
+                last_position=$(get_last_read_position "dm" "$dm_name")
+                current_position=$(wc -l < "$dm_file")
+                
+                if [ "$current_position" -gt "$last_position" ]; then
+                    echo ""
+                    echo "[DM: $dm_name] - New messages:"
+                    tail -n +"$((last_position + 1))" "$dm_file" | head -10
+                    echo "..."
+                    
+                    # Update position
+                    update_read_position "dm" "$dm_name" "$current_position"
+                fi
+            fi
+        fi
+    done
+fi
+
+echo ""
+echo "All unread messages marked as read."
