@@ -1,2 +1,4 @@
 [2025-06-15 04:20:48] SYSTEM: Chatroom 'test-messaging' created by instance-1
 [2025-06-15 04:20:48] SYSTEM: Description: Testing chatroom functionality
+[2025-06-15 04:23:48] SYSTEM: Chatroom closed by instance-1
+[2025-06-15 04:23:48] SYSTEM: Closure reason: Testing closure functionality for system validation

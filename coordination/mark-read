@@ -1,0 +1,80 @@
+#!/bin/bash
+# Mark messages as read in inbox
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+INSTANCE_ID="${CLAUDE_INSTANCE_ID:-instance-3}"
+
+# Source logging function
+source "$SCRIPT_DIR/log-action"
+
+# Usage check
+if [ $# -lt 1 ]; then
+    echo "Usage: mark-read <message_number|all> [instance_id]"
+    echo "Example: mark-read 1"
+    echo "Example: mark-read all"
+    echo "Example: mark-read 3 instance-2"
+    exit 1
+fi
+
+MESSAGE_NUM="$1"
+TARGET_INSTANCE="${2:-$INSTANCE_ID}"
+INBOX_FILE="$SCRIPT_DIR/inboxes/$TARGET_INSTANCE.txt"
+
+if [ ! -f "$INBOX_FILE" ]; then
+    echo "ERROR: No inbox found for $TARGET_INSTANCE"
+    exit 1
+fi
+
+# Function to mark a single message as read
+mark_message_read() {
+    local msg_num="$1"
+    local temp_file="$INBOX_FILE.tmp"
+    local current_msg=0
+    local in_message=false
+    local marked=false
+    
+    > "$temp_file"
+    
+    while IFS= read -r line; do
+        if [[ "$line" =~ ^\[.*\]\ FROM: ]]; then
+            ((current_msg++))
+            in_message=true
+        fi
+        
+        if [ "$in_message" = true ] && [ "$current_msg" -eq "$msg_num" ] && [[ "$line" == "STATUS: unread" ]]; then
+            echo "STATUS: read" >> "$temp_file"
+            marked=true
+        else
+            echo "$line" >> "$temp_file"
+        fi
+        
+        if [[ "$line" == "---" ]]; then
+            in_message=false
+        fi
+    done < "$INBOX_FILE"
+    
+    if [ "$marked" = true ]; then
+        mv "$temp_file" "$INBOX_FILE"
+        echo "Message $msg_num marked as read"
+        log_action "MARK_READ" "Message $msg_num in $TARGET_INSTANCE inbox"
+    else
+        rm "$temp_file"
+        echo "Message $msg_num not found or already read"
+    fi
+}
+
+# Main logic
+if [ "$MESSAGE_NUM" = "all" ]; then
+    # Mark all messages as read
+    sed -i.bak 's/STATUS: unread/STATUS: read/g' "$INBOX_FILE"
+    rm "$INBOX_FILE.bak"
+    echo "All messages marked as read"
+    log_action "MARK_READ_ALL" "All messages in $TARGET_INSTANCE inbox"
+else
+    # Mark specific message as read
+    if ! [[ "$MESSAGE_NUM" =~ ^[0-9]+$ ]]; then
+        echo "ERROR: Message number must be a number or 'all'"
+        exit 1
+    fi
+    mark_message_read "$MESSAGE_NUM"
+fi

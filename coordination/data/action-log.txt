@@ -1,1 +1,2 @@
 [2025-06-15 04:20:48] instance-1: CHATROOM_CREATED - Created chatroom 'test-messaging' with description: Testing chatroom functionality
+[2025-06-15 04:23:48] instance-1: CHATROOM_CLOSED - Closed chatroom 'test-messaging' - Reason: Testing closure functionality for system validation
